@@ -21,3 +21,19 @@ Shadowrocket 自用模块合集
 
 ```text
 https://mirror.ghproxy.com/https://raw.githubusercontent.com/GrandpaNiuu/shadowrocket%E8%87%AA%E7%94%A8%E6%A8%A1%E5%9D%97/main/Ronghemokuai_%E6%96%B0%E6%A1%86%E6%9E%B6%E9%87%8D%E6%9E%84%E7%89%88.sgmodule
+```
+
+## 📱 使用说明
+
+1. 确保 iPhone 已安装 Shadowrocket
+2. 点击上方“一键导入 Shadowrocket 模块”
+3. 跳转到 Shadowrocket 后确认添加模块
+4. 在模块列表中启用即可
+
+---
+
+<div align="center">
+
+Made for Shadowrocket ⚡
+
+</div>
