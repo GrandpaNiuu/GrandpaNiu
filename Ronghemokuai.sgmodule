@@ -1,12 +1,14 @@
+#!url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
 #!name=GrandpaNiu
-#!desc=2026-05-25 
+#!desc=2026-05-28
 #!system=ios
 #!category=去广告 / 稳定净化
 #!arguments=屏蔽上传按钮:true,屏蔽选段按钮:true,屏蔽Shorts按钮:false,字幕翻译语言:off,歌词翻译语言:off,启用调试模式:false
 #!arguments-desc=- 屏蔽参数：[true, false]\n- 翻译参数：[语言代码, off]\n\n1. 语言代码遵循 Google Translate Languages Codes，填入 off 时关闭翻译。\n2. 开启调试模式用于输出更多日志。
-# update-date: 2026-05-25
+# update-date: 2026-05-28
 # required-surge: Surge iOS 5.0+ / macOS 5.0+（需启用 MITM 并安装信任证书）
-# source-list: blackmatrix7 Advertising.list, Cats-Team AdRules, Maasea YouTube Enhance, app2smile Spotify, zirawell R-Store AntiAd, fmz200 wool_scripts 部分去广告脚本。
+# source-list: blackmatrix7 Advertising.list, Cats-Team AdRules, Maasea YouTube Enhance, app2smile Spotify, zirawell R-Store AntiAd, fmz200 wool_scripts 部分去广告脚本, Remote AdBlock Hub 远程规则增强。
 # safety-policy: 只做广告、弹窗、banner、信息流、推荐位、活动卡片清理；不做 VIP/Premium/Crack/Unlock/支付绕过/微信安全绕过/证书绕过/成人内容/第三方 ZIP 或图片注入。
 # changelog: 修复 IPv6 CIDR 与拼多多 IPv6 正则；移除 Dreame ZIP 注入、粉笔第三方图片注入、Bilibili 伪会员改写；新增 cmp_ 脚本层。
 # arguments: YouTube Enhance 参数沿用上游，字幕/歌词翻译默认关闭以降低兼容风险。
@@ -17,6 +19,12 @@
 # GitHub 去广告规则补充（Surge 端按远程资源自动更新）
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,REJECT
 DOMAIN-SET,https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt,REJECT
+# === Remote AdBlock Hub：远程广告规则增强层 ===
+# 只添加可信远程规则，不覆盖本地规则；用于补充国内外网页、App 通用广告域名。
+RULE-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt,REJECT
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list,REJECT
+RULE-SET,https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt,REJECT
+RULE-SET,https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list,REJECT
 DOMAIN,dorangesource.alicdn.com,DIRECT
 DOMAIN,push.m.youku.com,DIRECT
 DOMAIN,un-acs.youku.com,DIRECT
