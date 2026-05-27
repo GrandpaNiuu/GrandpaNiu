@@ -31,13 +31,11 @@
       padding: 34px 24px;
       text-align: center;
       box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
-      backdrop-filter: blur(14px);
     }
 
     h1 {
       margin: 0 0 10px;
       font-size: 34px;
-      line-height: 1.2;
     }
 
     p {
@@ -47,31 +45,31 @@
     }
 
     .button {
-      display: inline-block;
-      margin: 24px 0 18px;
-      padding: 15px 24px;
+      display: block;
+      width: 100%;
+      margin: 16px 0;
+      padding: 15px 20px;
       border-radius: 999px;
       background: #238636;
       color: #ffffff;
       text-decoration: none;
       font-weight: 700;
       font-size: 16px;
-      box-shadow: 0 10px 30px rgba(35, 134, 54, 0.35);
+      border: 0;
+      cursor: pointer;
     }
 
-    .button:active {
-      transform: scale(0.98);
+    .button.secondary {
+      background: #1f6feb;
     }
 
-    .section-title {
-      margin-top: 28px;
-      font-weight: 700;
-      color: #f0f6fc;
+    .button.dark {
+      background: #30363d;
     }
 
     code {
       display: block;
-      margin-top: 12px;
+      margin-top: 16px;
       padding: 14px;
       border-radius: 14px;
       background: #161b22;
@@ -95,24 +93,37 @@
   <main class="card">
     <h1>GrandpaNiu</h1>
     <p>Shadowrocket 自用模块合集</p>
-    <p>点击下面按钮导入模块 🚀</p>
+    <p>推荐使用 Safari 打开本页面。</p>
 
-    <a
-      class="button"
-      href="shadowrocket://addmodule?url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
-    >
-      🚀 一键导入 Shadowrocket 模块
+    <button class="button" onclick="copyModuleUrl()">
+      📋 复制模块地址
+    </button>
+
+    <a class="button secondary" href="shadowrocket://">
+      🚀 打开 Shadowrocket
+    </a>
+
+    <a class="button dark" href="shadowrocket://addmodule?url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule">
+      🧪 测试一键导入
     </a>
 
     <p class="tip">
-      建议使用 Safari 打开本页面。如果按钮无效，请复制下面的跳转链接到 Safari 地址栏打开。
+      如果“一键导入”只会打开小火箭但不会自动安装，请先复制模块地址，再到 Shadowrocket 里从链接导入。
     </p>
 
-    <div class="section-title">Shadowrocket 跳转链接</div>
-    <code>shadowrocket://addmodule?url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule</code>
-
-    <div class="section-title">原始模块地址</div>
-    <code>https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule</code>
+    <code id="moduleUrl">https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule</code>
   </main>
+
+  <script>
+    function copyModuleUrl() {
+      const url = "https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule";
+
+      navigator.clipboard.writeText(url).then(function () {
+        alert("模块地址已复制，请打开 Shadowrocket 后手动从链接导入。");
+      }).catch(function () {
+        prompt("请手动复制模块地址：", url);
+      });
+    }
+  </script>
 </body>
 </html>
