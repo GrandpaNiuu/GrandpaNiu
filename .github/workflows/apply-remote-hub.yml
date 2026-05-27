@@ -1,0 +1,77 @@
+name: Apply Remote AdBlock Hub
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".maintenance/apply-remote-hub.trigger"
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update module metadata and remote rules
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+
+          path = Path("Ronghemokuai.sgmodule")
+          text = path.read_text(encoding="utf-8")
+          today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
+
+          url_line = "#!url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
+          update_line = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
+
+          lines = text.splitlines()
+
+          # Remove duplicated or old metadata lines, then add clean metadata at the top.
+          lines = [line for line in lines if not line.startswith("#!url=") and not line.startswith("#!update-url=")]
+          lines.insert(0, update_line)
+          lines.insert(0, url_line)
+
+          for i, line in enumerate(lines):
+              if line.startswith("#!desc="):
+                  lines[i] = f"#!desc={today}"
+              elif line.startswith("# update-date:"):
+                  lines[i] = f"# update-date: {today}"
+              elif line.startswith("# source-list:") and "Remote AdBlock Hub" not in line:
+                  lines[i] = line.rstrip("。") + ", Remote AdBlock Hub 远程规则增强。"
+
+          text = "\n".join(lines).rstrip("\n") + "\n"
+
+          remote_block = """# === Remote AdBlock Hub：远程广告规则增强层 ===
+          # 只添加可信远程规则，不覆盖本地规则；用于补充国内外网页、App 通用广告域名。
+          RULE-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt,REJECT
+          RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list,REJECT
+          RULE-SET,https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt,REJECT
+          RULE-SET,https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list,REJECT
+          """.replace("\n          ", "\n").strip()
+
+          if "# === Remote AdBlock Hub：远程广告规则增强层 ===" not in text:
+              marker = "DOMAIN-SET,https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt,REJECT"
+              if marker in text:
+                  text = text.replace(marker, marker + "\n" + remote_block, 1)
+              else:
+                  rule_header = "[Rule]"
+                  text = text.replace(rule_header, rule_header + "\n" + remote_block, 1)
+
+          path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Commit module update and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Ronghemokuai.sgmodule
+          git rm --ignore-unmatch .maintenance/apply-remote-hub.trigger .github/workflows/apply-remote-hub.yml
+          git diff --cached --quiet || git commit -m "Add remote ad rules hub and update module date"
+          git push
