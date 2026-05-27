@@ -1,0 +1,7 @@
+# GitHub Linguist language statistics
+# Treat Shadowrocket / Surge module files as INI-style config instead of ignoring them.
+*.sgmodule linguist-language=INI
+*.module linguist-language=INI
+
+# Do not let the landing page dominate the repository language bar.
+import.html linguist-vendored
