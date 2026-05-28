@@ -56,13 +56,21 @@ https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
 - [维护说明](docs/MAINTENANCE.md)
 - [问题排查](docs/TROUBLESHOOTING.md)
 
-每日自动更新工作流：
+每日自动更新工作流（基础检查，仅报告）：
 
 ```text
 .github/workflows/daily-module-update.yml
 ```
 
-说明：每日工作流只更新日期、检查关键结构、检查主要远程链接并生成报告，不会自动删除规则、注释脚本或替换 Spotify / YouTube。
+说明：该基础工作流只更新日期、检查关键结构、检查主要远程链接并生成报告，不会自动删除规则、注释脚本或替换 Spotify / YouTube。
+
+每日失效源修复工作流（连续 2 天确认失效后处理）：
+
+```text
+.github/workflows/daily-invalid-source-repair.yml
+```
+
+说明：失效源修复工作流不会因为单日网络失败修改规则；连续 2 天确认失效后，优先查找同源可靠新地址并替换，找不到可靠新地址时才注释，只有低风险独立远程规则才允许删除。Spotify、YouTube、主模块地址、安装/导入页面和核心远程规则源只写入报告，等待人工确认。
 
 ---
 
