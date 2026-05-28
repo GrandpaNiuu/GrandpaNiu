@@ -1,0 +1,94 @@
+name: Fix Spotify Conflict
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".maintenance/fix-spotify-conflict.trigger"
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Add Spotify whitelist and keep Spotify scripts intact
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          import re
+
+          path = Path("Ronghemokuai.sgmodule")
+          text = path.read_text(encoding="utf-8")
+          today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
+
+          whitelist = """# Spotify 白名单：放在远程广告规则前，避免广告规则误杀播放链路导致跳歌
+          DOMAIN-SUFFIX,spotify.com,DIRECT
+          DOMAIN-SUFFIX,scdn.co,DIRECT
+          DOMAIN-SUFFIX,spotifycdn.com,DIRECT
+          DOMAIN-SUFFIX,pscdn.co,DIRECT
+          DOMAIN,spclient.wg.spotify.com,DIRECT
+          DOMAIN-SUFFIX,spclient.spotify.com,DIRECT
+          """.replace("\n          ", "\n").strip()
+
+          required = [
+              "DOMAIN-SUFFIX,spotify.com,DIRECT",
+              "DOMAIN-SUFFIX,scdn.co,DIRECT",
+              "DOMAIN-SUFFIX,spotifycdn.com,DIRECT",
+              "DOMAIN-SUFFIX,pscdn.co,DIRECT",
+              "DOMAIN,spclient.wg.spotify.com,DIRECT",
+              "DOMAIN-SUFFIX,spclient.spotify.com,DIRECT",
+          ]
+
+          lines = text.splitlines()
+          cleaned = []
+          skip = False
+          for line in lines:
+              stripped = line.strip()
+              if stripped.startswith("# Spotify 白名单"):
+                  skip = True
+                  continue
+              if skip and (stripped in required or not stripped):
+                  continue
+              skip = False
+              if stripped in required:
+                  continue
+              cleaned.append(line)
+
+          text = "\n".join(cleaned).rstrip("\n") + "\n"
+
+          if "[Rule]" not in text:
+              raise SystemExit("Missing [Rule] section")
+
+          text = text.replace("[Rule]", "[Rule]\n" + whitelist, 1)
+
+          text = re.sub(r"^#!desc=.*$", f"#!desc={today}", text, flags=re.M)
+          text = re.sub(r"^# update-date:.*$", f"# update-date: {today}", text, flags=re.M)
+
+          if "spotify-json =" not in text:
+              raise SystemExit("Missing spotify-json script")
+          if "spotify-proto =" not in text:
+              raise SystemExit("Missing spotify-proto script")
+          if "spclient.wg.spotify.com" not in text:
+              raise SystemExit("Missing Spotify MITM hostname or whitelist host")
+          if "header-del if-none-match" not in text:
+              raise SystemExit("Missing Spotify Header Rewrite")
+
+          path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Commit fix and remove temporary files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Ronghemokuai.sgmodule
+          git rm --ignore-unmatch .maintenance/fix-spotify-conflict.trigger .github/workflows/fix-spotify-conflict.yml
+          git diff --cached --quiet || git commit -m "Fix Spotify playback conflict"
+          git push
