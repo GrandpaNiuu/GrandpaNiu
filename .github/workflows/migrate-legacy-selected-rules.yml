@@ -1,0 +1,31 @@
+name: Migrate Selected Legacy Rules
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".maintenance/migrate-legacy-selected-rules.trigger"
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Migrate selected valid legacy rules
+        run: python3 scripts/migrate_legacy_selected_rules.py
+
+      - name: Commit migrated module and report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Ronghemokuai.sgmodule reports/legacy_selected_migration_report.md scripts/migrate_legacy_selected_rules.py
+          git rm --ignore-unmatch .maintenance/migrate-legacy-selected-rules.trigger .maintenance/legacy_26_1_27.sgmodule .github/workflows/migrate-legacy-selected-rules.yml
+          git diff --cached --quiet || git commit -m "Migrate selected valid legacy ad rules"
+          git push
