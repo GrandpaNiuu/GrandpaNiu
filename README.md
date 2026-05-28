@@ -102,7 +102,6 @@ BoxJS 账号任务
 - [失效源历史记录](reports/invalid_sources_history.json)
 - [每日失效源修复工作流](.github/workflows/daily-invalid-source-repair.yml)
 - [模块安全整理报告](reports/module_refine_report.md)
-- [旧版精选迁移报告](reports/legacy_selected_migration_report.md)
 - [维护说明](docs/MAINTENANCE.md)
 - [问题排查](docs/TROUBLESHOOTING.md)
 - [功能覆盖清单](docs/COVERAGE.md)
