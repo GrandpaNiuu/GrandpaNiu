@@ -1,0 +1,141 @@
+name: Daily Module Update
+
+on:
+  schedule:
+    # 18:00 UTC = 02:00 Beijing time next day
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/daily-module-update.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update module date and generate daily report
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          import re
+          import urllib.request
+
+          module = Path("Ronghemokuai.sgmodule")
+          report = Path("reports/daily_update_report.md")
+          report.parent.mkdir(parents=True, exist_ok=True)
+
+          if not module.exists():
+              raise SystemExit("Ronghemokuai.sgmodule not found")
+
+          text = module.read_text(encoding="utf-8")
+          today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
+
+          required_checks = {
+              "[Rule]": "[Rule]" in text,
+              "[Script]": "[Script]" in text,
+              "[MITM]": "[MITM]" in text,
+              "spotify-json": "spotify-json" in text,
+              "spotify-proto": "spotify-proto" in text,
+              "youtube.response": "youtube.response" in text,
+              "update-url": "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule" in text,
+          }
+
+          if not all(required_checks.values()):
+              missing = [key for key, ok in required_checks.items() if not ok]
+              raise SystemExit("Missing required module markers: " + ", ".join(missing))
+
+          urls = [
+              "https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule",
+              "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list",
+              "https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt",
+              "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt",
+              "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list",
+              "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt",
+              "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list",
+              "https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js",
+              "https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js",
+              "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js",
+          ]
+
+          def check_url(url: str) -> str:
+              headers = {"User-Agent": "GrandpaNiu-Daily-Module-Check/1.0"}
+              try:
+                  req = urllib.request.Request(url, method="HEAD", headers=headers)
+                  with urllib.request.urlopen(req, timeout=25) as resp:
+                      if 200 <= resp.status < 400:
+                          return f"OK HTTP {resp.status}"
+                      return f"WARN HTTP {resp.status}"
+              except Exception as head_error:
+                  try:
+                      req = urllib.request.Request(url, headers={**headers, "Range": "bytes=0-2048"})
+                      with urllib.request.urlopen(req, timeout=30) as resp:
+                          body = resp.read(2048)
+                          if resp.status in (200, 206) and body:
+                              return f"OK GET HTTP {resp.status}"
+                          return f"WARN GET HTTP {resp.status} empty"
+                  except Exception as get_error:
+                      return f"CHECK_FAILED HEAD={head_error} GET={get_error}"
+
+          url_results = [(url, check_url(url)) for url in urls]
+
+          text = re.sub(r"^#!desc=.*$", f"#!desc={today}", text, flags=re.M)
+          text = re.sub(r"^# update-date:.*$", f"# update-date: {today}", text, flags=re.M)
+          module.write_text(text, encoding="utf-8")
+
+          report_lines = [
+              "# 每日模块更新报告",
+              "",
+              f"日期：{today}",
+              "",
+              "## 关键结构检查",
+              "",
+          ]
+
+          for key, ok in required_checks.items():
+              report_lines.append(f"- {key}: {'正常' if ok else '缺失'}")
+
+          report_lines.extend(["", "## 远程链接检查", ""])
+
+          for url, result in url_results:
+              report_lines.append(f"- `{url}`：{result}")
+
+          report_lines.extend([
+              "",
+              "## 自动更新边界",
+              "",
+              "- 只更新模块日期。",
+              "- 只生成每日检查报告。",
+              "- 不自动删除规则。",
+              "- 不自动注释 script-path。",
+              "- 不自动替换 Spotify / YouTube。",
+              "- 不自动修改 MITM hostname。",
+              "",
+              "## 手动检查建议",
+              "",
+              "1. 在 Shadowrocket 更新模块和脚本。",
+              "2. 测试 Spotify 播放是否跳歌。",
+              "3. 测试 YouTube 是否转圈。",
+              "4. 测试淘宝、京东、微信、支付宝、银行类 App 登录、支付、验证码是否正常。",
+              "",
+          ])
+
+          report.write_text("\n".join(report_lines), encoding="utf-8")
+          PY
+
+      - name: Commit daily update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Ronghemokuai.sgmodule reports/daily_update_report.md
+          git diff --cached --quiet || git commit -m "Daily module update"
+          git push
