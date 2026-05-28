@@ -1,0 +1,32 @@
+name: Daily invalid source audit and repair
+
+on:
+  schedule:
+    # 19:17 UTC = 03:17 Beijing time, avoiding the top-of-hour queue.
+    - cron: "17 19 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  invalid-source-repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run invalid source audit and repair
+        run: python3 scripts/audit_repair_invalid_sources.py
+
+      - name: Commit invalid source report and repairs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Ronghemokuai.sgmodule reports/invalid_sources_report.md reports/invalid_sources_history.json
+          if git diff --cached --quiet; then
+            echo "No invalid source changes to commit."
+            exit 0
+          fi
+          git commit -m "Daily invalid source audit and repair"
+          git push
