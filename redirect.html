@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>打开模块</title>
+  <style>
+    body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0d1117; color: #f0f6fc; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; padding: 24px; }
+    main { max-width: 560px; width: 100%; background: #161b22; border: 1px solid rgba(240,246,252,.14); border-radius: 20px; padding: 26px; text-align: center; }
+    a { display: block; margin: 16px 0; padding: 14px 18px; border-radius: 999px; background: #238636; color: #fff; text-decoration: none; font-weight: 700; }
+    p { color: #c9d1d9; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>正在打开 Shadowrocket</h1>
+    <p>如果没有自动跳转，请点击下面按钮。</p>
+    <a id="open" href="#">安装模块</a>
+  </main>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const target = params.get("url") || "https://grandpaniuu.github.io/GrandpaNiu/import.html";
+    const open = document.getElementById("open");
+    open.href = target;
+    setTimeout(function () { location.href = target; }, 300);
+  </script>
+</body>
+</html>
