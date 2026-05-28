@@ -42,6 +42,59 @@ https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
 
 ---
 
+## 🧩 模块功能
+
+本模块是面向 Shadowrocket / Surge 兼容使用的自用融合净化模块，目标是一个模块集中处理常用 App 和网页的广告、弹窗、横幅、信息流、推荐位和活动卡片。
+
+### 核心能力
+
+- 通用广告域名拦截：接入 blackmatrix7 Advertising.list、Cats-Team AdRules、Remote AdBlock Hub 等远程规则源。
+- 本地补充规则：包含本地域名、IP、URL-REGEX、DIRECT 白名单和 REJECT 规则。
+- App 广告净化：覆盖部分国内常用 App 的开屏广告、弹窗、横幅、信息流、推荐位和活动卡片。
+- 网页广告净化：补充通用网页广告、追踪统计和常见广告 SDK 域名拦截。
+- Spotify 处理：保留 Spotify 播放链路白名单、Header Rewrite、spotify-json、spotify-proto 和必要 MITM hostname，降低跳歌和误杀概率。
+- YouTube Enhance：保留 YouTube 增强逻辑，支持上传按钮、选段按钮、Shorts、字幕翻译、歌词翻译等参数控制。
+- Body Rewrite / Map Local：用于清理部分接口返回中的广告、弹窗、活动位、推荐位和空响应。
+- MITM 支持：使用 `%APPEND%` 追加必要 hostname，尽量保留用户其他模块的 MITM 配置。
+- 自动维护：每日基础检查、每日失效源审计、连续 2 天失效后的安全处理、失效历史记录和稳定备份。
+
+### 覆盖方向
+
+| 分类 | 覆盖状态 | 说明 |
+|---|---|---|
+| 音乐类 | 部分覆盖 | Spotify 已覆盖；QQ 音乐、网易云音乐、喜马拉雅为部分覆盖；酷狗音乐待补充。 |
+| 视频类 | 部分覆盖 | YouTube 已覆盖；Bilibili、爱奇艺、优酷、芒果 TV、咪咕视频为部分覆盖。 |
+| 社交类 | 部分覆盖 | 小红书、知乎、微博、Soul、LINE 为部分覆盖。 |
+| 电商类 | 部分覆盖 | 淘宝 / 闲鱼、京东、拼多多、饿了么 / 美团、唯品会为部分覆盖。 |
+| 工具类 | 部分覆盖 | WPS、高德地图、百度网盘 / 阿里云盘、墨迹天气为部分覆盖。 |
+| 网页广告 | 已覆盖 / 部分覆盖 | 通用广告域名已覆盖；弹窗、横幅、信息流、追踪统计为部分覆盖。 |
+| 远程规则 | 已覆盖 | blackmatrix7、Cats-Team、Remote AdBlock Hub 和本地补充规则。 |
+| Spotify | 已覆盖 | 播放保护、脚本处理、核心链路白名单。 |
+| YouTube | 已覆盖 | YouTube Enhance、字幕 / 歌词翻译参数、必要脚本。 |
+| MITM | 已覆盖 | 必要 hostname 追加，使用 `%APPEND%` 保留其他配置。 |
+
+### 安全边界
+
+本模块只做广告净化和稳定增强，不做以下内容：
+
+```text
+会员破解
+Premium 解锁
+支付绕过
+登录绕过
+账户权益伪造
+证书绕过
+Cookie 签到任务
+BoxJS 账号任务
+成人内容
+博彩内容
+灰产内容
+短链脚本
+未知混淆脚本
+```
+
+---
+
 ## 🧪 维护状态
 
 - [每日检查报告](reports/daily_update_report.md)
