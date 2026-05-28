@@ -55,6 +55,10 @@ https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
 - [旧版精选迁移报告](reports/legacy_selected_migration_report.md)
 - [维护说明](docs/MAINTENANCE.md)
 - [问题排查](docs/TROUBLESHOOTING.md)
+- [功能覆盖清单](docs/COVERAGE.md)
+- [项目范围说明](docs/SCOPE.md)
+- [变更记录](CHANGELOG.md)
+- [稳定备份说明](backup/README.md)
 
 每日自动更新工作流（基础检查，仅报告）：
 
