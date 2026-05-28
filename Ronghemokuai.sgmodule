@@ -13,6 +13,13 @@
 # changelog: 修复 IPv6 CIDR 与拼多多 IPv6 正则；移除 Dreame ZIP 注入、粉笔第三方图片注入、Bilibili 伪会员改写；新增 cmp_ 脚本层。
 # arguments: YouTube Enhance 参数沿用上游，字幕/歌词翻译默认关闭以降低兼容风险。
 [Rule]
+# Spotify 白名单：放在远程广告规则前，避免广告规则误杀播放链路导致跳歌
+DOMAIN-SUFFIX,spotify.com,DIRECT
+DOMAIN-SUFFIX,scdn.co,DIRECT
+DOMAIN-SUFFIX,spotifycdn.com,DIRECT
+DOMAIN-SUFFIX,pscdn.co,DIRECT
+DOMAIN,spclient.wg.spotify.com,DIRECT
+DOMAIN-SUFFIX,spclient.spotify.com,DIRECT
 # === 新框架 Layer 1：基础拦截层 ===
 # 顺序原则：必要 DIRECT 白名单优先，其后远程广告规则、本地域名/IP、URL-REGEX/AND 逻辑。
 # 安全边界：不主动拦截支付、登录、验证码、银行证券、微信/支付宝安全、证书校验接口。
