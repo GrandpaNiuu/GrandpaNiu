@@ -1,0 +1,31 @@
+name: Safe Refine Module
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".maintenance/safe-refine-module.trigger"
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Safely refine merged module
+        run: python3 scripts/safe_refine_module.py
+
+      - name: Commit refined module and report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Ronghemokuai.sgmodule reports/module_refine_report.md scripts/safe_refine_module.py
+          git rm --ignore-unmatch .maintenance/safe-refine-module.trigger .github/workflows/safe-refine-module.yml
+          git diff --cached --quiet || git commit -m "Audit and refine merged adblock module"
+          git push
