@@ -42,6 +42,24 @@ https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
 
 ---
 
+## 🧪 维护状态
+
+- [每日检查报告](reports/daily_update_report.md)
+- [模块安全整理报告](reports/module_refine_report.md)
+- [旧版精选迁移报告](reports/legacy_selected_migration_report.md)
+- [维护说明](docs/MAINTENANCE.md)
+- [问题排查](docs/TROUBLESHOOTING.md)
+
+每日自动更新工作流：
+
+```text
+.github/workflows/daily-module-update.yml
+```
+
+说明：每日工作流只更新日期、检查关键结构、检查主要远程链接并生成报告，不会自动删除规则、注释脚本或替换 Spotify / YouTube。
+
+---
+
 ## 📱 使用说明
 
 1. 确保 iPhone 已安装 Shadowrocket
@@ -49,6 +67,16 @@ https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
 3. 跳转到 Shadowrocket 后确认添加模块
 4. 在模块列表中启用即可
 5. 如果没有自动跳转，请打开备用页面后复制模块地址手动导入
+
+---
+
+## 🛠️ 日常维护
+
+1. 在 Shadowrocket 里更新模块和脚本
+2. 查看每日检查报告是否有远程链接失败
+3. 测试 Spotify、YouTube、登录、支付、验证码
+4. 无异常时不要修改仓库
+5. 新增规则时按 App 或功能类别小步提交
 
 ---
 
