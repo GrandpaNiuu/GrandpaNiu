@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "policy": {
+    "search_web": false,
+    "default_script_status": "pending",
+    "allow_unknown_scripts": false,
+    "allow_short_links": false,
+    "allow_proxy_or_mirror": false
+  },
+  "trusted_repositories": [
+    "blackmatrix7/ios_rule_script",
+    "Cats-Team/AdRules",
+    "privacy-protection-tools/anti-AD",
+    "ACL4SSR/ACL4SSR",
+    "Loyalsoldier/surge-rules",
+    "217heidai/adblockfilters",
+    "app2smile/rules",
+    "zirawell/R-Store",
+    "fmz200/wool_scripts",
+    "Maasea/sgmodule"
+  ],
+  "candidates": [
+    {
+      "name": "blackmatrix7 Advertising Lite",
+      "kind": "remote_rule",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingLite/AdvertisingLite.list",
+      "policy": "REJECT",
+      "enabled": false,
+      "activate": false,
+      "protected": false,
+      "purpose": "trusted same-upstream advertising candidate; disabled until manually reviewed"
+    },
+    {
+      "name": "Cats-Team AdRules DNS list",
+      "kind": "remote_rule",
+      "type": "DOMAIN-SET",
+      "url": "https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt",
+      "policy": "REJECT",
+      "enabled": false,
+      "activate": false,
+      "protected": false,
+      "purpose": "trusted domain-set candidate; disabled until manually reviewed"
+    },
+    {
+      "name": "app2smile Tieba script",
+      "kind": "script",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js",
+      "enabled": false,
+      "status": "pending",
+      "target": "Scripts/app-clean.conf",
+      "script_entry": "candidate_tieba_json = type=http-response,pattern=^https?:\\/\\/(tiebac|c)\\.baidu\\.com\\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js,script-update-interval=86400",
+      "protected": false,
+      "purpose": "trusted upstream script candidate; pending by default and not auto-added"
+    },
+    {
+      "name": "Maasea YouTube Enhance reference",
+      "kind": "reference_module",
+      "url": "https://github.com/Maasea/sgmodule",
+      "enabled": false,
+      "status": "reference",
+      "protected": true,
+      "purpose": "YouTube core reference only; never auto-replace YouTube core entries"
+    }
+  ]
+}

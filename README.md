@@ -89,6 +89,9 @@ Full flow documentation: [docs/FACTORY_FLOW.md](docs/FACTORY_FLOW.md).
 | Invalid-source history | [reports/invalid_sources_history.json](reports/invalid_sources_history.json) | Consecutive failure history. |
 | Daily update workflow | [.github/workflows/daily-module-update.yml](.github/workflows/daily-module-update.yml) | Lightweight daily date and report update. |
 | Invalid-source workflow | [.github/workflows/daily-invalid-source-repair.yml](.github/workflows/daily-invalid-source-repair.yml) | Safe repair after 2 confirmed failed days. |
+| Upstream candidates | [Rewrite/Remotes/candidates.json](Rewrite/Remotes/candidates.json) | Trusted candidate registry; no web-wide search. |
+| Upstream collect workflow | [.github/workflows/upstream-collect.yml](.github/workflows/upstream-collect.yml) | Weekly conservative candidate collection. |
+| Upstream collect report | [reports/upstream_collect_report.md](reports/upstream_collect_report.md) | Added, skipped, and manual-test status for candidate collection. |
 | Refine report | [reports/module_refine_report.md](reports/module_refine_report.md) | Safe refine and duplicate validation notes. |
 | Maintenance guide | [docs/MAINTENANCE.md](docs/MAINTENANCE.md) | Daily maintenance rules. |
 | Troubleshooting | [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | Spotify, YouTube, login, payment, and verification troubleshooting. |
@@ -124,6 +127,12 @@ It scans remote scripts, `RULE-SET`, `DOMAIN-SET`, `update-url`, GitHub raw link
 3. Delete only low-risk independent remote rule references.
 
 Protected Spotify, YouTube, install, import, update, and core upstream entries are reported for manual confirmation instead of being modified automatically.
+
+### Weekly Upstream Candidate Collection
+
+Workflow: [.github/workflows/upstream-collect.yml](.github/workflows/upstream-collect.yml)
+
+It reads only [Rewrite/Remotes/candidates.json](Rewrite/Remotes/candidates.json). It does not search the web. Candidates must come from trusted repositories, pass format checks, avoid risk keywords, avoid duplicates, and keep scripts pending unless explicitly approved. Spotify and YouTube core entries are report-only and are not auto-replaced.
 
 ## Safety Boundary
 

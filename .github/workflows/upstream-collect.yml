@@ -1,0 +1,66 @@
+name: Upstream candidate collect
+
+on:
+  schedule:
+    # 19:23 UTC Monday = 03:23 Beijing time Tuesday. Weekly only by design.
+    - cron: "23 19 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: module-maintenance
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate Python scripts
+        run: |
+          python3 -m py_compile scripts/collect_upstreams.py scripts/build_module.py scripts/factory_finalize.py
+
+      - name: Collect trusted upstream candidates
+        run: |
+          python3 scripts/collect_upstreams.py
+
+      - name: Build factory sources and release module
+        run: |
+          python3 scripts/build_module.py --build --profile stable
+
+      - name: Finalize factory output and sync root module
+        run: |
+          python3 scripts/factory_finalize.py --sync-root
+
+      - name: Validate generated module
+        run: |
+          test -f Rewrite/Remotes/candidates.json
+          test -f Rewrite/Remotes/sources.json
+          test -f reports/upstream_collect_report.md
+          test -f Release/Ronghemokuai.sgmodule
+          test -f Ronghemokuai.sgmodule
+          grep -q '^\[Rule\]' Ronghemokuai.sgmodule
+          grep -q '^\[Script\]' Ronghemokuai.sgmodule
+          grep -q '^\[MITM\]' Ronghemokuai.sgmodule
+          grep -q 'spotify-json' Ronghemokuai.sgmodule
+          grep -q 'spotify-proto' Ronghemokuai.sgmodule
+          grep -q 'youtube.response' Ronghemokuai.sgmodule
+          grep -q '#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule' Ronghemokuai.sgmodule
+          cmp -s Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule
+
+      - name: Commit upstream collect results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Rewrite/Remotes/candidates.json Rewrite/Remotes/sources.json Rules Scripts Release/Ronghemokuai.sgmodule Ronghemokuai.sgmodule reports/upstream_collect_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md
+          if git diff --cached --quiet; then
+            echo "No upstream collect changes to commit."
+            exit 0
+          fi
+          git commit -m "Collect trusted upstream candidates"
+          git push

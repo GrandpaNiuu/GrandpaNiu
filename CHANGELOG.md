@@ -2,6 +2,8 @@
 
 ## 2026-05-29
 
+- Added a conservative upstream candidate collection system with `Rewrite/Remotes/candidates.json`, `scripts/collect_upstreams.py`, `.github/workflows/upstream-collect.yml`, and `reports/upstream_collect_report.md`.
+- The upstream collector is candidate-list driven, weekly by default, duplicate-aware, risk-keyword aware, and keeps scripts pending unless explicitly approved.
 - Refactored the module factory into a source-driven build: `Rules/`, `Scripts/`, `Rewrite/Sources/`, `Rewrite/Remotes/sources.json`, and `Rewrite/Profiles/stable.conf` are now the maintained inputs.
 - Updated `scripts/build_module.py` so the default daily path builds from source inputs instead of extracting from the root module.
 - Updated `scripts/factory_finalize.py` so the default path validates `Release/Ronghemokuai.sgmodule` and syncs it to the root module without rewriting source files.

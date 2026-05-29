@@ -34,6 +34,7 @@ Rules + Scripts + Rewrite/Sources + Remotes + Profiles
 |---|---|
 | `Rewrite/Profiles/stable.conf` | Current stable build profile. |
 | `Rewrite/Remotes/sources.json` | Trusted remote `RULE-SET` / `DOMAIN-SET` registry. |
+| `Rewrite/Remotes/candidates.json` | Trusted upstream candidate registry; no web-wide search. |
 | `Rules/direct.list` | General DIRECT allowlist. |
 | `Rules/spotify-direct.list` | Spotify playback-path protection; must stay before remote ad rules. |
 | `Rules/youtube-direct.list` | Narrow YouTube protection rules. |
@@ -150,8 +151,32 @@ If Spotify skipping appears, first check remote ad-rule conflicts and add narrow
 
 - `daily-module-update.yml` updates dates and reports only.
 - `daily-invalid-source-repair.yml` handles invalid sources only after 2 consecutive confirmed failed checks.
+- `upstream-collect.yml` runs weekly and reads only `Rewrite/Remotes/candidates.json`.
 - The repair order is: verified same-origin replacement, comment, then low-risk independent remote-rule deletion.
 - Spotify, YouTube, the module `update-url`, install pages, import pages, and protected upstream sources are report-only when they fail.
+
+## Upstream Candidate Collection
+
+`scripts/collect_upstreams.py` is a conservative collector:
+
+- It does not search the web.
+- It only accepts candidates registered in `Rewrite/Remotes/candidates.json`.
+- It only allows trusted GitHub repositories listed in that file.
+- It rejects short links, proxy hosts, mirror hosts, risky keywords, unknown scripts, and duplicate URLs.
+- It validates rule-like or JavaScript-like content before adding anything.
+- It keeps script candidates pending unless they are explicitly approved.
+- It reports Spotify and YouTube core references instead of replacing them.
+
+The weekly workflow runs:
+
+```text
+python3 -m py_compile scripts/collect_upstreams.py scripts/build_module.py scripts/factory_finalize.py
+python3 scripts/collect_upstreams.py
+python3 scripts/build_module.py --build --profile stable
+python3 scripts/factory_finalize.py --sync-root
+```
+
+The report is written to `reports/upstream_collect_report.md`.
 
 ## Tool-Specific Config Files
 
