@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: module-maintenance
+  cancel-in-progress: false
+
 jobs:
   invalid-source-repair:
     runs-on: ubuntu-latest
