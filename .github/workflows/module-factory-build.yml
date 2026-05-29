@@ -32,13 +32,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Validate Python scripts
+        run: |
+          python3 -m py_compile scripts/build_module.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py
+
       - name: Build factory sources and release module
         run: |
-          python3 scripts/build_module.py --extract-from-root --build --profile stable
+          python3 scripts/build_module.py --build --profile stable
 
-      - name: Finalize factory split and sync root module
+      - name: Finalize factory output and sync root module
         run: |
-          python3 scripts/factory_finalize.py
+          python3 scripts/factory_finalize.py --sync-root
 
       - name: Validate generated and synced module
         run: |
@@ -62,12 +66,17 @@ jobs:
           test -f Scripts/youtube.conf
           test -f Scripts/app-clean.conf
           grep -q '^\[Rule\]' Ronghemokuai.sgmodule
+          grep -q '^\[URL Rewrite\]' Ronghemokuai.sgmodule
+          grep -q '^\[Header Rewrite\]' Ronghemokuai.sgmodule
+          grep -q '^\[Body Rewrite\]' Ronghemokuai.sgmodule
+          grep -q '^\[Map Local\]' Ronghemokuai.sgmodule
           grep -q '^\[Script\]' Ronghemokuai.sgmodule
           grep -q '^\[MITM\]' Ronghemokuai.sgmodule
           grep -q 'spotify-json' Ronghemokuai.sgmodule
           grep -q 'spotify-proto' Ronghemokuai.sgmodule
           grep -q 'youtube.response' Ronghemokuai.sgmodule
           grep -q '#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule' Ronghemokuai.sgmodule
+          cmp -s Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule
 
       - name: Commit factory output
         run: |

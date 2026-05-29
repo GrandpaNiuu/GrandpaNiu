@@ -1,19 +1,20 @@
 # Factory Finalize Report
 
+## Mode
+- sync root: yes
+- split from Rewrite/Sources: no
+
 ## Rule files
-- Rules/direct.list: 6
-- Rules/spotify-direct.list: 9
-- Rules/youtube-direct.list: 2
-- Rules/reject.list: 304
-- Rules/app-clean.list: 63
-- Rules/web-ads.list: 102
+- not changed in default finalize mode
 
 ## Script files
-- Scripts/spotify.conf: 2
-- Scripts/youtube.conf: 1
-- Scripts/app-clean.conf: 100
+- not changed in default finalize mode
 
 ## Root module
-- Release was copied to Ronghemokuai.sgmodule.
+- Release was copied to Ronghemokuai.sgmodule: yes
 - Root and Release are identical after sync: yes
 - Diff lines after sync: 0
+
+## Source-driven note
+- Default finalize mode does not rewrite Rules/ or Scripts/.
+- Use --split-from-sources only for migration or recovery from Rewrite/Sources.

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Build and split Ronghemokuai.sgmodule with the repository factory layout.
+"""Build Ronghemokuai.sgmodule from the repository factory sources.
 
-The builder is intentionally conservative:
-- root Ronghemokuai.sgmodule stays the formal import entry;
+The builder is source-driven:
+- Rules, Scripts, Rewrite/Sources, Remotes and Profiles are the maintained sources;
 - generated output is written to Release/Ronghemokuai.sgmodule;
-- source files in Rules, Scripts, Remotes and Rewrite/Sources can participate in the Release build;
-- exact duplicate active lines are removed during assembly.
+- root Ronghemokuai.sgmodule is synchronized later by factory_finalize.py;
+- --extract-from-root is reserved for initialization or recovery only.
 """
 
 from __future__ import annotations
@@ -50,11 +50,13 @@ SECTION_FILES = {
     "MITM": "MITM.conf",
 }
 
-REQUIRED_SECTIONS = {"Rule", "Script", "MITM"}
+REQUIRED_SECTIONS = set(SECTION_ORDER)
 CORE_TOKENS = ("spotify-json", "spotify-proto", "youtube.response")
 EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
 SECTION_RE = re.compile(r"^\[([^\]]+)\]\s*$")
 SCRIPT_NAME_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=")
+REMOTE_REQUIRED_FIELDS = {"name", "type", "url", "policy", "enabled", "protected", "purpose"}
+DISALLOWED_REMOTE_TOKENS = ("ghproxy", "mirror", "tinyurl", "bit.ly", "t.co/", "shorturl")
 
 
 def stop(message: str) -> None:
@@ -189,13 +191,21 @@ def remote_rule_lines() -> str:
         stop(f"invalid remote sources json: {exc}")
     lines: list[str] = []
     for item in data.get("rule_sets", []):
+        missing = sorted(REMOTE_REQUIRED_FIELDS - set(item))
+        if missing:
+            stop(f"remote source missing fields {missing}: {item}")
         if not item.get("enabled", False):
             continue
         rule_type = str(item.get("type", "")).strip()
         url = str(item.get("url", "")).strip()
         policy = str(item.get("policy", "REJECT")).strip()
-        if rule_type not in {"RULE-SET", "DOMAIN-SET"} or not url.startswith("http"):
-            continue
+        if rule_type not in {"RULE-SET", "DOMAIN-SET"}:
+            stop(f"unsupported remote source type: {item}")
+        if not url.startswith("https://"):
+            stop(f"enabled remote source must use https: {url}")
+        lowered_url = url.lower()
+        if any(token in lowered_url for token in DISALLOWED_REMOTE_TOKENS):
+            stop(f"disallowed remote source URL: {url}")
         name = str(item.get("name", "remote source")).strip()
         lines.append(f"# remote: {name}")
         lines.append(f"{rule_type},{url},{policy}")
@@ -299,6 +309,9 @@ def validate(text: str) -> None:
         active_script_lines = [line for line in script_block.splitlines() if line.strip() and not line.lstrip().startswith("#") and not line.startswith("[")]
         if not active_script_lines:
             stop("[Script] section would be empty")
+        script_dupes = duplicates(script_names(text))
+        if script_dupes:
+            stop("duplicate script names: " + ", ".join(script_dupes))
     mitm_index = text.find("[MITM]")
     if mitm_index >= 0 and "hostname =" not in text[mitm_index:]:
         stop("[MITM] hostname is missing")
@@ -319,30 +332,31 @@ def make_report(release_text: str, extracted: bool, profile: str) -> str:
     return "\n".join([
         "# Module Factory Report",
         "",
-        f"日期：{today}",
-        f"构建 profile：{profile}",
-        f"是否从根目录主模块拆分：{'yes' if extracted else 'no'}",
-        f"Release 是否与根目录主模块一致：{'yes' if same_as_root else 'no'}",
-        f"Release 行数：{len(release_text.splitlines())}",
+        f"Date: {today}",
+        f"Profile: {profile}",
+        f"Extracted from root module: {'yes' if extracted else 'no'}",
+        f"Release matches root module before finalize: {'yes' if same_as_root else 'no'}",
+        f"Release line count: {len(release_text.splitlines())}",
         "",
-        "## Sources 统计",
+        "## Source Counts",
         *section_counts,
         "",
-        "## 参与构建的源头",
-        "- Rewrite/Sources/: rewrite、body、map local、MITM 与过渡兼容片段",
-        "- Rules/: DIRECT、Spotify、YouTube、本地规则片段",
-        "- Scripts/: Spotify、YouTube、App 脚本片段",
-        "- Rewrite/Remotes/sources.json: 远程 RULE-SET / DOMAIN-SET 清单",
-        "- Rewrite/Profiles/: 构建 profile",
+        "## Build Inputs",
+        "- Rewrite/Profiles/stable.conf",
+        "- Rewrite/Remotes/sources.json",
+        "- Rules/: DIRECT, Spotify, YouTube, local App, Web, and Reject rule fragments",
+        "- Scripts/: Spotify, YouTube, and App-clean script fragments",
+        "- Rewrite/Sources/: Meta, rewrite, body rewrite, map local, MITM, and compatibility fragments",
         "",
-        "## 重复检查",
-        f"- 重复脚本名：{', '.join(script_dupes) if script_dupes else '无'}",
-        f"- 重复 MITM hostname：{', '.join(mitm_dupes) if mitm_dupes else '无'}",
+        "## Duplicate Checks",
+        f"- Duplicate script names: {', '.join(script_dupes) if script_dupes else 'none'}",
+        f"- Duplicate MITM hostnames: {', '.join(mitm_dupes) if mitm_dupes else 'none'}",
         "",
-        "## 说明",
-        "- 根目录 Ronghemokuai.sgmodule 仍是正式导入入口。",
-        "- Release/Ronghemokuai.sgmodule 是工厂源文件生成的发布副本。",
-        "- 当前构建不会自动覆盖根目录主模块。",
+        "## Notes",
+        "- Daily maintenance should edit Rules, Scripts, Rewrite/Sources, Rewrite/Remotes, and Rewrite/Profiles.",
+        "- Release/Ronghemokuai.sgmodule is generated from the factory sources.",
+        "- Root Ronghemokuai.sgmodule is synchronized by factory_finalize.py.",
+        "- --extract-from-root is reserved for initialization or source recovery, not the normal daily build path.",
         "",
     ])
 
@@ -374,14 +388,13 @@ def make_diff_report(release_text: str) -> str:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Split and build the module factory output.")
-    parser.add_argument("--extract-from-root", action="store_true", help="split root Ronghemokuai.sgmodule into Rewrite/Sources")
+    parser = argparse.ArgumentParser(description="Build the source-driven module factory output.")
+    parser.add_argument("--extract-from-root", action="store_true", help="rebuild Rewrite/Sources from root module; use only for initialization or recovery")
     parser.add_argument("--build", action="store_true", help="build Release/Ronghemokuai.sgmodule from factory sources")
     parser.add_argument("--profile", default="stable", help="profile name under Rewrite/Profiles, default: stable")
     args = parser.parse_args()
 
     if not args.extract_from_root and not args.build:
-        args.extract_from_root = True
         args.build = True
 
     extracted = False

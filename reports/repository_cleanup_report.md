@@ -40,14 +40,16 @@ Date: 2026-05-29
 
 ## Flow Fixes
 
-- Ran `scripts/build_module.py --extract-from-root --build --profile stable`.
-- Ran `scripts/factory_finalize.py`.
+- Refactored the factory into a source-driven build path.
+- Ran `scripts/build_module.py --build --profile stable`.
+- Ran `scripts/factory_finalize.py --sync-root`.
 - Regenerated `Release/Ronghemokuai.sgmodule`.
 - Synchronized `Release/Ronghemokuai.sgmodule` back to root `Ronghemokuai.sgmodule`.
 - Updated `docs/FACTORY_FLOW.md` as the single factory-flow reference.
-- Updated `README.md` maintenance links to include this cleanup report.
+- Updated `README.md` maintenance links to include the source-driven factory reports.
 - Updated `Rewrite/Profiles/README.md` so it no longer suggests inactive `full.conf` or `test.conf` profiles.
 - Fixed `scripts/build_module.py` merge deduplication so repeated factory runs do not accumulate duplicate comment/source marker lines.
+- Reserved `--extract-from-root` for initialization or recovery only.
 
 ## Scripts Classification
 
@@ -73,7 +75,7 @@ Date: 2026-05-29
 
 - `module-factory-build.yml`, `daily-module-update.yml`, and `daily-invalid-source-repair.yml` all have `permissions: contents: write`.
 - The three write workflows share `concurrency.group: module-maintenance`.
-- `module-factory-build.yml` runs build, finalize, validation, and commits generated factory output.
+- `module-factory-build.yml` compiles the factory scripts, builds from source inputs, finalizes with `--sync-root`, validates Root/Release equality, and commits generated factory output.
 - `daily-module-update.yml` remains limited to date and report updates.
 - `daily-invalid-source-repair.yml` keeps the 2-day confirmed failure threshold and protected core item checks.
 

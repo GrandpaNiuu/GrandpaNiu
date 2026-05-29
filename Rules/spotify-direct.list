@@ -5,6 +5,3 @@ DOMAIN-SUFFIX,spotifycdn.com,DIRECT
 DOMAIN-SUFFIX,pscdn.co,DIRECT
 DOMAIN,spclient.wg.spotify.com,DIRECT
 DOMAIN-SUFFIX,spclient.spotify.com,DIRECT
-DOMAIN,ads-img-qc.xhscdn.com,REJECT,pre-matching
-DOMAIN,ads-video-al.xhscdn.com,REJECT,pre-matching
-DOMAIN,ads-video-qc.xhscdn.com,REJECT,pre-matching

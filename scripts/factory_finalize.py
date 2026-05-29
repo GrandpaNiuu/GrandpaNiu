@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import difflib
 import shutil
 from pathlib import Path
@@ -180,24 +181,52 @@ def patch_factory_report(stats: dict[str, int | bool]) -> None:
 
 
 def main() -> None:
-    rule_counts = split_rules()
-    script_counts = split_scripts()
+    parser = argparse.ArgumentParser(description="Finalize source-driven module factory output.")
+    parser.add_argument("--sync-root", action="store_true", help="copy Release/Ronghemokuai.sgmodule to root Ronghemokuai.sgmodule")
+    parser.add_argument("--split-from-sources", action="store_true", help="re-split Rules and Scripts from Rewrite/Sources; use only for migration or recovery")
+    args = parser.parse_args()
+
+    if not args.sync_root and not args.split_from_sources:
+        args.sync_root = True
+
+    rule_counts: dict[str, int] = {}
+    script_counts: dict[str, int] = {}
+    if args.split_from_sources:
+        rule_counts = split_rules()
+        script_counts = split_scripts()
+
     release_text = read(RELEASE)
     validate(release_text, "release")
-    shutil.copyfile(RELEASE, MODULE)
-    validate(read(MODULE), "root")
+    if args.sync_root:
+        shutil.copyfile(RELEASE, MODULE)
+        validate(read(MODULE), "root")
     stats = write_post_sync_diff_report()
     patch_factory_report(stats)
-    report = ["# Factory Finalize Report", "", "## Rule files"]
-    report.extend(f"- {path}: {count}" for path, count in rule_counts.items())
+    report = ["# Factory Finalize Report", "", "## Mode"]
+    report.extend([
+        f"- sync root: {'yes' if args.sync_root else 'no'}",
+        f"- split from Rewrite/Sources: {'yes' if args.split_from_sources else 'no'}",
+    ])
+    report.extend(["", "## Rule files"])
+    if rule_counts:
+        report.extend(f"- {path}: {count}" for path, count in rule_counts.items())
+    else:
+        report.append("- not changed in default finalize mode")
     report.extend(["", "## Script files"])
-    report.extend(f"- {path}: {count}" for path, count in script_counts.items())
+    if script_counts:
+        report.extend(f"- {path}: {count}" for path, count in script_counts.items())
+    else:
+        report.append("- not changed in default finalize mode")
     report.extend([
         "",
         "## Root module",
-        "- Release was copied to Ronghemokuai.sgmodule.",
+        f"- Release was copied to Ronghemokuai.sgmodule: {'yes' if args.sync_root else 'no'}",
         f"- Root and Release are identical after sync: {'yes' if stats['same'] else 'no'}",
         f"- Diff lines after sync: {stats['diff_lines']}",
+        "",
+        "## Source-driven note",
+        "- Default finalize mode does not rewrite Rules/ or Scripts/.",
+        "- Use --split-from-sources only for migration or recovery from Rewrite/Sources.",
     ])
     write(REPORT, "\n".join(report))
 

@@ -62,3 +62,6 @@ DOMAIN-SUFFIX,adweb.wsa.ximalaya.com,REJECT,pre-matching
 DOMAIN-SUFFIX,adwx.wsa.ximalaya.com,REJECT,pre-matching
 DOMAIN-SUFFIX,adbehavior.wsa.ximalaya.com,REJECT,pre-matching
 DOMAIN-SUFFIX,adxs.ximalaya.com,REJECT,pre-matching
+DOMAIN,ads-img-qc.xhscdn.com,REJECT,pre-matching
+DOMAIN,ads-video-al.xhscdn.com,REJECT,pre-matching
+DOMAIN,ads-video-qc.xhscdn.com,REJECT,pre-matching
