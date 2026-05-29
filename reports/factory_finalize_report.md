@@ -9,9 +9,11 @@
 - Rules/web-ads.list: 102
 
 ## Script files
-- Scripts/spotify.conf: 7
+- Scripts/spotify.conf: 2
 - Scripts/youtube.conf: 1
-- Scripts/app-clean.conf: 95
+- Scripts/app-clean.conf: 100
 
 ## Root module
 - Release was copied to Ronghemokuai.sgmodule.
+- Root and Release are identical after sync: yes
+- Diff lines after sync: 0

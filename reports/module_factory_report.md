@@ -3,16 +3,16 @@
 日期：2026-05-29
 构建 profile：stable
 是否从根目录主模块拆分：yes
-Release 是否与根目录主模块一致：no
-Release 行数：2855
+Release 是否与根目录主模块一致：yes
+Release 行数：2870
 
 ## Sources 统计
-- Rule: 530 lines
+- Rule: 542 lines
 - URL Rewrite: 1598 lines
 - Header Rewrite: 5 lines
 - Body Rewrite: 456 lines
 - Map Local: 16 lines
-- Script: 213 lines
+- Script: 216 lines
 - MITM: 2 lines
 
 ## 参与构建的源头
@@ -30,3 +30,9 @@ Release 行数：2855
 - 根目录 Ronghemokuai.sgmodule 仍是正式导入入口。
 - Release/Ronghemokuai.sgmodule 是工厂源文件生成的发布副本。
 - 当前构建不会自动覆盖根目录主模块。
+
+## Finalize 后状态
+- Release 已同步回根目录主模块：yes
+- 同步后 diff lines：0
+- Scripts/spotify.conf 仅保留 Spotify 核心脚本。
+- 其他 app2smile 脚本归入 Scripts/app-clean.conf。
