@@ -1,69 +1,71 @@
-# Module Factory Flow
+# 模块工厂流程
 
-This is the authoritative factory-flow document for the repository.
+本文件说明 GrandpaNiu 仓库的源头驱动构建方式。
 
-## Core Principle
+## 核心原则
 
-`Ronghemokuai.sgmodule` is the official import output, but it is not the long-term hand-maintained source of truth.
+`Ronghemokuai.sgmodule` 是正式导入结果，不是长期手工维护源头。
 
-Daily maintenance should update:
-
-- `Rules/*.list`
-- `Scripts/*.conf`
-- `Rewrite/Sources/*.conf`
-- `Rewrite/Remotes/sources.json`
-- `Rewrite/Profiles/stable.conf`
-
-The factory then generates the release module and syncs it back to the root import module.
-
-## Complete Flow
+日常维护优先修改：
 
 ```text
-Rules + Scripts + Rewrite/Sources + Remotes + Profiles
+Rules/*.list
+Scripts/*.conf
+Rewrite/Sources/*.conf
+Rewrite/Remotes/sources.json
+Rewrite/Remotes/candidates.json
+Rewrite/Profiles/stable.conf
+Rewrite/Profiles/lite.conf
+```
+
+## 完整流程
+
+```text
+Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
         -> scripts/build_module.py --build --profile stable
         -> Release/Ronghemokuai.sgmodule
         -> scripts/factory_finalize.py --sync-root
         -> Ronghemokuai.sgmodule
 ```
 
-`--extract-from-root` is only for initialization or disaster recovery. It is not the default daily build path.
+`--extract-from-root` 只用于初始化或恢复源头文件，不作为日常构建路径。
 
-## Directory Responsibilities
+## 目录职责
 
-| Path | Responsibility |
+| 路径 | 职责 |
 |---|---|
-| `Rewrite/Profiles/stable.conf` | Current stable build profile. |
-| `Rewrite/Remotes/sources.json` | Trusted remote `RULE-SET` / `DOMAIN-SET` registry. |
-| `Rewrite/Remotes/candidates.json` | Trusted upstream candidate registry; no web-wide search. |
-| `Rules/direct.list` | General DIRECT allowlist. |
-| `Rules/spotify-direct.list` | Spotify playback-path protection; must stay before remote ad rules. |
-| `Rules/youtube-direct.list` | Narrow YouTube protection rules. |
-| `Rules/reject.list` | General reject rules. |
-| `Rules/app-clean.list` | App cleanup rules. |
-| `Rules/web-ads.list` | Web ad, statistics, and tracker rules. |
-| `Scripts/spotify.conf` | Only `spotify-json`, `spotify-proto`, or clearly Spotify / spclient scripts. |
-| `Scripts/youtube.conf` | Only `youtube.response` or clearly YouTube / Maasea scripts. |
-| `Scripts/app-clean.conf` | Other ordinary App cleanup scripts. |
-| `Rewrite/Sources/Meta.conf` | Module metadata and `update-url`. |
-| `Rewrite/Sources/URL-Rewrite.conf` | URL rewrite source fragment. |
-| `Rewrite/Sources/Header-Rewrite.conf` | Header rewrite source fragment, including Spotify header handling. |
-| `Rewrite/Sources/Body-Rewrite.conf` | Body rewrite source fragment. |
-| `Rewrite/Sources/Map-Local.conf` | Local response mapping source fragment. |
-| `Rewrite/Sources/MITM.conf` | MITM hostname source fragment, using `%APPEND%`. |
-| `Release/Ronghemokuai.sgmodule` | Generated release copy. |
-| `Ronghemokuai.sgmodule` | Root import module synced from Release. |
+| `Rewrite/Profiles/stable.conf` | 默认正式构建 profile |
+| `Rewrite/Profiles/lite.conf` | 低耗电参考 profile，不默认发布 |
+| `Rewrite/Remotes/sources.json` | 已启用可信远程规则源 |
+| `Rewrite/Remotes/candidates.json` | 可信候选源池，只收集来源可信、改动可回滚、报告可验证的来源 |
+| `Rules/*.list` | 本地规则源 |
+| `Scripts/spotify.conf` | Spotify 脚本入口，只放 Spotify 相关脚本 |
+| `Scripts/youtube.conf` | YouTube 脚本入口，只放 YouTube 相关脚本 |
+| `Scripts/zhihu-enhance.conf` | 知乎增强净化脚本入口 |
+| `Scripts/app-clean.conf` | 普通 App 净化脚本入口 |
+| `Rewrite/Sources/*.conf` | Meta、Rewrite、Body Rewrite、Map Local、MITM 片段 |
+| `Release/Ronghemokuai.sgmodule` | 工厂生成副本 |
+| `Ronghemokuai.sgmodule` | 正式导入入口 |
 
-## Workflow Order
+## 构建命令
 
-`.github/workflows/module-factory-build.yml` runs:
+正式构建：
 
 ```text
-python3 -m py_compile scripts/build_module.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py
 python3 scripts/build_module.py --build --profile stable
 python3 scripts/factory_finalize.py --sync-root
+python3 scripts/validate_repository.py
 ```
 
-The workflow validates:
+低耗电测试构建：
+
+```text
+python3 scripts/build_module.py --build --profile lite
+```
+
+## 关键保护项
+
+构建结果必须保留：
 
 ```text
 [Rule]
@@ -76,118 +78,38 @@ The workflow validates:
 spotify-json
 spotify-proto
 youtube.response
+zhihu-enhance
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
-Root and Release equality
 ```
 
-If any required marker is missing, the workflow fails instead of committing a broken module.
+Root 与 Release 最终必须一致。
 
-## Build Script
+## 自动维护边界
 
-`scripts/build_module.py`:
-
-- Reads `Rewrite/Profiles/stable.conf`.
-- Reads `Rewrite/Remotes/sources.json`.
-- Reads `Rules/*.list`.
-- Reads `Scripts/*.conf`.
-- Reads `Rewrite/Sources/*.conf`.
-- Generates `Release/Ronghemokuai.sgmodule`.
-- Generates `reports/module_factory_report.md`.
-- Generates `reports/module_factory_diff_report.md`.
-- Validates section presence, core markers, duplicate script names, and duplicate MITM hostnames.
-
-Enabled remote sources must be trusted, public, HTTPS, and schema-valid. The builder rejects short links, mirror sites, `ghproxy`, and unknown remote source formats.
-
-## Finalize Script
-
-Default command:
-
-```text
-python3 scripts/factory_finalize.py --sync-root
-```
-
-Default finalize mode:
-
-- Validates `Release/Ronghemokuai.sgmodule`.
-- Syncs Release to root `Ronghemokuai.sgmodule`.
-- Validates the root module.
-- Generates `reports/factory_finalize_report.md`.
-- Confirms Root and Release are identical.
-
-Migration or recovery command:
-
-```text
-python3 scripts/factory_finalize.py --split-from-sources --sync-root
-```
-
-Default finalize mode does not rewrite `Rules/` or `Scripts/`. Splitting is explicit so daily builds do not keep reverse-extracting the root module.
-
-## Reports
-
-| Report | Purpose |
+| 工作流 | 作用 |
 |---|---|
-| `reports/module_factory_report.md` | Build profile, inputs, section counts, and duplicate checks. |
-| `reports/module_factory_diff_report.md` | Root versus Release diff; should be zero after finalize. |
-| `reports/factory_finalize_report.md` | Final sync mode and Root/Release equality. |
-| `reports/factory_refactor_report.md` | Source-driven refactor summary, backup, core checks, and manual tests. |
-| `reports/repository_cleanup_report.md` | Repository cleanup and workflow validation notes. |
+| `module-factory-build.yml` | 从源头构建 Release 并同步 Root |
+| `daily-module-update.yml` | 每日结构和链接检查 |
+| `daily-invalid-source-repair.yml` | 连续确认失败后保守处理失效源 |
+| `upstream-collect.yml` | 只读取候选池，保守收集可信来源 |
+| `repository-health.yml` | 生成仓库健康报告 |
 
-## Spotify and YouTube Protection
+候选源收集不追求数量，只接受来源可信、改动可回滚、报告可验证的内容。脚本默认 pending，不直接进入 stable。
 
-The following entries are hard-protected:
+## 报告文件
 
-- `spotify-json`
-- `spotify-proto`
-- `youtube.response`
-- `spclient.wg.spotify.com`
-- `*.spclient.spotify.com`
-- Spotify DIRECT allowlist
-- Spotify header rewrite
-- YouTube Enhance script and required YouTube hostnames
+| 报告 | 用途 |
+|---|---|
+| `reports/module_factory_report.md` | 构建来源、profile、区块行数、重复检查 |
+| `reports/module_factory_diff_report.md` | Root 与 Release 差异 |
+| `reports/factory_finalize_report.md` | 同步结果 |
+| `reports/repository_health_report.md` | 仓库健康状态 |
+| `reports/upstream_collect_report.md` | 候选源收集结果 |
+| `reports/invalid_sources_report.md` | 失效源审计结果 |
 
-If Spotify skipping appears, first check remote ad-rule conflicts and add narrow DIRECT protection. Do not remove Spotify scripts as the first response.
+## 维护方法
 
-## Automatic Maintenance Boundary
-
-- `daily-module-update.yml` updates dates and reports only.
-- `daily-invalid-source-repair.yml` handles invalid sources only after 2 consecutive confirmed failed checks.
-- `upstream-collect.yml` runs weekly and reads only `Rewrite/Remotes/candidates.json`.
-- The repair order is: verified same-origin replacement, comment, then low-risk independent remote-rule deletion.
-- Spotify, YouTube, the module `update-url`, install pages, import pages, and protected upstream sources are report-only when they fail.
-
-## Upstream Candidate Collection
-
-`scripts/collect_upstreams.py` is a conservative collector:
-
-- It does not search the web.
-- It only accepts candidates registered in `Rewrite/Remotes/candidates.json`.
-- It only allows trusted GitHub repositories listed in that file.
-- It rejects short links, proxy hosts, mirror hosts, risky keywords, unknown scripts, and duplicate URLs.
-- It validates rule-like or JavaScript-like content before adding anything.
-- It keeps script candidates pending unless they are explicitly approved.
-- It reports Spotify and YouTube core references instead of replacing them.
-
-The weekly workflow runs:
-
-```text
-python3 -m py_compile scripts/collect_upstreams.py scripts/build_module.py scripts/factory_finalize.py
-python3 scripts/collect_upstreams.py
-python3 scripts/build_module.py --build --profile stable
-python3 scripts/factory_finalize.py --sync-root
-```
-
-The report is written to `reports/upstream_collect_report.md`.
-
-## Tool-Specific Config Files
-
-Do not add `.claude`, `CLAUDE.md`, or similar tool-specific traces. They do not participate in the module factory and add noise to the public repository.
-
-## Maintenance Method
-
-1. Edit source files first.
-2. Change rules in `Rules/` or `Rewrite/Remotes/sources.json`.
-3. Change scripts in `Scripts/`.
-4. Change rewrite, body rewrite, map local, or MITM fragments in `Rewrite/Sources/`.
-5. Run the build and finalize commands.
-6. Confirm Root and Release diff lines are `0`.
-7. Manually test Spotify, YouTube, login, payment, verification code, WeChat, Alipay, banking, and the most-used Apps.
+1. 先改源头文件。
+2. 再运行构建和同步。
+3. 再运行统一验证。
+4. 最后在 Shadowrocket 中测试 Spotify、YouTube、知乎、Bilibili、登录、支付、验证码和常用 App。
