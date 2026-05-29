@@ -1,15 +1,11 @@
 # Profiles
 
-本目录用于存放不同构建配置模板。
+This directory stores build profiles for the module factory.
 
-建议后续模板：
+## Active Profile
 
-```text
-stable.conf      稳定版，优先低误杀
-full.conf        完整版，覆盖更广
-test.conf        测试版，用于验证新增规则
-spotify.conf     Spotify 专项验证
-youtube.conf     YouTube 专项验证
-```
+- `stable.conf`: the only active profile. It keeps the current module behavior while allowing `Rules/`, `Scripts/`, `Rewrite/Remotes/sources.json`, and `Rewrite/Sources/` to participate in the release build.
 
-当前阶段先建立目录说明，不启用多 profile 输出。
+## Maintenance Rule
+
+Do not re-add `full.conf` or `test.conf` unless they implement real, distinct build behavior and are wired into `scripts/build_module.py` and the factory workflow.

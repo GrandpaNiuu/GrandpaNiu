@@ -1,7 +1,7 @@
 # Module Factory Diff Report
 
-Root lines: 2915
-Release lines: 2915
+Root lines: 2833
+Release lines: 2833
 Diff lines: 0
 Diff clipped: no
 

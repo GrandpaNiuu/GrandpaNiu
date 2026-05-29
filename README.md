@@ -159,6 +159,7 @@ MITM 使用 `%APPEND%` 追加方式，尽量保留已有配置，减少覆盖风
 | 工厂构建报告 | [module_factory_report.md](reports/module_factory_report.md) | 查看构建 profile、来源和重复检查 |
 | 工厂差异报告 | [module_factory_diff_report.md](reports/module_factory_diff_report.md) | 查看 Release 与主模块差异 |
 | 最终同步报告 | [factory_finalize_report.md](reports/factory_finalize_report.md) | 查看规则 / 脚本拆分和同步结果 |
+| 仓库清理报告 | [repository_cleanup_report.md](reports/repository_cleanup_report.md) | 查看结构审计、冗余清理和验证结果 |
 | 每日检查 | [daily_update_report.md](reports/daily_update_report.md) | 查看每日基础检查结果 |
 | 失效源审计 | [invalid_sources_report.md](reports/invalid_sources_report.md) | 查看失效链接、可疑链接、处理结果 |
 | 失效历史 | [invalid_sources_history.json](reports/invalid_sources_history.json) | 记录连续失败次数和历史状态 |

@@ -150,7 +150,7 @@ def iter_profile_paths(profile: configparser.ConfigParser, section: str) -> Iter
 
 def active_key(line: str) -> str:
     stripped = line.strip()
-    if not stripped or stripped.startswith("#"):
+    if not stripped:
         return ""
     return stripped
 
