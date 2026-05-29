@@ -1,18 +1,15 @@
 # Invalid Sources Audit and Repair Report
 
-- 日期：2026-05-29
-- 扫描链接总数：130
-- 正常链接数量：130
-- Spotify 核心检查：pass
-- YouTube 核心检查：pass
-- update-url 检查：pass
-- 安全停止条件是否触发：no
-- 本次提交是否修改 Ronghemokuai.sgmodule：no
+- 日期：2026-05-30
+- 维护模式：source-first
+- 扫描源文件链接总数：356
+- 正常链接数量：355
+- 本次是否修改源头文件：no
 
-本系统为安全维护工具，不会因单日失败删除规则；连续 2 天失败后优先替换，其次注释，最后才低风险删除。
+本系统优先修复 `Rewrite/Remotes/`、`Rules/`、`Scripts/`、`Rewrite/Sources/`，随后由工作流重新构建 Release 并同步根目录主模块。不会因单日失败删除规则。
 
 ## 今日首次失败链接
-- 无
+- `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list`
 
 ## 连续失败 2 天链接
 - 无
@@ -26,6 +23,9 @@
 ## 已自动删除链接
 - 无
 
+## 已自动禁用 JSON 源
+- 无
+
 ## 受保护但失败链接
 - 无
 
@@ -33,4 +33,4 @@
 - 无
 
 ## 今日失败明细
-- 无
+- `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list (HTTP 404 HTTP 404)`
