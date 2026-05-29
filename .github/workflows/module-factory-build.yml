@@ -9,6 +9,11 @@ on:
       - "Ronghemokuai.sgmodule"
       - "scripts/build_module.py"
       - "Rewrite/Manifest.conf"
+      - "Rewrite/Profiles/**"
+      - "Rewrite/Remotes/**"
+      - "Rewrite/Sources/**"
+      - "Rules/**"
+      - "Scripts/**"
       - ".github/workflows/module-factory-build.yml"
 
 permissions:
@@ -28,7 +33,7 @@ jobs:
 
       - name: Build factory sources and release module
         run: |
-          python3 scripts/build_module.py --extract-from-root --build
+          python3 scripts/build_module.py --extract-from-root --build --profile stable
 
       - name: Validate generated module
         run: |
@@ -36,8 +41,11 @@ jobs:
           test -f Rewrite/Sources/Rule.conf
           test -f Rewrite/Sources/Script.conf
           test -f Rewrite/Sources/MITM.conf
+          test -f Rewrite/Profiles/stable.conf
+          test -f Rewrite/Remotes/sources.json
           test -f Release/Ronghemokuai.sgmodule
           test -f reports/module_factory_report.md
+          test -f reports/module_factory_diff_report.md
           grep -q '^\[Rule\]' Release/Ronghemokuai.sgmodule
           grep -q '^\[Script\]' Release/Ronghemokuai.sgmodule
           grep -q '^\[MITM\]' Release/Ronghemokuai.sgmodule
@@ -50,6 +58,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Rewrite/Sources Release/Ronghemokuai.sgmodule reports/module_factory_report.md
+          git add Rewrite/Sources Release/Ronghemokuai.sgmodule reports/module_factory_report.md reports/module_factory_diff_report.md
           git diff --cached --quiet || git commit -m "Build module factory output"
           git push
