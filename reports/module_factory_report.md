@@ -4,15 +4,15 @@
 构建 profile：stable
 是否从根目录主模块拆分：yes
 Release 是否与根目录主模块一致：yes
-Release 行数：2900
+Release 行数：2915
 
 ## Sources 统计
-- Rule: 566 lines
+- Rule: 578 lines
 - URL Rewrite: 1598 lines
 - Header Rewrite: 5 lines
 - Body Rewrite: 456 lines
 - Map Local: 16 lines
-- Script: 222 lines
+- Script: 225 lines
 - MITM: 2 lines
 
 ## 参与构建的源头
