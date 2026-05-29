@@ -23,7 +23,7 @@ jobs:
 
       - name: Validate Python scripts
         run: |
-          python3 -m py_compile scripts/collect_upstreams.py scripts/build_module.py scripts/factory_finalize.py
+          python3 -m py_compile scripts/collect_upstreams.py scripts/build_module.py scripts/factory_finalize.py scripts/validate_repository.py
 
       - name: Collect trusted upstream candidates
         run: |
@@ -37,21 +37,9 @@ jobs:
         run: |
           python3 scripts/factory_finalize.py --sync-root
 
-      - name: Validate generated module
+      - name: Validate repository
         run: |
-          test -f Rewrite/Remotes/candidates.json
-          test -f Rewrite/Remotes/sources.json
-          test -f reports/upstream_collect_report.md
-          test -f Release/Ronghemokuai.sgmodule
-          test -f Ronghemokuai.sgmodule
-          grep -q '^\[Rule\]' Ronghemokuai.sgmodule
-          grep -q '^\[Script\]' Ronghemokuai.sgmodule
-          grep -q '^\[MITM\]' Ronghemokuai.sgmodule
-          grep -q 'spotify-json' Ronghemokuai.sgmodule
-          grep -q 'spotify-proto' Ronghemokuai.sgmodule
-          grep -q 'youtube.response' Ronghemokuai.sgmodule
-          grep -q '#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule' Ronghemokuai.sgmodule
-          cmp -s Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule
+          python3 scripts/validate_repository.py
 
       - name: Commit upstream collect results
         run: |
