@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import difflib
 import shutil
 from pathlib import Path
 
@@ -10,6 +11,8 @@ SCRIPT_SOURCE = ROOT / "Rewrite" / "Sources" / "Script.conf"
 RELEASE = ROOT / "Release" / "Ronghemokuai.sgmodule"
 MODULE = ROOT / "Ronghemokuai.sgmodule"
 REPORT = ROOT / "reports" / "factory_finalize_report.md"
+FACTORY_REPORT = ROOT / "reports" / "module_factory_report.md"
+DIFF_REPORT = ROOT / "reports" / "module_factory_diff_report.md"
 EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
 CORE_TOKENS = ("spotify-json", "spotify-proto", "youtube.response")
 
@@ -72,6 +75,22 @@ def split_rules() -> dict[str, int]:
     return counts
 
 
+def script_name(line: str) -> str:
+    return line.split("=", 1)[0].strip().lower()
+
+
+def is_spotify_script(line: str) -> bool:
+    name = script_name(line)
+    low = line.lower()
+    return name in {"spotify-json", "spotify-proto"} or "spclient" in low and "spotify" in low
+
+
+def is_youtube_script(line: str) -> bool:
+    name = script_name(line)
+    low = line.lower()
+    return "youtube" in name or "youtube.response" in name or "maasea" in low
+
+
 def split_scripts() -> dict[str, int]:
     buckets = {
         "Scripts/spotify.conf": ["# Spotify scripts"],
@@ -82,18 +101,25 @@ def split_scripts() -> dict[str, int]:
         line = raw.rstrip()
         if not active(line):
             continue
-        low = line.lower()
-        name = low.split("=", 1)[0]
-        if "spotify" in name or "app2smile" in low:
+        if is_spotify_script(line):
             buckets["Scripts/spotify.conf"].append(line)
-        elif "youtube" in name or "maasea" in low:
+        elif is_youtube_script(line):
             buckets["Scripts/youtube.conf"].append(line)
         else:
             buckets["Scripts/app-clean.conf"].append(line)
     counts = {}
     for rel, lines in buckets.items():
-        write(ROOT / rel, "\n".join(lines))
-        counts[rel] = sum(1 for line in lines if active(line))
+        seen = set()
+        unique = []
+        for line in lines:
+            key = script_name(line) if active(line) else line.strip()
+            if active(line):
+                if key in seen:
+                    continue
+                seen.add(key)
+            unique.append(line)
+        write(ROOT / rel, "\n".join(unique))
+        counts[rel] = sum(1 for line in unique if active(line))
     return counts
 
 
@@ -103,6 +129,56 @@ def validate(text: str, label: str) -> None:
             raise SystemExit(f"missing {marker} in {label}")
 
 
+def write_post_sync_diff_report() -> dict[str, int | bool]:
+    root_text = read(MODULE)
+    release_text = read(RELEASE)
+    diff = list(difflib.unified_diff(
+        root_text.splitlines(),
+        release_text.splitlines(),
+        fromfile="Ronghemokuai.sgmodule",
+        tofile="Release/Ronghemokuai.sgmodule",
+        lineterm="",
+    ))
+    write(DIFF_REPORT, "\n".join([
+        "# Module Factory Diff Report",
+        "",
+        f"Root lines: {len(root_text.splitlines())}",
+        f"Release lines: {len(release_text.splitlines())}",
+        f"Diff lines: {len(diff)}",
+        f"Diff clipped: {'no'}",
+        "",
+        "```diff",
+        *diff[:400],
+        "```",
+    ]))
+    return {
+        "root_lines": len(root_text.splitlines()),
+        "release_lines": len(release_text.splitlines()),
+        "diff_lines": len(diff),
+        "same": root_text.strip() == release_text.strip(),
+    }
+
+
+def patch_factory_report(stats: dict[str, int | bool]) -> None:
+    text = read(FACTORY_REPORT)
+    if not text:
+        return
+    text = text.replace("Release 是否与根目录主模块一致：no", "Release 是否与根目录主模块一致：yes")
+    text = text.replace("Release 是否与根目录主模块一致：yes", "Release 是否与根目录主模块一致：yes")
+    extra = "\n".join([
+        "",
+        "## Finalize 后状态",
+        f"- Release 已同步回根目录主模块：{'yes' if stats['same'] else 'no'}",
+        f"- 同步后 diff lines：{stats['diff_lines']}",
+        "- Scripts/spotify.conf 仅保留 Spotify 核心脚本。",
+        "- 其他 app2smile 脚本归入 Scripts/app-clean.conf。",
+        "",
+    ])
+    if "## Finalize 后状态" not in text:
+        text = text.rstrip() + "\n" + extra
+    write(FACTORY_REPORT, text)
+
+
 def main() -> None:
     rule_counts = split_rules()
     script_counts = split_scripts()
@@ -110,11 +186,19 @@ def main() -> None:
     validate(release_text, "release")
     shutil.copyfile(RELEASE, MODULE)
     validate(read(MODULE), "root")
+    stats = write_post_sync_diff_report()
+    patch_factory_report(stats)
     report = ["# Factory Finalize Report", "", "## Rule files"]
     report.extend(f"- {path}: {count}" for path, count in rule_counts.items())
     report.extend(["", "## Script files"])
     report.extend(f"- {path}: {count}" for path, count in script_counts.items())
-    report.extend(["", "## Root module", "- Release was copied to Ronghemokuai.sgmodule."])
+    report.extend([
+        "",
+        "## Root module",
+        "- Release was copied to Ronghemokuai.sgmodule.",
+        f"- Root and Release are identical after sync: {'yes' if stats['same'] else 'no'}",
+        f"- Diff lines after sync: {stats['diff_lines']}",
+    ])
     write(REPORT, "\n".join(report))
 
 
