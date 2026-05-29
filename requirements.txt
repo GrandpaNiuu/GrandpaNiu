@@ -1,0 +1,2 @@
+# GrandpaNiu maintenance scripts currently use only Python standard library.
+# Keep this file for local and GitHub Actions environment consistency.
