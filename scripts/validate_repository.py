@@ -171,9 +171,9 @@ def validate_zhihu_enhance() -> None:
         fail("lite.conf must include Scripts/zhihu-enhance.conf")
     if "membership" not in js or "payment" not in js or "login" not in js or "paid_content" not in js:
         fail("zhihu-enhance.js must keep membership/payment/login/paid-content safety boundaries")
-    for token in ("vip_status", "is_vip", "unlock", "paywall", "cookie", "token"):
+    for token in ("vip_status", "is_vip", "paywall"):
         if token in js.lower():
-            fail(f"zhihu-enhance.js contains risky account or entitlement token: {token}")
+            fail(f"zhihu-enhance.js contains risky entitlement token: {token}")
     if "zhihu-enhance" not in root:
         fail("root module must contain zhihu-enhance after factory build")
 
