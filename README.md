@@ -4,7 +4,7 @@
 
 ### Shadowrocket / Surge 自用融合净化模块工厂
 
-一个入口，集中维护 App 去广告、网页广告过滤、Spotify 播放保护、YouTube Enhance、知乎增强净化、远程规则源、自动构建、失效源审计和回滚报告。
+一个入口，集中维护 App 去广告、网页广告过滤、Spotify 播放保护、YouTube Enhance、知乎增强净化、远程规则源、自动构建、失效源审计、性能说明和回滚报告。
 
 <br>
 
@@ -57,7 +57,8 @@ Profiles + Remotes + Rules + Scripts + Rewrite/Sources
 
 | 层级 | 说明 |
 |---|---|
-| `Rewrite/Profiles/stable.conf` | 当前稳定构建配置 |
+| `Rewrite/Profiles/stable.conf` | 当前默认稳定构建配置 |
+| `Rewrite/Profiles/lite.conf` | 低耗电参考配置，不默认发布 |
 | `Rewrite/Remotes/sources.json` | 可信远程 `RULE-SET` / `DOMAIN-SET` 清单 |
 | `Rewrite/Remotes/candidates.json` | 可信候选源池，不做全网乱搜 |
 | `Rules/*.list` | 本地规则源，参与 `[Rule]` 构建 |
@@ -82,6 +83,7 @@ Profiles + Remotes + Rules + Scripts + Rewrite/Sources
 | Bilibili 局部净化 | 通过规则和 Map Local 处理活动、搜索、广告素材、PGC 活动物料等接口 |
 | 远程规则源 | blackmatrix7、Cats-Team、anti-AD、ACL4SSR、Loyalsoldier、217heidai 等 |
 | 自动维护 | 自动构建、自动同步、失效源审计、候选源收集、报告生成 |
+| 性能维护 | 提供 `docs/PERFORMANCE.md` 和 `lite.conf` 低耗电参考配置 |
 
 ---
 
@@ -120,6 +122,8 @@ Profiles + Remotes + Rules + Scripts + Rewrite/Sources
 | 候选源工作流 | [.github/workflows/upstream-collect.yml](.github/workflows/upstream-collect.yml) | 每周保守收集可信候选源 |
 | 候选源报告 | [reports/upstream_collect_report.md](reports/upstream_collect_report.md) | 查看新增、跳过和待人工测试项 |
 | 维护标准 | [docs/MAINTENANCE.md](docs/MAINTENANCE.md) | 日常维护规则和测试标准 |
+| 性能说明 | [docs/PERFORMANCE.md](docs/PERFORMANCE.md) | 查看耗电来源、低耗电策略和 lite profile 用法 |
+| 低耗电配置 | [Rewrite/Profiles/lite.conf](Rewrite/Profiles/lite.conf) | 低耗电参考 profile，不默认发布 |
 | 问题排查 | [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | Spotify、YouTube、登录、支付、验证码排查 |
 | 覆盖清单 | [docs/COVERAGE.md](docs/COVERAGE.md) | 查看功能覆盖状态 |
 | 范围说明 | [docs/SCOPE.md](docs/SCOPE.md) | 查看允许和禁止加入的内容 |
@@ -153,6 +157,22 @@ Profiles + Remotes + Rules + Scripts + Rewrite/Sources
 工作流：[upstream-collect.yml](.github/workflows/upstream-collect.yml)
 
 执行内容：只读取 `Rewrite/Remotes/candidates.json`，不全网搜索。候选源必须来自可信仓库、格式明确、无风险关键词、无短链/镜像/代理，脚本默认保持 pending。
+
+### 低耗电参考构建
+
+默认正式构建仍使用：
+
+```text
+python3 scripts/build_module.py --build --profile stable
+```
+
+低耗电测试可使用：
+
+```text
+python3 scripts/build_module.py --build --profile lite
+```
+
+`lite.conf` 只作为测试和排查用，不建议未经 24 小时测试直接替代 stable。
 
 ---
 
@@ -205,6 +225,7 @@ ghproxy / 镜像站正式源
 | YouTube 转圈 | `youtube.response`、YouTube MITM、Map Local 中的 googlevideo initplayback 规则、最近新增重写 |
 | 知乎广告仍出现 | HTTPS 解密和证书、`zhihu-enhance` 是否已构建进模块、知乎是否杀后台重开 |
 | Bilibili 仍有广告 | 当前只做局部净化，不是完整脚本模块；优先检查 Map Local 和相关 REJECT 规则 |
+| 耗电偏高 | 查看 [docs/PERFORMANCE.md](docs/PERFORMANCE.md)，优先检查 MITM、Body Rewrite、知乎/YouTube 等高频脚本 |
 | 登录异常 | 临时停用模块确认，再检查最近新增 Rules、Scripts、MITM、Rewrite |
 | 支付 / 验证码异常 | 优先检查 MITM、URL Rewrite、Body Rewrite、Map Local |
 | 远程源失败 | 查看报告是否连续失败，不因单日 GitHub 网络波动直接删除 |
