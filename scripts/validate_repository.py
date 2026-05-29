@@ -27,6 +27,7 @@ REQUIRED_MARKERS = (
     "spotify-json",
     "spotify-proto",
     "youtube.response",
+    "zhihu-enhance",
     EXPECTED_UPDATE_URL,
 )
 ALLOWED_REMOTE_TYPES = {"RULE-SET", "DOMAIN-SET"}
@@ -43,6 +44,7 @@ RISK_TOKENS = (
 SCRIPT_NAME_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=")
 HOSTNAME_RE = re.compile(r"^\s*hostname\s*=\s*(.+)$")
 MD_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+ZH_FILTER_PATTERN = re.compile(r"(topstory|moments|feed|questions|answers|search|commercial|market|ad|recommend)", re.I)
 
 
 def fail(message: str) -> None:
@@ -147,6 +149,35 @@ def validate_scripts() -> None:
             names.add(name)
 
 
+def validate_zhihu_enhance() -> None:
+    conf_path = ROOT / "Scripts" / "zhihu-enhance.conf"
+    js_path = ROOT / "Scripts" / "zhihu-enhance.js"
+    stable_path = ROOT / "Rewrite" / "Profiles" / "stable.conf"
+    lite_path = ROOT / "Rewrite" / "Profiles" / "lite.conf"
+
+    conf = read_text(conf_path)
+    js = read_text(js_path)
+    stable = read_text(stable_path)
+    lite = read_text(lite_path)
+    root = read_text(MODULE)
+
+    if "zhihu-enhance" not in conf or "script-path=https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/zhihu-enhance.js" not in conf:
+        fail("Scripts/zhihu-enhance.conf must define zhihu-enhance and its raw script-path")
+    if not ZH_FILTER_PATTERN.search(conf):
+        fail("Scripts/zhihu-enhance.conf does not appear to target Zhihu ad/feed interfaces")
+    if "zhihu_enhance = Scripts/zhihu-enhance.conf" not in stable:
+        fail("stable.conf must include Scripts/zhihu-enhance.conf")
+    if "zhihu_enhance = Scripts/zhihu-enhance.conf" not in lite:
+        fail("lite.conf must include Scripts/zhihu-enhance.conf")
+    if "membership" not in js or "payment" not in js or "login" not in js or "paid_content" not in js:
+        fail("zhihu-enhance.js must keep membership/payment/login/paid-content safety boundaries")
+    for token in ("vip_status", "is_vip", "unlock", "paywall", "cookie", "token"):
+        if token in js.lower():
+            fail(f"zhihu-enhance.js contains risky account or entitlement token: {token}")
+    if "zhihu-enhance" not in root:
+        fail("root module must contain zhihu-enhance after factory build")
+
+
 def validate_rules() -> None:
     spotify_rules = list(active_lines(read_text(ROOT / "Rules" / "spotify-direct.list")))
     if not spotify_rules:
@@ -211,6 +242,7 @@ def main() -> None:
     validate_root_release()
     validate_remote_schema()
     validate_scripts()
+    validate_zhihu_enhance()
     validate_rules()
     validate_mitm()
     validate_readme_links()
