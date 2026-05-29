@@ -3,7 +3,7 @@
 Date: 2026-05-30
 Profile: stable
 Extracted from root module: no
-Release matches root module before finalize: yes
+构建阶段 Root/Release 是否一致: yes
 Release line count: 2847
 
 ## Source Counts
@@ -19,7 +19,7 @@ Release line count: 2847
 - Rewrite/Profiles/stable.conf
 - Rewrite/Remotes/sources.json
 - Rules/: DIRECT, Spotify, YouTube, local App, Web, and Reject rule fragments
-- Scripts/: Spotify, YouTube, and App-clean script fragments
+- Scripts/: Spotify, YouTube, Zhihu, and App-clean script fragments
 - Rewrite/Sources/: Meta, rewrite, body rewrite, map local, MITM, and compatibility fragments
 
 ## Duplicate Checks
@@ -30,6 +30,7 @@ Release line count: 2847
 - Daily maintenance should edit Rules, Scripts, Rewrite/Sources, Rewrite/Remotes, and Rewrite/Profiles.
 - Release/Ronghemokuai.sgmodule is generated from the factory sources.
 - Root Ronghemokuai.sgmodule is synchronized by factory_finalize.py.
+- Upstream collection stays conservative: trusted sources, reversible changes, verifiable reports.
 - --extract-from-root is reserved for initialization or source recovery, not the normal daily build path.
 
 ## Finalize 后状态
