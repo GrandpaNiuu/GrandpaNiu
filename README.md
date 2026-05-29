@@ -283,7 +283,7 @@ Cookie / BoxJS 账号任务
 
 <div align="center">
 
-**GrandpaNiu · Clean Module Hub ⚡**
+**GrandpaNiu · Ronghemokuai.sgmodule ⚡**
 
 干净、稳定、清楚、可维护。
 
