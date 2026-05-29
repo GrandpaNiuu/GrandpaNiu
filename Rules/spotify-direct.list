@@ -1,0 +1,8 @@
+# Spotify playback protection rules
+# Keep these rules before remote advertising sources.
+DOMAIN-SUFFIX,spotify.com,DIRECT
+DOMAIN-SUFFIX,scdn.co,DIRECT
+DOMAIN-SUFFIX,spotifycdn.com,DIRECT
+DOMAIN-SUFFIX,pscdn.co,DIRECT
+DOMAIN,spclient.wg.spotify.com,DIRECT
+DOMAIN-SUFFIX,spclient.spotify.com,DIRECT
