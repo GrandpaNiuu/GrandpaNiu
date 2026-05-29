@@ -1,4 +1,26 @@
-# Changelog
+# 变更记录
+
+## 2026-05-30
+
+- 中文化 `README.md`，补充快速导入、模块工厂流程、重点生效对象、维护入口、安全边界和常见问题。
+- 新增知乎增强净化层：`Scripts/zhihu-enhance.js` 与 `Scripts/zhihu-enhance.conf`，只处理广告卡片、推荐广告、商业字段，不处理会员、登录、支付、账号或付费内容。
+- 将 `Rewrite/Profiles/stable.conf` 接入 `zhihu-enhance`。
+- 新增 `Rewrite/Profiles/lite.conf` 低耗电参考 profile。
+- 新增 `docs/PERFORMANCE.md`，说明耗电来源、判断标准和 lite profile 用法。
+- 新增 `scripts/validate_repository.py`，作为阻断型质量门禁。
+- 新增 `scripts/repository_health_check.py`，生成 `reports/repository_health_report.md`。
+- 新增 `.github/workflows/repository-health.yml`，用于每周仓库健康检查。
+- 新增 `docs/QUALITY_GATE.md`，定义质量门禁、阻断项、提醒项和上线前检查。
+- 新增 `docs/RELEASE.md`，定义发布、测试和回滚标准。
+- 将 `scripts/audit_repair_invalid_sources.py` 改为 source-first 失效源审计和保守修复。
+- 更新 `daily-invalid-source-repair.yml`，失效源修复后重新构建 Release、同步 Root 并运行验证。
+- 更新 `module-factory-build.yml` 与 `upstream-collect.yml`，加入统一验证流程。
+- 扩展 `Rewrite/Remotes/candidates.json` 的低风险候选源池，仍保持脚本 pending。
+- 更新 `docs/COVERAGE.md`，同步 README 的重点生效对象，明确 Spotify、YouTube、知乎、Bilibili 的覆盖状态。
+- 更新 `docs/TROUBLESHOOTING.md`，新增知乎、Bilibili、耗电异常排查。
+- 更新 `docs/SCOPE.md`，补充知乎广告卡片净化、Bilibili 局部净化、源头驱动模块构建和低耗电维护边界。
+- 中文化 `docs/FACTORY_FLOW.md`，明确源头驱动流程、报告文件、自动维护边界和保守候选源收集原则。
+- 候选源收集策略保持保守：不开启全网大规模自动收集，只收集来源可信、改动可回滚、报告可验证的内容。
 
 ## 2026-05-29
 
