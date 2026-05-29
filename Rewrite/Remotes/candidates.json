@@ -32,6 +32,50 @@
       "purpose": "trusted same-upstream advertising candidate enabled for conservative collection"
     },
     {
+      "name": "blackmatrix7 Hijacking",
+      "kind": "remote_rule",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Hijacking/Hijacking.list",
+      "policy": "REJECT",
+      "enabled": true,
+      "activate": true,
+      "protected": false,
+      "purpose": "trusted anti-hijacking rule candidate enabled for conservative collection"
+    },
+    {
+      "name": "blackmatrix7 Privacy",
+      "kind": "remote_rule",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy.list",
+      "policy": "REJECT",
+      "enabled": true,
+      "activate": true,
+      "protected": false,
+      "purpose": "trusted privacy and tracker rule candidate enabled for conservative collection"
+    },
+    {
+      "name": "ACL4SSR BanProgramAD",
+      "kind": "remote_rule",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list",
+      "policy": "REJECT",
+      "enabled": true,
+      "activate": true,
+      "protected": false,
+      "purpose": "trusted program advertising rule candidate enabled for conservative collection"
+    },
+    {
+      "name": "ACL4SSR BanEasyListChina",
+      "kind": "remote_rule",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list",
+      "policy": "REJECT",
+      "enabled": true,
+      "activate": true,
+      "protected": false,
+      "purpose": "trusted China advertising supplement candidate enabled for conservative collection"
+    },
+    {
       "name": "Cats-Team AdRules DNS list",
       "kind": "remote_rule",
       "type": "DOMAIN-SET",
