@@ -1,3 +1,3 @@
-# YouTube playback protection placeholder
-# Keep this file available for future precise DIRECT rules.
-# Do not add broad googlevideo or google domains unless a specific conflict is confirmed.
+# YouTube rules
+AND,((DOMAIN-SUFFIX,googlevideo.com), (PROTOCOL,UDP)),REJECT
+AND,((DOMAIN,youtubei.googleapis.com), (PROTOCOL,UDP)),REJECT

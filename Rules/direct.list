@@ -1,0 +1,7 @@
+# Direct rules
+DOMAIN,dorangesource.alicdn.com,DIRECT
+DOMAIN,push.m.youku.com,DIRECT
+DOMAIN,un-acs.youku.com,DIRECT
+DOMAIN-SUFFIX,soulapp.cn,DIRECT
+IP-CIDR,8.210.3.170/32,DIRECT,no-resolve
+IP-CIDR,47.75.72.47/32,DIRECT,no-resolve
