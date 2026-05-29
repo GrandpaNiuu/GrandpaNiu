@@ -4,9 +4,9 @@
 
 ### ✨ Shadowrocket / Surge 自用融合净化模块
 
-**一个入口 · 全局净化 · 重点保护 Spotify / YouTube · 自动维护 · 可回滚**
+**一个入口 · 常用 App / 网页广告净化 · Spotify / YouTube 重点保护 · 自动维护 · 可回滚**
 
-本仓库以 `Ronghemokuai.sgmodule` 作为唯一主模块入口，集中处理常用 App 与网页中的广告、弹窗、横幅、信息流、推荐位、活动卡片，并保留 Spotify / YouTube 等重点功能的稳定增强逻辑。
+本仓库以 `Ronghemokuai.sgmodule` 作为主模块入口，目标是把广告净化、播放保护、脚本规则、远程规则源和日常维护集中到一个清晰可管理的模块里。
 
 <br>
 
@@ -26,61 +26,51 @@
 
 ---
 
-## 🧭 一眼看懂
-
-```text
-GrandpaNiu
-├─ 一个主模块：Ronghemokuai.sgmodule
-├─ 一个导入入口：Shadowrocket / Surge 兼容
-├─ 一套广告净化：远程规则 + 本地规则 + Rewrite + Script + MITM
-├─ 两个重点保护：Spotify / YouTube
-├─ 一个维护系统：每日检查 + 失效源审计 + 稳定备份
-└─ 一个安全边界：只做广告净化，不做破解、支付绕过、登录绕过
-```
-
-这个仓库的目标不是单纯堆规则，而是把常用的去广告、净化、增强、维护能力整理成一个更稳定、更清楚、更容易回滚的融合模块。
-
----
-
 ## 🚀 快速导入
 
-推荐直接点击顶部 **安装模块** 按钮。无法自动跳转时，使用备用页面复制导入。
+| 入口 | 说明 |
+|---|---|
+| [安装模块](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2FGrandpaNiuu%2FGrandpaNiu%2Fmain%2FRonghemokuai.sgmodule) | 推荐入口，点击后自动跳转 Shadowrocket 导入 |
+| [备用导入页面](https://grandpaniuu.github.io/GrandpaNiu/import.html) | 无法自动跳转时使用，复制模块地址手动导入 |
+| [Raw 模块地址](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule) | GitHub Raw 原始文件地址 |
+| [GitHub Pages 模块地址](https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule) | Pages 加速访问地址，也是模块 update-url 指向地址 |
 
-```text
-Raw 模块地址：
-https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule
-
-GitHub Pages 地址：
-https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
-```
-
-使用顺序：
-
-```text
-1. iPhone 安装 Shadowrocket
-2. 点击“安装模块”
-3. 确认导入 Ronghemokuai.sgmodule
-4. 在 Shadowrocket 内更新模块和脚本
-5. 只启用本模块测试 Spotify / YouTube / 常用 App
-```
+导入后建议在 Shadowrocket 中执行一次：更新模块、更新脚本、更新全部。
 
 ---
 
-## ✨ 模块核心能力
+## 📌 模块定位
+
+GrandpaNiu 是一个面向 Shadowrocket / Surge 兼容使用的融合净化模块。它不是单一广告规则，也不是单一脚本模块，而是把多个层面的能力整合在一个入口里。
+
+它主要做这些事：
+
+- 拦截常见广告域名、广告 SDK、追踪统计请求。
+- 清理部分 App 的开屏广告、弹窗、横幅、信息流、推荐位、活动卡片。
+- 保留 Spotify 播放链路保护，降低跳歌、秒切、加载失败概率。
+- 保留 YouTube Enhance 相关逻辑，维持 YouTube 增强能力。
+- 使用远程规则、本地规则、Rewrite、Script、Map Local、MITM 共同处理。
+- 用 GitHub Actions 做每日检查、失效源审计、历史记录和稳定备份辅助。
+
+---
+
+## ✨ 核心功能
 
 ### 1. 通用广告净化
 
-用于处理常见广告域名、广告 SDK、网页广告、追踪统计和部分 App 广告请求。
+用于处理网页和 App 中常见的广告请求、追踪统计、广告 SDK、活动位、推荐位和信息流广告。
 
-主要包含：
+包含能力：
 
-- 远程广告规则源
-- 本地域名拦截规则
-- URL-REGEX 规则
-- REJECT / REJECT-DROP / DIRECT 规则
-- 常见广告、统计、追踪域名补充
+```text
+DOMAIN / DOMAIN-SUFFIX / DOMAIN-KEYWORD
+IP-CIDR
+URL-REGEX
+RULE-SET / DOMAIN-SET
+REJECT / REJECT-DROP / DIRECT
+```
 
-适用场景：
+主要覆盖：
 
 ```text
 网页广告
@@ -90,147 +80,131 @@ App 开屏广告
 信息流广告
 推荐位
 活动卡片
-部分广告 SDK 请求
+广告 SDK
+统计追踪请求
 ```
 
 ### 2. Spotify 重点保护
 
-Spotify 是本模块重点保护对象，目标是尽量避免跳歌、秒切、播放失败、页面加载异常。
+Spotify 是模块里的重点保护对象。相关规则优先保证播放链路稳定，避免被综合广告规则误伤。
 
-保留内容包括：
-
-- Spotify 播放链路白名单
-- `spotify-json`
-- `spotify-proto`
-- Header Rewrite
-- `spclient.wg.spotify.com`
-- `*.spclient.spotify.com`
-- Spotify 相关 MITM hostname
-
-设计原则：
+保留内容：
 
 ```text
-Spotify 播放链路优先 DIRECT
-避免远程广告规则误杀播放请求
-不随意删除 spotify-json / spotify-proto
-如果出现跳歌，优先排查冲突规则
+Spotify DIRECT 白名单
+spotify-json
+spotify-proto
+Header Rewrite
+spclient.wg.spotify.com
+*.spclient.spotify.com
+Spotify 必要 MITM hostname
+```
+
+处理目标：
+
+```text
+降低跳歌
+降低歌曲秒切
+降低接口误杀
+保留播放链路
+避免重复脚本冲突
 ```
 
 ### 3. YouTube Enhance 保留
 
-YouTube 相关逻辑保留增强能力，同时尽量降低转圈、加载慢、接口误杀风险。
+YouTube 相关功能以保留增强逻辑和稳定播放为主，不盲目删除核心脚本。
 
-主要包含：
+保留内容：
 
-- YouTube Enhance 脚本
-- `youtube.response`
-- Shorts / 字幕 / 歌词 / 翻译等参数支持
-- YouTube 必要 MITM hostname
-- YouTube 相关接口净化规则
+```text
+youtube.response
+YouTube Enhance 参数
+YouTube 必要 MITM hostname
+Shorts / 字幕 / 歌词 / 翻译相关能力
+```
 
-注意：如果出现视频转圈，应优先检查 YouTube 相关 Map Local / googlevideo 规则，不要直接删除整个 YouTube Enhance。
+如果出现视频转圈，优先排查 YouTube 相关 Map Local、googlevideo 规则和网络环境，不直接删除整个 YouTube 逻辑。
 
 ### 4. 常用 App 净化
 
-模块包含部分国内外常用 App 的净化规则，主要面向广告、弹窗、活动位和推荐位，不处理账号权益和支付逻辑。
+模块覆盖方向包括但不限于：
 
-覆盖方向：
-
-```text
-音乐类：Spotify、QQ 音乐、网易云、喜马拉雅等
-视频类：YouTube、Bilibili、爱奇艺、优酷、芒果 TV 等
-社交类：小红书、微博、知乎、Soul、LINE 等
-电商类：淘宝 / 闲鱼、京东、拼多多、美团 / 饿了么等
-工具类：WPS、高德地图、网盘、天气类 App 等
-网页类：通用网页广告、统计、追踪、广告 SDK
-```
+| 分类 | 覆盖方向 |
+|---|---|
+| 音乐类 | Spotify、QQ 音乐、网易云、喜马拉雅等 |
+| 视频类 | YouTube、Bilibili、爱奇艺、优酷、芒果 TV 等 |
+| 社交类 | 小红书、微博、知乎、Soul、LINE 等 |
+| 电商类 | 淘宝 / 闲鱼、京东、拼多多、美团 / 饿了么等 |
+| 工具类 | WPS、高德地图、网盘、天气类 App 等 |
+| 网页类 | 通用网页广告、统计、追踪、广告 SDK |
 
 更详细覆盖状态见：[功能覆盖清单](docs/COVERAGE.md)。
 
 ### 5. Rewrite / Script / MITM 组合处理
 
-模块不是只有规则，也包含必要的重写和脚本处理能力。
+本模块不是只靠规则拦截，也会结合重写、脚本和 MITM 做更精细的净化。
 
-```text
-[URL Rewrite]     URL 层广告接口拦截
-[Header Rewrite]  Header 层缓存 / 请求头处理
-[Body Rewrite]    响应体字段清理
-[Map Local]       本地空响应 / 替换响应
-[Script]          远程脚本与 App 净化脚本
-[MITM]            追加必要 hostname 解密支持
-```
+| 区块 | 作用 |
+|---|---|
+| `[Rule]` | 域名、IP、URL、远程规则源、白名单和拦截规则 |
+| `[URL Rewrite]` | URL 层广告接口重写和拦截 |
+| `[Header Rewrite]` | Header 层处理，例如 Spotify 缓存头处理 |
+| `[Body Rewrite]` | 响应体字段清理，处理广告位、弹窗、活动卡片 |
+| `[Map Local]` | 本地空响应、本地替换响应 |
+| `[Script]` | Spotify、YouTube、App 净化脚本 |
+| `[MITM]` | 追加必要 hostname，支持 HTTPS 解密处理 |
 
-MITM 使用 `%APPEND%` 追加方式，尽量保留你本机其他模块或配置里的 hostname。
+MITM 使用 `%APPEND%` 追加方式，尽量保留你已有配置，减少覆盖风险。
 
 ---
 
-## 🧱 模块结构
+## 🧪 维护入口
 
-```text
-Ronghemokuai.sgmodule
-├─ [Rule]
-│  ├─ Spotify / YouTube 白名单保护
-│  ├─ 远程广告规则集
-│  ├─ 本地域名与 URL 规则
-│  └─ 低风险补充拦截规则
-│
-├─ [URL Rewrite]
-│  └─ 广告接口、开屏接口、弹窗接口处理
-│
-├─ [Header Rewrite]
-│  └─ Spotify 等重点接口 Header 处理
-│
-├─ [Body Rewrite]
-│  └─ 响应体广告字段、活动位、推荐位清理
-│
-├─ [Map Local]
-│  └─ 空响应、占位响应、本地替换
-│
-├─ [Script]
-│  ├─ Spotify
-│  ├─ YouTube
-│  └─ 常用 App 净化脚本
-│
-└─ [MITM]
-   └─ 使用 %APPEND% 追加必要 hostname
-```
+| 类型 | 入口 | 用途 |
+|---|---|---|
+| 每日检查 | [daily_update_report.md](reports/daily_update_report.md) | 查看每日基础检查结果 |
+| 失效源审计 | [invalid_sources_report.md](reports/invalid_sources_report.md) | 查看失效链接、可疑链接、处理结果 |
+| 失效历史 | [invalid_sources_history.json](reports/invalid_sources_history.json) | 记录连续失败次数和历史状态 |
+| 基础工作流 | [daily-module-update.yml](.github/workflows/daily-module-update.yml) | 每日更新日期并生成基础检查报告 |
+| 修复工作流 | [daily-invalid-source-repair.yml](.github/workflows/daily-invalid-source-repair.yml) | 连续 2 天确认失效后安全处理 |
+| 安全整理报告 | [module_refine_report.md](reports/module_refine_report.md) | 查看模块整理、脚本融合、重复项验证 |
+| 维护说明 | [MAINTENANCE.md](docs/MAINTENANCE.md) | 日常维护、每周维护、每月维护说明 |
+| 问题排查 | [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | Spotify、YouTube、登录支付异常排查 |
+| 覆盖清单 | [COVERAGE.md](docs/COVERAGE.md) | 查看功能覆盖方向和待补充项 |
+| 项目范围 | [SCOPE.md](docs/SCOPE.md) | 查看允许和禁止加入的内容范围 |
+| 变更记录 | [CHANGELOG.md](CHANGELOG.md) | 查看仓库主要变更历史 |
+| 稳定备份 | [backup/README.md](backup/README.md) | 查看稳定备份和回滚说明 |
 
 ---
 
 ## 🔄 自动维护机制
 
-仓库内置维护体系，目标是让模块长期可用、可查、可回滚。
-
 ### 每日基础检查
 
-```text
-.github/workflows/daily-module-update.yml
-```
+工作流：[daily-module-update.yml](.github/workflows/daily-module-update.yml)
 
-作用：
+它负责：
 
-- 更新模块日期
-- 检查 `[Rule]`、`[Script]`、`[MITM]`
-- 检查 Spotify / YouTube 核心项是否存在
-- 检查主要远程链接
-- 生成每日检查报告
+- 更新模块日期。
+- 检查 `[Rule]`、`[Script]`、`[MITM]` 是否存在。
+- 检查 `spotify-json`、`spotify-proto`、`youtube.response` 是否存在。
+- 检查主要远程链接状态。
+- 生成每日检查报告。
 
 ### 每日失效源审计
 
-```text
-.github/workflows/daily-invalid-source-repair.yml
-```
+工作流：[daily-invalid-source-repair.yml](.github/workflows/daily-invalid-source-repair.yml)
 
-作用：
+它负责：
 
-- 扫描 `script-path`、`RULE-SET`、`DOMAIN-SET`、`update-url`、GitHub raw 链接
-- 记录失效历史
-- 连续 2 天确认失败后才处理
-- 优先替换可靠新地址
-- 找不到可靠新地址时才注释
-- 只有低风险独立远程规则才允许删除
+- 扫描 `script-path`、`RULE-SET`、`DOMAIN-SET`、`update-url`、GitHub raw 链接。
+- 记录失效历史。
+- 连续 2 天确认失败后才处理。
+- 优先替换可靠新地址。
+- 找不到可靠新地址时才注释。
+- 只有低风险独立远程规则才允许删除。
 
-保护项：
+保护项不会自动破坏：
 
 ```text
 Spotify
@@ -240,25 +214,6 @@ GitHub Pages 模块地址
 安装页面
 导入页面
 核心远程规则源
-```
-
-这些内容即使检查失败，也优先写入报告，不自动破坏模块。
-
----
-
-## 🧪 维护入口
-
-```text
-reports/daily_update_report.md              每日基础检查报告
-reports/invalid_sources_report.md           每日失效源审计报告
-reports/invalid_sources_history.json        失效源历史记录
-reports/module_refine_report.md             模块安全整理报告
-docs/MAINTENANCE.md                         日常维护说明
-docs/TROUBLESHOOTING.md                     问题排查说明
-docs/COVERAGE.md                            功能覆盖清单
-docs/SCOPE.md                               项目范围说明
-CHANGELOG.md                                变更记录
-backup/README.md                            稳定备份说明
 ```
 
 ---
@@ -302,19 +257,13 @@ Cookie / BoxJS 账号任务
 
 ## 🧯 常见问题定位
 
-```text
-Spotify 跳歌：
-优先检查 Spotify 白名单、spotify-json、spotify-proto、MITM hostname、其他模块冲突。
-
-YouTube 转圈：
-优先检查 YouTube Enhance、youtube.response、googlevideo / Map Local 相关规则。
-
-登录 / 支付 / 验证码异常：
-优先临时关闭模块确认是否误伤，再定位最近新增规则，不要直接大面积删除。
-
-远程链接失败：
-先看报告，确认是否连续失败。不要因单日 GitHub 网络问题直接删除规则。
-```
+| 问题 | 优先检查 |
+|---|---|
+| Spotify 跳歌 | Spotify 白名单、`spotify-json`、`spotify-proto`、MITM hostname、是否启用其他 Spotify 模块 |
+| YouTube 转圈 | `youtube.response`、YouTube Enhance、googlevideo / Map Local 相关规则 |
+| 登录异常 | 临时关闭模块确认是否误伤，再检查最近新增规则 |
+| 支付 / 验证码异常 | 优先检查 MITM 和最近新增的 Rewrite / Map Local |
+| 远程链接失败 | 先看报告是否连续失败，不因单日 GitHub 网络错误直接删除 |
 
 完整排查见：[问题排查说明](docs/TROUBLESHOOTING.md)。
 
