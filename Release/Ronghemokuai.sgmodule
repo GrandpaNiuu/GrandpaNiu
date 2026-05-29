@@ -2598,7 +2598,6 @@ http-response-jq ^https?:\/\/api\.zhihu\.com\/search\/recommend_query\/v2\? 'del
 # YouTube Enhance：仅拦截带 oad 参数的 googlevideo initplayback 广告初始化请求；若视频转圈，可临时注释本行。
 ^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad data-type=text data="" status-code=200
 [Script]
-
 # === 新框架 Layer 5：Script 层 ===
 # 原 YouTube/Spotify 脚本保持不覆盖；新增脚本统一 cmp_ 前缀，来源公开 raw，按去广告用途筛选。
 

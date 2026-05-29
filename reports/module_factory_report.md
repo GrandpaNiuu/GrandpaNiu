@@ -1,9 +1,10 @@
 # Module Factory Report
 
 日期：2026-05-29
+构建 profile：stable
 是否从根目录主模块拆分：yes
 Release 是否与根目录主模块一致：no
-Release 行数：2814
+Release 行数：2813
 
 ## Sources 统计
 - Rule: 506 lines
@@ -14,8 +15,18 @@ Release 行数：2814
 - Script: 211 lines
 - MITM: 2 lines
 
+## 参与构建的源头
+- Rewrite/Sources/: rewrite、body、map local、MITM 与过渡兼容片段
+- Rules/: DIRECT、Spotify、YouTube、本地规则片段
+- Scripts/: Spotify、YouTube、App 脚本片段
+- Rewrite/Remotes/sources.json: 远程 RULE-SET / DOMAIN-SET 清单
+- Rewrite/Profiles/: 构建 profile
+
+## 重复检查
+- 重复脚本名：无
+- 重复 MITM hostname：无
+
 ## 说明
 - 根目录 Ronghemokuai.sgmodule 仍是正式导入入口。
-- Rewrite/Sources/ 保存从主模块拆分出来的结构化片段。
-- Release/Ronghemokuai.sgmodule 是由 Sources 重新拼接得到的发布副本。
-- 启用根目录自动生成前，必须先确认 Release 与根目录主模块一致。
+- Release/Ronghemokuai.sgmodule 是工厂源文件生成的发布副本。
+- 当前构建不会自动覆盖根目录主模块。
