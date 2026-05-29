@@ -3,8 +3,8 @@
 Date: 2026-05-30
 Profile: stable
 Extracted from root module: no
-Release matches root module before finalize: yes
-Release line count: 2843
+Release matches root module before finalize: no
+Release line count: 2847
 
 ## Source Counts
 - Rule: 523 lines
