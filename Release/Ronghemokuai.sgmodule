@@ -12,25 +12,37 @@
 # changelog: 修复 IPv6 CIDR 与拼多多 IPv6 正则；移除 Dreame ZIP 注入、粉笔第三方图片注入、Bilibili 伪会员改写；新增 cmp_ 脚本层。
 # arguments: YouTube Enhance 参数沿用上游，字幕/歌词翻译默认关闭以降低兼容风险。
 [Rule]
-# Spotify 白名单：放在远程广告规则前，避免广告规则误杀播放链路导致跳歌
+# Spotify playback protection rules
+# Keep these rules before remote advertising sources.
 DOMAIN-SUFFIX,spotify.com,DIRECT
 DOMAIN-SUFFIX,scdn.co,DIRECT
 DOMAIN-SUFFIX,spotifycdn.com,DIRECT
 DOMAIN-SUFFIX,pscdn.co,DIRECT
 DOMAIN,spclient.wg.spotify.com,DIRECT
 DOMAIN-SUFFIX,spclient.spotify.com,DIRECT
+# YouTube playback protection placeholder
+# Keep this file available for future precise DIRECT rules.
+# Do not add broad googlevideo or google domains unless a specific conflict is confirmed.
+# Reject rules
+# remote: blackmatrix7 Advertising
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,REJECT
+# remote: Cats-Team AdRules
+DOMAIN-SET,https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt,REJECT
+# remote: anti-AD Surge
+RULE-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt,REJECT
+# remote: ACL4SSR BanAD
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list,REJECT
+# remote: Loyalsoldier reject
+RULE-SET,https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt,REJECT
+# remote: 217heidai adblockfilters
+RULE-SET,https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list,REJECT
+# Spotify 白名单：放在远程广告规则前，避免广告规则误杀播放链路导致跳歌
 # === 新框架 Layer 1：基础拦截层 ===
 # 顺序原则：必要 DIRECT 白名单优先，其后远程广告规则、本地域名/IP、URL-REGEX/AND 逻辑。
 # 安全边界：不主动拦截支付、登录、验证码、银行证券、微信/支付宝安全、证书校验接口。
 # GitHub 去广告规则补充（Surge 端按远程资源自动更新）
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,REJECT
-DOMAIN-SET,https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt,REJECT
 # === Remote AdBlock Hub：远程广告规则增强层 ===
 # 只添加可信远程规则，不覆盖本地规则；用于补充国内外网页、App 通用广告域名。
-RULE-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt,REJECT
-RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list,REJECT
-RULE-SET,https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt,REJECT
-RULE-SET,https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list,REJECT
 DOMAIN,dorangesource.alicdn.com,DIRECT
 DOMAIN,push.m.youku.com,DIRECT
 DOMAIN,un-acs.youku.com,DIRECT
