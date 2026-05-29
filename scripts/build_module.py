@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
-"""Build Ronghemokuai.sgmodule from the repository factory sources.
-
-The builder is source-driven:
-- Rules, Scripts, Rewrite/Sources, Remotes and Profiles are the maintained sources;
-- generated output is written to Release/Ronghemokuai.sgmodule;
-- root Ronghemokuai.sgmodule is synchronized later by factory_finalize.py;
-- --extract-from-root is reserved for initialization or recovery only.
-"""
+"""Build Ronghemokuai.sgmodule from source-driven factory inputs."""
 
 from __future__ import annotations
 
@@ -29,16 +22,7 @@ SOURCES = ROOT / "Rewrite" / "Sources"
 PROFILES = ROOT / "Rewrite" / "Profiles"
 REMOTES_JSON = ROOT / "Rewrite" / "Remotes" / "sources.json"
 
-SECTION_ORDER = [
-    "Rule",
-    "URL Rewrite",
-    "Header Rewrite",
-    "Body Rewrite",
-    "Map Local",
-    "Script",
-    "MITM",
-]
-
+SECTION_ORDER = ["Rule", "URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local", "Script", "MITM"]
 SECTION_FILES = {
     "META": "Meta.conf",
     "Rule": "Rule.conf",
@@ -49,9 +33,8 @@ SECTION_FILES = {
     "Script": "Script.conf",
     "MITM": "MITM.conf",
 }
-
 REQUIRED_SECTIONS = set(SECTION_ORDER)
-CORE_TOKENS = ("spotify-json", "spotify-proto", "youtube.response")
+CORE_TOKENS = ("spotify-json", "spotify-proto", "youtube.response", "zhihu-enhance")
 EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
 SECTION_RE = re.compile(r"^\[([^\]]+)\]\s*$")
 SCRIPT_NAME_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=")
@@ -83,12 +66,10 @@ def write_text(path: Path, text: str) -> None:
 
 
 def split_module(text: str) -> tuple[str, dict[str, str]]:
-    lines = text.splitlines()
     meta: list[str] = []
     sections: dict[str, list[str]] = {name: [] for name in SECTION_ORDER}
     current: str | None = None
-
-    for line in lines:
+    for line in text.splitlines():
         match = SECTION_RE.match(line.strip())
         if match:
             current = match.group(1)
@@ -98,19 +79,16 @@ def split_module(text: str) -> tuple[str, dict[str, str]]:
             meta.append(line)
         else:
             sections.setdefault(current, []).append(line)
-
     missing = sorted(section for section in REQUIRED_SECTIONS if section not in sections or not sections[section])
     if missing:
         stop("required sections are missing or empty: " + ", ".join(missing))
-
     return "\n".join(meta).rstrip() + "\n", {
         section: "\n".join(sections.get(section, [])).rstrip() + "\n" for section in SECTION_ORDER
     }
 
 
 def extract_sources() -> None:
-    text = read_text(MODULE)
-    meta, sections = split_module(text)
+    meta, sections = split_module(read_text(MODULE))
     write_text(SOURCES / SECTION_FILES["META"], meta)
     for section in SECTION_ORDER:
         write_text(SOURCES / SECTION_FILES[section], sections[section])
@@ -151,10 +129,7 @@ def iter_profile_paths(profile: configparser.ConfigParser, section: str) -> Iter
 
 
 def active_key(line: str) -> str:
-    stripped = line.strip()
-    if not stripped:
-        return ""
-    return stripped
+    return line.strip()
 
 
 def merge_lines(blocks: Iterable[str]) -> str:
@@ -203,8 +178,7 @@ def remote_rule_lines() -> str:
             stop(f"unsupported remote source type: {item}")
         if not url.startswith("https://"):
             stop(f"enabled remote source must use https: {url}")
-        lowered_url = url.lower()
-        if any(token in lowered_url for token in DISALLOWED_REMOTE_TOKENS):
+        if any(token in url.lower() for token in DISALLOWED_REMOTE_TOKENS):
             stop(f"disallowed remote source URL: {url}")
         name = str(item.get("name", "remote source")).strip()
         lines.append(f"# remote: {name}")
@@ -234,9 +208,7 @@ def build_scripts(profile: configparser.ConfigParser) -> str:
 
 def build_from_sources(profile_name: str) -> str:
     profile = load_profile(profile_name)
-    meta = read_text(source_file("META")).rstrip()
-    parts: list[str] = [meta]
-
+    parts: list[str] = [read_text(source_file("META")).rstrip()]
     for section in SECTION_ORDER:
         parts.append(f"[{section}]")
         if section == "Rule":
@@ -270,9 +242,8 @@ def mitm_hostnames(text: str) -> list[str]:
     index = text.find("[MITM]")
     if index < 0:
         return []
-    tail = text[index:]
     hosts: list[str] = []
-    for line in tail.splitlines():
+    for line in text[index:].splitlines():
         if not line.strip().startswith("hostname ="):
             continue
         _, value = line.split("=", 1)
@@ -302,7 +273,6 @@ def validate(text: str) -> None:
     for token in CORE_TOKENS:
         if token not in text:
             stop(f"required core token missing: {token}")
-
     section_positions = {match.group(1): match.start() for match in SECTION_RE.finditer(text)}
     if "Script" in section_positions and "MITM" in section_positions:
         script_block = text[section_positions["Script"]:section_positions["MITM"]]
@@ -320,13 +290,12 @@ def validate(text: str) -> None:
 def make_report(release_text: str, extracted: bool, profile: str) -> str:
     today = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).date().isoformat()
     root_text = read_text(MODULE)
-    same_as_root = release_text.strip() == root_text.strip()
+    build_stage_same_as_root = release_text.strip() == root_text.strip()
     section_counts = []
     for section in SECTION_ORDER:
         path = source_file(section)
         count = len(read_text(path, required=False).splitlines()) if path.exists() else 0
         section_counts.append(f"- {section}: {count} lines")
-
     script_dupes = duplicates(script_names(release_text))
     mitm_dupes = duplicates(mitm_hostnames(release_text))
     return "\n".join([
@@ -335,17 +304,17 @@ def make_report(release_text: str, extracted: bool, profile: str) -> str:
         f"Date: {today}",
         f"Profile: {profile}",
         f"Extracted from root module: {'yes' if extracted else 'no'}",
-        f"Release matches root module before finalize: {'yes' if same_as_root else 'no'}",
+        f"构建阶段 Root/Release 是否一致: {'yes' if build_stage_same_as_root else 'no'}",
         f"Release line count: {len(release_text.splitlines())}",
         "",
         "## Source Counts",
         *section_counts,
         "",
         "## Build Inputs",
-        "- Rewrite/Profiles/stable.conf",
+        f"- Rewrite/Profiles/{profile}.conf",
         "- Rewrite/Remotes/sources.json",
         "- Rules/: DIRECT, Spotify, YouTube, local App, Web, and Reject rule fragments",
-        "- Scripts/: Spotify, YouTube, and App-clean script fragments",
+        "- Scripts/: Spotify, YouTube, Zhihu, and App-clean script fragments",
         "- Rewrite/Sources/: Meta, rewrite, body rewrite, map local, MITM, and compatibility fragments",
         "",
         "## Duplicate Checks",
@@ -356,6 +325,7 @@ def make_report(release_text: str, extracted: bool, profile: str) -> str:
         "- Daily maintenance should edit Rules, Scripts, Rewrite/Sources, Rewrite/Remotes, and Rewrite/Profiles.",
         "- Release/Ronghemokuai.sgmodule is generated from the factory sources.",
         "- Root Ronghemokuai.sgmodule is synchronized by factory_finalize.py.",
+        "- Upstream collection stays conservative: trusted sources, reversible changes, verifiable reports.",
         "- --extract-from-root is reserved for initialization or source recovery, not the normal daily build path.",
         "",
     ])
@@ -393,15 +363,12 @@ def main() -> None:
     parser.add_argument("--build", action="store_true", help="build Release/Ronghemokuai.sgmodule from factory sources")
     parser.add_argument("--profile", default="stable", help="profile name under Rewrite/Profiles, default: stable")
     args = parser.parse_args()
-
     if not args.extract_from_root and not args.build:
         args.build = True
-
     extracted = False
     if args.extract_from_root:
         extract_sources()
         extracted = True
-
     if args.build:
         release_text = build_from_sources(args.profile)
         validate(release_text)
