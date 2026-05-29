@@ -26,10 +26,10 @@
       "type": "RULE-SET",
       "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingLite/AdvertisingLite.list",
       "policy": "REJECT",
-      "enabled": false,
-      "activate": false,
+      "enabled": true,
+      "activate": true,
       "protected": false,
-      "purpose": "trusted same-upstream advertising candidate; disabled until manually reviewed"
+      "purpose": "trusted same-upstream advertising candidate enabled for conservative collection"
     },
     {
       "name": "Cats-Team AdRules DNS list",
@@ -40,7 +40,7 @@
       "enabled": false,
       "activate": false,
       "protected": false,
-      "purpose": "trusted domain-set candidate; disabled until manually reviewed"
+      "purpose": "trusted domain-set candidate; disabled after conservative scan flagged risk keywords"
     },
     {
       "name": "app2smile Tieba script",

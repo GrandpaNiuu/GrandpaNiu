@@ -53,6 +53,15 @@
       "enabled": true,
       "protected": false,
       "purpose": "advertising supplement"
+    },
+    {
+      "name": "blackmatrix7 Advertising Lite",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingLite/AdvertisingLite.list",
+      "policy": "REJECT",
+      "enabled": true,
+      "protected": false,
+      "purpose": "trusted same-upstream advertising candidate enabled for conservative collection"
     }
   ],
   "reference_modules": [
