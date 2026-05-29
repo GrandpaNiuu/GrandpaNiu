@@ -9,6 +9,7 @@ on:
       - "Ronghemokuai.sgmodule"
       - "scripts/build_module.py"
       - "scripts/factory_finalize.py"
+      - "scripts/validate_repository.py"
       - "Rewrite/Manifest.conf"
       - "Rewrite/Profiles/**"
       - "Rewrite/Remotes/**"
@@ -34,7 +35,7 @@ jobs:
 
       - name: Validate Python scripts
         run: |
-          python3 -m py_compile scripts/build_module.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py
+          python3 -m py_compile scripts/build_module.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py
 
       - name: Build factory sources and release module
         run: |
@@ -44,39 +45,9 @@ jobs:
         run: |
           python3 scripts/factory_finalize.py --sync-root
 
-      - name: Validate generated and synced module
+      - name: Validate repository
         run: |
-          test -f Rewrite/Sources/Meta.conf
-          test -f Rewrite/Sources/Rule.conf
-          test -f Rewrite/Sources/Script.conf
-          test -f Rewrite/Sources/MITM.conf
-          test -f Rewrite/Profiles/stable.conf
-          test -f Rewrite/Remotes/sources.json
-          test -f Release/Ronghemokuai.sgmodule
-          test -f Ronghemokuai.sgmodule
-          test -f reports/module_factory_report.md
-          test -f reports/module_factory_diff_report.md
-          test -f reports/factory_finalize_report.md
-          test -f Rules/spotify-direct.list
-          test -f Rules/youtube-direct.list
-          test -f Rules/reject.list
-          test -f Rules/app-clean.list
-          test -f Rules/web-ads.list
-          test -f Scripts/spotify.conf
-          test -f Scripts/youtube.conf
-          test -f Scripts/app-clean.conf
-          grep -q '^\[Rule\]' Ronghemokuai.sgmodule
-          grep -q '^\[URL Rewrite\]' Ronghemokuai.sgmodule
-          grep -q '^\[Header Rewrite\]' Ronghemokuai.sgmodule
-          grep -q '^\[Body Rewrite\]' Ronghemokuai.sgmodule
-          grep -q '^\[Map Local\]' Ronghemokuai.sgmodule
-          grep -q '^\[Script\]' Ronghemokuai.sgmodule
-          grep -q '^\[MITM\]' Ronghemokuai.sgmodule
-          grep -q 'spotify-json' Ronghemokuai.sgmodule
-          grep -q 'spotify-proto' Ronghemokuai.sgmodule
-          grep -q 'youtube.response' Ronghemokuai.sgmodule
-          grep -q '#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule' Ronghemokuai.sgmodule
-          cmp -s Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule
+          python3 scripts/validate_repository.py
 
       - name: Commit factory output
         run: |
