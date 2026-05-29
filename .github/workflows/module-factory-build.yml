@@ -1,0 +1,51 @@
+name: Module Factory Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "Ronghemokuai.sgmodule"
+      - "scripts/build_module.py"
+      - "Rewrite/Manifest.conf"
+      - ".github/workflows/module-factory-build.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build factory sources and release module
+        run: |
+          python3 scripts/build_module.py --extract-from-root --build
+
+      - name: Validate generated module
+        run: |
+          test -f Rewrite/Sources/Meta.conf
+          test -f Rewrite/Sources/Rule.conf
+          test -f Rewrite/Sources/Script.conf
+          test -f Rewrite/Sources/MITM.conf
+          test -f Release/Ronghemokuai.sgmodule
+          test -f reports/module_factory_report.md
+          grep -q '^\[Rule\]' Release/Ronghemokuai.sgmodule
+          grep -q '^\[Script\]' Release/Ronghemokuai.sgmodule
+          grep -q '^\[MITM\]' Release/Ronghemokuai.sgmodule
+          grep -q 'spotify-json' Release/Ronghemokuai.sgmodule
+          grep -q 'spotify-proto' Release/Ronghemokuai.sgmodule
+          grep -q 'youtube.response' Release/Ronghemokuai.sgmodule
+          grep -q '#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule' Release/Ronghemokuai.sgmodule
+
+      - name: Commit factory output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Rewrite/Sources Release/Ronghemokuai.sgmodule reports/module_factory_report.md
+          git diff --cached --quiet || git commit -m "Build module factory output"
+          git push
