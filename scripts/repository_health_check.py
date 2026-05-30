@@ -23,8 +23,13 @@ REQUIRED_FILES = [
     "Ronghemokuai.sgmodule",
     "Release/Ronghemokuai.sgmodule",
     "Rewrite/Profiles/stable.conf",
+    "Rewrite/Profiles/stable-plus.conf",
     "Rewrite/Profiles/lite.conf",
     "Rewrite/Profiles/full.conf",
+    "Rewrite/Sources/MITM-core.conf",
+    "Rewrite/Sources/MITM-app-clean.conf",
+    "Rewrite/Sources/MITM-stable-plus.conf",
+    "Rewrite/Sources/MITM-extended.conf",
     "Rewrite/Remotes/sources.json",
     "Rewrite/Remotes/candidates.json",
     "Scripts/spotify.conf",
@@ -49,6 +54,8 @@ REQUIRED_FILES = [
     "docs/SCRIPT_REVIEW.md",
     "docs/MITM_POLICY.md",
     "docs/VERSIONING.md",
+    "docs/ROADMAP.md",
+    "docs/PROFILE_POLICY.md",
     "SECURITY.md",
     "LICENSE",
     "CONTRIBUTING.md",
@@ -72,6 +79,8 @@ OPTIONAL_REPORTS = [
     "reports/app_coverage_matrix.md",
     "reports/change_impact_report.md",
     "reports/workflow_health_report.md",
+    "reports/profile_validation_report.md",
+    "reports/manual_test_log.md",
 ]
 
 BLOCKING_MARKERS = [
@@ -92,6 +101,12 @@ BLOCKING_MARKERS = [
 LOCAL_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 SCRIPT_NAME_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=")
 HOSTNAME_RE = re.compile(r"^\s*hostname\s*=\s*(.+)$")
+PROFILE_USE = {
+    "lite": "低耗电参考版，不默认发布",
+    "stable": "默认正式版，可以发布",
+    "stable-plus": "常用 App 增强测试版，不默认发布",
+    "full": "全量排查测试版，不默认发布",
+}
 
 
 def read(path: Path) -> str:
@@ -120,20 +135,26 @@ def collect_script_names() -> tuple[list[str], list[str]]:
     return names, dupes
 
 
+def parse_hosts(text: str) -> list[str]:
+    hosts: list[str] = []
+    for line in text.splitlines():
+        match = HOSTNAME_RE.match(line)
+        if not match:
+            continue
+        value = match.group(1).replace("%APPEND%", "")
+        for host in value.split(","):
+            clean = host.strip()
+            if clean:
+                hosts.append(clean)
+    return hosts
+
+
 def collect_mitm_hosts() -> tuple[list[str], list[str]]:
     text = read(MODULE)
     start = text.find("[MITM]")
     if start < 0:
         return [], []
-    hosts: list[str] = []
-    for line in text[start:].splitlines():
-        match = HOSTNAME_RE.match(line)
-        if not match:
-            continue
-        for host in match.group(1).split(","):
-            clean = host.strip()
-            if clean and clean != "%APPEND%":
-                hosts.append(clean)
+    hosts = parse_hosts(text[start:])
     dupes = sorted({host for host in hosts if hosts.count(host) > 1})
     return hosts, dupes
 
@@ -182,9 +203,45 @@ def workflow_summary(path: Path) -> str:
     status.append("concurrency" if "concurrency:" in text else "missing-concurrency")
     if "--profile full" in text:
         status.append("uses-full")
+    elif "--profile stable-plus" in text:
+        status.append("uses-stable-plus")
     elif "--profile stable" in text:
         status.append("uses-stable")
     return ", ".join(status)
+
+
+def profile_summary_rows() -> list[str]:
+    rows = []
+    for profile, usage in PROFILE_USE.items():
+        path = ROOT / "Rewrite" / "Profiles" / f"{profile}.conf"
+        text = read(path)
+        mitm_sources = []
+        in_mitm = False
+        for line in text.splitlines():
+            stripped = line.strip()
+            if stripped == "[mitm]":
+                in_mitm = True
+                continue
+            if stripped.startswith("[") and stripped.endswith("]"):
+                in_mitm = False
+            if in_mitm and "=" in stripped and not stripped.startswith("#"):
+                mitm_sources.append(stripped.split("=", 1)[1].strip())
+        rows.append(f"| {profile} | {', '.join(mitm_sources) if mitm_sources else 'legacy MITM.conf'} | {usage} |")
+    return rows
+
+
+def mitm_layer_rows() -> list[str]:
+    rows = []
+    for rel in [
+        "Rewrite/Sources/MITM-core.conf",
+        "Rewrite/Sources/MITM-app-clean.conf",
+        "Rewrite/Sources/MITM-stable-plus.conf",
+        "Rewrite/Sources/MITM-extended.conf",
+        "Rewrite/Sources/MITM.conf",
+    ]:
+        hosts = parse_hosts(read(ROOT / rel)) if (ROOT / rel).exists() else []
+        rows.append(f"| `{rel}` | {len(hosts)} |")
+    return rows
 
 
 def list_block(title: str, items: list[str], code: bool = False) -> list[str]:
@@ -213,22 +270,12 @@ def main() -> None:
     missing_markers = [marker for marker in BLOCKING_MARKERS if marker not in root_text]
     missing_links = readme_missing_links()
     enabled_sources = [item for item in source_data.get("rule_sets", []) if item.get("enabled")]
-    enabled_candidates = [
-        item for item in candidate_data.get("candidates", []) if item.get("enabled") and item.get("activate", False)
-    ]
-    pending_scripts = [
-        item.get("name", "unnamed")
-        for item in candidate_data.get("candidates", [])
-        if item.get("kind") == "script" and item.get("status") == "pending"
-    ]
+    enabled_candidates = [item for item in candidate_data.get("candidates", []) if item.get("enabled") and item.get("activate", False)]
+    pending_scripts = [item.get("name", "unnamed") for item in candidate_data.get("candidates", []) if item.get("kind") == "script" and item.get("status") == "pending"]
 
     history = json_load(ROOT / "reports" / "invalid_sources_history.json")
-    privacy_lite_url = "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list"
-    privacy_lite = {}
-    for key, value in history.items():
-        if key == privacy_lite_url or privacy_lite_url in key or value.get("url") == privacy_lite_url:
-            privacy_lite = value
-            break
+    failed_sources = [value.get("url", key) for key, value in history.items() if int(value.get("fail_count", 0)) >= 1]
+    two_day_failed = [value.get("url", key) for key, value in history.items() if int(value.get("fail_count", 0)) >= 2]
 
     critical_issues: list[str] = []
     if root_text != release_text:
@@ -255,10 +302,12 @@ def main() -> None:
         warnings.append("当前没有 pending 脚本候选，请确认脚本自动收集仍保持关闭")
     if len(enabled_sources) > 20:
         warnings.append("启用远程源较多，需要持续观察误杀与性能")
-    if privacy_lite and int(privacy_lite.get("fail_count", 0)) == 1:
-        warnings.append("PrivacyLite 当前为单日 404，按策略仅观察，不禁用")
-    if privacy_lite and int(privacy_lite.get("fail_count", 0)) >= 2:
-        warnings.append("PrivacyLite 已连续失败 2 天及以上，应保守禁用候选或验证同源替代")
+    if failed_sources:
+        warnings.append(f"当前存在失效源历史记录：{len(failed_sources)} 条")
+    if two_day_failed:
+        warnings.append(f"存在连续失败 2 天及以上的源：{len(two_day_failed)} 条，应确认是否已禁用或替代")
+
+    workflow_items = [f"{rel}: {workflow_summary(ROOT / rel)}" for rel in REQUIRED_WORKFLOWS if (ROOT / rel).exists()]
 
     lines: list[str] = [
         "# 仓库健康检查报告",
@@ -275,14 +324,27 @@ def main() -> None:
         f"- 启用候选源：{len(enabled_candidates)}",
         f"- pending 脚本候选：{len(pending_scripts)}",
         f"- 脚本总数：{len(script_names)}",
-        f"- MITM hostname 数量：{len(mitm_hosts)}",
+        f"- stable 当前 MITM hostname 数量：{len(mitm_hosts)}",
+        "- 默认发布策略：stable only；stable-plus / full 不默认发布",
         "",
         "## 模块区块行数",
         "",
     ]
     lines += [f"- {name}: {count}" for name, count in module_section_counts(root_text).items()]
-
-    workflow_items = [f"{rel}: {workflow_summary(ROOT / rel)}" for rel in REQUIRED_WORKFLOWS if (ROOT / rel).exists()]
+    lines += [
+        "",
+        "## Profile 策略摘要",
+        "",
+        "| Profile | MITM 输入 | 用途 |",
+        "|---|---|---|",
+        *profile_summary_rows(),
+        "",
+        "## MITM 分层数量",
+        "",
+        "| 文件 | hostname 数量 |",
+        "|---|---:|",
+        *mitm_layer_rows(),
+    ]
 
     lines += list_block("阻断问题", critical_issues)
     lines += list_block("提醒事项", warnings)
@@ -295,6 +357,7 @@ def main() -> None:
     lines += list_block("README 失效本地链接", missing_links, code=True)
     lines += list_block("Workflow 摘要", workflow_items)
     lines += list_block("Pending 脚本候选", pending_scripts)
+    lines += list_block("失效源历史记录", failed_sources, code=True)
     lines += [
         "",
         "## 统一验证输出",
@@ -308,8 +371,9 @@ def main() -> None:
         "1. 日常修改应优先编辑 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。",
         "2. Root 模块只作为生成结果，必须通过 build_module.py 与 factory_finalize.py 同步。",
         "3. 新脚本默认 pending，不直接进入 stable。",
-        "4. 出现登录、支付、验证码异常时，优先回查 MITM、Body Rewrite 和 Map Local。",
-        "5. 远程源连续失败 2 天后才进入处理流程，单日网络失败只报告观察。",
+        "4. MITM 从 extended 进入 stable 前，应先进入 stable-plus 并完成真实测试。",
+        "5. 出现登录、支付、验证码异常时，优先回查 MITM、Body Rewrite 和 Map Local。",
+        "6. 远程源连续失败 2 天后才进入处理流程，单日网络失败只报告观察。",
         "",
     ]
 
