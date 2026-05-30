@@ -22,16 +22,19 @@ jobs:
 
       - name: Validate Python scripts
         run: |
-          python3 -m py_compile scripts/audit_repair_invalid_sources.py scripts/build_module.py scripts/factory_finalize.py scripts/validate_repository.py
+          python3 -m py_compile scripts/audit_repair_invalid_sources.py scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/validate_repository.py
 
       - name: Run source-first invalid source audit and repair
         run: python3 scripts/audit_repair_invalid_sources.py
 
-      - name: Build factory sources and release module
+      - name: Build stable factory output
         run: python3 scripts/build_module.py --build --profile stable
 
       - name: Finalize factory output and sync root module
         run: python3 scripts/factory_finalize.py --sync-root
+
+      - name: Build independent release variants
+        run: python3 scripts/build_release_variants.py
 
       - name: Validate repository
         run: python3 scripts/validate_repository.py
@@ -40,10 +43,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Rewrite/Remotes/sources.json Rewrite/Remotes/candidates.json Rules Scripts Rewrite/Sources Release/Ronghemokuai.sgmodule Ronghemokuai.sgmodule reports/invalid_sources_report.md reports/invalid_sources_history.json reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md
+          git add Rewrite/Remotes/sources.json Rewrite/Remotes/candidates.json Rules Scripts Rewrite/Sources Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule Ronghemokuai.sgmodule reports/invalid_sources_report.md reports/invalid_sources_history.json reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md
           if git diff --cached --quiet; then
             echo "No invalid source changes to commit."
             exit 0
           fi
-          git commit -m "Daily source-first invalid source audit and repair"
+          git commit -m "Daily source-first invalid source audit and multi-version repair"
           git push
