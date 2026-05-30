@@ -1,11 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-05-31 04:54:01 +0800
+- 生成时间：2026-05-31 04:54:50 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Rewrite/Profiles/stable.conf`
+- `Rewrite/Profiles/lite.conf`
 
 ## 新增文件
 
@@ -17,7 +17,7 @@
 
 ## 修改文件
 
-- `Rewrite/Profiles/stable.conf`
+- `Rewrite/Profiles/lite.conf`
 
 ## 影响的模块层
 
