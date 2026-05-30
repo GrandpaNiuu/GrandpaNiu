@@ -64,8 +64,14 @@ jobs:
         run: |
           python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/repository_health_check.py scripts/audit_compat_sources.py scripts/split_mitm_sources.py scripts/validate_profiles.py scripts/generate_app_coverage_matrix.py scripts/generate_change_impact_report.py scripts/generate_workflow_health_report.py scripts/generate_stable_plus_promotion_report.py scripts/generate_script_inventory_report.py scripts/dedupe_qq_news_script_path.py
 
+      - name: Validate app-cleaner JavaScript syntax
+        run: node --check Scripts/app-cleaner.js
+
       - name: Migrate low-risk JSON cleaners to app-cleaner active
         run: python3 scripts/dedupe_qq_news_script_path.py
+
+      - name: Validate app-cleaner JavaScript syntax after migration
+        run: node --check Scripts/app-cleaner.js
 
       - name: Build stable module
         run: python3 scripts/build_module.py --build --profile stable
