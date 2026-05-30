@@ -12,6 +12,7 @@ on:
       - ".github/workflows/daily-module-update.yml"
       - "scripts/validate_repository.py"
       - "scripts/build_module.py"
+      - "scripts/build_release_variants.py"
       - "scripts/factory_finalize.py"
       - "scripts/repository_health_check.py"
       - "Rewrite/Sources/Meta.conf"
@@ -34,7 +35,7 @@ jobs:
 
       - name: Compile maintenance scripts
         run: |
-          python3 -m py_compile scripts/build_module.py scripts/factory_finalize.py scripts/validate_repository.py scripts/repository_health_check.py
+          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/validate_repository.py scripts/repository_health_check.py
 
       - name: Update source metadata date, build, finalize and report
         run: |
@@ -66,11 +67,24 @@ jobs:
           finalize = subprocess.run(["python3", "scripts/factory_finalize.py", "--sync-root"], text=True, capture_output=True)
           if finalize.returncode != 0:
               raise SystemExit((finalize.stdout + finalize.stderr).strip())
+          variants = subprocess.run(["python3", "scripts/build_release_variants.py"], text=True, capture_output=True)
+          if variants.returncode != 0:
+              raise SystemExit((variants.stdout + variants.stderr).strip())
 
           text = module.read_text(encoding="utf-8")
           release_text = release.read_text(encoding="utf-8")
           if text != release_text:
               raise SystemExit("Root and Release differ after daily build/finalize")
+
+          required_variant_files = [
+              "Release/Ronghemokuai-stable.sgmodule",
+              "Release/Ronghemokuai-stable-plus.sgmodule",
+              "Release/Ronghemokuai-lite.sgmodule",
+              "Release/Ronghemokuai-full.sgmodule",
+          ]
+          missing_variants = [path for path in required_variant_files if not Path(path).exists()]
+          if missing_variants:
+              raise SystemExit("Missing release variants: " + ", ".join(missing_variants))
 
           section_checks = {
               "[Rule]": "[Rule]" in text,
@@ -143,7 +157,7 @@ jobs:
               "",
               f"- 日期：{today}",
               "- 日期源头：Rewrite/Sources/Meta.conf",
-              "- 构建流程：Meta.conf -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> validate_repository.py -> repository_health_check.py",
+              "- 构建流程：Meta.conf -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> build_release_variants.py -> validate_repository.py -> repository_health_check.py",
               "",
               "## 完整区块检查结果",
               "",
@@ -151,6 +165,8 @@ jobs:
           lines += [f"- `{name}`：{'通过' if ok else '缺失'}" for name, ok in section_checks.items()]
           lines += ["", "## 核心检查结果", ""]
           lines += [f"- `{name}`：{'通过' if ok else '缺失'}" for name, ok in core_checks.items()]
+          lines += ["", "## 多版本文件检查", ""]
+          lines += [f"- `{path}`：通过" for path in required_variant_files]
           lines += ["", "## 远程链接检查结果", ""]
           lines += [f"- `{url}`：{result}" for url, result in url_results]
           lines += ["", "## validate_repository.py 输出", "", "```text", validate_output, "```"]
@@ -159,7 +175,8 @@ jobs:
               "",
               "## 自动更新边界说明",
               "",
-              "- 本 workflow 会更新源头日期、重新构建 stable、同步 Release 与 Root，并生成验证报告。",
+              "- 本 workflow 会更新源头日期、重新构建 stable、同步 Release 与 Root，并生成四个独立 Release 版本。",
+              "- 默认根目录 Ronghemokuai.sgmodule 仍保持 stable。",
               "- 不自动删除规则。",
               "- 不自动注释脚本。",
               "- 不自动替换 Spotify / YouTube / 知乎核心脚本。",
@@ -173,6 +190,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule reports/daily_update_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/repository_health_report.md
-          git diff --cached --quiet || git commit -m "Daily module update"
+          git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule reports/daily_update_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/repository_health_report.md
+          git diff --cached --quiet || git commit -m "Daily multi-version module update"
           git push
