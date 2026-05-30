@@ -98,6 +98,15 @@
       "enabled": true,
       "protected": false,
       "purpose": "trusted China advertising supplement candidate enabled for conservative collection"
+    },
+    {
+      "name": "blackmatrix7 Advertising MiTV",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingMiTV/AdvertisingMiTV.list",
+      "policy": "REJECT",
+      "enabled": true,
+      "protected": false,
+      "purpose": "trusted TV advertising rule candidate enabled for conservative collection"
     }
   ],
   "reference_modules": [
