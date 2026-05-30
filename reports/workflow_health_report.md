@@ -1,15 +1,15 @@
 # Workflow 健康报告
 
-- 生成时间：2026-05-31 04:57:56 +0800
+- 生成时间：2026-05-31 05:12:54 +0800
 - 状态模式：GitHub API 真实状态模式
 
 | Workflow | 用途 | 触发方式 | 最近运行时间 | 最近状态 | 结论 | 失败 Job | 失败 Step | 对应 commit | 失败时优先排查 |
 |---|---|---|---|---|---|---|---|---|---|
-| Module Factory Build | 构建 Release 并同步 Root | 手动 / push | 2026-05-30T20:57:25Z | completed / success | 正常 | 无 | 无 | 7bec35e43c02 | build_module.py、factory_finalize.py、profile、sources、Root/Release diff |
-| Daily Module Update | 每日日期、结构、链接和验证检查 | 手动 / 定时 / push | 2026-05-30T19:00:55Z | completed / success | 正常 | 无 | 无 | 0aea6b082fc7 | 核心标记、远程链接、validate_repository.py 输出 |
-| Daily invalid source audit and repair | 连续失效源审计和安全处理 | 手动 / 定时 | 2026-05-30T20:17:21Z | completed / failure | 需要检查 | invalid-source-repair | Validate repository | 369aad835397 | GitHub 网络、history 计数、保护项、误判 404 |
+| Module Factory Build | 构建 Release 并同步 Root | 手动 / push | 2026-05-30T21:12:49Z | pending / running | 需要检查 | 无 | 无 | 25727822743f | build_module.py、factory_finalize.py、profile、sources、Root/Release diff |
+| Daily Module Update | 每日日期、结构、链接和验证检查 | 手动 / 定时 / push | 2026-05-30T21:02:47Z | completed / success | 正常 | 无 | 无 | 7dd252133a1f | 核心标记、远程链接、validate_repository.py 输出 |
+| Daily invalid source audit and repair | 连续失效源审计和安全处理 | 手动 / 定时 | 2026-05-30T21:03:54Z | completed / success | 正常 | 无 | 无 | 010e36310891 | GitHub 网络、history 计数、保护项、误判 404 |
 | Upstream candidate collect | 每周可信候选源收集 | 手动 / 定时 | 无运行记录 | 待确认 | 需要检查 | 待确认 | 待确认 | 待确认 | candidates.json、风险词、重复源、trusted_repositories |
-| Repository Health Check | 仓库治理健康检查 | 手动 / 定时 / push | 2026-05-30T20:57:54Z | in_progress / running | 需要检查 | 无 | 无 | f207f827502d | 缺失治理文件、README 链接、重复脚本、重复 MITM |
+| Repository Health Check | 仓库治理健康检查 | 手动 / 定时 / push | 2026-05-30T21:12:52Z | in_progress / running | 需要检查 | 无 | 无 | 25727822743f | 缺失治理文件、README 链接、重复脚本、重复 MITM |
 
 ## 说明
 
