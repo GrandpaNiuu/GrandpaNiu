@@ -31,6 +31,10 @@ Shadowrocket / Surge 自用融合净化模块工厂。
 | Lite | 低耗电参考版，不默认发布 | [导入 Lite](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-lite.sgmodule) | [Ronghemokuai-lite.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-lite.sgmodule) | [Raw](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-lite.sgmodule) |
 | Full | 全量排查测试版，不默认发布 | [导入 Full](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-full.sgmodule) | [Ronghemokuai-full.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-full.sgmodule) | [Raw](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-full.sgmodule) |
 
+## 模块功能与覆盖
+
+每个版本包含哪些能力、覆盖哪些 App、哪些只是测试版，统一查看：[docs/MODULE_FEATURES.md](docs/MODULE_FEATURES.md)。
+
 ## 项目定位
 
 正式导入入口是 `Ronghemokuai.sgmodule`，但它是工厂生成结果，不是长期手工维护源头。
@@ -66,6 +70,7 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 | 全覆盖测试 profile | `full`，不默认发布 |
 | Root / Release | 通过 `reports/repository_health_report.md` 与 diff 报告确认 |
 | 多版本发布 | `scripts/build_release_variants.py` 自动生成四个独立 Release 模块 |
+| 模块功能说明 | `docs/MODULE_FEATURES.md` 说明每个版本功能和 App 覆盖方向 |
 | 质量门禁 | `scripts/validate_repository.py` |
 | 健康报告 | `reports/repository_health_report.md` |
 | Profile 验证 | `reports/profile_validation_report.md` |
@@ -105,6 +110,7 @@ Spotify、YouTube、知乎、登录、支付、验证码、银行、微信、支
 
 | 类型 | 链接 | 用途 |
 |---|---|---|
+| 模块功能 | [docs/MODULE_FEATURES.md](docs/MODULE_FEATURES.md) | 四个版本功能、App 覆盖和使用边界 |
 | 长期路线 | [docs/ROADMAP.md](docs/ROADMAP.md) | 后续优化方向和优先级 |
 | Profile 边界 | [docs/PROFILE_POLICY.md](docs/PROFILE_POLICY.md) | stable / stable-plus / full 发布边界 |
 | 工厂流程 | [docs/FACTORY_FLOW.md](docs/FACTORY_FLOW.md) | 源头驱动构建说明 |
