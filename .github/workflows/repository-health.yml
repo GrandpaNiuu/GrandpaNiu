@@ -20,6 +20,7 @@ on:
       - "scripts/generate_workflow_health_report.py"
       - "scripts/generate_stable_plus_promotion_report.py"
       - "scripts/generate_script_inventory_report.py"
+      - "scripts/dedupe_qq_news_script_path.py"
       - "SECURITY.md"
       - "LICENSE"
       - "CONTRIBUTING.md"
@@ -61,7 +62,10 @@ jobs:
 
       - name: Compile maintenance scripts
         run: |
-          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/repository_health_check.py scripts/audit_compat_sources.py scripts/split_mitm_sources.py scripts/validate_profiles.py scripts/generate_app_coverage_matrix.py scripts/generate_change_impact_report.py scripts/generate_workflow_health_report.py scripts/generate_stable_plus_promotion_report.py scripts/generate_script_inventory_report.py
+          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/repository_health_check.py scripts/audit_compat_sources.py scripts/split_mitm_sources.py scripts/validate_profiles.py scripts/generate_app_coverage_matrix.py scripts/generate_change_impact_report.py scripts/generate_workflow_health_report.py scripts/generate_stable_plus_promotion_report.py scripts/generate_script_inventory_report.py scripts/dedupe_qq_news_script_path.py
+
+      - name: Dedupe QQ News script path
+        run: python3 scripts/dedupe_qq_news_script_path.py
 
       - name: Build stable module
         run: python3 scripts/build_module.py --build --profile stable
@@ -118,10 +122,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule Rewrite/Sources/MITM-core.conf Rewrite/Sources/MITM-app-clean.conf Rewrite/Sources/MITM-stable-plus.conf Rewrite/Sources/MITM-extended.conf reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/repository_health_report.md reports/compat_migration_report.md reports/mitm_split_report.md reports/profile_validation_report.md reports/app_coverage_matrix.md reports/stable_plus_promotion_report.md reports/script_inventory_report.md reports/change_impact_report.md reports/workflow_health_report.md reports/manual_test_log.md
+          git add Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule Scripts/app-clean.conf Rewrite/Sources/MITM-core.conf Rewrite/Sources/MITM-app-clean.conf Rewrite/Sources/MITM-stable-plus.conf Rewrite/Sources/MITM-extended.conf reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/repository_health_report.md reports/compat_migration_report.md reports/mitm_split_report.md reports/profile_validation_report.md reports/app_coverage_matrix.md reports/stable_plus_promotion_report.md reports/script_inventory_report.md reports/script_dedupe_report.md reports/change_impact_report.md reports/workflow_health_report.md reports/manual_test_log.md
           if git diff --cached --quiet; then
             echo "No repository health changes to commit."
             exit 0
           fi
-          git commit -m "Update repository health and script inventory reports"
+          git commit -m "Update repository health and script consolidation reports"
           git push
