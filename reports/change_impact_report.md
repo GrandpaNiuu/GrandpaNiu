@@ -1,40 +1,40 @@
 # 变更影响报告
 
-- 生成时间：2026-05-30 09:14:54 +0800
+- 生成时间：2026-05-30 21:56:44 +0800
 - 说明：无 git 工作树时，本报告基于最近修改文件时间生成；如需精确变更，请结合提交 diff 人工确认。
 
 ## 本次修改文件
 
-- `docs/PERFORMANCE.md`
+- `docs/SCRIPT_REVIEW.md`
 - `docs/VERSIONING.md`
-- `docs/QUALITY_GATE.md`
+- `docs/PERFORMANCE.md`
 - `docs/FACTORY_FLOW.md`
 - `docs/RELEASE.md`
-- `docs/SCRIPT_REVIEW.md`
+- `docs/MAINTENANCE.md`
 - `docs/SCOPE.md`
 - `docs/MITM_POLICY.md`
-- `docs/MAINTENANCE.md`
 - `docs/TROUBLESHOOTING.md`
+- `docs/QUALITY_GATE.md`
 - `docs/COVERAGE.md`
-- `Scripts/spotify.conf`
-- `Scripts/youtube.conf`
 - `Scripts/zhihu-enhance.js`
+- `Scripts/youtube.conf`
+- `Scripts/spotify.conf`
 - `Scripts/zhihu-enhance.conf`
 - `Scripts/app-clean.conf`
-- `Rules/app-clean.list`
-- `Rules/web-ads.list`
+- `SECURITY.md`
 - `Rules/spotify-direct.list`
 - `Rules/youtube-direct.list`
-- `Rules/direct.list`
-- `SECURITY.md`
 - `Rules/reject.list`
+- `Rules/web-ads.list`
+- `Rules/app-clean.list`
+- `Rules/direct.list`
 - `Rewrite/Sources/URL-Rewrite.conf`
-- `Rewrite/Sources/Body-Rewrite.conf`
-- `Rewrite/Sources/Map-Local.conf`
-- `Rewrite/Sources/Rule.conf`
-- `Rewrite/Sources/Script.conf`
 - `Rewrite/Sources/MITM.conf`
+- `Rewrite/Sources/Header-Rewrite.conf`
+- `Rewrite/Sources/Script.conf`
+- `Rewrite/Sources/Rule.conf`
 - `Rewrite/Sources/Meta.conf`
+- `Rewrite/Sources/Map-Local.conf`
 
 ## 影响的模块层
 
@@ -75,7 +75,7 @@
 
 - 是否涉及脚本：是
 - 是否涉及 MITM：是
-- 是否涉及 Body Rewrite：是
+- 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
