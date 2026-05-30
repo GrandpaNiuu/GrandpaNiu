@@ -1,18 +1,19 @@
 # 仓库健康检查报告
 
-生成时间：2026-05-31 05:18:58 +0800
+生成时间：2026-05-31 05:20:00 +0800
 
 ## 总体状态
 
 - 阻断问题：0
-- 提醒事项：1
+- 提醒事项：2
 - 统一验证：通过
 - Root 与 Release 一致：是
 - 启用远程规则源：11
 - 启用候选源：6
 - pending 脚本候选：1
 - 脚本总数：104
-- MITM hostname 数量：120
+- stable 当前 MITM hostname 数量：120
+- 默认发布策略：stable only；stable-plus / full 不默认发布
 
 ## 模块区块行数
 
@@ -24,13 +25,33 @@
 - Script: 214
 - MITM: 4
 
+## Profile 策略摘要
+
+| Profile | MITM 输入 | 用途 |
+|---|---|---|
+| lite | Rewrite/Sources/MITM-core.conf | 低耗电参考版，不默认发布 |
+| stable | Rewrite/Sources/MITM-core.conf, Rewrite/Sources/MITM-app-clean.conf | 默认正式版，可以发布 |
+| stable-plus | Rewrite/Sources/MITM-core.conf, Rewrite/Sources/MITM-app-clean.conf, Rewrite/Sources/MITM-stable-plus.conf | 常用 App 增强测试版，不默认发布 |
+| full | Rewrite/Sources/MITM-core.conf, Rewrite/Sources/MITM-app-clean.conf, Rewrite/Sources/MITM-extended.conf | 全量排查测试版，不默认发布 |
+
+## MITM 分层数量
+
+| 文件 | hostname 数量 |
+|---|---:|
+| `Rewrite/Sources/MITM-core.conf` | 11 |
+| `Rewrite/Sources/MITM-app-clean.conf` | 109 |
+| `Rewrite/Sources/MITM-stable-plus.conf` | 95 |
+| `Rewrite/Sources/MITM-extended.conf` | 889 |
+| `Rewrite/Sources/MITM.conf` | 1009 |
+
 ## 阻断问题
 
 - 无
 
 ## 提醒事项
 
-- PrivacyLite 已连续失败 2 天及以上，应保守禁用候选或验证同源替代
+- 当前存在失效源历史记录：1 条
+- 存在连续失败 2 天及以上的源：1 条，应确认是否已禁用或替代
 
 ## 缺少必要文件
 
@@ -72,6 +93,10 @@
 
 - app2smile Tieba script
 
+## 失效源历史记录
+
+- `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list`
+
 ## 统一验证输出
 
 ```text
@@ -83,5 +108,6 @@ Repository validation passed.
 1. 日常修改应优先编辑 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。
 2. Root 模块只作为生成结果，必须通过 build_module.py 与 factory_finalize.py 同步。
 3. 新脚本默认 pending，不直接进入 stable。
-4. 出现登录、支付、验证码异常时，优先回查 MITM、Body Rewrite 和 Map Local。
-5. 远程源连续失败 2 天后才进入处理流程，单日网络失败只报告观察。
+4. MITM 从 extended 进入 stable 前，应先进入 stable-plus 并完成真实测试。
+5. 出现登录、支付、验证码异常时，优先回查 MITM、Body Rewrite 和 Map Local。
+6. 远程源连续失败 2 天后才进入处理流程，单日网络失败只报告观察。
