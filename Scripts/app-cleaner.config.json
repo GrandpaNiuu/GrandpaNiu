@@ -1,0 +1,45 @@
+{
+  "version": "2026-05-31-shadow-v1",
+  "mode": "shadow",
+  "description": "Stable Plus shadow-mode app-cleaner configuration. It is for load/match validation only and must not replace old script entries before manual tests pass.",
+  "safety": {
+    "defaultAction": "passThrough",
+    "failClosed": false,
+    "blockUnknown": false,
+    "forbiddenKeywords": [
+      "login",
+      "passport",
+      "token",
+      "cookie",
+      "captcha",
+      "payment",
+      "pay",
+      "bank",
+      "security",
+      "membership",
+      "vip",
+      "premium",
+      "paywall"
+    ]
+  },
+  "groups": [
+    {
+      "key": "qq-news-shadow",
+      "app": "QQ News",
+      "status": "shadow-only",
+      "replaceExisting": false,
+      "candidateOldEntries": [
+        "cmp_block_097_ad"
+      ],
+      "urlPatterns": [
+        "news.ssp.qq.com/app",
+        "r.inews.qq.com/getQQNewsUnreadList",
+        "r.inews.qq.com/getTagFeedList",
+        "r.inews.qq.com/gw/page/event_detail",
+        "r.inews.qq.com/news_feed/hot_module_list"
+      ],
+      "actions": [],
+      "notes": "First shadow target after removing the redundant legacy_safe_qqnews entry. No body mutation is enabled."
+    }
+  ]
+}
