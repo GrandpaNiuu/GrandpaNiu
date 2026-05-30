@@ -1,6 +1,6 @@
 # 脚本瘦身回滚报告
 
-生成时间：2026-05-31 07:14:00 +0800
+生成时间：2026-05-31 07:15:09 +0800
 
 ## 回滚条件
 
@@ -17,11 +17,47 @@
 
 ### `Scripts/app-clean.conf`
 
-- 当前脚本运行时没有新移除旧入口；如需回滚，请从 Git 历史恢复旧入口。
+```text
+cmp_allad_013_smzdm = type=http-response,pattern=^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/user_related_modul\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/smzdm.js,script-update-interval=86400
+```
+
+```text
+cmp_allad_014_taobao = type=http-response,pattern=^https?:\/\/poplayer\.template\.alibaba\.com\/\w+\.json,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/taobao.js,script-update-interval=86400
+```
+
+```text
+cmp_allad_016_juneyaoair = type=http-response,pattern=^https?:\/\/hoapp\.juneyaoair\.com\/data\/index\/getPictureList,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/juneyaoair.js,script-update-interval=86400
+```
+
+```text
+cmp_allad_020_ddxq = type=http-response,pattern=^https?:\/\/user\.api\.ddxq\.mobi\/userportal-service\/api\/v\d\/user\/queryMyPage,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/ddxq.js,script-update-interval=86400
+```
+
+```text
+cmp_allad_021_mygolbs = type=http-response,pattern=^https?:\/\/wx\.mygolbs\.com\/WxBusServer\/ApiData\.do,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/zsgj.js,script-update-interval=86400
+```
 
 ### `Rewrite/Sources/Script.conf`
 
-- 当前脚本运行时没有新移除旧入口；如需回滚，请从 Git 历史恢复旧入口。
+```text
+cmp_allad_013_smzdm = type=http-response,pattern=^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/user_related_modul\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/smzdm.js,script-update-interval=86400
+```
+
+```text
+cmp_allad_014_taobao = type=http-response,pattern=^https?:\/\/poplayer\.template\.alibaba\.com\/\w+\.json,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/taobao.js,script-update-interval=86400
+```
+
+```text
+cmp_allad_016_juneyaoair = type=http-response,pattern=^https?:\/\/hoapp\.juneyaoair\.com\/data\/index\/getPictureList,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/juneyaoair.js,script-update-interval=86400
+```
+
+```text
+cmp_allad_020_ddxq = type=http-response,pattern=^https?:\/\/user\.api\.ddxq\.mobi\/userportal-service\/api\/v\d\/user\/queryMyPage,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/ddxq.js,script-update-interval=86400
+```
+
+```text
+cmp_allad_021_mygolbs = type=http-response,pattern=^https?:\/\/wx\.mygolbs\.com\/WxBusServer\/ApiData\.do,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/zsgj.js,script-update-interval=86400
+```
 
 ## 验证命令
 
