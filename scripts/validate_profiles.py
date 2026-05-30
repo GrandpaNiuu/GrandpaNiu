@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate stable, lite and full profiles without syncing Root."""
+"""Validate stable, stable-plus, lite and full profiles without syncing Root."""
 
 from __future__ import annotations
 
@@ -15,6 +15,7 @@ FACTORY_REPORT = ROOT / "reports" / "module_factory_report.md"
 FACTORY_DIFF = ROOT / "reports" / "module_factory_diff_report.md"
 PROFILES = {
     "stable": ("默认正式版", "是"),
+    "stable-plus": ("常用 App 增强测试版", "否"),
     "lite": ("低耗电参考版", "否"),
     "full": ("全覆盖测试版", "否"),
 }
@@ -103,7 +104,7 @@ def main() -> None:
         "",
         f"生成时间：{now}",
         "",
-        "说明：本脚本只验证 stable / lite / full 是否可以构建，不会把 lite 或 full 同步到根目录主模块。验证结束后会恢复原 Release 和工厂报告。",
+        "说明：本脚本只验证 stable / stable-plus / lite / full 是否可以构建，不会把 lite、stable-plus 或 full 同步到根目录主模块。验证结束后会恢复原 Release 和工厂报告。",
         "",
         "| Profile | 构建结果 | 核心标记 | 脚本数 | MITM 数量 | 适用场景 | 是否可发布 |",
         "|---|---|---|---:|---:|---|---|",
@@ -116,9 +117,10 @@ def main() -> None:
         "## 规则",
         "",
         "- stable 是默认正式版，可以发布。",
+        "- stable-plus 是常用 App 增强测试版，不默认发布。",
         "- lite 是低耗电参考版，不默认发布。",
         "- full 是全覆盖测试版，不默认发布。",
-        "- 默认 workflow 仍应使用 stable，不允许默认使用 full。",
+        "- 默认 workflow 仍应使用 stable，不允许默认使用 stable-plus 或 full。",
         "",
     ]
     write(REPORT, "\n".join(lines))
