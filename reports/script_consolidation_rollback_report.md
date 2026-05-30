@@ -1,6 +1,6 @@
 # 脚本瘦身回滚报告
 
-生成时间：2026-05-31 06:44:36 +0800
+生成时间：2026-05-31 06:50:38 +0800
 
 ## 回滚条件
 
@@ -21,21 +21,7 @@
 
 ### `Rewrite/Sources/Script.conf`
 
-```text
-cmp_block_097_ad = type=http-response,pattern=^https?:\/\/(news\.ssp\.qq\.com\/app|r\.inews\.qq\.com\/(get(QQNewsUnreadList|TagFeedList)|gw\/page\/event_detail|news_feed\/hot_module_list)),script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js,requires-body=1,timeout=60,script-update-interval=86400
-```
-
-```text
-cmp_block_098_vgtime = type=http-response,pattern=^https?:\/\/app02\.vgtime\.com:8080\/vgtime-app\/api\/v2\/init\/ad\.json,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/vgtime.js,requires-body=1,timeout=60,script-update-interval=86400
-```
-
-```text
-legacy_safe_qqnews = type=http-response,pattern=^https?:\/\/(news\.ssp\.qq\.com\/app|r\.inews\.qq\.com\/(get(QQNewsUnreadList|TagFeedList)|news_feed\/hot_module_list)),script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js,requires-body=1,timeout=60,script-update-interval=86400
-```
-
-```text
-cmp_allad_046_txnews = type=http-response,pattern=^https?:\/\/r\.inews\.qq\.com\/gw\/page\/(?:event_detail|channel_feed),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/txnews.js,script-update-interval=86400
-```
+- 当前脚本运行时没有新移除旧入口；如需回滚，请从 Git 历史恢复旧入口。
 
 ## 验证命令
 
