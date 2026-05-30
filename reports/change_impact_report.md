@@ -1,11 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-05-31 06:39:31 +0800
+- 生成时间：2026-05-31 06:43:31 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Rewrite/Profiles/stable.conf`
+- `scripts/dedupe_qq_news_script_path.py`
 
 ## 新增文件
 
@@ -17,22 +17,23 @@
 
 ## 修改文件
 
-- `Rewrite/Profiles/stable.conf`
+- `scripts/dedupe_qq_news_script_path.py`
 
 ## 影响的模块层
 
-- Profiles
+- Scripts/maintenance
 
 ## 可能影响的 App
 
 - Spotify
 - YouTube
 - 知乎
+- 百度贴吧
 
 ## 风险判断
 
-- 是否涉及脚本：否
-- 是否涉及 MITM：是
+- 是否涉及脚本：是
+- 是否涉及 MITM：否
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
 - 是否需要测试 Spotify：是

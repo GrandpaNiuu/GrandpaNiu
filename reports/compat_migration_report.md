@@ -4,12 +4,12 @@
 - source_rule_compat 当前是否开启：是
 - source_script_compat 当前是否开启：是
 - Rule.conf 行数：523
-- Script.conf 行数：213
+- Script.conf 行数：209
 - 已迁移规则数量：492
 - 未迁移规则数量：0
 - 已迁移脚本数量：99
-- 未迁移脚本数量：4
-- 建议下一步是否可以关闭 compat：暂不建议
+- 未迁移脚本数量：0
+- 建议下一步是否可以关闭 compat：可以，但必须构建验证并手动测试
 - 关闭 compat 后 Root / Release 是否一致：需运行 Module Factory Build 后确认
 
 ## 未迁移规则
@@ -18,10 +18,7 @@
 
 ## 未迁移脚本
 
-- `cmp_block_097_ad`
-- `cmp_block_098_vgtime`
-- `legacy_safe_qqnews`
-- `cmp_allad_046_txnews`
+- 无
 
 ## 风险说明
 
