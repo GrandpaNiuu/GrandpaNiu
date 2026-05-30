@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate an approximate App/service coverage matrix."""
+"""Generate an App/service coverage and test matrix."""
 
 from __future__ import annotations
 
@@ -7,9 +7,9 @@ import datetime as dt
 import json
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "reports" / "app_coverage_matrix.md"
+MANUAL_LOG = ROOT / "reports" / "manual_test_log.md"
 
 APPS = {
     "Spotify": ["spotify", "spclient"],
@@ -48,6 +48,24 @@ SOURCE_GROUPS = [
     ("MITM", [ROOT / "Rewrite" / "Sources" / "MITM.conf"]),
 ]
 
+TEST_ITEMS = {
+    "Spotify": "连续播放、切歌、搜索、歌单加载",
+    "YouTube": "首页、搜索、播放、Shorts、评论区",
+    "知乎": "首页、回答页、搜索、评论、点赞、收藏",
+    "Bilibili": "首页、搜索、播放页、评论区",
+    "淘宝": "首页、搜索、商品详情、购物车、订单页",
+    "闲鱼": "首页、搜索、商品详情、聊天入口",
+    "京东": "首页、搜索、商品详情、购物车、订单页",
+    "拼多多": "首页、搜索、商品详情、订单页",
+    "美团": "首页、搜索、店铺页、下单前置页面",
+    "大众点评": "首页、搜索、店铺页、评价页",
+    "饿了么": "首页、搜索、店铺页、下单前置页面",
+    "滴滴": "首页、定位、路线、订单查询",
+    "12306": "首页、车票查询、订单查询",
+    "高德地图": "首页、搜索、路线规划",
+    "百度地图": "首页、搜索、路线规划",
+}
+
 
 def read(path: Path) -> str:
     return path.read_text(encoding="utf-8", errors="replace") if path.exists() else ""
@@ -84,12 +102,32 @@ def strength(app: str, methods: set[str]) -> str:
     return "待确认"
 
 
-def risk(methods: set[str]) -> str:
-    if "MITM" in methods or "Script" in methods or "Body Rewrite" in methods:
+def risk(app: str, methods: set[str]) -> str:
+    if app in {"Spotify", "YouTube", "知乎"}:
         return "高"
-    if "URL Rewrite" in methods or "Map Local" in methods:
+    if "MITM" in methods or "Body Rewrite" in methods:
+        return "高"
+    if "Script" in methods or "URL Rewrite" in methods or "Map Local" in methods:
         return "中"
     return "低"
+
+
+def test_status(app: str) -> tuple[str, str]:
+    text = read(MANUAL_LOG)
+    if not text or app not in text:
+        return "未测", "未测试"
+    for line in text.splitlines():
+        if app in line and "|" in line:
+            cells = [cell.strip() for cell in line.strip("|").split("|")]
+            if len(cells) >= 10 and cells[-1] in {"是", "否"}:
+                date = cells[0] or "未测试"
+                result = cells[7] or "未测"
+                passed = cells[-1]
+                if passed == "是" and result != "未测试":
+                    return "已测通过", date
+                if result not in {"未测试", ""} and passed == "否":
+                    return "有异常", date
+    return "未测", "未测试"
 
 
 def main() -> None:
@@ -99,18 +137,29 @@ def main() -> None:
         "",
         f"- 日期：{today}",
         "- 说明：本报告由静态关键词扫描生成，覆盖强度用于维护参考，不代表完整功能承诺。",
+        "- 测试状态来自 `reports/manual_test_log.md`；没有真实记录时默认未测。",
         "",
-        "| App / 服务 | 覆盖方式 | 覆盖强度 | 风险等级 | 来源文件 | 是否需要手动测试 |",
-        "|---|---|---|---|---|---|",
+        "| App / 服务 | 覆盖方式 | 覆盖强度 | 风险等级 | 来源文件 | 测试状态 | 最近测试日期 | 需要测试项目 | 备注 |",
+        "|---|---|---|---|---|---|---|---|---|",
     ]
     for app, keywords in APPS.items():
         methods, files = source_hits(keywords)
         method_text = ", ".join(sorted(methods)) if methods else "待确认"
         file_text = "<br>".join(sorted(files)) if files else "待人工确认"
-        risk_level = risk(methods)
-        need_test = "是" if risk_level in {"中", "高"} or app in {"Spotify", "YouTube", "知乎"} else "按需"
-        lines.append(f"| {app} | {method_text} | {strength(app, methods)} | {risk_level} | {file_text} | {need_test} |")
+        risk_level = risk(app, methods)
+        status, date = test_status(app)
+        test_item = TEST_ITEMS.get(app, "首页、搜索、详情页、核心流程")
+        note = "高风险项需手动复测" if risk_level == "高" else "按需复测"
+        lines.append(
+            f"| {app} | {method_text} | {strength(app, methods)} | {risk_level} | {file_text} | {status} | {date} | {test_item} | {note} |"
+        )
     lines += [
+        "",
+        "## 风险等级规则",
+        "",
+        "- 低：只涉及 Rule / Remote Rule，不涉及 MITM、Script 或 Body Rewrite。",
+        "- 中：涉及 URL Rewrite / Map Local / Script，但不直接命中敏感风险域。",
+        "- 高：涉及 MITM、Body Rewrite、大型 JSON、视频播放链路、账号相关接口，或属于 Spotify / YouTube / 知乎等核心链路。",
         "",
         "## 后续改进",
         "",
