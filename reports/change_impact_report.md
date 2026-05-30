@@ -1,15 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-05-31 06:16:45 +0800
+- 生成时间：2026-05-31 06:17:15 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Scripts/app-cleaner.config.json`
+- `Scripts/app-cleaner.js`
 
 ## 新增文件
 
-- `Scripts/app-cleaner.config.json`
+- `Scripts/app-cleaner.js`
 
 ## 删除文件
 
