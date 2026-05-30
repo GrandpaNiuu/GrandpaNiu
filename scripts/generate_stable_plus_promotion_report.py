@@ -115,18 +115,22 @@ def test_status_for_group(log: str, group_name: str, apps: list[str]) -> tuple[s
             matched_lines.append(line)
     if not matched_lines:
         return "未找到测试记录", "没有 Stable Plus 对应该 App 组的测试行"
-    passed = [line for line in matched_lines if "| 通过 |" in line and line.rstrip().endswith("| 是 |")]
-    failed = [line for line in matched_lines if "| 失败 |" in line or "| 否 |" in line]
-    partial = [line for line in matched_lines if "| 部分通过 |" in line]
+
+    # Order matters: rows with "未测试" also normally have 是否通过=否.
+    # They are untested, not actual failures.
     untested = [line for line in matched_lines if "未测试" in line]
-    if passed and not failed and not partial and not untested:
-        return "通过", "Stable Plus 记录显示通过，可进入人工复核晋级候选"
+    failed = [line for line in matched_lines if "| 失败 |" in line]
+    partial = [line for line in matched_lines if "| 部分通过 |" in line]
+    passed = [line for line in matched_lines if "| 通过 |" in line and line.rstrip().endswith("| 是 |")]
+
     if failed:
-        return "阻断", "存在失败或未通过记录，不能晋级 Stable"
+        return "阻断", "存在失败记录，不能晋级 Stable"
     if partial:
         return "部分通过", "存在部分通过记录，需要继续测试，不能晋级 Stable"
     if untested:
         return "未测试", "仍为未测试，不能晋级 Stable"
+    if passed:
+        return "通过", "Stable Plus 记录显示通过，可进入人工复核晋级候选"
     return "待复核", "存在记录但无法自动判断，需要人工复核"
 
 
