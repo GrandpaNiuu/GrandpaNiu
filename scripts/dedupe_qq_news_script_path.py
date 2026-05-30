@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
-"""Migrate QQ News and VGTime old entries to app-cleaner active.
+"""Migrate low-risk JSON cleaners to app-cleaner active.
 
-This script removes only the old entries now covered by Scripts/app-cleaner.js:
-- cmp_block_097_ad        QQ News upstream app2smile
-- cmp_allad_046_txnews    QQ News upstream zirawell fork
-- cmp_block_098_vgtime    VGTime upstream app2smile
+This script removes only old entries now covered by Scripts/app-cleaner.js.
+
+Batch 1:
+- QQ News
+- VGTime
+
+Batch 2:
+- SQKB
+- 163News
+- XiaoHeiHe
+- Manner
+- Chaoge
 
 It applies the same cleanup to Scripts/app-clean.conf and Rewrite/Sources/Script.conf
 so source_script_compat does not reintroduce old entries during builds.
@@ -28,6 +36,11 @@ REMOVED_NAMES = {
     "cmp_allad_046_txnews": "QQ News zirawell entry",
     "cmp_block_098_vgtime": "VGTime app2smile entry",
     "legacy_safe_qqnews": "Legacy QQ News duplicate entry",
+    "cmp_allad_011_sqkb": "SQKB JSON ad cleaner",
+    "cmp_allad_015_163news": "163News JSON ad cleaner",
+    "cmp_allad_022_xiaoheihe": "XiaoHeiHe JSON ad cleaner",
+    "cmp_allad_043_manner": "Manner JSON ad cleaner",
+    "cmp_allad_044_chaoge": "Chaoge JSON ad cleaner",
 }
 PROTECTED_NAMES = {
     "spotify-json",
@@ -36,6 +49,7 @@ PROTECTED_NAMES = {
     "zhihu-enhance",
     "cmp_block_084_json",
     "cmp_block_085_proto",
+    "cmp_allad_019_zhihu",
 }
 
 
@@ -74,7 +88,7 @@ def clean_file(path: Path) -> list[str]:
 
 def main() -> None:
     active = read(ACTIVE_ENTRY)
-    if "app-cleaner-active-qqnews-vgtime" not in active:
+    if "app-cleaner-active-json-clean" not in active:
         raise SystemExit("Active app-cleaner entry missing: Scripts/app-cleaner-active.conf")
     if "app-cleaner.js" not in active:
         raise SystemExit("Active app-cleaner entry does not point to Scripts/app-cleaner.js")
@@ -94,13 +108,13 @@ def main() -> None:
         "",
         "## 本次迁移",
         "",
-        "- 迁移范围：QQ News + VGTime",
-        "- 新承接入口：`Scripts/app-cleaner-active.conf` / `app-cleaner-active-qqnews-vgtime`",
+        "- 迁移范围：QQ News、VGTime、SQKB、163News、小黑盒、Manner、超格教育",
+        "- 新承接入口：`Scripts/app-cleaner-active.conf` / `app-cleaner-active-json-clean`",
         "- 新承接脚本：`Scripts/app-cleaner.js`",
         f"- Scripts/app-clean.conf 移除旧入口数量：{app_clean_removed}",
         f"- 所有源文件合计移除旧入口数量：{total_removed}",
         "- 新增 active 入口数量：1",
-        "- 目标：Stable 脚本数从 104 降到 102。",
+        "- 说明：这是低风险 JSON 字段清理融合，不是全量脚本合并。",
         "",
         "## 移除的旧入口",
         "",
@@ -119,9 +133,10 @@ def main() -> None:
         "",
         "- 不动 Spotify。",
         "- 不动 YouTube。",
-        "- 不动知乎增强。",
+        "- 不动知乎增强与知乎 R-Store 条目。",
         "- 不动 Tieba JSON / proto。",
         "- 不动登录、支付、验证码、银行相关条目。",
+        "- 不合并复杂加密、持久化配置、会员权益、binary-body 脚本。",
         "",
     ]
     write(REPORT, "\n".join(report).rstrip() + "\n")
@@ -133,7 +148,7 @@ def main() -> None:
         "",
         "## 回滚条件",
         "",
-        "如果 QQ News 或 VGTime 在 Stable 中出现页面异常、广告残留加重、JSON 解析异常、加载失败，应回滚本次迁移。",
+        "如果本批 App 在 Stable 中出现页面异常、广告残留加重、JSON 解析异常、加载失败，应回滚本次迁移。",
         "",
         "## 回滚步骤",
         "",
@@ -167,7 +182,7 @@ def main() -> None:
         "",
     ]
     write(ROLLBACK, "\n".join(rollback).rstrip() + "\n")
-    print(f"QQ News/VGTime active migration complete. removed={total_removed}, app_clean_removed={app_clean_removed}")
+    print(f"Low-risk app-cleaner migration complete. removed={total_removed}, app_clean_removed={app_clean_removed}")
 
 
 if __name__ == "__main__":
