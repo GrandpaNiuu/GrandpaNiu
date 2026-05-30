@@ -121,6 +121,10 @@ Profiles + Remotes + Rules + Scripts + Rewrite/Sources
 | 候选源池 | [Rewrite/Remotes/candidates.json](Rewrite/Remotes/candidates.json) | 可信候选规则源，禁止全网乱搜 |
 | 候选源工作流 | [.github/workflows/upstream-collect.yml](.github/workflows/upstream-collect.yml) | 每周保守收集可信候选源 |
 | 候选源报告 | [reports/upstream_collect_report.md](reports/upstream_collect_report.md) | 查看新增、跳过和待人工测试项 |
+| 质量门禁 | [docs/QUALITY_GATE.md](docs/QUALITY_GATE.md) | 查看阻断项、提醒项和发布前必须通过的检查 |
+| 发布回滚 | [docs/RELEASE.md](docs/RELEASE.md) | 查看正式发布、Shadowrocket 测试和回滚流程 |
+| 健康工作流 | [.github/workflows/repository-health.yml](.github/workflows/repository-health.yml) | 每周或手动运行仓库健康检查 |
+| 健康报告 | [reports/repository_health_report.md](reports/repository_health_report.md) | 查看阻断问题、提醒事项、缺失文件、重复脚本和验证输出 |
 | 维护标准 | [docs/MAINTENANCE.md](docs/MAINTENANCE.md) | 日常维护规则和测试标准 |
 | 性能说明 | [docs/PERFORMANCE.md](docs/PERFORMANCE.md) | 查看耗电来源、低耗电策略和 lite profile 用法 |
 | 低耗电配置 | [Rewrite/Profiles/lite.conf](Rewrite/Profiles/lite.conf) | 低耗电参考 profile，不默认发布 |
@@ -157,6 +161,12 @@ Profiles + Remotes + Rules + Scripts + Rewrite/Sources
 工作流：[upstream-collect.yml](.github/workflows/upstream-collect.yml)
 
 执行内容：只读取 `Rewrite/Remotes/candidates.json`，不全网搜索。候选源必须来自可信仓库、格式明确、无风险关键词、无短链/镜像/代理，脚本默认保持 pending。
+
+### 每周仓库健康检查
+
+工作流：[repository-health.yml](.github/workflows/repository-health.yml)
+
+执行内容：构建 stable、同步 Root、运行统一验证、生成仓库健康报告。用于确认当前仓库是否具备发布条件。
 
 ### 低耗电参考构建
 
