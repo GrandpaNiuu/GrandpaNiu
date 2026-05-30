@@ -32,31 +32,44 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
         -> Ronghemokuai.sgmodule
 ```
 
+## 长期方向
+
+本仓库后续不走“无限堆规则、无限堆 MITM”的路线，而走分层治理路线：
+
+1. `stable` 默认发布，优先稳定、低误杀、可长期运行。
+2. `stable-plus` 作为常用 App 增强测试版，先测试再决定是否把单项能力晋级到 stable。
+3. `full` 只做全量排查和临时测试，不作为默认发布。
+4. 新脚本默认 pending，不直接进 stable。
+5. MITM 从 extended 进入 stable 前，必须先进入 stable-plus 并完成真实测试。
+6. 登录、支付、验证码、银行、安全相关域名优先保护，不为了广告覆盖牺牲稳定性。
+
 ## 当前状态
 
 | 项目 | 状态 |
 |---|---|
 | 默认 profile | `stable` |
+| 增强测试 profile | `stable-plus`，不默认发布 |
 | 低耗电 profile | `lite`，不默认发布 |
 | 全覆盖测试 profile | `full`，不默认发布 |
 | Root / Release | 通过 `reports/repository_health_report.md` 与 diff 报告确认 |
 | 质量门禁 | `scripts/validate_repository.py` |
 | 健康报告 | `reports/repository_health_report.md` |
 | Profile 验证 | `reports/profile_validation_report.md` |
-| MITM 状态 | 数量较大，已进入分层治理；查看 `reports/mitm_split_report.md` |
+| MITM 状态 | 已进入分层治理；查看 `reports/mitm_split_report.md` |
 | 规则收集策略 | 可信候选源，不做全网大规模自动收集 |
 | 脚本策略 | 默认 pending，不直接进入 stable |
 | 手动测试 | 记录在 `reports/manual_test_log.md`，未测不得写通过 |
 
 ## Profile
 
-| Profile | 定位 |
-|---|---|
-| `stable.conf` | 默认正式版 |
-| `lite.conf` | 低耗电参考版，不默认发布 |
-| `full.conf` | 全覆盖测试版，不默认发布 |
+| Profile | 定位 | 默认发布 |
+|---|---|---|
+| `stable.conf` | 默认正式版，优先长期稳定 | 是 |
+| `stable-plus.conf` | 常用 App 增强测试版 | 否 |
+| `lite.conf` | 低耗电参考版 | 否 |
+| `full.conf` | 全覆盖测试版 | 否 |
 
-默认 GitHub Actions 仍使用 `stable`。
+默认 GitHub Actions 仍使用 `stable`，不允许默认使用 `stable-plus` 或 `full`。
 
 ## 核心能力
 
@@ -78,6 +91,8 @@ Spotify、YouTube、知乎、登录、支付、验证码、银行、微信、支
 
 | 类型 | 链接 | 用途 |
 |---|---|---|
+| 长期路线 | [docs/ROADMAP.md](docs/ROADMAP.md) | 后续优化方向和优先级 |
+| Profile 边界 | [docs/PROFILE_POLICY.md](docs/PROFILE_POLICY.md) | stable / stable-plus / full 发布边界 |
 | 工厂流程 | [docs/FACTORY_FLOW.md](docs/FACTORY_FLOW.md) | 源头驱动构建说明 |
 | 维护标准 | [docs/MAINTENANCE.md](docs/MAINTENANCE.md) | 日常维护规则 |
 | 发布回滚 | [docs/RELEASE.md](docs/RELEASE.md) | 发布、测试、回滚流程 |
@@ -116,7 +131,7 @@ Spotify、YouTube、知乎、登录、支付、验证码、银行、微信、支
 | [reports/repository_health_report.md](reports/repository_health_report.md) | 仓库健康检查 |
 | [reports/compat_migration_report.md](reports/compat_migration_report.md) | 兼容层迁移审计 |
 | [reports/mitm_split_report.md](reports/mitm_split_report.md) | MITM 分层报告 |
-| [reports/profile_validation_report.md](reports/profile_validation_report.md) | stable / lite / full 构建验证 |
+| [reports/profile_validation_report.md](reports/profile_validation_report.md) | stable / stable-plus / lite / full 构建验证 |
 | [reports/app_coverage_matrix.md](reports/app_coverage_matrix.md) | App 覆盖矩阵 |
 | [reports/change_impact_report.md](reports/change_impact_report.md) | 变更影响报告 |
 | [reports/workflow_health_report.md](reports/workflow_health_report.md) | workflow 健康报告 |
@@ -128,5 +143,6 @@ Spotify、YouTube、知乎、登录、支付、验证码、银行、微信、支
 python3 scripts/build_module.py --build --profile stable
 python3 scripts/factory_finalize.py --sync-root
 python3 scripts/validate_repository.py
+python3 scripts/validate_profiles.py
 python3 scripts/repository_health_check.py
 ```
