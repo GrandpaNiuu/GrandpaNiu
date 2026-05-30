@@ -11,9 +11,14 @@ on:
     paths:
       - ".github/workflows/daily-module-update.yml"
       - "scripts/validate_repository.py"
+      - "scripts/build_module.py"
+      - "scripts/factory_finalize.py"
+      - "scripts/repository_health_check.py"
+      - "Rewrite/Sources/Meta.conf"
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: module-maintenance
@@ -27,10 +32,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Compile validator
-        run: python3 -m py_compile scripts/validate_repository.py
+      - name: Compile maintenance scripts
+        run: |
+          python3 -m py_compile scripts/build_module.py scripts/factory_finalize.py scripts/validate_repository.py scripts/repository_health_check.py
 
-      - name: Update date and generate daily report
+      - name: Update source metadata date, build, finalize and report
         run: |
           python3 <<'PY'
           from pathlib import Path
@@ -39,15 +45,32 @@ jobs:
           import subprocess
           import urllib.request
 
+          meta = Path("Rewrite/Sources/Meta.conf")
           module = Path("Ronghemokuai.sgmodule")
+          release = Path("Release/Ronghemokuai.sgmodule")
           report = Path("reports/daily_update_report.md")
           report.parent.mkdir(parents=True, exist_ok=True)
 
-          if not module.exists():
-              raise SystemExit("Ronghemokuai.sgmodule not found")
+          if not meta.exists():
+              raise SystemExit("Rewrite/Sources/Meta.conf not found")
+
+          today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
+          meta_text = meta.read_text(encoding="utf-8")
+          meta_text = re.sub(r"^#!desc=.*$", f"#!desc={today}", meta_text, flags=re.M)
+          meta_text = re.sub(r"^# update-date:.*$", f"# update-date: {today}", meta_text, flags=re.M)
+          meta.write_text(meta_text, encoding="utf-8", newline="\n")
+
+          build = subprocess.run(["python3", "scripts/build_module.py", "--build", "--profile", "stable"], text=True, capture_output=True)
+          if build.returncode != 0:
+              raise SystemExit((build.stdout + build.stderr).strip())
+          finalize = subprocess.run(["python3", "scripts/factory_finalize.py", "--sync-root"], text=True, capture_output=True)
+          if finalize.returncode != 0:
+              raise SystemExit((finalize.stdout + finalize.stderr).strip())
 
           text = module.read_text(encoding="utf-8")
-          today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
+          release_text = release.read_text(encoding="utf-8")
+          if text != release_text:
+              raise SystemExit("Root and Release differ after daily build/finalize")
 
           section_checks = {
               "[Rule]": "[Rule]" in text,
@@ -63,7 +86,9 @@ jobs:
               "spotify-proto": "spotify-proto" in text,
               "youtube.response": "youtube.response" in text,
               "zhihu-enhance": "zhihu-enhance" in text,
+              "zhihu-enhance.js": "zhihu-enhance.js" in text,
               "update-url": "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule" in text,
+              "meta-date": f"#!desc={today}" in text and f"# update-date: {today}" in text,
           }
           missing = [name for name, ok in {**section_checks, **core_checks}.items() if not ok]
           if missing:
@@ -103,45 +128,42 @@ jobs:
                       return f"CHECK_FAILED HEAD={head_error} GET={get_error}"
 
           url_results = [(url, check_url(url)) for url in urls]
-          validator = subprocess.run(
-              ["python3", "scripts/validate_repository.py"],
-              text=True,
-              capture_output=True,
-          )
+          validator = subprocess.run(["python3", "scripts/validate_repository.py"], text=True, capture_output=True)
           validate_output = (validator.stdout + validator.stderr).strip() or "no output"
           if validator.returncode != 0:
               raise SystemExit(validate_output)
 
-          text = re.sub(r"^#!desc=.*$", f"#!desc={today}", text, flags=re.M)
-          text = re.sub(r"^# update-date:.*$", f"# update-date: {today}", text, flags=re.M)
-          module.write_text(text, encoding="utf-8", newline="\n")
+          health = subprocess.run(["python3", "scripts/repository_health_check.py"], text=True, capture_output=True)
+          health_output = (health.stdout + health.stderr).strip() or "no output"
+          if health.returncode != 0:
+              raise SystemExit(health_output)
 
           lines = [
               "# 每日模块更新报告",
               "",
               f"- 日期：{today}",
+              "- 日期源头：Rewrite/Sources/Meta.conf",
+              "- 构建流程：Meta.conf -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> validate_repository.py -> repository_health_check.py",
               "",
               "## 完整区块检查结果",
               "",
           ]
           lines += [f"- `{name}`：{'通过' if ok else '缺失'}" for name, ok in section_checks.items()]
-          lines += ["", "## Spotify 检查结果", ""]
-          lines += [f"- `{name}`：{'通过' if core_checks[name] else '缺失'}" for name in ("spotify-json", "spotify-proto")]
-          lines += ["", "## YouTube 检查结果", "", f"- `youtube.response`：{'通过' if core_checks['youtube.response'] else '缺失'}"]
-          lines += ["", "## 知乎增强检查结果", "", f"- `zhihu-enhance`：{'通过' if core_checks['zhihu-enhance'] else '缺失'}"]
-          lines += ["", "## update-url 检查结果", "", f"- `update-url`：{'通过' if core_checks['update-url'] else '缺失'}"]
+          lines += ["", "## 核心检查结果", ""]
+          lines += [f"- `{name}`：{'通过' if ok else '缺失'}" for name, ok in core_checks.items()]
           lines += ["", "## 远程链接检查结果", ""]
           lines += [f"- `{url}`：{result}" for url, result in url_results]
           lines += ["", "## validate_repository.py 输出", "", "```text", validate_output, "```"]
+          lines += ["", "## repository_health_check.py 输出", "", "```text", health_output, "```"]
           lines += [
               "",
               "## 自动更新边界说明",
               "",
-              "- 本 workflow 只做日期更新、结构检查、远程链接检查和报告生成。",
+              "- 本 workflow 会更新源头日期、重新构建 stable、同步 Release 与 Root，并生成验证报告。",
               "- 不自动删除规则。",
               "- 不自动注释脚本。",
               "- 不自动替换 Spotify / YouTube / 知乎核心脚本。",
-              "- 不自动修改 MITM hostname。",
+              "- 不自动修改 MITM hostname 内容；MITM 分层由 profile 选择，源头完整列表保留可回滚。",
               "",
           ]
           report.write_text("\n".join(lines), encoding="utf-8", newline="\n")
@@ -151,6 +173,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Ronghemokuai.sgmodule reports/daily_update_report.md
+          git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule reports/daily_update_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/repository_health_report.md
           git diff --cached --quiet || git commit -m "Daily module update"
           git push
