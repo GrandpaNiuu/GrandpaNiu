@@ -2,7 +2,7 @@
 
 - 日期：2026-05-31
 - 日期源头：Rewrite/Sources/Meta.conf
-- 构建流程：Meta.conf -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> validate_repository.py -> repository_health_check.py
+- 构建流程：Meta.conf -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> build_release_variants.py -> validate_repository.py -> repository_health_check.py
 
 ## 完整区块检查结果
 
@@ -23,6 +23,13 @@
 - `zhihu-enhance.js`：通过
 - `update-url`：通过
 - `meta-date`：通过
+
+## 多版本文件检查
+
+- `Release/Ronghemokuai-stable.sgmodule`：通过
+- `Release/Ronghemokuai-stable-plus.sgmodule`：通过
+- `Release/Ronghemokuai-lite.sgmodule`：通过
+- `Release/Ronghemokuai-full.sgmodule`：通过
 
 ## 远程链接检查结果
 
@@ -52,7 +59,8 @@ Repository health report written to /home/runner/work/GrandpaNiu/GrandpaNiu/repo
 
 ## 自动更新边界说明
 
-- 本 workflow 会更新源头日期、重新构建 stable、同步 Release 与 Root，并生成验证报告。
+- 本 workflow 会更新源头日期、重新构建 stable、同步 Release 与 Root，并生成四个独立 Release 版本。
+- 默认根目录 Ronghemokuai.sgmodule 仍保持 stable。
 - 不自动删除规则。
 - 不自动注释脚本。
 - 不自动替换 Spotify / YouTube / 知乎核心脚本。
