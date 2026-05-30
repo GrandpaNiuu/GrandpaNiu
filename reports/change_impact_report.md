@@ -1,24 +1,24 @@
 # 变更影响报告
 
-- 生成时间：2026-05-31 03:37:23 +0800
+- 生成时间：2026-05-31 03:43:11 +0800
 - 变更识别模式：fallback 最近修改时间模式
 
 ## 本次修改文件
 
 - `reports/app_coverage_matrix.md`
+- `reports/change_impact_report.md`
 - `reports/compat_migration_report.md`
 - `reports/daily_audit_report.md`
 - `reports/daily_update_report.md`
 - `reports/factory_finalize_report.md`
 - `reports/factory_refactor_report.md`
-- `reports/legacy_selected_migration_report.md`
 - `reports/manual_test_log.md`
 - `reports/module_factory_diff_report.md`
 - `reports/module_factory_report.md`
+- `reports/module_refine_report.md`
 - `reports/repository_cleanup_report.md`
 - `reports/repository_health_report.md`
 - `reports/upstream_collect_report.md`
-- `reports/workflow_health_report.md`
 - `reports/zhihu_enhance_report.md`
 - `scripts/audit_and_repair_module.py`
 - `scripts/audit_compat_sources.py`
@@ -51,31 +51,31 @@
 - `reports/factory_finalize_report.md`
 - `reports/module_factory_report.md`
 - `reports/module_factory_diff_report.md`
-- `scripts/audit_compat_sources.py`
+- `scripts/migrate_legacy_selected_rules.py`
 - `scripts/validate_repository.py`
 - `scripts/split_mitm_sources.py`
-- `scripts/safe_refine_module.py`
-- `scripts/generate_app_coverage_matrix.py`
-- `scripts/audit_repair_invalid_sources.py`
-- `scripts/build_module.py`
-- `scripts/generate_workflow_health_report.py`
-- `scripts/migrate_legacy_selected_rules.py`
-- `scripts/generate_change_impact_report.py`
 - `scripts/collect_upstreams.py`
-- `scripts/factory_finalize.py`
-- `scripts/validate_profiles.py`
+- `scripts/audit_repair_invalid_sources.py`
+- `scripts/audit_compat_sources.py`
+- `scripts/generate_workflow_health_report.py`
 - `scripts/repository_health_check.py`
-- `reports/workflow_health_report.md`
-- `reports/zhihu_enhance_report.md`
-- `reports/manual_test_log.md`
-- `reports/daily_audit_report.md`
+- `scripts/generate_change_impact_report.py`
+- `scripts/safe_refine_module.py`
+- `scripts/build_module.py`
+- `scripts/generate_app_coverage_matrix.py`
+- `scripts/validate_profiles.py`
+- `scripts/factory_finalize.py`
 - `reports/factory_refactor_report.md`
-- `scripts/audit_and_repair_module.py`
 - `reports/repository_health_report.md`
+- `reports/daily_audit_report.md`
 - `reports/upstream_collect_report.md`
-- `reports/repository_cleanup_report.md`
+- `reports/manual_test_log.md`
+- `reports/zhihu_enhance_report.md`
+- `reports/module_refine_report.md`
 - `reports/daily_update_report.md`
-- `reports/legacy_selected_migration_report.md`
+- `scripts/audit_and_repair_module.py`
+- `reports/change_impact_report.md`
+- `reports/repository_cleanup_report.md`
 
 ## 影响的模块层
 
