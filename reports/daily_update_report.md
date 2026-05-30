@@ -1,20 +1,38 @@
 # 每日模块更新报告
 
-日期：2026-05-30
+- 日期：2026-05-31
 
-## 关键结构检查
+## 完整区块检查结果
 
-- [Rule]: 正常
-- [Script]: 正常
-- [MITM]: 正常
-- spotify-json: 正常
-- spotify-proto: 正常
-- youtube.response: 正常
-- update-url: 正常
+- `[Rule]`：通过
+- `[URL Rewrite]`：通过
+- `[Header Rewrite]`：通过
+- `[Body Rewrite]`：通过
+- `[Map Local]`：通过
+- `[Script]`：通过
+- `[MITM]`：通过
 
-## 远程链接检查
+## Spotify 检查结果
+
+- `spotify-json`：通过
+- `spotify-proto`：通过
+
+## YouTube 检查结果
+
+- `youtube.response`：通过
+
+## 知乎增强检查结果
+
+- `zhihu-enhance`：通过
+
+## update-url 检查结果
+
+- `update-url`：通过
+
+## 远程链接检查结果
 
 - `https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule`：OK HTTP 200
+- `https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/zhihu-enhance.js`：OK HTTP 200
 - `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list`：OK HTTP 200
 - `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt`：OK HTTP 200
 - `https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt`：OK HTTP 200
@@ -25,18 +43,16 @@
 - `https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js`：OK HTTP 200
 - `https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js`：OK HTTP 200
 
-## 自动更新边界
+## validate_repository.py 输出
 
-- 只更新模块日期。
-- 只生成每日检查报告。
+```text
+Repository validation passed.
+```
+
+## 自动更新边界说明
+
+- 本 workflow 只做日期更新、结构检查、远程链接检查和报告生成。
 - 不自动删除规则。
-- 不自动注释 script-path。
-- 不自动替换 Spotify / YouTube。
+- 不自动注释脚本。
+- 不自动替换 Spotify / YouTube / 知乎核心脚本。
 - 不自动修改 MITM hostname。
-
-## 手动检查建议
-
-1. 在 Shadowrocket 更新模块和脚本。
-2. 测试 Spotify 播放是否跳歌。
-3. 测试 YouTube 是否转圈。
-4. 测试淘宝、京东、微信、支付宝、银行类 App 登录、支付、验证码是否正常。
