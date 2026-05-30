@@ -1,4 +1,35 @@
-Personal Use Notice
+Personal Use Notice / 个人自用声明
+
+## 中文说明
+
+本仓库是作者个人自用的 Shadowrocket / Surge 配置、规则、脚本入口、文档、报告和维护工具集合。
+
+允许用途：
+
+- 学习仓库结构和维护方式。
+- 备份个人配置思路。
+- 在个人设备上自行承担风险使用。
+
+限制：
+
+- 不授予商业使用许可。
+- 不提供任何担保。
+- 第三方 App、网站、上游规则和上游脚本可能随时变更、失效或停止维护。
+- 使用者需要自行承担导入、修改、复用或分发本仓库内容造成的全部风险。
+- 第三方上游规则和脚本仍适用其原始许可证和使用条款，本声明不授予这些第三方作品的额外权利。
+
+禁止用途：
+
+- 会员或 Premium 绕过。
+- 支付绕过。
+- 登录绕过。
+- 账户权益伪造。
+- 证书绕过。
+- Cookie、Token 或 BoxJS 账号任务。
+- 成人、博彩、灰产或违法用途。
+- 将本仓库二次打包为破解、解锁、绕过工具。
+
+## English Notice
 
 This repository is a personal collection of configuration, rules, scripts,
 documentation, reports, and maintenance utilities for the author's own
