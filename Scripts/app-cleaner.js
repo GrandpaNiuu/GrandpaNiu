@@ -1,66 +1,16 @@
-// GrandpaNiu app-cleaner shadow runner
-// Current mode: shadow/no-op. This script must not mutate response bodies until
-// a specific App group is manually tested and explicitly promoted.
+// GrandpaNiu app-cleaner active runner
+// First active batch: QQ News + VGTime only.
+// Unknown URLs, invalid JSON, or unexpected bodies pass through unchanged.
 
 (function () {
-  const DEFAULT_CONFIG = {
-    version: "embedded-shadow-v1",
-    mode: "shadow",
-    safety: {
-      defaultAction: "passThrough",
-      failClosed: false,
-      blockUnknown: false,
-      forbiddenKeywords: [
-        "login", "passport", "token", "cookie", "captcha", "payment", "pay",
-        "bank", "security", "membership", "vip", "premium", "paywall"
-      ]
-    },
-    groups: [
-      {
-        key: "qq-news-shadow",
-        app: "QQ News",
-        status: "shadow-only",
-        replaceExisting: false,
-        urlPatterns: [
-          "news.ssp.qq.com/app",
-          "r.inews.qq.com/getQQNewsUnreadList",
-          "r.inews.qq.com/getTagFeedList",
-          "r.inews.qq.com/gw/page/event_detail",
-          "r.inews.qq.com/news_feed/hot_module_list"
-        ],
-        actions: []
-      }
-    ]
-  };
+  const VERSION = "2026-05-31-active-v1";
 
-  function getRequestUrl() {
-    try {
-      return ($request && $request.url) || "";
-    } catch (_) {
-      return "";
-    }
+  function requestUrl() {
+    try { return ($request && $request.url) || ""; } catch (_) { return ""; }
   }
 
-  function getBody() {
-    try {
-      return ($response && typeof $response.body === "string") ? $response.body : "";
-    } catch (_) {
-      return "";
-    }
-  }
-
-  function isForbidden(url, config) {
-    const lowered = String(url || "").toLowerCase();
-    const tokens = (((config || {}).safety || {}).forbiddenKeywords) || [];
-    return tokens.some(token => lowered.includes(String(token).toLowerCase()));
-  }
-
-  function matchGroup(url, config) {
-    const groups = Array.isArray(config.groups) ? config.groups : [];
-    return groups.find(group => {
-      const patterns = Array.isArray(group.urlPatterns) ? group.urlPatterns : [];
-      return patterns.some(pattern => String(url || "").includes(pattern));
-    }) || null;
+  function responseBody() {
+    try { return ($response && typeof $response.body === "string") ? $response.body : ""; } catch (_) { return ""; }
   }
 
   function doneUnchanged(body) {
@@ -71,38 +21,80 @@
     }
   }
 
+  function doneJson(object) {
+    $done({ body: JSON.stringify(object) });
+  }
+
+  function parseJsonOrNull(body) {
+    try { return JSON.parse(body); } catch (_) { return null; }
+  }
+
+  function isQQNews(url) {
+    return url.includes("news.ssp.qq.com/app") ||
+      url.includes("r.inews.qq.com/getQQNewsUnreadList") ||
+      url.includes("r.inews.qq.com/getTagFeedList") ||
+      url.includes("r.inews.qq.com/gw/page/event_detail") ||
+      url.includes("r.inews.qq.com/gw/page/channel_feed") ||
+      url.includes("r.inews.qq.com/news_feed/hot_module_list");
+  }
+
+  function isVGTime(url) {
+    return url.includes("app02.vgtime.com:8080/vgtime-app/api/v2/init/ad.json");
+  }
+
+  function cleanQQNews(bodyObject, url) {
+    if (url.includes("r.inews.qq.com/gw/page/event_detail") || url.includes("r.inews.qq.com/gw/page/channel_feed")) {
+      const widgets = bodyObject && bodyObject.data && bodyObject.data.widget_list;
+      if (Array.isArray(widgets)) {
+        bodyObject.data.widget_list = widgets.filter(item => !(item && item.widget_type === "ad_list"));
+      }
+      return bodyObject;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(bodyObject || {}, "adList")) {
+      bodyObject.adList = null;
+    }
+    return bodyObject;
+  }
+
+  function cleanVGTime(bodyObject) {
+    if (bodyObject && bodyObject.data && Object.prototype.hasOwnProperty.call(bodyObject.data, "ad")) {
+      bodyObject.data.ad = null;
+    }
+    return bodyObject;
+  }
+
   function main() {
-    const config = DEFAULT_CONFIG;
-    const url = getRequestUrl();
-    const body = getBody();
-
-    if (!url || isForbidden(url, config)) {
+    void VERSION;
+    const url = requestUrl();
+    const body = responseBody();
+    if (!url || !body) {
       doneUnchanged(body);
       return;
     }
 
-    const group = matchGroup(url, config);
-
-    // Shadow mode intentionally does not mutate the body. It only verifies that
-    // the unified runner can load and safely pass through matched traffic.
-    if (!group || config.mode !== "active" || group.status !== "active") {
+    const object = parseJsonOrNull(body);
+    if (!object) {
       doneUnchanged(body);
       return;
     }
 
-    // Active mode is deliberately not implemented yet. Future cleaners must be
-    // white-list based, App-specific, and covered by manual_test_log.md before
-    // replacing old entries.
+    if (isQQNews(url)) {
+      doneJson(cleanQQNews(object, url));
+      return;
+    }
+
+    if (isVGTime(url)) {
+      doneJson(cleanVGTime(object));
+      return;
+    }
+
     doneUnchanged(body);
   }
 
   try {
     main();
   } catch (_) {
-    try {
-      doneUnchanged(getBody());
-    } catch (e) {
-      $done({});
-    }
+    try { doneUnchanged(responseBody()); } catch (e) { $done({}); }
   }
 })();
