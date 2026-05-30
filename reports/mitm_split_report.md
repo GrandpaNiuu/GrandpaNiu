@@ -1,38 +1,32 @@
 # MITM 分层报告
 
-当前状态：待运行 `scripts/split_mitm_sources.py` 后生成正式结果。
+生成时间：2026-05-31 04:42:20 +0800
 
-## 预期输出
-
-- 原 MITM hostname 总数：待生成
-- core 数量：待生成
-- app-clean 数量：待生成
-- extended 数量：待生成
-- 未分类数量：待生成
-- 是否存在重复 hostname：待生成
-- 是否疑似包含支付 / 登录 / 验证码 / 银行相关 hostname：待生成
-- stable 使用哪些 MITM 文件：待人工确认
-- lite 使用哪些 MITM 文件：待人工确认
-- full 使用哪些 MITM 文件：待人工确认
+- 原 MITM hostname 总数：1009
+- core 数量：11
+- app-clean 数量：109
+- extended 数量：889
+- 未分类数量：0（未命中 core/app-clean 的 hostname 已进入 extended）
+- 是否存在重复 hostname：否
+- 疑似包含支付 / 登录 / 验证码 / 银行相关 hostname：是
+- stable 使用哪些 MITM 文件：建议 MITM-core.conf + MITM-app-clean.conf，切换前必须人工确认
+- lite 使用哪些 MITM 文件：建议 MITM-core.conf，切换前必须人工确认
+- full 使用哪些 MITM 文件：建议 MITM-core.conf + MITM-app-clean.conf + MITM-extended.conf
 
 ## 分层文件
 
-运行脚本后应生成：
+- `Rewrite/Sources/MITM-core.conf`
+- `Rewrite/Sources/MITM-app-clean.conf`
+- `Rewrite/Sources/MITM-extended.conf`
 
-```text
-Rewrite/Sources/MITM-core.conf
-Rewrite/Sources/MITM-app-clean.conf
-Rewrite/Sources/MITM-extended.conf
-```
+## 疑似敏感 hostname（前 100 条）
 
-## 运行命令
+- `abcapi.lenovoimage.com`
+- `wechat.tf.cn`
 
-```text
-python3 scripts/split_mitm_sources.py
-```
+## 风险说明
 
-## 注意
-
-- 本报告是占位模板，不代表 MITM 已经安全分层完成。
-- 正式分层必须由脚本生成，并经过人工抽查。
+- 本脚本只做分层，不删除 hostname。
+- 分层结果是关键词分类，不等于人工安全确认。
 - 切换 profile 使用分层 MITM 前，必须测试 Spotify、YouTube、知乎、登录、支付和验证码。
+- 如果发现敏感 hostname，应优先移出 stable，必要时进入 extended 或删除。

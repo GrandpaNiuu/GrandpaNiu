@@ -1,40 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-05-31 03:43:11 +0800
-- 变更识别模式：fallback 最近修改时间模式
+- 生成时间：2026-05-31 04:42:21 +0800
+- 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `reports/app_coverage_matrix.md`
-- `reports/change_impact_report.md`
-- `reports/compat_migration_report.md`
-- `reports/daily_audit_report.md`
-- `reports/daily_update_report.md`
-- `reports/factory_finalize_report.md`
-- `reports/factory_refactor_report.md`
-- `reports/manual_test_log.md`
-- `reports/module_factory_diff_report.md`
-- `reports/module_factory_report.md`
-- `reports/module_refine_report.md`
-- `reports/repository_cleanup_report.md`
-- `reports/repository_health_report.md`
-- `reports/upstream_collect_report.md`
-- `reports/zhihu_enhance_report.md`
-- `scripts/audit_and_repair_module.py`
-- `scripts/audit_compat_sources.py`
-- `scripts/audit_repair_invalid_sources.py`
-- `scripts/build_module.py`
-- `scripts/collect_upstreams.py`
-- `scripts/factory_finalize.py`
-- `scripts/generate_app_coverage_matrix.py`
-- `scripts/generate_change_impact_report.py`
-- `scripts/generate_workflow_health_report.py`
-- `scripts/migrate_legacy_selected_rules.py`
-- `scripts/repository_health_check.py`
-- `scripts/safe_refine_module.py`
-- `scripts/split_mitm_sources.py`
-- `scripts/validate_profiles.py`
-- `scripts/validate_repository.py`
+- `.github/workflows/repository-health.yml`
 
 ## 新增文件
 
@@ -46,78 +17,25 @@
 
 ## 修改文件
 
-- `reports/app_coverage_matrix.md`
-- `reports/compat_migration_report.md`
-- `reports/factory_finalize_report.md`
-- `reports/module_factory_report.md`
-- `reports/module_factory_diff_report.md`
-- `scripts/migrate_legacy_selected_rules.py`
-- `scripts/validate_repository.py`
-- `scripts/split_mitm_sources.py`
-- `scripts/collect_upstreams.py`
-- `scripts/audit_repair_invalid_sources.py`
-- `scripts/audit_compat_sources.py`
-- `scripts/generate_workflow_health_report.py`
-- `scripts/repository_health_check.py`
-- `scripts/generate_change_impact_report.py`
-- `scripts/safe_refine_module.py`
-- `scripts/build_module.py`
-- `scripts/generate_app_coverage_matrix.py`
-- `scripts/validate_profiles.py`
-- `scripts/factory_finalize.py`
-- `reports/factory_refactor_report.md`
-- `reports/repository_health_report.md`
-- `reports/daily_audit_report.md`
-- `reports/upstream_collect_report.md`
-- `reports/manual_test_log.md`
-- `reports/zhihu_enhance_report.md`
-- `reports/module_refine_report.md`
-- `reports/daily_update_report.md`
-- `scripts/audit_and_repair_module.py`
-- `reports/change_impact_report.md`
-- `reports/repository_cleanup_report.md`
+- `.github/workflows/repository-health.yml`
 
 ## 影响的模块层
 
-- README/docs
-- Scripts/maintenance
+- Workflows
 
 ## 可能影响的 App
 
-- Spotify
-- YouTube
-- 知乎
-- Bilibili
-- 微博
-- 百度贴吧
-- 小红书
-- 酷安
-- 淘宝
-- 闲鱼
-- 京东
-- 拼多多
-- 美团
-- 大众点评
-- 饿了么
-- 滴滴
-- 12306
-- 高德地图
-- 百度地图
-- 网易云音乐
-- 喜马拉雅
-- 小宇宙
-- 斗鱼
-- Reddit
+- 待人工确认
 
 ## 风险判断
 
-- 是否涉及脚本：是
+- 是否涉及脚本：否
 - 是否涉及 MITM：是
-- 是否涉及 Body Rewrite：是
-- 是否涉及远程规则源：是
-- 是否需要测试 Spotify：是
-- 是否需要测试 YouTube：是
-- 是否需要测试知乎：是
+- 是否涉及 Body Rewrite：否
+- 是否涉及远程规则源：否
+- 是否需要测试 Spotify：按需
+- 是否需要测试 YouTube：按需
+- 是否需要测试知乎：按需
 - 是否需要测试登录/支付/验证码：按需
 
 ## 回滚建议
