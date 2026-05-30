@@ -2,10 +2,11 @@
 // Active consolidation batches:
 // - Batch 1: QQ News + VGTime
 // - Batch 2: SQKB + 163News + XiaoHeiHe + Manner + Chaoge
+// - Batch 3: SMZDM + Taobao + JuneYaoAir + DDXQ + ZSGJ
 // Unknown URLs, invalid JSON, or unexpected bodies pass through unchanged.
 
 (function () {
-  const VERSION = "2026-05-31-active-v2";
+  const VERSION = "2026-05-31-active-v3";
 
   function requestUrl() {
     try { return ($request && $request.url) || ""; } catch (_) { return ""; }
@@ -23,6 +24,10 @@
     }
   }
 
+  function doneBody(body) {
+    $done({ body });
+  }
+
   function doneJson(object) {
     $done({ body: JSON.stringify(object) });
   }
@@ -38,6 +43,12 @@
   function setArrayEmpty(object, key) {
     if (object && Array.isArray(object[key])) {
       object[key] = [];
+    }
+  }
+
+  function removeKey(object, key) {
+    if (object && hasOwn(object, key)) {
+      delete object[key];
     }
   }
 
@@ -72,6 +83,26 @@
 
   function isChaoge(url) {
     return url.includes("mapi.chaogejiaoyu.com/api/outline/getAppBanner");
+  }
+
+  function isSMZDM(url) {
+    return url.includes("haojia.m.smzdm.com/detail_modul/user_related_modul");
+  }
+
+  function isTaobao(url) {
+    return url.includes("poplayer.template.alibaba.com");
+  }
+
+  function isJuneYaoAir(url) {
+    return url.includes("hoapp.juneyaoair.com/data/index/getPictureList");
+  }
+
+  function isDDXQ(url) {
+    return url.includes("user.api.ddxq.mobi/userportal-service/api/") && url.includes("/user/queryMyPage");
+  }
+
+  function isZSGJ(url) {
+    return url.includes("wx.mygolbs.com/WxBusServer/ApiData.do");
   }
 
   function cleanQQNews(bodyObject, url) {
@@ -149,12 +180,60 @@
     return bodyObject;
   }
 
+  function cleanSMZDM(bodyObject) {
+    if (bodyObject && bodyObject.data) {
+      removeKey(bodyObject.data, "super_coupon");
+    }
+    return bodyObject;
+  }
+
+  function cleanTaobao(bodyObject) {
+    if (bodyObject && bodyObject.res) {
+      setArrayEmpty(bodyObject.res, "images");
+      setArrayEmpty(bodyObject.res, "videos");
+    }
+    if (bodyObject && hasOwn(bodyObject, "enable")) {
+      bodyObject.enable = false;
+    }
+    if (bodyObject && bodyObject.mainRes) {
+      setArrayEmpty(bodyObject.mainRes, "images");
+    }
+    return bodyObject;
+  }
+
+  function cleanJuneYaoAir(bodyObject) {
+    if (bodyObject && Array.isArray(bodyObject.objData)) {
+      bodyObject.objData = bodyObject.objData.filter(item => !(item && String(item.picLocation || "").includes("POSITION_POP")) && !(item && String(item.picLocation || "").includes("FLOATING")));
+    }
+    return bodyObject;
+  }
+
+  function cleanDDXQ(bodyObject) {
+    const data = bodyObject && bodyObject.data;
+    if (data && Array.isArray(data.advertList)) {
+      data.advertList = data.advertList.filter(item => item && /福利中心|叮咚榜单|查添加剂|好货百科/.test(String(item.title || "")));
+    }
+    if (data && Array.isArray(data.links)) {
+      data.links.splice(10);
+    }
+    return bodyObject;
+  }
+
+  function cleanZSGJRaw(body) {
+    return String(body || "").replace(/Ad":1/g, 'Ad":0').replace(/Ad_ab":1/g, 'Ad_ab":0');
+  }
+
   function main() {
     void VERSION;
     const url = requestUrl();
     const body = responseBody();
     if (!url || !body) {
       doneUnchanged(body);
+      return;
+    }
+
+    if (isZSGJ(url)) {
+      doneBody(cleanZSGJRaw(body));
       return;
     }
 
@@ -196,6 +275,26 @@
 
     if (isChaoge(url)) {
       doneJson(cleanChaoge(object, url));
+      return;
+    }
+
+    if (isSMZDM(url)) {
+      doneJson(cleanSMZDM(object));
+      return;
+    }
+
+    if (isTaobao(url)) {
+      doneJson(cleanTaobao(object));
+      return;
+    }
+
+    if (isJuneYaoAir(url)) {
+      doneJson(cleanJuneYaoAir(object));
+      return;
+    }
+
+    if (isDDXQ(url)) {
+      doneJson(cleanDDXQ(object));
       return;
     }
 
