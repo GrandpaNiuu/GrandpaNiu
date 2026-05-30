@@ -1,40 +1,40 @@
 # 变更影响报告
 
-- 生成时间：2026-05-31 03:07:19 +0800
+- 生成时间：2026-05-31 03:32:02 +0800
 - 说明：无 git 工作树时，本报告基于最近修改文件时间生成；如需精确变更，请结合提交 diff 人工确认。
 
 ## 本次修改文件
 
-- `docs/TROUBLESHOOTING.md`
+- `docs/SCRIPT_REVIEW.md`
 - `docs/TESTING.md`
+- `docs/SCOPE.md`
+- `docs/QUALITY_GATE.md`
+- `docs/MAINTENANCE.md`
+- `docs/RELEASE.md`
+- `docs/VERSIONING.md`
+- `docs/TROUBLESHOOTING.md`
 - `docs/FACTORY_FLOW.md`
 - `docs/PERFORMANCE.md`
-- `docs/QUALITY_GATE.md`
-- `docs/SCRIPT_REVIEW.md`
 - `docs/MITM_POLICY.md`
-- `docs/VERSIONING.md`
-- `docs/SCOPE.md`
-- `docs/RELEASE.md`
-- `docs/MAINTENANCE.md`
 - `docs/COVERAGE.md`
 - `Scripts/youtube.conf`
-- `Scripts/zhihu-enhance.conf`
-- `Scripts/spotify.conf`
-- `Scripts/zhihu-enhance.js`
 - `Scripts/app-clean.conf`
-- `Rules/web-ads.list`
-- `Rules/reject.list`
+- `Scripts/spotify.conf`
+- `Scripts/zhihu-enhance.conf`
+- `Scripts/zhihu-enhance.js`
 - `Rules/youtube-direct.list`
-- `Rules/spotify-direct.list`
-- `Rules/direct.list`
 - `SECURITY.md`
+- `Rules/direct.list`
+- `Rules/spotify-direct.list`
 - `Rules/app-clean.list`
+- `Rules/reject.list`
+- `Rules/web-ads.list`
 - `Rewrite/Sources/URL-Rewrite.conf`
-- `Rewrite/Sources/Map-Local.conf`
+- `Rewrite/Sources/Script.conf`
+- `Rewrite/Sources/Header-Rewrite.conf`
 - `Rewrite/Sources/Meta.conf`
 - `Rewrite/Sources/MITM.conf`
 - `Rewrite/Sources/Rule.conf`
-- `Rewrite/Sources/Header-Rewrite.conf`
 
 ## 影响的模块层
 
