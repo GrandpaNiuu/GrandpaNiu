@@ -3,16 +3,9 @@
 
 This script removes only old entries now covered by Scripts/app-cleaner.js.
 
-Batch 1:
-- QQ News
-- VGTime
-
-Batch 2:
-- SQKB
-- 163News
-- XiaoHeiHe
-- Manner
-- Chaoge
+Batch 1: QQ News, VGTime.
+Batch 2: SQKB, 163News, XiaoHeiHe, Manner, Chaoge.
+Batch 3: SMZDM, Taobao, JuneYaoAir, DDXQ, ZSGJ.
 
 It applies the same cleanup to Scripts/app-clean.conf and Rewrite/Sources/Script.conf
 so source_script_compat does not reintroduce old entries during builds.
@@ -41,6 +34,11 @@ REMOVED_NAMES = {
     "cmp_allad_022_xiaoheihe": "XiaoHeiHe JSON ad cleaner",
     "cmp_allad_043_manner": "Manner JSON ad cleaner",
     "cmp_allad_044_chaoge": "Chaoge JSON ad cleaner",
+    "cmp_allad_013_smzdm": "SMZDM detail module cleaner",
+    "cmp_allad_014_taobao": "Taobao poplayer cleaner",
+    "cmp_allad_016_juneyaoair": "JuneYaoAir popup cleaner",
+    "cmp_allad_020_ddxq": "DDXQ user page cleaner",
+    "cmp_allad_021_mygolbs": "ZSGJ text replacement cleaner",
 }
 PROTECTED_NAMES = {
     "spotify-json",
@@ -100,6 +98,7 @@ def main() -> None:
     now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
     total_removed = sum(len(items) for items in removed_by_file.values())
     app_clean_removed = len(removed_by_file.get("Scripts/app-clean.conf", []))
+    expected_batch_names = [name for name in REMOVED_NAMES if not name.startswith("legacy_")]
 
     report = [
         "# 脚本去重与 app-cleaner active 迁移报告",
@@ -108,13 +107,14 @@ def main() -> None:
         "",
         "## 本次迁移",
         "",
-        "- 迁移范围：QQ News、VGTime、SQKB、163News、小黑盒、Manner、超格教育",
+        "- 迁移范围：QQ News、VGTime、SQKB、163News、小黑盒、Manner、超格教育、SMZDM、淘宝、吉祥航空、叮咚买菜、掌上公交",
         "- 新承接入口：`Scripts/app-cleaner-active.conf` / `app-cleaner-active-json-clean`",
         "- 新承接脚本：`Scripts/app-cleaner.js`",
-        f"- Scripts/app-clean.conf 移除旧入口数量：{app_clean_removed}",
-        f"- 所有源文件合计移除旧入口数量：{total_removed}",
+        f"- 计划替换旧入口数量：{len(expected_batch_names)}",
+        f"- Scripts/app-clean.conf 本次移除旧入口数量：{app_clean_removed}",
+        f"- 所有源文件合计本次移除旧入口数量：{total_removed}",
         "- 新增 active 入口数量：1",
-        "- 说明：这是低风险 JSON 字段清理融合，不是全量脚本合并。",
+        "- 说明：这是批量低风险 JSON / 字段清理融合，不是全量脚本合并。",
         "",
         "## 移除的旧入口",
         "",
