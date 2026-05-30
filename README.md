@@ -13,12 +13,23 @@ Shadowrocket / Surge 自用融合净化模块工厂。
 
 | 入口 | 链接 |
 |---|---|
-| 一键导入 | [Shadowrocket 安装入口](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2FGrandpaNiuu%2FGrandpaNiu%2Fmain%2FRonghemokuai.sgmodule) |
+| 默认一键导入 | [Shadowrocket 安装入口](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2FGrandpaNiuu%2FGrandpaNiu%2Fmain%2FRonghemokuai.sgmodule) |
 | 备用页面 | [import.html](https://grandpaniuu.github.io/GrandpaNiu/import.html) |
-| Raw 地址 | [Ronghemokuai.sgmodule](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule) |
-| Pages 地址 | [Ronghemokuai.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule) |
+| 默认 Raw 地址 | [Ronghemokuai.sgmodule](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule) |
+| 默认 Pages 地址 | [Ronghemokuai.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule) |
 
 导入后建议在 Shadowrocket 中更新模块、更新脚本、更新全部资源。
+
+## 多版本 Shadowrocket 导入
+
+不要同时启用多个版本。日常使用 `stable`；测试更多 App 覆盖时使用 `stable-plus`；省电或异常排查时使用 `lite`；`full` 只用于全量排查，不建议长期启用。
+
+| 版本 | 用途 | Shadowrocket 导入 | Pages 地址 | Raw 地址 |
+|---|---|---|---|---|
+| Stable | 默认正式版，优先长期稳定 | [导入 Stable](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable.sgmodule) | [Ronghemokuai-stable.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule) | [Raw](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-stable.sgmodule) |
+| Stable Plus | 常用 App 增强测试版，不默认发布 | [导入 Stable Plus](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable-plus.sgmodule) | [Ronghemokuai-stable-plus.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable-plus.sgmodule) | [Raw](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-stable-plus.sgmodule) |
+| Lite | 低耗电参考版，不默认发布 | [导入 Lite](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-lite.sgmodule) | [Ronghemokuai-lite.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-lite.sgmodule) | [Raw](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-lite.sgmodule) |
+| Full | 全量排查测试版，不默认发布 | [导入 Full](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-full.sgmodule) | [Ronghemokuai-full.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-full.sgmodule) | [Raw](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-full.sgmodule) |
 
 ## 项目定位
 
@@ -30,6 +41,8 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
         -> Release/Ronghemokuai.sgmodule
         -> scripts/factory_finalize.py --sync-root
         -> Ronghemokuai.sgmodule
+        -> scripts/build_release_variants.py
+        -> Release/Ronghemokuai-*.sgmodule
 ```
 
 ## 长期方向
@@ -52,6 +65,7 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 | 低耗电 profile | `lite`，不默认发布 |
 | 全覆盖测试 profile | `full`，不默认发布 |
 | Root / Release | 通过 `reports/repository_health_report.md` 与 diff 报告确认 |
+| 多版本发布 | `scripts/build_release_variants.py` 自动生成四个独立 Release 模块 |
 | 质量门禁 | `scripts/validate_repository.py` |
 | 健康报告 | `reports/repository_health_report.md` |
 | Profile 验证 | `reports/profile_validation_report.md` |
@@ -124,6 +138,7 @@ Spotify、YouTube、知乎、登录、支付、验证码、银行、微信、支
 | [reports/module_factory_report.md](reports/module_factory_report.md) | 模块工厂构建报告 |
 | [reports/module_factory_diff_report.md](reports/module_factory_diff_report.md) | Root / Release 差异 |
 | [reports/factory_finalize_report.md](reports/factory_finalize_report.md) | finalize 同步报告 |
+| [reports/multi_release_report.md](reports/multi_release_report.md) | 多版本发布报告 |
 | [reports/daily_update_report.md](reports/daily_update_report.md) | 每日检查报告 |
 | [reports/invalid_sources_report.md](reports/invalid_sources_report.md) | 失效源审计 |
 | [reports/invalid_sources_history.json](reports/invalid_sources_history.json) | 失效源历史 |
@@ -142,6 +157,7 @@ Spotify、YouTube、知乎、登录、支付、验证码、银行、微信、支
 ```text
 python3 scripts/build_module.py --build --profile stable
 python3 scripts/factory_finalize.py --sync-root
+python3 scripts/build_release_variants.py
 python3 scripts/validate_repository.py
 python3 scripts/validate_profiles.py
 python3 scripts/repository_health_check.py
