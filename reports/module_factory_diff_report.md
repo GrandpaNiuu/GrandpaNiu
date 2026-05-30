@@ -1,9 +1,9 @@
-# Module Factory Diff Report
+# 模块工厂差异报告
 
-Root lines: 2847
-Release lines: 2847
+Root 行数: 2847
+Release 行数: 2847
 Diff lines: 0
-Diff clipped: no
+Diff 是否截断: 否
 
 ```diff
 ```

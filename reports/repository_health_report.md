@@ -1,14 +1,14 @@
 # 仓库健康检查报告
 
-生成时间：2026-05-30 08:16:58 +0800
+生成时间：2026-05-30 09:10:47 +0800
 
 ## 总体状态
 
 - 阻断问题：0
-- 提醒事项：0
+- 提醒事项：1
 - 统一验证：通过
-- Root 与 Release 一致：yes
-- 启用远程源：11
+- Root 与 Release 一致：是
+- 启用远程规则源：11
 - 启用候选源：7
 - pending 脚本候选：1
 - 脚本总数：104
@@ -30,17 +30,21 @@
 
 ## 提醒事项
 
-- 无
+- PrivacyLite 当前为单日 404，按策略仅观察，不禁用
 
-## 缺失资料文件
-
-- 无
-
-## 缺失工作流
+## 缺少必要文件
 
 - 无
 
-## 主模块缺失关键标记
+## 缺少工作流
+
+- 无
+
+## 未生成的可选报告
+
+- 无
+
+## 主模块缺少关键标记
 
 - 无
 
@@ -56,6 +60,14 @@
 
 - 无
 
+## Workflow 摘要
+
+- .github/workflows/module-factory-build.yml: contents:write, concurrency, uses-stable
+- .github/workflows/daily-module-update.yml: contents:write, concurrency
+- .github/workflows/daily-invalid-source-repair.yml: contents:write, concurrency, uses-stable
+- .github/workflows/upstream-collect.yml: contents:write, concurrency, uses-stable
+- .github/workflows/repository-health.yml: contents:write, concurrency, uses-stable
+
 ## Pending 脚本候选
 
 - app2smile Tieba script
@@ -68,8 +80,8 @@ Repository validation passed.
 
 ## 后续维护建议
 
-1. 每次修改源头文件后运行 Module Factory Build。
-2. Root 与 Release 必须保持一致。
+1. 日常修改应优先编辑 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。
+2. Root 模块只作为生成结果，必须通过 build_module.py 与 factory_finalize.py 同步。
 3. 新脚本默认 pending，不直接进入 stable。
-4. 耗电异常时优先测试 lite profile。
-5. 远程源连续失败 2 天后再处理，避免临时网络波动误删。
+4. 出现登录、支付、验证码异常时，优先回查 MITM、Body Rewrite 和 Map Local。
+5. 远程源连续失败 2 天后才进入处理流程，单日网络失败只报告观察。
