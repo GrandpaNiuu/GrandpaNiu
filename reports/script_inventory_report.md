@@ -1,6 +1,6 @@
 # 脚本清单与瘦身分析报告
 
-生成时间：2026-05-31 07:27:29 +0800
+生成时间：2026-05-31 07:36:17 +0800
 
 本报告只做静态分析，不删除、不合并、不禁用任何脚本。减少脚本前必须先完成真机测试和回滚准备。
 
@@ -143,7 +143,7 @@
 | `cmp_block_095_rrtv_json` | Scripts/app-clean.conf:81 | 未识别 / 通用 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/api\.rr\.tv\/ad\/getAll` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/rrtv_json.js` |
 | `cmp_block_096_ad` | Scripts/app-clean.conf:82 | 什么值得买 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/user_related_modul\?` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/smzdm_ads.js` |
 | `cmp_block_099_ad` | Scripts/app-clean.conf:83 | 未识别 / 通用 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/dict\.youdao\.com\/(homepage\/promotion\|course\/tab\/home\|homepage\/tile)` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/youdao/dict-youdao-ad.js` |
-| `app-cleaner-active-json-clean` | Scripts/app-cleaner-active.conf:7 | VGTime / 快看漫画 / 闲鱼 | http-response | 1 | local | 需要人工复核 | 无法静态判断，需结合脚本内容和真机测试 | `^https?:\/\/.*(qq\.com\|vgtime\.com\|17gwx\.com\|163\.com\|xiaoheihe\.cn\|wearemanner\.com\|chao` | `https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/app-cleaner.js` |
+| `app-cleaner-active-json-clean` | Scripts/app-cleaner-active.conf:8 | VGTime / 快看漫画 / 闲鱼 | http-response | 1 | local | 需要人工复核 | 无法静态判断，需结合脚本内容和真机测试 | `^https?:\/\/.*(qq\.com\|vgtime\.com\|17gwx\.com\|163\.com\|xiaoheihe\.cn\|wearemanner\.com\|chao` | `https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/app-cleaner.js` |
 | `spotify-json` | Scripts/spotify.conf:2 | Spotify | http-request | 0 | app2smile | 必须独立保留 | 核心专项脚本，合并风险高 | `^https:\/\/(spclient\.wg\.spotify\.com\|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\` | `https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js` |
 | `spotify-proto` | Scripts/spotify.conf:3 | Spotify | http-response | 1 | app2smile | 必须独立保留 | 核心专项脚本，合并风险高 | `^https:\/\/(spclient\.wg\.spotify\.com\|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/` | `https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js` |
 | `youtube.response` | Scripts/youtube.conf:2 | YouTube | http-response | 1 | Maasea | 必须独立保留 | 核心专项脚本，合并风险高 | `^https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse\|next\|player\|search\|reel\/reel` | `https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js` |

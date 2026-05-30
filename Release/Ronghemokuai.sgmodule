@@ -2720,8 +2720,9 @@ cmp_block_099_ad = type=http-response,pattern=^https?:\/\/dict\.youdao\.com\/(ho
 # Batch 2: SQKB, 163News, XiaoHeiHe, Manner, Chaoge.
 # Batch 3: SMZDM, Taobao, JuneYaoAir, DDXQ, ZSGJ.
 # Batch 4: KKMH, Goofish, XMly, Didi.
-# The runner itself does the exact URL dispatch and passes through unknown bodies unchanged.
-app-cleaner-active-json-clean = type=http-response,pattern=^https?:\/\/.*(qq\.com|vgtime\.com|17gwx\.com|163\.com|xiaoheihe\.cn|wearemanner\.com|chaogejiaoyu\.com|smzdm\.com|alibaba\.com|juneyaoair\.com|ddxq\.mobi|mygolbs\.com|kkmh\.com|goofish\.com|xima.*\.com|diditaxi\.com\.cn),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/app-cleaner.js,script-update-interval=0
+# Batch 5: generic low-risk JSON ad-field cleaner for selected app endpoints.
+# The runner itself does exact URL dispatch and passes through unknown bodies unchanged.
+app-cleaner-active-json-clean = type=http-response,pattern=^https?:\/\/.*(qq\.com|vgtime\.com|17gwx\.com|163\.com|xiaoheihe\.cn|wearemanner\.com|chaogejiaoyu\.com|smzdm\.com|alibaba\.com|juneyaoair\.com|ddxq\.mobi|mygolbs\.com|kkmh\.com|goofish\.com|xima.*\.com|diditaxi\.com\.cn|coolapk\.com|meituan\.net|amap\.com|babytree\.com|mafengwo\.cn|gaoding\.com|pinduoduo\.com|qidian\.com|kuaishou\.com|shyhhema\.com|xunlei\.com|cainiao\.com|zhuanzhuan\.com|baidu\.com|haier\.net|xiaoyuzhoufm\.com|peiyinxiu\.com|jd\.com|reddit\.com|boohee\.com|360\.cn|taobao\.com|1314zhilv\.com|alicdn\.com|pipix\.com|8quan\.com|taou\.com|folidaymall\.com|tuhu\.cn|youdao\.com|ys7\.com|flyert|guiderank-app\.com|mi\.com|qbb6\.com|51cto\.com|ele\.me|duitang\.com|51job|myusmile|caixin\.com|yorentown\.com|seeyouyima\.com|miguvideo\.com|pupuapi\.com|qmai\.cn),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/app-cleaner.js,script-update-interval=0
 # Zhihu enhanced ad cleaner
 # Scope: native ad cards, promoted feed cards, recommendation ads and commercial fields only.
 # Boundary: no membership, payment, login, account identity or paid-content changes.
