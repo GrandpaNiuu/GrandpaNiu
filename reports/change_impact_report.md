@@ -1,48 +1,86 @@
 # 变更影响报告
 
-- 生成时间：2026-05-31 03:32:02 +0800
-- 说明：无 git 工作树时，本报告基于最近修改文件时间生成；如需精确变更，请结合提交 diff 人工确认。
+- 生成时间：2026-05-31 03:37:23 +0800
+- 变更识别模式：fallback 最近修改时间模式
 
 ## 本次修改文件
 
-- `docs/SCRIPT_REVIEW.md`
-- `docs/TESTING.md`
-- `docs/SCOPE.md`
-- `docs/QUALITY_GATE.md`
-- `docs/MAINTENANCE.md`
-- `docs/RELEASE.md`
-- `docs/VERSIONING.md`
-- `docs/TROUBLESHOOTING.md`
-- `docs/FACTORY_FLOW.md`
-- `docs/PERFORMANCE.md`
-- `docs/MITM_POLICY.md`
-- `docs/COVERAGE.md`
-- `Scripts/youtube.conf`
-- `Scripts/app-clean.conf`
-- `Scripts/spotify.conf`
-- `Scripts/zhihu-enhance.conf`
-- `Scripts/zhihu-enhance.js`
-- `Rules/youtube-direct.list`
-- `SECURITY.md`
-- `Rules/direct.list`
-- `Rules/spotify-direct.list`
-- `Rules/app-clean.list`
-- `Rules/reject.list`
-- `Rules/web-ads.list`
-- `Rewrite/Sources/URL-Rewrite.conf`
-- `Rewrite/Sources/Script.conf`
-- `Rewrite/Sources/Header-Rewrite.conf`
-- `Rewrite/Sources/Meta.conf`
-- `Rewrite/Sources/MITM.conf`
-- `Rewrite/Sources/Rule.conf`
+- `reports/app_coverage_matrix.md`
+- `reports/compat_migration_report.md`
+- `reports/daily_audit_report.md`
+- `reports/daily_update_report.md`
+- `reports/factory_finalize_report.md`
+- `reports/factory_refactor_report.md`
+- `reports/legacy_selected_migration_report.md`
+- `reports/manual_test_log.md`
+- `reports/module_factory_diff_report.md`
+- `reports/module_factory_report.md`
+- `reports/repository_cleanup_report.md`
+- `reports/repository_health_report.md`
+- `reports/upstream_collect_report.md`
+- `reports/workflow_health_report.md`
+- `reports/zhihu_enhance_report.md`
+- `scripts/audit_and_repair_module.py`
+- `scripts/audit_compat_sources.py`
+- `scripts/audit_repair_invalid_sources.py`
+- `scripts/build_module.py`
+- `scripts/collect_upstreams.py`
+- `scripts/factory_finalize.py`
+- `scripts/generate_app_coverage_matrix.py`
+- `scripts/generate_change_impact_report.py`
+- `scripts/generate_workflow_health_report.py`
+- `scripts/migrate_legacy_selected_rules.py`
+- `scripts/repository_health_check.py`
+- `scripts/safe_refine_module.py`
+- `scripts/split_mitm_sources.py`
+- `scripts/validate_profiles.py`
+- `scripts/validate_repository.py`
+
+## 新增文件
+
+- 无
+
+## 删除文件
+
+- 无
+
+## 修改文件
+
+- `reports/app_coverage_matrix.md`
+- `reports/compat_migration_report.md`
+- `reports/factory_finalize_report.md`
+- `reports/module_factory_report.md`
+- `reports/module_factory_diff_report.md`
+- `scripts/audit_compat_sources.py`
+- `scripts/validate_repository.py`
+- `scripts/split_mitm_sources.py`
+- `scripts/safe_refine_module.py`
+- `scripts/generate_app_coverage_matrix.py`
+- `scripts/audit_repair_invalid_sources.py`
+- `scripts/build_module.py`
+- `scripts/generate_workflow_health_report.py`
+- `scripts/migrate_legacy_selected_rules.py`
+- `scripts/generate_change_impact_report.py`
+- `scripts/collect_upstreams.py`
+- `scripts/factory_finalize.py`
+- `scripts/validate_profiles.py`
+- `scripts/repository_health_check.py`
+- `reports/workflow_health_report.md`
+- `reports/zhihu_enhance_report.md`
+- `reports/manual_test_log.md`
+- `reports/daily_audit_report.md`
+- `reports/factory_refactor_report.md`
+- `scripts/audit_and_repair_module.py`
+- `reports/repository_health_report.md`
+- `reports/upstream_collect_report.md`
+- `reports/repository_cleanup_report.md`
+- `reports/daily_update_report.md`
+- `reports/legacy_selected_migration_report.md`
 
 ## 影响的模块层
 
-- MITM
 - README/docs
-- Rewrite/Sources
-- Rules
-- Scripts
+- Scripts/maintenance
 
 ## 可能影响的 App
 
@@ -75,12 +113,12 @@
 
 - 是否涉及脚本：是
 - 是否涉及 MITM：是
-- 是否涉及 Body Rewrite：否
-- 是否涉及远程规则源：否
+- 是否涉及 Body Rewrite：是
+- 是否涉及远程规则源：是
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
 - 是否需要测试知乎：是
-- 是否需要测试登录/支付/验证码：是
+- 是否需要测试登录/支付/验证码：按需
 
 ## 回滚建议
 
