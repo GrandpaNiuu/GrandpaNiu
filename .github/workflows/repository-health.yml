@@ -11,6 +11,7 @@ on:
     paths:
       - "scripts/validate_repository.py"
       - "scripts/repository_health_check.py"
+      - "scripts/build_release_variants.py"
       - "scripts/audit_compat_sources.py"
       - "scripts/split_mitm_sources.py"
       - "scripts/validate_profiles.py"
@@ -20,6 +21,7 @@ on:
       - "SECURITY.md"
       - "LICENSE"
       - "CONTRIBUTING.md"
+      - "README.md"
       - "docs/TESTING.md"
       - "docs/SCRIPT_REVIEW.md"
       - "docs/MITM_POLICY.md"
@@ -27,6 +29,8 @@ on:
       - "docs/QUALITY_GATE.md"
       - "docs/RELEASE.md"
       - "docs/PERFORMANCE.md"
+      - "docs/ROADMAP.md"
+      - "docs/PROFILE_POLICY.md"
       - "Rewrite/Profiles/**"
       - "Rewrite/Sources/MITM*.conf"
       - ".github/workflows/repository-health.yml"
@@ -50,13 +54,16 @@ jobs:
 
       - name: Compile maintenance scripts
         run: |
-          python3 -m py_compile scripts/build_module.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/repository_health_check.py scripts/audit_compat_sources.py scripts/split_mitm_sources.py scripts/validate_profiles.py scripts/generate_app_coverage_matrix.py scripts/generate_change_impact_report.py scripts/generate_workflow_health_report.py
+          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/repository_health_check.py scripts/audit_compat_sources.py scripts/split_mitm_sources.py scripts/validate_profiles.py scripts/generate_app_coverage_matrix.py scripts/generate_change_impact_report.py scripts/generate_workflow_health_report.py
 
       - name: Build stable module
         run: python3 scripts/build_module.py --build --profile stable
 
       - name: Sync root module
         run: python3 scripts/factory_finalize.py --sync-root
+
+      - name: Build independent release variants
+        run: python3 scripts/build_release_variants.py
 
       - name: Validate repository
         run: python3 scripts/validate_repository.py
@@ -66,6 +73,9 @@ jobs:
 
       - name: Generate MITM split report
         run: python3 scripts/split_mitm_sources.py
+
+      - name: Rebuild independent release variants after MITM split
+        run: python3 scripts/build_release_variants.py
 
       - name: Validate profiles
         run: python3 scripts/validate_profiles.py
@@ -88,16 +98,17 @@ jobs:
         run: |
           python3 scripts/build_module.py --build --profile stable
           python3 scripts/factory_finalize.py --sync-root
+          python3 scripts/build_release_variants.py
           python3 scripts/validate_repository.py
 
       - name: Commit repository health report
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Rewrite/Sources/MITM-core.conf Rewrite/Sources/MITM-app-clean.conf Rewrite/Sources/MITM-extended.conf reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/repository_health_report.md reports/compat_migration_report.md reports/mitm_split_report.md reports/profile_validation_report.md reports/app_coverage_matrix.md reports/change_impact_report.md reports/workflow_health_report.md reports/manual_test_log.md
+          git add Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule Rewrite/Sources/MITM-core.conf Rewrite/Sources/MITM-app-clean.conf Rewrite/Sources/MITM-stable-plus.conf Rewrite/Sources/MITM-extended.conf reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/repository_health_report.md reports/compat_migration_report.md reports/mitm_split_report.md reports/profile_validation_report.md reports/app_coverage_matrix.md reports/change_impact_report.md reports/workflow_health_report.md reports/manual_test_log.md
           if git diff --cached --quiet; then
             echo "No repository health changes to commit."
             exit 0
           fi
-          git commit -m "Update repository health report"
+          git commit -m "Update repository health and multi-version reports"
           git push
