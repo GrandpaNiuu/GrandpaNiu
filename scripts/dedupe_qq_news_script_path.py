@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Remove the redundant QQ News legacy script entry.
+"""Migrate QQ News and VGTime old entries to app-cleaner active.
 
-The retained entry `cmp_block_097_ad` uses the same script-path and has broader
-coverage than `legacy_safe_qqnews`, so removing the legacy line reduces one
-script entry without reducing URL coverage.
+This script removes only the old entries now covered by Scripts/app-cleaner.js:
+- cmp_block_097_ad        QQ News upstream app2smile
+- cmp_allad_046_txnews    QQ News upstream zirawell fork
+- cmp_block_098_vgtime    VGTime upstream app2smile
+
+It does not touch Spotify, YouTube, Zhihu, Tieba JSON/proto, login, payment,
+captcha, or bank-related entries.
 """
 
 from __future__ import annotations
@@ -14,9 +18,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 APP_CLEAN = ROOT / "Scripts" / "app-clean.conf"
 REPORT = ROOT / "reports" / "script_dedupe_report.md"
-LEGACY_NAME = "legacy_safe_qqnews"
-RETAINED_NAME = "cmp_block_097_ad"
-SCRIPT_PATH = "https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js"
+ROLLBACK = ROOT / "reports" / "script_consolidation_rollback_report.md"
+ACTIVE_ENTRY = ROOT / "Scripts" / "app-cleaner-active.conf"
+REMOVED_NAMES = {
+    "cmp_block_097_ad": "QQ News app2smile entry",
+    "cmp_allad_046_txnews": "QQ News zirawell entry",
+    "cmp_block_098_vgtime": "VGTime app2smile entry",
+}
 
 
 def read(path: Path) -> str:
@@ -28,18 +36,25 @@ def write(path: Path, text: str) -> None:
     path.write_text(text, encoding="utf-8", newline="\n")
 
 
+def script_name(line: str) -> str:
+    if "=" not in line:
+        return ""
+    return line.split("=", 1)[0].strip()
+
+
 def main() -> None:
     original = read(APP_CLEAN)
-    lines = original.splitlines()
-    removed: list[str] = []
+    active = read(ACTIVE_ENTRY)
+    if "app-cleaner-active-qqnews-vgtime" not in active:
+        raise SystemExit("Active app-cleaner entry missing: Scripts/app-cleaner-active.conf")
+    if "app-cleaner.js" not in active:
+        raise SystemExit("Active app-cleaner entry does not point to Scripts/app-cleaner.js")
+
     kept: list[str] = []
-    retained_present = any(line.startswith(f"{RETAINED_NAME} =") and SCRIPT_PATH in line for line in lines)
-
-    if not retained_present:
-        raise SystemExit(f"Retained QQ News entry missing or wrong script-path: {RETAINED_NAME}")
-
-    for line in lines:
-        if line.startswith(f"{LEGACY_NAME} =") and SCRIPT_PATH in line:
+    removed: list[str] = []
+    for line in original.splitlines():
+        name = script_name(line)
+        if name in REMOVED_NAMES:
             removed.append(line)
             continue
         kept.append(line)
@@ -49,25 +64,82 @@ def main() -> None:
 
     now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
     report = [
-        "# 脚本去重报告",
+        "# 脚本去重与 app-cleaner active 迁移报告",
         "",
         f"生成时间：{now}",
         "",
-        "## QQ News script-path 去重",
+        "## 本次迁移",
         "",
-        f"- 保留入口：`{RETAINED_NAME}`",
-        f"- 移除入口：`{LEGACY_NAME}`" if removed else f"- 移除入口：无，`{LEGACY_NAME}` 已不存在",
-        f"- script-path：`{SCRIPT_PATH}`",
-        "- 功能判断：保留入口覆盖 `legacy_safe_qqnews` 的 URL 范围，并额外覆盖 `gw/page/event_detail`。",
-        "- 操作类型：去重，不是功能删除。",
-        "- 后续要求：重新构建四个 Release 版本，并运行 validate_repository.py / validate_profiles.py。",
+        "- 迁移范围：QQ News + VGTime",
+        "- 新承接入口：`Scripts/app-cleaner-active.conf` / `app-cleaner-active-qqnews-vgtime`",
+        "- 新承接脚本：`Scripts/app-cleaner.js`",
+        f"- 移除旧入口数量：{len(removed)}",
+        "- 新增 active 入口数量：1",
+        f"- 净减少脚本入口：{max(len(removed) - 1, 0)}",
+        "- 目标：Stable 脚本数从 104 降到 102。",
         "",
-        "## 被移除的原始行",
+        "## 移除的旧入口",
         "",
     ]
-    report += [f"```text\n{line}\n```" for line in removed] if removed else ["- 无"]
-    write(REPORT, "\n".join(report) + "\n")
-    print(f"QQ News dedupe complete. removed={len(removed)}")
+    if removed:
+        for line in removed:
+            name = script_name(line)
+            report += [f"### `{name}`", "", f"- 说明：{REMOVED_NAMES.get(name, '旧入口')}", "", "```text", line, "```", ""]
+    else:
+        report.append("- 无，旧入口已不存在。")
+    report += [
+        "",
+        "## 不变范围",
+        "",
+        "- 不动 Spotify。",
+        "- 不动 YouTube。",
+        "- 不动知乎增强。",
+        "- 不动 Tieba JSON / proto。",
+        "- 不动登录、支付、验证码、银行相关条目。",
+        "",
+    ]
+    write(REPORT, "\n".join(report).rstrip() + "\n")
+
+    rollback = [
+        "# 脚本瘦身回滚报告",
+        "",
+        f"生成时间：{now}",
+        "",
+        "## 回滚条件",
+        "",
+        "如果 QQ News 或 VGTime 在 Stable 中出现页面异常、广告残留加重、JSON 解析异常、加载失败，应回滚本次迁移。",
+        "",
+        "## 回滚步骤",
+        "",
+        "1. 从 `Rewrite/Profiles/stable.conf` 移除 `app_cleaner_active = Scripts/app-cleaner-active.conf`。",
+        "2. 从 `Rewrite/Profiles/stable-plus.conf` 移除 `app_cleaner_active = Scripts/app-cleaner-active.conf`。",
+        "3. 将下方旧入口恢复到 `Scripts/app-clean.conf`。",
+        "4. 重新运行 build / finalize / build_release_variants / validate。",
+        "",
+        "## 需要恢复的旧入口",
+        "",
+    ]
+    if removed:
+        for line in removed:
+            rollback += ["```text", line, "```", ""]
+    else:
+        rollback.append("- 当前脚本运行时没有新移除旧入口；如需回滚，请从 Git 历史恢复旧入口。")
+    rollback += [
+        "",
+        "## 验证命令",
+        "",
+        "```bash",
+        "python3 scripts/build_module.py --build --profile stable",
+        "python3 scripts/factory_finalize.py --sync-root",
+        "python3 scripts/build_release_variants.py",
+        "python3 scripts/validate_repository.py",
+        "python3 scripts/validate_profiles.py",
+        "python3 scripts/repository_health_check.py",
+        "```",
+        "",
+    ]
+    write(ROLLBACK, "\n".join(rollback).rstrip() + "\n")
+    print(f"QQ News/VGTime active migration complete. removed={len(removed)}")
 
 
 if __name__ == "__main__":
