@@ -4,10 +4,10 @@
 - source_rule_compat 当前是否开启：是
 - source_script_compat 当前是否开启：是
 - Rule.conf 行数：523
-- Script.conf 行数：199
+- Script.conf 行数：195
 - 已迁移规则数量：492
 - 未迁移规则数量：0
-- 已迁移脚本数量：89
+- 已迁移脚本数量：85
 - 未迁移脚本数量：0
 - 建议下一步是否可以关闭 compat：可以，但必须构建验证并手动测试
 - 关闭 compat 后 Root / Release 是否一致：需运行 Module Factory Build 后确认

@@ -3,8 +3,8 @@
 - 日期：2026-05-31
 - 构建 profile：stable
 - 是否从 root 反拆：否
-- 构建阶段 Root/Release 是否一致：否
-- Release 行数：2844
+- 构建阶段 Root/Release 是否一致：是
+- Release 行数：2840
 - Release MITM hostname 数量：120
 
 ## 源文件统计
@@ -13,7 +13,7 @@
 - Header Rewrite: 5 行
 - Body Rewrite: 456 行
 - Map Local: 16 行
-- Script: 199 行
+- Script: 195 行
 - MITM: 2 行
 
 ## 构建输入
