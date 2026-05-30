@@ -3,8 +3,9 @@
 - 日期：2026-05-31
 - 构建 profile：stable
 - 是否从 root 反拆：否
-- 构建阶段 Root/Release 是否一致：是
-- Release 行数：2847
+- 构建阶段 Root/Release 是否一致：否
+- Release 行数：2849
+- Release MITM hostname 数量：120
 
 ## 源文件统计
 - Rule: 523 行
@@ -21,6 +22,7 @@
 - Rules/: DIRECT、Spotify、YouTube、本地 App、网页和 Reject 规则片段
 - Scripts/: Spotify、YouTube、知乎和 App-clean 脚本片段
 - Rewrite/Sources/: Meta、Rewrite、Body Rewrite、Map Local、MITM 和兼容片段
+- [mitm] profile 可选择 MITM-core / MITM-app-clean / MITM-extended 分层输入；stable 默认不直接吃 extended 层。
 
 ## 重复检查
 - 重复脚本名：无
