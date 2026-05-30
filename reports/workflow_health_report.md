@@ -1,6 +1,6 @@
 # Workflow 健康报告
 
-- 生成时间：2026-05-31 05:38:44 +0800
+- 生成时间：2026-05-31 05:42:19 +0800
 - 状态模式：GitHub API 真实状态模式
 
 | Workflow | 用途 | 触发方式 | 最近运行时间 | 最近状态 | 结论 | 失败 Job | 失败 Step | 对应 commit | 失败时优先排查 |
@@ -9,7 +9,7 @@
 | Daily Module Update | 每日日期、结构、链接和验证检查 | 手动 / 定时 / push | 2026-05-30T21:37:17Z | completed / cancelled | 需要检查 | 无 | 无 | 89096c5c2ac8 | 核心标记、远程链接、validate_repository.py 输出 |
 | Daily invalid source audit and repair | 连续失效源审计和安全处理 | 手动 / 定时 | 2026-05-30T21:03:54Z | completed / success | 正常 | 无 | 无 | 010e36310891 | GitHub 网络、history 计数、保护项、误判 404 |
 | Upstream candidate collect | 每周可信候选源收集 | 手动 / 定时 | 2026-05-30T21:23:58Z | completed / success | 正常 | 无 | 无 | ede5791dc1a7 | candidates.json、风险词、重复源、trusted_repositories |
-| Repository Health Check | 仓库治理健康检查 | 手动 / 定时 / push | 2026-05-30T21:38:41Z | in_progress / running | 需要检查 | 无 | 无 | f46f047a3546 | 缺失治理文件、README 链接、重复脚本、重复 MITM |
+| Repository Health Check | 仓库治理健康检查 | 手动 / 定时 / push | 2026-05-30T21:42:16Z | in_progress / running | 需要检查 | 无 | 无 | f03da6f66f58 | 缺失治理文件、README 链接、重复脚本、重复 MITM |
 
 ## 说明
 
