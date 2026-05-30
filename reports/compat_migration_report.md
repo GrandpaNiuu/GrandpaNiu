@@ -7,8 +7,8 @@
 - Script.conf 行数：213
 - 已迁移规则数量：492
 - 未迁移规则数量：0
-- 已迁移脚本数量：102
-- 未迁移脚本数量：1
+- 已迁移脚本数量：99
+- 未迁移脚本数量：4
 - 建议下一步是否可以关闭 compat：暂不建议
 - 关闭 compat 后 Root / Release 是否一致：需运行 Module Factory Build 后确认
 
@@ -18,7 +18,10 @@
 
 ## 未迁移脚本
 
+- `cmp_block_097_ad`
+- `cmp_block_098_vgtime`
 - `legacy_safe_qqnews`
+- `cmp_allad_046_txnews`
 
 ## 风险说明
 
