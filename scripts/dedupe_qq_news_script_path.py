@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Migrate low-risk JSON cleaners to app-cleaner active.
+"""Migrate low-risk cleaners to app-cleaner active.
 
 This script removes only old entries now covered by Scripts/app-cleaner.js.
 
 Batch 1: QQ News, VGTime.
 Batch 2: SQKB, 163News, XiaoHeiHe, Manner, Chaoge.
 Batch 3: SMZDM, Taobao, JuneYaoAir, DDXQ, ZSGJ.
+Batch 4: KKMH, Goofish, XMly, Didi.
 
 It applies the same cleanup to Scripts/app-clean.conf and Rewrite/Sources/Script.conf
 so source_script_compat does not reintroduce old entries during builds.
@@ -39,6 +40,10 @@ REMOVED_NAMES = {
     "cmp_allad_016_juneyaoair": "JuneYaoAir popup cleaner",
     "cmp_allad_020_ddxq": "DDXQ user page cleaner",
     "cmp_allad_021_mygolbs": "ZSGJ text replacement cleaner",
+    "cmp_allad_002_kkmh": "KKMH JSON cleaner",
+    "cmp_allad_008_goofish": "Goofish JSON cleaner",
+    "cmp_allad_009_xmly": "XMly JSON cleaner",
+    "cmp_allad_010_didi": "Didi JSON cleaner",
 }
 PROTECTED_NAMES = {
     "spotify-json",
@@ -48,6 +53,11 @@ PROTECTED_NAMES = {
     "cmp_block_084_json",
     "cmp_block_085_proto",
     "cmp_allad_019_zhihu",
+    "cmp_allad_007_cotti",
+    "cmp_allad_012_dushu365",
+    "cmp_allad_017_xiaohongshu",
+    "cmp_allad_025_rrtv",
+    "cmp_allad_026_163music",
 }
 
 
@@ -98,7 +108,7 @@ def main() -> None:
     now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
     total_removed = sum(len(items) for items in removed_by_file.values())
     app_clean_removed = len(removed_by_file.get("Scripts/app-clean.conf", []))
-    expected_batch_names = [name for name in REMOVED_NAMES if not name.startswith("legacy_")]
+    planned = [name for name in REMOVED_NAMES if not name.startswith("legacy_")]
 
     report = [
         "# 脚本去重与 app-cleaner active 迁移报告",
@@ -107,10 +117,10 @@ def main() -> None:
         "",
         "## 本次迁移",
         "",
-        "- 迁移范围：QQ News、VGTime、SQKB、163News、小黑盒、Manner、超格教育、SMZDM、淘宝、吉祥航空、叮咚买菜、掌上公交",
+        "- 迁移范围：QQ News、VGTime、SQKB、163News、小黑盒、Manner、超格教育、SMZDM、淘宝、吉祥航空、叮咚买菜、掌上公交、快看漫画、闲鱼、喜马拉雅、滴滴",
         "- 新承接入口：`Scripts/app-cleaner-active.conf` / `app-cleaner-active-json-clean`",
         "- 新承接脚本：`Scripts/app-cleaner.js`",
-        f"- 计划替换旧入口数量：{len(expected_batch_names)}",
+        f"- 计划替换旧入口数量：{len(planned)}",
         f"- Scripts/app-clean.conf 本次移除旧入口数量：{app_clean_removed}",
         f"- 所有源文件合计本次移除旧入口数量：{total_removed}",
         "- 新增 active 入口数量：1",
@@ -126,8 +136,7 @@ def main() -> None:
                 name = script_name(line)
                 report += [f"#### `{name}`", "", f"- 说明：{REMOVED_NAMES.get(name, '旧入口')}", "", "```text", line, "```", ""]
         else:
-            report.append("- 无，目标旧入口已不存在。")
-            report.append("")
+            report += ["- 无，目标旧入口已不存在。", ""]
     report += [
         "## 不变范围",
         "",
@@ -135,6 +144,7 @@ def main() -> None:
         "- 不动 YouTube。",
         "- 不动知乎增强与知乎 R-Store 条目。",
         "- 不动 Tieba JSON / proto。",
+        "- 不动小红书、Cotti、RRTV、网易云音乐等复杂脚本。",
         "- 不动登录、支付、验证码、银行相关条目。",
         "- 不合并复杂加密、持久化配置、会员权益、binary-body 脚本。",
         "",
@@ -166,8 +176,7 @@ def main() -> None:
             for line in removed:
                 rollback += ["```text", line, "```", ""]
         else:
-            rollback.append("- 当前脚本运行时没有新移除旧入口；如需回滚，请从 Git 历史恢复旧入口。")
-            rollback.append("")
+            rollback += ["- 当前脚本运行时没有新移除旧入口；如需回滚，请从 Git 历史恢复旧入口。", ""]
     rollback += [
         "## 验证命令",
         "",
