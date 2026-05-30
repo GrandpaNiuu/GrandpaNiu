@@ -1,6 +1,6 @@
 # 脚本瘦身回滚报告
 
-生成时间：2026-05-31 07:03:08 +0800
+生成时间：2026-05-31 07:10:59 +0800
 
 ## 回滚条件
 
@@ -17,47 +17,11 @@
 
 ### `Scripts/app-clean.conf`
 
-```text
-cmp_allad_011_sqkb = type=http-response,pattern=^https?:\/\/api\.17gwx\.com\/v\d\/history\/remind\/listV,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/sqkb.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_015_163news = type=http-response,pattern=^https?:\/\/gw\.m\.163\.com\/nc\/api\/v\d\/search\/hot-word,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163news.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_022_xiaoheihe = type=http-response,pattern=^https?:\/\/api\.xiaoheihe\.cn\/bbs\/app\/feeds\/news,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xiaoheihe.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_043_manner = type=http-response,pattern=^https?:\/\/triangle\.wearemanner\.com\/mp-api\/v\d\/ads,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/manner.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_044_chaoge = type=http-response,pattern=^https?:\/\/mapi\.chaogejiaoyu\.com\/api\/outline\/getAppBanner,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/chaoge.js,script-update-interval=86400
-```
+- 当前脚本运行时没有新移除旧入口；如需回滚，请从 Git 历史恢复旧入口。
 
 ### `Rewrite/Sources/Script.conf`
 
-```text
-cmp_allad_011_sqkb = type=http-response,pattern=^https?:\/\/api\.17gwx\.com\/v\d\/history\/remind\/listV,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/sqkb.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_015_163news = type=http-response,pattern=^https?:\/\/gw\.m\.163\.com\/nc\/api\/v\d\/search\/hot-word,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163news.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_022_xiaoheihe = type=http-response,pattern=^https?:\/\/api\.xiaoheihe\.cn\/bbs\/app\/feeds\/news,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xiaoheihe.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_043_manner = type=http-response,pattern=^https?:\/\/triangle\.wearemanner\.com\/mp-api\/v\d\/ads,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/manner.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_044_chaoge = type=http-response,pattern=^https?:\/\/mapi\.chaogejiaoyu\.com\/api\/outline\/getAppBanner,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/chaoge.js,script-update-interval=86400
-```
+- 当前脚本运行时没有新移除旧入口；如需回滚，请从 Git 历史恢复旧入口。
 
 ## 验证命令
 
