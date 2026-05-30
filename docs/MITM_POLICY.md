@@ -1,54 +1,60 @@
-# MITM Policy
+# MITM 策略
 
-The current MITM hostname list is already large. Growth must be controlled and documented.
+当前模块的 MITM hostname 数量已经较大。后续维护重点不是继续扩大 MITM，而是控制增长、记录来源、分层管理、降低误伤。
 
-## Hostname Levels
+## 分层原则
 
 ### core
 
-Core hostnames support protected high-value features:
+核心层只保留高价值、必须保护的功能域名：
 
-- Spotify playback protection.
-- YouTube Enhance.
-- Zhihu cleanup and enhancement.
+- Spotify 播放保护。
+- YouTube Enhance。
+- 知乎增强净化。
+- 其他必须依赖 HTTPS 解密才能稳定运行的核心脚本。
 
-Core entries must be preserved and tested after changes.
+core 层变更后必须测试 Spotify、YouTube、知乎。
 
 ### app-clean
 
-App-clean hostnames support common App cleanup for feeds, banners, popups, splash screens, and activity cards.
+App 净化层用于常见 App 的广告净化，包括信息流、开屏、弹窗、横幅和活动卡片。
 
-These entries require App-specific reasons and manual testing.
+这类 hostname 必须有明确 App、明确接口用途和手动测试计划。
 
 ### extended
 
-Extended hostnames are low-frequency App or high-risk testing entries.
+扩展层用于低频 App、实验项或高风险观察项。
 
-They should not be added to stable without a clear test plan.
+extended 不应默认进入稳定发布版本。需要更广覆盖时，只在 full profile 中测试。
 
 ### blocked
 
-Do not add MITM for:
+禁止为以下对象新增 MITM：
 
-- Banking.
-- Payment.
-- Verification code.
-- Login.
-- Certificate pinning or certificate validation.
-- Account security.
-- WeChat Pay, Alipay, and similar sensitive flows.
+```text
+银行
+支付
+验证码
+登录
+证书校验
+账号安全
+微信支付
+支付宝支付
+Cookie / Token / 账号状态接口
+```
 
-## Rules
+## 新增 MITM 规则
 
-- Do not append broad `*` wildcards without a documented reason.
-- Prefer exact hostnames over suffix wildcards.
-- If login or payment breaks, check MITM first.
-- If a hostname is only needed for a test, keep it out of stable or document it as extended.
-- Every new MITM hostname should include source context and affected App.
+- 不允许无说明地追加通配符。
+- 优先使用精确 hostname，而不是整域通配。
+- 新增 hostname 必须写清影响 App、来源、用途和回滚方式。
+- 只为广告净化、脚本响应体处理或明确必要接口启用 MITM。
+- 如果登录、支付、验证码异常，优先检查 MITM。
+- 临时测试 hostname 应进入 extended，不应直接进入 stable。
 
-## Future Split Plan
+## 未来拆分计划
 
-The repository may later split MITM into:
+建议后续将 MITM 拆为：
 
 ```text
 Rewrite/Sources/MITM-core.conf
@@ -56,4 +62,21 @@ Rewrite/Sources/MITM-app-clean.conf
 Rewrite/Sources/MITM-extended.conf
 ```
 
-This document only defines policy for now. It does not split existing files.
+Profile 建议：
+
+```text
+lite   = core
+stable = core + app-clean
+full   = core + app-clean + extended
+```
+
+在正式拆分前，必须生成 `reports/mitm_split_report.md`，确认没有重复 hostname，没有支付/登录/验证码/银行相关 hostname 被错误加入稳定层。
+
+## 回滚
+
+如果 MITM 改动导致异常：
+
+1. 先关闭最近新增的 MITM hostname。
+2. 再回滚对应脚本或 rewrite。
+3. 不要直接删除 Spotify、YouTube、知乎核心 hostname。
+4. 重新构建并运行 `validate_repository.py` 与 `repository_health_check.py`。
