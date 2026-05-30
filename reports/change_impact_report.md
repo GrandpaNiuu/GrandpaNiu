@@ -1,49 +1,48 @@
 # 变更影响报告
 
-- 生成时间：2026-05-30 09:10:47 +0800
+- 生成时间：2026-05-30 09:14:54 +0800
 - 说明：无 git 工作树时，本报告基于最近修改文件时间生成；如需精确变更，请结合提交 diff 人工确认。
 
 ## 本次修改文件
 
-- `CONTRIBUTING.md`
-- `README.md`
-- `Rewrite/Remotes/candidates.json`
-- `.github/workflows/repository-health.yml`
-- `CHANGELOG.md`
-- `docs/RELEASE.md`
 - `docs/PERFORMANCE.md`
-- `docs/MAINTENANCE.md`
-- `docs/FACTORY_FLOW.md`
 - `docs/VERSIONING.md`
-- `docs/MITM_POLICY.md`
-- `docs/SCRIPT_REVIEW.md`
-- `SECURITY.md`
-- `Rewrite/Profiles/full.conf`
-- `Rewrite/Profiles/lite.conf`
-- `Rewrite/Profiles/stable.conf`
-- `.github/workflows/daily-module-update.yml`
-- `docs/TROUBLESHOOTING.md`
-- `docs/SCOPE.md`
 - `docs/QUALITY_GATE.md`
+- `docs/FACTORY_FLOW.md`
+- `docs/RELEASE.md`
+- `docs/SCRIPT_REVIEW.md`
+- `docs/SCOPE.md`
+- `docs/MITM_POLICY.md`
+- `docs/MAINTENANCE.md`
+- `docs/TROUBLESHOOTING.md`
 - `docs/COVERAGE.md`
-- `scripts/zhihu-enhance.js`
-- `scripts/zhihu-enhance.conf`
-- `scripts/youtube.conf`
-- `scripts/spotify.conf`
-- `scripts/app-clean.conf`
-- `Rules/youtube-direct.list`
+- `Scripts/spotify.conf`
+- `Scripts/youtube.conf`
+- `Scripts/zhihu-enhance.js`
+- `Scripts/zhihu-enhance.conf`
+- `Scripts/app-clean.conf`
+- `Rules/app-clean.list`
 - `Rules/web-ads.list`
 - `Rules/spotify-direct.list`
+- `Rules/youtube-direct.list`
+- `Rules/direct.list`
+- `SECURITY.md`
 - `Rules/reject.list`
+- `Rewrite/Sources/URL-Rewrite.conf`
+- `Rewrite/Sources/Body-Rewrite.conf`
+- `Rewrite/Sources/Map-Local.conf`
+- `Rewrite/Sources/Rule.conf`
+- `Rewrite/Sources/Script.conf`
+- `Rewrite/Sources/MITM.conf`
+- `Rewrite/Sources/Meta.conf`
 
 ## 影响的模块层
 
-- Other
-- Profiles
+- MITM
 - README/docs
-- Remotes
+- Rewrite/Sources
 - Rules
-- Workflows
+- Scripts
 
 ## 可能影响的 App
 
@@ -74,14 +73,14 @@
 
 ## 风险判断
 
-- 是否涉及脚本：否
-- 是否涉及 MITM：否
-- 是否涉及 Body Rewrite：否
-- 是否涉及远程规则源：是
+- 是否涉及脚本：是
+- 是否涉及 MITM：是
+- 是否涉及 Body Rewrite：是
+- 是否涉及远程规则源：否
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
 - 是否需要测试知乎：是
-- 是否需要测试登录/支付/验证码：按需
+- 是否需要测试登录/支付/验证码：是
 
 ## 回滚建议
 
