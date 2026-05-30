@@ -30,6 +30,23 @@ REQUIRED_MARKERS = (
     "zhihu-enhance",
     EXPECTED_UPDATE_URL,
 )
+REQUIRED_GOVERNANCE_FILES = (
+    "SECURITY.md",
+    "LICENSE",
+    "CONTRIBUTING.md",
+    "docs/SCRIPT_REVIEW.md",
+    "docs/MITM_POLICY.md",
+    "docs/VERSIONING.md",
+    "Rewrite/Profiles/full.conf",
+    "backup/manifest.json",
+)
+REQUIRED_WORKFLOWS = (
+    ".github/workflows/module-factory-build.yml",
+    ".github/workflows/daily-module-update.yml",
+    ".github/workflows/daily-invalid-source-repair.yml",
+    ".github/workflows/upstream-collect.yml",
+    ".github/workflows/repository-health.yml",
+)
 ALLOWED_REMOTE_TYPES = {"RULE-SET", "DOMAIN-SET"}
 ALLOWED_POLICIES = {"REJECT", "REJECT-DROP", "DIRECT"}
 BLOCKED_URL_TOKENS = ("ghproxy", "mirror", "tinyurl", "bit.ly", "t.co/", "shorturl")
@@ -117,6 +134,8 @@ def validate_remote_schema() -> None:
             fail(f"candidates.json candidates[{index}] must use https: {url}")
         if any(token in url.lower() for token in BLOCKED_URL_TOKENS):
             fail(f"candidates.json candidates[{index}] uses blocked host/token: {url}")
+        if item.get("kind") == "script" and (item.get("enabled") is True or item.get("status") != "pending"):
+            fail(f"script candidate must stay disabled and pending: {item.get('name', index)}")
 
 
 def validate_scripts() -> None:
@@ -238,6 +257,48 @@ def validate_no_tool_traces() -> None:
                 fail(f"tool trace token found in {path.relative_to(ROOT)}: {token}")
 
 
+def validate_governance_files() -> None:
+    for relative in REQUIRED_GOVERNANCE_FILES:
+        path = ROOT / relative
+        if not path.exists():
+            fail(f"required governance file missing: {relative}")
+
+    manifest = read_json(ROOT / "backup" / "manifest.json")
+    if not isinstance(manifest, list):
+        fail("backup/manifest.json must be a list")
+    for item in manifest:
+        file_name = item.get("file")
+        if file_name and item.get("exists", True) is True and not (ROOT / file_name).exists():
+            fail(f"backup manifest references missing backup: {file_name}")
+
+    full_profile = read_text(ROOT / "Rewrite" / "Profiles" / "full.conf")
+    if "name = full" not in full_profile or "profile_role = full_testing_only" not in full_profile:
+        fail("Rewrite/Profiles/full.conf must be marked as a non-default full testing profile")
+
+
+def validate_workflows() -> None:
+    for relative in REQUIRED_WORKFLOWS:
+        path = ROOT / relative
+        if not path.exists():
+            fail(f"required workflow missing: {relative}")
+        text = read_text(path)
+        if "contents: write" not in text:
+            fail(f"workflow must declare contents: write: {relative}")
+        if "concurrency:" not in text:
+            fail(f"workflow must declare concurrency: {relative}")
+
+    factory_workflow = read_text(ROOT / ".github" / "workflows" / "module-factory-build.yml")
+    if "--profile stable" not in factory_workflow:
+        fail("module-factory-build workflow must use the stable profile by default")
+    if "--profile full" in factory_workflow:
+        fail("module-factory-build workflow must not default to the full profile")
+
+    daily_workflow = read_text(ROOT / ".github" / "workflows" / "daily-module-update.yml")
+    for token in ("[URL Rewrite]", "[Header Rewrite]", "[Body Rewrite]", "[Map Local]", "zhihu-enhance", "zhihu-enhance.js", "validate_repository.py"):
+        if token not in daily_workflow:
+            fail(f"daily-module-update workflow missing validation token: {token}")
+
+
 def main() -> None:
     validate_root_release()
     validate_remote_schema()
@@ -247,6 +308,8 @@ def main() -> None:
     validate_mitm()
     validate_readme_links()
     validate_no_tool_traces()
+    validate_governance_files()
+    validate_workflows()
     print("Repository validation passed.")
 
 

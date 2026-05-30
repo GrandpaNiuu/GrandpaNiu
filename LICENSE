@@ -1,0 +1,34 @@
+Personal Use Notice
+
+This repository is a personal collection of configuration, rules, scripts,
+documentation, reports, and maintenance utilities for the author's own
+Shadowrocket / Surge usage.
+
+Permitted use:
+
+- Learning from the repository structure.
+- Backing up personal configuration ideas.
+- Using the content on personal devices at your own risk.
+
+Limitations:
+
+- No commercial license is granted.
+- No warranty is provided.
+- Third-party Apps, websites, upstream rules, and upstream scripts may change,
+  disappear, or stop working at any time.
+- Users are responsible for all risks from importing, modifying, or reusing
+  this repository.
+
+Forbidden use:
+
+- Membership or Premium bypass.
+- Payment bypass.
+- Login bypass.
+- Account entitlement spoofing.
+- Certificate bypass.
+- Cookie, Token, or BoxJS account tasks.
+- Adult, gambling, gray-market, or illegal usage.
+- Repackaging this repository as a cracking, unlock, or bypass tool.
+
+Third-party upstream rules and scripts keep their own upstream licenses and
+terms. This notice does not grant rights for those third-party works.

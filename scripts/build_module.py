@@ -295,38 +295,38 @@ def make_report(release_text: str, extracted: bool, profile: str) -> str:
     for section in SECTION_ORDER:
         path = source_file(section)
         count = len(read_text(path, required=False).splitlines()) if path.exists() else 0
-        section_counts.append(f"- {section}: {count} lines")
+        section_counts.append(f"- {section}: {count} 行")
     script_dupes = duplicates(script_names(release_text))
     mitm_dupes = duplicates(mitm_hostnames(release_text))
     return "\n".join([
-        "# Module Factory Report",
+        "# 模块工厂报告",
         "",
-        f"Date: {today}",
-        f"Profile: {profile}",
-        f"Extracted from root module: {'yes' if extracted else 'no'}",
-        f"构建阶段 Root/Release 是否一致: {'yes' if build_stage_same_as_root else 'no'}",
-        f"Release line count: {len(release_text.splitlines())}",
+        f"- 日期：{today}",
+        f"- 构建 profile：{profile}",
+        f"- 是否从 root 反拆：{'是' if extracted else '否'}",
+        f"- 构建阶段 Root/Release 是否一致：{'是' if build_stage_same_as_root else '否'}",
+        f"- Release 行数：{len(release_text.splitlines())}",
         "",
-        "## Source Counts",
+        "## 源文件统计",
         *section_counts,
         "",
-        "## Build Inputs",
+        "## 构建输入",
         f"- Rewrite/Profiles/{profile}.conf",
         "- Rewrite/Remotes/sources.json",
-        "- Rules/: DIRECT, Spotify, YouTube, local App, Web, and Reject rule fragments",
-        "- Scripts/: Spotify, YouTube, Zhihu, and App-clean script fragments",
-        "- Rewrite/Sources/: Meta, rewrite, body rewrite, map local, MITM, and compatibility fragments",
+        "- Rules/: DIRECT、Spotify、YouTube、本地 App、网页和 Reject 规则片段",
+        "- Scripts/: Spotify、YouTube、知乎和 App-clean 脚本片段",
+        "- Rewrite/Sources/: Meta、Rewrite、Body Rewrite、Map Local、MITM 和兼容片段",
         "",
-        "## Duplicate Checks",
-        f"- Duplicate script names: {', '.join(script_dupes) if script_dupes else 'none'}",
-        f"- Duplicate MITM hostnames: {', '.join(mitm_dupes) if mitm_dupes else 'none'}",
+        "## 重复检查",
+        f"- 重复脚本名：{', '.join(script_dupes) if script_dupes else '无'}",
+        f"- 重复 MITM hostname：{', '.join(mitm_dupes) if mitm_dupes else '无'}",
         "",
-        "## Notes",
-        "- Daily maintenance should edit Rules, Scripts, Rewrite/Sources, Rewrite/Remotes, and Rewrite/Profiles.",
-        "- Release/Ronghemokuai.sgmodule is generated from the factory sources.",
-        "- Root Ronghemokuai.sgmodule is synchronized by factory_finalize.py.",
-        "- Upstream collection stays conservative: trusted sources, reversible changes, verifiable reports.",
-        "- --extract-from-root is reserved for initialization or source recovery, not the normal daily build path.",
+        "## 说明",
+        "- 日常维护应优先修改 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。",
+        "- Release/Ronghemokuai.sgmodule 由工厂源头生成。",
+        "- 根目录 Ronghemokuai.sgmodule 由 factory_finalize.py 同步生成。",
+        "- 候选源收集保持保守：来源可信、改动可回滚、报告可验证。",
+        "- --extract-from-root 只用于初始化或恢复源头，不是日常构建路径。",
         "",
     ])
 
@@ -343,12 +343,12 @@ def make_diff_report(release_text: str) -> str:
     max_lines = 400
     clipped = diff[:max_lines]
     return "\n".join([
-        "# Module Factory Diff Report",
+        "# 模块工厂差异报告",
         "",
-        f"Root lines: {len(root_text.splitlines())}",
-        f"Release lines: {len(release_text.splitlines())}",
-        f"Diff lines: {len(diff)}",
-        f"Diff clipped: {'yes' if len(diff) > max_lines else 'no'}",
+        f"- Root 行数：{len(root_text.splitlines())}",
+        f"- Release 行数：{len(release_text.splitlines())}",
+        f"- Diff lines：{len(diff)}",
+        f"- Diff 是否截断：{'是' if len(diff) > max_lines else '否'}",
         "",
         "```diff",
         *clipped,

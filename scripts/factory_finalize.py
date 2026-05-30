@@ -15,7 +15,7 @@ REPORT = ROOT / "reports" / "factory_finalize_report.md"
 FACTORY_REPORT = ROOT / "reports" / "module_factory_report.md"
 DIFF_REPORT = ROOT / "reports" / "module_factory_diff_report.md"
 EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
-CORE_TOKENS = ("spotify-json", "spotify-proto", "youtube.response")
+CORE_TOKENS = ("spotify-json", "spotify-proto", "youtube.response", "zhihu-enhance")
 
 
 def read(path: Path) -> str:
@@ -141,12 +141,12 @@ def write_post_sync_diff_report() -> dict[str, int | bool]:
         lineterm="",
     ))
     write(DIFF_REPORT, "\n".join([
-        "# Module Factory Diff Report",
+        "# 模块工厂差异报告",
         "",
-        f"Root lines: {len(root_text.splitlines())}",
-        f"Release lines: {len(release_text.splitlines())}",
+        f"Root 行数: {len(root_text.splitlines())}",
+        f"Release 行数: {len(release_text.splitlines())}",
         f"Diff lines: {len(diff)}",
-        f"Diff clipped: {'no'}",
+        "Diff 是否截断: 否",
         "",
         "```diff",
         *diff[:400],
@@ -202,31 +202,31 @@ def main() -> None:
         validate(read(MODULE), "root")
     stats = write_post_sync_diff_report()
     patch_factory_report(stats)
-    report = ["# Factory Finalize Report", "", "## Mode"]
+    report = ["# 最终同步报告", "", "## 模式"]
     report.extend([
-        f"- sync root: {'yes' if args.sync_root else 'no'}",
-        f"- split from Rewrite/Sources: {'yes' if args.split_from_sources else 'no'}",
+        f"- 是否同步 Root：{'是' if args.sync_root else '否'}",
+        f"- 是否从 Rewrite/Sources 反拆：{'是' if args.split_from_sources else '否'}",
     ])
-    report.extend(["", "## Rule files"])
+    report.extend(["", "## Rule 文件"])
     if rule_counts:
         report.extend(f"- {path}: {count}" for path, count in rule_counts.items())
     else:
-        report.append("- not changed in default finalize mode")
-    report.extend(["", "## Script files"])
+        report.append("- 默认 finalize 模式不修改 Rule 源文件")
+    report.extend(["", "## Script 文件"])
     if script_counts:
         report.extend(f"- {path}: {count}" for path, count in script_counts.items())
     else:
-        report.append("- not changed in default finalize mode")
+        report.append("- 默认 finalize 模式不修改 Script 源文件")
     report.extend([
         "",
-        "## Root module",
-        f"- Release was copied to Ronghemokuai.sgmodule: {'yes' if args.sync_root else 'no'}",
-        f"- Root and Release are identical after sync: {'yes' if stats['same'] else 'no'}",
-        f"- Diff lines after sync: {stats['diff_lines']}",
+        "## Root 模块",
+        f"- Release 是否已复制到 Ronghemokuai.sgmodule：{'是' if args.sync_root else '否'}",
+        f"- 同步后 Root 与 Release 是否一致：{'是' if stats['same'] else '否'}",
+        f"- 同步后 Diff lines：{stats['diff_lines']}",
         "",
-        "## Source-driven note",
-        "- Default finalize mode does not rewrite Rules/ or Scripts/.",
-        "- Use --split-from-sources only for migration or recovery from Rewrite/Sources.",
+        "## 源头驱动说明",
+        "- 默认 finalize 模式不会重写 Rules/ 或 Scripts/。",
+        "- --split-from-sources 只用于迁移或从 Rewrite/Sources 恢复。",
     ])
     write(REPORT, "\n".join(report))
 

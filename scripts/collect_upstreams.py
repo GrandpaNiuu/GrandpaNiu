@@ -455,52 +455,52 @@ def make_report(results: list[CandidateResult], before_equal: bool, after_equal:
     added_rules = [item for item in results if item.action == "added_local_rules"]
     added_scripts = [item for item in results if item.action == "added_script"]
     lines = [
-        "# Upstream Collect Report",
+        "# 候选源收集报告",
         "",
-        f"Date: {today}",
-        f"Candidates total: {len(results)}",
-        f"Added remote sources: {len(added_remote)}",
-        f"Added local rule groups: {len(added_rules)}",
-        f"Added script entries: {len(added_scripts)}",
-        f"Skipped candidates: {len(skipped)}",
-        f"Main module changed by collector: {'yes' if module_changed else 'no'}",
-        f"Root and Release matched before collector: {'yes' if before_equal else 'no'}",
-        f"Root and Release match after collector: {'yes' if after_equal else 'no'}",
+        f"- 日期：{today}",
+        f"- 候选总数：{len(results)}",
+        f"- 新增远程规则源：{len(added_remote)}",
+        f"- 新增本地规则组：{len(added_rules)}",
+        f"- 新增脚本入口：{len(added_scripts)}",
+        f"- 跳过候选源：{len(skipped)}",
+        f"- 收集器是否修改主模块：{'是' if module_changed else '否'}",
+        f"- 收集前 Root/Release 是否一致：{'是' if before_equal else '否'}",
+        f"- 收集后 Root/Release 是否一致：{'是' if after_equal else '否'}",
         "",
-        "This collector is conservative: it never searches the web, only reads `Rewrite/Remotes/candidates.json`, rejects risky keywords and untrusted repositories, keeps pending scripts out of the module, and never auto-replaces Spotify or YouTube core items.",
+        "本收集器保持保守：不搜索全网，只读取 `Rewrite/Remotes/candidates.json`，拒绝风险词和不可信仓库，pending 脚本不会进入模块，也不会自动替换 Spotify / YouTube / 知乎核心项。",
         "",
-        "## Added Remote Sources",
+        "## 新增远程规则源",
     ]
     if added_remote:
         lines.extend(f"- {item.name}: {item.url} -> {item.target}; {item.reason}" for item in added_remote)
     else:
-        lines.append("- none")
+        lines.append("- 无")
     lines.append("")
-    lines.append("## Added Local Rules")
+    lines.append("## 新增本地规则")
     if added_rules:
         lines.extend(f"- {item.name}: {item.target}; {item.reason}" for item in added_rules)
     else:
-        lines.append("- none")
+        lines.append("- 无")
     lines.append("")
-    lines.append("## Added Scripts")
+    lines.append("## 新增脚本")
     if added_scripts:
         lines.extend(f"- {item.name}: {item.target}; {item.reason}" for item in added_scripts)
     else:
-        lines.append("- none")
+        lines.append("- 无")
     lines.append("")
-    lines.append("## Skipped Candidates")
+    lines.append("## 跳过候选源")
     if skipped:
         for item in skipped:
             status = f", status={item.status}" if item.status is not None else ""
             lines.append(f"- {item.name}: {item.reason}{status}")
     else:
-        lines.append("- none")
+        lines.append("- 无")
     lines.append("")
-    lines.append("## Manual Test Needed")
+    lines.append("## 是否需要人工测试")
     if added:
-        lines.append("- yes, update the module and test affected Apps plus Spotify and YouTube core flows.")
+        lines.append("- 是。请更新模块并测试受影响 App，同时检查 Spotify、YouTube 和知乎核心流程。")
     else:
-        lines.append("- no new source was added; manual testing is optional for this run.")
+        lines.append("- 本次没有新增源，人工测试可按需执行。")
     lines.append("")
     return "\n".join(lines)
 

@@ -2,7 +2,7 @@ name: Daily Module Update
 
 on:
   schedule:
-    # 18:00 UTC = 02:00 Beijing time next day
+    # 18:00 UTC = 02:00 Beijing time next day.
     - cron: "0 18 * * *"
   workflow_dispatch:
   push:
@@ -10,6 +10,7 @@ on:
       - main
     paths:
       - ".github/workflows/daily-module-update.yml"
+      - "scripts/validate_repository.py"
 
 permissions:
   contents: write
@@ -26,12 +27,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Update module date and generate daily report
+      - name: Compile validator
+        run: python3 -m py_compile scripts/validate_repository.py
+
+      - name: Update date and generate daily report
         run: |
           python3 <<'PY'
           from pathlib import Path
           from datetime import datetime, timezone, timedelta
           import re
+          import subprocess
           import urllib.request
 
           module = Path("Ronghemokuai.sgmodule")
@@ -44,22 +49,29 @@ jobs:
           text = module.read_text(encoding="utf-8")
           today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
 
-          required_checks = {
+          section_checks = {
               "[Rule]": "[Rule]" in text,
+              "[URL Rewrite]": "[URL Rewrite]" in text,
+              "[Header Rewrite]": "[Header Rewrite]" in text,
+              "[Body Rewrite]": "[Body Rewrite]" in text,
+              "[Map Local]": "[Map Local]" in text,
               "[Script]": "[Script]" in text,
               "[MITM]": "[MITM]" in text,
+          }
+          core_checks = {
               "spotify-json": "spotify-json" in text,
               "spotify-proto": "spotify-proto" in text,
               "youtube.response": "youtube.response" in text,
+              "zhihu-enhance": "zhihu-enhance" in text,
               "update-url": "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule" in text,
           }
-
-          if not all(required_checks.values()):
-              missing = [key for key, ok in required_checks.items() if not ok]
+          missing = [name for name, ok in {**section_checks, **core_checks}.items() if not ok]
+          if missing:
               raise SystemExit("Missing required module markers: " + ", ".join(missing))
 
           urls = [
               "https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule",
+              "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/zhihu-enhance.js",
               "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list",
               "https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt",
               "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt",
@@ -91,49 +103,48 @@ jobs:
                       return f"CHECK_FAILED HEAD={head_error} GET={get_error}"
 
           url_results = [(url, check_url(url)) for url in urls]
+          validator = subprocess.run(
+              ["python3", "scripts/validate_repository.py"],
+              text=True,
+              capture_output=True,
+          )
+          validate_output = (validator.stdout + validator.stderr).strip() or "no output"
+          if validator.returncode != 0:
+              raise SystemExit(validate_output)
 
           text = re.sub(r"^#!desc=.*$", f"#!desc={today}", text, flags=re.M)
           text = re.sub(r"^# update-date:.*$", f"# update-date: {today}", text, flags=re.M)
-          module.write_text(text, encoding="utf-8")
+          module.write_text(text, encoding="utf-8", newline="\n")
 
-          report_lines = [
+          lines = [
               "# 每日模块更新报告",
               "",
-              f"日期：{today}",
+              f"- 日期：{today}",
               "",
-              "## 关键结构检查",
+              "## 完整区块检查结果",
               "",
           ]
-
-          for key, ok in required_checks.items():
-              report_lines.append(f"- {key}: {'正常' if ok else '缺失'}")
-
-          report_lines.extend(["", "## 远程链接检查", ""])
-
-          for url, result in url_results:
-              report_lines.append(f"- `{url}`：{result}")
-
-          report_lines.extend([
+          lines += [f"- `{name}`：{'通过' if ok else '缺失'}" for name, ok in section_checks.items()]
+          lines += ["", "## Spotify 检查结果", ""]
+          lines += [f"- `{name}`：{'通过' if core_checks[name] else '缺失'}" for name in ("spotify-json", "spotify-proto")]
+          lines += ["", "## YouTube 检查结果", "", f"- `youtube.response`：{'通过' if core_checks['youtube.response'] else '缺失'}"]
+          lines += ["", "## 知乎增强检查结果", "", f"- `zhihu-enhance`：{'通过' if core_checks['zhihu-enhance'] else '缺失'}"]
+          lines += ["", "## update-url 检查结果", "", f"- `update-url`：{'通过' if core_checks['update-url'] else '缺失'}"]
+          lines += ["", "## 远程链接检查结果", ""]
+          lines += [f"- `{url}`：{result}" for url, result in url_results]
+          lines += ["", "## validate_repository.py 输出", "", "```text", validate_output, "```"]
+          lines += [
               "",
-              "## 自动更新边界",
+              "## 自动更新边界说明",
               "",
-              "- 只更新模块日期。",
-              "- 只生成每日检查报告。",
+              "- 本 workflow 只做日期更新、结构检查、远程链接检查和报告生成。",
               "- 不自动删除规则。",
-              "- 不自动注释 script-path。",
-              "- 不自动替换 Spotify / YouTube。",
+              "- 不自动注释脚本。",
+              "- 不自动替换 Spotify / YouTube / 知乎核心脚本。",
               "- 不自动修改 MITM hostname。",
               "",
-              "## 手动检查建议",
-              "",
-              "1. 在 Shadowrocket 更新模块和脚本。",
-              "2. 测试 Spotify 播放是否跳歌。",
-              "3. 测试 YouTube 是否转圈。",
-              "4. 测试淘宝、京东、微信、支付宝、银行类 App 登录、支付、验证码是否正常。",
-              "",
-          ])
-
-          report.write_text("\n".join(report_lines), encoding="utf-8")
+          ]
+          report.write_text("\n".join(lines), encoding="utf-8", newline="\n")
           PY
 
       - name: Commit daily update

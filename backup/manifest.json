@@ -1,0 +1,16 @@
+[
+  {
+    "file": "backup/Ronghemokuai.before-factory-refactor.sgmodule",
+    "exists": true,
+    "purpose": "factory refactor rollback point",
+    "recommended": true,
+    "note": "use only when factory output is broken"
+  },
+  {
+    "file": "backup/Ronghemokuai.stable.sgmodule",
+    "exists": true,
+    "purpose": "stable module rollback point",
+    "recommended": true,
+    "note": "use for stable rollback"
+  }
+]
