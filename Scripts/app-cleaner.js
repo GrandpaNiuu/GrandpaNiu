@@ -3,10 +3,11 @@
 // - Batch 1: QQ News + VGTime
 // - Batch 2: SQKB + 163News + XiaoHeiHe + Manner + Chaoge
 // - Batch 3: SMZDM + Taobao + JuneYaoAir + DDXQ + ZSGJ
+// - Batch 4: KKMH + Goofish + XMly + Didi
 // Unknown URLs, invalid JSON, or unexpected bodies pass through unchanged.
 
 (function () {
-  const VERSION = "2026-05-31-active-v3";
+  const VERSION = "2026-05-31-active-v4";
 
   function requestUrl() {
     try { return ($request && $request.url) || ""; } catch (_) { return ""; }
@@ -50,6 +51,24 @@
     if (object && hasOwn(object, key)) {
       delete object[key];
     }
+  }
+
+  function removeObjectsWith(object, key, targets) {
+    if (Array.isArray(object)) {
+      return object.filter(item => !item || !item[key] || !targets.includes(item[key]));
+    }
+    if (object && typeof object === "object") {
+      Object.keys(object).forEach(k => {
+        if (object[k] && typeof object[k] === "object") {
+          if (object[k][key] && targets.includes(object[k][key])) {
+            delete object[k];
+          } else {
+            object[k] = removeObjectsWith(object[k], key, targets);
+          }
+        }
+      });
+    }
+    return object;
   }
 
   function isQQNews(url) {
@@ -103,6 +122,22 @@
 
   function isZSGJ(url) {
     return url.includes("wx.mygolbs.com/WxBusServer/ApiData.do");
+  }
+
+  function isKKMH(url) {
+    return url.includes("api.kkmh.com") || url.includes("cdn-api.kkmh.com");
+  }
+
+  function isGoofish(url) {
+    return url.includes("acs.m.goofish.com") || url.includes("g-acs.m.goofish.com");
+  }
+
+  function isXMly(url) {
+    return url.includes(".xima") && url.includes(".com/");
+  }
+
+  function isDidi(url) {
+    return url.includes("diditaxi.com.cn") || url.includes("common.diditaxi.com.cn");
   }
 
   function cleanQQNews(bodyObject, url) {
@@ -223,6 +258,113 @@
     return String(body || "").replace(/Ad":1/g, 'Ad":0').replace(/Ad_ab":1/g, 'Ad_ab":0');
   }
 
+  function cleanKKMH(bodyObject, url) {
+    if (url.includes("/ironman/discovery") && url.includes("/tab_list")) {
+      return removeObjectsWith(bodyObject, "title", ["KK评委", "2024新漫报到", "VIP"]);
+    }
+    if (url.includes("/graph/homepage/comicVideo") && url.includes("/configs")) {
+      return removeObjectsWith(bodyObject, "desc", ["超级漫画节", "在kk当评委", "屈臣氏·KKCOS大赏", "KK朋友圈", "KK运势"]);
+    }
+    if (url.includes("/ironman/comic/recommend") && bodyObject && bodyObject.data) {
+      ["operation_float_ball", "topic_goods", "total_coupon", "share_comics_page_lottery"].forEach(key => removeKey(bodyObject.data, key));
+    }
+    if (url.includes("/graph/unified_feed") && bodyObject && bodyObject.data && Array.isArray(bodyObject.data.universalModels)) {
+      bodyObject.data.universalModels.forEach(model => {
+        removeKey(model, "loopBanner");
+        if (model && model.post && Array.isArray(model.post.promotions) && model.post.promotions[0] && model.post.promotions[0].type === 4) {
+          delete model.post.promotions;
+        }
+      });
+    }
+    return bodyObject;
+  }
+
+  function cleanGoofish(bodyObject, url) {
+    if (!bodyObject || !bodyObject.data) {
+      return bodyObject;
+    }
+    if (url.includes("/mtop.taobao.idlehome.home.nextfresh")) {
+      removeKey(bodyObject.data, "widgetReturnDO");
+      removeKey(bodyObject.data, "bannerReturnDO");
+      if (Array.isArray(bodyObject.data.sections)) {
+        const excludeNames = ["fish_home_yunying_card_d3", "idlefish_seafood_market", "fish_home_chat_room"];
+        bodyObject.data.sections = bodyObject.data.sections.filter(section => {
+          const bizType = section && section.data && section.data.bizType;
+          const name = section && section.template && section.template.name;
+          return !(bizType === "AD" || bizType === "homepage" || excludeNames.includes(name));
+        });
+      }
+    } else if (url.includes("/mtop.taobao.idle.local.home")) {
+      if (Array.isArray(bodyObject.data.sections)) {
+        bodyObject.data.sections = bodyObject.data.sections.filter(section => !(section && section.data && section.data.bizType === "AD"));
+      }
+    } else if (url.includes("/mtop.taobao.idle.home.whale.modulet") && bodyObject.data.container) {
+      removeKey(bodyObject.data.container, "sections");
+    }
+    return bodyObject;
+  }
+
+  function cleanXMly(bodyObject, url) {
+    if (url.includes("discovery-category/customCategories")) {
+      const keep = item => item && ["recommend", "template_category", "single_category"].includes(item.itemType) && item.categoryId !== 1005;
+      if (Array.isArray(bodyObject.customCategoryList)) bodyObject.customCategoryList = bodyObject.customCategoryList.filter(keep);
+      if (Array.isArray(bodyObject.defaultTabList)) bodyObject.defaultTabList = bodyObject.defaultTabList.filter(keep);
+    } else if (url.includes("discovery-category") && url.includes("/category")) {
+      if (bodyObject.focusImages && bodyObject.focusImages.data) {
+        bodyObject.focusImages.data = bodyObject.focusImages.data.filter(item => item && String(item.realLink || "").includes("open") && !item.isAd);
+      }
+    } else if (url.includes("focus-mobile/focusPic")) {
+      const data = bodyObject.header && bodyObject.header[0] && bodyObject.header[0].item && bodyObject.header[0].item.list && bodyObject.header[0].item.list[0] && bodyObject.header[0].item.list[0].data;
+      if (Array.isArray(data)) {
+        bodyObject.header[0].item.list[0].data = data.filter(item => item && String(item.realLink || "").includes("open") && !item.isAd);
+      }
+    } else if (url.includes("discovery-feed") && url.includes("/mix")) {
+      if (Array.isArray(bodyObject.header) && bodyObject.header.length === 2) delete bodyObject.header[0];
+      if (Array.isArray(bodyObject.body)) {
+        bodyObject.body = bodyObject.body.filter(item => !(item && item.item && item.item.adInfo) && !(item && item.item && item.item.moduleType === "mix_ad") && !(item && item.displayClass === "bigCard"));
+      }
+    } else if (url.includes("mobile-user") && url.includes("/homePage")) {
+      const entrances = bodyObject.data && bodyObject.data.serviceModule && bodyObject.data.serviceModule.entrances;
+      if (Array.isArray(entrances)) {
+        bodyObject.data.serviceModule.entrances = entrances.filter(item => item && [210, 213, 215].includes(item.id));
+      }
+    }
+    return bodyObject;
+  }
+
+  function cleanDidi(bodyObject, url) {
+    const data = bodyObject && bodyObject.data;
+    if (!data) return bodyObject;
+    if (url.includes("/other/pGetSceneList")) {
+      if (Array.isArray(data.scene_list)) data.scene_list = data.scene_list.filter(item => item && item.text !== "优惠商城");
+      if (Array.isArray(data.show_data)) {
+        data.show_data.forEach(block => {
+          if (Array.isArray(block.scene_ids)) block.scene_ids = block.scene_ids.filter(id => id !== "scene_coupon_mall");
+        });
+      }
+    } else if (url.includes("/homepage/v") && url.includes("/core")) {
+      const nav = data.order_cards && data.order_cards.nav_list_card && data.order_cards.nav_list_card.data;
+      if (Array.isArray(nav)) data.order_cards.nav_list_card.data = nav.filter(item => item && ["dache_anycar", "driverservice", "bike"].includes(item.nav_id));
+      const bottom = data.disorder_cards && data.disorder_cards.bottom_nav_list && data.disorder_cards.bottom_nav_list.data;
+      if (Array.isArray(bottom)) data.disorder_cards.bottom_nav_list.data = bottom.filter(item => item && ["v6x_home", "user_center"].includes(item.id));
+    } else if (url.includes("/ota/na/yuantu/infoList")) {
+      const banner = data.disorder_cards && data.disorder_cards.top_banner_card && data.disorder_cards.top_banner_card.data;
+      if (Array.isArray(banner) && banner[0] && banner[0].T === "yuentu_top_banner") banner.splice(0, 1);
+    } else if (url.includes("/usercenter/me") && Array.isArray(data.cards)) {
+      const excludedTitles = ["天天领福利", "金融服务", "更多服务", "企业服务", "安全中心"];
+      data.cards = data.cards.filter(card => card && !excludedTitles.includes(card.title));
+      data.cards.forEach(card => {
+        if (card && card.tag === "wallet") {
+          if (Array.isArray(card.items)) card.items = card.items.filter(item => item && item.title === "优惠券");
+          if (card.card_type === 4 && Array.isArray(card.bottom_items)) {
+            card.bottom_items = card.bottom_items.filter(item => item && ["省钱套餐", "天天神券"].includes(item.title));
+          }
+        }
+      });
+    }
+    return bodyObject;
+  }
+
   function main() {
     void VERSION;
     const url = requestUrl();
@@ -243,60 +385,21 @@
       return;
     }
 
-    if (isQQNews(url)) {
-      doneJson(cleanQQNews(object, url));
-      return;
-    }
-
-    if (isVGTime(url)) {
-      doneJson(cleanVGTime(object));
-      return;
-    }
-
-    if (isSQKB(url)) {
-      doneJson(cleanSQKB(object));
-      return;
-    }
-
-    if (is163News(url)) {
-      doneJson(clean163News(object));
-      return;
-    }
-
-    if (isXiaoHeiHe(url)) {
-      doneJson(cleanXiaoHeiHe(object));
-      return;
-    }
-
-    if (isManner(url)) {
-      doneJson(cleanManner(object));
-      return;
-    }
-
-    if (isChaoge(url)) {
-      doneJson(cleanChaoge(object, url));
-      return;
-    }
-
-    if (isSMZDM(url)) {
-      doneJson(cleanSMZDM(object));
-      return;
-    }
-
-    if (isTaobao(url)) {
-      doneJson(cleanTaobao(object));
-      return;
-    }
-
-    if (isJuneYaoAir(url)) {
-      doneJson(cleanJuneYaoAir(object));
-      return;
-    }
-
-    if (isDDXQ(url)) {
-      doneJson(cleanDDXQ(object));
-      return;
-    }
+    if (isQQNews(url)) { doneJson(cleanQQNews(object, url)); return; }
+    if (isVGTime(url)) { doneJson(cleanVGTime(object)); return; }
+    if (isSQKB(url)) { doneJson(cleanSQKB(object)); return; }
+    if (is163News(url)) { doneJson(clean163News(object)); return; }
+    if (isXiaoHeiHe(url)) { doneJson(cleanXiaoHeiHe(object)); return; }
+    if (isManner(url)) { doneJson(cleanManner(object)); return; }
+    if (isChaoge(url)) { doneJson(cleanChaoge(object, url)); return; }
+    if (isSMZDM(url)) { doneJson(cleanSMZDM(object)); return; }
+    if (isTaobao(url)) { doneJson(cleanTaobao(object)); return; }
+    if (isJuneYaoAir(url)) { doneJson(cleanJuneYaoAir(object)); return; }
+    if (isDDXQ(url)) { doneJson(cleanDDXQ(object)); return; }
+    if (isKKMH(url)) { doneJson(cleanKKMH(object, url)); return; }
+    if (isGoofish(url)) { doneJson(cleanGoofish(object, url)); return; }
+    if (isXMly(url)) { doneJson(cleanXMly(object, url)); return; }
+    if (isDidi(url)) { doneJson(cleanDidi(object, url)); return; }
 
     doneUnchanged(body);
   }
