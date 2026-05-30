@@ -1,40 +1,40 @@
 # 变更影响报告
 
-- 生成时间：2026-05-31 01:59:51 +0800
+- 生成时间：2026-05-31 02:03:19 +0800
 - 说明：无 git 工作树时，本报告基于最近修改文件时间生成；如需精确变更，请结合提交 diff 人工确认。
 
 ## 本次修改文件
 
-- `docs/MITM_POLICY.md`
-- `docs/MAINTENANCE.md`
-- `docs/SCRIPT_REVIEW.md`
-- `docs/VERSIONING.md`
-- `docs/PERFORMANCE.md`
-- `docs/TROUBLESHOOTING.md`
-- `docs/QUALITY_GATE.md`
-- `docs/FACTORY_FLOW.md`
 - `docs/RELEASE.md`
+- `docs/FACTORY_FLOW.md`
+- `docs/PERFORMANCE.md`
+- `docs/MAINTENANCE.md`
+- `docs/VERSIONING.md`
+- `docs/TROUBLESHOOTING.md`
+- `docs/SCRIPT_REVIEW.md`
 - `docs/SCOPE.md`
+- `docs/QUALITY_GATE.md`
+- `docs/MITM_POLICY.md`
 - `docs/COVERAGE.md`
+- `Scripts/youtube.conf`
 - `Scripts/app-clean.conf`
 - `Scripts/zhihu-enhance.js`
-- `Scripts/zhihu-enhance.conf`
-- `Scripts/youtube.conf`
 - `Scripts/spotify.conf`
-- `SECURITY.md`
+- `Scripts/zhihu-enhance.conf`
 - `Rules/spotify-direct.list`
-- `Rules/web-ads.list`
-- `Rules/youtube-direct.list`
 - `Rules/reject.list`
+- `Rules/youtube-direct.list`
 - `Rules/app-clean.list`
+- `SECURITY.md`
 - `Rules/direct.list`
-- `Rewrite/Sources/URL-Rewrite.conf`
-- `Rewrite/Sources/Header-Rewrite.conf`
-- `Rewrite/Sources/Rule.conf`
+- `Rules/web-ads.list`
 - `Rewrite/Sources/Script.conf`
 - `Rewrite/Sources/MITM.conf`
 - `Rewrite/Sources/Map-Local.conf`
+- `Rewrite/Sources/Rule.conf`
+- `Rewrite/Sources/Header-Rewrite.conf`
 - `Rewrite/Sources/Meta.conf`
+- `Rewrite/Sources/URL-Rewrite.conf`
 
 ## 影响的模块层
 
