@@ -1,6 +1,6 @@
 # 仓库健康检查报告
 
-生成时间：2026-05-31 07:36:19 +0800
+生成时间：2026-05-31 07:38:06 +0800
 
 ## 总体状态
 
@@ -11,7 +11,7 @@
 - 启用远程规则源：12
 - 启用候选源：6
 - pending 脚本候选：1
-- 脚本总数：87
+- 脚本总数：37
 - stable 当前 MITM hostname 数量：120
 - 默认发布策略：stable only；stable-plus / full 不默认发布
 
@@ -22,7 +22,7 @@
 - Header Rewrite: 5
 - Body Rewrite: 455
 - Map Local: 15
-- Script: 204
+- Script: 154
 - MITM: 4
 
 ## Profile 策略摘要
