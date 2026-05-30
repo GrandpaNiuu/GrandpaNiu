@@ -16,6 +16,33 @@ SOURCES_JSON = ROOT / "Rewrite" / "Remotes" / "sources.json"
 CANDIDATES_JSON = ROOT / "Rewrite" / "Remotes" / "candidates.json"
 README = ROOT / "README.md"
 EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
+VARIANT_BASE_URL = "https://grandpaniuu.github.io/GrandpaNiu"
+RELEASE_VARIANTS = {
+    "stable": {
+        "path": "Release/Ronghemokuai-stable.sgmodule",
+        "name": "GrandpaNiu Stable",
+        "update_url": f"{VARIANT_BASE_URL}/Release/Ronghemokuai-stable.sgmodule",
+        "publishable": True,
+    },
+    "stable-plus": {
+        "path": "Release/Ronghemokuai-stable-plus.sgmodule",
+        "name": "GrandpaNiu Stable Plus",
+        "update_url": f"{VARIANT_BASE_URL}/Release/Ronghemokuai-stable-plus.sgmodule",
+        "publishable": False,
+    },
+    "lite": {
+        "path": "Release/Ronghemokuai-lite.sgmodule",
+        "name": "GrandpaNiu Lite",
+        "update_url": f"{VARIANT_BASE_URL}/Release/Ronghemokuai-lite.sgmodule",
+        "publishable": False,
+    },
+    "full": {
+        "path": "Release/Ronghemokuai-full.sgmodule",
+        "name": "GrandpaNiu Full",
+        "update_url": f"{VARIANT_BASE_URL}/Release/Ronghemokuai-full.sgmodule",
+        "publishable": False,
+    },
+}
 REQUIRED_MARKERS = (
     "[Rule]",
     "[URL Rewrite]",
@@ -39,6 +66,8 @@ REQUIRED_GOVERNANCE_FILES = (
     "docs/VERSIONING.md",
     "docs/ROADMAP.md",
     "docs/PROFILE_POLICY.md",
+    "scripts/build_release_variants.py",
+    "reports/multi_release_report.md",
     "Rewrite/Profiles/stable.conf",
     "Rewrite/Profiles/stable-plus.conf",
     "Rewrite/Profiles/lite.conf",
@@ -136,6 +165,29 @@ def validate_root_release() -> None:
     for marker in REQUIRED_MARKERS:
         if marker not in root_text:
             fail(f"required marker missing from root module: {marker}")
+
+
+def validate_release_variants() -> None:
+    readme = read_text(README)
+    report = read_text(ROOT / "reports" / "multi_release_report.md")
+    for profile, meta in RELEASE_VARIANTS.items():
+        path = ROOT / meta["path"]
+        text = read_text(path)
+        if f"#!update-url={meta['update_url']}" not in text:
+            fail(f"{meta['path']} has wrong update-url")
+        if f"#!name={meta['name']}" not in text:
+            fail(f"{meta['path']} has wrong module name")
+        if f"# profile: {profile}" not in text:
+            fail(f"{meta['path']} missing profile marker")
+        for marker in REQUIRED_MARKERS:
+            if marker == EXPECTED_UPDATE_URL:
+                continue
+            if marker not in text:
+                fail(f"{meta['path']} missing required marker: {marker}")
+        if meta["update_url"] not in readme:
+            fail(f"README missing release variant link: {meta['update_url']}")
+        if meta["path"] not in report:
+            fail(f"multi_release_report.md missing variant file: {meta['path']}")
 
 
 def validate_remote_schema() -> None:
@@ -344,6 +396,8 @@ def validate_workflows() -> None:
             fail(f"workflow must declare contents: write: {relative}")
         if "concurrency:" not in text:
             fail(f"workflow must declare concurrency: {relative}")
+        if "build_release_variants.py" not in text:
+            fail(f"workflow must build independent release variants: {relative}")
 
     factory_workflow = read_text(ROOT / ".github" / "workflows" / "module-factory-build.yml")
     daily_workflow = read_text(ROOT / ".github" / "workflows" / "daily-module-update.yml")
@@ -355,13 +409,14 @@ def validate_workflows() -> None:
         if "--profile stable-plus" in workflow:
             fail(f"{name} workflow must not default to the stable-plus profile")
 
-    for token in ("[URL Rewrite]", "[Header Rewrite]", "[Body Rewrite]", "[Map Local]", "zhihu-enhance", "zhihu-enhance.js", "validate_repository.py"):
+    for token in ("[URL Rewrite]", "[Header Rewrite]", "[Body Rewrite]", "[Map Local]", "zhihu-enhance", "zhihu-enhance.js", "validate_repository.py", "build_release_variants.py"):
         if token not in daily_workflow:
             fail(f"daily-module-update workflow missing validation token: {token}")
 
 
 def main() -> None:
     validate_root_release()
+    validate_release_variants()
     validate_remote_schema()
     validate_scripts()
     validate_zhihu_enhance()
