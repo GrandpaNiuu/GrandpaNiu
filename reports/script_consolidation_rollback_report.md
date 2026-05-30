@@ -1,6 +1,6 @@
 # 脚本瘦身回滚报告
 
-生成时间：2026-05-31 07:27:27 +0800
+生成时间：2026-05-31 07:35:16 +0800
 
 ## 回滚条件
 
@@ -17,39 +17,11 @@
 
 ### `Scripts/app-clean.conf`
 
-```text
-cmp_allad_002_kkmh = type=http-response,pattern=^https?:\/\/(cdn-)?api\.kkmh\.com\/v\d\/ironman\/discovery_v\d\/tab_list_v\d,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/kkmh.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_008_goofish = type=http-response,pattern=^https?:\/\/(g-)?acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.local\.home\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/goofish.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_009_xmly = type=http-response,pattern=^https?:\/\/.*\.xima.*\.com\/discovery-feed\/v\d\/mix,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xmly.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_010_didi = type=http-response,pattern=^https?:\/\/common\.diditaxi\.com\.cn\/common\/v\d\/usercenter\/me,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/didi.js,script-update-interval=86400
-```
+- 当前脚本运行时没有新移除旧入口；如需回滚，请从 Git 历史恢复旧入口。
 
 ### `Rewrite/Sources/Script.conf`
 
-```text
-cmp_allad_002_kkmh = type=http-response,pattern=^https?:\/\/(cdn-)?api\.kkmh\.com\/v\d\/ironman\/discovery_v\d\/tab_list_v\d,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/kkmh.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_008_goofish = type=http-response,pattern=^https?:\/\/(g-)?acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.local\.home\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/goofish.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_009_xmly = type=http-response,pattern=^https?:\/\/.*\.xima.*\.com\/discovery-feed\/v\d\/mix,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xmly.js,script-update-interval=86400
-```
-
-```text
-cmp_allad_010_didi = type=http-response,pattern=^https?:\/\/common\.diditaxi\.com\.cn\/common\/v\d\/usercenter\/me,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/didi.js,script-update-interval=86400
-```
+- 当前脚本运行时没有新移除旧入口；如需回滚，请从 Git 历史恢复旧入口。
 
 ## 验证命令
 
