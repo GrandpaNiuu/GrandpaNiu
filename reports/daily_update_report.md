@@ -1,6 +1,8 @@
 # 每日模块更新报告
 
 - 日期：2026-05-31
+- 日期源头：Rewrite/Sources/Meta.conf
+- 构建流程：Meta.conf -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> validate_repository.py -> repository_health_check.py
 
 ## 完整区块检查结果
 
@@ -12,22 +14,15 @@
 - `[Script]`：通过
 - `[MITM]`：通过
 
-## Spotify 检查结果
+## 核心检查结果
 
 - `spotify-json`：通过
 - `spotify-proto`：通过
-
-## YouTube 检查结果
-
 - `youtube.response`：通过
-
-## 知乎增强检查结果
-
 - `zhihu-enhance`：通过
-
-## update-url 检查结果
-
+- `zhihu-enhance.js`：通过
 - `update-url`：通过
+- `meta-date`：通过
 
 ## 远程链接检查结果
 
@@ -49,10 +44,16 @@
 Repository validation passed.
 ```
 
+## repository_health_check.py 输出
+
+```text
+Repository health report written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/repository_health_report.md
+```
+
 ## 自动更新边界说明
 
-- 本 workflow 只做日期更新、结构检查、远程链接检查和报告生成。
+- 本 workflow 会更新源头日期、重新构建 stable、同步 Release 与 Root，并生成验证报告。
 - 不自动删除规则。
 - 不自动注释脚本。
 - 不自动替换 Spotify / YouTube / 知乎核心脚本。
-- 不自动修改 MITM hostname。
+- 不自动修改 MITM hostname 内容；MITM 分层由 profile 选择，源头完整列表保留可回滚。

@@ -1,6 +1,6 @@
 # 仓库健康检查报告
 
-生成时间：2026-05-31 04:57:59 +0800
+生成时间：2026-05-31 04:59:16 +0800
 
 ## 总体状态
 
@@ -63,7 +63,7 @@
 ## Workflow 摘要
 
 - .github/workflows/module-factory-build.yml: contents:write, concurrency, uses-stable
-- .github/workflows/daily-module-update.yml: contents:write, concurrency
+- .github/workflows/daily-module-update.yml: contents:write, concurrency, uses-stable
 - .github/workflows/daily-invalid-source-repair.yml: contents:write, concurrency, uses-stable
 - .github/workflows/upstream-collect.yml: contents:write, concurrency, uses-stable
 - .github/workflows/repository-health.yml: contents:write, concurrency, uses-stable
