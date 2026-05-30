@@ -2723,8 +2723,9 @@ cmp_block_099_ad = type=http-response,pattern=^https?:\/\/dict\.youdao\.com\/(ho
 # Batch 1: QQ News, VGTime.
 # Batch 2: SQKB, 163News, XiaoHeiHe, Manner, Chaoge.
 # Batch 3: SMZDM, Taobao, JuneYaoAir, DDXQ, ZSGJ.
+# Batch 4: KKMH, Goofish, XMly, Didi.
 # The runner itself does the exact URL dispatch and passes through unknown bodies unchanged.
-app-cleaner-active-json-clean = type=http-response,pattern=^https?:\/\/.*(qq\.com|vgtime\.com|17gwx\.com|163\.com|xiaoheihe\.cn|wearemanner\.com|chaogejiaoyu\.com|smzdm\.com|alibaba\.com|juneyaoair\.com|ddxq\.mobi|mygolbs\.com),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/app-cleaner.js,script-update-interval=0
+app-cleaner-active-json-clean = type=http-response,pattern=^https?:\/\/.*(qq\.com|vgtime\.com|17gwx\.com|163\.com|xiaoheihe\.cn|wearemanner\.com|chaogejiaoyu\.com|smzdm\.com|alibaba\.com|juneyaoair\.com|ddxq\.mobi|mygolbs\.com|kkmh\.com|goofish\.com|xima.*\.com|diditaxi\.com\.cn),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/app-cleaner.js,script-update-interval=0
 # Zhihu enhanced ad cleaner
 # Scope: native ad cards, promoted feed cards, recommendation ads and commercial fields only.
 # Boundary: no membership, payment, login, account identity or paid-content changes.
