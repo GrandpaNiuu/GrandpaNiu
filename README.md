@@ -32,6 +32,22 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
         -> Ronghemokuai.sgmodule
 ```
 
+## 当前状态
+
+| 项目 | 状态 |
+|---|---|
+| 默认 profile | `stable` |
+| 低耗电 profile | `lite`，不默认发布 |
+| 全覆盖测试 profile | `full`，不默认发布 |
+| Root / Release | 通过 `reports/repository_health_report.md` 与 diff 报告确认 |
+| 质量门禁 | `scripts/validate_repository.py` |
+| 健康报告 | `reports/repository_health_report.md` |
+| Profile 验证 | `reports/profile_validation_report.md` |
+| MITM 状态 | 数量较大，已进入分层治理；查看 `reports/mitm_split_report.md` |
+| 规则收集策略 | 可信候选源，不做全网大规模自动收集 |
+| 脚本策略 | 默认 pending，不直接进入 stable |
+| 手动测试 | 记录在 `reports/manual_test_log.md`，未测不得写通过 |
+
 ## Profile
 
 | Profile | 定位 |
@@ -65,6 +81,7 @@ Spotify、YouTube、知乎、登录、支付、验证码、银行、微信、支
 | 工厂流程 | [docs/FACTORY_FLOW.md](docs/FACTORY_FLOW.md) | 源头驱动构建说明 |
 | 维护标准 | [docs/MAINTENANCE.md](docs/MAINTENANCE.md) | 日常维护规则 |
 | 发布回滚 | [docs/RELEASE.md](docs/RELEASE.md) | 发布、测试、回滚流程 |
+| 测试标准 | [docs/TESTING.md](docs/TESTING.md) | 手动测试流程和记录要求 |
 | 性能说明 | [docs/PERFORMANCE.md](docs/PERFORMANCE.md) | profile 和耗电策略 |
 | 安全政策 | [SECURITY.md](SECURITY.md) | 安全边界和报告方式 |
 | 个人自用声明 | [LICENSE](LICENSE) | 使用限制和风险声明 |
@@ -98,9 +115,12 @@ Spotify、YouTube、知乎、登录、支付、验证码、银行、微信、支
 | [reports/upstream_collect_report.md](reports/upstream_collect_report.md) | 候选源收集 |
 | [reports/repository_health_report.md](reports/repository_health_report.md) | 仓库健康检查 |
 | [reports/compat_migration_report.md](reports/compat_migration_report.md) | 兼容层迁移审计 |
+| [reports/mitm_split_report.md](reports/mitm_split_report.md) | MITM 分层报告 |
+| [reports/profile_validation_report.md](reports/profile_validation_report.md) | stable / lite / full 构建验证 |
 | [reports/app_coverage_matrix.md](reports/app_coverage_matrix.md) | App 覆盖矩阵 |
 | [reports/change_impact_report.md](reports/change_impact_report.md) | 变更影响报告 |
 | [reports/workflow_health_report.md](reports/workflow_health_report.md) | workflow 健康报告 |
+| [reports/manual_test_log.md](reports/manual_test_log.md) | 手动测试记录 |
 
 ## 常用验证
 
