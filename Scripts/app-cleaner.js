@@ -6,10 +6,11 @@
 // - Batch 3: SMZDM + Taobao + JuneYaoAir + DDXQ + ZSGJ
 // - Batch 4: KKMH + Goofish + XMly + Didi
 // - Batch 5: generic low-risk JSON ad-field cleaner for selected app endpoints
+// - Batch 6: Douyu + SPTCC + Youdao Dict + Maimai
 // Unknown URLs, invalid JSON, or unexpected bodies pass through unchanged.
 
 (function () {
-  const VERSION = "2026-05-31-dispatcher-v1";
+  const VERSION = "2026-05-31-dispatcher-v2";
 
   const GENERIC_HOST_TOKENS = [
     "api.coolapk.com", "ddplus.meituan.net", "m.amap.com", "go.babytree.com", "mapi.mafengwo.cn",
@@ -54,29 +55,13 @@
     }
   }
 
-  function doneBody(body) {
-    $done({ body });
-  }
-
-  function doneJson(object) {
-    $done({ body: JSON.stringify(object) });
-  }
-
-  function parseJsonOrNull(body) {
-    try { return JSON.parse(body); } catch (_) { return null; }
-  }
-
-  function hasOwn(object, key) {
-    return Object.prototype.hasOwnProperty.call(object || {}, key);
-  }
-
-  function setArrayEmpty(object, key) {
-    if (object && Array.isArray(object[key])) object[key] = [];
-  }
-
-  function removeKey(object, key) {
-    if (object && hasOwn(object, key)) delete object[key];
-  }
+  function doneBody(body) { $done({ body }); }
+  function doneJson(object) { $done({ body: JSON.stringify(object) }); }
+  function parseJsonOrNull(body) { try { return JSON.parse(body); } catch (_) { return null; } }
+  function hasOwn(object, key) { return Object.prototype.hasOwnProperty.call(object || {}, key); }
+  function setArrayEmpty(object, key) { if (object && Array.isArray(object[key])) object[key] = []; }
+  function removeKey(object, key) { if (object && hasOwn(object, key)) delete object[key]; }
+  function asArray(value) { return Array.isArray(value) ? value : []; }
 
   function removeObjectsWith(object, key, targets) {
     if (Array.isArray(object)) {
@@ -132,10 +117,7 @@
     return value;
   }
 
-  function includesAll(url, parts) {
-    return parts.every(part => url.includes(part));
-  }
-
+  function includesAll(url, parts) { return parts.every(part => url.includes(part)); }
   function isGenericJsonBatch(url) { return GENERIC_HOST_TOKENS.some(token => url.includes(token)); }
   function isQQNews(url) { return url.includes("news.ssp.qq.com/app") || url.includes("r.inews.qq.com/getQQNewsUnreadList") || url.includes("r.inews.qq.com/getTagFeedList") || url.includes("r.inews.qq.com/gw/page/event_detail") || url.includes("r.inews.qq.com/gw/page/channel_feed") || url.includes("r.inews.qq.com/news_feed/hot_module_list"); }
   function isVGTime(url) { return url.includes("app02.vgtime.com:8080/vgtime-app/api/v2/init/ad.json"); }
@@ -153,6 +135,10 @@
   function isGoofish(url) { return url.includes("acs.m.goofish.com") || url.includes("g-acs.m.goofish.com"); }
   function isXMly(url) { return includesAll(url, [".xima", ".com/"]); }
   function isDidi(url) { return url.includes("diditaxi.com.cn") || url.includes("common.diditaxi.com.cn"); }
+  function isDouyu(url) { return url.includes("douyucdn.cn") && (url.includes("/getRecV3") || url.includes("/nc/m/list") || url.includes("keyCodeSet=flow_config")); }
+  function isSPTCC(url) { return url.includes("online.sptcc.com") && url.includes("/handapp_update/AppInfo"); }
+  function isYoudaoDict(url) { return url.includes("dict.youdao.com/") && (url.includes("/homepage/promotion") || url.includes("/course/tab/home") || url.includes("/homepage/tile")); }
+  function isMaimai(url) { return url.includes("open.taou.com/maimai/") || url.includes("h3.open.taou.com/maimai/"); }
 
   function cleanQQNews(bodyObject, url) {
     if (url.includes("r.inews.qq.com/gw/page/event_detail") || url.includes("r.inews.qq.com/gw/page/channel_feed")) {
@@ -169,10 +155,7 @@
     return bodyObject;
   }
 
-  function cleanSQKB(bodyObject) {
-    if (bodyObject && bodyObject.data) bodyObject.data.recommend_coupon_list = [];
-    return bodyObject;
-  }
+  function cleanSQKB(bodyObject) { if (bodyObject && bodyObject.data) bodyObject.data.recommend_coupon_list = []; return bodyObject; }
 
   function clean163News(bodyObject) {
     if (bodyObject && bodyObject.data) {
@@ -280,7 +263,7 @@
       const nav = data.order_cards && data.order_cards.nav_list_card && data.order_cards.nav_list_card.data;
       if (Array.isArray(nav)) data.order_cards.nav_list_card.data = nav.filter(item => item && ["dache_anycar", "driverservice", "bike"].includes(item.nav_id));
       const bottom = data.disorder_cards && data.disorder_cards.bottom_nav_list && data.disorder_cards.bottom_nav_list.data;
-      if (Array.isArray(bottom)) data.disorder_cards.bottom_nav_list.data = bottom.filter(item => item && ["v6x_home", "user_center"].includes(item.id));
+      if (Array.isArray(bottom)) data.disorder_cards.bottom_nav_list.data = bottom.filter(item => item && ["v6x_home", "home_page", "user_center"].includes(item.id));
     } else if (url.includes("/ota/na/yuantu/infoList")) {
       const banner = data.disorder_cards && data.disorder_cards.top_banner_card && data.disorder_cards.top_banner_card.data;
       if (Array.isArray(banner) && banner[0] && banner[0].T === "yuentu_top_banner") banner.splice(0, 1);
@@ -288,6 +271,66 @@
       const excludedTitles = ["天天领福利", "金融服务", "更多服务", "企业服务", "安全中心"];
       data.cards = data.cards.filter(card => card && !excludedTitles.includes(card.title));
       data.cards.forEach(card => { if (card && card.tag === "wallet") { if (Array.isArray(card.items)) card.items = card.items.filter(item => item && item.title === "优惠券"); if (card.card_type === 4 && Array.isArray(card.bottom_items)) card.bottom_items = card.bottom_items.filter(item => item && ["省钱套餐", "天天神券"].includes(item.title)); } });
+    } else if (url.includes("/common/v5") && Array.isArray(data.sections)) {
+      data.sections = data.sections.filter(item => item && ["center_v2", "head_v2", "core_function"].includes(item.sectionId));
+    }
+    return bodyObject;
+  }
+
+  function cleanDouyu(bodyObject, url) {
+    const removeAds = items => asArray(items).filter(item => !(item && item.ad));
+    if (url.includes("/getRecV3")) {
+      if (bodyObject.data && Array.isArray(bodyObject.data.rec_cont)) bodyObject.data.rec_cont = removeAds(bodyObject.data.rec_cont);
+      if (bodyObject.data && bodyObject.data.rec_card) {
+        Object.keys(bodyObject.data.rec_card).forEach(key => {
+          const card = bodyObject.data.rec_card[key];
+          if (card && Array.isArray(card.card_banner)) card.card_banner = removeAds(card.card_banner);
+        });
+      }
+    } else if (url.includes("/nc/m/list")) {
+      if (bodyObject.data) {
+        removeKey(bodyObject.data, "pendant_a");
+        removeKey(bodyObject.data, "entrance_d");
+      }
+    } else if (url.includes("keyCodeSet=flow_config") && bodyObject.data) {
+      ["greatGodGameSitterSwitch", "followMoreAnchorEntrance", "sdklivebanner", "homeActFloatSwitch", "bringGoodsSwitch", "qqGameSwitch"].forEach(key => {
+        if (hasOwn(bodyObject.data, key)) bodyObject.data[key] = 0;
+      });
+    }
+    return bodyObject;
+  }
+
+  function cleanSPTCC(bodyObject) {
+    if (bodyObject && Array.isArray(bodyObject.myPageBanner)) bodyObject.myPageBanner = [];
+    if (bodyObject && bodyObject.mainPage_recommend) bodyObject.mainPage_recommend.waterfallFlow = [];
+    if (bodyObject && Array.isArray(bodyObject.ggLykLinkArray)) bodyObject.ggLykLinkArray = [];
+    return bodyObject;
+  }
+
+  function cleanYoudaoDict(bodyObject, url) {
+    const data = bodyObject && bodyObject.data;
+    if (!data) return bodyObject;
+    if (url.includes("/homepage/promotion")) {
+      if (Array.isArray(data.dataList)) data.dataList = data.dataList.filter(item => item && item.type === "WOW");
+    } else if (url.includes("/course/tab/home")) {
+      if (data.tab && Array.isArray(data.tab.tabList)) data.tab.tabList = data.tab.tabList.filter(item => item && (item.title === "学库" || item.title === "四六级"));
+      if (data.icon && Array.isArray(data.icon.iconList)) data.icon.iconList = data.icon.iconList.filter(item => item && item.title === "实用英语");
+      if (Array.isArray(data.fragmentList)) data.fragmentList = data.fragmentList.filter(item => item && item.type === "GREAT_COURSE");
+    } else if (url.includes("/homepage/tile")) {
+      if (Array.isArray(data.children)) data.children = data.children.filter(item => item && item.type === "");
+    }
+    return bodyObject;
+  }
+
+  function cleanMaimai(bodyObject, url) {
+    if (url.includes("/maimai/feed/v5/focus_feed")) {
+      if (Array.isArray(bodyObject.feeds)) bodyObject.feeds = bodyObject.feeds.filter(feed => !(feed && feed.newAdStyle));
+    } else if (url.includes("/maimai/gossip/v3/gossip_detail_comment")) {
+      if (bodyObject.comments && Array.isArray(bodyObject.comments.lst)) bodyObject.comments.lst = bodyObject.comments.lst.filter(comment => !(comment && comment.newAdStyle));
+    } else if (url.includes("/maimai/feed/v6/feed_detail_comment")) {
+      if (Array.isArray(bodyObject.lst)) bodyObject.lst = bodyObject.lst.filter(item => !(item && item.newAdStyle));
+    } else if (url.includes("/maimai/feed/v6/detail_recommend_feeds")) {
+      removeKey(bodyObject, "feeds");
     }
     return bodyObject;
   }
@@ -312,6 +355,10 @@
     { key: "goofish", batch: "batch-4", match: isGoofish, clean: cleanGoofish },
     { key: "xmly", batch: "batch-4", match: isXMly, clean: cleanXMly },
     { key: "didi", batch: "batch-4", match: isDidi, clean: cleanDidi },
+    { key: "douyu", batch: "batch-6", match: isDouyu, clean: cleanDouyu },
+    { key: "sptcc", batch: "batch-6", match: isSPTCC, clean: cleanSPTCC },
+    { key: "youdao-dict", batch: "batch-6", match: isYoudaoDict, clean: cleanYoudaoDict },
+    { key: "maimai", batch: "batch-6", match: isMaimai, clean: cleanMaimai },
     { key: "generic-json-ad-fields", batch: "batch-5", match: isGenericJsonBatch, clean: object => genericAdFieldClean(object, 0) }
   ];
 
