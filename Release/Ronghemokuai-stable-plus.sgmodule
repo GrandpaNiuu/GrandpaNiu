@@ -544,6 +544,43 @@ DOMAIN-KEYWORD,adsmogo,REJECT,pre-matching
 DOMAIN-KEYWORD,adsrvmedia,REJECT,pre-matching
 DOMAIN-KEYWORD,adtrack,REJECT,pre-matching
 DOMAIN-KEYWORD,mobads,REJECT,pre-matching
+# WeChat ad insertion test rules
+# Scope: Stable Plus only until manual testing confirms no impact on WeChat images, mini programs, login, payment, and media upload.
+# Do not add qpic.cn, gtimg.cn, wx.qq.com, weixin.qq.com, servicewechat.com, wxapp.tc.qq.com, or wechatpay.cn here.
+
+# Tencent advertising / Guangdiantong
+DOMAIN-SUFFIX,l.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,e.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,pgdt.gtimg.cn,REJECT,pre-matching
+DOMAIN-SUFFIX,mi.gdt.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,ii.gdt.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,win.gdt.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,v.gdt.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,c.gdt.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,m.gdt.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adsmind.gdtimg.com,REJECT,pre-matching
+
+# Tencent ad analytics / report endpoints, conservative set
+DOMAIN-SUFFIX,ad.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adsfile.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adfilter.imtt.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adping.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adpm.app.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adsclick.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adsgroup.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adshmct.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adslvfile.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adslvseed.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adsmind.apdcdn.tc.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adsolution.imtt.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adsrich.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adstextview.qq.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adsview.qq.com,REJECT,pre-matching
+
+# Explicitly documented exclusions for safety:
+# - WeChat media: qpic.cn, gtimg.cn, qlogo.cn, wx.qq.com, wxapp.tc.qq.com
+# - WeChat account/payment/service: weixin.qq.com, servicewechat.com, wechatpay.cn
+# - Mini program resources: servicewechat.com, wxapp.tc.qq.com
 # remote: blackmatrix7 Advertising
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,REJECT
 # remote: Cats-Team AdRules
