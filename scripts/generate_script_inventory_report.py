@@ -20,9 +20,11 @@ REPORT = ROOT / "reports" / "script_inventory_report.md"
 SCRIPT_LINE_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=\s*(.+)$")
 KEY_VALUE_RE = re.compile(r"([a-zA-Z0-9_-]+)=([^,]+)")
 
-CORE_NAME_TOKENS = ("spotify", "youtube", "zhihu")
-KEEP_INDEPENDENT_TOKENS = (
-    "spotify", "youtube", "zhihu", "membership", "payment", "login", "paid", "paywall"
+STANDALONE_COMPLEX_TOKENS = (
+    "spotify", "youtube", "protobuf", "proto", "binary", "membership", "payment", "login", "paid", "paywall"
+)
+MANUAL_REVIEW_TOKENS = (
+    "weibo", "zhihu", "mgtv", "cntv", "soul", "keep", "cotti", "rrtv", "163music", "12306", "umetrip", "yunda", "sogou", "xiaohongshu"
 )
 RULE_CANDIDATE_TOKENS = (
     "splash", "ad", "ads", "advert", "banner", "pop", "popup", "track", "stat", "analytics", "metrics"
@@ -69,6 +71,10 @@ APP_HINTS = {
     "qidian": "起点",
     "bilibili": "Bilibili",
     "jd": "京东",
+    "douyu": "斗鱼",
+    "sptcc": "上海交通卡",
+    "youdao": "有道",
+    "maimai": "脉脉",
 }
 
 
@@ -104,7 +110,6 @@ def infer_app(name: str, value: str, script_path: str) -> str:
     haystack = f"{name} {value} {script_path}".lower()
     hits = [label for token, label in APP_HINTS.items() if token in haystack]
     if hits:
-        # Keep stable ordering while removing duplicates.
         seen: set[str] = set()
         unique: list[str] = []
         for item in hits:
@@ -120,13 +125,18 @@ def category_for(name: str, value: str, attrs: dict[str, str]) -> tuple[str, str
     haystack = f"{name} {value} {script_path}".lower()
     requires_body = attrs.get("requires-body", "")
     binary = attrs.get("binary-body-mode", "")
+    script_type = attrs.get("type", "")
 
-    if any(token in haystack for token in CORE_NAME_TOKENS):
-        return "必须独立保留", "核心专项脚本，合并风险高"
-    if any(token in haystack for token in ("membership", "payment", "login", "paid_content", "paywall")):
-        return "必须独立保留", "涉及安全边界或权益保护，不能合并进通用清理"
-    if binary == "1":
+    if binary == "1" or "binary-body" in haystack or "protobuf" in haystack or "proto.js" in haystack:
         return "必须独立保留", "二进制 body / protobuf 类处理，不能简单合并"
+    if script_type == "http-request":
+        return "必须独立保留", "request-body 类处理风险较高，不能并入 response JSON cleaner"
+    if any(token in haystack for token in ("membership", "payment", "login", "paid_content", "paywall", "token", "cookie")):
+        return "必须独立保留", "涉及安全边界、账户状态或权益风险，不能合并进通用清理"
+    if any(token in haystack for token in STANDALONE_COMPLEX_TOKENS):
+        return "必须独立保留", "专项或复杂链路脚本，合并前必须单独设计和测试"
+    if any(token in haystack for token in MANUAL_REVIEW_TOKENS):
+        return "需要人工复核", "脚本逻辑较大或涉及深层结构，不能仅凭入口判断为低风险"
     if requires_body == "0":
         return "可改规则候选", "不依赖响应 body，后续可人工评估是否改为 Rule / URL Rewrite"
     if any(token in script_path for token in COMMON_CLEANER_SOURCES):
@@ -239,16 +249,18 @@ def main() -> None:
         "",
         "## 重复脚本名",
         "",
+        *(f"- `{name}`" for name in dup_names),
     ]
-    lines += [f"- `{name}`" for name in dup_names] if dup_names else ["- 无"]
+    if not dup_names:
+        lines.append("- 无")
     lines += [
         "",
         "## 多入口共用同一 script-path",
         "",
     ]
     if dup_paths:
-        for path, names in sorted(dup_paths.items()):
-            lines.append(f"- `{path}`：{', '.join(f'`{name}`' for name in names)}")
+        for path, names in dup_paths.items():
+            lines.append(f"- `{path}`：{', '.join(names)}")
     else:
         lines.append("- 无")
     lines += [
@@ -257,9 +269,11 @@ def main() -> None:
         "",
     ]
     merge_candidates = [entry for entry in entries if entry["category"] == "可合并候选"]
-    for source, count in Counter(entry["source"] for entry in merge_candidates).most_common():
-        lines.append(f"- {source}：{count} 个，可考虑进入统一 `app-cleaner.js` 的配置化处理")
-    if not merge_candidates:
+    merge_by_source = Counter(entry["source"] for entry in merge_candidates)
+    if merge_by_source:
+        for source, count in merge_by_source.most_common():
+            lines.append(f"- {source}：{count} 个，可考虑进入统一 `app-cleaner.js` 的配置化处理")
+    else:
         lines.append("- 无")
     lines += [
         "",
@@ -279,14 +293,6 @@ def main() -> None:
         "| 脚本名 | 位置 | App / 服务 | 类型 | requires-body | 来源 | 分类 | 原因 | pattern 摘要 | script-path |",
         "|---|---|---|---|---|---|---|---|---|---|",
         *rows_for(entries),
-        "",
-        "## 下一步建议",
-        "",
-        "1. 第一阶段只处理重复 script-path 和明显普通 JSON 清理脚本，不动 Spotify、YouTube、知乎。",
-        "2. 先设计统一 `app-cleaner.js` 和配置表，不直接删除旧入口。",
-        "3. 通过 `stable-plus` 做灰度验证，确认无异常后再减少入口。",
-        "4. 能用 Rule / URL Rewrite 解决的静态广告接口，应从脚本迁移到规则层。",
-        "5. 每次减少脚本后都要重新生成四个 Release 版本，并更新测试记录。",
         "",
     ]
     write(REPORT, "\n".join(lines))
