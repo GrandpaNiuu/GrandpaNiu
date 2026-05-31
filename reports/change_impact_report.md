@@ -1,13 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-06-01 03:16:20 +0800
+- 生成时间：2026-06-01 04:21:23 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `reports/multi_release_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
+- `reports/app_status_matrix.md`
+- `reports/manual_test_log.md`
+- `reports/promotion_pr_report.md`
+- `scripts/create_promotion_pr.py`
+- `scripts/generate_app_status_matrix.py`
 
 ## 新增文件
 
@@ -19,26 +21,33 @@
 
 ## 修改文件
 
-- `reports/multi_release_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
+- `reports/app_status_matrix.md`
+- `reports/manual_test_log.md`
+- `reports/promotion_pr_report.md`
+- `scripts/create_promotion_pr.py`
+- `scripts/generate_app_status_matrix.py`
 
 ## 影响的模块层
 
 - README/docs
+- Scripts/maintenance
 
 ## 可能影响的 App
 
-- 待人工确认
+- Spotify
+- YouTube
+- Bilibili
+- 12306
+- Reddit
 
 ## 风险判断
 
-- 是否涉及脚本：否
-- 是否涉及 MITM：否
-- 是否涉及 Body Rewrite：否
+- 是否涉及脚本：是
+- 是否涉及 MITM：是
+- 是否涉及 Body Rewrite：是
 - 是否涉及远程规则源：否
-- 是否需要测试 Spotify：按需
-- 是否需要测试 YouTube：按需
+- 是否需要测试 Spotify：是
+- 是否需要测试 YouTube：是
 - 是否需要测试知乎：按需
 - 是否需要测试登录/支付/验证码：按需
 
