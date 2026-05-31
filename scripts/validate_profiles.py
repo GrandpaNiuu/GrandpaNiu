@@ -106,7 +106,7 @@ def main() -> None:
         "",
         "说明：本脚本只验证 stable / stable-plus / lite / full 是否可以构建，不会把 lite、stable-plus 或 full 同步到根目录主模块。验证结束后会恢复原 Release 和工厂报告。",
         "",
-        "| Profile | 构建结果 | 核心标记 | 脚本数 | MITM 数量 | 适用场景 | 是否可发布 |",
+        "| Profile | 构建结果 | 必要标记 | 脚本数 | MITM 数量 | 适用场景 | 是否可发布 |",
         "|---|---|---|---:|---:|---|---|",
     ]
     for row in rows:
@@ -121,6 +121,7 @@ def main() -> None:
         "- lite 是低耗电参考版，不默认发布。",
         "- full 是全覆盖测试版，不默认发布。",
         "- 默认 workflow 仍应使用 stable，不允许默认使用 stable-plus 或 full。",
+        "- 必要标记用于确认模块结构和已纳入脚本入口存在，不代表某几个 App 被单独设为核心保护对象。",
         "",
     ]
     write(REPORT, "\n".join(lines))
