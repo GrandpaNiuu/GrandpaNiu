@@ -1,12 +1,13 @@
 # 仓库健康检查报告
 
-生成时间：2026-05-31 09:37:38 +0800
+生成时间：2026-05-31 09:39:10 +0800
 
 ## 总体状态
 
 - 阻断问题：0
 - 提醒事项：2
 - 统一验证：通过
+- app-cleaner JS 语法：通过
 - Root 与 Release 一致：是
 - 启用远程规则源：12
 - 启用候选源：6
@@ -83,11 +84,11 @@
 
 ## Workflow 摘要
 
-- .github/workflows/module-factory-build.yml: contents:write, concurrency, uses-stable
+- .github/workflows/module-factory-build.yml: contents:write, concurrency, uses-stable, node-check
 - .github/workflows/daily-module-update.yml: contents:write, concurrency, uses-stable
 - .github/workflows/daily-invalid-source-repair.yml: contents:write, concurrency, uses-stable
 - .github/workflows/upstream-collect.yml: contents:write, concurrency, uses-stable
-- .github/workflows/repository-health.yml: contents:write, concurrency, uses-stable
+- .github/workflows/repository-health.yml: contents:write, concurrency, uses-stable, node-check
 
 ## Pending 脚本候选
 
@@ -96,6 +97,12 @@
 ## 失效源历史记录
 
 - `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list`
+
+## app-cleaner JS 语法输出
+
+```text
+无输出
+```
 
 ## 统一验证输出
 
@@ -111,3 +118,5 @@ Repository validation passed.
 4. MITM 从 extended 进入 stable 前，应先进入 stable-plus 并完成真实测试。
 5. 出现登录、支付、验证码异常时，优先回查 MITM、Body Rewrite 和 Map Local。
 6. 远程源连续失败 2 天后才进入处理流程，单日网络失败只报告观察。
+7. 候选源必须先经过 candidate_security_score_report.md 评分，再进入测试或晋级流程。
+8. 重要报告应通过 report_freshness_report.md 确认没有落后于源文件。
