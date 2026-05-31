@@ -3,12 +3,12 @@
 - 日期：2026-06-01
 - 构建 profile：stable
 - 是否从 root 反拆：否
-- 构建阶段 Root/Release 是否一致：是
-- Release 行数：2830
+- 构建阶段 Root/Release 是否一致：否
+- Release 行数：2828
 - Release MITM hostname 数量：120
 
 ## 源文件统计
-- Rule: 523 行
+- Rule: 525 行
 - URL Rewrite: 1598 行
 - Header Rewrite: 5 行
 - Body Rewrite: 456 行

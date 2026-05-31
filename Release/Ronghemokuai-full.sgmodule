@@ -570,8 +570,6 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgr
 RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list,REJECT
 # remote: blackmatrix7 Advertising MiTV
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingMiTV/AdvertisingMiTV.list,REJECT
-DOMAIN,dns.weixin.qq.com.cn,REJECT,pre-matching
-DOMAIN-SUFFIX,wxs.qq.com,REJECT,pre-matching
 # Spotify playback protection rules
 # Keep these rules before remote advertising sources.
 # YouTube playback protection placeholder
