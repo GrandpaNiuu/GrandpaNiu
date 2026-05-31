@@ -1,19 +1,126 @@
-# 安全策略与风险声明
+# 安全策略、使用限制与风险声明
 
-GrandpaNiu 是个人自用的 Shadowrocket / Surge 融合净化模块工厂。仓库目标是广告净化、播放链路保护、网页广告过滤、App 弹窗 / 横幅 / 信息流广告清理，以及远程规则源的可用性审计。
+## 总声明
 
-本仓库不用于破解、绕过、伪造权益、处理账号敏感信息或破坏第三方服务正常运行。
+本仓库所有资源仅供个人学习、研究与实验使用，严禁用于任何商业、盈利、收费、转售、引流、代运营、付费服务或其他变相商业目的。
 
-安全修复必须遵循 source-first 原则：优先修改 `Rules/`、`Scripts/`、`Rewrite/Sources/`、`Rewrite/Remotes/`、`Rewrite/Profiles/`，然后重新构建 Release 并同步根目录主模块。
+使用者在下载、复制、修改、导入、运行或参考本仓库任何内容前，应自行了解并承担可能产生的全部风险。本仓库及维护者不对任何直接或间接损失承担责任。
 
 ---
 
-## 允许范围
+## 使用范围
 
-本仓库允许处理：
+本仓库仅允许用于以下非商业场景：
 
 ```text
-广告拦截
+个人学习
+个人研究
+个人实验
+规则结构分析
+模块构建流程研究
+广告过滤规则测试
+脚本安全边界测试
+Shadowrocket / Surge 模块格式学习
+```
+
+禁止将本仓库内容用于任何商业用途，包括但不限于：
+
+```text
+售卖模块
+售卖规则
+售卖脚本
+付费群分发
+付费订阅
+代配置服务
+引流获利
+商业项目集成
+二次打包销售
+以本仓库内容提供有偿技术服务
+```
+
+---
+
+## 禁止转载与发布
+
+未经维护者明确许可，禁止以任何形式将本仓库资源转载、分享、搬运、镜像、二次发布或改名发布至任何境内平台，包括但不限于：
+
+```text
+社交媒体
+短视频平台
+博客平台
+论坛社区
+网盘平台
+代码托管平台
+知识库平台
+公众号 / 文章平台
+即时通讯群组
+付费社群
+资源站 / 聚合站
+```
+
+任何未经许可的转载、分享、搬运、镜像、二次发布、商业使用或盈利行为，均由行为人自行承担全部法律责任，与本仓库及维护者无关。
+
+---
+
+## 风险声明与免责声明
+
+本仓库所有资源仅供参考。使用者应自行判断是否适合使用，并自行承担使用后果。
+
+使用本仓库内容可能产生以下风险：
+
+```text
+网络连接异常
+App 加载失败
+图片加载失败
+网页显示异常
+广告拦截不完整
+正常内容被误拦截
+视频播放转圈
+音乐播放跳歌
+登录异常
+支付异常
+验证码异常
+消息推送异常
+微信发图异常
+小程序异常
+App 账号风控
+HTTPS 解密证书信任风险
+电量消耗增加
+流量消耗增加
+设备发热
+第三方规则源失效
+第三方脚本源失效
+GitHub 或上游仓库不可访问
+规则更新导致兼容性变化
+App 更新后接口变化导致规则失效
+```
+
+维护者不对因使用、复制、修改、分发、转载、导入、运行、参考或依赖本仓库内容造成的任何直接或间接损失承担责任，包括但不限于：
+
+```text
+数据丢失
+网络故障
+账号异常
+服务不可用
+业务损失
+设备异常
+软件异常
+配置损坏
+隐私泄露
+第三方追责
+法律纠纷
+```
+
+使用者应自行承担全部风险和责任。
+
+---
+
+## 仓库目标
+
+GrandpaNiu 是个人自用的 Shadowrocket / Surge 融合净化模块工厂。仓库目标包括：
+
+```text
+广告净化
 开屏广告清理
 弹窗清理
 横幅清理
@@ -22,20 +129,19 @@ GrandpaNiu 是个人自用的 Shadowrocket / Surge 融合净化模块工厂。�
 活动卡片清理
 网页广告过滤
 广告 SDK / 追踪统计域名过滤
-Spotify 播放链路保护
-YouTube Enhance 保留
-知乎广告卡片净化
-Bilibili 局部广告接口净化
-远程规则源失效审计
+远程规则源可用性审计
 源头驱动模块构建
+多版本模块发布
 报告生成与回滚维护
 ```
+
+本仓库不用于破解、绕过、伪造权益、处理账号敏感信息或破坏第三方服务正常运行。
 
 ---
 
 ## 禁止范围
 
-本仓库禁止加入或维护任何用于以下目的的内容：
+本仓库禁止加入、维护、传播或暗示支持任何用于以下目的的内容：
 
 ```text
 会员解锁
@@ -59,6 +165,8 @@ BoxJS 账号任务
 未知混淆脚本
 ghproxy / mirror 正式源
 来源不可验证脚本
+侵犯第三方权益的用途
+破坏第三方服务正常运行的用途
 ```
 
 如果某个规则、脚本或模块涉及上述行为，应立即移除，不得加入 `stable` profile，不得作为正式模块发布。
@@ -74,7 +182,7 @@ ghproxy / mirror 正式源
 支付接口
 验证码接口
 银行 App
-微信
+微信媒体链路
 支付宝
 账号安全接口
 证书校验接口
@@ -82,9 +190,39 @@ Cookie / Token
 会员权益字段
 付费内容字段
 钱包 / 余额 / 订单支付字段
+图片 CDN
+HTTPDNS
+小程序资源
 ```
 
-如果这些 App 或接口中出现广告，只允许做极小范围、可回滚、可测试的局部处理。
+如果这些 App 或接口中出现广告，只允许做极小范围、可回滚、可测试的局部处理。任何涉及微信、支付、银行、验证码、登录、图片上传下载、小程序资源的改动，必须先进入测试版本，不得直接进入默认 Stable。
+
+---
+
+## 维护原则
+
+安全修复必须遵循 source-first 原则：优先修改源头文件，然后重新构建 Release 并同步根目录主模块。
+
+优先修改：
+
+```text
+Rules/
+Scripts/
+Rewrite/Sources/
+Rewrite/Remotes/
+Rewrite/Profiles/
+```
+
+再执行构建与验证：
+
+```bash
+python3 scripts/build_module.py --build --profile stable
+python3 scripts/factory_finalize.py --sync-root
+python3 scripts/build_release_variants.py
+python3 scripts/validate_repository.py
+python3 scripts/validate_profiles.py
+python3 scripts/repository_health_check.py
+```
 
 ---
 
@@ -102,16 +240,17 @@ Cookie / Token
 8. `pattern` 必须精准，不能大范围覆盖无关接口。
 9. MITM hostname 必须最小化。
 10. 必须有明确回滚方式。
-11. 默认进入 pending，不直接加入 `stable`。
-12. 必须经过人工测试后再启用。
+11. 默认进入 pending 或测试版本，不直接加入 `stable`。
+12. 必须经过人工测试后再启用或晋级。
 
 脚本放置规则：
 
 ```text
-Scripts/spotify.conf        只放 Spotify 相关脚本
-Scripts/youtube.conf        只放 YouTube 相关脚本
-Scripts/zhihu-enhance.conf  只放知乎增强净化脚本
+Scripts/spotify.conf        Spotify 相关脚本
+Scripts/youtube.conf        YouTube 相关脚本
+Scripts/zhihu-enhance.conf  知乎增强净化脚本
 Scripts/app-clean.conf      普通 App 广告净化脚本
+Scripts/app-cleaner.js      低风险 JSON cleaner 统一调度脚本
 ```
 
 ---
@@ -130,7 +269,7 @@ Scripts/app-clean.conf      普通 App 广告净化脚本
 8. 必须能被报告追踪。
 9. 必须可回滚。
 
-候选源只允许写入：
+候选源只允许先写入：
 
 ```text
 Rewrite/Remotes/candidates.json
@@ -146,61 +285,6 @@ Rewrite/Remotes/sources.json
 
 ---
 
-## 失效源处理原则
-
-失效源处理采用 source-first 策略。
-
-优先处理源头文件：
-
-```text
-Rewrite/Remotes/sources.json
-Rewrite/Remotes/candidates.json
-Rules/*.list
-Scripts/*.conf
-Rewrite/Sources/*.conf
-```
-
-处理顺序：
-
-1. 单日失败只记录，不删除。
-2. 连续 2 天确认失败后才处理。
-3. 优先查找同源可信替代链接。
-4. 找不到替代时，优先禁用或注释。
-5. 只有低风险独立远程规则才允许删除。
-6. Spotify、YouTube、知乎增强、update-url、安装页、导入页只报告，不自动破坏。
-
-禁止因为 GitHub 临时网络错误直接删除规则。
-
----
-
-## 核心保护项
-
-以下内容属于硬保护项，不应被自动删除、替换或注释：
-
-```text
-spotify-json
-spotify-proto
-youtube.response
-zhihu-enhance
-Spotify DIRECT 白名单
-Spotify Header Rewrite
-YouTube Enhance 脚本
-知乎增强净化脚本
-update-url
-redirect.html
-import.html
-Ronghemokuai.sgmodule
-Release/Ronghemokuai.sgmodule
-```
-
-Spotify 出现跳歌时，优先检查远程广告规则是否误杀播放链路，不要直接删除 Spotify 脚本。
-
-YouTube 出现转圈时，优先检查 Map Local、MITM 和 YouTube 相关 rewrite，不要直接删除 YouTube Enhance。
-
-知乎出现空白时，优先临时关闭 `zhihu-enhance` 测试，不要删除整个模块。
-
----
-
 ## MITM 安全策略
 
 MITM hostname 必须控制范围。
@@ -208,10 +292,9 @@ MITM hostname 必须控制范围。
 允许：
 
 ```text
-Spotify 必要域名
-YouTube 必要域名
-知乎广告净化必要域名
 明确需要 HTTPS 解密的 App 广告接口
+已经测试过的低风险净化接口
+可回滚的测试接口
 ```
 
 不建议：
@@ -222,49 +305,21 @@ YouTube 必要域名
 覆盖银行、支付、验证码、登录接口
 覆盖证书校验接口
 覆盖账号安全接口
+覆盖微信媒体、图片 CDN、小程序资源
 ```
 
-如果出现登录、支付、验证码异常，优先检查：
+如果出现登录、支付、验证码、图片、微信发图、小程序、页面加载异常，优先检查：
 
 ```text
+Rules/reject.list
+Rules/direct.list
+Scripts/app-cleaner-active.conf
+Scripts/app-cleaner.js
 Rewrite/Sources/MITM.conf
 Rewrite/Sources/URL-Rewrite.conf
 Rewrite/Sources/Body-Rewrite.conf
 Scripts/*.conf
-Rules/*.list
 ```
-
----
-
-## 使用风险
-
-使用本仓库内容可能产生以下风险：
-
-```text
-网络连接异常
-App 加载失败
-网页显示异常
-广告拦截不完整
-正常内容被误拦截
-视频播放转圈
-音乐播放跳歌
-登录异常
-支付异常
-验证码异常
-消息推送异常
-App 账号风控
-HTTPS 解密证书信任风险
-电量消耗增加
-流量消耗增加
-设备发热
-第三方规则源失效
-第三方脚本源失效
-GitHub 或上游仓库不可访问
-规则更新导致兼容性变化
-App 更新后接口变化导致规则失效
-```
-
-使用者应自行承担上述风险。本仓库维护者不对因使用、复制、修改、分发、导入或运行本仓库内容造成的任何直接或间接损失负责。
 
 ---
 
@@ -292,50 +347,7 @@ App 更新后接口变化导致规则失效
 
 ---
 
-## HTTPS 解密风险
-
-部分脚本、Body Rewrite、Map Local 和 App 净化功能可能依赖 MITM / HTTPS 解密。
-
-启用 HTTPS 解密前，使用者应理解以下风险：
-
-```text
-需要安装并信任本地证书
-可能影响部分 App 的正常通信
-可能触发部分 App 的安全检测
-可能导致登录、支付、验证码、银行类 App 异常
-可能增加设备资源消耗
-可能使调试和排查复杂度上升
-```
-
-本仓库不建议对银行、支付、验证码、登录、账号安全、证书校验等敏感接口进行大范围 MITM。若出现相关异常，应优先停用模块或缩小 MITM 范围。
-
----
-
-## 账号与权益风险
-
-本仓库不用于，也不接受任何用于以下目的的内容：
-
-```text
-会员解锁
-Premium 破解
-付费内容绕过
-支付绕过
-登录绕过
-账户权益伪造
-账号状态修改
-Cookie / Token 读取或修改
-BoxJS 账号任务
-签到薅羊毛脚本
-证书绕过
-风控绕过
-验证码绕过
-```
-
-如果某个规则、脚本或模块涉及上述行为，应立即移除，不得加入 `stable` profile，不得作为正式模块发布。
-
----
-
-## 合规风险
+## 合规声明
 
 使用者需要自行确认本仓库内容的使用方式是否符合：
 
@@ -352,139 +364,38 @@ App 用户协议
 
 ---
 
-## 数据与隐私风险
+## 数据与隐私声明
 
 本仓库不主动收集个人数据，也不应加入任何收集、上传、记录或转发个人隐私信息的脚本。
 
 禁止加入以下类型逻辑：
 
 ```text
-上传 Cookie
-上传 Token
-上传账号信息
-上传设备标识
-上传定位信息
-上传通讯录
-上传浏览记录
-上传请求体中的敏感字段
-记录用户隐私数据
-转发用户请求内容到未知服务器
+读取通讯录
+读取短信
+读取相册
+读取定位
+读取剪贴板
+读取账号 Cookie
+读取 Token
+上传个人隐私数据
+记录用户行为轨迹
+转发请求体中的敏感信息
 ```
 
-若发现脚本存在此类行为，应立即删除或禁用，并在安全报告中标记为高风险来源。
+如发现相关内容，应立即移除并记录处理报告。
 
 ---
 
-## 可用性声明
+## 违规处理
 
-本仓库不保证：
+如发现任何内容违反本声明，应立即执行以下处理：
 
-```text
-所有广告都能去除
-所有 App 都能正常使用
-所有规则永久有效
-所有上游链接永久可访问
-所有脚本长期兼容
-所有系统版本都能正常运行
-所有网络环境都能正常更新
-```
+1. 从默认 Stable 移除。
+2. 从测试版本中禁用或隔离。
+3. 记录风险来源。
+4. 生成回滚说明。
+5. 更新健康报告。
+6. 必要时删除相关内容。
 
-App、系统、Shadowrocket、Surge、GitHub、第三方规则源或脚本源的更新，都可能导致模块行为变化。
-
----
-
-## 维护与回滚责任
-
-使用者在更新模块前，应自行备份可用版本。
-
-推荐保留：
-
-```text
-当前可用的 Ronghemokuai.sgmodule
-Release/Ronghemokuai.sgmodule
-backup/ 中的稳定备份
-最近一次可用 Git commit
-```
-
-出现异常时，应优先按以下顺序处理：
-
-```text
-临时停用模块
-回滚最近一次提交
-切换到稳定备份
-检查 reports/ 下的报告
-检查最近新增 Rules / Scripts / Rewrite / MITM
-逐项恢复，而不是一次性删除整个仓库结构
-```
-
----
-
-## 安全问题处理流程
-
-发现风险后，按以下顺序处理：
-
-1. 停止新增规则或脚本。
-2. 确认是否由最近提交引起。
-3. 检查最近修改的 Rules、Scripts、Rewrite、MITM、Remotes。
-4. 优先回滚局部修改，不回滚整个仓库。
-5. 保留 Spotify、YouTube、知乎核心保护项。
-6. 修复后运行完整验证。
-7. 在 Shadowrocket 中重新测试。
-
-必须运行：
-
-```text
-python3 scripts/build_module.py --build --profile stable
-python3 scripts/factory_finalize.py --sync-root
-python3 scripts/validate_repository.py
-python3 scripts/repository_health_check.py
-```
-
----
-
-## 发布前安全检查
-
-每次发布前必须确认：
-
-```text
-Root 与 Release 完全一致
-validate_repository.py 通过
-repository_health_check.py 通过
-没有重复脚本名
-没有重复 MITM hostname
-README 本地链接有效
-update-url 正确
-spotify-json 存在
-spotify-proto 存在
-youtube.response 存在
-zhihu-enhance 存在
-没有新增高风险脚本
-没有新增破解、支付、登录、账号权益相关内容
-```
-
-Shadowrocket 中必须测试：
-
-```text
-Spotify 连续播放
-YouTube 首页、搜索、播放、Shorts
-知乎首页、回答页、搜索页
-Bilibili 首页、搜索、播放页
-淘宝 / 京东 / 拼多多基础浏览
-微信 / 支付宝 / 银行 App 登录、支付、验证码
-```
-
----
-
-## 最终声明
-
-使用本仓库即代表使用者理解并接受：
-
-```text
-本仓库为个人自用维护项目
-本仓库不提供任何使用担保
-本仓库不承担第三方规则源或脚本源责任
-本仓库不承担使用者设备、账号、网络、数据、支付、登录或业务损失责任
-使用者需自行承担配置、导入、修改、运行和分发带来的全部风险
-```
-
-如无法理解 HTTPS 解密、MITM、脚本改写、远程规则源和代理配置可能带来的影响，不建议直接使用本仓库的完整模块。
+任何使用者违反本声明造成的风险、损失、纠纷或法律责任，均由使用者自行承担，与本仓库及维护者无关。
