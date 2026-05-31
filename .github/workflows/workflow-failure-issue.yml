@@ -1,3 +1,8 @@
+# This watcher intentionally shows "skipped" when the upstream workflow completed successfully
+# or when no failure issue is needed. Skipped here does not mean this watcher is broken.
+# It only opens or updates an issue for non-normal upstream conclusions:
+# failure, timed_out, action_required, or cancelled. Normal success stays skipped.
+
 name: Workflow failure issue
 
 on:
@@ -8,6 +13,7 @@ on:
       - Daily invalid source audit and repair
       - Upstream candidate collect
       - Repository Health Check
+      - Stable Plus Promotion PR
     types:
       - completed
 
@@ -22,7 +28,11 @@ concurrency:
 
 jobs:
   open-issue:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' || github.event.workflow_run.conclusion == 'timed_out' || github.event.workflow_run.conclusion == 'action_required' }}
+    # Expected behavior:
+    # - success: skipped, no issue
+    # - skipped: skipped, no issue, because normal skipped runs can happen in GitHub Actions
+    # - failure / timed_out / action_required / cancelled: open or update issue
+    if: ${{ contains(fromJSON('["failure","timed_out","action_required","cancelled"]'), github.event.workflow_run.conclusion) }}
     runs-on: ubuntu-latest
     steps:
       - name: Ensure label exists
@@ -62,6 +72,10 @@ jobs:
           | Commit | ${HEAD_SHA} |
           | Run URL | ${HTML_URL} |
 
+          ## Expected watcher behavior
+
+          The `Workflow failure issue` watcher is expected to show `skipped` when upstream workflows complete with `success` or when no issue is required. This issue is only created for `failure`, `timed_out`, `action_required`, or `cancelled` conclusions.
+
           ## Required checks
 
           1. Open the failed run and inspect the failed job / step.
@@ -69,6 +83,7 @@ jobs:
           3. Check whether Root and Release still match.
           4. Check whether multi-version release files still exist.
           5. Check whether this was caused by a temporary upstream network failure.
+          6. If the failed workflow is `Stable Plus Promotion PR`, verify that the change is single-App scoped and backed by `manual_test_log.md`.
 
           ## Recovery commands
 
@@ -81,7 +96,7 @@ jobs:
           python3 scripts/repository_health_check.py
           ```
 
-          This issue was created automatically. Close it only after the workflow has returned to `completed / success`.
+          This issue was created automatically. Close it only after the workflow has returned to `completed / success` or the cancellation has been confirmed as intentional.
           EOF
 
           EXISTING=$(gh issue list --repo "$REPO" --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')
