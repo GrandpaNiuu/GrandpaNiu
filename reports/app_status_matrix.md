@@ -1,6 +1,6 @@
 # App 状态矩阵
 
-生成时间：2026-06-01 02:24:01 +0800
+生成时间：2026-06-01 02:25:27 +0800
 
 本矩阵是质量总览，不把静态覆盖写成已验证。真实测试来源只允许来自 `reports/manual_test_log.md`，没有记录时一律标记为“未测”。
 
@@ -25,16 +25,16 @@
 | 12306 | 出行 | Rewrite, Script | stable, stable-plus, full | 未测 | 高 | 未记录 | 否，需真实测试 | 回滚 Rewrite、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 高德地图 | 地图 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 未测 | 高 | 未记录 | 否，需真实测试 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 百度地图 | 地图 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 未测 | 高 | 未记录 | 否，需真实测试 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
-| 网易云音乐 | 音乐 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 未测 | 中 | 未记录 | 未测，不允许晋级 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
+| 网易云音乐 | 音乐 | MITM, Rewrite, Rule | stable, stable-plus, lite, full | 未测 | 中 | 未记录 | 未测，不允许晋级 | 回滚 Rewrite、Rules 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 喜马拉雅 | 音频 | MITM, Rewrite, Rule, Script | stable, stable-plus, full | 未测 | 中 | 未记录 | 未测，不允许晋级 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 小宇宙 | 音频 | MITM, Rewrite, Script | stable, stable-plus, full | 未测 | 中 | 未记录 | 未测，不允许晋级 | 回滚 Rewrite、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 斗鱼 | 直播 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 未测 | 中 | 未记录 | 未测，不允许晋级 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | Reddit | 社交 | MITM, Rewrite, Script | stable, stable-plus, full | 未测 | 低 | 未记录 | 未测，不允许晋级 | 回滚 Rewrite、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 微信 | 社交 / 支付 / 小程序 / 图片 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 未测 | 高 | 未记录 | 否，需人工复核 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
-| 支付宝 | 支付 | Rewrite, Script | 未确认 | 未测 | 高 | 未记录 | 否，需人工复核 | 回滚 Rewrite、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
+| 支付宝 | 支付 | Rewrite | 未确认 | 未测 | 高 | 未记录 | 否，需人工复核 | 回滚 Rewrite 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 银行 / 验证码 | 安全敏感 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 未测 | 高 | 未记录 | 否，需人工复核 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 图片 CDN | 资源加载 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 未测 | 高 | 未记录 | 否，需人工复核 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
-| 小程序资源 | 微信生态 | Rule, Script | stable, stable-plus, lite, full | 未测 | 高 | 未记录 | 否，需人工复核 | 回滚 Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
+| 小程序资源 | 微信生态 | Rule | stable, stable-plus, lite, full | 未测 | 高 | 未记录 | 否，需人工复核 | 回滚 Rules 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 
 ## 晋级边界
 

@@ -3,9 +3,9 @@
 - 日期：2026-06-01
 - source_rule_compat 当前是否开启：是
 - source_script_compat 当前是否开启：是
-- Rule.conf 行数：523
+- Rule.conf 行数：525
 - Script.conf 行数：141
-- 已迁移规则数量：492
+- 已迁移规则数量：490
 - 未迁移规则数量：0
 - 已迁移脚本数量：31
 - 未迁移脚本数量：0
