@@ -5,19 +5,19 @@
 // - Batch 2: SQKB + 163News + XiaoHeiHe + Manner + Chaoge
 // - Batch 3: SMZDM + Taobao + JuneYaoAir + DDXQ + ZSGJ
 // - Batch 4: KKMH + Goofish + XMly + Didi
-// - Batch 5: generic low-risk JSON ad-field cleaner for selected app endpoints
+// - Batch 5: conservative generic low-risk JSON ad-field cleaner for selected app endpoints
 // - Batch 6: Douyu + SPTCC + Youdao Dict + Maimai
-// Unknown URLs, invalid JSON, or unexpected bodies pass through unchanged.
+// Unknown URLs, invalid JSON, media URLs, or unexpected bodies pass through unchanged.
 
 (function () {
-  const VERSION = "2026-05-31-dispatcher-v2";
+  const VERSION = "2026-05-31-dispatcher-v3-safe-generic";
 
   const GENERIC_HOST_TOKENS = [
     "api.coolapk.com", "ddplus.meituan.net", "m.amap.com", "go.babytree.com", "mapi.mafengwo.cn",
     "www.gaoding.com", "api.pinduoduo.com", "qidian.com", "kuaishou.com", "shyhhema.com",
     "xunlei.com", "cainiao.com", "zhuanzhuan.com", "map.baidu.com", "haier.net",
     "xiaoyuzhoufm.com", "peiyinxiu.com", "api.m.jd.com", "p.meituan.net", "reddit.com",
-    "boohee.com", "jia.360.cn", "acs.m.taobao.com", "1314zhilv.com", "alicdn.com",
+    "boohee.com", "jia.360.cn", "acs.m.taobao.com", "1314zhilv.com",
     "pipix.com", "8quan.com", "open.taou.com", "folidaymall.com", "tuhu.cn",
     "youdao.com", "ys7.com", "flyert", "guiderank-app.com", "mi.com",
     "qbb6.com", "51cto.com", "web.meituan.com", "ele.me", "duitang.com",
@@ -27,17 +27,18 @@
 
   const GENERIC_DROP_KEYS = new Set([
     "ad", "ads", "adList", "ad_list", "adInfo", "ad_info", "adInfos", "advert", "adverts", "advertise",
-    "advertisement", "advertisements", "banner", "banners", "bannerList", "banner_list", "splash", "splashAd",
-    "splash_ad", "popup", "popups", "popUp", "popupsList", "popUpList", "floatAd", "floatingAd", "floatingInfo",
-    "promotion", "promotions", "marketing", "marketingInfo", "marketing_info", "operation", "operationAd",
-    "operation_ad", "activityAd", "activity_ad", "recommendAd", "recommend_ad", "feedAd", "feed_ad", "cardAd",
-    "card_ad", "topBanner", "top_banner", "bottomAd", "bottom_ad", "interstitial", "commercial", "commercials"
+    "advertisement", "advertisements", "splash", "splashAd", "splash_ad", "popup", "popups", "popUp",
+    "popupsList", "popUpList", "floatAd", "floatingAd", "feedAd", "feed_ad", "cardAd", "card_ad",
+    "interstitial", "commercial", "commercials"
   ]);
 
   const GENERIC_FILTER_KEYS = [
     "isAd", "is_ad", "adInfo", "ad_info", "adType", "ad_type", "adid", "adId", "ad_mark", "adMark",
-    "bizType", "moduleType", "contentType", "content_type", "templateType", "template_type", "displayClass"
+    "contentType", "content_type", "templateType", "template_type", "displayClass"
   ];
+
+  const MEDIA_URL_RE = /\.(jpg|jpeg|png|gif|webp|heic|heif|bmp|svg|mp4|m4v|mov|m3u8|ts|mp3|aac|m4a|flac|zip|pdf)(\?|$)/i;
+  const RISKY_MEDIA_HOST_RE = /(qpic\.cn|gtimg\.cn|qlogo\.cn|alicdn\.com|alicdn\.net|tbcdn\.cn|taobaocdn\.com|pddpic\.com|360buyimg\.com|jdimg\.com|bdimg\.com|hdslb\.com|biliimg\.com|meituan\.net|dpfile\.com|msstatic\.com|zdmimg\.com)/i;
 
   function requestUrl() {
     try { return ($request && $request.url) || ""; } catch (_) { return ""; }
@@ -45,6 +46,13 @@
 
   function responseBody() {
     try { return ($response && typeof $response.body === "string") ? $response.body : ""; } catch (_) { return ""; }
+  }
+
+  function responseContentType() {
+    try {
+      const headers = ($response && $response.headers) || {};
+      return String(headers["Content-Type"] || headers["content-type"] || "").toLowerCase();
+    } catch (_) { return ""; }
   }
 
   function doneUnchanged(body) {
@@ -62,6 +70,11 @@
   function setArrayEmpty(object, key) { if (object && Array.isArray(object[key])) object[key] = []; }
   function removeKey(object, key) { if (object && hasOwn(object, key)) delete object[key]; }
   function asArray(value) { return Array.isArray(value) ? value : []; }
+
+  function isMediaLikeRequest(url) {
+    const contentType = responseContentType();
+    return MEDIA_URL_RE.test(url) || contentType.startsWith("image/") || contentType.startsWith("video/") || contentType.startsWith("audio/") || contentType.includes("octet-stream") || RISKY_MEDIA_HOST_RE.test(url);
+  }
 
   function removeObjectsWith(object, key, targets) {
     if (Array.isArray(object)) {
@@ -87,8 +100,8 @@
     if (!text) return false;
     return text === "ad" || text === "ads" || text === "advert" || text === "advertise" ||
       text === "advertisement" || text === "splash" || text === "popup" || text === "mix_ad" ||
-      text === "feed_ad" || text === "commercial" || text === "promotion" || text.includes("_ad") ||
-      text.includes("-ad") || text.includes("advert") || text.includes("广告") || text.includes("推广");
+      text === "feed_ad" || text === "commercial" || text.includes("_ad") ||
+      text.includes("-ad") || text.includes("advert") || text.includes("广告");
   }
 
   function shouldDropArrayItem(item) {
@@ -96,8 +109,15 @@
     for (const key of GENERIC_FILTER_KEYS) {
       if (hasOwn(item, key) && looksLikeAdValue(item[key])) return true;
     }
-    if (typeof item.title === "string" && /广告|推广|福利|优惠商城/.test(item.title)) return true;
-    if (typeof item.name === "string" && /广告|推广/.test(item.name)) return true;
+    if (hasOwn(item, "isAd") && item.isAd === true) return true;
+    if (hasOwn(item, "is_ad") && item.is_ad === true) return true;
+    return false;
+  }
+
+  function shouldDropGenericKey(key) {
+    if (GENERIC_DROP_KEYS.has(key)) return true;
+    if (/^ad[A-Z_]/.test(key) || /^ads[A-Z_]/.test(key)) return true;
+    if (/(^|_)(ad|ads|advert|splash|popup)($|_)/i.test(key)) return true;
     return false;
   }
 
@@ -108,7 +128,7 @@
     }
     if (typeof value !== "object") return value;
     Object.keys(value).forEach(key => {
-      if (GENERIC_DROP_KEYS.has(key) || /^ad[A-Z_]/.test(key) || /^ads[A-Z_]/.test(key) || /(^|_)(ad|ads|advert|splash|popup|banner)($|_)/i.test(key)) {
+      if (shouldDropGenericKey(key)) {
         delete value[key];
         return;
       }
@@ -118,7 +138,7 @@
   }
 
   function includesAll(url, parts) { return parts.every(part => url.includes(part)); }
-  function isGenericJsonBatch(url) { return GENERIC_HOST_TOKENS.some(token => url.includes(token)); }
+  function isGenericJsonBatch(url) { return !isMediaLikeRequest(url) && GENERIC_HOST_TOKENS.some(token => url.includes(token)); }
   function isQQNews(url) { return url.includes("news.ssp.qq.com/app") || url.includes("r.inews.qq.com/getQQNewsUnreadList") || url.includes("r.inews.qq.com/getTagFeedList") || url.includes("r.inews.qq.com/gw/page/event_detail") || url.includes("r.inews.qq.com/gw/page/channel_feed") || url.includes("r.inews.qq.com/news_feed/hot_module_list"); }
   function isVGTime(url) { return url.includes("app02.vgtime.com:8080/vgtime-app/api/v2/init/ad.json"); }
   function isSQKB(url) { return includesAll(url, ["api.17gwx.com", "/history/remind/list"]); }
@@ -373,6 +393,7 @@
     const url = requestUrl();
     const body = responseBody();
     if (!url || !body) { doneUnchanged(body); return; }
+    if (isMediaLikeRequest(url)) { doneUnchanged(body); return; }
 
     const rawCleaner = findCleaner(RAW_CLEANERS, url);
     if (rawCleaner) {
