@@ -1,4 +1,5 @@
 // GrandpaNiu app-cleaner active runner
+// Registry / dispatcher architecture.
 // Active consolidation batches:
 // - Batch 1: QQ News + VGTime
 // - Batch 2: SQKB + 163News + XiaoHeiHe + Manner + Chaoge
@@ -8,7 +9,7 @@
 // Unknown URLs, invalid JSON, or unexpected bodies pass through unchanged.
 
 (function () {
-  const VERSION = "2026-05-31-active-v5";
+  const VERSION = "2026-05-31-dispatcher-v1";
 
   const GENERIC_HOST_TOKENS = [
     "api.coolapk.com", "ddplus.meituan.net", "m.amap.com", "go.babytree.com", "mapi.mafengwo.cn",
@@ -70,15 +71,11 @@
   }
 
   function setArrayEmpty(object, key) {
-    if (object && Array.isArray(object[key])) {
-      object[key] = [];
-    }
+    if (object && Array.isArray(object[key])) object[key] = [];
   }
 
   function removeKey(object, key) {
-    if (object && hasOwn(object, key)) {
-      delete object[key];
-    }
+    if (object && hasOwn(object, key)) delete object[key];
   }
 
   function removeObjectsWith(object, key, targets) {
@@ -125,7 +122,6 @@
       return value.filter(item => !shouldDropArrayItem(item)).map(item => genericAdFieldClean(item, depth + 1));
     }
     if (typeof value !== "object") return value;
-
     Object.keys(value).forEach(key => {
       if (GENERIC_DROP_KEYS.has(key) || /^ad[A-Z_]/.test(key) || /^ads[A-Z_]/.test(key) || /(^|_)(ad|ads|advert|splash|popup|banner)($|_)/i.test(key)) {
         delete value[key];
@@ -136,33 +132,26 @@
     return value;
   }
 
-  function isGenericJsonBatch(url) {
-    return GENERIC_HOST_TOKENS.some(token => url.includes(token));
+  function includesAll(url, parts) {
+    return parts.every(part => url.includes(part));
   }
 
-  function isQQNews(url) {
-    return url.includes("news.ssp.qq.com/app") ||
-      url.includes("r.inews.qq.com/getQQNewsUnreadList") ||
-      url.includes("r.inews.qq.com/getTagFeedList") ||
-      url.includes("r.inews.qq.com/gw/page/event_detail") ||
-      url.includes("r.inews.qq.com/gw/page/channel_feed") ||
-      url.includes("r.inews.qq.com/news_feed/hot_module_list");
-  }
-
+  function isGenericJsonBatch(url) { return GENERIC_HOST_TOKENS.some(token => url.includes(token)); }
+  function isQQNews(url) { return url.includes("news.ssp.qq.com/app") || url.includes("r.inews.qq.com/getQQNewsUnreadList") || url.includes("r.inews.qq.com/getTagFeedList") || url.includes("r.inews.qq.com/gw/page/event_detail") || url.includes("r.inews.qq.com/gw/page/channel_feed") || url.includes("r.inews.qq.com/news_feed/hot_module_list"); }
   function isVGTime(url) { return url.includes("app02.vgtime.com:8080/vgtime-app/api/v2/init/ad.json"); }
-  function isSQKB(url) { return url.includes("api.17gwx.com") && url.includes("/history/remind/list"); }
-  function is163News(url) { return url.includes("gw.m.163.com") && url.includes("/search/hot-word"); }
+  function isSQKB(url) { return includesAll(url, ["api.17gwx.com", "/history/remind/list"]); }
+  function is163News(url) { return includesAll(url, ["gw.m.163.com", "/search/hot-word"]); }
   function isXiaoHeiHe(url) { return url.includes("api.xiaoheihe.cn/bbs/app/feeds/news"); }
-  function isManner(url) { return url.includes("triangle.wearemanner.com") && url.includes("/mp-api/") && url.includes("/ads"); }
+  function isManner(url) { return includesAll(url, ["triangle.wearemanner.com", "/mp-api/", "/ads"]); }
   function isChaoge(url) { return url.includes("mapi.chaogejiaoyu.com/api/outline/getAppBanner"); }
   function isSMZDM(url) { return url.includes("haojia.m.smzdm.com/detail_modul/user_related_modul"); }
   function isTaobao(url) { return url.includes("poplayer.template.alibaba.com"); }
   function isJuneYaoAir(url) { return url.includes("hoapp.juneyaoair.com/data/index/getPictureList"); }
-  function isDDXQ(url) { return url.includes("user.api.ddxq.mobi/userportal-service/api/") && url.includes("/user/queryMyPage"); }
+  function isDDXQ(url) { return includesAll(url, ["user.api.ddxq.mobi/userportal-service/api/", "/user/queryMyPage"]); }
   function isZSGJ(url) { return url.includes("wx.mygolbs.com/WxBusServer/ApiData.do"); }
   function isKKMH(url) { return url.includes("api.kkmh.com") || url.includes("cdn-api.kkmh.com"); }
   function isGoofish(url) { return url.includes("acs.m.goofish.com") || url.includes("g-acs.m.goofish.com"); }
-  function isXMly(url) { return url.includes(".xima") && url.includes(".com/"); }
+  function isXMly(url) { return includesAll(url, [".xima", ".com/"]); }
   function isDidi(url) { return url.includes("diditaxi.com.cn") || url.includes("common.diditaxi.com.cn"); }
 
   function cleanQQNews(bodyObject, url) {
@@ -303,33 +292,55 @@
     return bodyObject;
   }
 
+  const RAW_CLEANERS = [
+    { key: "zsgj", batch: "batch-3", match: isZSGJ, clean: cleanZSGJRaw }
+  ];
+
+  const JSON_CLEANERS = [
+    { key: "qq-news", batch: "batch-1", match: isQQNews, clean: cleanQQNews },
+    { key: "vgtime", batch: "batch-1", match: isVGTime, clean: cleanVGTime },
+    { key: "sqkb", batch: "batch-2", match: isSQKB, clean: cleanSQKB },
+    { key: "163news", batch: "batch-2", match: is163News, clean: clean163News },
+    { key: "xiaoheihe", batch: "batch-2", match: isXiaoHeiHe, clean: cleanXiaoHeiHe },
+    { key: "manner", batch: "batch-2", match: isManner, clean: cleanManner },
+    { key: "chaoge", batch: "batch-2", match: isChaoge, clean: cleanChaoge },
+    { key: "smzdm", batch: "batch-3", match: isSMZDM, clean: cleanSMZDM },
+    { key: "taobao", batch: "batch-3", match: isTaobao, clean: cleanTaobao },
+    { key: "juneyaoair", batch: "batch-3", match: isJuneYaoAir, clean: cleanJuneYaoAir },
+    { key: "ddxq", batch: "batch-3", match: isDDXQ, clean: cleanDDXQ },
+    { key: "kkmh", batch: "batch-4", match: isKKMH, clean: cleanKKMH },
+    { key: "goofish", batch: "batch-4", match: isGoofish, clean: cleanGoofish },
+    { key: "xmly", batch: "batch-4", match: isXMly, clean: cleanXMly },
+    { key: "didi", batch: "batch-4", match: isDidi, clean: cleanDidi },
+    { key: "generic-json-ad-fields", batch: "batch-5", match: isGenericJsonBatch, clean: object => genericAdFieldClean(object, 0) }
+  ];
+
+  function findCleaner(cleaners, url) {
+    return cleaners.find(cleaner => {
+      try { return cleaner.match(url); } catch (_) { return false; }
+    }) || null;
+  }
+
   function main() {
     void VERSION;
     const url = requestUrl();
     const body = responseBody();
     if (!url || !body) { doneUnchanged(body); return; }
 
-    if (isZSGJ(url)) { doneBody(cleanZSGJRaw(body)); return; }
+    const rawCleaner = findCleaner(RAW_CLEANERS, url);
+    if (rawCleaner) {
+      doneBody(rawCleaner.clean(body, url));
+      return;
+    }
 
     const object = parseJsonOrNull(body);
     if (!object) { doneUnchanged(body); return; }
 
-    if (isQQNews(url)) { doneJson(cleanQQNews(object, url)); return; }
-    if (isVGTime(url)) { doneJson(cleanVGTime(object)); return; }
-    if (isSQKB(url)) { doneJson(cleanSQKB(object)); return; }
-    if (is163News(url)) { doneJson(clean163News(object)); return; }
-    if (isXiaoHeiHe(url)) { doneJson(cleanXiaoHeiHe(object)); return; }
-    if (isManner(url)) { doneJson(cleanManner(object)); return; }
-    if (isChaoge(url)) { doneJson(cleanChaoge(object, url)); return; }
-    if (isSMZDM(url)) { doneJson(cleanSMZDM(object)); return; }
-    if (isTaobao(url)) { doneJson(cleanTaobao(object)); return; }
-    if (isJuneYaoAir(url)) { doneJson(cleanJuneYaoAir(object)); return; }
-    if (isDDXQ(url)) { doneJson(cleanDDXQ(object)); return; }
-    if (isKKMH(url)) { doneJson(cleanKKMH(object, url)); return; }
-    if (isGoofish(url)) { doneJson(cleanGoofish(object, url)); return; }
-    if (isXMly(url)) { doneJson(cleanXMly(object, url)); return; }
-    if (isDidi(url)) { doneJson(cleanDidi(object, url)); return; }
-    if (isGenericJsonBatch(url)) { doneJson(genericAdFieldClean(object, 0)); return; }
+    const jsonCleaner = findCleaner(JSON_CLEANERS, url);
+    if (jsonCleaner) {
+      doneJson(jsonCleaner.clean(object, url));
+      return;
+    }
 
     doneUnchanged(body);
   }
