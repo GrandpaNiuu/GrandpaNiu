@@ -1,12 +1,12 @@
 # 脚本清单与瘦身分析报告
 
-生成时间：2026-05-31 08:54:17 +0800
+生成时间：2026-05-31 08:56:23 +0800
 
 本报告只做静态分析，不删除、不合并、不禁用任何脚本。减少脚本前必须先完成真机测试和回滚准备。
 
 ## 总体统计
 
-- 脚本入口总数：37
+- 脚本入口总数：33
 - 识别到的 App / 服务方向数量：15
 - 重复脚本名：0
 - 多入口共用同一 script-path：0
@@ -14,22 +14,22 @@
 ## 分类统计
 
 - 必须独立保留：6
-- 可合并候选：24
+- 可合并候选：20
 - 可改规则候选：5
 - 需要人工复核：2
 
 ## 来源统计
 
-- zirawell R-Store：23
-- fmz200 wool_scripts：6
+- zirawell R-Store：21
 - app2smile：4
+- fmz200 wool_scripts：4
 - local：2
 - raw.githubusercontent.com：1
 - Maasea：1
 
 ## 文件分布
 
-- `Scripts/app-clean.conf`：32
+- `Scripts/app-clean.conf`：28
 - `Scripts/spotify.conf`：2
 - `Scripts/app-cleaner-active.conf`：1
 - `Scripts/youtube.conf`：1
@@ -45,8 +45,8 @@
 
 ## 可合并候选摘要
 
-- zirawell R-Store：17 个，可考虑进入统一 `app-cleaner.js` 的配置化处理
-- fmz200 wool_scripts：6 个，可考虑进入统一 `app-cleaner.js` 的配置化处理
+- zirawell R-Store：15 个，可考虑进入统一 `app-cleaner.js` 的配置化处理
+- fmz200 wool_scripts：4 个，可考虑进入统一 `app-cleaner.js` 的配置化处理
 - app2smile：1 个，可考虑进入统一 `app-cleaner.js` 的配置化处理
 
 ## 可改规则候选摘要
@@ -78,21 +78,17 @@
 | `cmp_allad_027_airchina` | Scripts/app-clean.conf:16 | 未识别 / 通用 | http-response | 0 | zirawell R-Store | 可改规则候选 | 不依赖响应 body，后续可人工评估是否改为 Rule / URL Rewrite | `^https?:\/\/m\.airchina\.com\.cn\/airchina\/gateway\/v\d(\.\d)*\/api\/services` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/airchina.js` |
 | `cmp_allad_028_xmgtv` | Scripts/app-clean.conf:17 | 芒果 TV | http-response | 1 | zirawell R-Store | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/mgesq\.api\.mgtv\.com\/dsl\/index\.+` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xmgtv.js` |
 | `cmp_allad_031_baidutieba` | Scripts/app-clean.conf:18 | 贴吧 | http-response | 1 | zirawell R-Store | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/c\.tieba\.baidu\.com\/c\/s\/sync$` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/tiebaJson.js` |
-| `cmp_allad_057_douyu` | Scripts/app-clean.conf:19 | 未识别 / 通用 | http-response | 1 | zirawell R-Store | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/apiv2\.douyucdn\.cn\/japi\/entrance\/roomRes\/nc\/m\/list` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/douyu.js` |
-| `cmp_allad_058_sptcc` | Scripts/app-clean.conf:20 | 未识别 / 通用 | http-response | 1 | zirawell R-Store | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/online\.sptcc\.com:\d+\/handapp_update\/AppInfo` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/sptcc.js` |
-| `cmp_allad_066_wjx` | Scripts/app-clean.conf:21 | 未识别 / 通用 | http-response | 1 | zirawell R-Store | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/kaoshi\.wjx\.top\/wjx\/join\/completemobile` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/wjx.js` |
-| `cmp_allad_070_sogou` | Scripts/app-clean.conf:22 | 未识别 / 通用 | http-response | 0 | zirawell R-Store | 可改规则候选 | 不依赖响应 body，后续可人工评估是否改为 Rule / URL Rewrite | `^https?:\/\/sec\.sginput\.qq\.com\/q` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/sougou.js` |
-| `cmp_allad_072_baidutieba` | Scripts/app-clean.conf:23 | 贴吧 | http-response | 1 | zirawell R-Store | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/c\.tieba\.baidu\.com\/c\/f\/(excellent\/personalized\|frs\/(?:generalTabList\|pa` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/tiebaProto.js` |
-| `cmp_allad_074_adunion` | Scripts/app-clean.conf:24 | 淘宝 | http-response | 0 | zirawell R-Store | 可改规则候选 | 不依赖响应 body，后续可人工评估是否改为 Rule / URL Rewrite | `^https?:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch$` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/amdc.js` |
-| `cmp_allad_075_umetrip` | Scripts/app-clean.conf:25 | 未识别 / 通用 | http-response | 0 | zirawell R-Store | 可改规则候选 | 不依赖响应 body，后续可人工评估是否改为 Rule / URL Rewrite | `^https?:\/\/(bkclient\|umerp\|home)\.umetrip\.com(\.cn){0` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/umetrip.js` |
-| `cmp_allad_080_yunda` | Scripts/app-clean.conf:26 | 未识别 / 通用 | http-request | 1 | zirawell R-Store | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/mbpxapi\.yundasys\.com(:\d+)?\/gateway\/interface` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/yunda.js` |
-| `cmp_block_082_12306` | Scripts/app-clean.conf:27 | 未识别 / 通用 | http-request | 1 | raw.githubusercontent.com | 需要人工复核 | 无法静态判断，需结合脚本内容和真机测试 | `^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList` | `https://raw.githubusercontent.com/kokoryh/Script/master/js/12306.js` |
-| `cmp_block_083_ad` | Scripts/app-clean.conf:28 | 未识别 / 通用 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/[\d\.]+\/3f1\/cards\.iqiyi\.com\/(views_home\/3\.0\/qy_home\|waterfall\/3\.0\/f` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js` |
-| `cmp_block_087_ad` | Scripts/app-clean.conf:29 | 滴滴 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/ct\.xiaojukeji\.com\/agent\/v3\/feeds` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js` |
-| `cmp_block_088_ad` | Scripts/app-clean.conf:30 | 未识别 / 通用 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^http?:\/\/(114\.115\.217\.129)\|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/umetrip/umetrip_ads.js` |
-| `cmp_block_090_ad` | Scripts/app-clean.conf:31 | 未识别 / 通用 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https:\/\/(h3\.)?open\.taou\.com\/maimai\/feed\/v6\/detail_recommend_feeds\?` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/maimai/maimai_ads.js` |
-| `cmp_block_095_rrtv_json` | Scripts/app-clean.conf:32 | 未识别 / 通用 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/api\.rr\.tv\/ad\/getAll` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/rrtv_json.js` |
-| `cmp_block_099_ad` | Scripts/app-clean.conf:33 | 未识别 / 通用 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/dict\.youdao\.com\/(homepage\/promotion\|course\/tab\/home\|homepage\/tile)` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/youdao/dict-youdao-ad.js` |
+| `cmp_allad_066_wjx` | Scripts/app-clean.conf:19 | 未识别 / 通用 | http-response | 1 | zirawell R-Store | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/kaoshi\.wjx\.top\/wjx\/join\/completemobile` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/wjx.js` |
+| `cmp_allad_070_sogou` | Scripts/app-clean.conf:20 | 未识别 / 通用 | http-response | 0 | zirawell R-Store | 可改规则候选 | 不依赖响应 body，后续可人工评估是否改为 Rule / URL Rewrite | `^https?:\/\/sec\.sginput\.qq\.com\/q` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/sougou.js` |
+| `cmp_allad_072_baidutieba` | Scripts/app-clean.conf:21 | 贴吧 | http-response | 1 | zirawell R-Store | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/c\.tieba\.baidu\.com\/c\/f\/(excellent\/personalized\|frs\/(?:generalTabList\|pa` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/tiebaProto.js` |
+| `cmp_allad_074_adunion` | Scripts/app-clean.conf:22 | 淘宝 | http-response | 0 | zirawell R-Store | 可改规则候选 | 不依赖响应 body，后续可人工评估是否改为 Rule / URL Rewrite | `^https?:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch$` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/amdc.js` |
+| `cmp_allad_075_umetrip` | Scripts/app-clean.conf:23 | 未识别 / 通用 | http-response | 0 | zirawell R-Store | 可改规则候选 | 不依赖响应 body，后续可人工评估是否改为 Rule / URL Rewrite | `^https?:\/\/(bkclient\|umerp\|home)\.umetrip\.com(\.cn){0` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/umetrip.js` |
+| `cmp_allad_080_yunda` | Scripts/app-clean.conf:24 | 未识别 / 通用 | http-request | 1 | zirawell R-Store | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/mbpxapi\.yundasys\.com(:\d+)?\/gateway\/interface` | `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/yunda.js` |
+| `cmp_block_082_12306` | Scripts/app-clean.conf:25 | 未识别 / 通用 | http-request | 1 | raw.githubusercontent.com | 需要人工复核 | 无法静态判断，需结合脚本内容和真机测试 | `^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList` | `https://raw.githubusercontent.com/kokoryh/Script/master/js/12306.js` |
+| `cmp_block_083_ad` | Scripts/app-clean.conf:26 | 未识别 / 通用 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/[\d\.]+\/3f1\/cards\.iqiyi\.com\/(views_home\/3\.0\/qy_home\|waterfall\/3\.0\/f` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js` |
+| `cmp_block_087_ad` | Scripts/app-clean.conf:27 | 滴滴 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/ct\.xiaojukeji\.com\/agent\/v3\/feeds` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js` |
+| `cmp_block_088_ad` | Scripts/app-clean.conf:28 | 未识别 / 通用 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^http?:\/\/(114\.115\.217\.129)\|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/umetrip/umetrip_ads.js` |
+| `cmp_block_095_rrtv_json` | Scripts/app-clean.conf:29 | 未识别 / 通用 | http-response | 1 | fmz200 wool_scripts | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https?:\/\/api\.rr\.tv\/ad\/getAll` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/rrtv_json.js` |
 | `app-cleaner-active-json-clean` | Scripts/app-cleaner-active.conf:9 | VGTime / 快看漫画 / 闲鱼 | http-response | 1 | local | 需要人工复核 | 无法静态判断，需结合脚本内容和真机测试 | `^https?:\/\/.*(qq\.com\|vgtime\.com\|17gwx\.com\|163\.com\|xiaoheihe\.cn\|wearemanner\.com\|chao` | `https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/app-cleaner.js` |
 | `spotify-json` | Scripts/spotify.conf:2 | Spotify | http-request | 0 | app2smile | 必须独立保留 | 核心专项脚本，合并风险高 | `^https:\/\/(spclient\.wg\.spotify\.com\|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\` | `https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js` |
 | `spotify-proto` | Scripts/spotify.conf:3 | Spotify | http-response | 1 | app2smile | 必须独立保留 | 核心专项脚本，合并风险高 | `^https:\/\/(spclient\.wg\.spotify\.com\|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/` | `https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js` |
