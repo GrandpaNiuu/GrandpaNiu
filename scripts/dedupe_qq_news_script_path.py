@@ -8,6 +8,7 @@ Batch 2: SQKB, 163News, XiaoHeiHe, Manner, Chaoge.
 Batch 3: SMZDM, Taobao, JuneYaoAir, DDXQ, ZSGJ.
 Batch 4: KKMH, Goofish, XMly, Didi.
 Batch 5: generic low-risk JSON ad-field cleaner endpoints.
+Batch 6: Douyu, SPTCC, Youdao Dict, Maimai.
 
 It applies the same cleanup to Scripts/app-clean.conf and Rewrite/Sources/Script.conf
 so source_script_compat does not reintroduce old entries during builds.
@@ -95,6 +96,10 @@ REMOVED_NAMES = {
     "cmp_block_093_ad": "Generic JSON ad-field cleaner",
     "cmp_block_094_ad": "Generic JSON ad-field cleaner",
     "cmp_block_096_ad": "Generic JSON ad-field cleaner",
+    "cmp_allad_057_douyu": "Douyu JSON cleaner",
+    "cmp_allad_058_sptcc": "SPTCC JSON cleaner",
+    "cmp_block_099_ad": "Youdao Dict JSON cleaner",
+    "cmp_block_090_ad": "Maimai JSON cleaner",
 }
 PROTECTED_NAMES = {
     "spotify-json",
@@ -128,7 +133,6 @@ PROTECTED_NAMES = {
     "cmp_block_083_ad",
     "cmp_block_087_ad",
     "cmp_block_088_ad",
-    "cmp_block_090_ad",
     "cmp_block_095_rrtv_json",
 }
 
@@ -189,7 +193,7 @@ def main() -> None:
         "",
         "## 本次迁移",
         "",
-        "- 迁移范围：Batch 1-4 专项清理 + Batch 5 通用低风险 JSON 广告字段清理",
+        "- 迁移范围：Batch 1-6 低风险 JSON / 字段清理融合",
         "- 新承接入口：`Scripts/app-cleaner-active.conf` / `app-cleaner-active-json-clean`",
         "- 新承接脚本：`Scripts/app-cleaner.js`",
         f"- 计划替换旧入口数量：{len(planned)}",
@@ -216,7 +220,7 @@ def main() -> None:
         "- 不动 YouTube。",
         "- 不动知乎增强与知乎 R-Store 条目。",
         "- 不动 Tieba JSON / proto。",
-        "- 不动小红书、Cotti、RRTV、网易云音乐、12306、航旅纵横、搜狗输入法、韵达等复杂或高风险条目。",
+        "- 不动微博、Keep、Soul、Cotti、RRTV、网易云音乐、12306、航旅纵横、搜狗输入法、韵达等复杂或高风险条目。",
         "- 不动登录、支付、验证码、银行相关条目。",
         "- 不合并复杂加密、持久化配置、会员权益、binary-body 脚本。",
         "",
