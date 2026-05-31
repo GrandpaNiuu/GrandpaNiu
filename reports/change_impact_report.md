@@ -1,13 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-01 02:38:11 +0800
+- 生成时间：2026-06-01 03:00:00 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `reports/multi_release_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
+- `.github/workflows/workflow-failure-issue.yml`
 
 ## 新增文件
 
@@ -19,13 +17,11 @@
 
 ## 修改文件
 
-- `reports/multi_release_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
+- `.github/workflows/workflow-failure-issue.yml`
 
 ## 影响的模块层
 
-- README/docs
+- Workflows
 
 ## 可能影响的 App
 
