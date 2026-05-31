@@ -14,6 +14,8 @@ Shadowrocket / Surge 自用融合净化模块工厂。
 
 `GrandpaNiu` 是一个源头驱动的 Shadowrocket 模块工厂。仓库不会长期手工维护根目录模块，而是从 `Rules`、`Scripts`、`Rewrite/Sources`、`Rewrite/Profiles` 和维护脚本自动生成四个独立模块。
 
+维护原则：**所有已纳入覆盖的 App 一视同仁维护，不再单独指定“核心保护对象”。**
+
 日常使用只推荐启用一个版本：**默认用 Stable**。
 
 ## 版本选择
@@ -24,9 +26,9 @@ Shadowrocket / Surge 自用融合净化模块工厂。
 
 | 版本 | 定位 | 默认使用 | 覆盖重点 | 风险边界 | 导入 |
 |---|---|---|---|---|---|
-| Stable | 默认正式版 | 是 | 核心专项 + 常用 App 净化 | 优先稳定、低误杀 | [导入][stable-import] |
+| Stable | 默认正式版 | 是 | 已纳入 App 的稳定覆盖 + 常用净化 | 优先稳定、低误杀 | [导入][stable-import] |
 | Stable Plus | 增强测试版 | 否 | Stable + 更多常用 App MITM 覆盖 | 只做测试，不自动晋级 Stable | [导入][stable-plus-import] |
-| Lite | 低耗电版 | 否 | Spotify / YouTube / 知乎核心链路 | 覆盖少，适合排查异常 | [导入][lite-import] |
+| Lite | 低耗电版 | 否 | 最小必要覆盖集合 | 覆盖少，适合排查异常 | [导入][lite-import] |
 | Full | 全量排查版 | 否 | 完整 extended MITM 层 | 不建议长期启用 | [导入][full-import] |
 
 > 不要同时启用多个版本。覆盖说明来自规则、脚本、Rewrite、MITM 和静态扫描，不等于所有 App 都已人工测试通过。
@@ -39,20 +41,19 @@ Shadowrocket / Surge 自用融合净化模块工厂。
 
 主要包含：
 
-- 核心专项：Spotify、YouTube、知乎。
-- 通用净化：广告、开屏、弹窗、横幅、信息流、推荐位、活动卡片。
-- 常用方向：电商购物、本地生活、内容社区、音频内容、地图工具、部分资讯与工具类 App。
+- 已纳入 App 的广告、开屏、弹窗、横幅、信息流、推荐位、活动卡片净化。
+- Spotify、YouTube、知乎等已纳入 App 的完整覆盖，不再单独标记为“核心”。
+- 常用方向：电商购物、本地生活、内容社区、音频内容、地图工具、资讯与工具类 App。
 - 脚本融合：低风险 JSON 清理类脚本由 `Scripts/app-cleaner.js` 统一承接，减少重复脚本入口。
 
 重点覆盖方向：
 
 | 类别 | App / 服务方向 |
 |---|---|
-| 核心专项 | Spotify、YouTube、知乎 |
+| 音频视频 | Spotify、YouTube、Bilibili、咪咕视频、VGTime、喜马拉雅、小宇宙、网易云音乐 |
+| 内容社区 / 问答 | 知乎、贴吧、微博、小红书、Reddit、酷安、小黑盒、快看漫画、皮皮虾、脉脉 |
 | 电商购物 | 淘宝、闲鱼、京东、拼多多、什么值得买、转转、飞猪、菜鸟 |
 | 本地生活 | 美团、大众点评、饿了么、叮咚买菜、朴朴、罗森、Manner |
-| 内容社区 | 贴吧、微博、小红书、Reddit、酷安、小黑盒、快看漫画 |
-| 音频视频 | 喜马拉雅、小宇宙、网易云音乐、Bilibili、咪咕视频、VGTime |
 | 出行地图 | 高德地图、百度地图、滴滴、吉祥航空、掌上公交 |
 | 工具办公 | 有道、51CTO、稿定设计、配音秀、usmile、萤石 |
 
@@ -78,7 +79,7 @@ Shadowrocket / Surge 自用融合净化模块工厂。
 
 ```text
 Stable Plus 中测试
--> 登录 / 验证码 / 支付前置 / 核心流程无异常
+-> 登录 / 验证码 / 支付前置 / 常用流程无异常
 -> 单项 App 进入晋级候选
 -> 人工确认后再进入 Stable
 ```
@@ -89,10 +90,10 @@ Stable Plus 中测试
 
 主要包含：
 
-- Spotify 核心脚本和核心 hostname。
-- YouTube 核心脚本和核心 hostname。
-- 知乎增强净化。
+- 最小必要脚本集合。
+- 最小必要 hostname 集合。
 - 基础规则和必要远程规则。
+- 用于确认异常是否来自脚本、MITM 或规则覆盖过大。
 
 Lite 不追求覆盖广度，它的价值是低风险、低 MITM、便于定位异常来源。
 
@@ -108,6 +109,35 @@ Lite 不追求覆盖广度，它的价值是低风险、低 MITM、便于定位�
 - 全量 extended hostname。
 
 Full 不适合：登录、支付、验证码、银行 App、对耗电敏感的设备、长期日常使用。
+
+## 自动拉取规则和脚本的边界
+
+仓库可以做“自动化收集和筛选”，但不能无审核地把外部脚本直接塞进默认 Stable。专业的自动化路径应该是：
+
+```text
+可信来源收集
+-> 静态安全扫描
+-> 生成候选报告
+-> 进入 Stable Plus 或 pending 区
+-> 构建验证 / 语法验证 / 重复检查
+-> 人工测试
+-> 单项晋级 Stable
+```
+
+可以自动进入的内容：
+
+- 明确安全的规则源。
+- 已知可信源的低风险广告域名规则。
+- 不涉及登录、支付、验证码、会员权益、Cookie、Token、加密 body 的普通净化逻辑。
+- 通过语法检查、结构检查、重复检查的候选项。
+
+不能自动直接进入 Stable 的内容：
+
+- 未知作者脚本。
+- 混淆脚本。
+- 会员权益、破解、绕过、登录、支付、验证码相关脚本。
+- 会改写 request body、Cookie、Token、账户状态的脚本。
+- 无法解释用途的远程模块。
 
 ## 导入地址
 
@@ -142,15 +172,15 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 - 检查 profile 是否能构建。
 - 检查 JS 语法：`node --check Scripts/app-cleaner.js`。
 - 生成覆盖矩阵、脚本清单、健康报告、回滚报告。
+- 收集可信候选规则源并生成候选报告。
 - 对 workflow 失败自动创建 Issue。
 
-仓库不会自动做：
+仓库不会也不应该无条件自动做：
 
 - 自动真机测试 App。
-- 自动确认 YouTube / Spotify / 知乎实际可用。
-- 自动确认淘宝 / 拼多多 / 京东订单页无异常。
-- 自动确认微信 / 支付宝 / 银行 / 验证码流程无异常。
-- 自动把 Stable Plus 或 Full 的内容晋级到 Stable。
+- 自动确认任何 App 的实际可用性。
+- 自动确认电商订单页、支付前置、验证码、登录流程无异常。
+- 自动把 Stable Plus、Full 或未知远程脚本直接晋级到 Stable。
 
 ## 安全边界
 
@@ -160,13 +190,14 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 - Cookie / Token / BoxJS 依赖。
 - 成人、博彩、短链、镜像源、`ghproxy`、未知混淆脚本。
 
-优先保护：Spotify、YouTube、知乎、登录、支付、验证码、银行、微信、支付宝。
+安全策略对所有 App 一视同仁：只要涉及登录、支付、验证码、银行、账户权益、Cookie、Token，都必须按高风险处理；不因为某个 App 被长期使用就给它特殊例外，也不因为某个 App 新加入就降低安全门槛。
 
 ## 维护入口
 
 | 类型 | 链接 | 用途 |
 |---|---|---|
 | 模块功能 | [docs/MODULE_FEATURES.md](docs/MODULE_FEATURES.md) | 四个版本功能、App 覆盖和使用边界 |
+| 自动化策略 | [docs/AUTOMATION_POLICY.md](docs/AUTOMATION_POLICY.md) | 自动收集、自动筛选、人工晋级边界 |
 | Profile 边界 | [docs/PROFILE_POLICY.md](docs/PROFILE_POLICY.md) | Stable / Stable Plus / Lite / Full 发布边界 |
 | 脚本融合计划 | [docs/SCRIPT_CONSOLIDATION_PLAN.md](docs/SCRIPT_CONSOLIDATION_PLAN.md) | 脚本减少、融合、回滚策略 |
 | MITM 策略 | [docs/MITM_POLICY.md](docs/MITM_POLICY.md) | hostname 分级和增长控制 |
