@@ -1,21 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-05-31 13:10:57 +0800
+- 生成时间：2026-06-01 00:10:49 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Release/Ronghemokuai-full.sgmodule`
-- `Release/Ronghemokuai-lite.sgmodule`
-- `Release/Ronghemokuai-stable-plus.sgmodule`
-- `Release/Ronghemokuai-stable.sgmodule`
-- `Release/Ronghemokuai.sgmodule`
-- `Ronghemokuai.sgmodule`
-- `reports/module_factory_diff_report.md`
-- `reports/module_factory_report.md`
-- `reports/multi_release_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
+- `Scripts/app-cleaner.js`
 
 ## 新增文件
 
@@ -27,37 +17,39 @@
 
 ## 修改文件
 
-- `Release/Ronghemokuai-full.sgmodule`
-- `Release/Ronghemokuai-lite.sgmodule`
-- `Release/Ronghemokuai-stable-plus.sgmodule`
-- `Release/Ronghemokuai-stable.sgmodule`
-- `Release/Ronghemokuai.sgmodule`
-- `Ronghemokuai.sgmodule`
-- `reports/module_factory_diff_report.md`
-- `reports/module_factory_report.md`
-- `reports/multi_release_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
+- `Scripts/app-cleaner.js`
 
 ## 影响的模块层
 
-- Other
-- README/docs
+- Scripts
 
 ## 可能影响的 App
 
-- 待人工确认
+- 酷安
+- 淘宝
+- 闲鱼
+- 京东
+- 拼多多
+- 美团
+- 饿了么
+- 滴滴
+- 高德地图
+- 百度地图
+- 喜马拉雅
+- 小宇宙
+- 斗鱼
+- Reddit
 
 ## 风险判断
 
-- 是否涉及脚本：否
-- 是否涉及 MITM：是
+- 是否涉及脚本：是
+- 是否涉及 MITM：否
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
-- 是否需要测试 Spotify：按需
-- 是否需要测试 YouTube：按需
-- 是否需要测试知乎：按需
-- 是否需要测试登录/支付/验证码：按需
+- 是否需要测试 Spotify：是
+- 是否需要测试 YouTube：是
+- 是否需要测试知乎：是
+- 是否需要测试登录/支付/验证码：是
 
 ## 回滚建议
 
