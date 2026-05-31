@@ -35,7 +35,20 @@ jobs:
 
       - name: Compile maintenance scripts
         run: |
-          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/validate_repository.py scripts/repository_health_check.py
+          python3 -m py_compile \
+            scripts/build_module.py \
+            scripts/build_release_variants.py \
+            scripts/factory_finalize.py \
+            scripts/validate_repository.py \
+            scripts/validate_profiles.py \
+            scripts/audit_reject_risk.py \
+            scripts/generate_app_status_matrix.py \
+            scripts/create_promotion_pr.py \
+            scripts/score_candidates.py \
+            scripts/audit_domestic_app_connectivity.py \
+            scripts/generate_workflow_health_report.py \
+            scripts/check_report_freshness.py \
+            scripts/repository_health_check.py
 
       - name: Update source metadata date, build, finalize and report
         run: |
@@ -147,10 +160,32 @@ jobs:
           if validator.returncode != 0:
               raise SystemExit(validate_output)
 
+          governance_commands = [
+              ("validate_profiles.py", ["python3", "scripts/validate_profiles.py"]),
+              ("audit_reject_risk.py", ["python3", "scripts/audit_reject_risk.py"]),
+              ("generate_app_status_matrix.py", ["python3", "scripts/generate_app_status_matrix.py"]),
+              ("create_promotion_pr.py", ["python3", "scripts/create_promotion_pr.py"]),
+              ("score_candidates.py", ["python3", "scripts/score_candidates.py"]),
+              ("audit_domestic_app_connectivity.py", ["python3", "scripts/audit_domestic_app_connectivity.py"]),
+              ("generate_workflow_health_report.py", ["python3", "scripts/generate_workflow_health_report.py"]),
+              ("check_report_freshness.py", ["python3", "scripts/check_report_freshness.py"]),
+          ]
+          governance_outputs = []
+          for label, command in governance_commands:
+              proc = subprocess.run(command, text=True, capture_output=True)
+              output = (proc.stdout + proc.stderr).strip() or "no output"
+              governance_outputs.append(f"$ {label}\n{output}")
+              if proc.returncode != 0:
+                  raise SystemExit(f"{label} failed:\n{output}")
+
           health = subprocess.run(["python3", "scripts/repository_health_check.py"], text=True, capture_output=True)
           health_output = (health.stdout + health.stderr).strip() or "no output"
           if health.returncode != 0:
               raise SystemExit(health_output)
+          freshness = subprocess.run(["python3", "scripts/check_report_freshness.py"], text=True, capture_output=True)
+          freshness_output = (freshness.stdout + freshness.stderr).strip() or "no output"
+          if freshness.returncode != 0:
+              raise SystemExit(freshness_output)
 
           lines = [
               "# 每日模块更新报告",
@@ -170,7 +205,9 @@ jobs:
           lines += ["", "## 远程链接检查结果", ""]
           lines += [f"- `{url}`：{result}" for url, result in url_results]
           lines += ["", "## validate_repository.py 输出", "", "```text", validate_output, "```"]
+          lines += ["", "## 治理报告刷新输出", "", "```text", "\n\n".join(governance_outputs), "```"]
           lines += ["", "## repository_health_check.py 输出", "", "```text", health_output, "```"]
+          lines += ["", "## check_report_freshness.py 输出", "", "```text", freshness_output, "```"]
           lines += [
               "",
               "## 自动更新边界说明",
@@ -190,6 +227,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule reports/daily_update_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/repository_health_report.md
+          git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule reports/daily_update_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/repository_health_report.md reports/profile_validation_report.md reports/report_freshness_report.md reports/reject_risk_report.md reports/app_status_matrix.md reports/promotion_pr_report.md reports/candidate_security_score_report.md reports/domestic_app_connectivity_audit.md reports/workflow_health_report.md
           git diff --cached --quiet || git commit -m "Daily multi-version module update"
           git push
