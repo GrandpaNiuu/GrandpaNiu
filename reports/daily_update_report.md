@@ -51,10 +51,44 @@
 Repository validation passed.
 ```
 
+## 治理报告刷新输出
+
+```text
+$ validate_profiles.py
+Profile validation report written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/profile_validation_report.md
+
+$ audit_reject_risk.py
+Reject risk report written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/reject_risk_report.md
+
+$ generate_app_status_matrix.py
+App status matrix written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/app_status_matrix.md
+
+$ create_promotion_pr.py
+Promotion PR report written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/promotion_pr_report.md
+
+$ score_candidates.py
+Candidate security score report written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/candidate_security_score_report.md
+
+$ audit_domestic_app_connectivity.py
+Domestic App connectivity audit written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/domestic_app_connectivity_audit.md
+
+$ generate_workflow_health_report.py
+Workflow health report written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/workflow_health_report.md
+
+$ check_report_freshness.py
+Report freshness report written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/report_freshness_report.md
+```
+
 ## repository_health_check.py 输出
 
 ```text
 Repository health report written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/repository_health_report.md
+```
+
+## check_report_freshness.py 输出
+
+```text
+Report freshness report written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/report_freshness_report.md
 ```
 
 ## 自动更新边界说明
