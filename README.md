@@ -26,7 +26,7 @@ Shadowrocket / Surge 自用融合净化模块工厂。
 
 维护原则：**所有已纳入覆盖的 App 一视同仁维护，不设置单独例外。**
 
-日常使用只推荐启用一个版本：**默认用 Stable**。
+日常使用只推荐启用一个版本：**默认用 Stable**。根目录 `Ronghemokuai.sgmodule` 就是默认 Stable，Release 目录中的 Stable 是同一默认版本的独立发布文件。
 
 ## 版本选择
 
@@ -56,34 +56,9 @@ Shadowrocket / Surge 自用融合净化模块工厂。
 - 常用方向：电商购物、本地生活、内容社区、音频内容、地图工具、资讯与工具类 App。
 - 脚本融合：低风险 JSON 清理类脚本由 `Scripts/app-cleaner.js` 统一承接，减少重复脚本入口。
 
-重点覆盖方向：
-
-| 类别 | App / 服务方向 |
-|---|---|
-| 音频视频 | Spotify、YouTube、Bilibili、咪咕视频、VGTime、喜马拉雅、小宇宙、网易云音乐 |
-| 内容社区 / 问答 | 知乎、贴吧、微博、小红书、Reddit、酷安、小黑盒、快看漫画、皮皮虾、脉脉 |
-| 电商购物 | 淘宝、闲鱼、京东、拼多多、什么值得买、转转、飞猪、菜鸟 |
-| 本地生活 | 美团、大众点评、饿了么、叮咚买菜、朴朴、罗森、Manner |
-| 出行地图 | 高德地图、百度地图、滴滴、吉祥航空、掌上公交 |
-| 工具办公 | 有道、51CTO、稿定设计、配音秀、usmile、萤石 |
-
 ### Stable Plus：增强测试版
 
 适合测试更多常用 App 覆盖。它不是默认发布版本，也不会自动把内容合并进 Stable。
-
-额外覆盖方向包括：
-
-| 类别 | App / 服务方向 |
-|---|---|
-| 视频娱乐 | 爱奇艺、AcFun、芒果 TV、咪咕视频、虎牙、快手 |
-| 电商消费 | 得物、唯品会、当当、转转、什么值得买、永辉 |
-| 餐饮消费 | 瑞幸、麦当劳、星巴克 |
-| 出行旅游 | 携程、去哪儿、途家、途牛、航旅纵横、飞常准、南航、东航 |
-| 内容资讯 | 豆瓣、LOFTER、虎嗅、澎湃、华尔街见闻、人民 App、ZAKER |
-| 招聘职场 | 猎聘、BOSS 直聘、51job、猪八戒 |
-| 学习办公 | 有道、WPS、金山文档、超星、粉笔 |
-| 云盘工具 | 阿里云盘、天翼云盘、迅雷、向日葵 |
-| 汽车硬件 | 汽车之家、易车、比亚迪、小鹏、小牛、米家、Zepp、萤石、Petkit |
 
 晋级规则：
 
@@ -96,29 +71,11 @@ Stable Plus 中测试
 
 ### Lite：低耗电版
 
-适合手机发热、耗电明显、App 登录异常、页面异常时排查。
-
-主要包含：
-
-- 最小必要脚本集合。
-- 最小必要 hostname 集合。
-- 基础规则和必要远程规则。
-- 用于确认异常是否来自脚本、MITM 或规则覆盖过大。
-
-Lite 不追求覆盖广度，它的价值是低风险、低 MITM、便于定位异常来源。
+适合手机发热、耗电明显、App 登录异常、页面异常时排查。Lite 不追求覆盖广度，它的价值是低风险、低 MITM、便于定位异常来源。
 
 ### Full：全量排查版
 
-只适合查漏拦和临时定位缺失 hostname，不建议长期启用。
-
-主要包含：
-
-- Stable 的全部能力。
-- Stable Plus 的测试覆盖方向。
-- 完整 `MITM-extended.conf`。
-- 全量 extended hostname。
-
-Full 不适合：登录、支付、验证码、银行 App、对耗电敏感的设备、长期日常使用。
+只适合查漏拦和临时定位缺失 hostname，不建议长期启用。Full 不适合：登录、支付、验证码、银行 App、对耗电敏感的设备、长期日常使用。
 
 ## 自动拉取规则和脚本的边界
 
@@ -206,6 +163,7 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 
 | 类型 | 链接 | 用途 |
 |---|---|---|
+| Codex 执行标准 | [docs/CODEX_EXECUTION_STANDARD.md](docs/CODEX_EXECUTION_STANDARD.md) | Codex 修改边界、任务分级、必跑命令和回滚要求 |
 | 模块功能 | [docs/MODULE_FEATURES.md](docs/MODULE_FEATURES.md) | 四个版本功能、App 覆盖和使用边界 |
 | 自动化策略 | [docs/AUTOMATION_POLICY.md](docs/AUTOMATION_POLICY.md) | 自动收集、自动筛选、人工晋级边界 |
 | Profile 边界 | [docs/PROFILE_POLICY.md](docs/PROFILE_POLICY.md) | Stable / Stable Plus / Lite / Full 发布边界 |
@@ -229,10 +187,13 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 | [reports/app_coverage_matrix.md](reports/app_coverage_matrix.md) | App 覆盖矩阵 |
 | [reports/app_status_matrix.md](reports/app_status_matrix.md) | App 状态矩阵，区分覆盖与真实测试 |
 | [reports/reject_risk_report.md](reports/reject_risk_report.md) | REJECT 高风险误伤分类 |
+| [reports/reject_manual_review_plan.md](reports/reject_manual_review_plan.md) | REJECT 人工复核计划 |
 | [reports/stable_plus_promotion_report.md](reports/stable_plus_promotion_report.md) | Stable Plus 晋级候选报告 |
+| [reports/stable_plus_manual_test_plan.md](reports/stable_plus_manual_test_plan.md) | Stable Plus 单项测试计划 |
 | [reports/promotion_pr_report.md](reports/promotion_pr_report.md) | Stable Plus 单项晋级 PR 审查材料 |
 | [reports/manual_test_log.md](reports/manual_test_log.md) | 人工测试记录 |
 | [reports/candidate_security_score_report.md](reports/candidate_security_score_report.md) | 候选源安全评分 |
+| [reports/candidate_followup_plan.md](reports/candidate_followup_plan.md) | 候选源后续处理计划 |
 | [reports/report_freshness_report.md](reports/report_freshness_report.md) | 治理报告新鲜度检查 |
 | [reports/domestic_app_connectivity_audit.md](reports/domestic_app_connectivity_audit.md) | 国内 App 联网和图片加载误伤排查 |
 | [reports/workflow_health_report.md](reports/workflow_health_report.md) | workflow 最新状态 |
