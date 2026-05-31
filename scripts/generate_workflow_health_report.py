@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
-"""Generate a workflow health checklist report."""
+"""Generate workflow health report with optional GitHub Actions run status."""
 
 from __future__ import annotations
 
 import datetime as dt
+import json
+import os
 import re
+import urllib.error
+import urllib.request
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "reports" / "workflow_health_report.md"
+DEFAULT_REPOSITORY = "GrandpaNiuu/GrandpaNiu"
+API_ROOT = "https://api.github.com"
 
 WORKFLOWS = [
     ("Module Factory Build", ".github/workflows/module-factory-build.yml", "构建 Release 并同步 Root"),
@@ -51,28 +58,92 @@ def priority(path: str) -> str:
     return "待确认"
 
 
+def github_json(path: str) -> tuple[dict[str, Any] | None, str]:
+    request = urllib.request.Request(
+        f"{API_ROOT}{path}",
+        headers={
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+            "User-Agent": "GrandpaNiu-workflow-health",
+        },
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=20) as response:
+            return json.loads(response.read().decode("utf-8")), ""
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")[:200]
+        return None, f"HTTP {exc.code}: {detail}"
+    except OSError as exc:
+        return None, f"{type(exc).__name__}: {exc}"
+
+
+def latest_run(workflow_path: str, repository: str) -> tuple[dict[str, str], str]:
+    workflow_file = workflow_path.rsplit("/", 1)[-1]
+    data, error = github_json(f"/repos/{repository}/actions/workflows/{workflow_file}/runs?per_page=1")
+    if error:
+        return {}, error
+    runs = data.get("workflow_runs", []) if isinstance(data, dict) else []
+    if not runs:
+        return {}, "未找到运行记录"
+    run = runs[0]
+    return {
+        "created_at": str(run.get("created_at") or ""),
+        "status": str(run.get("status") or "unknown"),
+        "conclusion": str(run.get("conclusion") or "pending"),
+        "url": str(run.get("html_url") or ""),
+    }, ""
+
+
+def conclusion_advice(status: str, conclusion: str, fallback: str) -> str:
+    if fallback:
+        return f"无法确认：{fallback}"
+    if status != "completed":
+        return "运行中或未完成，等待完成后复查"
+    if conclusion == "success":
+        return "通过"
+    if conclusion in {"failure", "cancelled", "timed_out", "action_required"}:
+        return "打开 run 日志，优先排查失败步骤"
+    return "状态未知，人工复核"
+
+
 def main() -> None:
     now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
+    repository = os.environ.get("GITHUB_REPOSITORY", DEFAULT_REPOSITORY).strip() or DEFAULT_REPOSITORY
+
     lines = [
         "# Workflow 健康报告",
         "",
         f"生成时间：{now}",
         "",
-        "本报告默认不调用 GitHub API。workflow 最新运行状态无法确认，需要在 GitHub Actions 页面确认 completed / success。",
+        "本报告用于确认 workflow 文件是否存在，并尽量读取 GitHub Actions 最近运行状态。若 API 不可用，则只报告配置存在性，不伪造成功状态。",
         "",
-        "| Workflow | 用途 | 触发方式 | 最近状态 | 失败时优先排查 |",
-        "|---|---|---|---|---|",
+        f"- Repository：`{repository}`",
+        "",
+        "| Workflow | 文件 | 用途 | 触发方式 | 最近运行时间 | Status | Conclusion | Run URL | 处理建议 |",
+        "|---|---|---|---|---|---|---|---|---|",
     ]
+
     for name, rel, purpose in WORKFLOWS:
         text = read(ROOT / rel)
-        exists = "存在" if text else "缺失"
-        lines.append(f"| {name} | {purpose} | {triggers(text)} | {exists}；最新状态无法确认 | {priority(rel)} |")
+        if not text:
+            lines.append(f"| {name} | `{rel}` | {purpose} | 缺失 | 缺失 | missing | missing | - | 补齐 workflow 文件 |")
+            continue
+        run_info, error = latest_run(rel, repository)
+        status = run_info.get("status", "unconfirmed")
+        conclusion = run_info.get("conclusion", "unconfirmed")
+        created_at = run_info.get("created_at", "无法确认")
+        url = run_info.get("url", "-")
+        url_cell = f"[open]({url})" if url.startswith("https://") else "-"
+        advice = conclusion_advice(status, conclusion, error) if run_info else f"配置存在；{priority(rel)}；需要 Actions 页面确认"
+        lines.append(f"| {name} | `{rel}` | {purpose} | {triggers(text)} | {created_at} | {status} | {conclusion} | {url_cell} | {advice} |")
+
     lines += [
         "",
         "## 说明",
         "",
-        "- 如果需要真实最近状态，请打开仓库 Actions 页面确认。",
-        "- 所有会写仓库的 workflow 应使用 `permissions: contents: write` 和共享并发组 `module-maintenance`。",
+        "- `success` 才能视为 workflow 最近一次运行通过。",
+        "- `failure`、`cancelled`、`timed_out`、`action_required` 必须打开对应 run 日志排查。",
+        "- API 不可用时，本报告只确认配置存在，不确认真实运行状态。",
         "- Promotion PR 只允许单项 App 审查，不自动合并，不整体合并 Stable Plus。",
         "",
     ]
