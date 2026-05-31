@@ -67,7 +67,19 @@ REQUIRED_GOVERNANCE_FILES = (
     "docs/ROADMAP.md",
     "docs/PROFILE_POLICY.md",
     "scripts/build_release_variants.py",
+    "scripts/audit_reject_risk.py",
+    "scripts/generate_app_status_matrix.py",
+    "scripts/create_promotion_pr.py",
+    "scripts/score_candidates.py",
+    "scripts/check_report_freshness.py",
+    "scripts/audit_domestic_app_connectivity.py",
     "reports/multi_release_report.md",
+    "reports/reject_risk_report.md",
+    "reports/app_status_matrix.md",
+    "reports/promotion_pr_report.md",
+    "reports/candidate_security_score_report.md",
+    "reports/report_freshness_report.md",
+    "reports/domestic_app_connectivity_audit.md",
     "Rewrite/Profiles/stable.conf",
     "Rewrite/Profiles/stable-plus.conf",
     "Rewrite/Profiles/lite.conf",
@@ -84,6 +96,7 @@ REQUIRED_WORKFLOWS = (
     ".github/workflows/daily-invalid-source-repair.yml",
     ".github/workflows/upstream-collect.yml",
     ".github/workflows/repository-health.yml",
+    ".github/workflows/stable-plus-promotion-pr.yml",
 )
 ALLOWED_REMOTE_TYPES = {"RULE-SET", "DOMAIN-SET"}
 ALLOWED_POLICIES = {"REJECT", "REJECT-DROP", "DIRECT"}
@@ -342,6 +355,10 @@ def validate_profile_boundaries() -> None:
         lowered = host.lower()
         if any(token in lowered for token in SENSITIVE_MITM_TOKENS):
             fail(f"sensitive hostname should not be in MITM-stable-plus.conf without review: {host}")
+    if "wechat_ad_test = Rules/wechat-ad.list" not in stable_plus:
+        fail("stable-plus.conf must include Rules/wechat-ad.list for WeChat ad testing")
+    if "wechat_ad_test" in stable or "wechat_ad_test" in lite:
+        fail("WeChat ad testing rules must not be included in stable.conf or lite.conf")
 
 
 def validate_readme_links() -> None:
@@ -369,6 +386,22 @@ def validate_no_tool_traces() -> None:
                 continue
             if token in text:
                 fail(f"tool trace token found in {path.relative_to(ROOT)}: {token}")
+
+
+def validate_policy_language() -> None:
+    forbidden = ("核心" + "保护对象", "核心" + "专项", "核心" + "链路")
+    scan_paths = [
+        README,
+        ROOT / "docs" / "MODULE_FEATURES.md",
+        ROOT / "docs" / "AUTOMATION_POLICY.md",
+        ROOT / "docs" / "PROFILE_POLICY.md",
+        ROOT / "import.html",
+    ]
+    for path in scan_paths:
+        text = read_text(path)
+        for token in forbidden:
+            if token in text:
+                fail(f"forbidden policy phrase found in {path.relative_to(ROOT)}: {token}")
 
 
 def validate_governance_files() -> None:
@@ -413,6 +446,24 @@ def validate_workflows() -> None:
         if token not in daily_workflow:
             fail(f"daily-module-update workflow missing validation token: {token}")
 
+    health_workflow = read_text(ROOT / ".github" / "workflows" / "repository-health.yml")
+    for token in (
+        "scripts/audit_reject_risk.py",
+        "scripts/generate_app_status_matrix.py",
+        "scripts/create_promotion_pr.py",
+        "scripts/score_candidates.py",
+        "scripts/check_report_freshness.py",
+        "scripts/audit_domestic_app_connectivity.py",
+        "reports/reject_risk_report.md",
+        "reports/app_status_matrix.md",
+        "reports/promotion_pr_report.md",
+        "reports/candidate_security_score_report.md",
+        "reports/report_freshness_report.md",
+        "reports/domestic_app_connectivity_audit.md",
+    ):
+        if token not in health_workflow:
+            fail(f"repository-health workflow missing governance token: {token}")
+
 
 def main() -> None:
     validate_root_release()
@@ -425,6 +476,7 @@ def main() -> None:
     validate_profile_boundaries()
     validate_readme_links()
     validate_no_tool_traces()
+    validate_policy_language()
     validate_governance_files()
     validate_workflows()
     print("Repository validation passed.")

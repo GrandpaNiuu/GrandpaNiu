@@ -1,6 +1,6 @@
 # 国内 App 联网与加载误伤风险排查报告
 
-生成时间：2026-06-01 01:45:38 +0800
+生成时间：2026-06-01 02:14:15 +0800
 
 本报告用于排查国内 App 图片加载失败、页面加载不完整、微信不能发图片等问题。报告只分析，不自动修改规则。
 
@@ -33,8 +33,6 @@
 
 - `DOMAIN,badjs.weixinbridge.com,REJECT,pre-matching`
 - `DOMAIN,cube.weixinbridge.com,REJECT,pre-matching`
-- `DOMAIN,dns.weixin.qq.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,wxs.qq.com,REJECT,pre-matching`
 
 ### image-cdn
 
@@ -52,7 +50,6 @@
 
 ### httpdns
 
-- `DOMAIN,dns.weixin.qq.com.cn,REJECT,pre-matching`
 - `DOMAIN,httpdns-sdk.n.netease.com,REJECT,pre-matching`
 - `DOMAIN,httpdns.baidubce.com,REJECT,pre-matching`
 - `DOMAIN,httpdns.calorietech.com,REJECT,pre-matching`

@@ -1,43 +1,46 @@
 # 候选源安全评分报告
 
-生成时间：2026-06-01 01:45:38 +0800
+生成时间：2026-06-01 02:14:15 +0800
 
-本报告只评分候选源，不自动启用、不自动禁用、不自动晋级 Stable。
+本报告只评分候选源，不自动启用、禁用、下载、替换或晋级 Stable。未知脚本默认 `manual-review`，高风险内容一律 `blocked`。
 
-## 总体统计
+## 统计
 
 - 候选总数：11
-- candidate-ok：9
-- manual-review：2
-- block：0
-- enabled-risk：0
+- safe-rule-candidate：6
+- stable-plus-only：0
+- manual-review：5
+- blocked：0
 
-## 判定规则
+## 结论定义
 
-- `candidate-ok`：可信来源、低风险规则类候选，可以继续进入候选/测试流程。
-- `manual-review`：需要人工复核，不能直接进入 Stable。
-- `block`：包含高风险关键词、未知来源或风险过高，不能启用。
-- `enabled-risk`：已启用但评分为阻断风险，必须人工处理。
+- `safe-rule-candidate`：可信、低风险、规则类候选，可继续进入候选收集和测试流程。
+- `stable-plus-only`：只适合测试版，不进入默认 Stable。
+- `manual-review`：需要人工复核，不能自动进入默认模块。
+- `blocked`：不得进入任何默认模块。
 
-## 候选评分明细
+## 评分明细
 
-| 候选 | 类型 | 启用 | 激活 | 分数 | 结论 | 原因 | URL |
-|---|---|---|---|---:|---|---|---|
-| blackmatrix7 Advertising Lite | remote_rule | 是 | 是 | 100 | candidate-ok | trusted:blackmatrix7/ios_rule_script; remote-rule; warning-keywords:script; safe-keywords:ad,advert,advertising,lite,surge | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingLite/AdvertisingLite.list` |
-| blackmatrix7 Hijacking | remote_rule | 是 | 是 | 99 | candidate-ok | trusted:blackmatrix7/ios_rule_script; remote-rule; warning-keywords:script; safe-keywords:hijacking,surge | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Hijacking/Hijacking.list` |
-| blackmatrix7 Privacy | remote_rule | 是 | 是 | 100 | candidate-ok | trusted:blackmatrix7/ios_rule_script; remote-rule; warning-keywords:script; safe-keywords:privacy,surge,tracker | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy.list` |
-| blackmatrix7 Privacy Lite | remote_rule | 否 | 否 | 100 | candidate-ok | trusted:blackmatrix7/ios_rule_script; remote-rule; warning-keywords:script; safe-keywords:lite,privacy,surge,tracker | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list` |
-| blackmatrix7 Advertising MiTV | remote_rule | 是 | 是 | 100 | candidate-ok | trusted:blackmatrix7/ios_rule_script; remote-rule; warning-keywords:script; safe-keywords:ad,advert,advertising,surge | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingMiTV/AdvertisingMiTV.list` |
-| ACL4SSR BanProgramAD | remote_rule | 是 | 是 | 100 | candidate-ok | trusted:ACL4SSR/ACL4SSR; remote-rule; safe-keywords:ad,advert,advertising | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list` |
-| ACL4SSR BanEasyListChina | remote_rule | 是 | 是 | 100 | candidate-ok | trusted:ACL4SSR/ACL4SSR; remote-rule; safe-keywords:ad,advert,advertising | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list` |
-| Loyalsoldier reject domain set | remote_rule | 否 | 否 | 100 | candidate-ok | trusted:Loyalsoldier/surge-rules; remote-rule; safe-keywords:ad,reject,surge | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` |
-| Cats-Team AdRules DNS list | remote_rule | 否 | 否 | 100 | candidate-ok | trusted:Cats-Team/AdRules; remote-rule; safe-keywords:ad,domain-set | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt` |
-| app2smile Tieba script | script | 否 | 否 | 72 | manual-review | trusted:app2smile/rules; script-candidate; pending; warning-keywords:body,script; safe-keywords:ad | `https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js` |
-| Maasea YouTube Enhance reference | reference_module | 否 | 否 | 85 | manual-review | trusted:Maasea/sgmodule; reference-only; protected-reference | `https://github.com/Maasea/sgmodule` |
+| 候选 | 类型 | 启用 | 激活 | source_trust_score | obfuscation_risk | request_body_risk | cookie_token_risk | payment_login_risk | membership_unlock_risk | license_status | rollback_available | final_verdict | 原因 | URL |
+|---|---|---|---|---:|---|---|---|---|---|---|---|---|---|---|
+| blackmatrix7 Advertising Lite | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=blackmatrix7/ios_rule_script; rule-hints=advert | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingLite/AdvertisingLite.list` |
+| blackmatrix7 Hijacking | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=blackmatrix7/ios_rule_script; rule-hints=hijacking | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Hijacking/Hijacking.list` |
+| blackmatrix7 Privacy | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=blackmatrix7/ios_rule_script; rule-hints=privacy,tracker | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy.list` |
+| blackmatrix7 Privacy Lite | remote_rule | 否 | 否 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | manual-review | trust=blackmatrix7/ios_rule_script; rule-hints=privacy,tracker; disabled=2026-05-31: source failed for 2 confirmed checks, last_error=HTTP 404 HTTP 404 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list` |
+| blackmatrix7 Advertising MiTV | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=blackmatrix7/ios_rule_script; rule-hints=advert | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingMiTV/AdvertisingMiTV.list` |
+| ACL4SSR BanProgramAD | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=ACL4SSR/ACL4SSR; rule-hints=advert | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list` |
+| ACL4SSR BanEasyListChina | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=ACL4SSR/ACL4SSR; rule-hints=advert | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list` |
+| Loyalsoldier reject domain set | remote_rule | 否 | 否 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | manual-review | trust=Loyalsoldier/surge-rules; rule-hints=domain,reject | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` |
+| Cats-Team AdRules DNS list | remote_rule | 否 | 否 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | manual-review | trust=Cats-Team/AdRules; rule-hints=domain,domain-set | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt` |
+| app2smile Tieba script | script | 否 | 否 | 95 | 低 | 中 | 低 | 低 | 低 | unknown | 是 | manual-review | trust=app2smile/rules; script默认 pending，不能自动进入 stable | `https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js` |
+| Maasea YouTube Enhance reference | reference_module | 否 | 否 | 95 | 低 | 低 | 低 | 低 | 低 | reference-only | 是 | manual-review | trust=Maasea/sgmodule; reference only | `https://github.com/Maasea/sgmodule` |
 
-## 处理原则
+## 安全边界
 
-1. 规则源可以自动进入候选报告，但不能无审核直接进入 Stable。
-2. 脚本候选默认 pending，必须人工复核和真机测试。
-3. 出现 Cookie、Token、登录、支付、验证码、会员权益、混淆、代理镜像等关键词时，不得自动启用。
-4. Stable Plus 或 pending 通过真实测试后，才允许单项晋级 Stable。
+- `blocked` 不得进入任何默认模块。
+- 未知脚本默认 `manual-review`。
+- 混淆脚本必须 `blocked`。
+- Cookie / Token / BoxJS 必须 `blocked`。
+- 会员破解 / 权益伪造必须 `blocked`。
+- request-body 脚本默认不能进 Stable。
+- 普通规则源可以进入 pending 或候选收集，但不能无审核进 Stable。

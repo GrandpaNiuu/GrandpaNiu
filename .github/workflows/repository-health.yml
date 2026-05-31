@@ -19,11 +19,14 @@ on:
       - "scripts/generate_change_impact_report.py"
       - "scripts/generate_workflow_health_report.py"
       - "scripts/generate_stable_plus_promotion_report.py"
+      - "scripts/create_promotion_pr.py"
       - "scripts/generate_script_inventory_report.py"
       - "scripts/dedupe_qq_news_script_path.py"
       - "scripts/score_candidates.py"
       - "scripts/check_report_freshness.py"
       - "scripts/audit_domestic_app_connectivity.py"
+      - "scripts/audit_reject_risk.py"
+      - "scripts/generate_app_status_matrix.py"
       - "SECURITY.md"
       - "LICENSE"
       - "CONTRIBUTING.md"
@@ -47,6 +50,7 @@ on:
       - "Rules/**"
       - "Scripts/**"
       - ".github/workflows/repository-health.yml"
+      - ".github/workflows/stable-plus-promotion-pr.yml"
       - ".github/workflows/workflow-failure-issue.yml"
 
 permissions:
@@ -68,7 +72,7 @@ jobs:
 
       - name: Compile maintenance scripts
         run: |
-          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/repository_health_check.py scripts/audit_compat_sources.py scripts/split_mitm_sources.py scripts/validate_profiles.py scripts/generate_app_coverage_matrix.py scripts/generate_change_impact_report.py scripts/generate_workflow_health_report.py scripts/generate_stable_plus_promotion_report.py scripts/generate_script_inventory_report.py scripts/dedupe_qq_news_script_path.py scripts/score_candidates.py scripts/check_report_freshness.py scripts/audit_domestic_app_connectivity.py
+          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/repository_health_check.py scripts/audit_compat_sources.py scripts/split_mitm_sources.py scripts/validate_profiles.py scripts/generate_app_coverage_matrix.py scripts/generate_change_impact_report.py scripts/generate_workflow_health_report.py scripts/generate_stable_plus_promotion_report.py scripts/create_promotion_pr.py scripts/generate_script_inventory_report.py scripts/dedupe_qq_news_script_path.py scripts/score_candidates.py scripts/check_report_freshness.py scripts/audit_domestic_app_connectivity.py scripts/audit_reject_risk.py scripts/generate_app_status_matrix.py
 
       - name: Validate app-cleaner JavaScript syntax
         run: node --check Scripts/app-cleaner.js
@@ -109,14 +113,23 @@ jobs:
       - name: Generate Stable Plus promotion candidates
         run: python3 scripts/generate_stable_plus_promotion_report.py
 
+      - name: Generate Stable Plus promotion PR report
+        run: python3 scripts/create_promotion_pr.py
+
       - name: Generate script inventory report
         run: python3 scripts/generate_script_inventory_report.py
 
       - name: Generate candidate security score report
         run: python3 scripts/score_candidates.py
 
+      - name: Generate REJECT risk report
+        run: python3 scripts/audit_reject_risk.py
+
       - name: Generate domestic app connectivity audit
         run: python3 scripts/audit_domestic_app_connectivity.py
+
+      - name: Generate App status matrix
+        run: python3 scripts/generate_app_status_matrix.py
 
       - name: Generate change impact report
         run: python3 scripts/generate_change_impact_report.py
@@ -143,7 +156,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule Rules/direct.list Rules/wechat-ad.list Scripts/app-clean.conf Scripts/app-cleaner.js Scripts/app-cleaner.config.json Scripts/app-cleaner-active.conf Rewrite/Profiles/stable-plus.conf Rewrite/Sources/Script.conf Rewrite/Sources/MITM-core.conf Rewrite/Sources/MITM-app-clean.conf Rewrite/Sources/MITM-stable-plus.conf Rewrite/Sources/MITM-extended.conf reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/repository_health_report.md reports/compat_migration_report.md reports/mitm_split_report.md reports/profile_validation_report.md reports/app_coverage_matrix.md reports/stable_plus_promotion_report.md reports/script_inventory_report.md reports/script_dedupe_report.md reports/script_consolidation_rollback_report.md reports/app_cleaner_active_report.md reports/app_cleaner_refactor_report.md reports/candidate_security_score_report.md reports/report_freshness_report.md reports/domestic_app_connectivity_audit.md reports/media_wechat_false_positive_report.md reports/change_impact_report.md reports/workflow_health_report.md reports/manual_test_log.md reports/repository_maturity_review.md reports/wechat_ad_test_report.md
+          git add Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule Rules/direct.list Rules/wechat-ad.list Scripts/app-clean.conf Scripts/app-cleaner.js Scripts/app-cleaner.config.json Scripts/app-cleaner-active.conf Rewrite/Profiles/stable-plus.conf Rewrite/Sources/Script.conf Rewrite/Sources/MITM-core.conf Rewrite/Sources/MITM-app-clean.conf Rewrite/Sources/MITM-stable-plus.conf Rewrite/Sources/MITM-extended.conf reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/repository_health_report.md reports/compat_migration_report.md reports/mitm_split_report.md reports/profile_validation_report.md reports/app_coverage_matrix.md reports/app_status_matrix.md reports/stable_plus_promotion_report.md reports/promotion_pr_report.md reports/script_inventory_report.md reports/script_dedupe_report.md reports/script_consolidation_rollback_report.md reports/app_cleaner_active_report.md reports/app_cleaner_refactor_report.md reports/candidate_security_score_report.md reports/report_freshness_report.md reports/reject_risk_report.md reports/domestic_app_connectivity_audit.md reports/media_wechat_false_positive_report.md reports/change_impact_report.md reports/workflow_health_report.md reports/manual_test_log.md reports/repository_maturity_review.md reports/wechat_ad_test_report.md
           if git diff --cached --quiet; then
             echo "No repository health changes to commit."
             exit 0

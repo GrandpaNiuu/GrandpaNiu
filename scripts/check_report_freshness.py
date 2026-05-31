@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Check whether governance reports are newer than their source inputs.
-
-This script is report-only by default. It writes reports/report_freshness_report.md
-and exits with success unless --strict is passed. Repository Health Check can use
-this output to surface stale reports without blocking normal maintenance runs.
-"""
+"""Check whether governance reports are newer than their source inputs."""
 
 from __future__ import annotations
 
@@ -18,50 +13,55 @@ REPORT = ROOT / "reports" / "report_freshness_report.md"
 CHECKS = [
     {
         "report": "reports/profile_validation_report.md",
-        "inputs": ["Rewrite/Profiles", "Scripts", "scripts/build_module.py", "scripts/validate_profiles.py"],
-        "reason": "Profile、脚本或构建逻辑变更后必须重新验证四版本构建。",
-    },
-    {
-        "report": "reports/script_inventory_report.md",
-        "inputs": ["Scripts", "scripts/generate_script_inventory_report.py"],
-        "reason": "Scripts 入口或脚本清单生成逻辑变更后必须刷新脚本清单。",
+        "inputs": ["Rewrite/Profiles", "Rules", "Scripts", "scripts/build_module.py", "scripts/validate_profiles.py"],
+        "blocking": True,
+        "reason": "Profile、规则、脚本或构建逻辑变更后必须重新验证四版本构建。",
     },
     {
         "report": "reports/repository_health_report.md",
-        "inputs": ["README.md", "docs", "scripts", "Rewrite", "Rules", "Scripts", ".github/workflows"],
+        "inputs": ["README.md", "SECURITY.md", "docs", "scripts", "Rewrite", "Rules", "Scripts", ".github/workflows"],
+        "blocking": True,
+        "self_refresh": True,
         "reason": "仓库治理、工作流或模块源头变更后必须刷新健康报告。",
-    },
-    {
-        "report": "reports/app_cleaner_active_report.md",
-        "inputs": ["Scripts/app-cleaner.js", "Scripts/app-cleaner-active.conf", "scripts/dedupe_qq_news_script_path.py"],
-        "reason": "app-cleaner 主脚本、active 入口或迁移脚本变更后必须刷新融合说明。",
-    },
-    {
-        "report": "reports/app_cleaner_refactor_report.md",
-        "inputs": ["Scripts/app-cleaner.js"],
-        "reason": "app-cleaner 架构变更后必须刷新重构报告。",
     },
     {
         "report": "reports/candidate_security_score_report.md",
         "inputs": ["Rewrite/Remotes/candidates.json", "scripts/score_candidates.py"],
-        "reason": "候选源或评分脚本变更后必须刷新安全评分报告。",
+        "blocking": True,
+        "reason": "候选源或评分脚本变更后必须刷新安全评分。",
+    },
+    {
+        "report": "reports/domestic_app_connectivity_audit.md",
+        "inputs": ["Rules/reject.list", "Rules/direct.list", "Scripts/app-cleaner-active.conf", "Scripts/app-cleaner.js", "scripts/audit_domestic_app_connectivity.py"],
+        "blocking": True,
+        "reason": "国内 App 联网风险相关源头变更后必须刷新审计报告。",
+    },
+    {
+        "report": "reports/reject_risk_report.md",
+        "inputs": ["Rules/reject.list", "Rules/direct.list", "scripts/audit_reject_risk.py"],
+        "blocking": True,
+        "reason": "REJECT 或 DIRECT 变更后必须刷新误伤风险分类。",
+    },
+    {
+        "report": "reports/app_status_matrix.md",
+        "inputs": ["Rules", "Scripts", "Rewrite/Sources", "Rewrite/Profiles", "reports/manual_test_log.md", "scripts/generate_app_status_matrix.py"],
+        "blocking": True,
+        "reason": "覆盖源头或人工测试记录变更后必须刷新 App 状态矩阵。",
     },
     {
         "report": "reports/manual_test_log.md",
         "inputs": ["Ronghemokuai.sgmodule", "Release", "Scripts", "Rewrite/Sources"],
-        "reason": "模块大改后手动测试记录必须明确保持未测或更新真实测试结果。",
+        "blocking": False,
         "manual": True,
+        "reason": "人工测试记录落后时只进入 manual-review，不自动写成通过。",
+    },
+    {
+        "report": "reports/app_cleaner_active_report.md",
+        "inputs": ["Scripts/app-cleaner.js", "Scripts/app-cleaner-active.conf", "scripts/dedupe_qq_news_script_path.py"],
+        "blocking": False,
+        "reason": "app-cleaner active 入口或融合逻辑变更后建议刷新说明。",
     },
 ]
-
-
-def read(path: Path) -> str:
-    return path.read_text(encoding="utf-8", errors="replace") if path.exists() else ""
-
-
-def write(path: Path, text: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8", newline="\n")
 
 
 def latest_mtime(path: Path) -> float:
@@ -71,36 +71,37 @@ def latest_mtime(path: Path) -> float:
         return path.stat().st_mtime
     latest = path.stat().st_mtime
     for item in path.rglob("*"):
-        if item.is_file() and ".git" not in item.parts:
+        if item.is_file() and "__pycache__" not in item.parts and ".git" not in item.parts:
             latest = max(latest, item.stat().st_mtime)
     return latest
 
 
-def fmt(timestamp: float) -> str:
-    if timestamp <= 0:
+def fmt(value: float) -> str:
+    if value <= 0:
         return "缺失"
-    return dt.datetime.fromtimestamp(timestamp, dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
+    return dt.datetime.fromtimestamp(value, dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
 
 
-def evaluate(check: dict) -> dict[str, str | bool]:
-    report_path = ROOT / str(check["report"])
-    input_paths = [ROOT / str(item) for item in check["inputs"]]
-    report_time = latest_mtime(report_path)
-    input_time = max((latest_mtime(path) for path in input_paths), default=0.0)
-    exists = report_path.exists()
+def evaluate(check: dict) -> dict[str, object]:
+    report = ROOT / str(check["report"])
+    report_time = latest_mtime(report)
+    input_time = max((latest_mtime(ROOT / str(item)) for item in check["inputs"]), default=0.0)
+    exists = report.exists()
     stale = not exists or report_time < input_time
-    manual = bool(check.get("manual", False))
-    status = "fresh"
     if not exists:
         status = "missing"
-    elif stale and manual:
+    elif stale and check.get("manual"):
         status = "manual-review"
     elif stale:
         status = "stale"
+    else:
+        status = "fresh"
     return {
         "report": str(check["report"]),
-        "exists": exists,
         "status": status,
+        "blocking": bool(check.get("blocking", False)),
+        "manual": bool(check.get("manual", False)),
+        "self_refresh": bool(check.get("self_refresh", False)),
         "report_time": fmt(report_time),
         "input_time": fmt(input_time),
         "reason": str(check["reason"]),
@@ -109,11 +110,11 @@ def evaluate(check: dict) -> dict[str, str | bool]:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--strict", action="store_true", help="exit non-zero if any report is missing or stale")
+    parser.add_argument("--strict", action="store_true", help="exit non-zero if a blocking report is stale or missing")
     args = parser.parse_args()
 
     rows = [evaluate(check) for check in CHECKS]
-    stale_rows = [row for row in rows if row["status"] in {"missing", "stale"}]
+    blocking_stale = [row for row in rows if row["blocking"] and row["status"] in {"missing", "stale"} and not row["self_refresh"]]
     manual_rows = [row for row in rows if row["status"] == "manual-review"]
     now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
 
@@ -122,22 +123,26 @@ def main() -> None:
         "",
         f"生成时间：{now}",
         "",
-        "本报告检查治理报告是否落后于对应源文件。`manual_test_log.md` 属于人工记录，变更后只提示复核，不自动写成通过。",
+        "本报告检查治理报告是否落后于对应源文件。关键报告 stale 时应视为阻断项；`manual_test_log.md` 只作为 manual-review，不自动失败。",
         "",
-        "## 总体统计",
+        "## 总览",
         "",
         f"- 检查项：{len(rows)}",
-        f"- 新鲜：{len([row for row in rows if row['status'] == 'fresh'])}",
-        f"- 过期：{len(stale_rows)}",
-        f"- 需人工复核：{len(manual_rows)}",
+        f"- fresh：{len([row for row in rows if row['status'] == 'fresh'])}",
+        f"- stale / missing：{len([row for row in rows if row['status'] in {'stale', 'missing'}])}",
+        f"- blocking stale / missing：{len(blocking_stale)}",
+        f"- manual-review：{len(manual_rows)}",
         "",
         "## 明细",
         "",
-        "| 报告 | 状态 | 报告时间 | 输入最新时间 | 原因 |",
-        "|---|---|---|---|---|",
+        "| 报告 | 状态 | 是否阻断 | 报告时间 | 输入最新时间 | 原因 |",
+        "|---|---|---|---|---|---|",
     ]
     for row in rows:
-        lines.append(f"| `{row['report']}` | {row['status']} | {row['report_time']} | {row['input_time']} | {row['reason']} |")
+        block_label = "是" if row["blocking"] else "否"
+        if row["self_refresh"] and row["status"] == "stale":
+            block_label = "自刷新报告，Repository Health 运行后复查"
+        lines.append(f"| `{row['report']}` | {row['status']} | {block_label} | {row['report_time']} | {row['input_time']} | {row['reason']} |")
     lines += [
         "",
         "## 处理规则",
@@ -145,13 +150,15 @@ def main() -> None:
         "- `fresh`：报告不早于输入文件。",
         "- `stale`：报告落后于输入文件，应重新运行对应生成脚本。",
         "- `missing`：报告缺失，应补齐。",
-        "- `manual-review`：人工测试记录落后于模块变更，应确认仍为未测试或更新真实测试结果。",
+        "- `manual-review`：人工测试记录落后于模块变更，应确认仍为未测或更新真实测试结果。",
+        "- `repository_health_report.md` 属于自刷新报告，健康检查运行后应再次刷新本报告。",
         "",
     ]
-    write(REPORT, "\n".join(lines))
+    REPORT.parent.mkdir(parents=True, exist_ok=True)
+    REPORT.write_text("\n".join(lines), encoding="utf-8", newline="\n")
     print(f"Report freshness report written to {REPORT}")
-    if args.strict and stale_rows:
-        raise SystemExit("Stale governance reports: " + ", ".join(str(row["report"]) for row in stale_rows))
+    if args.strict and blocking_stale:
+        raise SystemExit("Blocking stale governance reports: " + ", ".join(str(row["report"]) for row in blocking_stale))
 
 
 if __name__ == "__main__":

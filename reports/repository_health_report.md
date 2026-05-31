@@ -1,72 +1,56 @@
 # 仓库健康检查报告
 
-生成时间：2026-06-01 01:45:40 +0800
+生成时间：2026-06-01 02:14:16 +0800
 
 ## 总体状态
 
 - 阻断问题：0
-- 提醒事项：2
-- 统一验证：通过
-- app-cleaner JS 语法：通过
 - Root 与 Release 一致：是
-- 启用远程规则源：12
-- 启用候选源：6
-- pending 脚本候选：1
+- GrandpaNiu = 默认 Stable：是
+- validate_repository.py：通过
+- node --check Scripts/app-cleaner.js：通过
+- workflow 最新状态：无法确认，需要在 GitHub Actions 页面确认 completed / success
+- 微信广告仅 Stable Plus：是
 - 脚本总数：33
-- stable 当前 MITM hostname 数量：120
-- 默认发布策略：stable only；stable-plus / full 不默认发布
+- MITM hostname 数量：120
 
-## 模块区块行数
+## 区块检查
 
-- Rule: 568
-- URL Rewrite: 1597
-- Header Rewrite: 5
-- Body Rewrite: 455
-- Map Local: 15
-- Script: 152
-- MITM: 4
+- [Rule]：572 行
+- [URL Rewrite]：1597 行
+- [Header Rewrite]：5 行
+- [Body Rewrite]：455 行
+- [Map Local]：15 行
+- [Script]：152 行
+- [MITM]：4 行
 
-## Profile 策略摘要
+## 报告生成器运行结果
 
-| Profile | MITM 输入 | 用途 |
-|---|---|---|
-| lite | Rewrite/Sources/MITM-core.conf | 低耗电参考版，不默认发布 |
-| stable | Rewrite/Sources/MITM-core.conf, Rewrite/Sources/MITM-app-clean.conf | 默认正式版，可以发布 |
-| stable-plus | Rewrite/Sources/MITM-core.conf, Rewrite/Sources/MITM-app-clean.conf, Rewrite/Sources/MITM-stable-plus.conf | 常用 App 增强测试版，不默认发布 |
-| full | Rewrite/Sources/MITM-core.conf, Rewrite/Sources/MITM-app-clean.conf, Rewrite/Sources/MITM-extended.conf | 全量排查测试版，不默认发布 |
-
-## MITM 分层数量
-
-| 文件 | hostname 数量 |
-|---|---:|
-| `Rewrite/Sources/MITM-core.conf` | 11 |
-| `Rewrite/Sources/MITM-app-clean.conf` | 109 |
-| `Rewrite/Sources/MITM-stable-plus.conf` | 95 |
-| `Rewrite/Sources/MITM-extended.conf` | 889 |
-| `Rewrite/Sources/MITM.conf` | 1009 |
+- `scripts/audit_reject_risk.py`：通过
+- `scripts/generate_app_status_matrix.py`：通过
+- `scripts/create_promotion_pr.py`：通过
+- `scripts/score_candidates.py`：通过
+- `scripts/audit_domestic_app_connectivity.py`：通过
+- `scripts/generate_workflow_health_report.py`：通过
+- `scripts/check_report_freshness.py`：通过
 
 ## 阻断问题
 
 - 无
 
-## 提醒事项
-
-- 当前存在失效源历史记录：1 条
-- 存在连续失败 2 天及以上的源：1 条，应确认是否已禁用或替代
-
-## 缺少必要文件
+## 缺少文件
 
 - 无
 
-## 缺少工作流
+## 缺少 workflow
 
 - 无
 
-## 未生成的可选报告
+## 缺少报告
 
 - 无
 
-## 主模块缺少关键标记
+## 主模块缺少标记
 
 - 无
 
@@ -82,41 +66,35 @@
 
 - 无
 
-## Workflow 摘要
+## Blocking stale reports
 
-- .github/workflows/module-factory-build.yml: contents:write, concurrency, uses-stable, node-check
-- .github/workflows/daily-module-update.yml: contents:write, concurrency, uses-stable
-- .github/workflows/daily-invalid-source-repair.yml: contents:write, concurrency, uses-stable
-- .github/workflows/upstream-collect.yml: contents:write, concurrency, uses-stable
-- .github/workflows/repository-health.yml: contents:write, concurrency, uses-stable, node-check
+- 无
 
-## Pending 脚本候选
+## Workflow 配置摘要
 
-- app2smile Tieba script
+- `.github/workflows/module-factory-build.yml`：contents: write；concurrency；node --check；默认 stable
+- `.github/workflows/daily-module-update.yml`：contents: write；concurrency；默认 stable
+- `.github/workflows/daily-invalid-source-repair.yml`：contents: write；concurrency；默认 stable
+- `.github/workflows/upstream-collect.yml`：contents: write；concurrency；默认 stable
+- `.github/workflows/repository-health.yml`：contents: write；concurrency；node --check；默认 stable
+- `.github/workflows/stable-plus-promotion-pr.yml`：contents: write；concurrency；默认 stable
 
-## 失效源历史记录
-
-- `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list`
-
-## app-cleaner JS 语法输出
-
-```text
-无输出
-```
-
-## 统一验证输出
+## validate_repository.py 输出
 
 ```text
 Repository validation passed.
 ```
 
-## 后续维护建议
+## node --check 输出
 
-1. 日常修改应优先编辑 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。
-2. Root 模块只作为生成结果，必须通过 build_module.py 与 factory_finalize.py 同步。
-3. 新脚本默认 pending，不直接进入 stable。
-4. MITM 从 extended 进入 stable 前，应先进入 stable-plus 并完成真实测试。
-5. 出现登录、支付、验证码异常时，优先回查 MITM、Body Rewrite 和 Map Local。
-6. 远程源连续失败 2 天后才进入处理流程，单日网络失败只报告观察。
-7. 候选源必须先经过 candidate_security_score_report.md 评分，再进入测试或晋级流程。
-8. 重要报告应通过 report_freshness_report.md 确认没有落后于源文件。
+```text
+无输出
+```
+
+## 维护边界
+
+- 所有修改应 source-first，先改 Rules / Scripts / Rewrite/Sources / Rewrite/Remotes / Rewrite/Profiles，再构建 Release 和 Root。
+- Stable 目标是稳定、低误伤、可长期使用，不追求最大覆盖。
+- Stable Plus 只做增强测试，不整体合并进 Stable。
+- 没有真实手测记录时，报告必须写未测或 manual-review。
+- 本报告无法确认远端 workflow 最新运行状态，需在 GitHub Actions 页面查看。

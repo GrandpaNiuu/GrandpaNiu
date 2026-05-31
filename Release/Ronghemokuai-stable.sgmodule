@@ -115,7 +115,8 @@ DOMAIN,cube.weixinbridge.com,REJECT,pre-matching
 DOMAIN,da.bridgeturbo.com,REJECT,pre-matching
 DOMAIN,ddfs-public.ddimg.mobi,REJECT,pre-matching
 DOMAIN,dflow.bz.mgtv.com,REJECT,pre-matching
-DOMAIN,dns.weixin.qq.com.cn,REJECT,pre-matching
+# MANUAL-REVIEW 2026-06-01: WeChat HTTPDNS can affect image/media sending; keep exact DIRECT protection in Rules/direct.list.
+# DOMAIN,dns.weixin.qq.com.cn,REJECT,pre-matching
 DOMAIN,dpmtpush.dianping.com,REJECT,pre-matching
 DOMAIN,dynamicf.sankuai.com,REJECT,pre-matching
 DOMAIN,encounter.bz.mgtv.com,REJECT,pre-matching
@@ -278,7 +279,8 @@ DOMAIN-SUFFIX,v.smtcdns.com,REJECT,pre-matching
 DOMAIN-SUFFIX,v1d.szbdyd.com,REJECT,pre-matching
 DOMAIN-SUFFIX,wappv.zol.com.cn,REJECT,pre-matching
 DOMAIN-SUFFIX,wmlog.meituan.com,REJECT,pre-matching
-DOMAIN-SUFFIX,wxs.qq.com,REJECT,pre-matching
+# MANUAL-REVIEW 2026-06-01: WeChat media endpoint can affect image sending/receiving; keep exact DIRECT protection in Rules/direct.list.
+# DOMAIN-SUFFIX,wxs.qq.com,REJECT,pre-matching
 DOMAIN-SUFFIX,ydjs.zol.com.cn,REJECT,pre-matching
 DOMAIN-KEYWORD,apimg.qunliao.info,REJECT,pre-matching
 DOMAIN-KEYWORD,c-hzgt2.getui.com,REJECT,pre-matching
@@ -568,6 +570,8 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgr
 RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list,REJECT
 # remote: blackmatrix7 Advertising MiTV
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingMiTV/AdvertisingMiTV.list,REJECT
+DOMAIN,dns.weixin.qq.com.cn,REJECT,pre-matching
+DOMAIN-SUFFIX,wxs.qq.com,REJECT,pre-matching
 # Spotify playback protection rules
 # Keep these rules before remote advertising sources.
 # YouTube playback protection placeholder

@@ -24,7 +24,7 @@ Shadowrocket / Surge 自用融合净化模块工厂。
 
 `GrandpaNiu` 是一个源头驱动的 Shadowrocket 模块工厂。仓库不会长期手工维护根目录模块，而是从 `Rules`、`Scripts`、`Rewrite/Sources`、`Rewrite/Profiles` 和维护脚本自动生成四个独立模块。
 
-维护原则：**所有已纳入覆盖的 App 一视同仁维护，不再单独指定“核心保护对象”。**
+维护原则：**所有已纳入覆盖的 App 一视同仁维护，不设置单独例外。**
 
 日常使用只推荐启用一个版本：**默认用 Stable**。
 
@@ -52,7 +52,7 @@ Shadowrocket / Surge 自用融合净化模块工厂。
 主要包含：
 
 - 已纳入 App 的广告、开屏、弹窗、横幅、信息流、推荐位、活动卡片净化。
-- Spotify、YouTube、知乎等已纳入 App 的完整覆盖，不再单独标记为“核心”。
+- Spotify、YouTube、知乎等已纳入 App 按统一标准维护，不设置特殊优先级。
 - 常用方向：电商购物、本地生活、内容社区、音频内容、地图工具、资讯与工具类 App。
 - 脚本融合：低风险 JSON 清理类脚本由 `Scripts/app-cleaner.js` 统一承接，减少重复脚本入口。
 
@@ -227,8 +227,14 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 | [reports/script_consolidation_rollback_report.md](reports/script_consolidation_rollback_report.md) | 脚本融合回滚路径 |
 | [reports/app_cleaner_active_report.md](reports/app_cleaner_active_report.md) | app-cleaner active 批量融合说明 |
 | [reports/app_coverage_matrix.md](reports/app_coverage_matrix.md) | App 覆盖矩阵 |
+| [reports/app_status_matrix.md](reports/app_status_matrix.md) | App 状态矩阵，区分覆盖与真实测试 |
+| [reports/reject_risk_report.md](reports/reject_risk_report.md) | REJECT 高风险误伤分类 |
 | [reports/stable_plus_promotion_report.md](reports/stable_plus_promotion_report.md) | Stable Plus 晋级候选报告 |
+| [reports/promotion_pr_report.md](reports/promotion_pr_report.md) | Stable Plus 单项晋级 PR 审查材料 |
 | [reports/manual_test_log.md](reports/manual_test_log.md) | 人工测试记录 |
+| [reports/candidate_security_score_report.md](reports/candidate_security_score_report.md) | 候选源安全评分 |
+| [reports/report_freshness_report.md](reports/report_freshness_report.md) | 治理报告新鲜度检查 |
+| [reports/domestic_app_connectivity_audit.md](reports/domestic_app_connectivity_audit.md) | 国内 App 联网和图片加载误伤排查 |
 | [reports/workflow_health_report.md](reports/workflow_health_report.md) | workflow 最新状态 |
 
 ## 使用提醒
