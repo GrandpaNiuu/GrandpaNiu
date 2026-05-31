@@ -112,9 +112,9 @@
   <main class="wrap">
     <header>
       <h1>GrandpaNiu 多版本导入</h1>
-      <p>推荐使用 Safari 打开本页面，然后选择一个版本导入 Shadowrocket。</p>
+      <p>GrandpaNiu 就是默认 Stable；Release 目录里的 Stable 是同一默认版本的独立发布文件。</p>
       <div class="warning">
-        不要同时启用多个版本。日常使用 Stable；测试更多 App 覆盖用 Stable Plus；省电或异常排查用 Lite；Full 只用于查漏拦，不建议长期启用。
+        不要同时启用多个版本。日常使用 GrandpaNiu（默认 Stable）；测试更多 App 覆盖用 Stable Plus；省电或异常排查用 Lite；Full 只用于查漏拦，不建议长期启用。
       </div>
     </header>
 
@@ -128,70 +128,70 @@
   <script>
     const profiles = [
       {
-        key: "stable",
-        title: "Stable",
-        tag: "默认正式版",
+        key: "root-stable",
+        title: "GrandpaNiu",
+        tag: "默认 Stable",
         tagClass: "stable",
         buttonClass: "",
-        file: "Release/Ronghemokuai-stable.sgmodule",
-        mitm: "120",
+        file: "Ronghemokuai.sgmodule",
+        mitm: "以报告为准",
         risk: "低",
         defaultUse: "是",
-        summary: "长期日常使用版本，优先稳定、低误杀、低维护风险。",
+        summary: "默认正式版。它就是 Stable，用于长期日常使用，优先稳定、低误杀、低维护风险。",
         coverage: [
-          "核心专项：Spotify、YouTube、知乎",
-          "常用清理：广告、开屏、弹窗、横幅、信息流、推荐位",
-          "常用方向：电商、本地生活、内容社区、音频、地图工具"
+          "已纳入 App 的广告、开屏、弹窗、横幅、信息流、推荐位、活动卡片净化",
+          "覆盖音频视频、内容社区、电商购物、本地生活、出行地图、工具办公等方向",
+          "Root 默认模块会随 stable 构建结果同步"
         ]
       },
       {
         key: "stable-plus",
-        title: "Stable Plus",
+        title: "GrandpaNiu Stable Plus",
         tag: "增强测试版",
         tagClass: "plus",
         buttonClass: "secondary",
         file: "Release/Ronghemokuai-stable-plus.sgmodule",
-        mitm: "215",
+        mitm: "以报告为准",
         risk: "中",
         defaultUse: "否",
-        summary: "在 Stable 基础上增加常用 App 测试覆盖，不自动进入默认版。",
+        summary: "在默认 Stable 基础上增加常用 App 测试覆盖，不自动进入默认版。",
         coverage: [
           "额外覆盖：爱奇艺、快手、得物、携程、豆瓣、BOSS、WPS、阿里云盘等",
           "适合测试更多 App 的去广告效果",
-          "通过测试后才允许单项晋级 Stable"
+          "通过测试后才允许单项晋级默认 Stable"
         ]
       },
       {
         key: "lite",
-        title: "Lite",
+        title: "GrandpaNiu Lite",
         tag: "低耗电版",
         tagClass: "lite",
         buttonClass: "secondary",
         file: "Release/Ronghemokuai-lite.sgmodule",
-        mitm: "11",
+        mitm: "以报告为准",
         risk: "最低",
         defaultUse: "否",
-        summary: "低风险、省电、异常排查版本，只保留核心链路。",
+        summary: "低风险、省电、异常排查版本，只保留最小必要覆盖集合。",
         coverage: [
-          "核心专项：Spotify、YouTube、知乎",
-          "核心 MITM：只保留核心 hostname",
-          "适合排查耗电、发热、登录异常或页面异常"
+          "适合排查耗电、发热、登录异常或页面异常",
+          "降低 MITM 和脚本覆盖面，便于定位问题",
+          "不追求覆盖广度"
         ]
       },
       {
         key: "full",
-        title: "Full",
+        title: "GrandpaNiu Full",
         tag: "全量排查版",
         tagClass: "full",
         buttonClass: "warn",
         file: "Release/Ronghemokuai-full.sgmodule",
-        mitm: "1009",
+        mitm: "以报告为准",
         risk: "高",
         defaultUse: "否",
         summary: "全量 MITM 排查版本，只用于查漏拦和定位缺失 hostname。",
         coverage: [
           "包含完整 extended 层",
-          "适合定位 Stable / Stable Plus 缺失的 hostname",
+          "适合定位默认 Stable / Stable Plus 缺失的 hostname",
           "不建议长期启用，不适合支付、登录、验证码、银行场景"
         ]
       }
@@ -200,8 +200,8 @@
     const pagesBase = "https://grandpaniuu.github.io/GrandpaNiu/";
 
     function escapeHtml(value) {
-      return String(value).replace(/[&<>'"]/g, character => ({
-        "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
+      return String(value).replace(/[&<>'\"]/g, character => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", "\"": "&quot;"
       }[character]));
     }
 
