@@ -1,15 +1,15 @@
 # Workflow 健康报告
 
-- 生成时间：2026-06-01 01:12:52 +0800
+- 生成时间：2026-06-01 01:37:49 +0800
 - 状态模式：GitHub API 真实状态模式
 
 | Workflow | 用途 | 触发方式 | 最近运行时间 | 最近状态 | 结论 | 失败 Job | 失败 Step | 对应 commit | 失败时优先排查 |
 |---|---|---|---|---|---|---|---|---|---|
-| Module Factory Build | 构建 Release 并同步 Root | 手动 / push | 2026-05-31T17:12:46Z | pending / running | 需要检查 | 无 | 无 | d29d3e16b886 | build_module.py、factory_finalize.py、profile、sources、Root/Release diff |
+| Module Factory Build | 构建 Release 并同步 Root | 手动 / push | 2026-05-31T17:15:26Z | completed / success | 正常 | 无 | 无 | a2e24aa3ccd0 | build_module.py、factory_finalize.py、profile、sources、Root/Release diff |
 | Daily Module Update | 每日日期、结构、链接和验证检查 | 手动 / 定时 / push | 2026-05-31T16:39:17Z | completed / success | 正常 | 无 | 无 | e3fd08e65b2c | 核心标记、远程链接、validate_repository.py 输出 |
 | Daily invalid source audit and repair | 连续失效源审计和安全处理 | 手动 / 定时 | 2026-05-30T23:51:54Z | completed / success | 正常 | 无 | 无 | 65a57e112b7f | GitHub 网络、history 计数、保护项、误判 404 |
 | Upstream candidate collect | 每周可信候选源收集 | 手动 / 定时 | 2026-05-31T00:42:39Z | completed / success | 正常 | 无 | 无 | f9d94e9f5478 | candidates.json、风险词、重复源、trusted_repositories |
-| Repository Health Check | 仓库治理健康检查 | 手动 / 定时 / push | 2026-05-31T17:12:49Z | in_progress / running | 需要检查 | 无 | 无 | d29d3e16b886 | 缺失治理文件、README 链接、重复脚本、重复 MITM |
+| Repository Health Check | 仓库治理健康检查 | 手动 / 定时 / push | 2026-05-31T17:37:44Z | in_progress / running | 需要检查 | 无 | 无 | 266b72dae6d1 | 缺失治理文件、README 链接、重复脚本、重复 MITM |
 
 ## 说明
 

@@ -1,15 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-06-01 01:12:52 +0800
+- 生成时间：2026-06-01 01:37:49 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Rules/wechat-ad.list`
+- `reports/wechat_ad_test_report.md`
 
 ## 新增文件
 
-- `Rules/wechat-ad.list`
+- `reports/wechat_ad_test_report.md`
 
 ## 删除文件
 
@@ -21,7 +21,7 @@
 
 ## 影响的模块层
 
-- Rules
+- README/docs
 
 ## 可能影响的 App
 
@@ -30,7 +30,7 @@
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：否
+- 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
 - 是否需要测试 Spotify：按需
