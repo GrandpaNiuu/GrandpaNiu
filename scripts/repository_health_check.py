@@ -35,6 +35,8 @@ REQUIRED_FILES = [
     "Scripts/spotify.conf",
     "Scripts/youtube.conf",
     "Scripts/app-clean.conf",
+    "Scripts/app-cleaner.js",
+    "Scripts/app-cleaner-active.conf",
     "Scripts/zhihu-enhance.conf",
     "Scripts/zhihu-enhance.js",
     "Rules/direct.list",
@@ -56,6 +58,8 @@ REQUIRED_FILES = [
     "docs/VERSIONING.md",
     "docs/ROADMAP.md",
     "docs/PROFILE_POLICY.md",
+    "docs/MODULE_FEATURES.md",
+    "docs/AUTOMATION_POLICY.md",
     "SECURITY.md",
     "LICENSE",
     "CONTRIBUTING.md",
@@ -81,6 +85,9 @@ OPTIONAL_REPORTS = [
     "reports/workflow_health_report.md",
     "reports/profile_validation_report.md",
     "reports/manual_test_log.md",
+    "reports/candidate_security_score_report.md",
+    "reports/report_freshness_report.md",
+    "reports/repository_maturity_review.md",
 ]
 
 BLOCKING_MARKERS = [
@@ -183,6 +190,17 @@ def run_validator() -> tuple[bool, str]:
     return proc.returncode == 0, output
 
 
+def run_js_check() -> tuple[bool, str]:
+    proc = subprocess.run(
+        ["node", "--check", "Scripts/app-cleaner.js"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+    output = (proc.stdout + proc.stderr).strip() or "无输出"
+    return proc.returncode == 0, output
+
+
 def module_section_counts(text: str) -> dict[str, int]:
     sections = ["Rule", "URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local", "Script", "MITM"]
     counts = {section: 0 for section in sections}
@@ -207,6 +225,8 @@ def workflow_summary(path: Path) -> str:
         status.append("uses-stable-plus")
     elif "--profile stable" in text:
         status.append("uses-stable")
+    if "node --check Scripts/app-cleaner.js" in text:
+        status.append("node-check")
     return ", ".join(status)
 
 
@@ -263,6 +283,7 @@ def main() -> None:
     script_names, script_dupes = collect_script_names()
     mitm_hosts, mitm_dupes = collect_mitm_hosts()
     validator_ok, validator_output = run_validator()
+    js_ok, js_output = run_js_check()
 
     missing_files = [rel for rel in REQUIRED_FILES if not (ROOT / rel).exists()]
     missing_workflows = [rel for rel in REQUIRED_WORKFLOWS if not (ROOT / rel).exists()]
@@ -294,6 +315,8 @@ def main() -> None:
         critical_issues.append("README 存在失效本地链接")
     if not validator_ok:
         critical_issues.append("统一验证脚本未通过")
+    if not js_ok:
+        critical_issues.append("app-cleaner JavaScript 语法检查未通过")
 
     warnings: list[str] = []
     if missing_reports:
@@ -319,6 +342,7 @@ def main() -> None:
         f"- 阻断问题：{len(critical_issues)}",
         f"- 提醒事项：{len(warnings)}",
         f"- 统一验证：{'通过' if validator_ok else '失败'}",
+        f"- app-cleaner JS 语法：{'通过' if js_ok else '失败'}",
         f"- Root 与 Release 一致：{'是' if root_text == release_text else '否'}",
         f"- 启用远程规则源：{len(enabled_sources)}",
         f"- 启用候选源：{len(enabled_candidates)}",
@@ -360,6 +384,12 @@ def main() -> None:
     lines += list_block("失效源历史记录", failed_sources, code=True)
     lines += [
         "",
+        "## app-cleaner JS 语法输出",
+        "",
+        "```text",
+        js_output,
+        "```",
+        "",
         "## 统一验证输出",
         "",
         "```text",
@@ -374,6 +404,8 @@ def main() -> None:
         "4. MITM 从 extended 进入 stable 前，应先进入 stable-plus 并完成真实测试。",
         "5. 出现登录、支付、验证码异常时，优先回查 MITM、Body Rewrite 和 Map Local。",
         "6. 远程源连续失败 2 天后才进入处理流程，单日网络失败只报告观察。",
+        "7. 候选源必须先经过 candidate_security_score_report.md 评分，再进入测试或晋级流程。",
+        "8. 重要报告应通过 report_freshness_report.md 确认没有落后于源文件。",
         "",
     ]
 
