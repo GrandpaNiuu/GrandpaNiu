@@ -37,7 +37,6 @@ DOMAIN,wx.qlogo.cn,DIRECT,pre-matching
 DOMAIN-SUFFIX,qpic.cn,DIRECT,pre-matching
 DOMAIN-SUFFIX,gtimg.cn,DIRECT,pre-matching
 DOMAIN-SUFFIX,weixinbridge.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,qq.com,DIRECT
 DOMAIN-SUFFIX,qlogo.cn,DIRECT,pre-matching
 
 # Common image/CDN safety bypass
