@@ -1,6 +1,6 @@
 # 报告新鲜度检查报告
 
-生成时间：2026-06-01 00:10:51 +0800
+生成时间：2026-06-01 00:18:17 +0800
 
 本报告检查治理报告是否落后于对应源文件。`manual_test_log.md` 属于人工记录，变更后只提示复核，不自动写成通过。
 
@@ -15,13 +15,13 @@
 
 | 报告 | 状态 | 报告时间 | 输入最新时间 | 原因 |
 |---|---|---|---|---|
-| `reports/profile_validation_report.md` | fresh | 2026-06-01 00:10:49 +0800 | 2026-06-01 00:10:46 +0800 | Profile、脚本或构建逻辑变更后必须重新验证四版本构建。 |
-| `reports/script_inventory_report.md` | fresh | 2026-06-01 00:10:49 +0800 | 2026-06-01 00:10:46 +0800 | Scripts 入口或脚本清单生成逻辑变更后必须刷新脚本清单。 |
-| `reports/repository_health_report.md` | stale | 2026-06-01 00:10:46 +0800 | 2026-06-01 00:10:48 +0800 | 仓库治理、工作流或模块源头变更后必须刷新健康报告。 |
-| `reports/app_cleaner_active_report.md` | stale | 2026-06-01 00:10:46 +0800 | 2026-06-01 00:10:46 +0800 | app-cleaner 主脚本、active 入口或迁移脚本变更后必须刷新融合说明。 |
-| `reports/app_cleaner_refactor_report.md` | fresh | 2026-06-01 00:10:46 +0800 | 2026-06-01 00:10:46 +0800 | app-cleaner 架构变更后必须刷新重构报告。 |
-| `reports/candidate_security_score_report.md` | fresh | 2026-06-01 00:10:49 +0800 | 2026-06-01 00:10:46 +0800 | 候选源或评分脚本变更后必须刷新安全评分报告。 |
-| `reports/manual_test_log.md` | manual-review | 2026-06-01 00:10:46 +0800 | 2026-06-01 00:10:49 +0800 | 模块大改后手动测试记录必须明确保持未测或更新真实测试结果。 |
+| `reports/profile_validation_report.md` | fresh | 2026-06-01 00:18:14 +0800 | 2026-06-01 00:18:13 +0800 | Profile、脚本或构建逻辑变更后必须重新验证四版本构建。 |
+| `reports/script_inventory_report.md` | fresh | 2026-06-01 00:18:14 +0800 | 2026-06-01 00:18:13 +0800 | Scripts 入口或脚本清单生成逻辑变更后必须刷新脚本清单。 |
+| `reports/repository_health_report.md` | stale | 2026-06-01 00:18:13 +0800 | 2026-06-01 00:18:14 +0800 | 仓库治理、工作流或模块源头变更后必须刷新健康报告。 |
+| `reports/app_cleaner_active_report.md` | stale | 2026-06-01 00:18:13 +0800 | 2026-06-01 00:18:13 +0800 | app-cleaner 主脚本、active 入口或迁移脚本变更后必须刷新融合说明。 |
+| `reports/app_cleaner_refactor_report.md` | fresh | 2026-06-01 00:18:13 +0800 | 2026-06-01 00:18:13 +0800 | app-cleaner 架构变更后必须刷新重构报告。 |
+| `reports/candidate_security_score_report.md` | fresh | 2026-06-01 00:18:14 +0800 | 2026-06-01 00:18:13 +0800 | 候选源或评分脚本变更后必须刷新安全评分报告。 |
+| `reports/manual_test_log.md` | manual-review | 2026-06-01 00:18:13 +0800 | 2026-06-01 00:18:14 +0800 | 模块大改后手动测试记录必须明确保持未测或更新真实测试结果。 |
 
 ## 处理规则
 
