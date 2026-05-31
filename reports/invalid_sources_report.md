@@ -1,9 +1,9 @@
 # Invalid Sources Audit and Repair Report
 
-- 日期：2026-05-31
+- 日期：2026-06-01
 - 维护模式：source-first
-- 扫描源文件链接总数：222
-- 正常链接数量：221
+- 扫描源文件链接总数：214
+- 正常链接数量：213
 - 本次是否修改源头文件：yes
 
 本系统优先修复 `Rewrite/Remotes/`、`Rules/`、`Scripts/`、`Rewrite/Sources/`，随后由工作流重新构建 Release 并同步根目录主模块。不会因单日失败删除规则。
