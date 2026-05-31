@@ -1,11 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-05-31 08:53:04 +0800
+- 生成时间：2026-05-31 08:54:17 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Scripts/app-cleaner.js`
+- `Scripts/app-cleaner-active.conf`
 
 ## 新增文件
 
@@ -17,7 +17,7 @@
 
 ## 修改文件
 
-- `Scripts/app-cleaner.js`
+- `Scripts/app-cleaner-active.conf`
 
 ## 影响的模块层
 
@@ -28,11 +28,15 @@
 - 酷安
 - 淘宝
 - 闲鱼
+- 京东
+- 拼多多
 - 美团
 - 滴滴
 - 高德地图
 - 喜马拉雅
+- 小宇宙
 - 斗鱼
+- Reddit
 
 ## 风险判断
 

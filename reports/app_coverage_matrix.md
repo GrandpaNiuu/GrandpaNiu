@@ -28,7 +28,7 @@
 | 网易云音乐 | MITM, Rule, URL Rewrite | 局部覆盖 | 高 | Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
 | 喜马拉雅 | Body Rewrite, MITM, Map Local, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/Map-Local.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/app-clean.list<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
 | 小宇宙 | Body Rewrite, MITM, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
-| 斗鱼 | Body Rewrite, MITM, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list<br>Scripts/app-clean.conf | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
+| 斗鱼 | Body Rewrite, MITM, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list<br>Scripts/app-clean.conf<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
 | Reddit | Body Rewrite, MITM, Script | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
 
 ## 风险等级规则
