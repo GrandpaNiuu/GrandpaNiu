@@ -1,11 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-05-31 09:21:10 +0800
+- 生成时间：2026-05-31 09:22:31 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `scripts/generate_script_inventory_report.py`
+- `reports/manual_test_log.md`
 
 ## 新增文件
 
@@ -17,33 +17,26 @@
 
 ## 修改文件
 
-- `scripts/generate_script_inventory_report.py`
+- `reports/manual_test_log.md`
 
 ## 影响的模块层
 
-- Scripts/maintenance
+- README/docs
 
 ## 可能影响的 App
 
 - Spotify
 - YouTube
-- 知乎
-- Bilibili
-- 微博
-- 小红书
-- 京东
-- 12306
-- 斗鱼
 
 ## 风险判断
 
-- 是否涉及脚本：是
-- 是否涉及 MITM：否
-- 是否涉及 Body Rewrite：否
+- 是否涉及脚本：否
+- 是否涉及 MITM：是
+- 是否涉及 Body Rewrite：是
 - 是否涉及远程规则源：否
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
-- 是否需要测试知乎：是
+- 是否需要测试知乎：按需
 - 是否需要测试登录/支付/验证码：按需
 
 ## 回滚建议
