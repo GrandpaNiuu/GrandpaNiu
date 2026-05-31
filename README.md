@@ -4,167 +4,213 @@
 
 Shadowrocket / Surge 自用融合净化模块工厂。
 
-[![安装模块](https://img.shields.io/static/v1?label=Install&message=Shadowrocket&color=0A84FF&labelColor=111827&style=for-the-badge)](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2FGrandpaNiuu%2FGrandpaNiu%2Fmain%2FRonghemokuai.sgmodule)
-[![备用页面](https://img.shields.io/static/v1?label=Fallback&message=Import%20Page&color=34C759&labelColor=111827&style=for-the-badge)](https://grandpaniuu.github.io/GrandpaNiu/import.html)
+[![Import](https://img.shields.io/static/v1?label=Import&message=Multi%20Version%20Page&color=0A84FF&labelColor=111827&style=for-the-badge)][import-page]
+[![Stable](https://img.shields.io/static/v1?label=Stable&message=Default&color=34C759&labelColor=111827&style=for-the-badge)][stable-import]
+[![Health](https://img.shields.io/static/v1?label=Health&message=Reports&color=5856D6&labelColor=111827&style=for-the-badge)][health-report]
 
 </div>
 
-## 导入入口
+## 一句话说明
 
-| 入口 | 链接 |
+`GrandpaNiu` 是一个源头驱动的 Shadowrocket 模块工厂。仓库不会长期手工维护根目录模块，而是从 `Rules`、`Scripts`、`Rewrite/Sources`、`Rewrite/Profiles` 和维护脚本自动生成四个独立模块。
+
+日常使用只推荐启用一个版本：**默认用 Stable**。
+
+## 版本选择
+
+优先从多版本导入页选择版本：
+
+[打开多版本导入页][import-page]
+
+| 版本 | 定位 | 默认使用 | 覆盖重点 | 风险边界 | 导入 |
+|---|---|---|---|---|---|
+| Stable | 默认正式版 | 是 | 核心专项 + 常用 App 净化 | 优先稳定、低误杀 | [导入][stable-import] |
+| Stable Plus | 增强测试版 | 否 | Stable + 更多常用 App MITM 覆盖 | 只做测试，不自动晋级 Stable | [导入][stable-plus-import] |
+| Lite | 低耗电版 | 否 | Spotify / YouTube / 知乎核心链路 | 覆盖少，适合排查异常 | [导入][lite-import] |
+| Full | 全量排查版 | 否 | 完整 extended MITM 层 | 不建议长期启用 | [导入][full-import] |
+
+> 不要同时启用多个版本。覆盖说明来自规则、脚本、Rewrite、MITM 和静态扫描，不等于所有 App 都已人工测试通过。
+
+## 四个版本分别包含什么
+
+### Stable：默认正式版
+
+适合长期日常使用。目标不是最大覆盖，而是稳定、低误杀、可长期维护。
+
+主要包含：
+
+- 核心专项：Spotify、YouTube、知乎。
+- 通用净化：广告、开屏、弹窗、横幅、信息流、推荐位、活动卡片。
+- 常用方向：电商购物、本地生活、内容社区、音频内容、地图工具、部分资讯与工具类 App。
+- 脚本融合：低风险 JSON 清理类脚本由 `Scripts/app-cleaner.js` 统一承接，减少重复脚本入口。
+
+重点覆盖方向：
+
+| 类别 | App / 服务方向 |
 |---|---|
-| 默认一键导入 | [Shadowrocket 安装入口](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2FGrandpaNiuu%2FGrandpaNiu%2Fmain%2FRonghemokuai.sgmodule) |
-| 备用页面 | [import.html](https://grandpaniuu.github.io/GrandpaNiu/import.html) |
-| 默认 Raw 地址 | [Ronghemokuai.sgmodule](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule) |
-| 默认 Pages 地址 | [Ronghemokuai.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule) |
+| 核心专项 | Spotify、YouTube、知乎 |
+| 电商购物 | 淘宝、闲鱼、京东、拼多多、什么值得买、转转、飞猪、菜鸟 |
+| 本地生活 | 美团、大众点评、饿了么、叮咚买菜、朴朴、罗森、Manner |
+| 内容社区 | 贴吧、微博、小红书、Reddit、酷安、小黑盒、快看漫画 |
+| 音频视频 | 喜马拉雅、小宇宙、网易云音乐、Bilibili、咪咕视频、VGTime |
+| 出行地图 | 高德地图、百度地图、滴滴、吉祥航空、掌上公交 |
+| 工具办公 | 有道、51CTO、稿定设计、配音秀、usmile、萤石 |
 
-导入后建议在 Shadowrocket 中更新模块、更新脚本、更新全部资源。
+### Stable Plus：增强测试版
 
-## 多版本 Shadowrocket 导入
+适合测试更多常用 App 覆盖。它不是默认发布版本，也不会自动把内容合并进 Stable。
 
-不要同时启用多个版本。日常使用 `stable`；测试更多 App 覆盖时使用 `stable-plus`；省电或异常排查时使用 `lite`；`full` 只用于全量排查，不建议长期启用。
+额外覆盖方向包括：
 
-| 版本 | 用途 | Shadowrocket 导入 | Pages 地址 | Raw 地址 |
-|---|---|---|---|---|
-| Stable | 默认正式版，优先长期稳定 | [导入 Stable](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable.sgmodule) | [Ronghemokuai-stable.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule) | [Raw](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-stable.sgmodule) |
-| Stable Plus | 常用 App 增强测试版，不默认发布 | [导入 Stable Plus](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable-plus.sgmodule) | [Ronghemokuai-stable-plus.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable-plus.sgmodule) | [Raw](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-stable-plus.sgmodule) |
-| Lite | 低耗电参考版，不默认发布 | [导入 Lite](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-lite.sgmodule) | [Ronghemokuai-lite.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-lite.sgmodule) | [Raw](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-lite.sgmodule) |
-| Full | 全量排查测试版，不默认发布 | [导入 Full](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-full.sgmodule) | [Ronghemokuai-full.sgmodule](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-full.sgmodule) | [Raw](https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-full.sgmodule) |
+| 类别 | App / 服务方向 |
+|---|---|
+| 视频娱乐 | 爱奇艺、AcFun、芒果 TV、咪咕视频、虎牙、快手 |
+| 电商消费 | 得物、唯品会、当当、转转、什么值得买、永辉 |
+| 餐饮消费 | 瑞幸、麦当劳、星巴克 |
+| 出行旅游 | 携程、去哪儿、途家、途牛、航旅纵横、飞常准、南航、东航 |
+| 内容资讯 | 豆瓣、LOFTER、虎嗅、澎湃、华尔街见闻、人民 App、ZAKER |
+| 招聘职场 | 猎聘、BOSS 直聘、51job、猪八戒 |
+| 学习办公 | 有道、WPS、金山文档、超星、粉笔 |
+| 云盘工具 | 阿里云盘、天翼云盘、迅雷、向日葵 |
+| 汽车硬件 | 汽车之家、易车、比亚迪、小鹏、小牛、米家、Zepp、萤石、Petkit |
 
-## 模块功能与覆盖
+晋级规则：
 
-每个版本包含哪些能力、覆盖哪些 App、哪些只是测试版，统一查看：[docs/MODULE_FEATURES.md](docs/MODULE_FEATURES.md)。
+```text
+Stable Plus 中测试
+-> 登录 / 验证码 / 支付前置 / 核心流程无异常
+-> 单项 App 进入晋级候选
+-> 人工确认后再进入 Stable
+```
 
-## 项目定位
+### Lite：低耗电版
 
-正式导入入口是 `Ronghemokuai.sgmodule`，但它是工厂生成结果，不是长期手工维护源头。
+适合手机发热、耗电明显、App 登录异常、页面异常时排查。
+
+主要包含：
+
+- Spotify 核心脚本和核心 hostname。
+- YouTube 核心脚本和核心 hostname。
+- 知乎增强净化。
+- 基础规则和必要远程规则。
+
+Lite 不追求覆盖广度，它的价值是低风险、低 MITM、便于定位异常来源。
+
+### Full：全量排查版
+
+只适合查漏拦和临时定位缺失 hostname，不建议长期启用。
+
+主要包含：
+
+- Stable 的全部能力。
+- Stable Plus 的测试覆盖方向。
+- 完整 `MITM-extended.conf`。
+- 全量 extended hostname。
+
+Full 不适合：登录、支付、验证码、银行 App、对耗电敏感的设备、长期日常使用。
+
+## 导入地址
+
+| 版本 | Pages 地址 | Raw 地址 |
+|---|---|---|
+| Stable | [Ronghemokuai-stable.sgmodule][stable-pages] | [Raw][stable-raw] |
+| Stable Plus | [Ronghemokuai-stable-plus.sgmodule][stable-plus-pages] | [Raw][stable-plus-raw] |
+| Lite | [Ronghemokuai-lite.sgmodule][lite-pages] | [Raw][lite-raw] |
+| Full | [Ronghemokuai-full.sgmodule][full-pages] | [Raw][full-raw] |
+| 默认 Root | [Ronghemokuai.sgmodule][root-pages] | [Raw][root-raw] |
+
+导入后建议在 Shadowrocket 中执行：更新模块、更新脚本、更新全部资源。
+
+## 构建流程
 
 ```text
 Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
         -> scripts/build_module.py --build --profile stable
-        -> Release/Ronghemokuai.sgmodule
         -> scripts/factory_finalize.py --sync-root
-        -> Ronghemokuai.sgmodule
         -> scripts/build_release_variants.py
         -> Release/Ronghemokuai-*.sgmodule
 ```
 
-## 长期方向
+根目录 `Ronghemokuai.sgmodule` 仍保持 Stable。四个独立版本由 `scripts/build_release_variants.py` 自动生成。
 
-本仓库后续不走“无限堆规则、无限堆 MITM”的路线，而走分层治理路线：
+## 自动化能力
 
-1. `stable` 默认发布，优先稳定、低误杀、可长期运行。
-2. `stable-plus` 作为常用 App 增强测试版，先测试再决定是否把单项能力晋级到 stable。
-3. `full` 只做全量排查和临时测试，不作为默认发布。
-4. 新脚本默认 pending，不直接进 stable。
-5. MITM 从 extended 进入 stable 前，必须先进入 stable-plus 并完成真实测试。
-6. 登录、支付、验证码、银行、安全相关域名优先保护，不为了广告覆盖牺牲稳定性。
+仓库可以自动做：
 
-## 当前状态
+- 构建 Stable / Stable Plus / Lite / Full 四个独立模块。
+- 检查 Root 与 Release 是否一致。
+- 检查 profile 是否能构建。
+- 检查 JS 语法：`node --check Scripts/app-cleaner.js`。
+- 生成覆盖矩阵、脚本清单、健康报告、回滚报告。
+- 对 workflow 失败自动创建 Issue。
 
-| 项目 | 状态 |
-|---|---|
-| 默认 profile | `stable` |
-| 增强测试 profile | `stable-plus`，不默认发布 |
-| 低耗电 profile | `lite`，不默认发布 |
-| 全覆盖测试 profile | `full`，不默认发布 |
-| Root / Release | 通过 `reports/repository_health_report.md` 与 diff 报告确认 |
-| 多版本发布 | `scripts/build_release_variants.py` 自动生成四个独立 Release 模块 |
-| 模块功能说明 | `docs/MODULE_FEATURES.md` 说明每个版本功能和 App 覆盖方向 |
-| 质量门禁 | `scripts/validate_repository.py` |
-| 健康报告 | `reports/repository_health_report.md` |
-| Profile 验证 | `reports/profile_validation_report.md` |
-| MITM 状态 | 已进入分层治理；查看 `reports/mitm_split_report.md` |
-| 规则收集策略 | 可信候选源，不做全网大规模自动收集 |
-| 脚本策略 | 默认 pending，不直接进入 stable |
-| 手动测试 | 记录在 `reports/manual_test_log.md`，未测不得写通过 |
+仓库不会自动做：
 
-## Profile
-
-| Profile | 定位 | 默认发布 |
-|---|---|---|
-| `stable.conf` | 默认正式版，优先长期稳定 | 是 |
-| `stable-plus.conf` | 常用 App 增强测试版 | 否 |
-| `lite.conf` | 低耗电参考版 | 否 |
-| `full.conf` | 全覆盖测试版 | 否 |
-
-默认 GitHub Actions 仍使用 `stable`，不允许默认使用 `stable-plus` 或 `full`。
-
-## 核心能力
-
-- 通用广告、开屏、弹窗、横幅、信息流、推荐位和活动卡片清理。
-- Spotify 播放链路保护。
-- YouTube Enhance 保留。
-- 知乎增强净化。
-- 常用 App 和网页广告净化。
-- 可信远程规则源维护。
-- 失效源审计、安全候选源收集、健康报告和回滚备份。
+- 自动真机测试 App。
+- 自动确认 YouTube / Spotify / 知乎实际可用。
+- 自动确认淘宝 / 拼多多 / 京东订单页无异常。
+- 自动确认微信 / 支付宝 / 银行 / 验证码流程无异常。
+- 自动把 Stable Plus 或 Full 的内容晋级到 Stable。
 
 ## 安全边界
 
-本仓库不加入会员解锁、Premium 破解、支付绕过、登录绕过、账户权益伪造、Cookie / Token / BoxJS、成人、博彩、短链、镜像源、`ghproxy` 或未知混淆脚本。
+本仓库不加入：
 
-Spotify、YouTube、知乎、登录、支付、验证码、银行、微信、支付宝优先保护。
+- 会员解锁、Premium 破解、支付绕过、登录绕过、账户权益伪造。
+- Cookie / Token / BoxJS 依赖。
+- 成人、博彩、短链、镜像源、`ghproxy`、未知混淆脚本。
+
+优先保护：Spotify、YouTube、知乎、登录、支付、验证码、银行、微信、支付宝。
 
 ## 维护入口
 
 | 类型 | 链接 | 用途 |
 |---|---|---|
 | 模块功能 | [docs/MODULE_FEATURES.md](docs/MODULE_FEATURES.md) | 四个版本功能、App 覆盖和使用边界 |
-| 长期路线 | [docs/ROADMAP.md](docs/ROADMAP.md) | 后续优化方向和优先级 |
-| Profile 边界 | [docs/PROFILE_POLICY.md](docs/PROFILE_POLICY.md) | stable / stable-plus / full 发布边界 |
-| 工厂流程 | [docs/FACTORY_FLOW.md](docs/FACTORY_FLOW.md) | 源头驱动构建说明 |
-| 维护标准 | [docs/MAINTENANCE.md](docs/MAINTENANCE.md) | 日常维护规则 |
-| 发布回滚 | [docs/RELEASE.md](docs/RELEASE.md) | 发布、测试、回滚流程 |
-| 测试标准 | [docs/TESTING.md](docs/TESTING.md) | 手动测试流程和记录要求 |
-| 性能说明 | [docs/PERFORMANCE.md](docs/PERFORMANCE.md) | profile 和耗电策略 |
-| 安全政策 | [SECURITY.md](SECURITY.md) | 安全边界和报告方式 |
-| 个人自用声明 | [LICENSE](LICENSE) | 使用限制和风险声明 |
-| 贡献规则 | [CONTRIBUTING.md](CONTRIBUTING.md) | 后续维护者规则 |
-| 脚本审核 | [docs/SCRIPT_REVIEW.md](docs/SCRIPT_REVIEW.md) | 脚本进入 stable 前检查 |
+| Profile 边界 | [docs/PROFILE_POLICY.md](docs/PROFILE_POLICY.md) | Stable / Stable Plus / Lite / Full 发布边界 |
+| 脚本融合计划 | [docs/SCRIPT_CONSOLIDATION_PLAN.md](docs/SCRIPT_CONSOLIDATION_PLAN.md) | 脚本减少、融合、回滚策略 |
 | MITM 策略 | [docs/MITM_POLICY.md](docs/MITM_POLICY.md) | hostname 分级和增长控制 |
-| 版本策略 | [docs/VERSIONING.md](docs/VERSIONING.md) | 日期和语义版本规则 |
-| 覆盖清单 | [docs/COVERAGE.md](docs/COVERAGE.md) | 功能覆盖方向 |
-| 项目范围 | [docs/SCOPE.md](docs/SCOPE.md) | 允许和禁止内容 |
-| 问题排查 | [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | 常见异常定位 |
+| 测试标准 | [docs/TESTING.md](docs/TESTING.md) | 手动测试流程和记录要求 |
+| 发布回滚 | [docs/RELEASE.md](docs/RELEASE.md) | 发布、测试、回滚流程 |
 | 质量门禁 | [docs/QUALITY_GATE.md](docs/QUALITY_GATE.md) | 阻断项和发布前检查 |
-| 变更记录 | [CHANGELOG.md](CHANGELOG.md) | 版本和维护记录 |
-| 备份说明 | [backup/README.md](backup/README.md) | 回滚方式 |
-| 备份清单 | [backup/manifest.json](backup/manifest.json) | 可用备份文件 |
-| 工厂工作流 | [.github/workflows/module-factory-build.yml](.github/workflows/module-factory-build.yml) | stable 构建与同步 |
-| 每日检查工作流 | [.github/workflows/daily-module-update.yml](.github/workflows/daily-module-update.yml) | 日期、结构和核心远程检查 |
-| 失效源修复工作流 | [.github/workflows/daily-invalid-source-repair.yml](.github/workflows/daily-invalid-source-repair.yml) | 连续失效后的保守修复 |
-| 候选源收集工作流 | [.github/workflows/upstream-collect.yml](.github/workflows/upstream-collect.yml) | 可信候选规则源周检查 |
-| 健康检查工作流 | [.github/workflows/repository-health.yml](.github/workflows/repository-health.yml) | 仓库治理报告 |
+| 长期路线 | [docs/ROADMAP.md](docs/ROADMAP.md) | 后续优化方向和优先级 |
 
 ## 报告入口
 
 | 报告 | 用途 |
 |---|---|
-| [reports/module_factory_report.md](reports/module_factory_report.md) | 模块工厂构建报告 |
-| [reports/module_factory_diff_report.md](reports/module_factory_diff_report.md) | Root / Release 差异 |
-| [reports/factory_finalize_report.md](reports/factory_finalize_report.md) | finalize 同步报告 |
-| [reports/multi_release_report.md](reports/multi_release_report.md) | 多版本发布报告 |
-| [reports/daily_update_report.md](reports/daily_update_report.md) | 每日检查报告 |
-| [reports/invalid_sources_report.md](reports/invalid_sources_report.md) | 失效源审计 |
-| [reports/invalid_sources_history.json](reports/invalid_sources_history.json) | 失效源历史 |
-| [reports/upstream_collect_report.md](reports/upstream_collect_report.md) | 候选源收集 |
-| [reports/repository_health_report.md](reports/repository_health_report.md) | 仓库健康检查 |
-| [reports/compat_migration_report.md](reports/compat_migration_report.md) | 兼容层迁移审计 |
-| [reports/mitm_split_report.md](reports/mitm_split_report.md) | MITM 分层报告 |
-| [reports/profile_validation_report.md](reports/profile_validation_report.md) | stable / stable-plus / lite / full 构建验证 |
+| [reports/repository_health_report.md][health-report] | 仓库健康总览 |
+| [reports/profile_validation_report.md](reports/profile_validation_report.md) | 四个 profile 构建结果、脚本数、MITM 数 |
+| [reports/script_inventory_report.md](reports/script_inventory_report.md) | 脚本清单与可融合分析 |
+| [reports/script_dedupe_report.md](reports/script_dedupe_report.md) | 脚本融合和旧入口移除报告 |
+| [reports/script_consolidation_rollback_report.md](reports/script_consolidation_rollback_report.md) | 脚本融合回滚路径 |
+| [reports/app_cleaner_active_report.md](reports/app_cleaner_active_report.md) | app-cleaner active 批量融合说明 |
 | [reports/app_coverage_matrix.md](reports/app_coverage_matrix.md) | App 覆盖矩阵 |
-| [reports/change_impact_report.md](reports/change_impact_report.md) | 变更影响报告 |
-| [reports/workflow_health_report.md](reports/workflow_health_report.md) | workflow 健康报告 |
-| [reports/manual_test_log.md](reports/manual_test_log.md) | 手动测试记录 |
+| [reports/stable_plus_promotion_report.md](reports/stable_plus_promotion_report.md) | Stable Plus 晋级候选报告 |
+| [reports/manual_test_log.md](reports/manual_test_log.md) | 人工测试记录 |
+| [reports/workflow_health_report.md](reports/workflow_health_report.md) | workflow 最新状态 |
 
-## 常用验证
+## 使用提醒
 
-```text
-python3 scripts/build_module.py --build --profile stable
-python3 scripts/factory_finalize.py --sync-root
-python3 scripts/build_release_variants.py
-python3 scripts/validate_repository.py
-python3 scripts/validate_profiles.py
-python3 scripts/repository_health_check.py
-```
+- 默认使用 Stable。
+- 不要同时启用多个版本。
+- Full 只用于排查，不适合长期启用。
+- 未经真机测试，不要把“规则覆盖存在”理解为“已经验证通过”。
+- 出现异常时先切 Lite，再逐步定位是 MITM、脚本还是规则导致。
+
+[import-page]: https://grandpaniuu.github.io/GrandpaNiu/import.html
+[stable-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable.sgmodule
+[stable-plus-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable-plus.sgmodule
+[lite-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-lite.sgmodule
+[full-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-full.sgmodule
+[stable-pages]: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule
+[stable-plus-pages]: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable-plus.sgmodule
+[lite-pages]: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-lite.sgmodule
+[full-pages]: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-full.sgmodule
+[root-pages]: https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
+[stable-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-stable.sgmodule
+[stable-plus-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-stable-plus.sgmodule
+[lite-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-lite.sgmodule
+[full-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-full.sgmodule
+[root-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule
+[health-report]: reports/repository_health_report.md
