@@ -25,33 +25,35 @@ IP-CIDR,47.75.72.47/32,DIRECT,no-resolve
 
 # Emergency media and WeChat safety bypass
 # Reason: avoid false positives that break app images, WeChat image upload, preview, and media delivery.
-DOMAIN-SUFFIX,weixin.qq.com,DIRECT
-DOMAIN-SUFFIX,wx.qq.com,DIRECT
-DOMAIN-SUFFIX,wechat.com,DIRECT
-DOMAIN-SUFFIX,servicewechat.com,DIRECT
-DOMAIN-SUFFIX,wechatpay.cn,DIRECT
-DOMAIN,dns.weixin.qq.com.cn,DIRECT
-DOMAIN-SUFFIX,qpic.cn,DIRECT
-DOMAIN-SUFFIX,gtimg.cn,DIRECT
-DOMAIN-SUFFIX,weixinbridge.com,DIRECT
+DOMAIN-SUFFIX,weixin.qq.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,wx.qq.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,wechat.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,servicewechat.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,wechatpay.cn,DIRECT,pre-matching
+DOMAIN,dns.weixin.qq.com.cn,DIRECT,pre-matching
+DOMAIN-SUFFIX,qpic.cn,DIRECT,pre-matching
+DOMAIN-SUFFIX,gtimg.cn,DIRECT,pre-matching
+DOMAIN-SUFFIX,weixinbridge.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,qq.com,DIRECT
+DOMAIN-SUFFIX,qlogo.cn,DIRECT
 
 # Common image/CDN safety bypass
-DOMAIN-SUFFIX,alicdn.com,DIRECT
-DOMAIN-SUFFIX,alicdn.net,DIRECT
-DOMAIN-SUFFIX,tbcdn.cn,DIRECT
-DOMAIN-SUFFIX,taobaocdn.com,DIRECT
-DOMAIN-SUFFIX,pddpic.com,DIRECT
-DOMAIN-SUFFIX,360buyimg.com,DIRECT
-DOMAIN-SUFFIX,jdimg.com,DIRECT
-DOMAIN-SUFFIX,bdimg.com,DIRECT
-DOMAIN-SUFFIX,hdslb.com,DIRECT
-DOMAIN-SUFFIX,biliimg.com,DIRECT
-DOMAIN-SUFFIX,bilivideo.com,DIRECT
-DOMAIN-SUFFIX,meituan.net,DIRECT
-DOMAIN-SUFFIX,dpfile.com,DIRECT
-DOMAIN-SUFFIX,msstatic.com,DIRECT
-DOMAIN-SUFFIX,zdmimg.com,DIRECT
-DOMAIN-SUFFIX,amap.com,DIRECT
+DOMAIN-SUFFIX,alicdn.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,alicdn.net,DIRECT,pre-matching
+DOMAIN-SUFFIX,tbcdn.cn,DIRECT,pre-matching
+DOMAIN-SUFFIX,taobaocdn.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,pddpic.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,360buyimg.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,jdimg.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,bdimg.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,hdslb.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,biliimg.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,bilivideo.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,meituan.net,DIRECT,pre-matching
+DOMAIN-SUFFIX,dpfile.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,msstatic.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,zdmimg.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,amap.com,DIRECT,pre-matching
 # Spotify rules
 DOMAIN-SUFFIX,spotify.com,DIRECT
 DOMAIN-SUFFIX,scdn.co,DIRECT
