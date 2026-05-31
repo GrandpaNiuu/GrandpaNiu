@@ -15,39 +15,21 @@
       color: #f0f6fc;
       padding: 24px;
     }
-    .wrap {
-      width: 100%;
-      max-width: 980px;
-      margin: 0 auto;
-    }
-    header {
-      text-align: center;
-      margin: 18px 0 26px;
-    }
-    h1 {
-      margin: 0 0 10px;
-      font-size: 34px;
-    }
-    p {
-      margin: 8px 0;
-      color: #c9d1d9;
-      line-height: 1.65;
-    }
+    .wrap { width: 100%; max-width: 1080px; margin: 0 auto; }
+    header { text-align: center; margin: 18px 0 26px; }
+    h1 { margin: 0 0 10px; font-size: 34px; }
+    p { margin: 8px 0; color: #c9d1d9; line-height: 1.65; }
     .warning {
       margin: 18px auto 24px;
       padding: 14px 16px;
-      max-width: 820px;
+      max-width: 860px;
       border-radius: 16px;
       background: rgba(248, 81, 73, 0.13);
       border: 1px solid rgba(248, 81, 73, 0.35);
       color: #ffd8d4;
       text-align: left;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
     .card {
       background: rgba(13, 17, 23, 0.9);
       border: 1px solid rgba(240, 246, 252, 0.14);
@@ -55,10 +37,7 @@
       padding: 22px;
       box-shadow: 0 20px 70px rgba(0, 0, 0, 0.32);
     }
-    .card h2 {
-      margin: 0 0 8px;
-      font-size: 22px;
-    }
+    .card h2 { margin: 0 0 8px; font-size: 22px; }
     .tag {
       display: inline-block;
       margin: 0 0 10px;
@@ -73,12 +52,22 @@
     .plus { background: #8957e5; }
     .lite { background: #1f6feb; }
     .full { background: #9a6700; }
-    ul {
-      margin: 12px 0 16px;
-      padding-left: 20px;
-      color: #c9d1d9;
-      line-height: 1.65;
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 12px 0;
     }
+    .meta span {
+      padding: 8px;
+      border-radius: 12px;
+      background: #161b22;
+      border: 1px solid rgba(240, 246, 252, 0.08);
+      color: #c9d1d9;
+      font-size: 12px;
+      text-align: center;
+    }
+    ul { margin: 12px 0 16px; padding-left: 20px; color: #c9d1d9; line-height: 1.65; }
     .button {
       display: block;
       width: 100%;
@@ -110,14 +99,10 @@
       font-size: 12px;
       line-height: 1.5;
     }
-    footer {
-      text-align: center;
-      margin: 26px 0 6px;
-      color: #8b949e;
-      font-size: 13px;
-    }
+    footer { text-align: center; margin: 26px 0 6px; color: #8b949e; font-size: 13px; }
     @media (max-width: 780px) {
       .grid { grid-template-columns: 1fr; }
+      .meta { grid-template-columns: 1fr; }
       body { padding: 16px; }
     }
   </style>
@@ -133,70 +118,122 @@
       </div>
     </header>
 
-    <section class="grid">
-      <article class="card">
-        <span class="tag stable">默认正式版</span>
-        <h2>Stable</h2>
-        <p>长期日常使用版本，优先稳定、低误杀。</p>
-        <ul>
-          <li>MITM：120</li>
-          <li>覆盖：Spotify、YouTube、知乎、电商、本地生活、内容社区等常用方向</li>
-          <li>适合：默认长期启用</li>
-        </ul>
-        <a class="button" href="shadowrocket://addmodule?url=https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule">导入 Stable</a>
-        <button class="button dark" onclick="copyUrl('https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule')">复制 Stable 链接</button>
-        <code>https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule</code>
-      </article>
-
-      <article class="card">
-        <span class="tag plus">增强测试版</span>
-        <h2>Stable Plus</h2>
-        <p>在 Stable 基础上增加更多常用 App 覆盖，不自动进入默认版。</p>
-        <ul>
-          <li>MITM：215</li>
-          <li>额外覆盖：爱奇艺、快手、得物、携程、豆瓣、BOSS、WPS、阿里云盘等</li>
-          <li>适合：测试更多 App 去广告</li>
-        </ul>
-        <a class="button secondary" href="shadowrocket://addmodule?url=https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable-plus.sgmodule">导入 Stable Plus</a>
-        <button class="button dark" onclick="copyUrl('https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable-plus.sgmodule')">复制 Stable Plus 链接</button>
-        <code>https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable-plus.sgmodule</code>
-      </article>
-
-      <article class="card">
-        <span class="tag lite">低耗电版</span>
-        <h2>Lite</h2>
-        <p>低风险、省电、异常排查版本，只保留最核心能力。</p>
-        <ul>
-          <li>MITM：11</li>
-          <li>覆盖：Spotify、YouTube、知乎核心链路</li>
-          <li>适合：发热、耗电、App 异常时排查</li>
-        </ul>
-        <a class="button secondary" href="shadowrocket://addmodule?url=https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-lite.sgmodule">导入 Lite</a>
-        <button class="button dark" onclick="copyUrl('https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-lite.sgmodule')">复制 Lite 链接</button>
-        <code>https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-lite.sgmodule</code>
-      </article>
-
-      <article class="card">
-        <span class="tag full">全量排查版</span>
-        <h2>Full</h2>
-        <p>全量 MITM 排查版本，不建议长期启用。</p>
-        <ul>
-          <li>MITM：1009</li>
-          <li>覆盖：完整 extended 层</li>
-          <li>适合：查漏拦、定位缺失 hostname</li>
-        </ul>
-        <a class="button warn" href="shadowrocket://addmodule?url=https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-full.sgmodule">导入 Full</a>
-        <button class="button dark" onclick="copyUrl('https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-full.sgmodule')">复制 Full 链接</button>
-        <code>https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-full.sgmodule</code>
-      </article>
-    </section>
+    <section id="profile-grid" class="grid" aria-label="模块版本列表"></section>
 
     <footer>
-      如果一键导入失败，请复制链接，然后到 Shadowrocket 的“配置 -> 模块 -> +”中手动粘贴。
+      如果一键导入失败，请复制链接，然后到 Shadowrocket 的“配置 -> 模块 -> +”中手动粘贴。覆盖说明来自规则、脚本、MITM 和静态扫描，不等于所有 App 均已真机测试通过。
     </footer>
   </main>
 
   <script>
+    const profiles = [
+      {
+        key: "stable",
+        title: "Stable",
+        tag: "默认正式版",
+        tagClass: "stable",
+        buttonClass: "",
+        file: "Release/Ronghemokuai-stable.sgmodule",
+        mitm: "120",
+        risk: "低",
+        defaultUse: "是",
+        summary: "长期日常使用版本，优先稳定、低误杀、低维护风险。",
+        coverage: [
+          "核心专项：Spotify、YouTube、知乎",
+          "常用清理：广告、开屏、弹窗、横幅、信息流、推荐位",
+          "常用方向：电商、本地生活、内容社区、音频、地图工具"
+        ]
+      },
+      {
+        key: "stable-plus",
+        title: "Stable Plus",
+        tag: "增强测试版",
+        tagClass: "plus",
+        buttonClass: "secondary",
+        file: "Release/Ronghemokuai-stable-plus.sgmodule",
+        mitm: "215",
+        risk: "中",
+        defaultUse: "否",
+        summary: "在 Stable 基础上增加常用 App 测试覆盖，不自动进入默认版。",
+        coverage: [
+          "额外覆盖：爱奇艺、快手、得物、携程、豆瓣、BOSS、WPS、阿里云盘等",
+          "适合测试更多 App 的去广告效果",
+          "通过测试后才允许单项晋级 Stable"
+        ]
+      },
+      {
+        key: "lite",
+        title: "Lite",
+        tag: "低耗电版",
+        tagClass: "lite",
+        buttonClass: "secondary",
+        file: "Release/Ronghemokuai-lite.sgmodule",
+        mitm: "11",
+        risk: "最低",
+        defaultUse: "否",
+        summary: "低风险、省电、异常排查版本，只保留核心链路。",
+        coverage: [
+          "核心专项：Spotify、YouTube、知乎",
+          "核心 MITM：只保留核心 hostname",
+          "适合排查耗电、发热、登录异常或页面异常"
+        ]
+      },
+      {
+        key: "full",
+        title: "Full",
+        tag: "全量排查版",
+        tagClass: "full",
+        buttonClass: "warn",
+        file: "Release/Ronghemokuai-full.sgmodule",
+        mitm: "1009",
+        risk: "高",
+        defaultUse: "否",
+        summary: "全量 MITM 排查版本，只用于查漏拦和定位缺失 hostname。",
+        coverage: [
+          "包含完整 extended 层",
+          "适合定位 Stable / Stable Plus 缺失的 hostname",
+          "不建议长期启用，不适合支付、登录、验证码、银行场景"
+        ]
+      }
+    ];
+
+    const pagesBase = "https://grandpaniuu.github.io/GrandpaNiu/";
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>'"]/g, character => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
+      }[character]));
+    }
+
+    function moduleUrl(profile) {
+      return pagesBase + profile.file;
+    }
+
+    function importUrl(profile) {
+      return "shadowrocket://addmodule?url=" + encodeURIComponent(moduleUrl(profile));
+    }
+
+    function renderProfile(profile) {
+      const url = moduleUrl(profile);
+      const coverageItems = profile.coverage.map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      return `
+        <article class="card">
+          <span class="tag ${profile.tagClass}">${escapeHtml(profile.tag)}</span>
+          <h2>${escapeHtml(profile.title)}</h2>
+          <p>${escapeHtml(profile.summary)}</p>
+          <div class="meta">
+            <span>MITM：${escapeHtml(profile.mitm)}</span>
+            <span>默认：${escapeHtml(profile.defaultUse)}</span>
+            <span>风险：${escapeHtml(profile.risk)}</span>
+          </div>
+          <ul>${coverageItems}</ul>
+          <a class="button ${profile.buttonClass}" href="${importUrl(profile)}">导入 ${escapeHtml(profile.title)}</a>
+          <button class="button dark" type="button" data-copy-url="${url}">复制 ${escapeHtml(profile.title)} 链接</button>
+          <code>${escapeHtml(url)}</code>
+        </article>
+      `;
+    }
+
     function copyUrl(url) {
       navigator.clipboard.writeText(url).then(function () {
         alert("模块地址已复制，请到 Shadowrocket 中从链接导入。");
@@ -204,6 +241,12 @@
         prompt("请手动复制模块地址：", url);
       });
     }
+
+    document.getElementById("profile-grid").innerHTML = profiles.map(renderProfile).join("");
+    document.addEventListener("click", event => {
+      const target = event.target.closest("[data-copy-url]");
+      if (target) copyUrl(target.getAttribute("data-copy-url"));
+    });
   </script>
 </body>
 </html>
