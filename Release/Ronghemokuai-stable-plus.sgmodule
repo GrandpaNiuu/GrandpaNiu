@@ -31,11 +31,17 @@ DOMAIN-SUFFIX,wechat.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,servicewechat.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,wechatpay.cn,DIRECT,pre-matching
 DOMAIN,dns.weixin.qq.com.cn,DIRECT,pre-matching
+DOMAIN,wxs.qq.com,DIRECT,pre-matching
+DOMAIN,res.wx.qq.com,DIRECT,pre-matching
+DOMAIN,wxapp.tc.qq.com,DIRECT,pre-matching
+DOMAIN,mmsns.qpic.cn,DIRECT,pre-matching
+DOMAIN,shmmsns.qpic.cn,DIRECT,pre-matching
+DOMAIN,wx.qlogo.cn,DIRECT,pre-matching
 DOMAIN-SUFFIX,qpic.cn,DIRECT,pre-matching
 DOMAIN-SUFFIX,gtimg.cn,DIRECT,pre-matching
 DOMAIN-SUFFIX,weixinbridge.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,qq.com,DIRECT
-DOMAIN-SUFFIX,qlogo.cn,DIRECT
+DOMAIN-SUFFIX,qlogo.cn,DIRECT,pre-matching
 
 # Common image/CDN safety bypass
 DOMAIN-SUFFIX,alicdn.com,DIRECT,pre-matching
