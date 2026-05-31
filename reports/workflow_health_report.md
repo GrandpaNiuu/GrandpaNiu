@@ -1,6 +1,6 @@
 # Workflow 健康报告
 
-生成时间：2026-06-01 04:38:55 +0800
+生成时间：2026-06-01 05:13:49 +0800
 
 本报告默认不调用 GitHub API。workflow 最新运行状态无法确认，需要在 GitHub Actions 页面确认 completed / success。
 
