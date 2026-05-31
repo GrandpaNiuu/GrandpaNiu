@@ -1,6 +1,6 @@
 # 仓库健康检查报告
 
-生成时间：2026-05-31 09:39:10 +0800
+生成时间：2026-05-31 13:11:00 +0800
 
 ## 总体状态
 
@@ -18,12 +18,12 @@
 
 ## 模块区块行数
 
-- Rule: 533
+- Rule: 568
 - URL Rewrite: 1597
 - Header Rewrite: 5
 - Body Rewrite: 455
 - Map Local: 15
-- Script: 151
+- Script: 152
 - MITM: 4
 
 ## Profile 策略摘要
