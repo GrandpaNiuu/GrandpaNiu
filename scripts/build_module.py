@@ -155,15 +155,16 @@ def merge_lines(blocks: Iterable[str]) -> str:
 
 
 def is_preserved_metadata(line: str) -> bool:
-    return line.lstrip().startswith("#!")
+    stripped = line.lstrip()
+    return stripped.startswith("#!") or stripped.startswith("# update-date:")
 
 
 def minify_module_text(text: str) -> str:
     """Remove blank lines and ordinary comments from generated module output.
 
-    Shadowrocket metadata lines beginning with `#!` are kept because they carry
-    import/update metadata. Section headers and active rule/script/rewrite/MITM
-    lines are kept unchanged apart from trailing whitespace removal.
+    Shadowrocket metadata lines beginning with `#!` and the repository-required
+    `# update-date:` marker are kept. Section headers and active rule/script/
+    rewrite/MITM lines are kept unchanged apart from trailing whitespace removal.
     """
     lines: list[str] = []
     for raw in text.splitlines():
@@ -387,7 +388,7 @@ def make_report(release_text: str, extracted: bool, profile: str) -> str:
         "",
         "## 模块输出清理",
         "- 生成模块会自动删除空行和普通 # 注释说明。",
-        "- 保留 #!update-url、#!name、#!desc 等 Shadowrocket 元数据。",
+        "- 保留 #!update-url、#!name、#!desc 和 # update-date: 等必要元数据。",
         "",
         "## 说明",
         "- 日常维护应优先修改 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。",
