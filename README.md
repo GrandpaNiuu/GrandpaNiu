@@ -94,23 +94,71 @@ Android 版主要通过域名、关键词和 IP 规则拦截常见广告域名�
 
 - [打开 Android 导入页][android-import]
 
-| 场景 | 推荐版本 | 链接 | 说明 |
-|---|---|---|---|
-| 没有节点，只想拦广告 | 完整配置版 | [GrandpaNiu-Android-Full.yaml][android-full-raw] | 适合 FlClash / Mihomo / Clash Meta，作为完整配置导入 |
-| 已经有节点订阅 | Mihomo 规则集版 | [GrandpaNiu-Ads.yaml][android-mihomo-ads-raw] | 作为 rule-provider 合并进原配置，不覆盖原节点 |
-| 使用 sing-box | sing-box rule-set | [GrandpaNiu-Ads.json][android-singbox-raw] | 需要在自己的 sing-box 配置中引用 |
-| 使用 AdGuard | DNS 规则版 | [GrandpaNiu-DNS.txt][android-adguard-raw] | 适合 AdGuard Android / AdGuard DNS / AdGuard Home |
-| 使用 v2rayNG / V2Ray / Xray | routing 片段版 | [GrandpaNiu-v2rayng-routing.json][android-v2rayng-raw] | 高级用户手动合并，不是完整节点配置 |
+如果你不确定选哪个版本，先看下面这个表。
 
-### 已有节点订阅用户
+| 场景 | 推荐版本 | 文件 | 适合客户端 | 导入方式 |
+|---|---|---|---|---|
+| 没有节点，只想拦广告 | 完整配置版 | [GrandpaNiu-Android-Full.yaml][android-full-raw] | FlClash / Mihomo / Clash Meta | 直接作为完整配置导入 |
+| 已经有节点订阅 | Mihomo 规则集版 | [GrandpaNiu-Ads.yaml][android-mihomo-ads-raw] | FlClash / Mihomo / Clash Meta | 作为 rule-provider 合并进原配置 |
+| 使用 sing-box | sing-box 规则集版 | [GrandpaNiu-Ads.json][android-singbox-raw] | sing-box / SFA | 在自己的配置中引用 rule-set |
+| 使用 AdGuard | DNS 规则版 | [GrandpaNiu-DNS.txt][android-adguard-raw] | AdGuard Android / AdGuard DNS / AdGuard Home | 作为自定义 DNS / 过滤规则导入 |
+| 使用 v2rayNG / V2Ray / Xray | routing 片段版 | [GrandpaNiu-v2rayng-routing.json][android-v2rayng-raw] | v2rayNG / V2Ray / Xray | 手动合并 routing 规则 |
 
-不要直接导入 `GrandpaNiu-Android-Full.yaml`，否则可能覆盖你原来的节点、策略组和规则。
+> 如果一键导入无反应，通常不是链接失效，而是客户端不支持跳转协议。请复制链接后，在客户端中手动导入。
 
-已有节点用户应参考：
+### 1）完整配置版：GrandpaNiu-Android-Full.yaml
 
-- [Android/mihomo/README-With-Proxy.md](Android/mihomo/README-With-Proxy.md)
+适合：
 
-把广告规则集加入原配置：
+- 没有机场节点。
+- 没有现成配置。
+- 只想做广告拦截。
+- 想直接导入就用。
+
+文件：
+
+- [GrandpaNiu-Android-Full.yaml][android-full-raw]
+
+导入方式：
+
+#### FlClash / Mihomo / Clash Meta
+
+1. 打开客户端。
+2. 进入 **配置 / Profiles**。
+3. 选择 **从 URL 导入**。
+4. 粘贴下面链接：
+
+```text
+https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Android-Full.yaml
+```
+
+5. 保存并启用该配置。
+
+注意事项：
+
+- 这是**完整配置**。
+- **已有节点订阅用户不要导入这个版本**。
+- 否则可能覆盖你原来的节点、策略组和规则。
+
+---
+
+### 2）Mihomo 规则集版：GrandpaNiu-Ads.yaml
+
+适合：
+
+- 已经有机场节点订阅。
+- 已经有自己的 Mihomo / Clash Meta / FlClash 配置。
+- 只想把 GrandpaNiu 广告规则加进去，不想覆盖原配置。
+
+文件：
+
+- [GrandpaNiu-Ads.yaml][android-mihomo-ads-raw]
+
+导入方式：
+
+#### 方法一：手动合并到原配置（推荐）
+
+把下面内容加入你的原配置：
 
 ```yaml
 rule-providers:
@@ -127,11 +175,173 @@ rules:
   - MATCH,🚀 节点选择
 ```
 
-`RULE-SET,grandpaniu_ads,REJECT` 必须放在 `MATCH`、`GEOIP`、代理分流规则之前。否则广告请求可能先被原来的代理规则命中，导致规则不生效。
+#### 方法二：如果客户端支持远程规则集
 
-Android 使用教程：
+1. 打开原配置。
+2. 找到 `rule-providers`。
+3. 添加 GrandpaNiu 的远程规则源。
+4. 在 `rules` 最前面加入：
+
+```yaml
+- RULE-SET,grandpaniu_ads,REJECT
+```
+
+注意事项：
+
+- **不要把它当完整配置导入**。
+- 它只是**规则集**。
+- `RULE-SET,grandpaniu_ads,REJECT` 必须放在 `MATCH`、`GEOIP`、代理分流规则之前。
+- 否则广告请求可能先被原规则命中，导致不生效。
+
+最终效果：
+
+- 保留你原来的节点。
+- 保留你原来的策略组。
+- 广告请求被 GrandpaNiu 规则拦截。
+- 其他流量继续走你原来的配置。
+
+---
+
+### 3）sing-box 规则集版：GrandpaNiu-Ads.json
+
+适合：
+
+- 已经会维护 sing-box 配置。
+- 使用 sing-box / SFA。
+- 想把 GrandpaNiu 作为远程 rule-set 引入。
+
+文件：
+
+- [GrandpaNiu-Ads.json][android-singbox-raw]
+
+导入方式：
+
+#### sing-box / SFA
+
+1. 打开自己的 sing-box 配置。
+2. 在 `route.rule_set` 或等效 rule-set 区域添加远程规则集地址。
+3. 在 `route.rules` 中引用 GrandpaNiu 规则集。
+4. 命中后走拦截动作。
+5. 保存配置并重载客户端。
+
+注意事项：
+
+- 这不是完整 sing-box 配置。
+- 不是一键导入版。
+- 需要你自己会改 sing-box JSON。
+- 如果你不会改，优先使用 Mihomo / FlClash 方案。
+
+---
+
+### 4）AdGuard DNS 规则版：GrandpaNiu-DNS.txt
+
+适合：
+
+- 使用 AdGuard Android。
+- 使用 AdGuard DNS。
+- 使用 AdGuard Home。
+- 只想做轻量的域名过滤。
+
+文件：
+
+- [GrandpaNiu-DNS.txt][android-adguard-raw]
+
+导入方式：
+
+#### AdGuard Android
+
+1. 打开 AdGuard。
+2. 进入 **过滤器 / 用户规则** 或 **DNS 过滤**。
+3. 添加自定义规则或订阅。
+4. 粘贴下面链接：
+
+```text
+https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/GrandpaNiu-DNS.txt
+```
+
+5. 保存并刷新规则。
+
+#### AdGuard DNS / AdGuard Home
+
+1. 进入后台。
+2. 找到自定义过滤规则 / DNS 拦截列表。
+3. 添加 GrandpaNiu 规则地址。
+4. 保存并刷新规则。
+
+注意事项：
+
+- 这是**域名级**过滤。
+- 不包含脚本、MITM、Rewrite。
+- 效果会弱于 iOS 模块。
+- 但更轻量，适合长期运行。
+
+---
+
+### 5）v2rayNG / V2Ray / Xray routing 片段版
+
+适合：
+
+- 高级用户。
+- 已经会手动改 V2Ray / Xray 配置。
+- 想把 GrandpaNiu 广告规则并入自己现有 routing。
+
+文件：
+
+- [GrandpaNiu-v2rayng-routing.json][android-v2rayng-raw]
+
+导入方式：
+
+#### v2rayNG / V2Ray / Xray
+
+1. 打开你现有的配置文件。
+2. 找到 `routing.rules`。
+3. 把 GrandpaNiu 的广告 routing 片段手动合并进去。
+4. 确保广告拦截规则排在普通代理 / 直连规则之前。
+5. 保存并重新加载配置。
+
+注意事项：
+
+- **这不是节点订阅**。
+- **这不是完整配置**。
+- **不能直接一键导入就用**。
+- 必须手动合并。
+- 如果你不会手动改 routing，优先使用 Mihomo / FlClash 方案。
+
+---
+
+### 新手推荐顺序
+
+如果你是普通用户，按这个顺序选：
+
+1. **没有节点** → 用 `GrandpaNiu-Android-Full.yaml`。
+2. **已有节点** → 用 `GrandpaNiu-Ads.yaml`。
+3. **完全不懂配置** → 优先用 FlClash / Mihomo，不要先碰 sing-box 和 v2rayNG。
+4. **只想轻量过滤** → 用 `GrandpaNiu-DNS.txt`。
+
+### Android 使用边界
+
+Android 版只迁移这些能力：
+
+- 域名规则。
+- 关键词规则。
+- IP 规则。
+- 部分可迁移拦截逻辑。
+
+Android 版不包含这些 iOS 能力：
+
+- Script。
+- MITM。
+- Rewrite。
+- Header Rewrite。
+- Body Rewrite。
+
+所以 Android 版不保证达到 iOS / Shadowrocket / Surge 完全相同的净化效果。
+
+### Android 使用教程
 
 - [GrandpaNiu Android 使用教程](docs/android-user-guide.md)
+- [已有节点用户教程](Android/mihomo/README-With-Proxy.md)
+- [v2rayNG 手动合并教程](Android/v2rayng/README.md)
 
 ## 使用提醒
 
