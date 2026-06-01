@@ -1,12 +1,12 @@
 # Stable Plus 晋级候选报告
 
-生成时间：2026-06-01 21:35:30 +0800
+生成时间：2026-06-01 21:36:13 +0800
 
 本报告只生成晋级建议，不自动修改 `MITM-app-clean.conf`，也不会把 Stable Plus 或 Full 自动合并进 Stable。
 
 ## 总体结论
 
-- Stable Plus hostname 总数：95
+- Stable Plus hostname 总数：97
 - 可进入人工复核的候选组：0
 - 暂不可晋级组：9
 - 晋级前必须确认 Stable 已通过核心流程测试。
