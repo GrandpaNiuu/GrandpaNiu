@@ -19,6 +19,7 @@ DOMAIN,un-acs.youku.com,DIRECT
 DOMAIN-SUFFIX,soulapp.cn,DIRECT
 IP-CIDR,8.210.3.170/32,DIRECT,no-resolve
 IP-CIDR,47.75.72.47/32,DIRECT,no-resolve
+
 # Emergency media and WeChat safety bypass
 # Reason: avoid false positives that break app images, WeChat image upload, preview, and media delivery.
 DOMAIN-SUFFIX,weixin.qq.com,DIRECT,pre-matching
@@ -37,6 +38,7 @@ DOMAIN-SUFFIX,qpic.cn,DIRECT,pre-matching
 DOMAIN-SUFFIX,gtimg.cn,DIRECT,pre-matching
 DOMAIN-SUFFIX,weixinbridge.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,qlogo.cn,DIRECT,pre-matching
+
 # Common image/CDN safety bypass
 DOMAIN-SUFFIX,alicdn.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,alicdn.net,DIRECT,pre-matching
@@ -54,6 +56,13 @@ DOMAIN-SUFFIX,dpfile.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,msstatic.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,zdmimg.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,amap.com,DIRECT,pre-matching
+# Spotify rules
+DOMAIN-SUFFIX,spotify.com,DIRECT
+DOMAIN-SUFFIX,scdn.co,DIRECT
+DOMAIN-SUFFIX,spotifycdn.com,DIRECT
+DOMAIN-SUFFIX,pscdn.co,DIRECT
+DOMAIN,spclient.wg.spotify.com,DIRECT
+DOMAIN-SUFFIX,spclient.spotify.com,DIRECT
 # YouTube rules
 AND,((DOMAIN-SUFFIX,googlevideo.com), (PROTOCOL,UDP)),REJECT
 AND,((DOMAIN,youtubei.googleapis.com), (PROTOCOL,UDP)),REJECT
@@ -563,12 +572,20 @@ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/r
 # YouTube playback protection placeholder
 # Keep this file available for future precise DIRECT rules.
 # Do not add broad googlevideo or google domains unless a specific conflict is confirmed.
+# Spotify 白名单：放在远程广告规则前，避免广告规则误杀播放链路导致跳歌
 # === 新框架 Layer 1：基础拦截层 ===
 # 顺序原则：必要 DIRECT 白名单优先，其后远程广告规则、本地域名/IP、URL-REGEX/AND 逻辑。
 # 安全边界：不主动拦截支付、登录、验证码、银行证券、微信/支付宝安全、证书校验接口。
 # GitHub 去广告规则补充（Surge 端按远程资源自动更新）
 # === Remote AdBlock Hub：远程广告规则增强层 ===
 # 只添加可信远程规则，不覆盖本地规则；用于补充国内外网页、App 通用广告域名。
+
+# YouTube Enhance（Maasea 必要规则，2026-05-25 上游检查）
+# 风险提示：阻断 YouTube QUIC/UDP 可提升 HTTPS MITM 与脚本命中率；若视频长期转圈，可临时注释以下两行测试。
+
+# === Legacy 26.1.27 Selected Migration: Rule START ===
+# 从旧版融合模块逐条筛选迁移；仅加入缺失、低风险、非重复、非高风险去广告规则。
+# === Legacy 26.1.27 Selected Migration: Rule END ===
 [URL Rewrite]
 # === 新框架 Layer 2：精准 URL Rewrite 层 ===
 # 仅用于开屏、弹窗、banner、信息流、营销卡片、小程序广告资源；不注入第三方内容。
@@ -2147,6 +2164,9 @@ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/r
 ^https?:\/\/ztoread\.ziroom\.com\/foka-card-api\/popup\/v2\/get - reject-dict
 ^https?:\/\/ztoread\.ziroom\.com\/ymerApi\/v\d\/index\/open - reject-dict
 ^https?:\/\/zyfile\.izuiyou\.com\/zyfile\/c2\/a0\/[a-z0-9-]+\.json - reject-200
+
+# === Legacy 26.1.27 Selected Migration: URL Rewrite START ===
+# 从旧版融合模块逐条筛选迁移；仅加入缺失、低风险、非重复、非高风险去广告规则。
 ^https?:\/\/adashx\.ut\.taobao\.com\/rest\/api3\.do - reject
 ^https?:\/\/adashx\.ut\.taobao\.com\/rest\/gf\.m\.aplus - reject
 ^https?:\/\/adashx\.ut\.taobao\.com\/rest\/gwr - reject
@@ -2166,11 +2186,14 @@ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/r
 ^https?:\/\/img\.alicdn\.com\/.*\/ad\/.* - reject
 # === Legacy 26.1.27 Selected Migration: URL Rewrite END ===
 [Header Rewrite]
-# if-none-match返回304状态码
+# === 新框架 Layer 2.5：Header Rewrite 层 ===
+# 当前仅保留 Spotify if-none-match 删除，用于避免缓存影响脚本处理；不涉及登录/支付/安全接口。
+# Spotify（app2smile 必要配置，2026-05-25 上游检查）
+# 删除 if-none-match，避免 304 缓存导致 spotify-proto 无法取得可修改响应体。
 http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$ header-del if-none-match
 [Body Rewrite]
 # === 新框架 Layer 3：Body Rewrite / JQ 层 ===
-# 仅清理复杂 JSON 中广告节点
+# 仅清理复杂 JSON 中广告节点；禁止改写会员权益、支付状态、账号等级与用户身份。
 http-response ^https?:\/\/alsc-buy2\.ele\.me\/h5\/mtop\.alsc\.eleme\.order\.detail\.miniapp\.build orderDetailCdpTriggerInfo random_body
 http-response ^https?:\/\/api-wanda\.liepin\.com\/api\/com\.liepin\.cbp\.baizhong\.op\.v\d-show-4pc adList random_body
 http-response ^https?:\/\/api\.boohee\.com\/meta-interface\/v\d\/index\/record_index articles random_body
@@ -2619,8 +2642,12 @@ http-response-jq ^https?:\/\/xiaoshuo\.wtzw\.com\/api\/v\d\/user\/my-center\? 'd
 http-response-jq ^https?:\/\/yuyin-api\.baizhanlive\.com\/postsquare\/college\/page\/tabsV3\? '.data.tabList |= map(select(.code == "post" or .code == "teamup" or .code == "college" or .code == "aiSecretRoom"))'
 http-response-jq ^https?:\/\/yyapp-idx\.yy\.com\/mobyy\/nav\/index\/idx\? '.data[].modules |= map(select(.name != "新版本滚动条" and .name != "通栏轮播" and .name != "新静默位"))'
 http-response-jq ^https?:\/\/zj\.haier\.net\/omsappapi\/resource\/v\d\/get\/resourceBag$ '.data.resource.md5 = null'
-http-response-jq ^https?:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/common\/getInitData\.do 'delpaths([["data","
+http-response-jq ^https?:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/common\/getInitData\.do 'delpaths([["data","SpecialSalePageMidTabConfig"]])'
+
+# === Legacy 26.1.27 Selected Migration: Body Rewrite START ===
+# 从旧版融合模块逐条筛选迁移；仅加入缺失、低风险、非重复、非高风险去广告规则。
 http-response-jq ^https?:\/\/api\.zhihu\.com\/search\/recommend_query\/v2\? 'del(.recommend_queries)'
+# === Legacy 26.1.27 Selected Migration: Body Rewrite END ===
 [Map Local]
 # === 新框架 Layer 4：Map Local 层 ===
 # 仅允许空 JSON、空数组、空文本、空图片、本地空响应；禁止外部 ZIP/第三方图片/不可验证资源。
