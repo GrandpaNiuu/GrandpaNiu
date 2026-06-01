@@ -2,8 +2,8 @@ name: Upstream candidate collect
 
 on:
   schedule:
-    # 19:23 UTC Monday = 03:23 Beijing time Tuesday. Weekly only by design.
-    - cron: "23 19 * * 1"
+    # Daily trusted upstream candidate collection.
+    - cron: "23 19 * * *"
   workflow_dispatch:
 
 permissions:
