@@ -1,6 +1,6 @@
 # 仓库健康检查报告
 
-生成时间：2026-06-01 22:08:05 +0800
+生成时间：2026-06-01 22:58:25 +0800
 
 ## 总体状态
 
@@ -16,13 +16,13 @@
 
 ## 区块检查
 
-- [Rule]：570 行
-- [URL Rewrite]：1597 行
-- [Header Rewrite]：5 行
-- [Body Rewrite]：455 行
-- [Map Local]：15 行
-- [Script]：152 行
-- [MITM]：4 行
+- [Rule]：528 行
+- [URL Rewrite]：1592 行
+- [Header Rewrite]：1 行
+- [Body Rewrite]：450 行
+- [Map Local]：12 行
+- [Script]：33 行
+- [MITM]：1 行
 
 ## 报告生成器运行结果
 

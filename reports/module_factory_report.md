@@ -4,7 +4,7 @@
 - 构建 profile：stable
 - 是否从 root 反拆：否
 - 构建阶段 Root/Release 是否一致：否
-- Release 行数：2631
+- Release 行数：2632
 - Release MITM hostname 数量：120
 
 ## 源文件统计
@@ -30,7 +30,7 @@
 
 ## 模块输出清理
 - 生成模块会自动删除空行和普通 # 注释说明。
-- 保留 #!update-url、#!name、#!desc 等 Shadowrocket 元数据。
+- 保留 #!update-url、#!name、#!desc 和 # update-date: 等必要元数据。
 
 ## 说明
 - 日常维护应优先修改 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。
