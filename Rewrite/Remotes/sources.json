@@ -113,18 +113,18 @@
       "type": "RULE-SET",
       "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/QuanX/Adblock/All/filter/appAdBlock.list",
       "policy": "REJECT",
-      "enabled": true,
+      "enabled": false,
       "protected": false,
-      "purpose": "aggressive domestic app ad blocking source for Taobao/JD/PDD/Douyin/Kuaishou/Xiaohongshu/Meituan/Bilibili/Amap/Zhihu/web testing; may cause breakage and must be reviewed after use"
+      "purpose": "disabled in default remotes; use Rules/aggressive-ad-sources.list through testing profiles only"
     },
     {
       "name": "zirawell All AdBlock aggressive",
       "type": "RULE-SET",
       "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/QuanX/Adblock/All/filter/allAdBlock.list",
       "policy": "REJECT",
-      "enabled": true,
+      "enabled": false,
       "protected": false,
-      "purpose": "aggressive broad ad blocking source for web and app residual ads; may cause breakage and must be reviewed after use"
+      "purpose": "disabled in default remotes; use Rules/aggressive-ad-sources.list through testing profiles only"
     }
   ],
   "reference_modules": [
