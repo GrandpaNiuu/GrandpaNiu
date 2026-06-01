@@ -154,6 +154,29 @@ def merge_lines(blocks: Iterable[str]) -> str:
     return "\n".join(merged).strip() + "\n"
 
 
+def is_preserved_metadata(line: str) -> bool:
+    return line.lstrip().startswith("#!")
+
+
+def minify_module_text(text: str) -> str:
+    """Remove blank lines and ordinary comments from generated module output.
+
+    Shadowrocket metadata lines beginning with `#!` are kept because they carry
+    import/update metadata. Section headers and active rule/script/rewrite/MITM
+    lines are kept unchanged apart from trailing whitespace removal.
+    """
+    lines: list[str] = []
+    for raw in text.splitlines():
+        line = raw.rstrip()
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if stripped.startswith("#") and not is_preserved_metadata(stripped):
+            continue
+        lines.append(line)
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def load_optional_files(paths: Iterable[Path]) -> list[str]:
     return [read_text(path, required=False) for path in paths if path.exists()]
 
@@ -261,7 +284,7 @@ def build_from_sources(profile_name: str) -> str:
             body = read_text(source_file(section), required=False).rstrip() + "\n"
         if body.strip():
             parts.append(body.rstrip())
-    return "\n".join(parts).rstrip() + "\n"
+    return minify_module_text("\n".join(parts).rstrip() + "\n")
 
 
 def script_names(text: str) -> list[str]:
@@ -361,6 +384,10 @@ def make_report(release_text: str, extracted: bool, profile: str) -> str:
         "## 重复检查",
         f"- 重复脚本名：{', '.join(script_dupes) if script_dupes else '无'}",
         f"- 重复 MITM hostname：{', '.join(mitm_dupes) if mitm_dupes else '无'}",
+        "",
+        "## 模块输出清理",
+        "- 生成模块会自动删除空行和普通 # 注释说明。",
+        "- 保留 #!update-url、#!name、#!desc 等 Shadowrocket 元数据。",
         "",
         "## 说明",
         "- 日常维护应优先修改 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。",
