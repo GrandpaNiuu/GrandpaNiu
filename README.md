@@ -2,7 +2,7 @@
 
 # GrandpaNiu
 
-Shadowrocket / Surge / Android 自用融合净化规则与模块工厂。
+Shadowrocket / Surge / Android 净化规则与模块集合。
 
 [![Import](https://img.shields.io/static/v1?label=Import&message=Multi%20Version%20Page&color=0A84FF&labelColor=111827&style=for-the-badge)][import-page]
 [![Stable](https://img.shields.io/static/v1?label=Stable&message=Default&color=34C759&labelColor=111827&style=for-the-badge)][stable-import]
@@ -11,154 +11,42 @@ Shadowrocket / Surge / Android 自用融合净化规则与模块工厂。
 
 </div>
 
+## 快速说明
+
+`GrandpaNiu` 是一个面向 Shadowrocket / Surge / Android 用户的规则与模块项目，用于拦截常见广告、开屏、弹窗、横幅、信息流推荐、活动卡片、追踪域名和部分 App 广告请求。
+
+普通用户只需要做一件事：**按自己的设备和使用场景选择一个版本导入，不要同时启用多个版本。**
+
+日常使用推荐：**Stable**。
+
 ## 使用限制与风险声明
 
 > 本仓库所有资源仅供个人学习、研究与实验使用，严禁用于任何商业、盈利、收费、转售、引流、代运营、付费服务或其他变相商业目的。
 >
-> 未经维护者明确许可，禁止以任何形式将本仓库资源转载、分享、搬运、镜像、二次发布或改名发布至任何境内平台，包括但不限于社交媒体、博客、论坛、网盘、代码托管平台、公众号、即时通讯群组、付费社群、资源站或聚合站。
+> 未经维护者明确许可，禁止转载、搬运、镜像、二次发布或改名发布至任何境内平台。
 >
-> 本仓库所有资源仅供参考，使用者应自行判断是否适合使用，并自行承担全部风险。维护者不对因使用、复制、修改、分发、转载、导入、运行、参考或依赖本仓库内容造成的任何直接或间接损失承担责任，包括但不限于数据丢失、网络故障、账号异常、服务不可用、配置损坏、隐私泄露、第三方追责或法律纠纷。
+> 本仓库内容仅供参考。使用者应自行判断是否适合使用，并自行承担由导入、运行、修改或依赖本仓库内容产生的风险。
 
 详细安全策略见：[SECURITY.md](SECURITY.md)。
 
-## 一句话说明
+## 版本怎么选
 
-`GrandpaNiu` 是一个源头驱动的 Shadowrocket / Surge / Android 规则与模块工厂。仓库不会长期手工维护根目录模块，而是从 `Rules`、`Scripts`、`Rewrite/Sources`、`Rewrite/Profiles` 和维护脚本自动生成 iOS 模块与 Android 可用规则。
-
-维护原则：**所有已纳入覆盖的 App 一视同仁维护，不设置单独例外。**
-
-日常使用只推荐启用一个版本：**默认用 Stable**。根目录 `Ronghemokuai.sgmodule` 就是默认 Stable，Release 目录中的 Stable 是同一默认版本的独立发布文件。
-
-## 当前包含内容
-
-本仓库目前包含以下内容：
-
-- **Shadowrocket / Surge 模块**：默认 Root 模块 `Ronghemokuai.sgmodule`，以及 `Release` 目录下的 Stable、Stable Plus、Lite、Full 四个独立版本。
-- **iOS 净化能力**：规则、脚本、Rewrite、MITM hostname、静态扫描报告、覆盖矩阵、回滚与质量门禁文档。
-- **Android Mihomo / Clash Meta / FlClash 版本**：`Android/mihomo/GrandpaNiu-Android-Full.yaml` 完整配置、`Android/mihomo/GrandpaNiu-Ads.yaml` 广告规则集、`android.html` Android 导入页。
-- **已有节点用户说明**：`Android/mihomo/README-With-Proxy.md`，说明如何把 `GrandpaNiu-Ads.yaml` 加入原 Clash / Mihomo 配置，并保留原节点、策略组和 MATCH。
-- **sing-box 规则集**：`Android/sing-box/GrandpaNiu-Ads.json`，面向使用 sing-box rule-set 的高级 Android 用户。
-- **AdGuard DNS 规则**：`Android/adguard/GrandpaNiu-DNS.txt`，用于支持自定义过滤规则的 AdGuard Android、AdGuard DNS 或 AdGuard Home 场景。
-- **v2rayNG / V2Ray / Xray routing 片段**：`Android/v2rayng/GrandpaNiu-v2rayng-routing.json`，用于手动合并 `block` outbound 和广告路由规则。
-- **用户教程与维护文档**：`docs/android-user-guide.md`、`docs/*`、`reports/*`，用于说明导入、构建、测试、覆盖范围、风险边界和维护流程。
-
-## 版本选择
-
-优先从多版本导入页选择版本：
-
-[打开多版本导入页][import-page]
-
-| 版本 | 定位 | 默认使用 | 覆盖重点 | 风险边界 | 导入 |
+| 版本 | 适合谁 | 覆盖范围 | 风险边界 | 推荐程度 | 导入 |
 |---|---|---|---|---|---|
-| Stable | 默认正式版 | 是 | 已纳入 App 的稳定覆盖 + 常用净化 | 优先稳定、低误杀 | [导入][stable-import] |
-| Stable Plus | 增强测试版 | 否 | Stable + 更多常用 App MITM 覆盖 | 只做测试，不自动晋级 Stable | [导入][stable-plus-import] |
-| Lite | 低耗电版 | 否 | 最小必要覆盖集合 | 覆盖少，适合排查异常 | [导入][lite-import] |
-| Full | 全量排查版 | 否 | 完整 extended MITM 层 | 不建议长期启用 | [导入][full-import] |
+| Stable | 大多数用户 | 稳定覆盖 + 常用净化 | 优先低误伤、可长期使用 | 默认推荐 | [导入][stable-import] |
+| Stable Plus | 想测试更多 App 覆盖的用户 | Stable + 更多测试覆盖 | 不自动晋级 Stable | 测试使用 | [导入][stable-plus-import] |
+| Lite | 手机发热、耗电、登录异常时排查 | 最小必要覆盖 | 覆盖少、风险低 | 排查使用 | [导入][lite-import] |
+| Full | 查漏拦、临时定位 hostname | 全量排查覆盖 | 不适合长期启用 | 高级排查 | [导入][full-import] |
 
-> 不要同时启用多个版本。覆盖说明来自规则、脚本、Rewrite、MITM 和静态扫描，不等于所有 App 都已人工测试通过。
+> 不要同时启用多个版本。覆盖存在不等于所有 App 都已人工测试通过。
 
-## 四个版本分别包含什么
+## 导入方式
 
-### Stable：默认正式版
+优先使用多版本导入页：
 
-适合长期日常使用。目标不是最大覆盖，而是稳定、低误杀、可长期维护。
+- [打开多版本导入页][import-page]
 
-主要包含：
-
-- 已纳入 App 的广告、开屏、弹窗、横幅、信息流、推荐位、活动卡片净化。
-- Spotify、YouTube、知乎等已纳入 App 按统一标准维护，不设置特殊优先级。
-- 常用方向：电商购物、本地生活、内容社区、音频内容、地图工具、资讯与工具类 App。
-- 脚本融合：低风险 JSON 清理类脚本由 `Scripts/app-cleaner.js` 统一承接，减少重复脚本入口。
-
-### Stable Plus：增强测试版
-
-适合测试更多常用 App 覆盖。它不是默认发布版本，也不会自动把内容合并进 Stable。
-
-晋级规则：
-
-```text
-Stable Plus 中测试
--> 登录 / 验证码 / 支付前置 / 常用流程无异常
--> 单项 App 进入晋级候选
--> 人工确认后再进入 Stable
-```
-
-### Lite：低耗电版
-
-适合手机发热、耗电明显、App 登录异常、页面异常时排查。Lite 不追求覆盖广度，它的价值是低风险、低 MITM、便于定位异常来源。
-
-### Full：全量排查版
-
-只适合查漏拦和临时定位缺失 hostname，不建议长期启用。Full 不适合：登录、支付、验证码、银行 App、对耗电敏感的设备、长期日常使用。
-
-## 自动拉取规则和脚本的边界
-
-仓库可以做“自动化收集和筛选”，但不能无审核地把外部脚本直接塞进默认 Stable。专业的自动化路径应该是：
-
-```text
-可信来源收集
--> 静态安全扫描
--> 生成候选报告
--> 进入 Stable Plus 或 pending 区
--> 构建验证 / 语法验证 / 重复检查
--> 人工测试
--> 单项晋级 Stable
-```
-
-可以自动进入的内容：
-
-- 明确安全的规则源。
-- 已知可信源的低风险广告域名规则。
-- 不涉及登录、支付、验证码、会员权益、Cookie、Token、加密 body 的普通净化逻辑。
-- 通过语法检查、结构检查、重复检查的候选项。
-
-不能自动直接进入 Stable 的内容：
-
-- 未知作者脚本。
-- 混淆脚本。
-- 会员权益、破解、绕过、登录、支付、验证码相关脚本。
-- 会改写 request body、Cookie、Token、账户状态的脚本。
-- 无法解释用途的远程模块。
-
-## Android 版本
-
-Android 版本目前支持 Mihomo / Clash Meta、sing-box、AdGuard DNS、v2rayNG / V2Ray / Xray routing 片段。它是 Android 可迁移规则导出，不是 iOS `.sgmodule`，也不包含 Surge / Shadowrocket 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 功能。
-
-Android 版主要通过域名、关键词、IP 规则拦截常见广告域名、追踪域名和部分 App 广告请求。它不保证去除所有广告，尤其是 YouTube、TikTok、Instagram、Facebook 等平台内嵌广告，因为这些广告可能和正常内容共用同一域名。
-
-Android 导入页：
-https://grandpaniuu.github.io/GrandpaNiu/android.html
-
-没有节点、只想做广告拦截的用户，可以导入 `Android/mihomo/GrandpaNiu-Android-Full.yaml`。
-
-已有节点订阅用户不要导入 GrandpaNiu-Android-Full.yaml。GrandpaNiu-Android-Full.yaml 是完整 Mihomo 配置，只适合没有节点、只想做广告拦截的用户。如果用户已经有机场节点订阅，直接导入 GrandpaNiu-Android-Full.yaml 可能会覆盖原来的节点、策略组和规则。
-
-GrandpaNiu-Ads.yaml 不是节点订阅，也不是完整配置。它只是广告规则集。已有节点用户应参考 [Android/mihomo/README-With-Proxy.md](Android/mihomo/README-With-Proxy.md)，把 `GrandpaNiu-Ads.yaml` 加到原 Clash / Mihomo 配置里。
-
-RULE-SET,grandpaniu_ads,REJECT 必须放在 MATCH、GEOIP、代理分流规则之前。如果放在 MATCH 后面，广告请求可能会先被原来的代理规则命中，导致去广告规则不生效。
-
-最终效果：保留原来的节点、策略组和 MATCH。广告请求命中 GrandpaNiu 规则后会被 REJECT。其他流量继续走用户原来的节点、策略组或直连规则。
-
-普通用户推荐导入完整配置：
-
-- [Android/mihomo/GrandpaNiu-Android-Full.yaml](Android/mihomo/GrandpaNiu-Android-Full.yaml)
-
-已有节点用户请不要导入完整配置覆盖节点订阅，应参考 [Android/mihomo/README-With-Proxy.md](Android/mihomo/README-With-Proxy.md)，把 `GrandpaNiu-Ads.yaml` 加入自己的 Mihomo / Clash Meta 配置。
-
-高级用户可以使用规则集：
-
-- [Android/mihomo/GrandpaNiu-Ads.yaml](Android/mihomo/GrandpaNiu-Ads.yaml)
-- [Android/sing-box/GrandpaNiu-Ads.json](Android/sing-box/GrandpaNiu-Ads.json)
-- [Android/adguard/GrandpaNiu-DNS.txt](Android/adguard/GrandpaNiu-DNS.txt)
-- [Android/v2rayng/GrandpaNiu-v2rayng-routing.json](Android/v2rayng/GrandpaNiu-v2rayng-routing.json)
-
-v2rayNG / V2Ray / Xray 是高级用户方案，不作为普通用户主推。它不是一键完美导入配置，也不是节点订阅；请参考 [Android/v2rayng/README.md](Android/v2rayng/README.md)，手动把 `block` outbound 和广告 `routing.rules` 合并进原配置。普通用户推荐优先使用 FlClash / Mihomo。
-
-使用教程：
-
-- [GrandpaNiu Android 使用教程](docs/android-user-guide.md)
-
-## 导入地址
+也可以直接使用下面的地址：
 
 | 版本 | Pages 地址 | Raw 地址 |
 |---|---|---|
@@ -169,9 +57,92 @@ v2rayNG / V2Ray / Xray 是高级用户方案，不作为普通用户主推。它
 | 默认 Root | [Ronghemokuai.sgmodule][root-pages] | [Raw][root-raw] |
 | Android | [Android 导入页][android-import] | [Full YAML][android-full-raw] |
 
-导入后建议在 Shadowrocket 中执行：更新模块、更新脚本、更新全部资源。
+导入后建议在 Shadowrocket 中执行：
 
-## 构建流程
+1. 更新模块
+2. 更新脚本
+3. 更新全部资源
+
+## 功能作用
+
+### iOS / Shadowrocket / Surge
+
+主要包含：
+
+- 常见广告、开屏、弹窗、横幅、信息流、推荐位、活动卡片净化。
+- 部分 App 的规则、Rewrite、Script、MITM hostname 覆盖。
+- Spotify、YouTube、知乎等已纳入 App 的统一维护项。
+- 低风险 JSON 清理类脚本由 `Scripts/app-cleaner.js` 统一承接，减少重复脚本入口。
+
+### Android
+
+Android 版本是可迁移规则导出，不是 iOS `.sgmodule`。
+
+目前支持：
+
+- Mihomo / Clash Meta / FlClash
+- sing-box rule-set
+- AdGuard DNS / AdGuard Home 自定义过滤规则
+- v2rayNG / V2Ray / Xray routing 片段
+
+Android 版主要通过域名、关键词和 IP 规则拦截常见广告域名、追踪域名和部分 App 广告请求。它不包含 Shadowrocket / Surge 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 能力。
+
+## Android 怎么用
+
+Android 导入页：
+
+- [打开 Android 导入页][android-import]
+
+### 没有节点，只想拦广告
+
+可以使用完整 Mihomo 配置：
+
+- [Android/mihomo/GrandpaNiu-Android-Full.yaml](Android/mihomo/GrandpaNiu-Android-Full.yaml)
+
+### 已经有节点订阅
+
+不要直接导入 `GrandpaNiu-Android-Full.yaml`，否则可能覆盖你原来的节点、策略组和规则。
+
+已有节点用户应参考：
+
+- [Android/mihomo/README-With-Proxy.md](Android/mihomo/README-With-Proxy.md)
+
+把广告规则集加入原配置：
+
+- [Android/mihomo/GrandpaNiu-Ads.yaml](Android/mihomo/GrandpaNiu-Ads.yaml)
+
+规则顺序要求：
+
+```yaml
+RULE-SET,grandpaniu_ads,REJECT
+```
+
+必须放在 `MATCH`、`GEOIP`、代理分流规则之前。否则广告请求可能先被原来的代理规则命中，导致规则不生效。
+
+### 高级用户规则集
+
+- [Android/mihomo/GrandpaNiu-Ads.yaml](Android/mihomo/GrandpaNiu-Ads.yaml)
+- [Android/sing-box/GrandpaNiu-Ads.json](Android/sing-box/GrandpaNiu-Ads.json)
+- [Android/adguard/GrandpaNiu-DNS.txt](Android/adguard/GrandpaNiu-DNS.txt)
+- [Android/v2rayng/GrandpaNiu-v2rayng-routing.json](Android/v2rayng/GrandpaNiu-v2rayng-routing.json)
+
+Android 使用教程：
+
+- [GrandpaNiu Android 使用教程](docs/android-user-guide.md)
+
+## 使用提醒
+
+- 默认使用 Stable。
+- 不要同时启用多个版本。
+- Full 只用于排查，不建议长期启用。
+- 出现异常时先切 Lite，再逐步判断是 MITM、脚本还是规则导致。
+- 未经真机测试，不要把“规则覆盖存在”理解成“已经验证通过”。
+- YouTube、TikTok、Instagram、Facebook 等平台内嵌广告可能与正常内容共用域名，Android 规则不保证完全去除。
+- 登录、支付、验证码、银行、微信、支付宝、Cookie、Token、会员权益相关链路默认应保持谨慎，不建议激进拦截或改写。
+
+## 维护方式
+
+本仓库采用 **source-first** 维护方式：
 
 ```text
 Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
@@ -181,29 +152,25 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
         -> Release/Ronghemokuai-*.sgmodule
 ```
 
-根目录 `Ronghemokuai.sgmodule` 仍保持 Stable。四个独立版本由 `scripts/build_release_variants.py` 自动生成。
+根目录 `Ronghemokuai.sgmodule` 是默认 Stable 的生成结果。正常维护时应先改源头文件，再构建生成，不要只手动修改最终模块。
 
-## 自动化能力
+## 仓库结构
 
-仓库可以自动做：
+| 路径 | 作用 |
+|---|---|
+| `Rules/` | 规则源头：direct、reject、app-clean、web-ads 等 |
+| `Scripts/` | 脚本源头与统一 cleaner |
+| `Rewrite/Sources/` | 模块各 section 的源头文件 |
+| `Rewrite/Profiles/` | Stable / Stable Plus / Lite / Full 构建配置 |
+| `Rewrite/Remotes/` | 外部规则源、候选源和参考模块 |
+| `Release/` | 自动生成的发布模块 |
+| `Android/` | Android 可用规则和配置 |
+| `docs/` | 使用、维护、测试、回滚文档 |
+| `reports/` | 健康检查、覆盖、风险和候选报告 |
+| `scripts/` | 构建、验证、审计、报告脚本 |
 
-- 构建 Stable / Stable Plus / Lite / Full 四个独立模块。
-- 检查 Root 与 Release 是否一致。
-- 检查 profile 是否能构建。
-- 检查 JS 语法：`node --check Scripts/app-cleaner.js`。
-- 生成覆盖矩阵、脚本清单、健康报告、回滚报告。
-- 收集可信候选规则源并生成候选报告。
-- 对 workflow 失败自动创建 Issue。
-
-仓库不会也不应该无条件自动做：
-
-- 自动真机测试 App。
-- 自动确认任何 App 的实际可用性。
-- 自动确认电商订单页、支付前置、验证码、登录流程无异常。
-- 自动把 Stable Plus、Full 或未知远程脚本直接晋级到 Stable。
-
-
-## 维护入口
+<details>
+<summary>维护入口</summary>
 
 | 类型 | 链接 | 用途 |
 |---|---|---|
@@ -211,45 +178,33 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 | 模块功能 | [docs/MODULE_FEATURES.md](docs/MODULE_FEATURES.md) | 四个版本功能、App 覆盖和使用边界 |
 | 自动化策略 | [docs/AUTOMATION_POLICY.md](docs/AUTOMATION_POLICY.md) | 自动收集、自动筛选、人工晋级边界 |
 | Profile 边界 | [docs/PROFILE_POLICY.md](docs/PROFILE_POLICY.md) | Stable / Stable Plus / Lite / Full 发布边界 |
-| 脚本融合计划 | [docs/SCRIPT_CONSOLIDATION_PLAN.md](docs/SCRIPT_CONSOLIDATION_PLAN.md) | 脚本减少、融合、回滚策略 |
 | MITM 策略 | [docs/MITM_POLICY.md](docs/MITM_POLICY.md) | hostname 分级和增长控制 |
 | 测试标准 | [docs/TESTING.md](docs/TESTING.md) | 手动测试流程和记录要求 |
 | 发布回滚 | [docs/RELEASE.md](docs/RELEASE.md) | 发布、测试、回滚流程 |
 | 质量门禁 | [docs/QUALITY_GATE.md](docs/QUALITY_GATE.md) | 阻断项和发布前检查 |
 | 长期路线 | [docs/ROADMAP.md](docs/ROADMAP.md) | 后续优化方向和优先级 |
 
-## 报告入口
+</details>
+
+<details>
+<summary>报告入口</summary>
 
 | 报告 | 用途 |
 |---|---|
 | [reports/repository_health_report.md][health-report] | 仓库健康总览 |
 | [reports/profile_validation_report.md](reports/profile_validation_report.md) | 四个 profile 构建结果、脚本数、MITM 数 |
-| [reports/script_inventory_report.md](reports/script_inventory_report.md) | 脚本清单与可融合分析 |
-| [reports/script_dedupe_report.md](reports/script_dedupe_report.md) | 脚本融合和旧入口移除报告 |
-| [reports/script_consolidation_rollback_report.md](reports/script_consolidation_rollback_report.md) | 脚本融合回滚路径 |
-| [reports/app_cleaner_active_report.md](reports/app_cleaner_active_report.md) | app-cleaner active 批量融合说明 |
 | [reports/app_coverage_matrix.md](reports/app_coverage_matrix.md) | App 覆盖矩阵 |
 | [reports/app_status_matrix.md](reports/app_status_matrix.md) | App 状态矩阵，区分覆盖与真实测试 |
 | [reports/reject_risk_report.md](reports/reject_risk_report.md) | REJECT 高风险误伤分类 |
-| [reports/reject_manual_review_plan.md](reports/reject_manual_review_plan.md) | REJECT 人工复核计划 |
 | [reports/rule_traceability_matrix.md](reports/rule_traceability_matrix.md) | 高风险规则来源、风险等级、测试状态和回滚路径 |
 | [reports/stable_plus_promotion_report.md](reports/stable_plus_promotion_report.md) | Stable Plus 晋级候选报告 |
-| [reports/stable_plus_manual_test_plan.md](reports/stable_plus_manual_test_plan.md) | Stable Plus 单项测试计划 |
-| [reports/promotion_pr_report.md](reports/promotion_pr_report.md) | Stable Plus 单项晋级 PR 审查材料 |
 | [reports/manual_test_log.md](reports/manual_test_log.md) | 人工测试记录 |
 | [reports/candidate_security_score_report.md](reports/candidate_security_score_report.md) | 候选源安全评分 |
-| [reports/candidate_followup_plan.md](reports/candidate_followup_plan.md) | 候选源后续处理计划 |
 | [reports/report_freshness_report.md](reports/report_freshness_report.md) | 治理报告新鲜度检查 |
 | [reports/domestic_app_connectivity_audit.md](reports/domestic_app_connectivity_audit.md) | 国内 App 联网和图片加载误伤排查 |
 | [reports/workflow_health_report.md](reports/workflow_health_report.md) | workflow 最新状态 |
 
-## 使用提醒
-
-- 默认使用 Stable。
-- 不要同时启用多个版本。
-- Full 只用于排查，不适合长期启用。
-- 未经真机测试，不要把“规则覆盖存在”理解为“已经验证通过”。
-- 出现异常时先切 Lite，再逐步定位是 MITM、脚本还是规则导致。
+</details>
 
 [import-page]: https://grandpaniuu.github.io/GrandpaNiu/import.html
 [stable-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable.sgmodule
