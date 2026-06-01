@@ -1,29 +1,38 @@
 # 变更影响报告
 
-- 生成时间：2026-06-02 03:59:12 +0800
+- 生成时间：2026-06-02 06:01:01 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Release/Ronghemokuai.sgmodule`
-- `Rewrite/Sources/Meta.conf`
-- `Ronghemokuai.sgmodule`
-- `reports/app_status_matrix.md`
-- `reports/candidate_security_score_report.md`
-- `reports/daily_update_report.md`
-- `reports/domestic_app_connectivity_audit.md`
-- `reports/module_factory_report.md`
-- `reports/multi_release_report.md`
-- `reports/profile_validation_report.md`
-- `reports/promotion_pr_report.md`
-- `reports/reject_risk_report.md`
-- `reports/report_freshness_report.md`
-- `reports/repository_health_report.md`
-- `reports/workflow_health_report.md`
+- `Android/adguard/GrandpaNiu-DNS.txt`
+- `Android/adguard/README.md`
+- `Android/mihomo/GrandpaNiu-Ads.yaml`
+- `Android/mihomo/GrandpaNiu-Android-Full.yaml`
+- `Android/mihomo/README-With-Proxy.md`
+- `Android/mihomo/README.md`
+- `Android/sing-box/GrandpaNiu-Ads.json`
+- `Android/sing-box/README.md`
+- `Android/v2rayng/GrandpaNiu-v2rayng-routing.json`
+- `Android/v2rayng/README.md`
+- `README.md`
+- `android.html`
+- `docs/android-user-guide.md`
 
 ## 新增文件
 
-- 无
+- `Android/adguard/GrandpaNiu-DNS.txt`
+- `Android/adguard/README.md`
+- `Android/mihomo/GrandpaNiu-Ads.yaml`
+- `Android/mihomo/GrandpaNiu-Android-Full.yaml`
+- `Android/mihomo/README-With-Proxy.md`
+- `Android/mihomo/README.md`
+- `Android/sing-box/GrandpaNiu-Ads.json`
+- `Android/sing-box/README.md`
+- `Android/v2rayng/GrandpaNiu-v2rayng-routing.json`
+- `Android/v2rayng/README.md`
+- `android.html`
+- `docs/android-user-guide.md`
 
 ## 删除文件
 
@@ -31,43 +40,41 @@
 
 ## 修改文件
 
-- `Release/Ronghemokuai.sgmodule`
-- `Rewrite/Sources/Meta.conf`
-- `Ronghemokuai.sgmodule`
-- `reports/app_status_matrix.md`
-- `reports/candidate_security_score_report.md`
-- `reports/daily_update_report.md`
-- `reports/domestic_app_connectivity_audit.md`
-- `reports/module_factory_report.md`
-- `reports/multi_release_report.md`
-- `reports/profile_validation_report.md`
-- `reports/promotion_pr_report.md`
-- `reports/reject_risk_report.md`
-- `reports/report_freshness_report.md`
-- `reports/repository_health_report.md`
-- `reports/workflow_health_report.md`
+- `README.md`
 
 ## 影响的模块层
 
 - Other
 - README/docs
-- Rewrite/Sources
 
 ## 可能影响的 App
 
-- Spotify
 - YouTube
+- 知乎
+- Bilibili
+- 小红书
+- 淘宝
+- 拼多多
+- 美团
+- 大众点评
+- 滴滴
+- 12306
+- 高德地图
+- 百度地图
+- 网易云音乐
+- 喜马拉雅
+- 斗鱼
 
 ## 风险判断
 
 - 是否涉及脚本：否
 - 是否涉及 MITM：是
-- 是否涉及 Body Rewrite：否
+- 是否涉及 Body Rewrite：是
 - 是否涉及远程规则源：否
-- 是否需要测试 Spotify：是
+- 是否需要测试 Spotify：按需
 - 是否需要测试 YouTube：是
-- 是否需要测试知乎：按需
-- 是否需要测试登录/支付/验证码：是
+- 是否需要测试知乎：是
+- 是否需要测试登录/支付/验证码：按需
 
 ## 回滚建议
 
