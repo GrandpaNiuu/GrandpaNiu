@@ -583,6 +583,10 @@ DOMAIN-SUFFIX,adsview.qq.com,REJECT,pre-matching
 # - WeChat media: qpic.cn, gtimg.cn, qlogo.cn, wx.qq.com, wxapp.tc.qq.com
 # - WeChat account/payment/service: weixin.qq.com, servicewechat.com, wechatpay.cn
 # - Mini program resources: servicewechat.com, wxapp.tc.qq.com
+# app2smile QQ News Stable Plus rule layer
+# Source module: https://raw.githubusercontent.com/app2smile/rules/master/module/qqnews.sgmodule
+# Upstream module does not define a [Rule] section.
+# Kept as an explicit source-first placeholder so the Stable Plus profile records the App boundary.
 # remote: blackmatrix7 Advertising
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,REJECT
 # remote: Cats-Team AdRules
@@ -2754,6 +2758,11 @@ app-cleaner-active-json-clean = type=http-response,pattern=^https?:\/\/.*(news\.
 # Scope: native ad cards, promoted feed cards, recommendation ads and commercial fields only.
 # Boundary: no membership, payment, login, account identity or paid-content changes.
 zhihu-enhance = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/(topstory|moments|feed|notifications|v\d+\/questions\/\d+\/(feeds|answers)|questions\/\d+\/(feeds|answers)|search\/top_search|search\/recommend_query|commercial|market|ad|recommend).*?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/zhihu-enhance.js,script-update-interval=86400
+# app2smile QQ News Stable Plus script layer
+# Source module: https://raw.githubusercontent.com/app2smile/rules/master/module/qqnews.sgmodule
+# Scope: QQ News App ad cleanup only. Stable Plus manual testing, not default Stable.
+# Rollback: remove this file from Rewrite/Profiles/stable-plus.conf and rebuild release variants.
+app2smile_qqnews_json = type=http-response,pattern=^https:\/\/(news\.ssp\.qq\.com\/app|r\.inews\.qq\.com\/(get(QQNewsUnreadList|TagFeedList)|gw\/page\/(channel_feed|event_detail)|news_feed\/hot_module_list)),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js,script-update-interval=86400
 # === 新框架 Layer 5：Script 层 ===
 # 原 YouTube/Spotify 脚本保持不覆盖；新增脚本统一 cmp_ 前缀，来源公开 raw，按去广告用途筛选。
 
