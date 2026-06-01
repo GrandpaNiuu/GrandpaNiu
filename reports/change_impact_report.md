@@ -1,15 +1,18 @@
 # 变更影响报告
 
-- 生成时间：2026-06-01 21:37:54 +0800
+- 生成时间：2026-06-01 21:51:03 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
 - `CONTRIBUTING.md`
+- `reports/app2smile_qqnews_stable_plus_report.md`
+- `reports/stable_plus_manual_test_plan.md`
 
 ## 新增文件
 
-- 无
+- `CONTRIBUTING.md`
+- `reports/app2smile_qqnews_stable_plus_report.md`
 
 ## 删除文件
 
@@ -17,7 +20,7 @@
 
 ## 修改文件
 
-- `CONTRIBUTING.md`
+- `reports/stable_plus_manual_test_plan.md`
 
 ## 影响的模块层
 
@@ -33,7 +36,7 @@
 
 - 是否涉及脚本：否
 - 是否涉及 MITM：是
-- 是否涉及 Body Rewrite：是
+- 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：是
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
