@@ -526,6 +526,8 @@ DOMAIN-KEYWORD,adsmogo,REJECT,pre-matching
 DOMAIN-KEYWORD,adsrvmedia,REJECT,pre-matching
 DOMAIN-KEYWORD,adtrack,REJECT,pre-matching
 DOMAIN-KEYWORD,mobads,REJECT,pre-matching
+RULE-SET,https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/QuanX/Adblock/All/filter/appAdBlock.list,REJECT
+RULE-SET,https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/QuanX/Adblock/All/filter/allAdBlock.list,REJECT
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,REJECT
 DOMAIN-SET,https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt,REJECT
 RULE-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt,REJECT
