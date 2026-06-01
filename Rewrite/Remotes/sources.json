@@ -97,7 +97,7 @@
       "policy": "REJECT",
       "enabled": true,
       "protected": false,
-      "purpose": "trusted China advertising supplement candidate enabled for conservative collection"
+      "purpose": "trusted China advertising supplement enabled for conservative collection"
     },
     {
       "name": "blackmatrix7 Advertising MiTV",
@@ -106,7 +106,7 @@
       "policy": "REJECT",
       "enabled": true,
       "protected": false,
-      "purpose": "trusted TV advertising rule candidate enabled for conservative collection"
+      "purpose": "trusted TV advertising rule enabled for conservative collection"
     }
   ],
   "reference_modules": [
@@ -116,6 +116,76 @@
       "enabled": false,
       "protected": true,
       "purpose": "reference only; do not insert full module text into rule section"
+    },
+    {
+      "name": "app2smile Qidian module",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/module/qidian.sgmodule",
+      "enabled": false,
+      "protected": true,
+      "purpose": "reference only; extract source-first into Stable Plus after manual review"
+    },
+    {
+      "name": "app2smile Bilibili module",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/module/bilibili.sgmodule",
+      "enabled": false,
+      "protected": true,
+      "purpose": "reference only; extract source-first into Stable Plus after manual review"
+    },
+    {
+      "name": "app2smile Tieba module",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/module/tieba.sgmodule",
+      "enabled": false,
+      "protected": true,
+      "purpose": "reference only; extract source-first into Stable Plus after manual review"
+    },
+    {
+      "name": "app2smile QQ News module",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/module/qqnews.sgmodule",
+      "enabled": false,
+      "protected": true,
+      "purpose": "reference only; extract source-first into Stable Plus after manual review"
+    },
+    {
+      "name": "app2smile VGTime module",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/module/vgtime.sgmodule",
+      "enabled": false,
+      "protected": true,
+      "purpose": "reference only; extract source-first into Stable Plus after manual review"
+    },
+    {
+      "name": "app2smile YouTube module",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/module/youtube.sgmodule",
+      "enabled": false,
+      "protected": true,
+      "purpose": "reference only; never replace existing YouTube core entries without manual testing"
+    },
+    {
+      "name": "app2smile Zhihu module",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/module/zhihu.sgmodule",
+      "enabled": false,
+      "protected": true,
+      "purpose": "reference only; never replace existing Zhihu entries without manual testing"
+    },
+    {
+      "name": "app2smile Baidu Map module",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/module/baidumap.sgmodule",
+      "enabled": false,
+      "protected": true,
+      "purpose": "reference only; extract source-first into Stable Plus after manual review"
+    },
+    {
+      "name": "app2smile Adsense module",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/module/adsense.sgmodule",
+      "enabled": false,
+      "protected": true,
+      "purpose": "reference only; extract source-first into Stable Plus after manual review"
+    },
+    {
+      "name": "app2smile Baidu no redirect module",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/module/baidu-no-redirect.sgmodule",
+      "enabled": false,
+      "protected": true,
+      "purpose": "reference only; redirect behavior must be manually reviewed before activation"
     },
     {
       "name": "Maasea sgmodule",
