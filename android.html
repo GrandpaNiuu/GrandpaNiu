@@ -14,18 +14,20 @@
       color: #24292f;
       padding: 24px;
     }
-    .wrap { width: 100%; max-width: 1120px; margin: 0 auto; }
+    .wrap { width: 100%; max-width: 1160px; margin: 0 auto; }
     header { margin: 16px 0 24px; padding-bottom: 18px; border-bottom: 1px solid #d0d7de; }
     h1 { margin: 0 0 10px; font-size: 34px; line-height: 1.2; }
     h2 { margin: 0 0 10px; font-size: 22px; }
-    h3 { margin: 18px 0 10px; font-size: 17px; }
-    p { margin: 8px 0; color: #57606a; line-height: 1.75; }
+    h3 { margin: 20px 0 10px; font-size: 18px; }
+    p, li { color: #57606a; line-height: 1.75; }
+    p { margin: 8px 0; }
+    ul, ol { margin: 10px 0 0 22px; padding: 0; }
     .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
     .panel { background: #ffffff; border: 1px solid #d0d7de; border-radius: 10px; padding: 20px; }
     .hero { border-left: 5px solid #0969da; }
     .notice { margin: 14px 0; padding: 12px 14px; border-radius: 8px; background: #fff8c5; border: 1px solid #eac54f; color: #5c4a00; line-height: 1.7; font-weight: 700; }
     .hint { margin: 14px 0; padding: 12px 14px; border-radius: 8px; background: #ddf4ff; border: 1px solid #54aeef; color: #0969da; line-height: 1.7; }
-    .danger { margin: 14px 0; padding: 12px 14px; border-radius: 8px; background: #ffebe9; border: 1px solid #ff8182; color: #82071e; line-height: 1.7; }
+    .danger { margin: 14px 0; padding: 12px 14px; border-radius: 8px; background: #ffebe9; border: 1px solid #ff8182; color: #82071e; line-height: 1.7; font-weight: 700; }
     .tag { display: inline-block; margin: 0 6px 8px 0; padding: 4px 8px; border-radius: 999px; background: #f6f8fa; border: 1px solid #d0d7de; color: #57606a; font-size: 12px; }
     .link-box { display: block; width: 100%; margin: 12px 0; padding: 12px; border-radius: 8px; background: #f6f8fa; border: 1px solid #d0d7de; color: #0969da; line-height: 1.55; overflow-wrap: anywhere; font-size: 13px; }
     .actions { display: grid; gap: 10px; margin-top: 14px; }
@@ -38,15 +40,17 @@
     th { background: #f6f8fa; }
     pre { margin: 12px 0 0; padding: 14px; border-radius: 8px; background: #0d1117; color: #e6edf3; overflow-x: auto; line-height: 1.6; font-size: 13px; }
     code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; }
+    details { margin-top: 12px; border: 1px solid #d0d7de; border-radius: 8px; padding: 12px 14px; background: #f6f8fa; }
+    summary { cursor: pointer; font-weight: 700; }
     footer { margin: 24px 0 4px; color: #57606a; font-size: 14px; line-height: 1.7; }
-    @media (max-width: 820px) { body { padding: 16px; } h1 { font-size: 28px; } .grid { grid-template-columns: 1fr; } }
+    @media (max-width: 860px) { body { padding: 16px; } h1 { font-size: 28px; } .grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <main class="wrap">
     <header>
       <h1>GrandpaNiu Android 导入页</h1>
-      <p>先按你的客户端选择版本。安卓客户端对一键跳转支持不统一，如果按钮无反应，请复制链接后在客户端里手动导入。</p>
+      <p>先按你的客户端和使用场景选择版本。安卓客户端对一键跳转支持不统一，如果按钮无反应，请复制链接后在客户端里手动导入。</p>
     </header>
 
     <section class="panel hero">
@@ -57,122 +61,84 @@
             <th>你的情况</th>
             <th>推荐版本</th>
             <th>适合客户端</th>
-            <th>注意事项</th>
+            <th>导入方式</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>没有机场节点，只想拦广告</td>
+            <td>没有节点，只想拦广告</td>
             <td>完整配置版</td>
             <td>FlClash / Mihomo / Clash Meta</td>
-            <td>会作为完整配置导入</td>
+            <td>直接作为完整配置导入</td>
           </tr>
           <tr>
             <td>已经有节点订阅</td>
-            <td>规则集版</td>
+            <td>Mihomo 规则集版</td>
             <td>FlClash / Mihomo / Clash Meta</td>
-            <td>不要覆盖原配置，只合并 rule-provider</td>
+            <td>作为 rule-provider 合并进原配置</td>
           </tr>
           <tr>
             <td>使用 sing-box</td>
-            <td>sing-box rule-set</td>
+            <td>sing-box 规则集版</td>
             <td>sing-box / SFA</td>
-            <td>需要按自己的配置引用 rule-set</td>
+            <td>在自己的配置中引用 rule-set</td>
           </tr>
           <tr>
             <td>使用 AdGuard</td>
             <td>DNS 规则版</td>
             <td>AdGuard Android / AdGuard DNS / AdGuard Home</td>
-            <td>只能做域名级过滤</td>
+            <td>作为自定义 DNS / 过滤规则导入</td>
           </tr>
           <tr>
             <td>使用 v2rayNG / V2Ray / Xray</td>
             <td>routing 片段版</td>
             <td>v2rayNG / V2Ray / Xray</td>
-            <td>不是一键配置，需要手动合并 routing</td>
+            <td>手动合并 routing 规则</td>
           </tr>
         </tbody>
       </table>
+      <div class="hint">不确定怎么选：没有节点用完整配置版；已有节点用 Mihomo 规则集版；完全不懂配置优先用 FlClash / Mihomo。</div>
     </section>
 
     <section class="grid" aria-label="Android 导入选项" style="margin-top:18px">
       <article class="panel">
         <h2>1. 完整配置版</h2>
-        <span class="tag">无节点用户</span><span class="tag">Mihomo</span><span class="tag">FlClash</span>
-        <p>适合没有节点、只想做广告拦截的用户。这个文件是完整 Mihomo 配置。</p>
+        <span class="tag">无节点用户</span><span class="tag">Mihomo</span><span class="tag">FlClash</span><span class="tag">Clash Meta</span>
+        <p>适合没有机场节点、没有现成配置、只想做广告拦截的用户。这个文件可以作为完整配置导入。</p>
         <div class="danger">已有节点订阅用户不要导入这个版本，否则可能覆盖原节点、策略组和规则。</div>
         <strong>配置链接：</strong>
-        <span class="link-box" id="full-config-link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Android-Full.yaml</span>
+        <span class="link-box">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Android-Full.yaml</span>
         <div class="actions">
           <a class="button" href="clash://install-config?url=https%3A%2F%2Fraw.githubusercontent.com%2FGrandpaNiuu%2FGrandpaNiu%2Fmain%2FAndroid%2Fmihomo%2FGrandpaNiu-Android-Full.yaml">一键尝试导入</a>
           <button class="button secondary" type="button" onclick="copyText(FULL_CONFIG_LINK)">复制完整配置链接</button>
-          <a class="button neutral" href="docs/android-user-guide.md">查看 Android 教程</a>
         </div>
+        <details>
+          <summary>完整配置版怎么导入</summary>
+          <ol>
+            <li>打开 FlClash / Mihomo / Clash Meta。</li>
+            <li>进入「配置 / Profiles」。</li>
+            <li>选择「从 URL 导入」。</li>
+            <li>粘贴完整配置链接。</li>
+            <li>保存并启用该配置。</li>
+          </ol>
+        </details>
       </article>
 
       <article class="panel">
-        <h2>2. 规则集版</h2>
-        <span class="tag">已有节点用户</span><span class="tag">rule-provider</span><span class="tag">Mihomo</span>
-        <p>适合已经有机场节点订阅的用户。把它加入原 Clash / Mihomo 配置，不覆盖原节点。</p>
+        <h2>2. Mihomo 规则集版</h2>
+        <span class="tag">已有节点用户</span><span class="tag">rule-provider</span><span class="tag">不覆盖节点</span>
+        <p>适合已经有机场节点订阅的用户。把 GrandpaNiu 作为远程规则集加入原配置，不要覆盖原节点。</p>
         <strong>规则集链接：</strong>
-        <span class="link-box" id="ads-ruleset-link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Ads.yaml</span>
+        <span class="link-box">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Ads.yaml</span>
         <div class="actions">
           <button class="button secondary" type="button" onclick="copyText(ADS_RULESET_LINK)">复制规则集链接</button>
           <button class="button neutral" type="button" onclick="copyText(MIHOMO_PROVIDER_SNIPPET)">复制 Mihomo 合并片段</button>
           <a class="button neutral" href="Android/mihomo/README-With-Proxy.md">查看已有节点用户教程</a>
         </div>
-      </article>
-
-      <article class="panel">
-        <h2>3. sing-box 规则集版</h2>
-        <span class="tag">sing-box</span><span class="tag">SFA</span><span class="tag">高级用户</span>
-        <p>适合已经会维护 sing-box 配置的用户。它是 rule-set 文件，不是完整 sing-box 配置。</p>
-        <strong>rule-set 链接：</strong>
-        <span class="link-box" id="singbox-link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/GrandpaNiu-Ads.json</span>
-        <div class="actions">
-          <button class="button secondary" type="button" onclick="copyText(SINGBOX_LINK)">复制 sing-box rule-set 链接</button>
-        </div>
-      </article>
-
-      <article class="panel">
-        <h2>4. AdGuard DNS 规则版</h2>
-        <span class="tag">AdGuard</span><span class="tag">DNS 过滤</span><span class="tag">轻量</span>
-        <p>适合 AdGuard Android、AdGuard DNS 或 AdGuard Home 的自定义过滤规则场景。只能做域名级拦截。</p>
-        <strong>DNS 规则链接：</strong>
-        <span class="link-box" id="adguard-link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/GrandpaNiu-DNS.txt</span>
-        <div class="actions">
-          <button class="button secondary" type="button" onclick="copyText(ADGUARD_LINK)">复制 AdGuard DNS 规则链接</button>
-        </div>
-      </article>
-
-      <article class="panel">
-        <h2>5. v2rayNG routing 片段版</h2>
-        <span class="tag">v2rayNG</span><span class="tag">V2Ray</span><span class="tag">Xray</span>
-        <p>适合高级用户手动合并。不要把它当成节点订阅或完整配置。</p>
-        <strong>routing 片段链接：</strong>
-        <span class="link-box" id="v2rayng-routing-link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/GrandpaNiu-v2rayng-routing.json</span>
-        <div class="actions">
-          <button class="button secondary" type="button" onclick="copyText(V2RAYNG_ROUTING_LINK)">复制 v2rayNG routing 片段链接</button>
-          <a class="button neutral" href="Android/v2rayng/README.md">查看 v2rayNG 手动合并教程</a>
-        </div>
-      </article>
-
-      <article class="panel">
-        <h2>6. 教程与排错</h2>
-        <span class="tag">新手优先看</span><span class="tag">导入失败</span>
-        <p>如果一键导入失败，不一定是链接失效，多数是客户端不支持跳转协议。复制链接后在客户端手动导入更稳。</p>
-        <div class="actions">
-          <a class="button neutral" href="docs/android-user-guide.md">Android 使用教程</a>
-          <a class="button neutral" href="Android/mihomo/README-With-Proxy.md">已有节点用户教程</a>
-          <a class="button neutral" href="Android/v2rayng/README.md">v2rayNG 教程</a>
-        </div>
-      </article>
-    </section>
-
-    <section class="panel" style="margin-top:18px">
-      <h2>已有节点用户核心示例</h2>
-      <p>把下面的 rule-provider 加入原配置，并把 GrandpaNiu 广告规则放在 rules 最前面。</p>
-      <pre><code>rule-providers:
+        <details open>
+          <summary>Mihomo 规则集怎么合并</summary>
+          <p>把下面内容加入原配置，并放在普通代理规则和 MATCH 前面。</p>
+          <pre><code>rule-providers:
   grandpaniu_ads:
     type: http
     behavior: classical
@@ -184,12 +150,103 @@
 rules:
   - RULE-SET,grandpaniu_ads,REJECT
   - MATCH,🚀 节点选择</code></pre>
-      <div class="notice">RULE-SET,grandpaniu_ads,REJECT 必须放在 MATCH、GEOIP、代理分流规则之前。</div>
-      <p>最终效果：保留原来的节点、策略组和 MATCH。广告请求命中 GrandpaNiu 规则后会被 REJECT，其他流量继续走原节点。</p>
+          <div class="notice">RULE-SET,grandpaniu_ads,REJECT 必须放在 MATCH、GEOIP、代理分流规则之前。</div>
+        </details>
+      </article>
+
+      <article class="panel">
+        <h2>3. sing-box 规则集版</h2>
+        <span class="tag">sing-box</span><span class="tag">SFA</span><span class="tag">高级用户</span>
+        <p>适合会维护 sing-box 配置的用户。它是 rule-set 文件，不是完整 sing-box 配置。</p>
+        <strong>rule-set 链接：</strong>
+        <span class="link-box">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/GrandpaNiu-Ads.json</span>
+        <div class="actions">
+          <button class="button secondary" type="button" onclick="copyText(SINGBOX_LINK)">复制 sing-box rule-set 链接</button>
+        </div>
+        <details>
+          <summary>sing-box 怎么使用</summary>
+          <ol>
+            <li>打开自己的 sing-box 配置。</li>
+            <li>在 rule-set 区域添加远程规则集地址。</li>
+            <li>在 route.rules 中引用 GrandpaNiu 规则集。</li>
+            <li>命中后走拦截动作。</li>
+            <li>保存配置并重载客户端。</li>
+          </ol>
+          <div class="notice">不会改 sing-box JSON 的用户，优先使用 Mihomo / FlClash 方案。</div>
+        </details>
+      </article>
+
+      <article class="panel">
+        <h2>4. AdGuard DNS 规则版</h2>
+        <span class="tag">AdGuard</span><span class="tag">DNS 过滤</span><span class="tag">轻量</span>
+        <p>适合 AdGuard Android、AdGuard DNS 或 AdGuard Home 的自定义过滤规则场景。只能做域名级拦截。</p>
+        <strong>DNS 规则链接：</strong>
+        <span class="link-box">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/GrandpaNiu-DNS.txt</span>
+        <div class="actions">
+          <button class="button secondary" type="button" onclick="copyText(ADGUARD_LINK)">复制 AdGuard DNS 规则链接</button>
+        </div>
+        <details>
+          <summary>AdGuard 怎么导入</summary>
+          <ol>
+            <li>打开 AdGuard Android、AdGuard DNS 或 AdGuard Home。</li>
+            <li>进入「过滤器 / 用户规则 / DNS 过滤」相关页面。</li>
+            <li>添加自定义规则或订阅。</li>
+            <li>粘贴 DNS 规则链接。</li>
+            <li>保存并刷新规则。</li>
+          </ol>
+          <div class="hint">这是域名级过滤，不包含 Script、MITM、Rewrite。</div>
+        </details>
+      </article>
+
+      <article class="panel">
+        <h2>5. v2rayNG routing 片段版</h2>
+        <span class="tag">v2rayNG</span><span class="tag">V2Ray</span><span class="tag">Xray</span><span class="tag">手动合并</span>
+        <p>适合已经会手动改 V2Ray / Xray 配置的高级用户。它不是节点订阅，也不是完整配置。</p>
+        <strong>routing 片段链接：</strong>
+        <span class="link-box">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/GrandpaNiu-v2rayng-routing.json</span>
+        <div class="actions">
+          <button class="button secondary" type="button" onclick="copyText(V2RAYNG_ROUTING_LINK)">复制 v2rayNG routing 片段链接</button>
+          <a class="button neutral" href="Android/v2rayng/README.md">查看 v2rayNG 手动合并教程</a>
+        </div>
+        <details>
+          <summary>v2rayNG / V2Ray / Xray 怎么合并</summary>
+          <ol>
+            <li>打开你现有的配置文件。</li>
+            <li>找到 routing.rules。</li>
+            <li>把 GrandpaNiu 的广告 routing 片段手动合并进去。</li>
+            <li>确保广告拦截规则排在普通代理 / 直连规则之前。</li>
+            <li>保存并重新加载配置。</li>
+          </ol>
+          <div class="danger">不能直接当节点订阅导入。不会手动改 routing 的用户，优先使用 Mihomo / FlClash。</div>
+        </details>
+      </article>
+
+      <article class="panel">
+        <h2>6. 新手推荐顺序</h2>
+        <span class="tag">新手优先看</span><span class="tag">排错</span>
+        <ol>
+          <li>没有节点：用完整配置版。</li>
+          <li>已有节点：用 Mihomo 规则集版。</li>
+          <li>完全不懂配置：优先用 FlClash / Mihomo。</li>
+          <li>只想轻量过滤：用 AdGuard DNS 规则版。</li>
+          <li>会手动改配置：再考虑 sing-box 或 v2rayNG。</li>
+        </ol>
+        <div class="actions">
+          <a class="button neutral" href="docs/android-user-guide.md">Android 使用教程</a>
+          <a class="button neutral" href="Android/mihomo/README-With-Proxy.md">已有节点用户教程</a>
+          <a class="button neutral" href="Android/v2rayng/README.md">v2rayNG 教程</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel" style="margin-top:18px">
+      <h2>Android 使用边界</h2>
+      <p>Android 版只迁移域名、关键词、IP 规则和部分可迁移拦截逻辑。</p>
+      <p>Android 版不包含 iOS / Surge / Shadowrocket 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 能力，所以不保证达到 iOS 模块完全相同的净化效果。</p>
     </section>
 
     <footer>
-      GrandpaNiu Android 版本只迁移域名、关键词、IP 规则，不迁移 iOS / Surge / Shadowrocket 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 功能。
+      如果一键导入失败，请复制对应链接，在客户端中选择「从 URL 导入」或按对应教程手动合并。
     </footer>
   </main>
 
