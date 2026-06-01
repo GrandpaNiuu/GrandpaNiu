@@ -1,13 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-01 07:04:26 +0800
+- 生成时间：2026-06-01 21:04:26 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `reports/multi_release_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
+- `README.md`
 
 ## 新增文件
 
@@ -19,9 +17,7 @@
 
 ## 修改文件
 
-- `reports/multi_release_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
+- `README.md`
 
 ## 影响的模块层
 
