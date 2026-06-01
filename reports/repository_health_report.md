@@ -1,6 +1,6 @@
 # 仓库健康检查报告
 
-生成时间：2026-06-01 21:27:59 +0800
+生成时间：2026-06-01 21:34:59 +0800
 
 ## 总体状态
 
@@ -11,7 +11,7 @@
 - node --check Scripts/app-cleaner.js：通过
 - workflow 最新状态：无法确认，需要在 GitHub Actions 页面确认 completed / success
 - 微信广告仅 Stable Plus：是
-- 脚本总数：33
+- 脚本总数：34
 - MITM hostname 数量：120
 
 ## 区块检查
