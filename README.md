@@ -157,13 +157,12 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 - Cookie / Token / BoxJS 依赖。
 - 成人、博彩、短链、镜像源、`ghproxy`、未知混淆脚本。
 
-安全策略对所有 App 一视同仁：只要涉及登录、支付、验证码、银行、账户权益、Cookie、Token，都必须按高风险处理；不因为某个 App 被长期使用就给它特殊例外，也不因为某个 App 新加入就降低安全门槛。
+安全策略：只要涉及登录、支付、验证码、银行、账户权益、Cookie、Token，都必须按高风险处理；不因为某个 App 被长期使用就给它特殊例外，也不因为某个 App 新加入就降低安全门槛。
 
 ## 维护入口
 
 | 类型 | 链接 | 用途 |
 |---|---|---|
-| Codex 执行标准 | [docs/CODEX_EXECUTION_STANDARD.md](docs/CODEX_EXECUTION_STANDARD.md) | Codex 修改边界、任务分级、必跑命令和回滚要求 |
 | 误杀预防标准 | [docs/FALSE_POSITIVE_PREVENTION.md](docs/FALSE_POSITIVE_PREVENTION.md) | 少误杀、Stable 准入、pending 边界和 Lite 对照排查 |
 | 模块功能 | [docs/MODULE_FEATURES.md](docs/MODULE_FEATURES.md) | 四个版本功能、App 覆盖和使用边界 |
 | 自动化策略 | [docs/AUTOMATION_POLICY.md](docs/AUTOMATION_POLICY.md) | 自动收集、自动筛选、人工晋级边界 |
