@@ -1,15 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-06-01 22:08:01 +0800
+- 生成时间：2026-06-01 23:58:03 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `SECURITY.md`
+- `Rules/aggressive-ads.list`
 
 ## 新增文件
 
-- 无
+- `Rules/aggressive-ads.list`
 
 ## 删除文件
 
@@ -17,20 +17,21 @@
 
 ## 修改文件
 
-- `SECURITY.md`
+- 无
 
 ## 影响的模块层
 
-- README/docs
+- Rules
 
 ## 可能影响的 App
 
-- 待人工确认
+- 淘宝
+- 12306
 
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：是
+- 是否涉及 MITM：否
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
 - 是否需要测试 Spotify：按需

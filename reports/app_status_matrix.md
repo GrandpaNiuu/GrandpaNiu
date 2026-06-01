@@ -1,6 +1,6 @@
 # App 状态矩阵
 
-生成时间：2026-06-01 22:59:29 +0800
+生成时间：2026-06-01 23:58:05 +0800
 
 本矩阵是质量总览，不把静态覆盖写成已经验证。真实测试来源只允许来自 `reports/manual_test_log.md`；没有记录时一律标记为“未测”。
 
@@ -22,7 +22,7 @@
 | 大众点评 | 本地生活 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 通过 | 高 | 2026-06-01 | manual_test_log.md / 用户确认 | Stable 第一轮通过；后续敏感链路变更仍需复测 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
 | 饿了么 | 本地生活 | MITM, Rewrite, Script | stable, stable-plus, full | 通过 | 高 | 2026-06-01 | manual_test_log.md / 用户确认 | Stable 第一轮通过；后续敏感链路变更仍需复测 | 回滚 Rewrite、Scripts 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
 | 滴滴 | 出行 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 通过 | 高 | 2026-06-01 | manual_test_log.md / 用户确认 | Stable 第一轮通过；后续敏感链路变更仍需复测 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
-| 12306 | 出行 | Rewrite, Script | stable, stable-plus, full | 未测 | 高 | 未记录 | 无真实记录 | 未测或高风险，需人工复核 | 回滚 Rewrite、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
+| 12306 | 出行 | Rewrite, Rule, Script | stable, stable-plus, full | 未测 | 高 | 未记录 | 无真实记录 | 未测或高风险，需人工复核 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 高德地图 | 地图 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 未测 | 高 | 未记录 | 无真实记录 | 未测或高风险，需人工复核 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 百度地图 | 地图 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 未测 | 高 | 未记录 | 无真实记录 | 未测或高风险，需人工复核 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 网易云音乐 | 音乐 | MITM, Rewrite, Rule | stable, stable-plus, lite, full | 未测 | 中 | 未记录 | 无真实记录 | 未测，不允许晋级 | 回滚 Rewrite、Rules 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
