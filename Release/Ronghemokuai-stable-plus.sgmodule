@@ -551,6 +551,8 @@ DOMAIN-SUFFIX,adsolution.imtt.qq.com,REJECT,pre-matching
 DOMAIN-SUFFIX,adsrich.qq.com,REJECT,pre-matching
 DOMAIN-SUFFIX,adstextview.qq.com,REJECT,pre-matching
 DOMAIN-SUFFIX,adsview.qq.com,REJECT,pre-matching
+RULE-SET,https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/QuanX/Adblock/All/filter/appAdBlock.list,REJECT
+RULE-SET,https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/QuanX/Adblock/All/filter/allAdBlock.list,REJECT
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,REJECT
 DOMAIN-SET,https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt,REJECT
 RULE-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt,REJECT
