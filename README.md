@@ -140,7 +140,8 @@ Android 使用教程：
 - YouTube、TikTok、Instagram、Facebook 等平台内嵌广告可能与正常内容共用域名，Android 规则不保证完全去除。
 - 登录、支付、验证码、银行、微信、支付宝、Cookie、Token、会员权益相关链路默认应保持谨慎，不建议激进拦截或改写。
 
-## 维护方式
+<details>
+<summary>维护方式</summary>
 
 本仓库采用 **source-first** 维护方式：
 
@@ -154,7 +155,10 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 
 根目录 `Ronghemokuai.sgmodule` 是默认 Stable 的生成结果。正常维护时应先改源头文件，再构建生成，不要只手动修改最终模块。
 
-## 仓库结构
+</details>
+
+<details>
+<summary>仓库结构</summary>
 
 | 路径 | 作用 |
 |---|---|
@@ -168,6 +172,8 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 | `docs/` | 使用、维护、测试、回滚文档 |
 | `reports/` | 健康检查、覆盖、风险和候选报告 |
 | `scripts/` | 构建、验证、审计、报告脚本 |
+
+</details>
 
 <details>
 <summary>维护入口</summary>
