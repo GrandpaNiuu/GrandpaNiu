@@ -1,6 +1,6 @@
 # App 覆盖矩阵
 
-- 日期：2026-06-01
+- 日期：2026-06-02
 - 说明：本报告由静态关键词扫描生成，覆盖强度用于维护参考，不代表完整功能承诺。
 - 测试状态来自 `reports/manual_test_log.md`；没有真实记录时默认未测。
 
@@ -12,18 +12,18 @@
 | Bilibili | Body Rewrite, MITM, Map Local, Remote Rule, Rule, URL Rewrite | 明确覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/Map-Local.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list<br>Rules/web-ads.list | 未测 | 未测试 | 首页、搜索、播放页、评论区 | 高风险项需手动复测 |
 | 微博 | Body Rewrite, MITM, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Scripts/app-clean.conf | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
 | 百度贴吧 | MITM, Remote Rule, Script | 明确覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/MITM.conf<br>Scripts/app-clean.conf | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
-| 小红书 | MITM, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/app-clean.list<br>Rules/reject.list<br>Rules/web-ads.list<br>Scripts/app-clean.conf | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
+| 小红书 | MITM, Remote Rule, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/app-clean.list<br>Rules/reject.list<br>Rules/web-ads.list<br>Scripts/app-clean.conf | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
 | 酷安 | Body Rewrite, MITM, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
-| 淘宝 | Body Rewrite, MITM, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/aggressive-ads.list<br>Rules/app-clean.list<br>Rules/direct.list<br>Scripts/app-clean.conf<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、商品详情、购物车、订单页 | 高风险项需手动复测 |
+| 淘宝 | Body Rewrite, MITM, Remote Rule, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/aggressive-ads.list<br>Rules/app-clean.list<br>Rules/direct.list<br>Scripts/app-clean.conf<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、商品详情、购物车、订单页 | 高风险项需手动复测 |
 | 闲鱼 | Body Rewrite, MITM, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、商品详情、聊天入口 | 高风险项需手动复测 |
-| 京东 | MITM, URL Rewrite | 局部覆盖 | 高 | Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf | 未测 | 未测试 | 首页、搜索、商品详情、购物车、订单页 | 高风险项需手动复测 |
-| 拼多多 | Body Rewrite, MITM, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、商品详情、订单页 | 高风险项需手动复测 |
-| 美团 | Body Rewrite, MITM, Map Local, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/Map-Local.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/direct.list<br>Rules/reject.list<br>Rules/web-ads.list<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、店铺页、下单前置页面 | 高风险项需手动复测 |
+| 京东 | MITM, Remote Rule, URL Rewrite | 局部覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf | 未测 | 未测试 | 首页、搜索、商品详情、购物车、订单页 | 高风险项需手动复测 |
+| 拼多多 | Body Rewrite, MITM, Remote Rule, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、商品详情、订单页 | 高风险项需手动复测 |
+| 美团 | Body Rewrite, MITM, Map Local, Remote Rule, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/Map-Local.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/direct.list<br>Rules/reject.list<br>Rules/web-ads.list<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、店铺页、下单前置页面 | 高风险项需手动复测 |
 | 大众点评 | MITM, Rule, URL Rewrite | 局部覆盖 | 高 | Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list | 未测 | 未测试 | 首页、搜索、店铺页、评价页 | 高风险项需手动复测 |
 | 饿了么 | Body Rewrite, MITM, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf | 未测 | 未测试 | 首页、搜索、店铺页、下单前置页面 | 高风险项需手动复测 |
 | 滴滴 | Body Rewrite, MITM, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list<br>Scripts/app-clean.conf<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、定位、路线、订单查询 | 高风险项需手动复测 |
 | 12306 | Rule, Script | 明确覆盖 | 中 | Rules/aggressive-ads.list<br>Scripts/app-clean.conf | 未测 | 未测试 | 首页、车票查询、订单查询 | 按需复测 |
-| 高德地图 | Body Rewrite, MITM, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/direct.list<br>Rules/reject.list<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、路线规划 | 高风险项需手动复测 |
+| 高德地图 | Body Rewrite, MITM, Remote Rule, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/direct.list<br>Rules/reject.list<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、路线规划 | 高风险项需手动复测 |
 | 百度地图 | MITM, Rule, URL Rewrite | 局部覆盖 | 高 | Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list<br>Rules/web-ads.list | 未测 | 未测试 | 首页、搜索、路线规划 | 高风险项需手动复测 |
 | 网易云音乐 | MITM, Rule, URL Rewrite | 局部覆盖 | 高 | Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
 | 喜马拉雅 | Body Rewrite, MITM, Map Local, Rule, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/Map-Local.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/app-clean.list<br>Scripts/app-cleaner-active.conf | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |
