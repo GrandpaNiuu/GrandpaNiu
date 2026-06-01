@@ -2,7 +2,7 @@
 
 # GrandpaNiu
 
-Shadowrocket / Surge 自用融合净化模块工厂。
+Shadowrocket / Surge / Android 自用融合净化规则与模块工厂。
 
 [![Import](https://img.shields.io/static/v1?label=Import&message=Multi%20Version%20Page&color=0A84FF&labelColor=111827&style=for-the-badge)][import-page]
 [![Stable](https://img.shields.io/static/v1?label=Stable&message=Default&color=34C759&labelColor=111827&style=for-the-badge)][stable-import]
@@ -23,11 +23,24 @@ Shadowrocket / Surge 自用融合净化模块工厂。
 
 ## 一句话说明
 
-`GrandpaNiu` 是一个源头驱动的 Shadowrocket 模块工厂。仓库不会长期手工维护根目录模块，而是从 `Rules`、`Scripts`、`Rewrite/Sources`、`Rewrite/Profiles` 和维护脚本自动生成四个独立模块。
+`GrandpaNiu` 是一个源头驱动的 Shadowrocket / Surge / Android 规则与模块工厂。仓库不会长期手工维护根目录模块，而是从 `Rules`、`Scripts`、`Rewrite/Sources`、`Rewrite/Profiles` 和维护脚本自动生成 iOS 模块与 Android 可用规则。
 
 维护原则：**所有已纳入覆盖的 App 一视同仁维护，不设置单独例外。**
 
 日常使用只推荐启用一个版本：**默认用 Stable**。根目录 `Ronghemokuai.sgmodule` 就是默认 Stable，Release 目录中的 Stable 是同一默认版本的独立发布文件。
+
+## 当前包含内容
+
+本仓库目前包含以下内容：
+
+- **Shadowrocket / Surge 模块**：默认 Root 模块 `Ronghemokuai.sgmodule`，以及 `Release` 目录下的 Stable、Stable Plus、Lite、Full 四个独立版本。
+- **iOS 净化能力**：规则、脚本、Rewrite、MITM hostname、静态扫描报告、覆盖矩阵、回滚与质量门禁文档。
+- **Android Mihomo / Clash Meta / FlClash 版本**：`Android/mihomo/GrandpaNiu-Android-Full.yaml` 完整配置、`Android/mihomo/GrandpaNiu-Ads.yaml` 广告规则集、`android.html` Android 导入页。
+- **已有节点用户说明**：`Android/mihomo/README-With-Proxy.md`，说明如何把 `GrandpaNiu-Ads.yaml` 加入原 Clash / Mihomo 配置，并保留原节点、策略组和 MATCH。
+- **sing-box 规则集**：`Android/sing-box/GrandpaNiu-Ads.json`，面向使用 sing-box rule-set 的高级 Android 用户。
+- **AdGuard DNS 规则**：`Android/adguard/GrandpaNiu-DNS.txt`，用于支持自定义过滤规则的 AdGuard Android、AdGuard DNS 或 AdGuard Home 场景。
+- **v2rayNG / V2Ray / Xray routing 片段**：`Android/v2rayng/GrandpaNiu-v2rayng-routing.json`，用于手动合并 `block` outbound 和广告路由规则。
+- **用户教程与维护文档**：`docs/android-user-guide.md`、`docs/*`、`reports/*`，用于说明导入、构建、测试、覆盖范围、风险边界和维护流程。
 
 ## 版本选择
 
