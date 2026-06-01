@@ -80,7 +80,8 @@ Android 版本是可迁移规则导出，不是 iOS `.sgmodule`。
 
 目前支持：
 
-- Mihomo / Clash Meta / FlClash
+- Mihomo / Clash Meta / FlClash 完整配置
+- Mihomo / Clash Meta / FlClash 规则集
 - sing-box rule-set
 - AdGuard DNS / AdGuard Home 自定义过滤规则
 - v2rayNG / V2Ray / Xray routing 片段
@@ -89,17 +90,19 @@ Android 版主要通过域名、关键词和 IP 规则拦截常见广告域名�
 
 ## Android 怎么用
 
-Android 导入页：
+优先打开 Android 导入页，按客户端选择版本：
 
 - [打开 Android 导入页][android-import]
 
-### 没有节点，只想拦广告
+| 场景 | 推荐版本 | 链接 | 说明 |
+|---|---|---|---|
+| 没有节点，只想拦广告 | 完整配置版 | [GrandpaNiu-Android-Full.yaml][android-full-raw] | 适合 FlClash / Mihomo / Clash Meta，作为完整配置导入 |
+| 已经有节点订阅 | Mihomo 规则集版 | [GrandpaNiu-Ads.yaml][android-mihomo-ads-raw] | 作为 rule-provider 合并进原配置，不覆盖原节点 |
+| 使用 sing-box | sing-box rule-set | [GrandpaNiu-Ads.json][android-singbox-raw] | 需要在自己的 sing-box 配置中引用 |
+| 使用 AdGuard | DNS 规则版 | [GrandpaNiu-DNS.txt][android-adguard-raw] | 适合 AdGuard Android / AdGuard DNS / AdGuard Home |
+| 使用 v2rayNG / V2Ray / Xray | routing 片段版 | [GrandpaNiu-v2rayng-routing.json][android-v2rayng-raw] | 高级用户手动合并，不是完整节点配置 |
 
-可以使用完整 Mihomo 配置：
-
-- [Android/mihomo/GrandpaNiu-Android-Full.yaml](Android/mihomo/GrandpaNiu-Android-Full.yaml)
-
-### 已经有节点订阅
+### 已有节点订阅用户
 
 不要直接导入 `GrandpaNiu-Android-Full.yaml`，否则可能覆盖你原来的节点、策略组和规则。
 
@@ -109,22 +112,22 @@ Android 导入页：
 
 把广告规则集加入原配置：
 
-- [Android/mihomo/GrandpaNiu-Ads.yaml](Android/mihomo/GrandpaNiu-Ads.yaml)
-
-规则顺序要求：
-
 ```yaml
-RULE-SET,grandpaniu_ads,REJECT
+rule-providers:
+  grandpaniu_ads:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Ads.yaml"
+    path: ./ruleset/GrandpaNiu-Ads.yaml
+    interval: 86400
+
+rules:
+  - RULE-SET,grandpaniu_ads,REJECT
+  - MATCH,🚀 节点选择
 ```
 
-必须放在 `MATCH`、`GEOIP`、代理分流规则之前。否则广告请求可能先被原来的代理规则命中，导致规则不生效。
-
-### 高级用户规则集
-
-- [Android/mihomo/GrandpaNiu-Ads.yaml](Android/mihomo/GrandpaNiu-Ads.yaml)
-- [Android/sing-box/GrandpaNiu-Ads.json](Android/sing-box/GrandpaNiu-Ads.json)
-- [Android/adguard/GrandpaNiu-DNS.txt](Android/adguard/GrandpaNiu-DNS.txt)
-- [Android/v2rayng/GrandpaNiu-v2rayng-routing.json](Android/v2rayng/GrandpaNiu-v2rayng-routing.json)
+`RULE-SET,grandpaniu_ads,REJECT` 必须放在 `MATCH`、`GEOIP`、代理分流规则之前。否则广告请求可能先被原来的代理规则命中，导致规则不生效。
 
 Android 使用教程：
 
@@ -229,4 +232,8 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 [full-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-full.sgmodule
 [root-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule
 [android-full-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Android-Full.yaml
+[android-mihomo-ads-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Ads.yaml
+[android-singbox-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/GrandpaNiu-Ads.json
+[android-adguard-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/GrandpaNiu-DNS.txt
+[android-v2rayng-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/GrandpaNiu-v2rayng-routing.json
 [health-report]: reports/repository_health_report.md
