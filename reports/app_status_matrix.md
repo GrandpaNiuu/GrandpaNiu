@@ -1,6 +1,6 @@
 # App 状态矩阵
 
-生成时间：2026-06-01 21:07:36 +0800
+生成时间：2026-06-01 21:27:58 +0800
 
 本矩阵是质量总览，不把静态覆盖写成已经验证。真实测试来源只允许来自 `reports/manual_test_log.md`；没有记录时一律标记为“未测”。
 
@@ -8,10 +8,10 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | Spotify | 音乐 | MITM, Remote, Rewrite, Rule, Script | stable, stable-plus, lite, full | 通过 | 中 | 2026-06-01 | manual_test_log.md / 用户确认 | Stable 第一轮通过 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
 | YouTube | 视频 | MITM, Remote, Rewrite, Rule, Script | stable, stable-plus, lite, full | 通过 | 中 | 2026-06-01 | manual_test_log.md / 用户确认 | Stable 第一轮通过 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
-| 知乎 | 内容社区 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 通过 | 中 | 2026-06-01 | manual_test_log.md / 用户确认 | Stable 第一轮通过 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
-| Bilibili | 视频 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 通过 | 中 | 2026-06-01 | manual_test_log.md / 用户确认 | Stable 第一轮通过 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
+| 知乎 | 内容社区 | MITM, Remote, Rewrite, Rule, Script | stable, stable-plus, lite, full | 通过 | 中 | 2026-06-01 | manual_test_log.md / 用户确认 | Stable 第一轮通过 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
+| Bilibili | 视频 | MITM, Remote, Rewrite, Rule, Script | stable, stable-plus, lite, full | 通过 | 中 | 2026-06-01 | manual_test_log.md / 用户确认 | Stable 第一轮通过 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
 | 微博 | 社交 | MITM, Rewrite, Script | stable, stable-plus, full | 未测 | 中 | 未记录 | 无真实记录 | 未测，不允许晋级 | 回滚 Rewrite、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
-| 百度贴吧 | 社交 | MITM, Rewrite, Script | stable, stable-plus, full | 未测 | 中 | 未记录 | 无真实记录 | 未测，不允许晋级 | 回滚 Rewrite、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
+| 百度贴吧 | 社交 | MITM, Remote, Rewrite, Script | stable, stable-plus, full | 未测 | 中 | 未记录 | 无真实记录 | 未测，不允许晋级 | 回滚 Rewrite、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 小红书 | 社交电商 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 未测 | 中 | 未记录 | 无真实记录 | 未测，不允许晋级 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 酷安 | 工具社区 | MITM, Rewrite, Script | stable, stable-plus, full | 未测 | 中 | 未记录 | 无真实记录 | 未测，不允许晋级 | 回滚 Rewrite、Scripts 中对应源头后重建 | 覆盖存在不等于测试通过；未测必须保持未测 |
 | 淘宝 | 电商 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 通过 | 高 | 2026-06-01 | manual_test_log.md / 用户确认 | Stable 第一轮通过；后续敏感链路变更仍需复测 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
