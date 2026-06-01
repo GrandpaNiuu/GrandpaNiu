@@ -107,6 +107,24 @@
       "enabled": true,
       "protected": false,
       "purpose": "trusted TV advertising rule enabled for conservative collection"
+    },
+    {
+      "name": "zirawell App AdBlock aggressive",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/QuanX/Adblock/All/filter/appAdBlock.list",
+      "policy": "REJECT",
+      "enabled": true,
+      "protected": false,
+      "purpose": "aggressive domestic app ad blocking source for Taobao/JD/PDD/Douyin/Kuaishou/Xiaohongshu/Meituan/Bilibili/Amap/Zhihu/web testing; may cause breakage and must be reviewed after use"
+    },
+    {
+      "name": "zirawell All AdBlock aggressive",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/QuanX/Adblock/All/filter/allAdBlock.list",
+      "policy": "REJECT",
+      "enabled": true,
+      "protected": false,
+      "purpose": "aggressive broad ad blocking source for web and app residual ads; may cause breakage and must be reviewed after use"
     }
   ],
   "reference_modules": [
@@ -193,6 +211,90 @@
       "enabled": false,
       "protected": true,
       "purpose": "YouTube Enhance reference source"
+    },
+    {
+      "name": "zirawell Taobao module",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/Surge/Adblock/App/T/%E6%B7%98%E5%AE%9D/taobao.sgmodule",
+      "enabled": false,
+      "protected": false,
+      "purpose": "reference for Taobao aggressive source-first extraction"
+    },
+    {
+      "name": "zirawell JD module",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/Surge/Adblock/App/J/%E4%BA%AC%E4%B8%9C/jd.sgmodule",
+      "enabled": false,
+      "protected": false,
+      "purpose": "reference for JD aggressive source-first extraction"
+    },
+    {
+      "name": "zirawell Pinduoduo module",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/Surge/Adblock/App/P/%E6%8B%BC%E5%A4%9A%E5%A4%9A/pdd.sgmodule",
+      "enabled": false,
+      "protected": false,
+      "purpose": "reference for Pinduoduo aggressive source-first extraction"
+    },
+    {
+      "name": "zirawell Xiaohongshu module",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/Surge/Adblock/App/X/%E5%B0%8F%E7%BA%A2%E4%B9%A6/xiaohongshu.sgmodule",
+      "enabled": false,
+      "protected": false,
+      "purpose": "reference for Xiaohongshu aggressive source-first extraction"
+    },
+    {
+      "name": "zirawell Zhihu module",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/Surge/Adblock/App/Z/%E7%9F%A5%E4%B9%8E/zhihu.sgmodule",
+      "enabled": false,
+      "protected": false,
+      "purpose": "reference for Zhihu aggressive source-first extraction"
+    },
+    {
+      "name": "fmz200 Taobao module",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partT/Taobao.sgmodule",
+      "enabled": false,
+      "protected": false,
+      "purpose": "secondary Taobao reference for comparison"
+    },
+    {
+      "name": "fmz200 JD module",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partJ/JD.com.sgmodule",
+      "enabled": false,
+      "protected": false,
+      "purpose": "secondary JD reference for comparison"
+    },
+    {
+      "name": "fmz200 Pinduoduo module",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partP/Pinduoduo.sgmodule",
+      "enabled": false,
+      "protected": false,
+      "purpose": "secondary Pinduoduo reference for comparison"
+    },
+    {
+      "name": "fmz200 Bilibili module",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partB/bilibili.sgmodule",
+      "enabled": false,
+      "protected": false,
+      "purpose": "secondary Bilibili reference for comparison"
+    },
+    {
+      "name": "fmz200 Xiaohongshu module",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partX/Xiaohongshu.sgmodule",
+      "enabled": false,
+      "protected": false,
+      "purpose": "secondary Xiaohongshu reference for comparison"
+    },
+    {
+      "name": "fmz200 Zhihu module",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partZ/Zhihu.sgmodule",
+      "enabled": false,
+      "protected": false,
+      "purpose": "secondary Zhihu reference for comparison"
+    },
+    {
+      "name": "zirawell App AdBlock module",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Rule/Surge/Adblock/All/appAdBlock.sgmodule",
+      "enabled": false,
+      "protected": false,
+      "purpose": "broad aggressive app ad block module reference for domestic app residual ads"
     }
   ]
 }
