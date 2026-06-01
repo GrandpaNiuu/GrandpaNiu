@@ -38,6 +38,23 @@
 | 广告减少效果 | 是 | 未测 | 无 | 只确认广告减少，不改权益 |
 | 回滚路径 | 是 | 待确认 | `Rules/wechat-ad.list` / `Rewrite/Profiles/stable-plus.conf` | 只允许从 Stable Plus 移除 |
 
+## 当前单项：QQ News / 腾讯新闻
+
+来源：`https://raw.githubusercontent.com/app2smile/rules/master/module/qqnews.sgmodule`
+
+接入范围：仅 Stable Plus，未进入默认 Stable。测试入口见 `Rules/app2smile-qqnews-stable-plus.list`、`Scripts/app2smile-qqnews-stable-plus.conf` 和 `Rewrite/Profiles/stable-plus.conf`。
+
+| 测试项 | 是否必须 | 结果 | 证据来源 | 备注 |
+|---|---:|---|---|---|
+| 首页加载 | 是 | 未测 | 无 | 确认信息流正常加载 |
+| 图片加载 | 是 | 未测 | 无 | 确认新闻封面图、正文图、头像不受影响 |
+| 登录状态 | 是 | 未测 | 无 | 不得影响已登录状态 |
+| 支付前置页 | 否 | 未测 | 无 | QQ News 通常不涉及真实支付，只记录是否出现异常入口 |
+| 验证码 | 是 | 未测 | 无 | 登录或安全验证触发时必须正常 |
+| 小程序 / 媒体资源 | 是 | 未测 | 无 | 确认视频新闻、专题媒体资源正常 |
+| 广告减少效果 | 是 | 未测 | 无 | 不得通过破坏页面实现去广告 |
+| 回滚路径 | 是 | 待确认 | `Rewrite/Profiles/stable-plus.conf` / `Scripts/app2smile-qqnews-stable-plus.conf` / `Rules/app2smile-qqnews-stable-plus.list` | 只允许从 Stable Plus 移除；不影响 Stable |
+
 ## Stable Plus 覆盖方向测试清单
 
 | 类别 | App / 服务方向 | 必测重点 | 晋级状态 |
