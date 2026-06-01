@@ -19,7 +19,6 @@ DOMAIN,un-acs.youku.com,DIRECT
 DOMAIN-SUFFIX,soulapp.cn,DIRECT
 IP-CIDR,8.210.3.170/32,DIRECT,no-resolve
 IP-CIDR,47.75.72.47/32,DIRECT,no-resolve
-
 # Emergency media and WeChat safety bypass
 # Reason: avoid false positives that break app images, WeChat image upload, preview, and media delivery.
 DOMAIN-SUFFIX,weixin.qq.com,DIRECT,pre-matching
@@ -38,7 +37,6 @@ DOMAIN-SUFFIX,qpic.cn,DIRECT,pre-matching
 DOMAIN-SUFFIX,gtimg.cn,DIRECT,pre-matching
 DOMAIN-SUFFIX,weixinbridge.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,qlogo.cn,DIRECT,pre-matching
-
 # Common image/CDN safety bypass
 DOMAIN-SUFFIX,alicdn.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,alicdn.net,DIRECT,pre-matching
@@ -56,13 +54,6 @@ DOMAIN-SUFFIX,dpfile.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,msstatic.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,zdmimg.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,amap.com,DIRECT,pre-matching
-# Spotify rules
-DOMAIN-SUFFIX,spotify.com,DIRECT
-DOMAIN-SUFFIX,scdn.co,DIRECT
-DOMAIN-SUFFIX,spotifycdn.com,DIRECT
-DOMAIN-SUFFIX,pscdn.co,DIRECT
-DOMAIN,spclient.wg.spotify.com,DIRECT
-DOMAIN-SUFFIX,spclient.spotify.com,DIRECT
 # YouTube rules
 AND,((DOMAIN-SUFFIX,googlevideo.com), (PROTOCOL,UDP)),REJECT
 AND,((DOMAIN,youtubei.googleapis.com), (PROTOCOL,UDP)),REJECT
@@ -572,22 +563,7 @@ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/r
 # YouTube playback protection placeholder
 # Keep this file available for future precise DIRECT rules.
 # Do not add broad googlevideo or google domains unless a specific conflict is confirmed.
-# Spotify 白名单：放在远程广告规则前，避免广告规则误杀播放链路导致跳歌
-# === 新框架 Layer 1：基础拦截层 ===
-# 顺序原则：必要 DIRECT 白名单优先，其后远程广告规则、本地域名/IP、URL-REGEX/AND 逻辑。
-# 安全边界：不主动拦截支付、登录、验证码、银行证券、微信/支付宝安全、证书校验接口。
-# GitHub 去广告规则补充（Surge 端按远程资源自动更新）
-# === Remote AdBlock Hub：远程广告规则增强层 ===
-# 只添加可信远程规则，不覆盖本地规则；用于补充国内外网页、App 通用广告域名。
-
-# YouTube Enhance（Maasea 必要规则，2026-05-25 上游检查）
-# 风险提示：阻断 YouTube QUIC/UDP 可提升 HTTPS MITM 与脚本命中率；若视频长期转圈，可临时注释以下两行测试。
-
-# === Legacy 26.1.27 Selected Migration: Rule START ===
-# 从旧版融合模块逐条筛选迁移；仅加入缺失、低风险、非重复、非高风险去广告规则。
-# === Legacy 26.1.27 Selected Migration: Rule END ===
 [URL Rewrite]
-# === 新框架 Layer 2：精准 URL Rewrite 层 ===
 # 仅用于开屏、弹窗、banner、信息流、营销卡片、小程序广告资源；不注入第三方内容。
 ^(^https?:\/\/www\.vgtime\.com\/app\/topic\/\d+\.jhtml\?.*?&close_ad=)false(&page=\d&sign=\w+&timestamp=\d+&font_size=\d$) $1true$2 302
 ^https?:\/\/((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\/music\/common\/upload\/t_splash_info\/ - reject
@@ -2186,14 +2162,9 @@ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/r
 ^https?:\/\/img\.alicdn\.com\/.*\/ad\/.* - reject
 # === Legacy 26.1.27 Selected Migration: URL Rewrite END ===
 [Header Rewrite]
-# === 新框架 Layer 2.5：Header Rewrite 层 ===
-# 当前仅保留 Spotify if-none-match 删除，用于避免缓存影响脚本处理；不涉及登录/支付/安全接口。
-# Spotify（app2smile 必要配置，2026-05-25 上游检查）
-# 删除 if-none-match，避免 304 缓存导致 spotify-proto 无法取得可修改响应体。
+# if-none-match返回304状态码
 http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$ header-del if-none-match
 [Body Rewrite]
-# === 新框架 Layer 3：Body Rewrite / JQ 层 ===
-# 仅清理复杂 JSON 中广告节点；禁止改写会员权益、支付状态、账号等级与用户身份。
 http-response ^https?:\/\/alsc-buy2\.ele\.me\/h5\/mtop\.alsc\.eleme\.order\.detail\.miniapp\.build orderDetailCdpTriggerInfo random_body
 http-response ^https?:\/\/api-wanda\.liepin\.com\/api\/com\.liepin\.cbp\.baizhong\.op\.v\d-show-4pc adList random_body
 http-response ^https?:\/\/api\.boohee\.com\/meta-interface\/v\d\/index\/record_index articles random_body
@@ -2662,7 +2633,6 @@ http-response-jq ^https?:\/\/api\.zhihu\.com\/search\/recommend_query\/v2\? 'del
 ^https?:\/\/mall\.meituan\.com\/api\/c\/homepage\/bubble\/operate\/info data-type=json data="{\"code\": 0}" status-code=200 header="content-type: application/json"
 ^https?:\/\/newapp2\.szsmk\.com\/app\/config\/(queryCarousel|queryRecommendation)\/ data-type=text data="{\"code\":\"000000\",\"message\":\"操作成功\",\"list\":[]}" status-code=200 header="content-type: application/json"
 ^https?:\/\/newapp2\.szsmk\.com\/app\/config\/queryMainAd data-type=text data="{\"message\":\"操作成功\",\"main_ad_list\":[],\"code\":\"000000\"}" status-code=200 header="content-type: application/json"
-
 # YouTube Enhance：仅拦截带 oad 参数的 googlevideo initplayback 广告初始化请求；若视频转圈，可临时注释本行。
 ^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad data-type=text data="" status-code=200
 [Script]
@@ -2716,11 +2686,8 @@ app-cleaner-active-json-clean = type=http-response,pattern=^https?:\/\/.*(news\.
 zhihu-enhance = type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/(topstory|moments|feed|notifications|v\d+\/questions\/\d+\/(feeds|answers)|questions\/\d+\/(feeds|answers)|search\/top_search|search\/recommend_query|commercial|market|ad|recommend).*?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/zhihu-enhance.js,script-update-interval=86400
 # === 新框架 Layer 5：Script 层 ===
 # 原 YouTube/Spotify 脚本保持不覆盖；新增脚本统一 cmp_ 前缀，来源公开 raw，按去广告用途筛选。
-
 # YouTube Enhance（Maasea）：去广告、PIP/后台播放、字幕/歌词翻译；保留上游必要 pattern，不整包粘贴外部模块。
-
 # Spotify（app2smile）：播放广告处理、歌手/专辑列表展示修复、随机播放相关处理。
-
 # --- cmp_ 新增脚本：来自对比模块的可验证去广告脚本，已过滤会员/支付/安全/成人/短链风险 ---
 # cmp-source=allAdBlock; purpose=广告/开屏/弹窗/banner/信息流净化; risk=low-to-medium; url=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/weibo.js
 # cmp-source=allAdBlock; purpose=广告/开屏/弹窗/banner/信息流净化; risk=low-to-medium; url=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/kkmh.js
