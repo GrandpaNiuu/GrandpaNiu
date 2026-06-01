@@ -1,0 +1,4 @@
+# app2smile QQ News Stable Plus rule layer
+# Source module: https://raw.githubusercontent.com/app2smile/rules/master/module/qqnews.sgmodule
+# Upstream module does not define a [Rule] section.
+# Kept as an explicit source-first placeholder so the Stable Plus profile records the App boundary.
