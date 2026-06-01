@@ -149,15 +149,6 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 - 自动确认电商订单页、支付前置、验证码、登录流程无异常。
 - 自动把 Stable Plus、Full 或未知远程脚本直接晋级到 Stable。
 
-## 安全边界
-
-本仓库不加入：
-
-- 会员解锁、Premium 破解、支付绕过、登录绕过、账户权益伪造。
-- Cookie / Token / BoxJS 依赖。
-- 成人、博彩、短链、镜像源、`ghproxy`、未知混淆脚本。
-
-安全策略：只要涉及登录、支付、验证码、银行、账户权益、Cookie、Token，都必须按高风险处理；不因为某个 App 被长期使用就给它特殊例外，也不因为某个 App 新加入就降低安全门槛。
 
 ## 维护入口
 
