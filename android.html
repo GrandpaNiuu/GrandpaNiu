@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GrandpaNiu Android 导入页</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #f6f8fa;
+      color: #24292f;
+      padding: 24px;
+    }
+    .wrap {
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    header {
+      margin: 16px 0 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #d0d7de;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 34px;
+      line-height: 1.2;
+    }
+    h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+    h3 {
+      margin: 22px 0 10px;
+      font-size: 18px;
+    }
+    p {
+      margin: 8px 0;
+      color: #57606a;
+      line-height: 1.75;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+    .panel {
+      background: #ffffff;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      padding: 22px;
+    }
+    .notice {
+      margin: 14px 0;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: #fff8c5;
+      border: 1px solid #eac54f;
+      color: #5c4a00;
+      line-height: 1.7;
+      font-weight: 700;
+    }
+    .hint {
+      margin: 14px 0;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: #ddf4ff;
+      border: 1px solid #54aeef;
+      color: #0969da;
+      line-height: 1.7;
+    }
+    .link-box {
+      display: block;
+      width: 100%;
+      margin: 12px 0;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f6f8fa;
+      border: 1px solid #d0d7de;
+      color: #0969da;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+      font-size: 13px;
+    }
+    .actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #1f883d;
+      background: #1f883d;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .button.secondary {
+      border-color: #0969da;
+      background: #0969da;
+    }
+    .button.neutral {
+      border-color: #d0d7de;
+      background: #ffffff;
+      color: #24292f;
+    }
+    button.button {
+      font-family: inherit;
+    }
+    pre {
+      margin: 12px 0 0;
+      padding: 14px;
+      border-radius: 8px;
+      background: #0d1117;
+      color: #e6edf3;
+      overflow-x: auto;
+      line-height: 1.6;
+      font-size: 13px;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    footer {
+      margin: 24px 0 4px;
+      color: #57606a;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    @media (max-width: 780px) {
+      body { padding: 16px; }
+      h1 { font-size: 28px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>GrandpaNiu Android 导入页</h1>
+      <p>Android 版本支持 Mihomo / Clash Meta / FlClash 等客户端。由于安卓客户端不一定支持同一个跳转协议，如果一键导入失败，请复制链接后在客户端中手动导入。</p>
+    </header>
+
+    <section class="grid" aria-label="Android 导入选项">
+      <article class="panel">
+        <h2>没有节点，只想做广告拦截</h2>
+        <p>请导入 GrandpaNiu-Android-Full.yaml。这个文件是完整 Mihomo 配置，适合没有节点、只想做广告拦截的用户。</p>
+        <strong>配置链接：</strong>
+        <span class="link-box" id="full-config-link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Android-Full.yaml</span>
+        <div class="actions">
+          <a class="button" href="clash://install-config?url=https%3A%2F%2Fraw.githubusercontent.com%2FGrandpaNiuu%2FGrandpaNiu%2Fmain%2FAndroid%2Fmihomo%2FGrandpaNiu-Android-Full.yaml">一键尝试导入</a>
+          <button class="button secondary" type="button" onclick="copyText(FULL_CONFIG_LINK)">复制完整配置链接</button>
+          <a class="button neutral" href="docs/android-user-guide.md">查看教程</a>
+        </div>
+        <div class="hint">如果点击无反应，说明当前安卓客户端不支持该跳转协议，请复制链接后手动导入。</div>
+      </article>
+
+      <article class="panel">
+        <h2>已有节点订阅用户</h2>
+        <div class="notice">不要导入 GrandpaNiu-Android-Full.yaml。GrandpaNiu-Android-Full.yaml 可能会覆盖你的原节点、策略组和规则。</div>
+        <p>已有节点用户应使用 GrandpaNiu-Ads.yaml 作为 rule-provider，把它加入自己原来的 Clash / Mihomo 配置里。</p>
+        <strong>规则集链接：</strong>
+        <span class="link-box" id="ads-ruleset-link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Ads.yaml</span>
+        <div class="actions">
+          <button class="button secondary" type="button" onclick="copyText(ADS_RULESET_LINK)">复制规则集链接</button>
+          <a class="button neutral" href="Android/mihomo/README-With-Proxy.md">查看已有节点用户教程</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel" style="margin-top:18px">
+      <h2>已有节点用户核心示例</h2>
+      <p>把下面的 rule-provider 加入原配置，并把 GrandpaNiu 广告规则放在 rules 最前面。</p>
+      <pre><code>rule-providers:
+  grandpaniu_ads:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Ads.yaml"
+    path: ./ruleset/GrandpaNiu-Ads.yaml
+    interval: 86400
+
+rules:
+  - RULE-SET,grandpaniu_ads,REJECT
+  - MATCH,🚀 节点选择</code></pre>
+      <div class="notice">RULE-SET,grandpaniu_ads,REJECT 必须放在 MATCH、GEOIP、代理分流规则之前。</div>
+      <p>保留原来的节点、策略组和 MATCH。广告请求拦截，其他流量继续走原节点。</p>
+    </section>
+
+    <section class="panel" style="margin-top:18px">
+      <h2>v2rayNG / V2Ray / Xray 高级用户方案</h2>
+      <p>这是高级用户方案，不作为普通用户主推。普通用户推荐优先使用 FlClash / Mihomo。</p>
+      <p>v2rayNG 不能直接导入 GrandpaNiu-Ads.yaml；它是 Mihomo / Clash 规则集，不是 V2Ray 配置。v2rayNG 用户应使用 routing JSON 片段，并手动合并到自己原来的配置里。</p>
+      <strong>routing 片段链接：</strong>
+      <span class="link-box" id="v2rayng-routing-link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/GrandpaNiu-v2rayng-routing.json</span>
+      <div class="actions">
+        <button class="button secondary" type="button" onclick="copyText(V2RAYNG_ROUTING_LINK)">复制 v2rayNG routing 片段链接</button>
+        <a class="button neutral" href="Android/v2rayng/README.md">查看 v2rayNG 手动合并教程</a>
+      </div>
+      <div class="notice">不要把 v2rayNG 方案当成一键完美导入。已有节点用户应保留原来的 outbounds，把 block outbound 和广告 routing.rules 合并进原配置。</div>
+      <p>广告 routing.rules 必须放在普通 proxy/direct 规则之前。广告命中 block，其他流量继续走原节点。</p>
+    </section>
+
+    <footer>
+      GrandpaNiu Android 版本只迁移域名、关键词、IP 规则，不迁移 iOS / Surge / Shadowrocket 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 功能。
+    </footer>
+  </main>
+
+  <script>
+    const FULL_CONFIG_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Android-Full.yaml";
+    const ADS_RULESET_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Ads.yaml";
+    const V2RAYNG_ROUTING_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/GrandpaNiu-v2rayng-routing.json";
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(function() {
+        alert("已复制链接");
+      });
+    }
+  </script>
+</body>
+</html>

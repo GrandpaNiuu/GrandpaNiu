@@ -106,6 +106,44 @@ Stable Plus 中测试
 - 会改写 request body、Cookie、Token、账户状态的脚本。
 - 无法解释用途的远程模块。
 
+## Android 版本
+
+Android 版本目前支持 Mihomo / Clash Meta、sing-box、AdGuard DNS、v2rayNG / V2Ray / Xray routing 片段。它是 Android 可迁移规则导出，不是 iOS `.sgmodule`，也不包含 Surge / Shadowrocket 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 功能。
+
+Android 版主要通过域名、关键词、IP 规则拦截常见广告域名、追踪域名和部分 App 广告请求。它不保证去除所有广告，尤其是 YouTube、TikTok、Instagram、Facebook 等平台内嵌广告，因为这些广告可能和正常内容共用同一域名。
+
+Android 导入页：
+https://grandpaniuu.github.io/GrandpaNiu/android.html
+
+没有节点、只想做广告拦截的用户，可以导入 `Android/mihomo/GrandpaNiu-Android-Full.yaml`。
+
+已有节点订阅用户不要导入 GrandpaNiu-Android-Full.yaml。GrandpaNiu-Android-Full.yaml 是完整 Mihomo 配置，只适合没有节点、只想做广告拦截的用户。如果用户已经有机场节点订阅，直接导入 GrandpaNiu-Android-Full.yaml 可能会覆盖原来的节点、策略组和规则。
+
+GrandpaNiu-Ads.yaml 不是节点订阅，也不是完整配置。它只是广告规则集。已有节点用户应参考 [Android/mihomo/README-With-Proxy.md](Android/mihomo/README-With-Proxy.md)，把 `GrandpaNiu-Ads.yaml` 加到原 Clash / Mihomo 配置里。
+
+RULE-SET,grandpaniu_ads,REJECT 必须放在 MATCH、GEOIP、代理分流规则之前。如果放在 MATCH 后面，广告请求可能会先被原来的代理规则命中，导致去广告规则不生效。
+
+最终效果：保留原来的节点、策略组和 MATCH。广告请求命中 GrandpaNiu 规则后会被 REJECT。其他流量继续走用户原来的节点、策略组或直连规则。
+
+普通用户推荐导入完整配置：
+
+- [Android/mihomo/GrandpaNiu-Android-Full.yaml](Android/mihomo/GrandpaNiu-Android-Full.yaml)
+
+已有节点用户请不要导入完整配置覆盖节点订阅，应参考 [Android/mihomo/README-With-Proxy.md](Android/mihomo/README-With-Proxy.md)，把 `GrandpaNiu-Ads.yaml` 加入自己的 Mihomo / Clash Meta 配置。
+
+高级用户可以使用规则集：
+
+- [Android/mihomo/GrandpaNiu-Ads.yaml](Android/mihomo/GrandpaNiu-Ads.yaml)
+- [Android/sing-box/GrandpaNiu-Ads.json](Android/sing-box/GrandpaNiu-Ads.json)
+- [Android/adguard/GrandpaNiu-DNS.txt](Android/adguard/GrandpaNiu-DNS.txt)
+- [Android/v2rayng/GrandpaNiu-v2rayng-routing.json](Android/v2rayng/GrandpaNiu-v2rayng-routing.json)
+
+v2rayNG / V2Ray / Xray 是高级用户方案，不作为普通用户主推。它不是一键完美导入配置，也不是节点订阅；请参考 [Android/v2rayng/README.md](Android/v2rayng/README.md)，手动把 `block` outbound 和广告 `routing.rules` 合并进原配置。普通用户推荐优先使用 FlClash / Mihomo。
+
+使用教程：
+
+- [GrandpaNiu Android 使用教程](docs/android-user-guide.md)
+
 ## 导入地址
 
 | 版本 | Pages 地址 | Raw 地址 |
