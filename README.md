@@ -40,7 +40,7 @@ Shadowrocket / Surge / Android 净化规则与模块集合。
 
 > 不要同时启用多个版本。覆盖存在不等于所有 App 都已人工测试通过。
 
-## 导入方式
+## iOS / Shadowrocket / Surge 导入方式
 
 优先使用多版本导入页：
 
@@ -55,7 +55,6 @@ Shadowrocket / Surge / Android 净化规则与模块集合。
 | Lite | [Ronghemokuai-lite.sgmodule][lite-pages] | [Raw][lite-raw] |
 | Full | [Ronghemokuai-full.sgmodule][full-pages] | [Raw][full-raw] |
 | 默认 Root | [Ronghemokuai.sgmodule][root-pages] | [Raw][root-raw] |
-| Android | [Android 导入页][android-import] | [Full YAML][android-full-raw] |
 
 导入后建议在 Shadowrocket 中执行：
 
@@ -90,7 +89,7 @@ Android 版主要通过域名、关键词和 IP 规则拦截常见广告域名�
 
 ## Android 怎么用
 
-优先打开 Android 导入页，按客户端选择版本：
+Android 不放在 iOS 模块导入表里。Android 用户请从这里进入专门的导入页：
 
 - [打开 Android 导入页][android-import]
 
