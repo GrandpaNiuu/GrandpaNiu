@@ -2,104 +2,270 @@
 
 # GrandpaNiu
 
-一个面向 Shadowrocket 的去广告与 App 净化模块工厂
+Shadowrocket / Surge / Android 自用融合净化规则与模块工厂。
 
-[![Release](https://img.shields.io/github/v/release/GrandpaNiuu/GrandpaNiu?style=for-the-badge&labelColor=111827)](https://github.com/GrandpaNiuu/GrandpaNiu/releases)
-[![License](https://img.shields.io/github/license/GrandpaNiuu/GrandpaNiu?style=for-the-badge&labelColor=111827)](LICENSE)
-[![Module](https://img.shields.io/static/v1?label=Module&message=Stable&color=34C759&labelColor=111827&style=for-the-badge)](https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule)
-[![Stars](https://img.shields.io/github/stars/GrandpaNiuu/GrandpaNiu?style=for-the-badge&labelColor=111827)](https://github.com/GrandpaNiuu/GrandpaNiu/stargazers)
-
-GrandpaNiu 是一个面向 Shadowrocket 的模块工厂，目标是用更少配置获得更强的广告净化体验。
-
-[安装与订阅](#安装与订阅) · [核心特性](#核心特性) · [版本说明](#版本说明) · [使用方法](#使用方法) · [维护与报告](#维护与报告)
+[![Import](https://img.shields.io/static/v1?label=Import&message=Multi%20Version%20Page&color=0A84FF&labelColor=111827&style=for-the-badge)][import-page]
+[![Stable](https://img.shields.io/static/v1?label=Stable&message=Default&color=34C759&labelColor=111827&style=for-the-badge)][stable-import]
+[![Android](https://img.shields.io/static/v1?label=Android&message=Import&color=3DDC84&labelColor=111827&style=for-the-badge)][android-import]
+[![Health](https://img.shields.io/static/v1?label=Health&message=Reports&color=5856D6&labelColor=111827&style=for-the-badge)][health-report]
 
 </div>
 
----
+## 使用限制与风险声明
 
-## 项目简介
+> 本仓库所有资源仅供个人学习、研究与实验使用，严禁用于任何商业、盈利、收费、转售、引流、代运营、付费服务或其他变相商业目的。
+>
+> 未经维护者明确许可，禁止以任何形式将本仓库资源转载、分享、搬运、镜像、二次发布或改名发布至任何境内平台，包括但不限于社交媒体、博客、论坛、网盘、代码托管平台、公众号、即时通讯群组、付费社群、资源站或聚合站。
+>
+> 本仓库所有资源仅供参考，使用者应自行判断是否适合使用，并自行承担全部风险。维护者不对因使用、复制、修改、分发、转载、导入、运行、参考或依赖本仓库内容造成的任何直接或间接损失承担责任，包括但不限于数据丢失、网络故障、账号异常、服务不可用、配置损坏、隐私泄露、第三方追责或法律纠纷。
 
-GrandpaNiu 采用 source-first 结构维护规则、脚本、MITM 与 Profile，并自动生成可直接导入的多版本模块。
+详细安全策略见：[SECURITY.md](SECURITY.md)。
 
-- Shadowrocket / Surge 风格模块工厂
-- 自动构建 `Ronghemokuai.sgmodule`
-- 支持 Stable / Stable Plus / Lite / Full 多版本
-- 默认 Stable 已启用激进广告源
-- 用于国内外 App、网页广告、信息流、启动页、统计域名等净化
+## 一句话说明
 
----
+`GrandpaNiu` 是一个源头驱动的 Shadowrocket / Surge / Android 规则与模块工厂。仓库不会长期手工维护根目录模块，而是从 `Rules`、`Scripts`、`Rewrite/Sources`、`Rewrite/Profiles` 和维护脚本自动生成 iOS 模块与 Android 可用规则。
 
-## 安装与订阅
+维护原则：**所有已纳入覆盖的 App 一视同仁维护，不设置单独例外。**
 
-| 版本 | 适合谁 | 说明 | 链接 |
-|---|---|---|---|
-| Stable | 日常使用 | 默认正式版，已启用激进去广告 | [导入](https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule) |
-| Stable 独立版 | 固定 Release 路径 | 与默认 Stable 同类用途 | [导入](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule) |
-| Stable Plus | 增强覆盖测试 | 常用 App 增强测试 | [导入](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable-plus.sgmodule) |
-| Lite | 低耗电 / 低干扰 | 低风险、低覆盖、便于排查 | [导入](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-lite.sgmodule) |
-| Full | 全量排查 | 不建议长期启用 | [导入](https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-full.sgmodule) |
+日常使用只推荐启用一个版本：**默认用 Stable**。根目录 `Ronghemokuai.sgmodule` 就是默认 Stable，Release 目录中的 Stable 是同一默认版本的独立发布文件。
 
-> 日常使用 Stable。不要同时启用多个版本。
+## 当前包含内容
 
----
+本仓库目前包含以下内容：
 
-## 核心特性
+- **Shadowrocket / Surge 模块**：默认 Root 模块 `Ronghemokuai.sgmodule`，以及 `Release` 目录下的 Stable、Stable Plus、Lite、Full 四个独立版本。
+- **iOS 净化能力**：规则、脚本、Rewrite、MITM hostname、静态扫描报告、覆盖矩阵、回滚与质量门禁文档。
+- **Android Mihomo / Clash Meta / FlClash 版本**：`Android/mihomo/GrandpaNiu-Android-Full.yaml` 完整配置、`Android/mihomo/GrandpaNiu-Ads.yaml` 广告规则集、`android.html` Android 导入页。
+- **已有节点用户说明**：`Android/mihomo/README-With-Proxy.md`，说明如何把 `GrandpaNiu-Ads.yaml` 加入原 Clash / Mihomo 配置，并保留原节点、策略组和 MATCH。
+- **sing-box 规则集**：`Android/sing-box/GrandpaNiu-Ads.json`，面向使用 sing-box rule-set 的高级 Android 用户。
+- **AdGuard DNS 规则**：`Android/adguard/GrandpaNiu-DNS.txt`，用于支持自定义过滤规则的 AdGuard Android、AdGuard DNS 或 AdGuard Home 场景。
+- **v2rayNG / V2Ray / Xray routing 片段**：`Android/v2rayng/GrandpaNiu-v2rayng-routing.json`，用于手动合并 `block` outbound 和广告路由规则。
+- **用户教程与维护文档**：`docs/android-user-guide.md`、`docs/*`、`reports/*`，用于说明导入、构建、测试、覆盖范围、风险边界和维护流程。
 
-- 自动构建模块
-- 自动同步根目录模块
-- 多版本输出
-- 国内外广告规则
-- App 专项净化
-- YouTube / Spotify / Zhihu 核心入口保留
-- 激进广告源已接入默认 Stable
-- 支持回滚与报告审计
+## 版本选择
 
----
+优先从多版本导入页选择版本：
 
-## 版本说明
+[打开多版本导入页][import-page]
 
-| Profile | 用途 | 默认发布 | 风险 |
-|---|---|---|---|
-| Stable | 日常正式版，已启用激进去广告 | 是 | 中 |
-| Stable Plus | 常用 App 增强测试 | 否 | 中高 |
-| Lite | 低耗电 / 低干扰 | 否 | 低 |
-| Full | 全量排查 | 否 | 高 |
+| 版本 | 定位 | 默认使用 | 覆盖重点 | 风险边界 | 导入 |
+|---|---|---|---|---|---|
+| Stable | 默认正式版 | 是 | 已纳入 App 的稳定覆盖 + 常用净化 | 优先稳定、低误杀 | [导入][stable-import] |
+| Stable Plus | 增强测试版 | 否 | Stable + 更多常用 App MITM 覆盖 | 只做测试，不自动晋级 Stable | [导入][stable-plus-import] |
+| Lite | 低耗电版 | 否 | 最小必要覆盖集合 | 覆盖少，适合排查异常 | [导入][lite-import] |
+| Full | 全量排查版 | 否 | 完整 extended MITM 层 | 不建议长期启用 | [导入][full-import] |
 
----
+> 不要同时启用多个版本。覆盖说明来自规则、脚本、Rewrite、MITM 和静态扫描，不等于所有 App 都已人工测试通过。
 
-## 使用方法
+## 四个版本分别包含什么
 
-1. 打开 Shadowrocket。
-2. 进入「模块」。
-3. 新建模块。
-4. 粘贴订阅链接。
-5. 更新模块、更新脚本、更新资源。
-6. 只启用一个版本，不要多个版本同时启用。
+### Stable：默认正式版
 
----
+适合长期日常使用。目标不是最大覆盖，而是稳定、低误杀、可长期维护。
 
-## 注意事项
+主要包含：
 
-- 默认 Stable 现在是强力去广告模式。
-- 可能误伤图片、视频、验证码、活动页、支付前置。
-- 遇到问题优先反馈 App、页面、可疑域名。
-- 不建议同时启用多个模块版本。
-- Full 不建议长期启用。
+- 已纳入 App 的广告、开屏、弹窗、横幅、信息流、推荐位、活动卡片净化。
+- Spotify、YouTube、知乎等已纳入 App 按统一标准维护，不设置特殊优先级。
+- 常用方向：电商购物、本地生活、内容社区、音频内容、地图工具、资讯与工具类 App。
+- 脚本融合：低风险 JSON 清理类脚本由 `Scripts/app-cleaner.js` 统一承接，减少重复脚本入口。
 
----
+### Stable Plus：增强测试版
 
-## 维护与报告
+适合测试更多常用 App 覆盖。它不是默认发布版本，也不会自动把内容合并进 Stable。
 
-维护细节放在 `docs/` 和 `reports/`，首页不展开。
+晋级规则：
 
-- [docs/](docs/)
-- [仓库健康报告](reports/repository_health_report.md)
-- [多版本发布报告](reports/multi_release_report.md)
-- [REJECT 风险审计](reports/reject_risk_report.md)
-- [激进 Stable 广告源报告](reports/aggressive_stable_ad_sources_report.md)
+```text
+Stable Plus 中测试
+-> 登录 / 验证码 / 支付前置 / 常用流程无异常
+-> 单项 App 进入晋级候选
+-> 人工确认后再进入 Stable
+```
 
----
+### Lite：低耗电版
 
-## 许可证
+适合手机发热、耗电明显、App 登录异常、页面异常时排查。Lite 不追求覆盖广度，它的价值是低风险、低 MITM、便于定位异常来源。
 
-本项目使用 [GPL-3.0](LICENSE) 许可证。
+### Full：全量排查版
+
+只适合查漏拦和临时定位缺失 hostname，不建议长期启用。Full 不适合：登录、支付、验证码、银行 App、对耗电敏感的设备、长期日常使用。
+
+## 自动拉取规则和脚本的边界
+
+仓库可以做“自动化收集和筛选”，但不能无审核地把外部脚本直接塞进默认 Stable。专业的自动化路径应该是：
+
+```text
+可信来源收集
+-> 静态安全扫描
+-> 生成候选报告
+-> 进入 Stable Plus 或 pending 区
+-> 构建验证 / 语法验证 / 重复检查
+-> 人工测试
+-> 单项晋级 Stable
+```
+
+可以自动进入的内容：
+
+- 明确安全的规则源。
+- 已知可信源的低风险广告域名规则。
+- 不涉及登录、支付、验证码、会员权益、Cookie、Token、加密 body 的普通净化逻辑。
+- 通过语法检查、结构检查、重复检查的候选项。
+
+不能自动直接进入 Stable 的内容：
+
+- 未知作者脚本。
+- 混淆脚本。
+- 会员权益、破解、绕过、登录、支付、验证码相关脚本。
+- 会改写 request body、Cookie、Token、账户状态的脚本。
+- 无法解释用途的远程模块。
+
+## Android 版本
+
+Android 版本目前支持 Mihomo / Clash Meta、sing-box、AdGuard DNS、v2rayNG / V2Ray / Xray routing 片段。它是 Android 可迁移规则导出，不是 iOS `.sgmodule`，也不包含 Surge / Shadowrocket 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 功能。
+
+Android 版主要通过域名、关键词、IP 规则拦截常见广告域名、追踪域名和部分 App 广告请求。它不保证去除所有广告，尤其是 YouTube、TikTok、Instagram、Facebook 等平台内嵌广告，因为这些广告可能和正常内容共用同一域名。
+
+Android 导入页：
+https://grandpaniuu.github.io/GrandpaNiu/android.html
+
+没有节点、只想做广告拦截的用户，可以导入 `Android/mihomo/GrandpaNiu-Android-Full.yaml`。
+
+已有节点订阅用户不要导入 GrandpaNiu-Android-Full.yaml。GrandpaNiu-Android-Full.yaml 是完整 Mihomo 配置，只适合没有节点、只想做广告拦截的用户。如果用户已经有机场节点订阅，直接导入 GrandpaNiu-Android-Full.yaml 可能会覆盖原来的节点、策略组和规则。
+
+GrandpaNiu-Ads.yaml 不是节点订阅，也不是完整配置。它只是广告规则集。已有节点用户应参考 [Android/mihomo/README-With-Proxy.md](Android/mihomo/README-With-Proxy.md)，把 `GrandpaNiu-Ads.yaml` 加到原 Clash / Mihomo 配置里。
+
+RULE-SET,grandpaniu_ads,REJECT 必须放在 MATCH、GEOIP、代理分流规则之前。如果放在 MATCH 后面，广告请求可能会先被原来的代理规则命中，导致去广告规则不生效。
+
+最终效果：保留原来的节点、策略组和 MATCH。广告请求命中 GrandpaNiu 规则后会被 REJECT。其他流量继续走用户原来的节点、策略组或直连规则。
+
+普通用户推荐导入完整配置：
+
+- [Android/mihomo/GrandpaNiu-Android-Full.yaml](Android/mihomo/GrandpaNiu-Android-Full.yaml)
+
+已有节点用户请不要导入完整配置覆盖节点订阅，应参考 [Android/mihomo/README-With-Proxy.md](Android/mihomo/README-With-Proxy.md)，把 `GrandpaNiu-Ads.yaml` 加入自己的 Mihomo / Clash Meta 配置。
+
+高级用户可以使用规则集：
+
+- [Android/mihomo/GrandpaNiu-Ads.yaml](Android/mihomo/GrandpaNiu-Ads.yaml)
+- [Android/sing-box/GrandpaNiu-Ads.json](Android/sing-box/GrandpaNiu-Ads.json)
+- [Android/adguard/GrandpaNiu-DNS.txt](Android/adguard/GrandpaNiu-DNS.txt)
+- [Android/v2rayng/GrandpaNiu-v2rayng-routing.json](Android/v2rayng/GrandpaNiu-v2rayng-routing.json)
+
+v2rayNG / V2Ray / Xray 是高级用户方案，不作为普通用户主推。它不是一键完美导入配置，也不是节点订阅；请参考 [Android/v2rayng/README.md](Android/v2rayng/README.md)，手动把 `block` outbound 和广告 `routing.rules` 合并进原配置。普通用户推荐优先使用 FlClash / Mihomo。
+
+使用教程：
+
+- [GrandpaNiu Android 使用教程](docs/android-user-guide.md)
+
+## 导入地址
+
+| 版本 | Pages 地址 | Raw 地址 |
+|---|---|---|
+| Stable | [Ronghemokuai-stable.sgmodule][stable-pages] | [Raw][stable-raw] |
+| Stable Plus | [Ronghemokuai-stable-plus.sgmodule][stable-plus-pages] | [Raw][stable-plus-raw] |
+| Lite | [Ronghemokuai-lite.sgmodule][lite-pages] | [Raw][lite-raw] |
+| Full | [Ronghemokuai-full.sgmodule][full-pages] | [Raw][full-raw] |
+| 默认 Root | [Ronghemokuai.sgmodule][root-pages] | [Raw][root-raw] |
+| Android | [Android 导入页][android-import] | [Full YAML][android-full-raw] |
+
+导入后建议在 Shadowrocket 中执行：更新模块、更新脚本、更新全部资源。
+
+## 构建流程
+
+```text
+Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
+        -> scripts/build_module.py --build --profile stable
+        -> scripts/factory_finalize.py --sync-root
+        -> scripts/build_release_variants.py
+        -> Release/Ronghemokuai-*.sgmodule
+```
+
+根目录 `Ronghemokuai.sgmodule` 仍保持 Stable。四个独立版本由 `scripts/build_release_variants.py` 自动生成。
+
+## 自动化能力
+
+仓库可以自动做：
+
+- 构建 Stable / Stable Plus / Lite / Full 四个独立模块。
+- 检查 Root 与 Release 是否一致。
+- 检查 profile 是否能构建。
+- 检查 JS 语法：`node --check Scripts/app-cleaner.js`。
+- 生成覆盖矩阵、脚本清单、健康报告、回滚报告。
+- 收集可信候选规则源并生成候选报告。
+- 对 workflow 失败自动创建 Issue。
+
+仓库不会也不应该无条件自动做：
+
+- 自动真机测试 App。
+- 自动确认任何 App 的实际可用性。
+- 自动确认电商订单页、支付前置、验证码、登录流程无异常。
+- 自动把 Stable Plus、Full 或未知远程脚本直接晋级到 Stable。
+
+
+## 维护入口
+
+| 类型 | 链接 | 用途 |
+|---|---|---|
+| 误杀预防标准 | [docs/FALSE_POSITIVE_PREVENTION.md](docs/FALSE_POSITIVE_PREVENTION.md) | 少误杀、Stable 准入、pending 边界和 Lite 对照排查 |
+| 模块功能 | [docs/MODULE_FEATURES.md](docs/MODULE_FEATURES.md) | 四个版本功能、App 覆盖和使用边界 |
+| 自动化策略 | [docs/AUTOMATION_POLICY.md](docs/AUTOMATION_POLICY.md) | 自动收集、自动筛选、人工晋级边界 |
+| Profile 边界 | [docs/PROFILE_POLICY.md](docs/PROFILE_POLICY.md) | Stable / Stable Plus / Lite / Full 发布边界 |
+| 脚本融合计划 | [docs/SCRIPT_CONSOLIDATION_PLAN.md](docs/SCRIPT_CONSOLIDATION_PLAN.md) | 脚本减少、融合、回滚策略 |
+| MITM 策略 | [docs/MITM_POLICY.md](docs/MITM_POLICY.md) | hostname 分级和增长控制 |
+| 测试标准 | [docs/TESTING.md](docs/TESTING.md) | 手动测试流程和记录要求 |
+| 发布回滚 | [docs/RELEASE.md](docs/RELEASE.md) | 发布、测试、回滚流程 |
+| 质量门禁 | [docs/QUALITY_GATE.md](docs/QUALITY_GATE.md) | 阻断项和发布前检查 |
+| 长期路线 | [docs/ROADMAP.md](docs/ROADMAP.md) | 后续优化方向和优先级 |
+
+## 报告入口
+
+| 报告 | 用途 |
+|---|---|
+| [reports/repository_health_report.md][health-report] | 仓库健康总览 |
+| [reports/profile_validation_report.md](reports/profile_validation_report.md) | 四个 profile 构建结果、脚本数、MITM 数 |
+| [reports/script_inventory_report.md](reports/script_inventory_report.md) | 脚本清单与可融合分析 |
+| [reports/script_dedupe_report.md](reports/script_dedupe_report.md) | 脚本融合和旧入口移除报告 |
+| [reports/script_consolidation_rollback_report.md](reports/script_consolidation_rollback_report.md) | 脚本融合回滚路径 |
+| [reports/app_cleaner_active_report.md](reports/app_cleaner_active_report.md) | app-cleaner active 批量融合说明 |
+| [reports/app_coverage_matrix.md](reports/app_coverage_matrix.md) | App 覆盖矩阵 |
+| [reports/app_status_matrix.md](reports/app_status_matrix.md) | App 状态矩阵，区分覆盖与真实测试 |
+| [reports/reject_risk_report.md](reports/reject_risk_report.md) | REJECT 高风险误伤分类 |
+| [reports/reject_manual_review_plan.md](reports/reject_manual_review_plan.md) | REJECT 人工复核计划 |
+| [reports/rule_traceability_matrix.md](reports/rule_traceability_matrix.md) | 高风险规则来源、风险等级、测试状态和回滚路径 |
+| [reports/stable_plus_promotion_report.md](reports/stable_plus_promotion_report.md) | Stable Plus 晋级候选报告 |
+| [reports/stable_plus_manual_test_plan.md](reports/stable_plus_manual_test_plan.md) | Stable Plus 单项测试计划 |
+| [reports/promotion_pr_report.md](reports/promotion_pr_report.md) | Stable Plus 单项晋级 PR 审查材料 |
+| [reports/manual_test_log.md](reports/manual_test_log.md) | 人工测试记录 |
+| [reports/candidate_security_score_report.md](reports/candidate_security_score_report.md) | 候选源安全评分 |
+| [reports/candidate_followup_plan.md](reports/candidate_followup_plan.md) | 候选源后续处理计划 |
+| [reports/report_freshness_report.md](reports/report_freshness_report.md) | 治理报告新鲜度检查 |
+| [reports/domestic_app_connectivity_audit.md](reports/domestic_app_connectivity_audit.md) | 国内 App 联网和图片加载误伤排查 |
+| [reports/workflow_health_report.md](reports/workflow_health_report.md) | workflow 最新状态 |
+
+## 使用提醒
+
+- 默认使用 Stable。
+- 不要同时启用多个版本。
+- Full 只用于排查，不适合长期启用。
+- 未经真机测试，不要把“规则覆盖存在”理解为“已经验证通过”。
+- 出现异常时先切 Lite，再逐步定位是 MITM、脚本还是规则导致。
+
+[import-page]: https://grandpaniuu.github.io/GrandpaNiu/import.html
+[stable-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable.sgmodule
+[stable-plus-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable-plus.sgmodule
+[lite-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-lite.sgmodule
+[full-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-full.sgmodule
+[android-import]: https://grandpaniuu.github.io/GrandpaNiu/android.html
+[stable-pages]: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule
+[stable-plus-pages]: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable-plus.sgmodule
+[lite-pages]: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-lite.sgmodule
+[full-pages]: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-full.sgmodule
+[root-pages]: https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
+[stable-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-stable.sgmodule
+[stable-plus-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-stable-plus.sgmodule
+[lite-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-lite.sgmodule
+[full-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-full.sgmodule
+[root-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule
+[android-full-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Android-Full.yaml
+[health-report]: reports/repository_health_report.md
