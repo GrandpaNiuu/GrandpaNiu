@@ -57,6 +57,9 @@ REQUIRED_MARKERS = (
     "zhihu-enhance",
     EXPECTED_UPDATE_URL,
 )
+SPOTIFY_HEADER_REWRITE_RULE = r"http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$ header-del if-none-match"
+SPOTIFY_SCRIPT_MARKERS = ("spotify-json", "spotify-proto")
+SPOTIFY_MITM_HOSTS = ("spclient.wg.spotify.com", "*.spclient.spotify.com")
 REQUIRED_GOVERNANCE_FILES = (
     "SECURITY.md",
     "LICENSE",
@@ -272,6 +275,45 @@ def validate_scripts() -> None:
             names.add(name)
 
 
+def validate_spotify_integration() -> None:
+    header_text = read_text(ROOT / "Rewrite" / "Sources" / "Header-Rewrite.conf")
+    spotify_text = read_text(ROOT / "Scripts" / "spotify.conf")
+    mitm_core_text = read_text(ROOT / "Rewrite" / "Sources" / "MITM-core.conf")
+
+    if SPOTIFY_HEADER_REWRITE_RULE not in header_text:
+        fail("Rewrite/Sources/Header-Rewrite.conf missing Spotify if-none-match header rewrite")
+
+    for marker in SPOTIFY_SCRIPT_MARKERS:
+        if marker not in spotify_text:
+            fail(f"Scripts/spotify.conf missing {marker}")
+
+    mitm_core_hosts = parse_hosts(mitm_core_text)
+    for host in SPOTIFY_MITM_HOSTS:
+        if host not in mitm_core_hosts:
+            fail(f"Rewrite/Sources/MITM-core.conf missing Spotify MITM hostname: {host}")
+
+    output_paths = [
+        MODULE,
+        RELEASE,
+        *(ROOT / meta["path"] for meta in RELEASE_VARIANTS.values()),
+    ]
+    for path in output_paths:
+        text = read_text(path)
+        label = path.relative_to(ROOT).as_posix()
+        if SPOTIFY_HEADER_REWRITE_RULE not in text:
+            fail(f"{label} missing Spotify if-none-match header rewrite")
+        for marker in SPOTIFY_SCRIPT_MARKERS:
+            if marker not in text:
+                fail(f"{label} missing {marker}")
+        mitm_start = text.find("[MITM]")
+        if mitm_start < 0:
+            fail(f"{label} missing [MITM]")
+        hosts = parse_hosts(text[mitm_start:])
+        for host in SPOTIFY_MITM_HOSTS:
+            if host not in hosts:
+                fail(f"{label} missing Spotify MITM hostname: {host}")
+
+
 def validate_zhihu_enhance() -> None:
     conf_path = ROOT / "Scripts" / "zhihu-enhance.conf"
     js_path = ROOT / "Scripts" / "zhihu-enhance.js"
@@ -470,6 +512,7 @@ def main() -> None:
     validate_release_variants()
     validate_remote_schema()
     validate_scripts()
+    validate_spotify_integration()
     validate_zhihu_enhance()
     validate_rules()
     validate_mitm()
