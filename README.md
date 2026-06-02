@@ -62,6 +62,8 @@ Android 版本是可迁移规则导出，不是 iOS `.sgmodule`。
 - sing-box rule-set
 - AdGuard DNS / AdGuard Home 自定义过滤规则
 - v2rayNG / V2Ray / Xray routing 片段
+- App 可选增强规则：按 App 或组合包手动启用
+- 高风险测试层：仅用于排查，不建议长期启用
 
 Android 版主要通过域名、关键词和 IP 规则拦截常见广告域名、追踪域名和部分 App 广告请求。它不包含 Shadowrocket / Surge 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 能力。
 
@@ -83,14 +85,31 @@ Android 不放在 iOS 模块导入表里。Android 用户请从这里进入专�
 
 > 如果一键导入无反应，通常不是链接失效，而是客户端不支持跳转协议。请复制链接后，在客户端中手动导入。
 
+### Android App 增强规则
+
+App 增强规则不默认启用，不属于 Android Stable 主规则。它们用于用户手动加强某个 App 或某组 App 的广告、统计、追踪域名拦截。
+
+- [Android App 增强规则索引](Android/apps.md)
+
+分层原则：
+
+| 层级 | 路径 | 用途 |
+|---|---|---|
+| 主规则 | `Android/mihomo/GrandpaNiu-Ads.yaml` | 低风险通用规则，供默认 Android 配置引用 |
+| App 可选增强 | `Android/*/apps/` | 单 App 或组合包增强，用户手动选择 |
+| 高风险测试层 | `Android/*/risky/` | HTTPDNS、宽泛 CDN、宽泛关键词等，仅排查使用 |
+
+不要同时启用 `Domestic-Apps` 组合包和大量单 App 文件，否则会重复命中。出现异常时，先关闭对应 App 增强规则。
+
 ### 新手推荐顺序
 
 如果你是普通用户，按这个顺序选：
 
 1. **没有节点** → 用 `GrandpaNiu-Android-Full.yaml`。
 2. **已有节点** → 用 `GrandpaNiu-Ads.yaml`。
-3. **完全不懂配置** → 优先用 FlClash / Mihomo，不要先碰 sing-box 和 v2rayNG。
-4. **只想轻量过滤** → 用 `GrandpaNiu-DNS.txt`。
+3. **想加强某个 App** → 看 [Android App 增强规则索引](Android/apps.md)，只加对应 App。
+4. **完全不懂配置** → 优先用 FlClash / Mihomo，不要先碰 sing-box 和 v2rayNG。
+5. **只想轻量过滤** → 用 `GrandpaNiu-DNS.txt`。
 
 ### Android 使用边界
 
@@ -114,6 +133,7 @@ Android 版不包含这些 iOS 能力：
 ### Android 使用教程
 
 - [GrandpaNiu Android 使用教程](docs/android-user-guide.md)
+- [Android App 增强规则索引](Android/apps.md)
 - [已有节点用户教程](Android/mihomo/README-With-Proxy.md)
 - [v2rayNG 手动合并教程](Android/v2rayng/README.md)
 
@@ -136,6 +156,7 @@ Android 版不包含这些 iOS 能力：
 - Android 版只迁移域名、关键词、IP 规则和部分可迁移拦截逻辑。
 - Android 版不包含 Script、MITM、Rewrite、Header Rewrite、Body Rewrite。
 - YouTube、TikTok、Instagram、Facebook 等平台内嵌广告可能与正常内容共用域名，Android 规则不保证完全去除。
+- Android App 增强规则属于可选层，不要把 `apps/` 或 `risky/` 当作默认主规则。
 
 ### 高风险场景
 
@@ -170,7 +191,7 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 | `Rewrite/Profiles/` | Stable / Stable Plus / Lite / Full 构建配置 |
 | `Rewrite/Remotes/` | 外部规则源、候选源和参考模块 |
 | `Release/` | 自动生成的发布模块 |
-| `Android/` | Android 可用规则和配置 |
+| `Android/` | Android 可用规则、配置和 App 增强规则 |
 | `docs/` | 使用、维护、测试、回滚文档 |
 | `reports/` | 健康检查、覆盖、风险和候选报告 |
 | `scripts/` | 构建、验证、审计、报告脚本 |
@@ -191,6 +212,7 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 | 发布回滚 | [docs/RELEASE.md](docs/RELEASE.md) | 发布、测试、回滚流程 |
 | 质量门禁 | [docs/QUALITY_GATE.md](docs/QUALITY_GATE.md) | 阻断项和发布前检查 |
 | 长期路线 | [docs/ROADMAP.md](docs/ROADMAP.md) | 后续优化方向和优先级 |
+| Android App 规则索引 | [Android/apps.md](Android/apps.md) | Android 可选增强、组合包、单 App、风险层说明 |
 
 </details>
 
