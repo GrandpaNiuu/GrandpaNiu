@@ -67,15 +67,3 @@ Update or generate reports that match the change:
 
 Do not write "passed" unless there is a real manual test record.
 
-## Prohibited Content
-
-Do not add:
-
-- membership unlocks or Premium bypasses
-- payment bypasses
-- login bypasses
-- account entitlement spoofing
-- Cookie / Token / BoxJS account tasks
-- adult, gambling, or grey-market content
-- unknown obfuscated scripts
-- short links, ghproxy, or unverified mirrors
