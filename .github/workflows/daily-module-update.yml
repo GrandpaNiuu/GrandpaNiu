@@ -14,8 +14,11 @@ on:
       - "scripts/build_module.py"
       - "scripts/build_release_variants.py"
       - "scripts/factory_finalize.py"
+      - "scripts/build_android_rules.py"
+      - "scripts/android_format_check.py"
       - "scripts/repository_health_check.py"
       - "Rewrite/Sources/Meta.conf"
+      - "Android/**"
 
 permissions:
   contents: write
@@ -48,7 +51,9 @@ jobs:
             scripts/audit_domestic_app_connectivity.py \
             scripts/generate_workflow_health_report.py \
             scripts/check_report_freshness.py \
-            scripts/repository_health_check.py
+            scripts/repository_health_check.py \
+            scripts/build_android_rules.py \
+            scripts/android_format_check.py
 
       - name: Update source metadata date, build, finalize and report
         run: |
@@ -63,6 +68,7 @@ jobs:
           module = Path("Ronghemokuai.sgmodule")
           release = Path("Release/Ronghemokuai.sgmodule")
           report = Path("reports/daily_update_report.md")
+          android_report = Path("reports/android_rules_report.md")
           report.parent.mkdir(parents=True, exist_ok=True)
 
           if not meta.exists():
@@ -73,6 +79,16 @@ jobs:
           meta_text = re.sub(r"^#!desc=.*$", f"#!desc={today}", meta_text, flags=re.M)
           meta_text = re.sub(r"^# update-date:.*$", f"# update-date: {today}", meta_text, flags=re.M)
           meta.write_text(meta_text, encoding="utf-8", newline="\n")
+
+          android_build = subprocess.run(["python3", "scripts/build_android_rules.py"], text=True, capture_output=True)
+          android_build_output = (android_build.stdout + android_build.stderr).strip() or "no output"
+          if android_build.returncode != 0:
+              raise SystemExit(android_build_output)
+
+          android_check = subprocess.run(["python3", "scripts/android_format_check.py"], text=True, capture_output=True)
+          android_check_output = (android_check.stdout + android_check.stderr).strip() or "no output"
+          if android_check.returncode != 0:
+              raise SystemExit(android_check_output)
 
           build = subprocess.run(["python3", "scripts/build_module.py", "--build", "--profile", "stable"], text=True, capture_output=True)
           if build.returncode != 0:
@@ -98,6 +114,16 @@ jobs:
           missing_variants = [path for path in required_variant_files if not Path(path).exists()]
           if missing_variants:
               raise SystemExit("Missing release variants: " + ", ".join(missing_variants))
+
+          android_outputs = [
+              "Android/mihomo/apps",
+              "Android/sing-box/apps",
+              "Android/adguard/apps",
+              "Android/v2rayng/apps",
+          ]
+          missing_android_outputs = [path for path in android_outputs if not Path(path).exists()]
+          if missing_android_outputs:
+              raise SystemExit("Missing Android output directories: " + ", ".join(missing_android_outputs))
 
           section_checks = {
               "[Rule]": "[Rule]" in text,
@@ -187,12 +213,26 @@ jobs:
           if freshness.returncode != 0:
               raise SystemExit(freshness_output)
 
+          android_report_text = android_report.read_text(encoding="utf-8") if android_report.exists() else "reports/android_rules_report.md not generated"
+
           lines = [
               "# 每日模块更新报告",
               "",
               f"- 日期：{today}",
               "- 日期源头：Rewrite/Sources/Meta.conf",
-              "- 构建流程：Meta.conf -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> build_release_variants.py -> validate_repository.py -> repository_health_check.py",
+              "- 构建流程：Meta.conf -> build_android_rules.py -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> build_release_variants.py -> validate_repository.py -> repository_health_check.py",
+              "",
+              "## Android 生成检查结果",
+              "",
+              "```text",
+              android_build_output,
+              "",
+              android_check_output,
+              "```",
+              "",
+              "## Android 规则报告",
+              "",
+              android_report_text,
               "",
               "## 完整区块检查结果",
               "",
@@ -213,6 +253,7 @@ jobs:
               "## 自动更新边界说明",
               "",
               "- 本 workflow 会更新源头日期、重新构建 stable、同步 Release 与 Root，并生成四个独立 Release 版本。",
+              "- 本 workflow 会从 Android/mihomo/apps/*.yaml 生成 Android 多格式 App 规则。",
               "- 默认根目录 Ronghemokuai.sgmodule 仍保持 stable。",
               "- 不自动删除规则。",
               "- 不自动注释脚本。",
@@ -227,6 +268,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule reports/daily_update_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/repository_health_report.md reports/profile_validation_report.md reports/report_freshness_report.md reports/reject_risk_report.md reports/app_status_matrix.md reports/promotion_pr_report.md reports/candidate_security_score_report.md reports/domestic_app_connectivity_audit.md reports/workflow_health_report.md
-          git diff --cached --quiet || git commit -m "Daily multi-version module update"
+          git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule Android/mihomo/apps Android/sing-box/apps Android/adguard/apps Android/v2rayng/apps reports/daily_update_report.md reports/android_rules_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/repository_health_report.md reports/profile_validation_report.md reports/report_freshness_report.md reports/reject_risk_report.md reports/app_status_matrix.md reports/promotion_pr_report.md reports/candidate_security_score_report.md reports/domestic_app_connectivity_audit.md reports/workflow_health_report.md
+          git diff --cached --quiet || git commit -m "Daily module update"
           git push
