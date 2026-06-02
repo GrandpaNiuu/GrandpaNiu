@@ -1,0 +1,7 @@
+||ads-img-qc.xhscdn.com^
+||ads-video-al.xhscdn.com^
+||ads-video-qc.xhscdn.com^
+||t-ads.xiaohongshu.com^
+||apm-native.xiaohongshu.com^
+/xiaohongshu-ad/
+/xhs-ad/
