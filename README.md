@@ -85,22 +85,6 @@ Android 不放在 iOS 模块导入表里。Android 用户请从这里进入专�
 
 > 如果一键导入无反应，通常不是链接失效，而是客户端不支持跳转协议。请复制链接后，在客户端中手动导入。
 
-### Android App 增强规则
-
-App 增强规则不默认启用，不属于 Android Stable 主规则。它们用于用户手动加强某个 App 或某组 App 的广告、统计、追踪域名拦截。
-
-- [Android App 增强规则索引](Android/apps.md)
-
-分层原则：
-
-| 层级 | 路径 | 用途 |
-|---|---|---|
-| 主规则 | `Android/mihomo/GrandpaNiu-Ads.yaml` | 低风险通用规则，供默认 Android 配置引用 |
-| App 可选增强 | `Android/*/apps/` | 单 App 或组合包增强，用户手动选择 |
-| 高风险测试层 | `Android/*/risky/` | HTTPDNS、宽泛 CDN、宽泛关键词等，仅排查使用 |
-
-不要同时启用 `Domestic-Apps` 组合包和大量单 App 文件，否则会重复命中。出现异常时，先关闭对应 App 增强规则。
-
 ### 新手推荐顺序
 
 如果你是普通用户，按这个顺序选：
@@ -114,29 +98,17 @@ App 增强规则不默认启用，不属于 Android Stable 主规则。它们用
 ### Android 使用边界
 
 Android 版只迁移这些能力：
-
 - 域名规则。
 - 关键词规则。
 - IP 规则。
 - 部分可迁移拦截逻辑。
-
 Android 版不包含这些 iOS 能力：
-
 - Script。
 - MITM。
 - Rewrite。
 - Header Rewrite。
 - Body Rewrite。
-
 所以 Android 版不保证达到 iOS / Shadowrocket / Surge 完全相同的净化效果。
-
-### Android 使用教程
-
-- [GrandpaNiu Android 使用教程](docs/android-user-guide.md)
-- [Android App 增强规则索引](Android/apps.md)
-- [已有节点用户教程](Android/mihomo/README-With-Proxy.md)
-- [v2rayNG 手动合并教程](Android/v2rayng/README.md)
-
 ## 使用提醒
 
 ### 日常使用
@@ -156,7 +128,6 @@ Android 版不包含这些 iOS 能力：
 - Android 版只迁移域名、关键词、IP 规则和部分可迁移拦截逻辑。
 - Android 版不包含 Script、MITM、Rewrite、Header Rewrite、Body Rewrite。
 - YouTube、TikTok、Instagram、Facebook 等平台内嵌广告可能与正常内容共用域名，Android 规则不保证完全去除。
-- Android App 增强规则属于可选层，不要把 `apps/` 或 `risky/` 当作默认主规则。
 
 ### 高风险场景
 
