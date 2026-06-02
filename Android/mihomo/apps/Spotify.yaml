@@ -1,0 +1,15 @@
+payload:
+  - DOMAIN,ads-fa.spotify.com
+  - DOMAIN,audio-ads.spotify.com
+  - DOMAIN,spotify-ads.spotifycdn.com
+  - DOMAIN,adstudio.spotify.com
+  - DOMAIN,adeventtracker.spotify.com
+  - DOMAIN,analytics.spotify.com
+  - DOMAIN,log.spotify.com
+  - DOMAIN,spclient.wg.spotify.com
+  - DOMAIN,gew1-spclient.spotify.com
+  - DOMAIN,gew4-spclient.spotify.com
+  - DOMAIN,heads-ak.spotify.com
+  - DOMAIN-SUFFIX,spotifycdn.com
+  - DOMAIN-KEYWORD,spotify-ads
+  - DOMAIN-KEYWORD,spotify-ad
