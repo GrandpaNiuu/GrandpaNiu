@@ -1,6 +1,6 @@
 # Android 规则生成报告
 
-- 最后更新时间：2026-06-03 07:02:44
+- 最后更新时间：2026-06-03 07:03:47
 - App 总数：17
 - 当前源头：Android/mihomo/apps/*.yaml
 - 输出：Mihomo / sing-box / AdGuard / v2rayNG

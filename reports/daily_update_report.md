@@ -2,7 +2,45 @@
 
 - 日期：2026-06-03
 - 日期源头：Rewrite/Sources/Meta.conf
-- 构建流程：Meta.conf -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> build_release_variants.py -> validate_repository.py -> repository_health_check.py
+- 构建流程：Meta.conf -> build_android_rules.py -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> build_release_variants.py -> validate_repository.py -> repository_health_check.py
+
+## Android 生成检查结果
+
+```text
+Android rule formats generated.
+
+Android format check passed.
+```
+
+## Android 规则报告
+
+# Android 规则生成报告
+
+- 最后更新时间：2026-06-03 07:03:47
+- App 总数：17
+- 当前源头：Android/mihomo/apps/*.yaml
+- 输出：Mihomo / sing-box / AdGuard / v2rayNG
+
+| App | 规则数 | 四格式输出 |
+|---|---:|---|
+| Bilibili | 5 | 是 |
+| Domestic-Apps | 160 | 是 |
+| Douyin | 12 | 是 |
+| iQiyi | 4 | 是 |
+| Kugou | 4 | 是 |
+| MangoTV | 12 | 是 |
+| Meituan-Dianping | 11 | 是 |
+| NeteaseMusic | 5 | 是 |
+| Pinduoduo | 12 | 是 |
+| Spotify | 14 | 是 |
+| Taobao | 13 | 是 |
+| TencentMusic | 5 | 是 |
+| Weibo | 6 | 是 |
+| Xiaohongshu | 7 | 是 |
+| Ximalaya | 6 | 是 |
+| Youku | 8 | 是 |
+| YouTube | 15 | 是 |
+
 
 ## 完整区块检查结果
 
@@ -94,6 +132,7 @@ Report freshness report written to /home/runner/work/GrandpaNiu/GrandpaNiu/repor
 ## 自动更新边界说明
 
 - 本 workflow 会更新源头日期、重新构建 stable、同步 Release 与 Root，并生成四个独立 Release 版本。
+- 本 workflow 会从 Android/mihomo/apps/*.yaml 生成 Android 多格式 App 规则。
 - 默认根目录 Ronghemokuai.sgmodule 仍保持 stable。
 - 不自动删除规则。
 - 不自动注释脚本。
