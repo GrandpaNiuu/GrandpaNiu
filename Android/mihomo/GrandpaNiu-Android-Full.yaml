@@ -1,5 +1,6 @@
 # GrandpaNiu Android full config for Mihomo / Clash Meta
-# This config contains no proxy nodes. It only rejects matched ad rules.
+# This config contains no proxy nodes. It rejects matched base and app-enhancement rules.
+# Risky rules are not enabled here.
 
 mixed-port: 7890
 allow-lan: false
@@ -23,6 +24,33 @@ rule-providers:
     path: ./ruleset/GrandpaNiu-Ads.yaml
     interval: 86400
 
+  grandpaniu_domestic_apps:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/apps/Domestic-Apps.yaml"
+    path: ./ruleset/GrandpaNiu-Domestic-Apps.yaml
+    interval: 86400
+
+  grandpaniu_youtube:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/apps/YouTube.yaml"
+    path: ./ruleset/GrandpaNiu-YouTube.yaml
+    interval: 86400
+
+  grandpaniu_spotify:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/apps/Spotify.yaml"
+    path: ./ruleset/GrandpaNiu-Spotify.yaml
+    interval: 86400
+
 rules:
+  - RULE-SET,grandpaniu_domestic_apps,REJECT
+  - RULE-SET,grandpaniu_youtube,REJECT
+  - RULE-SET,grandpaniu_spotify,REJECT
   - RULE-SET,grandpaniu_ads,REJECT
   - MATCH,DIRECT
