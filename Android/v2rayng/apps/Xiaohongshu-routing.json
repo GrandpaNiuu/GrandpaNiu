@@ -1,0 +1,1 @@
+{"routing":{"rules":[{"type":"field","domain":["full:ads-img-qc.xhscdn.com","full:ads-video-al.xhscdn.com","full:ads-video-qc.xhscdn.com","full:t-ads.xiaohongshu.com","full:apm-native.xiaohongshu.com","keyword:xiaohongshu-ad","keyword:xhs-ad"],"outboundTag":"block"}]}}
