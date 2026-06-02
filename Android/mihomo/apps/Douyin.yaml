@@ -1,0 +1,13 @@
+payload:
+  - DOMAIN,ad.toutiao.com
+  - DOMAIN,ad.zijieapi.com
+  - DOMAIN,log.snssdk.com
+  - DOMAIN,mon.snssdk.com
+  - DOMAIN,temai.snssdk.com
+  - DOMAIN,pangolin.snssdk.com
+  - DOMAIN,pangolin-sdk-toutiao.com
+  - DOMAIN-SUFFIX,pglstatp-toutiao.com
+  - DOMAIN-SUFFIX,pangolin-sdk-toutiao.com
+  - DOMAIN-SUFFIX,zjcdn.com
+  - DOMAIN-KEYWORD,pangolin
+  - DOMAIN-KEYWORD,pglstatp
