@@ -1,1 +1,17 @@
-{"routing":{"rules":[{"type":"field","domain":["full:cm.bilibili.com","full:data.bilibili.com","full:miniapp.bilibili.com","domain:cm.bilibili.com","keyword:bili-ad"],"outboundTag":"block"}]}}
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "full:cm.bilibili.com",
+          "full:data.bilibili.com",
+          "full:miniapp.bilibili.com",
+          "keyword:bili-ad",
+          "domain:cm.bilibili.com"
+        ],
+        "outboundTag": "block"
+      }
+    ]
+  }
+}

@@ -1,1 +1,15 @@
-{"version":1,"rules":[{"domain":["ad.ximalaya.com","adbehavior.ximalaya.com","adse.ximalaya.com","adsehera.ximalaya.com","adweb.ximalaya.com","adwx.ximalaya.com"]}]}
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain": [
+        "ad.ximalaya.com",
+        "adbehavior.ximalaya.com",
+        "adse.ximalaya.com",
+        "adsehera.ximalaya.com",
+        "adweb.ximalaya.com",
+        "adwx.ximalaya.com"
+      ]
+    }
+  ]
+}

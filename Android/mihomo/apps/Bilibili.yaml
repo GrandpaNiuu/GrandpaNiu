@@ -2,5 +2,5 @@ payload:
   - DOMAIN,cm.bilibili.com
   - DOMAIN,data.bilibili.com
   - DOMAIN,miniapp.bilibili.com
-  - DOMAIN-SUFFIX,cm.bilibili.com
   - DOMAIN-KEYWORD,bili-ad
+  - DOMAIN-SUFFIX,cm.bilibili.com

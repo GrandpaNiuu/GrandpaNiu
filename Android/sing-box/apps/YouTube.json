@@ -3,25 +3,25 @@
   "rules": [
     {
       "domain": [
+        "ads.youtube.com",
+        "adservice.google.com",
         "googleads.g.doubleclick.net",
-        "pagead2.googlesyndication.com",
         "pagead-googlehosted.l.google.com",
+        "pagead2.googlesyndication.com",
         "partnerad.l.doubleclick.net",
         "static.doubleclick.net",
         "tpc.googlesyndication.com",
-        "www.googleadservices.com",
-        "adservice.google.com",
-        "ads.youtube.com"
+        "www.googleadservices.com"
       ],
       "domain_suffix": [
         "doubleclick.net",
-        "googlesyndication.com",
-        "googleadservices.com"
+        "googleadservices.com",
+        "googlesyndication.com"
       ],
       "domain_keyword": [
+        "doubleclick",
         "googleads",
-        "googlesyndication",
-        "doubleclick"
+        "googlesyndication"
       ]
     }
   ]

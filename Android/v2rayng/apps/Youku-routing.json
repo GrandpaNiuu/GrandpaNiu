@@ -1,1 +1,20 @@
-{"routing":{"rules":[{"type":"field","domain":["full:adx-core.youku.com","full:adx-open-service.youku.com","full:cad.youku.com","full:ems.youku.com","full:m.atm.youku.com","full:mc.atm.youku.com","full:yk-ssp.ad.youku.com","full:ykad-data.youku.com"],"outboundTag":"block"}]}}
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "full:adx-core.youku.com",
+          "full:adx-open-service.youku.com",
+          "full:cad.youku.com",
+          "full:ems.youku.com",
+          "full:m.atm.youku.com",
+          "full:mc.atm.youku.com",
+          "full:yk-ssp.ad.youku.com",
+          "full:ykad-data.youku.com"
+        ],
+        "outboundTag": "block"
+      }
+    ]
+  }
+}

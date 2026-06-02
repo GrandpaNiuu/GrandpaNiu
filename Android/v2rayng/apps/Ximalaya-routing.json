@@ -1,1 +1,18 @@
-{"routing":{"rules":[{"type":"field","domain":["full:ad.ximalaya.com","full:adbehavior.ximalaya.com","full:adse.ximalaya.com","full:adsehera.ximalaya.com","full:adweb.ximalaya.com","full:adwx.ximalaya.com"],"outboundTag":"block"}]}}
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "full:ad.ximalaya.com",
+          "full:adbehavior.ximalaya.com",
+          "full:adse.ximalaya.com",
+          "full:adsehera.ximalaya.com",
+          "full:adweb.ximalaya.com",
+          "full:adwx.ximalaya.com"
+        ],
+        "outboundTag": "block"
+      }
+    ]
+  }
+}

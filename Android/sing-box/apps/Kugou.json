@@ -1,1 +1,13 @@
-{"version":1,"rules":[{"domain":["ads.service.kugou.com","adservice.kugou.com","adserviceretry.kugou.com","splashimgretrybssdl.cloud.kugou.com"]}]}
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain": [
+        "ads.service.kugou.com",
+        "adservice.kugou.com",
+        "adserviceretry.kugou.com",
+        "splashimgretrybssdl.cloud.kugou.com"
+      ]
+    }
+  ]
+}

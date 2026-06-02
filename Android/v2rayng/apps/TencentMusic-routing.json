@@ -1,1 +1,17 @@
-{"routing":{"rules":[{"type":"field","domain":["full:ad.tencentmusic.com","full:adcdn.tencentmusic.com","full:adcdn6.tencentmusic.com","full:adexpo.tencentmusic.com","full:adstats.tencentmusic.com"],"outboundTag":"block"}]}}
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "full:ad.tencentmusic.com",
+          "full:adcdn.tencentmusic.com",
+          "full:adcdn6.tencentmusic.com",
+          "full:adexpo.tencentmusic.com",
+          "full:adstats.tencentmusic.com"
+        ],
+        "outboundTag": "block"
+      }
+    ]
+  }
+}

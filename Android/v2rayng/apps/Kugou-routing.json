@@ -1,1 +1,16 @@
-{"routing":{"rules":[{"type":"field","domain":["full:ads.service.kugou.com","full:adservice.kugou.com","full:adserviceretry.kugou.com","full:splashimgretrybssdl.cloud.kugou.com"],"outboundTag":"block"}]}}
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "full:ads.service.kugou.com",
+          "full:adservice.kugou.com",
+          "full:adserviceretry.kugou.com",
+          "full:splashimgretrybssdl.cloud.kugou.com"
+        ],
+        "outboundTag": "block"
+      }
+    ]
+  }
+}

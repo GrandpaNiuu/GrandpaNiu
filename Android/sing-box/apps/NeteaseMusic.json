@@ -1,1 +1,14 @@
-{"version":1,"rules":[{"domain":["admusicpic.music.126.net","iad.g.163.com","iadmat.nosdn.127.net","iadmusicmat.music.126.net","iadmusicmatvideo.music.126.net"]}]}
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain": [
+        "admusicpic.music.126.net",
+        "iad.g.163.com",
+        "iadmat.nosdn.127.net",
+        "iadmusicmat.music.126.net",
+        "iadmusicmatvideo.music.126.net"
+      ]
+    }
+  ]
+}

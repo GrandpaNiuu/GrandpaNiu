@@ -1,1 +1,17 @@
-{"routing":{"rules":[{"type":"field","domain":["full:admusicpic.music.126.net","full:iad.g.163.com","full:iadmat.nosdn.127.net","full:iadmusicmat.music.126.net","full:iadmusicmatvideo.music.126.net"],"outboundTag":"block"}]}}
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "full:admusicpic.music.126.net",
+          "full:iad.g.163.com",
+          "full:iadmat.nosdn.127.net",
+          "full:iadmusicmat.music.126.net",
+          "full:iadmusicmatvideo.music.126.net"
+        ],
+        "outboundTag": "block"
+      }
+    ]
+  }
+}

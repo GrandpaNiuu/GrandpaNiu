@@ -1,1 +1,14 @@
-{"version":1,"rules":[{"domain":["ad.tencentmusic.com","adcdn.tencentmusic.com","adcdn6.tencentmusic.com","adexpo.tencentmusic.com","adstats.tencentmusic.com"]}]}
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain": [
+        "ad.tencentmusic.com",
+        "adcdn.tencentmusic.com",
+        "adcdn6.tencentmusic.com",
+        "adexpo.tencentmusic.com",
+        "adstats.tencentmusic.com"
+      ]
+    }
+  ]
+}

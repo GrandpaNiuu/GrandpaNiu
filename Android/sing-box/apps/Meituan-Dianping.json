@@ -1,1 +1,20 @@
-{"version":1,"rules":[{"domain":["ad.e.waimai.sankuai.com","dpmtpush.dianping.com","dynamicf.sankuai.com","hlx.meituan.com","layout.meituan.net","live-monitor-broker.sankuai.com","lx0.meituan.com","r.dianping.com","report.meituan","tte.meituan.com","wmlog.meituan.com"]}]}
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain": [
+        "ad.e.waimai.sankuai.com",
+        "dpmtpush.dianping.com",
+        "dynamicf.sankuai.com",
+        "hlx.meituan.com",
+        "layout.meituan.net",
+        "live-monitor-broker.sankuai.com",
+        "lx0.meituan.com",
+        "r.dianping.com",
+        "report.meituan",
+        "tte.meituan.com",
+        "wmlog.meituan.com"
+      ]
+    }
+  ]
+}

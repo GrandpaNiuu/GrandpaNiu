@@ -3,5 +3,5 @@ payload:
   - DOMAIN,saxn.sina.com.cn
   - DOMAIN,saxs.sina.com.cn
   - DOMAIN,u1.img.mobile.sina.cn
-  - DOMAIN-SUFFIX,sax.sina.com.cn
   - DOMAIN-KEYWORD,weibo-ad
+  - DOMAIN-SUFFIX,sax.sina.com.cn

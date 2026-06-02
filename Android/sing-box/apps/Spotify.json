@@ -3,24 +3,24 @@
   "rules": [
     {
       "domain": [
-        "ads-fa.spotify.com",
-        "audio-ads.spotify.com",
-        "spotify-ads.spotifycdn.com",
-        "adstudio.spotify.com",
         "adeventtracker.spotify.com",
+        "ads-fa.spotify.com",
+        "adstudio.spotify.com",
         "analytics.spotify.com",
-        "log.spotify.com",
-        "spclient.wg.spotify.com",
+        "audio-ads.spotify.com",
         "gew1-spclient.spotify.com",
         "gew4-spclient.spotify.com",
-        "heads-ak.spotify.com"
+        "heads-ak.spotify.com",
+        "log.spotify.com",
+        "spclient.wg.spotify.com",
+        "spotify-ads.spotifycdn.com"
       ],
       "domain_suffix": [
         "spotifycdn.com"
       ],
       "domain_keyword": [
-        "spotify-ads",
-        "spotify-ad"
+        "spotify-ad",
+        "spotify-ads"
       ]
     }
   ]

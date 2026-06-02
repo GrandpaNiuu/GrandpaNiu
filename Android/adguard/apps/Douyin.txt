@@ -2,9 +2,11 @@
 ||ad.zijieapi.com^
 ||log.snssdk.com^
 ||mon.snssdk.com^
-||temai.snssdk.com^
-||pangolin.snssdk.com^
 ||pangolin-sdk-toutiao.com^
-||pglstatp-toutiao.com^
+||pangolin.snssdk.com^
+||temai.snssdk.com^
 /pangolin/
 /pglstatp/
+||pangolin-sdk-toutiao.com^
+||pglstatp-toutiao.com^
+||zjcdn.com^

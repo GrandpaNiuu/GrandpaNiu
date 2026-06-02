@@ -1,1 +1,16 @@
-{"routing":{"rules":[{"type":"field","domain":["full:access.if.iqiyi.com","full:api.iqiyi.com","full:cupid.iqiyi.com","full:cupid.ptqy.gitv.tv"],"outboundTag":"block"}]}}
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "full:access.if.iqiyi.com",
+          "full:api.iqiyi.com",
+          "full:cupid.iqiyi.com",
+          "full:cupid.ptqy.gitv.tv"
+        ],
+        "outboundTag": "block"
+      }
+    ]
+  }
+}

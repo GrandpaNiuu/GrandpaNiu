@@ -1,1 +1,23 @@
-{"routing":{"rules":[{"type":"field","domain":["full:ad.e.waimai.sankuai.com","full:dpmtpush.dianping.com","full:dynamicf.sankuai.com","full:hlx.meituan.com","full:layout.meituan.net","full:live-monitor-broker.sankuai.com","full:lx0.meituan.com","full:r.dianping.com","full:report.meituan","full:tte.meituan.com","full:wmlog.meituan.com"],"outboundTag":"block"}]}}
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "full:ad.e.waimai.sankuai.com",
+          "full:dpmtpush.dianping.com",
+          "full:dynamicf.sankuai.com",
+          "full:hlx.meituan.com",
+          "full:layout.meituan.net",
+          "full:live-monitor-broker.sankuai.com",
+          "full:lx0.meituan.com",
+          "full:r.dianping.com",
+          "full:report.meituan",
+          "full:tte.meituan.com",
+          "full:wmlog.meituan.com"
+        ],
+        "outboundTag": "block"
+      }
+    ]
+  }
+}
