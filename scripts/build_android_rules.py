@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Build Android app rule formats from Android/sources/apps.yaml.
+"""Build Android app rule formats.
 
-The source file intentionally uses JSON-compatible YAML so the builder can run
-with the Python standard library only.
+Current source of truth: Android/mihomo/apps/*.yaml
+
+This absorbs the useful idea from the old builder.py: use one app-level source
+and generate the other distributable formats from it. A structured JSON/YAML
+source can be added later, but this keeps the repository runnable immediately.
 """
 
 from __future__ import annotations
@@ -10,68 +13,38 @@ from __future__ import annotations
 import json
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "Android" / "sources" / "apps.yaml"
 MIHOMO_DIR = ROOT / "Android" / "mihomo" / "apps"
 SING_BOX_DIR = ROOT / "Android" / "sing-box" / "apps"
 ADGUARD_DIR = ROOT / "Android" / "adguard" / "apps"
 V2RAYNG_DIR = ROOT / "Android" / "v2rayng" / "apps"
 REPORT = ROOT / "reports" / "android_rules_report.md"
-
 SUPPORTED_TYPES = {"DOMAIN", "DOMAIN-SUFFIX", "DOMAIN-KEYWORD"}
 
 
-def read_source() -> dict[str, Any]:
-    if not SOURCE.exists():
-        raise SystemExit(f"missing source: {SOURCE.relative_to(ROOT)}")
-    try:
-        data = json.loads(SOURCE.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as exc:
-        raise SystemExit(f"invalid JSON-compatible YAML in {SOURCE.relative_to(ROOT)}: {exc}") from exc
-    if not isinstance(data, dict) or not isinstance(data.get("apps"), dict):
-        raise SystemExit("Android/sources/apps.yaml must contain an apps object")
-    return data
-
-
-def clean_app_name(name: str) -> str:
-    allowed = []
-    for char in name.strip():
-        if char.isalnum() or char in {"-", "_"}:
-            allowed.append(char)
-        elif char in {" ", "/"}:
-            allowed.append("-")
-    cleaned = "".join(allowed).strip("-")
-    if not cleaned:
-        raise SystemExit(f"invalid app name: {name!r}")
-    return cleaned
-
-
-def normalize_rules(app_name: str, rules: list[dict[str, Any]]) -> list[dict[str, str]]:
+def parse_mihomo_file(path: Path) -> list[dict[str, str]]:
+    rules: list[dict[str, str]] = []
     seen: set[tuple[str, str]] = set()
-    normalized: list[dict[str, str]] = []
-    for index, rule in enumerate(rules, 1):
-        if not isinstance(rule, dict):
-            raise SystemExit(f"{app_name} rule[{index}] must be an object")
-        rule_type = str(rule.get("type", "")).strip().upper()
-        value = str(rule.get("value", "")).strip()
-        if rule_type not in SUPPORTED_TYPES:
-            raise SystemExit(f"{app_name} rule[{index}] has unsupported type: {rule_type}")
-        if not value:
-            raise SystemExit(f"{app_name} rule[{index}] has empty value")
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line == "payload:" or line.startswith("#"):
+            continue
+        if line.startswith("-"):
+            line = line[1:].strip()
+        if "," not in line:
+            continue
+        rule_type, value = [part.strip() for part in line.split(",", 1)]
+        rule_type = rule_type.upper()
+        if rule_type not in SUPPORTED_TYPES or not value:
+            continue
         key = (rule_type, value.lower())
         if key in seen:
             continue
         seen.add(key)
-        normalized.append({
-            "type": rule_type,
-            "value": value,
-            "risk": str(rule.get("risk", "medium")).strip().lower(),
-            "purpose": str(rule.get("purpose", "unspecified")).strip(),
-        })
-    normalized.sort(key=lambda item: (item["type"], item["value"].lower()))
-    return normalized
+        rules.append({"type": rule_type, "value": value})
+    rules.sort(key=lambda item: (item["type"], item["value"].lower()))
+    return rules
 
 
 def render_mihomo(rules: list[dict[str, str]]) -> str:
@@ -90,7 +63,7 @@ def render_sing_box(rules: list[dict[str, str]]) -> str:
         elif rule["type"] == "DOMAIN-KEYWORD":
             bucket["domain_keyword"].append(rule["value"])
     payload = {"version": 1, "rules": [{key: values for key, values in bucket.items() if values}]}
-    return json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=False) + "\n"
+    return json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
 
 
 def render_adguard(rules: list[dict[str, str]]) -> str:
@@ -115,7 +88,7 @@ def render_v2rayng(rules: list[dict[str, str]]) -> str:
         elif rule["type"] == "DOMAIN-KEYWORD":
             domains.append(f"keyword:{value}")
     payload = {"routing": {"rules": [{"type": "field", "domain": domains, "outboundTag": "block"}]}}
-    return json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=False) + "\n"
+    return json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
 
 
 def write_if_changed(path: Path, content: str) -> bool:
@@ -126,62 +99,41 @@ def write_if_changed(path: Path, content: str) -> bool:
     return True
 
 
-def generate_report(app_stats: list[dict[str, Any]]) -> None:
+def generate_report(stats: list[dict[str, str | int]]) -> None:
     now = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S")
     lines = [
         "# Android 规则生成报告",
         "",
         f"- 最后更新时间：{now}",
-        f"- App 总数：{len(app_stats)}",
-        "- 源头：Android/sources/apps.yaml",
+        f"- App 总数：{len(stats)}",
+        "- 当前源头：Android/mihomo/apps/*.yaml",
         "- 输出：Mihomo / sing-box / AdGuard / v2rayNG",
         "",
-        "| App | 规则数 | 风险 | 测试状态 | 国内组合包 | 四格式输出 |",
-        "|---|---:|---|---|---|---|",
+        "| App | 规则数 | 四格式输出 |",
+        "|---|---:|---|",
     ]
-    for item in sorted(app_stats, key=lambda row: row["name"].lower()):
-        lines.append(
-            f"| {item['name']} | {item['count']} | {item['risk']} | {item['test_status']} | "
-            f"{'是' if item['domestic_bundle'] else '否'} | 是 |"
-        )
+    for item in sorted(stats, key=lambda row: str(row["name"]).lower()):
+        lines.append(f"| {item['name']} | {item['count']} | 是 |")
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
 
 def main() -> None:
-    data = read_source()
-    app_stats: list[dict[str, Any]] = []
-    domestic_rules: list[dict[str, str]] = []
-
-    for app_name, meta in sorted(data["apps"].items(), key=lambda item: item[0].lower()):
-        if not isinstance(meta, dict):
-            raise SystemExit(f"{app_name} metadata must be an object")
-        rules = normalize_rules(app_name, meta.get("rules", []))
-        safe_name = clean_app_name(app_name)
-        write_if_changed(MIHOMO_DIR / f"{safe_name}.yaml", render_mihomo(rules))
-        write_if_changed(SING_BOX_DIR / f"{safe_name}.json", render_sing_box(rules))
-        write_if_changed(ADGUARD_DIR / f"{safe_name}.txt", render_adguard(rules))
-        write_if_changed(V2RAYNG_DIR / f"{safe_name}-routing.json", render_v2rayng(rules))
-
-        domestic = bool(meta.get("domestic_bundle", False))
-        if domestic:
-            domestic_rules.extend(rules)
-        app_stats.append({
-            "name": safe_name,
-            "count": len(rules),
-            "risk": meta.get("risk", "medium"),
-            "test_status": meta.get("test_status", "untested"),
-            "domestic_bundle": domestic,
-        })
-
-    if domestic_rules:
-        domestic_rules = normalize_rules("Domestic-Apps", domestic_rules)
-        write_if_changed(MIHOMO_DIR / "Domestic-Apps.yaml", render_mihomo(domestic_rules))
-        write_if_changed(SING_BOX_DIR / "Domestic-Apps.json", render_sing_box(domestic_rules))
-        write_if_changed(ADGUARD_DIR / "Domestic-Apps.txt", render_adguard(domestic_rules))
-        write_if_changed(V2RAYNG_DIR / "Domestic-Apps-routing.json", render_v2rayng(domestic_rules))
-
-    generate_report(app_stats)
+    if not MIHOMO_DIR.exists():
+        raise SystemExit("missing Android/mihomo/apps source directory")
+    stats: list[dict[str, str | int]] = []
+    for source in sorted(MIHOMO_DIR.glob("*.yaml"), key=lambda path: path.name.lower()):
+        app_name = source.stem
+        rules = parse_mihomo_file(source)
+        if not rules:
+            continue
+        normalized = render_mihomo(rules)
+        write_if_changed(source, normalized)
+        write_if_changed(SING_BOX_DIR / f"{app_name}.json", render_sing_box(rules))
+        write_if_changed(ADGUARD_DIR / f"{app_name}.txt", render_adguard(rules))
+        write_if_changed(V2RAYNG_DIR / f"{app_name}-routing.json", render_v2rayng(rules))
+        stats.append({"name": app_name, "count": len(rules)})
+    generate_report(stats)
     print("Android rule formats generated.")
 
 
