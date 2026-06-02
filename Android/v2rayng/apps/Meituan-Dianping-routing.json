@@ -3,6 +3,7 @@
     "rules": [
       {
         "type": "field",
+        "outboundTag": "block",
         "domain": [
           "full:ad.e.waimai.sankuai.com",
           "full:dpmtpush.dianping.com",
@@ -15,8 +16,7 @@
           "full:report.meituan",
           "full:tte.meituan.com",
           "full:wmlog.meituan.com"
-        ],
-        "outboundTag": "block"
+        ]
       }
     ]
   }

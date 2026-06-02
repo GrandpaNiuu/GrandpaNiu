@@ -3,6 +3,7 @@
     "rules": [
       {
         "type": "field",
+        "outboundTag": "block",
         "domain": [
           "full:credits.bz.mgtv.com",
           "full:credits2.bz.mgtv.com",
@@ -16,8 +17,7 @@
           "full:rprain.bz.mgtv.com",
           "full:rprain.log.mgtv.com",
           "full:vip.bz.mgtv.com"
-        ],
-        "outboundTag": "block"
+        ]
       }
     ]
   }

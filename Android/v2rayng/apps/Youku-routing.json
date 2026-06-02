@@ -3,6 +3,7 @@
     "rules": [
       {
         "type": "field",
+        "outboundTag": "block",
         "domain": [
           "full:adx-core.youku.com",
           "full:adx-open-service.youku.com",
@@ -12,8 +13,7 @@
           "full:mc.atm.youku.com",
           "full:yk-ssp.ad.youku.com",
           "full:ykad-data.youku.com"
-        ],
-        "outboundTag": "block"
+        ]
       }
     ]
   }

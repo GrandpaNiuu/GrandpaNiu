@@ -3,6 +3,7 @@
     "rules": [
       {
         "type": "field",
+        "outboundTag": "block",
         "domain": [
           "full:acs4baichuan.m.taobao.com",
           "full:adash.m.taobao.com",
@@ -17,8 +18,7 @@
           "full:umengacs.m.taobao.com",
           "full:ut.taobao.com",
           "full:wgo.mmstat.com"
-        ],
-        "outboundTag": "block"
+        ]
       }
     ]
   }

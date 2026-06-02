@@ -3,6 +3,7 @@
     "rules": [
       {
         "type": "field",
+        "outboundTag": "block",
         "domain": [
           "full:access.if.iqiyi.com",
           "full:acs4baichuan.m.taobao.com",
@@ -164,8 +165,7 @@
           "domain:pglstatp-toutiao.com",
           "domain:sax.sina.com.cn",
           "domain:zhihu-web-analytics.zhihu.com"
-        ],
-        "outboundTag": "block"
+        ]
       }
     ]
   }

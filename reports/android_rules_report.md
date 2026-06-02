@@ -1,8 +1,9 @@
 # Android 规则生成报告
 
-- 最后更新时间：2026-06-03 07:03:47
-- App 总数：17
-- 当前源头：Android/mihomo/apps/*.yaml
+- 最后更新时间：2026-06-03 07:08:52
+- App 总数：18
+- 当前 Android App 源头：Android/mihomo/apps/*.yaml
+- iOS 可复用源头：Rules/reject.list -> iOS-Compatible-Reject
 - 输出：Mihomo / sing-box / AdGuard / v2rayNG
 
 | App | 规则数 | 四格式输出 |
@@ -10,6 +11,7 @@
 | Bilibili | 5 | 是 |
 | Domestic-Apps | 160 | 是 |
 | Douyin | 12 | 是 |
+| iOS-Compatible-Reject | 266 | 是 |
 | iQiyi | 4 | 是 |
 | Kugou | 4 | 是 |
 | MangoTV | 12 | 是 |

@@ -3,6 +3,7 @@
     "rules": [
       {
         "type": "field",
+        "outboundTag": "block",
         "domain": [
           "full:cd-1.pddpic.com",
           "full:cdl-1.pddpic.com",
@@ -16,8 +17,7 @@
           "full:titan.pinduoduo.com",
           "full:xg.pinduoduo.com",
           "keyword:pdd-ad"
-        ],
-        "outboundTag": "block"
+        ]
       }
     ]
   }
