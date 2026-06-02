@@ -1,0 +1,5 @@
+payload:
+  - DOMAIN,ads.service.kugou.com
+  - DOMAIN,adservice.kugou.com
+  - DOMAIN,adserviceretry.kugou.com
+  - DOMAIN,splashimgretrybssdl.cloud.kugou.com
