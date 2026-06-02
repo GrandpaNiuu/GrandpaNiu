@@ -38,29 +38,7 @@ Shadowrocket / Surge / Android 净化规则与模块集合。
 | Lite | 手机发热、耗电、登录异常时排查 | 最小必要覆盖 | 覆盖少、风险低 | 排查使用 | [导入][lite-import] |
 | Full | 查漏拦、临时定位 hostname | 全量排查覆盖 | 不适合长期启用 | 高级排查 | [导入][full-import] |
 
-> 不要同时启用多个版本。覆盖存在不等于所有 App 都已人工测试通过。
-
-## iOS / Shadowrocket / Surge 导入方式
-
-优先使用多版本导入页：
-
-- [打开多版本导入页][import-page]
-
-也可以直接使用下面的地址：
-
-| 版本 | Pages 地址 | Raw 地址 |
-|---|---|---|
-| Stable | [Ronghemokuai-stable.sgmodule][stable-pages] | [Raw][stable-raw] |
-| Stable Plus | [Ronghemokuai-stable-plus.sgmodule][stable-plus-pages] | [Raw][stable-plus-raw] |
-| Lite | [Ronghemokuai-lite.sgmodule][lite-pages] | [Raw][lite-raw] |
-| Full | [Ronghemokuai-full.sgmodule][full-pages] | [Raw][full-raw] |
-| 默认 Root | [Ronghemokuai.sgmodule][root-pages] | [Raw][root-raw] |
-
-导入后建议在 Shadowrocket 中执行：
-
-1. 更新模块
-2. 更新脚本
-3. 更新全部资源
+> 普通用户默认导入 Stable。不要同时启用多个版本。覆盖存在不等于所有 App 都已人工测试通过。导入后建议在 Shadowrocket 中执行：更新模块、更新脚本、更新全部资源。
 
 ## 功能作用
 
@@ -346,6 +324,7 @@ Android 版不包含这些 iOS 能力：
 
 - 默认使用 Stable。
 - 不要同时启用多个版本。
+- 导入后建议在 Shadowrocket 中更新模块、更新脚本、更新全部资源。
 - Full 只用于排查，不建议长期启用。
 - 出现异常时先切 Lite，再逐步判断是 MITM、脚本还是规则导致。
 - 未经真机测试，不要把“规则覆盖存在”理解成“已经验证通过”。
