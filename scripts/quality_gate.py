@@ -4,6 +4,7 @@ from __future__ import annotations
 import subprocess
 
 COMMANDS = [
+    ["python3", "scripts/build_android_rules.py"],
     ["python3", "scripts/build_module.py", "--build", "--profile", "stable"],
     ["python3", "scripts/factory_finalize.py", "--sync-root"],
     ["python3", "scripts/build_release_variants.py"],
