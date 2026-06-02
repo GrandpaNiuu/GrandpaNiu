@@ -74,6 +74,12 @@
             <td>按索引只添加需要的 App</td>
           </tr>
           <tr>
+            <td>想使用更强的通用增强包</td>
+            <td>iOS 可复用规则包</td>
+            <td>Mihomo / sing-box / AdGuard / v2rayNG</td>
+            <td>作为增强规则额外导入，出现误伤时先关闭它</td>
+          </tr>
+          <tr>
             <td>使用 sing-box</td>
             <td>sing-box rule-set</td>
             <td>sing-box / SFA</td>
@@ -93,7 +99,7 @@
           </tr>
         </tbody>
       </table>
-      <div class="notice">不确定怎么选：没有节点用完整配置版；已有节点用 Mihomo 规则集版；要加强某个 App 时，只加对应 App 文件，不要乱叠加组合包和单 App。</div>
+      <div class="notice">不确定怎么选：没有节点用完整配置版；已有节点用 Mihomo 规则集版；要加强某个 App 时，只加对应 App 文件；要更强覆盖再用 iOS 可复用规则包。异常排查时，优先关闭增强包。</div>
     </section>
 
     <section class="grid" style="margin-top:18px">
@@ -134,7 +140,28 @@
       </article>
 
       <article class="panel">
-        <h2>4. sing-box 规则集版</h2>
+        <h2>4. iOS 可复用规则包</h2>
+        <span class="tag">增强包</span><span class="tag">更强覆盖</span><span class="tag">更易误伤</span>
+        <p>这个包从 iOS 的 reject 规则中提取 Android 也能识别的 DOMAIN、DOMAIN-SUFFIX、DOMAIN-KEYWORD、IP-CIDR 和 IP-CIDR6 规则，适合需要更强通用广告与追踪拦截的用户。</p>
+        <div class="danger">它比普通 App 单包覆盖更广，也更容易影响图片加载、播放、登录前接口、定位、支付前页面或部分 App 启动。出现异常时，先关闭这个增强包，再逐个排查。</div>
+        <strong>Mihomo 链接：</strong>
+        <span class="link-box">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/apps/iOS-Compatible-Reject.yaml</span>
+        <strong>sing-box 链接：</strong>
+        <span class="link-box">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/apps/iOS-Compatible-Reject.json</span>
+        <strong>AdGuard 链接：</strong>
+        <span class="link-box">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/apps/iOS-Compatible-Reject.txt</span>
+        <strong>v2rayNG 链接：</strong>
+        <span class="link-box">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/apps/iOS-Compatible-Reject-routing.json</span>
+        <div class="actions">
+          <button class="button secondary" type="button" onclick="copyText(IOS_COMPAT_MIHOMO_LINK)">复制 Mihomo 增强包链接</button>
+          <button class="button neutral" type="button" onclick="copyText(IOS_COMPAT_SINGBOX_LINK)">复制 sing-box 增强包链接</button>
+          <button class="button neutral" type="button" onclick="copyText(IOS_COMPAT_ADGUARD_LINK)">复制 AdGuard 增强包链接</button>
+          <button class="button neutral" type="button" onclick="copyText(IOS_COMPAT_V2RAYNG_LINK)">复制 v2rayNG 增强包链接</button>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>5. sing-box 规则集版</h2>
         <span class="tag">sing-box</span><span class="tag">SFA</span><span class="tag">高级用户</span>
         <p>这是 rule-set 文件，不是完整 sing-box 配置。需要在自己的配置里引用。</p>
         <strong>rule-set 链接：</strong>
@@ -145,7 +172,7 @@
       </article>
 
       <article class="panel">
-        <h2>5. AdGuard DNS 规则版</h2>
+        <h2>6. AdGuard DNS 规则版</h2>
         <span class="tag">AdGuard</span><span class="tag">DNS 过滤</span><span class="tag">轻量</span>
         <p>适合 AdGuard Android、AdGuard DNS 或 AdGuard Home。只能做域名级拦截。</p>
         <strong>DNS 规则链接：</strong>
@@ -156,7 +183,7 @@
       </article>
 
       <article class="panel">
-        <h2>6. v2rayNG routing 片段版</h2>
+        <h2>7. v2rayNG routing 片段版</h2>
         <span class="tag">v2rayNG</span><span class="tag">V2Ray</span><span class="tag">Xray</span><span class="tag">手动合并</span>
         <p>适合会手动改 V2Ray / Xray 配置的用户。它不是节点订阅，也不是完整配置。</p>
         <strong>routing 片段链接：</strong>
@@ -182,12 +209,13 @@
 rules:
   - RULE-SET,grandpaniu_ads,REJECT
   - MATCH,🚀 节点选择</code></pre>
-      <div class="notice">规则必须放在 MATCH、GEOIP、普通代理分流规则之前。</div>
+      <div class="notice">规则必须放在 MATCH、GEOIP、普通代理分流规则之前。iOS 可复用规则包如果额外加入，也要放在 MATCH 之前；出现误伤时先停用增强包。</div>
     </section>
 
     <section class="panel" style="margin-top:18px">
       <h2>边界说明</h2>
       <p>Android 版只迁移域名、关键词、IP 规则和部分可迁移拦截逻辑。</p>
+      <p>iOS 可复用规则包只提取 Android 规则引擎能识别的规则，不包含 iOS / Surge / Shadowrocket 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 能力。</p>
       <p>Android 版不包含 iOS / Surge / Shadowrocket 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 能力。</p>
       <p><strong>risky/</strong> 目录只用于排查。它可能影响 App 启动、图片加载、播放、定位或接口连接，不建议长期启用。</p>
     </section>
@@ -203,6 +231,10 @@ rules:
     const SINGBOX_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/GrandpaNiu-Ads.json";
     const ADGUARD_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/GrandpaNiu-DNS.txt";
     const V2RAYNG_ROUTING_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/GrandpaNiu-v2rayng-routing.json";
+    const IOS_COMPAT_MIHOMO_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/apps/iOS-Compatible-Reject.yaml";
+    const IOS_COMPAT_SINGBOX_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/apps/iOS-Compatible-Reject.json";
+    const IOS_COMPAT_ADGUARD_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/apps/iOS-Compatible-Reject.txt";
+    const IOS_COMPAT_V2RAYNG_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/apps/iOS-Compatible-Reject-routing.json";
     const MIHOMO_PROVIDER_SNIPPET = `rule-providers:\n  grandpaniu_ads:\n    type: http\n    behavior: classical\n    format: yaml\n    url: "${ADS_RULESET_LINK}"\n    path: ./ruleset/GrandpaNiu-Ads.yaml\n    interval: 86400\n\nrules:\n  - RULE-SET,grandpaniu_ads,REJECT\n  - MATCH,🚀 节点选择`;
 
     function copyText(text) {
