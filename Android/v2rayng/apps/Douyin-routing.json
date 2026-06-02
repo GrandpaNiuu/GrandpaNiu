@@ -1,0 +1,1 @@
+{"routing":{"rules":[{"type":"field","domain":["full:ad.toutiao.com","full:ad.zijieapi.com","full:log.snssdk.com","full:mon.snssdk.com","full:temai.snssdk.com","full:pangolin.snssdk.com","full:pangolin-sdk-toutiao.com","domain:pglstatp-toutiao.com","domain:pangolin-sdk-toutiao.com","domain:zjcdn.com","keyword:pangolin","keyword:pglstatp"],"outboundTag":"block"}]}}
