@@ -322,14 +322,28 @@ Android 版不包含这些 iOS 能力：
 
 ## 使用提醒
 
-- 默认使用 Stable。
-- 不要同时启用多个版本。
-- 导入后建议在 Shadowrocket 中更新模块、更新脚本、更新全部资源。
-- Full 只用于排查，不建议长期启用。
-- 出现异常时先切 Lite，再逐步判断是 MITM、脚本还是规则导致。
-- 未经真机测试，不要把“规则覆盖存在”理解成“已经验证通过”。
+### 日常使用
+
+- iOS / Shadowrocket / Surge 普通用户默认使用 Stable。
+- 不要同时启用多个版本；Stable Plus、Lite、Full 主要用于测试或排查。
+- 导入或更新模块后，建议在 Shadowrocket 中执行：更新模块、更新脚本、更新全部资源。
+
+### 异常排查
+
+- 出现登录异常、页面空白、图片不加载、App 发热或耗电时，先切 Lite。
+- 如果切 Lite 后恢复正常，再逐步判断是 MITM、脚本还是规则导致。
+- Full 只用于查漏拦和临时定位 hostname，不建议长期启用。
+
+### Android 提醒
+
+- Android 版只迁移域名、关键词、IP 规则和部分可迁移拦截逻辑。
+- Android 版不包含 Script、MITM、Rewrite、Header Rewrite、Body Rewrite。
 - YouTube、TikTok、Instagram、Facebook 等平台内嵌广告可能与正常内容共用域名，Android 规则不保证完全去除。
-- 登录、支付、验证码、银行、微信、支付宝、Cookie、Token、会员权益相关链路默认应保持谨慎，不建议激进拦截或改写。
+
+### 高风险场景
+
+- 登录、支付、验证码、银行、微信、支付宝、Cookie、Token、会员权益相关链路默认应保持谨慎。
+- 未经真机测试，不要把“规则覆盖存在”理解成“已经验证通过”。
 
 <details>
 <summary>维护方式</summary>
