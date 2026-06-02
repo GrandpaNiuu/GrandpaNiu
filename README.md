@@ -63,6 +63,7 @@ Android 版本是可迁移规则导出，不是 iOS `.sgmodule`。
 - AdGuard DNS / AdGuard Home 自定义过滤规则
 - v2rayNG / V2Ray / Xray routing 片段
 - App 可选增强规则：按 App 或组合包手动启用
+- iOS 可复用规则包：从 iOS reject 规则中提取 Android 可识别规则，覆盖更强，也更容易误伤
 - 高风险测试层：仅用于排查，不建议长期启用
 
 Android 版主要通过域名、关键词和 IP 规则拦截常见广告域名、追踪域名和部分 App 广告请求。它不包含 Shadowrocket / Surge 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 能力。
@@ -79,10 +80,13 @@ Android 不放在 iOS 模块导入表里。Android 用户请从这里进入专�
 |---|---|---|---|---|
 | 没有节点，只想拦广告 | 完整配置版 | [GrandpaNiu-Android-Full.yaml][android-full-raw] | FlClash / Mihomo / Clash Meta | 直接作为完整配置导入 |
 | 已经有节点订阅 | Mihomo 规则集版 | [GrandpaNiu-Ads.yaml][android-mihomo-ads-raw] | FlClash / Mihomo / Clash Meta | 作为 rule-provider 合并进原配置 |
+| 想使用更强的通用增强包 | iOS 可复用规则包 | [Mihomo][android-ios-compatible-mihomo-raw] / [sing-box][android-ios-compatible-singbox-raw] / [AdGuard][android-ios-compatible-adguard-raw] / [v2rayNG][android-ios-compatible-v2rayng-raw] | Mihomo / sing-box / AdGuard / v2rayNG | 作为增强包额外导入，误伤时先关闭它 |
 | 使用 sing-box | sing-box 规则集版 | [GrandpaNiu-Ads.json][android-singbox-raw] | sing-box / SFA | 在自己的配置中引用 rule-set |
 | 使用 AdGuard | DNS 规则版 | [GrandpaNiu-DNS.txt][android-adguard-raw] | AdGuard Android / AdGuard DNS / AdGuard Home | 作为自定义 DNS / 过滤规则导入 |
 | 使用 v2rayNG / V2Ray / Xray | routing 片段版 | [GrandpaNiu-v2rayng-routing.json][android-v2rayng-raw] | v2rayNG / V2Ray / Xray | 手动合并 routing 规则 |
 
+> iOS 可复用规则包属于增强包。它比普通 App 单包覆盖更广，也更容易影响图片加载、播放、定位、部分 App 启动或登录前接口。出现异常时，先关闭这个增强包，再逐个排查。
+>
 > 如果一键导入无反应，通常不是链接失效，而是客户端不支持跳转协议。请复制链接后，在客户端中手动导入。
 
 ### 新手推荐顺序
@@ -91,8 +95,9 @@ Android 不放在 iOS 模块导入表里。Android 用户请从这里进入专�
 
 1. **没有节点** → 用 `GrandpaNiu-Android-Full.yaml`。
 2. **已有节点** → 用 `GrandpaNiu-Ads.yaml`。
-3. **完全不懂配置** → 优先用 FlClash / Mihomo，不要先碰 sing-box 和 v2rayNG。
-4. **只想轻量过滤** → 用 `GrandpaNiu-DNS.txt`。
+3. **想要更强覆盖** → 再额外测试 `iOS-Compatible-Reject`，出现误伤时先关闭它。
+4. **完全不懂配置** → 优先用 FlClash / Mihomo，不要先碰 sing-box 和 v2rayNG。
+5. **只想轻量过滤** → 用 `GrandpaNiu-DNS.txt`。
 
 ### Android 使用边界
 
@@ -108,6 +113,8 @@ Android 版不包含这些 iOS 能力：
 - Header Rewrite。
 - Body Rewrite。
 所以 Android 版不保证达到 iOS / Shadowrocket / Surge 完全相同的净化效果。
+
+`iOS-Compatible-Reject` 只提取 Android 规则引擎能识别的规则，不包含 iOS / Surge / Shadowrocket 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 能力。
 ## 使用提醒
 
 ### 日常使用
@@ -126,6 +133,7 @@ Android 版不包含这些 iOS 能力：
 
 - Android 版只迁移域名、关键词、IP 规则和部分可迁移拦截逻辑。
 - Android 版不包含 Script、MITM、Rewrite、Header Rewrite、Body Rewrite。
+- `iOS-Compatible-Reject` 是增强包，覆盖更强，但比普通 App 单包更容易误伤；异常时优先停用它。
 - YouTube、TikTok、Instagram、Facebook 等平台内嵌广告可能与正常内容共用域名，Android 规则不保证完全去除。
 
 ### 高风险场景
@@ -227,4 +235,8 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 [android-singbox-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/GrandpaNiu-Ads.json
 [android-adguard-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/GrandpaNiu-DNS.txt
 [android-v2rayng-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/GrandpaNiu-v2rayng-routing.json
+[android-ios-compatible-mihomo-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/apps/iOS-Compatible-Reject.yaml
+[android-ios-compatible-singbox-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/apps/iOS-Compatible-Reject.json
+[android-ios-compatible-adguard-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/apps/iOS-Compatible-Reject.txt
+[android-ios-compatible-v2rayng-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/apps/iOS-Compatible-Reject-routing.json
 [health-report]: reports/repository_health_report.md
