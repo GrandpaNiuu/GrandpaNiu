@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain": [
+        "ads-fa.spotify.com",
+        "audio-ads.spotify.com",
+        "spotify-ads.spotifycdn.com",
+        "adstudio.spotify.com",
+        "adeventtracker.spotify.com",
+        "analytics.spotify.com",
+        "log.spotify.com",
+        "spclient.wg.spotify.com",
+        "gew1-spclient.spotify.com",
+        "gew4-spclient.spotify.com",
+        "heads-ak.spotify.com"
+      ],
+      "domain_suffix": [
+        "spotifycdn.com"
+      ],
+      "domain_keyword": [
+        "spotify-ads",
+        "spotify-ad"
+      ]
+    }
+  ]
+}
