@@ -2,7 +2,6 @@
 ||adash.m.taobao.com^
 ||adashbc.m.taobao.com^
 ||adashx.m.taobao.com^
-||amdc.m.taobao.com^
 ||h-adashx.ut.taobao.com^
 ||market.m.taobao.com^
 ||nbsdk-baichuan.alicdn.com^
