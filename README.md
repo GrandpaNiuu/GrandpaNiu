@@ -91,9 +91,8 @@ Android 不放在 iOS 模块导入表里。Android 用户请从这里进入专�
 
 1. **没有节点** → 用 `GrandpaNiu-Android-Full.yaml`。
 2. **已有节点** → 用 `GrandpaNiu-Ads.yaml`。
-3. **想加强某个 App** → 看 [Android App 增强规则索引](Android/apps.md)，只加对应 App。
-4. **完全不懂配置** → 优先用 FlClash / Mihomo，不要先碰 sing-box 和 v2rayNG。
-5. **只想轻量过滤** → 用 `GrandpaNiu-DNS.txt`。
+3. **完全不懂配置** → 优先用 FlClash / Mihomo，不要先碰 sing-box 和 v2rayNG。
+4. **只想轻量过滤** → 用 `GrandpaNiu-DNS.txt`。
 
 ### Android 使用边界
 
