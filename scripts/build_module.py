@@ -33,6 +33,12 @@ SECTION_FILES = {
     "Script": "Script.conf",
     "MITM": "MITM.conf",
 }
+REWRITE_PROFILE_SECTIONS = {
+    "URL Rewrite": "url_rewrite",
+    "Header Rewrite": "header_rewrite",
+    "Body Rewrite": "body_rewrite",
+    "Map Local": "map_local",
+}
 REQUIRED_SECTIONS = set(SECTION_ORDER)
 CORE_TOKENS = ("spotify-json", "spotify-proto", "youtube.response", "zhihu-enhance")
 EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
@@ -160,12 +166,7 @@ def is_preserved_metadata(line: str) -> bool:
 
 
 def minify_module_text(text: str) -> str:
-    """Remove blank lines and ordinary comments from generated module output.
-
-    Shadowrocket metadata lines beginning with `#!` and the repository-required
-    `# update-date:` marker are kept. Section headers and active rule/script/
-    rewrite/MITM lines are kept unchanged apart from trailing whitespace removal.
-    """
+    """Remove blank lines and ordinary comments from generated module output."""
     lines: list[str] = []
     for raw in text.splitlines():
         line = raw.rstrip()
@@ -231,6 +232,14 @@ def build_scripts(profile: configparser.ConfigParser) -> str:
     return merge_lines(blocks)
 
 
+def build_rewrite_section(profile: configparser.ConfigParser, section: str) -> str:
+    blocks: list[str] = [read_text(source_file(section), required=False)]
+    profile_section = REWRITE_PROFILE_SECTIONS.get(section)
+    if profile_section:
+        blocks.extend(load_optional_files(iter_profile_paths(profile, profile_section)))
+    return merge_lines(blocks)
+
+
 def parse_mitm_hosts(block: str) -> list[str]:
     hosts: list[str] = []
     for line in block.splitlines():
@@ -246,11 +255,7 @@ def parse_mitm_hosts(block: str) -> list[str]:
 
 
 def build_mitm(profile: configparser.ConfigParser) -> str:
-    """Build the MITM section from profile-selected layers.
-
-    If a profile has no [mitm] section, the legacy Rewrite/Sources/MITM.conf is
-    still used. This preserves the old path for rollback and recovery.
-    """
+    """Build the MITM section from profile-selected layers."""
     if not profile.has_section("mitm"):
         return read_text(source_file("MITM"), required=False).rstrip() + "\n"
 
@@ -281,6 +286,8 @@ def build_from_sources(profile_name: str) -> str:
             body = build_scripts(profile)
         elif section == "MITM":
             body = build_mitm(profile)
+        elif section in REWRITE_PROFILE_SECTIONS:
+            body = build_rewrite_section(profile, section)
         else:
             body = read_text(source_file(section), required=False).rstrip() + "\n"
         if body.strip():
@@ -377,10 +384,10 @@ def make_report(release_text: str, extracted: bool, profile: str) -> str:
         "## 构建输入",
         f"- Rewrite/Profiles/{profile}.conf",
         "- Rewrite/Remotes/sources.json",
-        "- Rules/: DIRECT、Spotify、YouTube、本地 App、网页和 Reject 规则片段",
-        "- Scripts/: Spotify、YouTube、知乎和 App-clean 脚本片段",
-        "- Rewrite/Sources/: Meta、Rewrite、Body Rewrite、Map Local、MITM 和兼容片段",
-        "- [mitm] profile 可选择 MITM-core / MITM-app-clean / MITM-extended 分层输入；stable 默认不直接吃 extended 层。",
+        "- Rules/: DIRECT、Spotify、YouTube、本地 App、网页、Reject 和 legacy stable import 规则片段",
+        "- Scripts/: Spotify、YouTube、知乎、App-clean 和 legacy reviewed 脚本片段",
+        "- Rewrite/Sources/: Meta、Rewrite、Body Rewrite、Map Local、MITM、legacy reviewed 和兼容片段",
+        "- [mitm] profile 可选择 MITM-core / MITM-app-clean / MITM-extended / MITM-legacy-reviewed 分层输入；stable 默认只吃 reviewed legacy 层。",
         "",
         "## 重复检查",
         f"- 重复脚本名：{', '.join(script_dupes) if script_dupes else '无'}",
@@ -394,7 +401,7 @@ def make_report(release_text: str, extracted: bool, profile: str) -> str:
         "- 日常维护应优先修改 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。",
         "- Release/Ronghemokuai.sgmodule 由工厂源头生成。",
         "- 根目录 Ronghemokuai.sgmodule 由 factory_finalize.py 同步生成。",
-        "- 候选源收集保持保守：来源可信、改动可回滚、报告可验证。",
+        "- legacy Script / MITM / Rewrite 必须进入 reviewed 源头后才会被 stable profile 读取。",
         "- --extract-from-root 只用于初始化或恢复源头，不是日常构建路径。",
         "",
     ])
