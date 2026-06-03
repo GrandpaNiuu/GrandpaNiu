@@ -17,10 +17,10 @@
 
 | 图标 | 你现在的情况 | 点这里 | 说明 |
 |---|---|---|---|
-| 🍎 | iPhone / iPad，使用 Shadowrocket | [导入 Stable][stable-import] | 默认推荐，适合大多数用户 |
-| 🍎 | iPhone / iPad，想看 Lite / Stable Plus / Full | [打开 iOS 多版本页][import-page] | 不懂就先用 Stable，不要选 Full 日常用 |
-| 🤖 | Android 用户 | [打开 Android 导入页][android-import] | 进去后按“有无节点”选择版本 |
-| 🧯 | 出现登录异常、图片不加载、发热耗电 | [导入 Lite][lite-import] | 用来排查误伤，不是日常主版本 |
+|  | iPhone / iPad，使用 Shadowrocket | [导入 Stable][stable-import] | 默认推荐，适合大多数用户 |
+|  | iPhone / iPad，想看 Lite / Stable Plus / Full | [打开 iOS 多版本页][import-page] | 不懂就先用 Stable，不要选 Full 日常用 |
+|📱 | Android 用户 | [打开 Android 导入页][android-import] | 进去后按“有无节点”选择版本 |
+| ❌ | 出现登录异常、图片不加载、发热耗电 | [导入 Lite][lite-import] | 用来排查误伤，不是日常主版本 |
 | 📊 | 想看仓库健康和报告 | [查看报告][health-report] | 给维护者和高级用户查看 |
 
 **最简单选择：**
