@@ -19,10 +19,10 @@
 ## 构建输入
 - Rewrite/Profiles/stable.conf
 - Rewrite/Remotes/sources.json
-- Rules/: DIRECT、Spotify、YouTube、本地 App、网页和 Reject 规则片段
-- Scripts/: Spotify、YouTube、知乎和 App-clean 脚本片段
-- Rewrite/Sources/: Meta、Rewrite、Body Rewrite、Map Local、MITM 和兼容片段
-- [mitm] profile 可选择 MITM-core / MITM-app-clean / MITM-extended 分层输入；stable 默认不直接吃 extended 层。
+- Rules/: DIRECT、Spotify、YouTube、本地 App、网页、Reject 和 legacy stable import 规则片段
+- Scripts/: Spotify、YouTube、知乎、App-clean 和 legacy reviewed 脚本片段
+- Rewrite/Sources/: Meta、Rewrite、Body Rewrite、Map Local、MITM、legacy reviewed 和兼容片段
+- [mitm] profile 可选择 MITM-core / MITM-app-clean / MITM-extended / MITM-legacy-reviewed 分层输入；stable 默认只吃 reviewed legacy 层。
 
 ## 重复检查
 - 重复脚本名：无
@@ -36,7 +36,7 @@
 - 日常维护应优先修改 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。
 - Release/Ronghemokuai.sgmodule 由工厂源头生成。
 - 根目录 Ronghemokuai.sgmodule 由 factory_finalize.py 同步生成。
-- 候选源收集保持保守：来源可信、改动可回滚、报告可验证。
+- legacy Script / MITM / Rewrite 必须进入 reviewed 源头后才会被 stable profile 读取。
 - --extract-from-root 只用于初始化或恢复源头，不是日常构建路径。
 
 ## Finalize 后状态
