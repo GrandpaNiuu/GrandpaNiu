@@ -1,6 +1,6 @@
 # Profile 全量验证报告
 
-生成时间：2026-06-04 01:47:55 +0800
+生成时间：2026-06-04 04:48:10 +0800
 
 说明：本脚本只验证 stable / stable-plus / lite / full 是否可以构建，不会把 lite、stable-plus 或 full 同步到根目录主模块。验证结束后会恢复原 Release 和工厂报告。
 
