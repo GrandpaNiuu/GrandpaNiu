@@ -1,6 +1,6 @@
 # Workflow 健康报告
 
-生成时间：2026-06-03 08:27:27 +0800
+生成时间：2026-06-03 08:29:50 +0800
 
 本报告用于确认 workflow 文件是否存在，并尽量读取 GitHub Actions 最近运行状态。若 API 不可用，则只报告配置存在性，不伪造成功状态。
 
@@ -8,12 +8,12 @@
 
 | Workflow | 文件 | 用途 | 触发方式 | 最近运行时间 | Status | Conclusion | Run URL | 处理建议 |
 |---|---|---|---|---|---|---|---|---|
-| Module Factory Build | `.github/workflows/module-factory-build.yml` | 构建 Release 并同步 Root | 手动 / push | 2026-06-03T00:27:19Z | pending | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/26856183824) | 运行中或未完成，等待完成后复查 |
+| Module Factory Build | `.github/workflows/module-factory-build.yml` | 构建 Release 并同步 Root | 手动 / push | 2026-06-03T00:28:53Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/26856235366) | 通过 |
 | Daily Module Update | `.github/workflows/daily-module-update.yml` | 每日日期、结构、链接和验证检查 | 手动 / 定时 / push | 2026-06-03T00:27:01Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/26856173732) | 通过 |
 | Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | 连续失效源审计和安全处理 | 手动 / 定时 | 2026-06-02T22:03:13Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/26850706446) | 通过 |
 | Upstream candidate collect | `.github/workflows/upstream-collect.yml` | 每周可信候选源收集 | 手动 / 定时 | 2026-06-02T22:04:45Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/26850773626) | 通过 |
-| Repository Health Check | `.github/workflows/repository-health.yml` | 仓库治理健康检查 | 手动 / 定时 / push | 2026-06-03T00:27:19Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/26856183816) | 运行中或未完成，等待完成后复查 |
-| Stable Plus Promotion PR | `.github/workflows/stable-plus-promotion-pr.yml` | 单项 App 晋级审查 PR 入口 | 手动 | 2026-05-31T19:16:55Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/26721985115) | 通过 |
+| Repository Health Check | `.github/workflows/repository-health.yml` | 仓库治理健康检查 | 手动 / 定时 / push | 2026-06-03T00:29:39Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/26856259953) | 运行中或未完成，等待完成后复查 |
+| Stable Plus Promotion PR | `.github/workflows/stable-plus-promotion-pr.yml` | 单项 App 晋级审查 PR 入口 | 手动 | 2026-06-03T00:29:14Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/26856246340) | 通过 |
 
 ## 说明
 

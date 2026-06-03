@@ -1,15 +1,17 @@
 # 变更影响报告
 
-- 生成时间：2026-06-03 08:27:26 +0800
+- 生成时间：2026-06-03 08:29:49 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Rules/legacy-stable-import.list`
+- `reports/multi_release_report.md`
+- `reports/profile_validation_report.md`
+- `reports/promotion_pr_report.md`
 
 ## 新增文件
 
-- `Rules/legacy-stable-import.list`
+- 无
 
 ## 删除文件
 
@@ -17,11 +19,13 @@
 
 ## 修改文件
 
-- 无
+- `reports/multi_release_report.md`
+- `reports/profile_validation_report.md`
+- `reports/promotion_pr_report.md`
 
 ## 影响的模块层
 
-- Rules
+- README/docs
 
 ## 可能影响的 App
 
