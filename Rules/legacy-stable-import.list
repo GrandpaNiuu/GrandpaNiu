@@ -1,0 +1,3 @@
+# Reviewed legacy rule entries for Stable.
+# This file is read by Rewrite/Profiles/stable.conf.
+# Keep only reviewed rule lines here.
