@@ -16,6 +16,7 @@ on:
       - "scripts/factory_finalize.py"
       - "scripts/build_android_rules.py"
       - "scripts/android_format_check.py"
+      - "scripts/import_legacy_sgmodule.py"
       - "scripts/repository_health_check.py"
       - "Rewrite/Sources/Meta.conf"
       - "Android/**"
@@ -53,7 +54,8 @@ jobs:
             scripts/check_report_freshness.py \
             scripts/repository_health_check.py \
             scripts/build_android_rules.py \
-            scripts/android_format_check.py
+            scripts/android_format_check.py \
+            scripts/import_legacy_sgmodule.py
 
       - name: Update source metadata date, build, finalize and report
         run: |
