@@ -239,6 +239,20 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 
 </details>
 
+<details>
+<summary>发布文件直链</summary>
+
+这些链接用于发布校验和高级用户核对，不作为新手导入入口。普通用户仍按顶部“入口选择”操作。
+
+| 版本 | Pages 地址 |
+|---|---|
+| Stable | https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule |
+| Stable Plus | https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable-plus.sgmodule |
+| Lite | https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-lite.sgmodule |
+| Full | https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-full.sgmodule |
+
+</details>
+
 [import-page]: https://grandpaniuu.github.io/GrandpaNiu/import.html
 [stable-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable.sgmodule
 [lite-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-lite.sgmodule
