@@ -2,133 +2,134 @@
 
 # GrandpaNiu
 
-**iOS / Android 广告净化规则与模块集合**
+**Shadowrocket / Surge / Android 净化规则与模块集合**
 
-一句话：**按设备选一个入口导入，不要同时启用多个版本。**
+把常见广告、开屏、弹窗、横幅、信息流推荐、活动卡片和追踪请求尽量拦掉。  
+普通用户只需要做一件事：**按设备选一个入口，不要同时启用多个版本。**
 
-[![Import](https://img.shields.io/static/v1?label=Import&message=Multi%20Version%20Page&color=0A84FF&labelColor=111827&style=for-the-badge)][import-page]
-[![Stable](https://img.shields.io/static/v1?label=Stable&message=Default&color=34C759&labelColor=111827&style=for-the-badge)][stable-import]
-[![Android](https://img.shields.io/static/v1?label=Android&message=Import&color=3DDC84&labelColor=111827&style=for-the-badge)][android-import]
-[![Health](https://img.shields.io/static/v1?label=Health&message=Reports&color=5856D6&labelColor=111827&style=for-the-badge)][health-report]
+[![Stable](https://img.shields.io/static/v1?label=iOS&message=Stable%20Recommended&color=2EA44F&labelColor=0D1117&style=for-the-badge)][stable-import]
+[![Android](https://img.shields.io/static/v1?label=Android&message=Import%20Page&color=3DDC84&labelColor=0D1117&style=for-the-badge)][android-import]
+[![Versions](https://img.shields.io/static/v1?label=Versions&message=Lite%20%2F%20Plus%20%2F%20Full&color=0969DA&labelColor=0D1117&style=for-the-badge)][import-page]
+[![Reports](https://img.shields.io/static/v1?label=Reports&message=Health&color=6F42C1&labelColor=0D1117&style=for-the-badge)][health-report]
 
 </div>
 
 ---
 
-## 👀 小白先看
+## 先选入口
 
-| 你现在的情况 | 直接点这个 | 不要做什么 |
+| 你是谁 | 应该点哪里 | 说明 |
 |---|---|---|
-| 🍎 iPhone / iPad，用 Shadowrocket | [导入 Stable][stable-import] | 不要同时导入 Stable Plus、Lite、Full |
-| 🍎 iPhone / iPad，想看全部版本 | [打开 iOS 多版本导入页][import-page] | 不懂就别选 Full |
-| 🤖 Android，没有节点，只想拦广告 | [打开 Android 导入页][android-import] | 不要把 iOS `.sgmodule` 导入 Android |
-| 🤖 Android，已经有节点订阅 | [打开 Android 导入页][android-import] | 不要用完整配置覆盖自己的节点 |
-| 🧪 出现异常、图片不加载、登录不正常 | 换 Lite 或关闭增强包 | 不要继续叠加更多规则 |
+| iPhone / iPad，使用 Shadowrocket | [导入 Stable][stable-import] | 最稳，适合大多数人 |
+| iPhone / iPad，想看 Lite / Plus / Full | [打开 iOS 多版本页][import-page] | 不懂就先别选 Full |
+| Android，没有节点，只想拦广告 | [打开 Android 导入页][android-import] | 选择完整配置版 |
+| Android，已经有节点订阅 | [打开 Android 导入页][android-import] | 选择规则集版，不覆盖原节点 |
+| 正在排查异常 | [导入 Lite][lite-import] | 登录异常、发热、图片不加载时用 |
 
-> **最推荐：iOS 普通用户用 Stable；Android 用户先打开 Android 导入页。**
-
----
-
-## 🚀 一分钟怎么用
-
-### 🍎 iOS / Shadowrocket / Surge
-
-1. 点：**[导入 Stable][stable-import]**。
-2. 打开 Shadowrocket 后启用模块。
-3. 在 Shadowrocket 里执行：**更新模块、更新脚本、更新全部资源**。
-4. 出问题时先换 Lite，不要直接开 Full。
-
-### 🤖 Android
-
-1. 点：**[打开 Android 导入页][android-import]**。
-2. 看自己有没有节点。
-3. 没有节点：用完整配置版。
-4. 已有节点：用 Mihomo 规则集版。
-5. 想更强：再测试 iOS 可复用规则包，误伤时先关闭它。
+> **最简单选择：iOS 用 Stable；Android 先进 Android 导入页。**
 
 ---
 
-## 🧭 版本怎么选
+## 一分钟使用说明
 
-| 版本 | 一句话说明 | 适合谁 | 风险 | 导入 |
+### iOS / Shadowrocket
+
+1. 点击 **[导入 Stable][stable-import]**。
+2. 打开 Shadowrocket，启用模块。
+3. 执行：**更新模块、更新脚本、更新全部资源**。
+4. 如果出现登录异常、页面空白、图片不加载，先切到 **[Lite][lite-import]** 排查。
+
+### Android
+
+1. 点击 **[Android 导入页][android-import]**。
+2. 没有节点：选 **完整配置版**。
+3. 已有节点订阅：选 **Mihomo 规则集版**。
+4. 想增强覆盖：再测试 **iOS 可复用规则包**。
+5. 出现误伤：先关闭增强包，不要继续叠加规则。
+
+---
+
+## 版本选择
+
+| 版本 | 推荐人群 | 特点 | 风险 | 导入 |
 |---|---|---|---|---|
-| ✅ Stable | 默认稳定版 | 大多数 iOS 用户 | 低 | [导入][stable-import] |
-| 🧪 Stable Plus | 更多测试覆盖 | 想多拦一点、能接受测试风险 | 中 | [导入][stable-plus-import] |
-| 🪶 Lite | 最小排查版 | 登录异常、发热、图片不加载时排查 | 低 | [导入][lite-import] |
-| 🧰 Full | 全量排查版 | 查漏拦、定位 hostname | 高 | [导入][full-import] |
+| **Stable** | 大多数用户 | 默认稳定版，适合长期使用 | 低 | [导入][stable-import] |
+| **Stable Plus** | 想测试更多覆盖的人 | 比 Stable 更激进，但不默认推荐 | 中 | [导入][stable-plus-import] |
+| **Lite** | 排查问题的人 | 最小覆盖，用来定位误伤 | 低 | [导入][lite-import] |
+| **Full** | 高级用户 | 全量排查，适合查漏拦 | 高 | [导入][full-import] |
 
-> **普通用户只选 Stable。不要多个版本一起开。**
+> 普通用户只用 **Stable**。不要同时启用多个版本。
 
 ---
 
-## ✨ 这个仓库能做什么
+## 功能范围
 
-### 🍎 iOS / Shadowrocket / Surge
+### iOS / Shadowrocket / Surge
 
-- 🧹 拦截常见广告、开屏、弹窗、横幅、信息流推荐、活动卡片。
-- 🔧 包含部分 App 的 Rule、Rewrite、Script、MITM hostname 覆盖。
-- 🎵 已纳入 Spotify、YouTube、知乎等维护项。
-- 🧩 低风险 JSON 清理类脚本由 `Scripts/app-cleaner.js` 统一承接，减少重复脚本入口。
+- 常见广告、开屏、弹窗、横幅、信息流推荐、活动卡片净化。
+- 部分 App 的 Rule、Rewrite、Script、MITM hostname 覆盖。
+- Spotify、YouTube、知乎等常用 App 维护项。
+- 低风险 JSON 清理脚本由 `Scripts/app-cleaner.js` 统一承接，减少重复脚本入口。
 
-### 🤖 Android
+### Android
 
-Android 版本是**可迁移规则导出**，不是 iOS `.sgmodule`。
+Android 版是从规则中迁移出的可用格式，不是 iOS `.sgmodule`。
 
 支持：
 
-- 📦 Mihomo / Clash Meta / FlClash 完整配置
-- 🧩 Mihomo / Clash Meta / FlClash 规则集
-- 📘 sing-box rule-set
-- 🛡️ AdGuard DNS / AdGuard Home 自定义过滤规则
-- 🧭 v2rayNG / V2Ray / Xray routing 片段
-- 📱 App 可选增强规则：按 App 或组合包手动启用
-- ⚡ iOS 可复用规则包：覆盖更强，也更容易误伤
+- Mihomo / Clash Meta / FlClash 完整配置
+- Mihomo / Clash Meta / FlClash 规则集
+- sing-box rule-set
+- AdGuard DNS / AdGuard Home 过滤规则
+- v2rayNG / V2Ray / Xray routing 片段
+- App 可选增强规则
+- iOS 可复用规则包
 
-Android 版主要通过域名、关键词和 IP 规则拦截常见广告域名、追踪域名和部分 App 广告请求。它不包含 Shadowrocket / Surge 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 能力。
-
----
-
-## 🤖 Android 怎么用
-
-Android 用户请先进入专门导入页：
-
-- 👉 [打开 Android 导入页][android-import]
-
-| 场景 | 推荐版本 | 文件 | 适合客户端 | 导入方式 |
-|---|---|---|---|---|
-| 🟢 没有节点，只想拦广告 | 完整配置版 | [GrandpaNiu-Android-Full.yaml][android-full-raw] | FlClash / Mihomo / Clash Meta | 直接作为完整配置导入 |
-| 🔵 已经有节点订阅 | Mihomo 规则集版 | [GrandpaNiu-Ads.yaml][android-mihomo-ads-raw] | FlClash / Mihomo / Clash Meta | 作为 rule-provider 合并进原配置 |
-| ⚡ 想使用更强通用增强包 | iOS 可复用规则包 | [Mihomo][android-ios-compatible-mihomo-raw] / [sing-box][android-ios-compatible-singbox-raw] / [AdGuard][android-ios-compatible-adguard-raw] / [v2rayNG][android-ios-compatible-v2rayng-raw] | Mihomo / sing-box / AdGuard / v2rayNG | 作为增强包额外导入，误伤时先关闭它 |
-| 📘 使用 sing-box | sing-box 规则集版 | [GrandpaNiu-Ads.json][android-singbox-raw] | sing-box / SFA | 在自己的配置中引用 rule-set |
-| 🛡️ 使用 AdGuard | DNS 规则版 | [GrandpaNiu-DNS.txt][android-adguard-raw] | AdGuard Android / AdGuard DNS / AdGuard Home | 作为自定义 DNS / 过滤规则导入 |
-| 🧭 使用 v2rayNG / V2Ray / Xray | routing 片段版 | [GrandpaNiu-v2rayng-routing.json][android-v2rayng-raw] | v2rayNG / V2Ray / Xray | 手动合并 routing 规则 |
-
-> ⚠️ `iOS-Compatible-Reject` 是增强包。它比普通 App 单包覆盖更广，也更容易影响图片加载、播放、定位、部分 App 启动或登录前接口。出现异常时，先关闭这个增强包。
+Android 主要依靠域名、关键词和 IP 规则拦截。它不包含 iOS 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 能力。
 
 ---
 
-## 🧯 出问题先这样排查
+## Android 入口
 
-| 现象 | 先做什么 |
+Android 用户不要直接导入 iOS 模块。请先进入：
+
+**[Android 导入页][android-import]**
+
+| 场景 | 推荐文件 | 适合客户端 | 方式 |
+|---|---|---|---|
+| 没有节点，只想拦广告 | [GrandpaNiu-Android-Full.yaml][android-full-raw] | FlClash / Mihomo / Clash Meta | 完整配置导入 |
+| 已有节点订阅 | [GrandpaNiu-Ads.yaml][android-mihomo-ads-raw] | FlClash / Mihomo / Clash Meta | 作为 rule-provider 合并 |
+| 使用 sing-box | [GrandpaNiu-Ads.json][android-singbox-raw] | sing-box / SFA | 引用 rule-set |
+| 使用 AdGuard | [GrandpaNiu-DNS.txt][android-adguard-raw] | AdGuard Android / AdGuard Home | 添加过滤规则 |
+| 使用 v2rayNG / V2Ray / Xray | [GrandpaNiu-v2rayng-routing.json][android-v2rayng-raw] | v2rayNG / V2Ray / Xray | 手动合并 routing |
+| 想增强通用覆盖 | [Mihomo][android-ios-compatible-mihomo-raw] / [sing-box][android-ios-compatible-singbox-raw] / [AdGuard][android-ios-compatible-adguard-raw] / [v2rayNG][android-ios-compatible-v2rayng-raw] | 多客户端 | 额外导入，误伤时关闭 |
+
+> `iOS-Compatible-Reject` 是增强包。它覆盖更广，也更容易影响图片加载、播放、定位、部分 App 启动或登录前接口。出现异常时先关闭它。
+
+---
+
+## 出问题怎么排查
+
+| 现象 | 优先处理 |
 |---|---|
-| App 登录异常 | iOS 先切 Lite；Android 先关闭增强包 |
-| 图片不加载 | 先关 iOS 可复用规则包 / App 增强包 |
-| 视频无法播放 | 先关闭对应 App 增强规则 |
-| 手机发热、耗电 | iOS 先切 Lite，Android 减少叠加规则 |
-| 一键导入无反应 | 复制链接，在客户端里手动从 URL 导入 |
+| 登录异常 | iOS 切 Lite；Android 关闭增强包 |
+| 图片不加载 | 关闭 iOS 可复用规则包或对应 App 增强规则 |
+| 视频无法播放 | 关闭对应 App 增强规则 |
+| 手机发热、耗电 | 减少规则叠加，iOS 先用 Lite |
+| 一键导入无反应 | 复制链接，到客户端里从 URL 手动导入 |
 
-> 不要一出问题就继续加规则。先减法排查。
+排查原则：**先减少规则，再逐步加回。**
 
 ---
 
-## 🚫 小白不要做这些
+## 不建议这样做
 
 - 不要同时启用 Stable、Stable Plus、Lite、Full。
 - 不要把 Android 文件导入 Shadowrocket。
 - 不要把 iOS `.sgmodule` 当成 Android 配置。
 - 不要把 Full 当日常版本长期使用。
-- 不要把“覆盖存在”理解成“每个 App 都已经真机测试通过”。
-- 不懂配置时，不要先碰 sing-box、v2rayNG 手动 routing。
+- 不要把“规则覆盖存在”理解成“已经完整真机测试”。
+- 不懂配置时，不要先改 sing-box 或 v2rayNG routing。
 
 ---
 
@@ -144,7 +145,8 @@ Android 用户请先进入专门导入页：
 
 ---
 
-## 🔒 Android 使用边界
+<details>
+<summary>Android 使用边界</summary>
 
 Android 版只迁移这些能力：
 
@@ -165,7 +167,7 @@ Android 版不包含这些 iOS 能力：
 
 `iOS-Compatible-Reject` 只提取 Android 规则引擎能识别的规则，不包含 iOS / Surge / Shadowrocket 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 能力。
 
----
+</details>
 
 <details>
 <summary>维护方式</summary>
