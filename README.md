@@ -4,61 +4,62 @@
 
 **Shadowrocket / Surge / Android 净化规则与模块集合**
 
-把常见广告、开屏、弹窗、横幅、信息流推荐、活动卡片和追踪请求尽量拦掉。  
-普通用户只需要做一件事：**按设备选一个入口，不要同时启用多个版本。**
-
-[![Stable](https://img.shields.io/static/v1?label=iOS&message=Stable%20Recommended&color=2EA44F&labelColor=0D1117&style=for-the-badge)][stable-import]
-[![Android](https://img.shields.io/static/v1?label=Android&message=Import%20Page&color=3DDC84&labelColor=0D1117&style=for-the-badge)][android-import]
-[![Versions](https://img.shields.io/static/v1?label=Versions&message=Lite%20%2F%20Plus%20%2F%20Full&color=0969DA&labelColor=0D1117&style=for-the-badge)][import-page]
-[![Reports](https://img.shields.io/static/v1?label=Reports&message=Health&color=6F42C1&labelColor=0D1117&style=for-the-badge)][health-report]
+拦截常见广告、开屏、弹窗、横幅、信息流推荐、活动卡片和追踪请求。  
+新手只需要记住一句话：**先按设备选入口，不要同时启用多个版本。**
 
 </div>
 
 ---
 
-## 先选入口
+## 入口选择
 
-| 你是谁 | 应该点哪里 | 说明 |
-|---|---|---|
-| iPhone / iPad，使用 Shadowrocket | [导入 Stable][stable-import] | 最稳，适合大多数人 |
-| iPhone / iPad，想看 Lite / Plus / Full | [打开 iOS 多版本页][import-page] | 不懂就先别选 Full |
-| Android，没有节点，只想拦广告 | [打开 Android 导入页][android-import] | 选择完整配置版 |
-| Android，已经有节点订阅 | [打开 Android 导入页][android-import] | 选择规则集版，不覆盖原节点 |
-| 正在排查异常 | [导入 Lite][lite-import] | 登录异常、发热、图片不加载时用 |
+> 这里是唯一导入入口。后面只解释怎么选，不重复放导入链接。
 
-> **最简单选择：iOS 用 Stable；Android 先进 Android 导入页。**
+| 图标 | 你现在的情况 | 点这里 | 说明 |
+|---|---|---|---|
+| 🍎 | iPhone / iPad，使用 Shadowrocket | [导入 Stable][stable-import] | 默认推荐，适合大多数用户 |
+| 🍎 | iPhone / iPad，想看 Lite / Stable Plus / Full | [打开 iOS 多版本页][import-page] | 不懂就先用 Stable，不要选 Full 日常用 |
+| 🤖 | Android 用户 | [打开 Android 导入页][android-import] | 进去后按“有无节点”选择版本 |
+| 🧯 | 出现登录异常、图片不加载、发热耗电 | [导入 Lite][lite-import] | 用来排查误伤，不是日常主版本 |
+| 📊 | 想看仓库健康和报告 | [查看报告][health-report] | 给维护者和高级用户查看 |
+
+**最简单选择：**
+
+- iOS 普通用户：选 **Stable**。
+- Android 用户：进 **Android 导入页**。
+- 出问题：先用 **Lite** 或关闭增强包。
 
 ---
 
-## 一分钟使用说明
+## 新手怎么用
 
 ### iOS / Shadowrocket
 
-1. 点击 **[导入 Stable][stable-import]**。
+1. 从上面的入口选择 **Stable**。
 2. 打开 Shadowrocket，启用模块。
 3. 执行：**更新模块、更新脚本、更新全部资源**。
-4. 如果出现登录异常、页面空白、图片不加载，先切到 **[Lite][lite-import]** 排查。
+4. 如果出现登录异常、页面空白、图片不加载，先切 Lite 排查。
 
 ### Android
 
-1. 点击 **[Android 导入页][android-import]**。
-2. 没有节点：选 **完整配置版**。
-3. 已有节点订阅：选 **Mihomo 规则集版**。
-4. 想增强覆盖：再测试 **iOS 可复用规则包**。
+1. 从上面的入口进入 **Android 导入页**。
+2. 没有节点：选完整配置版。
+3. 已有节点订阅：选 Mihomo 规则集版，不要覆盖原节点。
+4. 想增强覆盖：再测试 iOS 可复用规则包。
 5. 出现误伤：先关闭增强包，不要继续叠加规则。
 
 ---
 
-## 版本选择
+## 版本怎么选
 
-| 版本 | 推荐人群 | 特点 | 风险 | 导入 |
-|---|---|---|---|---|
-| **Stable** | 大多数用户 | 默认稳定版，适合长期使用 | 低 | [导入][stable-import] |
-| **Stable Plus** | 想测试更多覆盖的人 | 比 Stable 更激进，但不默认推荐 | 中 | [导入][stable-plus-import] |
-| **Lite** | 排查问题的人 | 最小覆盖，用来定位误伤 | 低 | [导入][lite-import] |
-| **Full** | 高级用户 | 全量排查，适合查漏拦 | 高 | [导入][full-import] |
+| 版本 | 适合谁 | 一句话说明 | 风险 |
+|---|---|---|---|
+| **Stable** | 大多数 iOS 用户 | 默认稳定版，适合长期使用 | 低 |
+| **Stable Plus** | 想测试更多覆盖的人 | 比 Stable 更激进，不默认推荐 | 中 |
+| **Lite** | 排查问题的人 | 最小覆盖，用来判断是否误伤 | 低 |
+| **Full** | 高级用户 | 全量排查，适合查漏拦和定位 hostname | 高 |
 
-> 普通用户只用 **Stable**。不要同时启用多个版本。
+> 普通用户只用 **Stable**。不要同时启用 Stable、Stable Plus、Lite、Full。
 
 ---
 
@@ -66,57 +67,53 @@
 
 ### iOS / Shadowrocket / Surge
 
-- 常见广告、开屏、弹窗、横幅、信息流推荐、活动卡片净化。
-- 部分 App 的 Rule、Rewrite、Script、MITM hostname 覆盖。
-- Spotify、YouTube、知乎等常用 App 维护项。
-- 低风险 JSON 清理脚本由 `Scripts/app-cleaner.js` 统一承接，减少重复脚本入口。
+- 🧹 净化常见广告、开屏、弹窗、横幅、信息流推荐、活动卡片。
+- 🔧 支持部分 App 的 Rule、Rewrite、Script、MITM hostname 覆盖。
+- 🎵 已纳入 Spotify、YouTube、知乎等常用维护项。
+- 🧩 低风险 JSON 清理脚本由 `Scripts/app-cleaner.js` 统一承接，减少重复脚本入口。
 
 ### Android
 
-Android 版是从规则中迁移出的可用格式，不是 iOS `.sgmodule`。
+Android 版是从规则中迁移出的可用格式，**不是 iOS `.sgmodule`**。
 
 支持：
 
-- Mihomo / Clash Meta / FlClash 完整配置
-- Mihomo / Clash Meta / FlClash 规则集
-- sing-box rule-set
-- AdGuard DNS / AdGuard Home 过滤规则
-- v2rayNG / V2Ray / Xray routing 片段
-- App 可选增强规则
-- iOS 可复用规则包
+- 📦 Mihomo / Clash Meta / FlClash 完整配置
+- 🧩 Mihomo / Clash Meta / FlClash 规则集
+- 📘 sing-box rule-set
+- 🛡️ AdGuard DNS / AdGuard Home 过滤规则
+- 🧭 v2rayNG / V2Ray / Xray routing 片段
+- 📱 App 可选增强规则
+- ⚡ iOS 可复用规则包
 
 Android 主要依靠域名、关键词和 IP 规则拦截。它不包含 iOS 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 能力。
 
 ---
 
-## Android 入口
+## Android 怎么选
 
-Android 用户不要直接导入 iOS 模块。请先进入：
+| 场景 | 推荐选择 | 提醒 |
+|---|---|---|
+| 没有节点，只想拦广告 | 完整配置版 | 适合 FlClash / Mihomo / Clash Meta |
+| 已有节点订阅 | Mihomo 规则集版 | 不覆盖原节点，作为 rule-provider 合并 |
+| 使用 sing-box | sing-box rule-set | 需要会引用 rule-set |
+| 使用 AdGuard | DNS 过滤规则 | 只能做域名级过滤 |
+| 使用 v2rayNG / V2Ray / Xray | routing 片段 | 需要手动合并 routing |
+| 想增强通用覆盖 | iOS 可复用规则包 | 覆盖更广，也更容易误伤 |
 
-**[Android 导入页][android-import]**
-
-| 场景 | 推荐文件 | 适合客户端 | 方式 |
-|---|---|---|---|
-| 没有节点，只想拦广告 | [GrandpaNiu-Android-Full.yaml][android-full-raw] | FlClash / Mihomo / Clash Meta | 完整配置导入 |
-| 已有节点订阅 | [GrandpaNiu-Ads.yaml][android-mihomo-ads-raw] | FlClash / Mihomo / Clash Meta | 作为 rule-provider 合并 |
-| 使用 sing-box | [GrandpaNiu-Ads.json][android-singbox-raw] | sing-box / SFA | 引用 rule-set |
-| 使用 AdGuard | [GrandpaNiu-DNS.txt][android-adguard-raw] | AdGuard Android / AdGuard Home | 添加过滤规则 |
-| 使用 v2rayNG / V2Ray / Xray | [GrandpaNiu-v2rayng-routing.json][android-v2rayng-raw] | v2rayNG / V2Ray / Xray | 手动合并 routing |
-| 想增强通用覆盖 | [Mihomo][android-ios-compatible-mihomo-raw] / [sing-box][android-ios-compatible-singbox-raw] / [AdGuard][android-ios-compatible-adguard-raw] / [v2rayNG][android-ios-compatible-v2rayng-raw] | 多客户端 | 额外导入，误伤时关闭 |
-
-> `iOS-Compatible-Reject` 是增强包。它覆盖更广，也更容易影响图片加载、播放、定位、部分 App 启动或登录前接口。出现异常时先关闭它。
+> Android 用户统一从上方 **Android 导入页** 进入，不在 README 里重复放每个文件入口，避免选错。
 
 ---
 
-## 出问题怎么排查
+## 出问题先看这里
 
-| 现象 | 优先处理 |
+| 现象 | 先做什么 |
 |---|---|
 | 登录异常 | iOS 切 Lite；Android 关闭增强包 |
 | 图片不加载 | 关闭 iOS 可复用规则包或对应 App 增强规则 |
 | 视频无法播放 | 关闭对应 App 增强规则 |
 | 手机发热、耗电 | 减少规则叠加，iOS 先用 Lite |
-| 一键导入无反应 | 复制链接，到客户端里从 URL 手动导入 |
+| 一键导入无反应 | 复制入口链接，在客户端里从 URL 手动导入 |
 
 排查原则：**先减少规则，再逐步加回。**
 
@@ -124,7 +121,7 @@ Android 用户不要直接导入 iOS 模块。请先进入：
 
 ## 不建议这样做
 
-- 不要同时启用 Stable、Stable Plus、Lite、Full。
+- 不要同时启用多个版本。
 - 不要把 Android 文件导入 Shadowrocket。
 - 不要把 iOS `.sgmodule` 当成 Android 配置。
 - 不要把 Full 当日常版本长期使用。
@@ -244,27 +241,6 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 
 [import-page]: https://grandpaniuu.github.io/GrandpaNiu/import.html
 [stable-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable.sgmodule
-[stable-plus-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable-plus.sgmodule
 [lite-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-lite.sgmodule
-[full-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-full.sgmodule
 [android-import]: https://grandpaniuu.github.io/GrandpaNiu/android.html
-[stable-pages]: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule
-[stable-plus-pages]: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable-plus.sgmodule
-[lite-pages]: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-lite.sgmodule
-[full-pages]: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-full.sgmodule
-[root-pages]: https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
-[stable-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-stable.sgmodule
-[stable-plus-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-stable-plus.sgmodule
-[lite-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-lite.sgmodule
-[full-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai-full.sgmodule
-[root-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule
-[android-full-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Android-Full.yaml
-[android-mihomo-ads-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Ads.yaml
-[android-singbox-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/GrandpaNiu-Ads.json
-[android-adguard-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/GrandpaNiu-DNS.txt
-[android-v2rayng-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/GrandpaNiu-v2rayng-routing.json
-[android-ios-compatible-mihomo-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/apps/iOS-Compatible-Reject.yaml
-[android-ios-compatible-singbox-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/apps/iOS-Compatible-Reject.json
-[android-ios-compatible-adguard-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/apps/iOS-Compatible-Reject.txt
-[android-ios-compatible-v2rayng-raw]: https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/apps/iOS-Compatible-Reject-routing.json
 [health-report]: reports/repository_health_report.md
