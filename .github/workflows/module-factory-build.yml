@@ -14,6 +14,7 @@ on:
       - "scripts/dedupe_qq_news_script_path.py"
       - "scripts/build_android_rules.py"
       - "scripts/android_format_check.py"
+      - "scripts/import_legacy_sgmodule.py"
       - "scripts/quality_gate.py"
       - "Rewrite/Manifest.conf"
       - "Rewrite/Profiles/**"
@@ -41,7 +42,7 @@ jobs:
 
       - name: Validate Python scripts
         run: |
-          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/dedupe_qq_news_script_path.py scripts/build_android_rules.py scripts/android_format_check.py scripts/quality_gate.py
+          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/dedupe_qq_news_script_path.py scripts/build_android_rules.py scripts/android_format_check.py scripts/import_legacy_sgmodule.py scripts/quality_gate.py
 
       - name: Validate app-cleaner JavaScript syntax
         run: |
