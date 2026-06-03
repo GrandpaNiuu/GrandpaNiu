@@ -1,17 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-06-03 08:29:49 +0800
+- 生成时间：2026-06-03 08:33:19 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `reports/multi_release_report.md`
-- `reports/profile_validation_report.md`
-- `reports/promotion_pr_report.md`
+- `Rewrite/Sources/Map-Local-legacy-reviewed.conf`
 
 ## 新增文件
 
-- 无
+- `Rewrite/Sources/Map-Local-legacy-reviewed.conf`
 
 ## 删除文件
 
@@ -19,13 +17,11 @@
 
 ## 修改文件
 
-- `reports/multi_release_report.md`
-- `reports/profile_validation_report.md`
-- `reports/promotion_pr_report.md`
+- 无
 
 ## 影响的模块层
 
-- README/docs
+- Rewrite/Sources
 
 ## 可能影响的 App
 
@@ -40,7 +36,7 @@
 - 是否需要测试 Spotify：按需
 - 是否需要测试 YouTube：按需
 - 是否需要测试知乎：按需
-- 是否需要测试登录/支付/验证码：按需
+- 是否需要测试登录/支付/验证码：是
 
 ## 回滚建议
 
