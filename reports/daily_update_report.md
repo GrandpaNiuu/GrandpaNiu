@@ -1,6 +1,6 @@
 # 每日模块更新报告
 
-- 日期：2026-06-03
+- 日期：2026-06-04
 - 日期源头：Rewrite/Sources/Meta.conf
 - 构建流程：Meta.conf -> build_android_rules.py -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> build_release_variants.py -> validate_repository.py -> repository_health_check.py
 
@@ -16,7 +16,7 @@ Android format check passed.
 
 # Android 规则生成报告
 
-- 最后更新时间：2026-06-03 11:18:30
+- 最后更新时间：2026-06-04 01:46:05
 - App 总数：18
 - 当前 Android App 源头：Android/mihomo/apps/*.yaml
 - iOS 可复用源头：Rules/reject.list -> iOS-Compatible-Reject
