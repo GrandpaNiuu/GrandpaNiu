@@ -64,7 +64,17 @@ HEADER_TOKENS = (
     " http-response ",
 )
 BODY_TOKENS = (" body-rewrite ", " response-body ", " request-body ")
-MAP_LOCAL_TOKENS = (" map-local ", " echo-response ")
+MAP_LOCAL_TOKENS = (
+    " map-local ",
+    " echo-response ",
+    " data=",
+    " data =",
+    " status-code=",
+    " status-code =",
+    " mock-response ",
+    " mock-response=",
+    " mock-response =",
+)
 SCRIPT_TOKENS = (
     " script-request-body ",
     " script-response-body ",
@@ -226,6 +236,7 @@ def make_report(name: str, source: Path, parsed: ParsedModule) -> str:
         f"- Source: {source.as_posix()}",
         f"- Generated at: {now}",
         "- Status: staging only; no factory source, Release, or root module was changed.",
+        "- Mock, data and status-code lines are preserved as raw Map Local lines. The importer does not escape quotes or validate embedded JSON.",
         "",
         "## Section counts",
         "",
@@ -259,7 +270,7 @@ def make_report(name: str, source: Path, parsed: ParsedModule) -> str:
         "1. Review every generated fragment before copying into Rules/, Scripts/, or Rewrite/Sources/.",
         "2. Do not move staging output directly into Release or the root module.",
         "3. Rebuild with scripts/build_module.py and run scripts/validate_repository.py after migration.",
-        "4. Keep complex Script, MITM, Header Rewrite, and Body Rewrite entries under manual review.",
+        "4. Keep complex Script, MITM, Header Rewrite, Body Rewrite and Map Local entries under manual review.",
         "",
     ])
     return "\n".join(lines)
