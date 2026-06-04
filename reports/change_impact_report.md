@@ -1,11 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-05 00:10:37 +0800
+- 生成时间：2026-06-05 00:11:57 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Rules/crazyrule-loon.list`
+- `Rewrite/Profiles/stable.conf`
 
 ## 新增文件
 
@@ -13,19 +13,19 @@
 
 ## 删除文件
 
-- `Rules/crazyrule-loon.list`
+- 无
 
 ## 修改文件
 
-- 无
+- `Rewrite/Profiles/stable.conf`
 
 ## 影响的模块层
 
-- Rules
+- Profiles
 
 ## 可能影响的 App
 
-- 待人工确认
+- Spotify
 
 ## 风险判断
 
@@ -33,7 +33,7 @@
 - 是否涉及 MITM：否
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
-- 是否需要测试 Spotify：按需
+- 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：按需
 - 是否需要测试知乎：按需
 - 是否需要测试登录/支付/验证码：按需
