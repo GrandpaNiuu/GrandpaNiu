@@ -1,6 +1,6 @@
 # 兼容层迁移审计报告
 
-- 日期：2026-06-04
+- 日期：2026-06-05
 - source_rule_compat 当前是否开启：是
 - source_script_compat 当前是否开启：是
 - Rule.conf 行数：525
