@@ -28,6 +28,15 @@ on:
 permissions:
   contents: write
 
+defaults:
+  run:
+    shell: bash
+
+env:
+  PYTHONUTF8: "1"
+  LANG: C.UTF-8
+  LC_ALL: C.UTF-8
+
 concurrency:
   group: module-maintenance
   cancel-in-progress: false
@@ -39,46 +48,76 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Show build environment
+        run: |
+          set -euo pipefail
+          python3 --version
+          node --version
+          git --version
+          locale
 
       - name: Validate Python scripts
         run: |
+          set -euo pipefail
           python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/dedupe_qq_news_script_path.py scripts/build_android_rules.py scripts/android_format_check.py scripts/import_legacy_sgmodule.py scripts/quality_gate.py
 
       - name: Validate app-cleaner JavaScript syntax
         run: |
+          set -euo pipefail
           node --check Scripts/app-cleaner.js
 
       - name: Migrate low-risk JSON cleaners to app-cleaner active
         run: |
+          set -euo pipefail
           python3 scripts/dedupe_qq_news_script_path.py
 
       - name: Validate app-cleaner JavaScript syntax after migration
         run: |
+          set -euo pipefail
           node --check Scripts/app-cleaner.js
 
       - name: Build Android app rule formats
         run: |
+          set -euo pipefail
           python3 scripts/build_android_rules.py
           python3 scripts/android_format_check.py
 
       - name: Build stable factory output
         run: |
+          set -euo pipefail
           python3 scripts/build_module.py --build --profile stable
 
       - name: Finalize factory output and sync root module
         run: |
+          set -euo pipefail
           python3 scripts/factory_finalize.py --sync-root
 
       - name: Build independent release variants
         run: |
+          set -euo pipefail
           python3 scripts/build_release_variants.py
 
       - name: Validate repository
         run: |
+          set -euo pipefail
           python3 scripts/validate_repository.py
 
       - name: Commit factory output
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add Ronghemokuai.sgmodule Rewrite/Sources Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule Rules Scripts Android/mihomo/apps Android/sing-box/apps Android/adguard/apps Android/v2rayng/apps reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/script_dedupe_report.md reports/script_consolidation_rollback_report.md reports/app_cleaner_active_report.md reports/app_cleaner_refactor_report.md reports/android_rules_report.md
