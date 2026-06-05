@@ -5,6 +5,12 @@ This script keeps the integration source-first. It downloads the upstream module
 extracts section bodies, writes reviewable source files, and emits a small report.
 If the download fails but target source files already exist, it keeps the cached
 sources so normal builds do not break because of a temporary upstream outage.
+
+Stable safety boundary:
+- Do not import the upstream "安全浏览限制解除" block. It is not an ad-removal
+  function and can weaken browser/app safety checks.
+- Do not import WeChat HTTPDNS rejects, because this repository already keeps
+  those under manual review due to image/media false-positive risk.
 """
 
 from __future__ import annotations
@@ -36,6 +42,7 @@ HEADERS = {
         "# QingRex mini-program and app lazy ad removal rule layer\n"
         "# Source module: 小程序和应用懒人去广告合集.official.sgmodule\n"
         "# Scope: app and mini-program ad domain/IP rejects.\n"
+        "# Stable safety: non-ad safe-browsing bypass and WeChat HTTPDNS rejects are filtered out.\n"
         "# Rollback: remove qingrex_miniapp_rules from Rewrite/Profiles/stable.conf.\n\n"
     ),
     "URL Rewrite": (
@@ -72,6 +79,12 @@ HEADERS = {
     ),
 }
 
+EXCLUDED_BLOCK_TITLES = {"安全浏览限制解除"}
+EXCLUDED_EXACT_RULE_PREFIXES = {
+    "DOMAIN,dns.weixin.qq.com.cn,REJECT",
+    "DOMAIN,dns.weixin.qq.com,REJECT",
+}
+
 
 def download_text() -> str:
     request = urllib.request.Request(UPSTREAM_URL, headers={"User-Agent": "GrandpaNiu-Module-Factory"})
@@ -94,13 +107,38 @@ def parse_sections(text: str) -> dict[str, list[str]]:
     return sections
 
 
-def section_body(lines: list[str]) -> str:
+def filter_rule_lines(lines: list[str]) -> tuple[list[str], list[str]]:
+    filtered: list[str] = []
+    excluded: list[str] = []
+    current_block_excluded = False
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("#>") or stripped.startswith("# >"):
+            title = stripped.lstrip("#").strip().lstrip(">").strip()
+            current_block_excluded = title in EXCLUDED_BLOCK_TITLES
+            if current_block_excluded:
+                excluded.append(line)
+                continue
+        if current_block_excluded:
+            excluded.append(line)
+            continue
+        if any(stripped.startswith(prefix) for prefix in EXCLUDED_EXACT_RULE_PREFIXES):
+            excluded.append(line)
+            continue
+        filtered.append(line)
+    return filtered, excluded
+
+
+def section_body(section: str, lines: list[str]) -> tuple[str, list[str]]:
+    excluded: list[str] = []
     cleaned = list(lines)
+    if section == "Rule":
+        cleaned, excluded = filter_rule_lines(cleaned)
     while cleaned and not cleaned[0].strip():
         cleaned.pop(0)
     while cleaned and not cleaned[-1].strip():
         cleaned.pop()
-    return "\n".join(cleaned).rstrip() + ("\n" if cleaned else "")
+    return "\n".join(cleaned).rstrip() + ("\n" if cleaned else ""), excluded
 
 
 def active_count(text: str) -> int:
@@ -112,7 +150,7 @@ def write_text(path: Path, content: str) -> None:
     path.write_text(content, encoding="utf-8", newline="\n")
 
 
-def write_report(written: dict[str, str], status: str) -> None:
+def write_report(written: dict[str, str], status: str, excluded: list[str]) -> None:
     now = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S")
     report = [
         "# QingRex mini-program/app module import report",
@@ -142,7 +180,18 @@ def write_report(written: dict[str, str], status: str) -> None:
         "- Response-body script cleaners for selected mini-program endpoints.",
         "- MITM hostname coverage required by these rewrite/map-local/script rules.",
         "",
+        "## Excluded from Stable import",
+        "",
+        "These lines are intentionally not imported into Stable because they are not pure ad-removal entries or have high false-positive risk.",
+        "",
     ])
+    if excluded:
+        report.append("```text")
+        report.extend(excluded)
+        report.append("```")
+    else:
+        report.append("No excluded lines.")
+    report.append("")
     write_text(ROOT / "reports" / "qingrex_miniapp_import_report.md", "\n".join(report))
 
 
@@ -157,7 +206,7 @@ def main() -> None:
     except Exception as exc:
         if targets_have_content():
             written = {section: path.read_text(encoding="utf-8", errors="ignore") for section, path in TARGETS.items()}
-            write_report(written, f"kept cached source layers because upstream download failed: {exc}")
+            write_report(written, f"kept cached source layers because upstream download failed: {exc}", [])
             print(f"WARN: QingRex upstream download failed; using cached source layers: {exc}")
             return
         print(f"ERROR: QingRex upstream download failed and no cached source layers exist: {exc}", file=sys.stderr)
@@ -165,12 +214,14 @@ def main() -> None:
 
     parsed = parse_sections(source)
     written: dict[str, str] = {}
+    excluded_all: list[str] = []
     for section, target in TARGETS.items():
-        body = section_body(parsed.get(section, []))
+        body, excluded = section_body(section, parsed.get(section, []))
+        excluded_all.extend(excluded)
         content = HEADERS[section] + body
         write_text(target, content)
         written[section] = content
-    write_report(written, status)
+    write_report(written, status, excluded_all)
     print("QingRex source layers imported.")
 
 
