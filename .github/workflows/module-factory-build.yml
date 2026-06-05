@@ -16,6 +16,7 @@ on:
       - "scripts/android_format_check.py"
       - "scripts/import_legacy_sgmodule.py"
       - "scripts/import_qingrex_official_module.py"
+      - "scripts/convert_quanx_rules.py"
       - "scripts/quality_gate.py"
       - "Rewrite/Manifest.conf"
       - "Rewrite/Profiles/**"
@@ -73,7 +74,7 @@ jobs:
       - name: Validate Python scripts
         run: |
           set -euo pipefail
-          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/dedupe_qq_news_script_path.py scripts/build_android_rules.py scripts/android_format_check.py scripts/import_legacy_sgmodule.py scripts/import_qingrex_official_module.py scripts/quality_gate.py
+          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/dedupe_qq_news_script_path.py scripts/build_android_rules.py scripts/android_format_check.py scripts/import_legacy_sgmodule.py scripts/import_qingrex_official_module.py scripts/convert_quanx_rules.py scripts/quality_gate.py
 
       - name: Import QingRex miniapp/app ad layer
         run: |
@@ -100,6 +101,11 @@ jobs:
           set -euo pipefail
           python3 scripts/build_android_rules.py
           python3 scripts/android_format_check.py
+
+      - name: Convert QuanX rule lists for Shadowrocket
+        run: |
+          set -euo pipefail
+          python3 scripts/convert_quanx_rules.py
 
       - name: Build stable factory output
         run: |
