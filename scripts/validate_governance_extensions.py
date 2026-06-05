@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Validate governance additions that protect releases from red-cross and false-positive regressions."""
+"""Validate governance additions that protect releases from red-cross and false-positive regressions.
+
+The check verifies that required governance files and core policy concepts exist.
+It intentionally avoids depending on one exact Chinese sentence when several
+semantically equivalent policy phrases are acceptable.
+"""
 
 from __future__ import annotations
 
@@ -35,7 +40,10 @@ QUALITY_GATE_REQUIRED_TOKENS = [
     "Full 冻结边界",
     "Quantumult X",
     "host-suffix",
-    "不允许发布模块",
+]
+
+QUALITY_GATE_REQUIRED_ANY = [
+    ["不允许发布模块", "不应发布主模块", "不允许发布主模块", "阻断发布"],
 ]
 
 PROFILE_POLICY_REQUIRED_TOKENS = [
@@ -89,6 +97,16 @@ def require_tokens(relative: str, tokens: list[str]) -> None:
         fail(f"{relative} missing required governance tokens: " + ", ".join(missing))
 
 
+def require_any(relative: str, groups: list[list[str]]) -> None:
+    text = read(relative)
+    missing_groups: list[str] = []
+    for group in groups:
+        if not any(token in text for token in group):
+            missing_groups.append(" / ".join(group))
+    if missing_groups:
+        fail(f"{relative} missing required governance concept(s): " + ", ".join(missing_groups))
+
+
 def main() -> None:
     for relative in REQUIRED_FILES:
         if not (ROOT / relative).exists():
@@ -96,6 +114,7 @@ def main() -> None:
 
     require_tokens("reports/manual_test_log.md", MANUAL_TEST_REQUIRED_TOKENS)
     require_tokens("docs/QUALITY_GATE.md", QUALITY_GATE_REQUIRED_TOKENS)
+    require_any("docs/QUALITY_GATE.md", QUALITY_GATE_REQUIRED_ANY)
     require_tokens("docs/PROFILE_POLICY.md", PROFILE_POLICY_REQUIRED_TOKENS)
     require_tokens(".github/ISSUE_TEMPLATE/rule_false_positive.yml", FALSE_POSITIVE_TEMPLATE_REQUIRED_TOKENS)
     require_tokens(".github/ISSUE_TEMPLATE/import_red_cross.yml", IMPORT_TEMPLATE_REQUIRED_TOKENS)
