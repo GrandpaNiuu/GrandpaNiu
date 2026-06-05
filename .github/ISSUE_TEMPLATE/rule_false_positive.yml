@@ -1,0 +1,141 @@
+name: 误伤反馈 / False Positive
+
+description: 报告规则、脚本、Rewrite 或 MITM 导致的异常，例如登录失败、图片不加载、视频播放失败、支付前置异常。
+
+title: "[误伤] "
+
+labels:
+  - false-positive
+  - needs-triage
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请尽量完整填写。没有 Lite 对照和关闭模块对照时，维护者很难判断是模块误伤、节点问题、App 自身问题，还是网络问题。
+
+  - type: dropdown
+    id: profile
+    attributes:
+      label: 使用的模块版本
+      description: 不要同时启用多个版本。
+      options:
+        - Stable
+        - Stable Plus
+        - Lite
+        - Full
+        - 不确定
+    validations:
+      required: true
+
+  - type: input
+    id: module_url
+    attributes:
+      label: 模块链接或 commit
+      description: 粘贴你导入的模块链接，或出现问题时的 commit / 日期。
+      placeholder: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule
+    validations:
+      required: false
+
+  - type: input
+    id: device
+    attributes:
+      label: 设备与系统版本
+      placeholder: iPhone 15 Pro / iOS 18.x
+    validations:
+      required: true
+
+  - type: input
+    id: client
+    attributes:
+      label: 客户端与版本
+      placeholder: Shadowrocket x.x.x / Surge x.x.x
+    validations:
+      required: true
+
+  - type: input
+    id: app
+    attributes:
+      label: 异常 App / 网站 / 服务
+      placeholder: 微信 / 淘宝 / YouTube / 高德地图
+    validations:
+      required: true
+
+  - type: textarea
+    id: symptom
+    attributes:
+      label: 异常现象
+      description: 写清楚具体页面和动作，不要只写“打不开”。
+      placeholder: 例如：淘宝商品详情页图片不加载；微信发图失败；YouTube 播放页黑屏。
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 更新模块、脚本、全部资源
+        2. 打开 App
+        3. 进入某页面
+        4. 出现异常
+    validations:
+      required: true
+
+  - type: dropdown
+    id: lite_compare
+    attributes:
+      label: 切换 Lite 后是否正常
+      options:
+        - 正常
+        - 仍异常
+        - 未测试
+    validations:
+      required: true
+
+  - type: dropdown
+    id: disabled_compare
+    attributes:
+      label: 关闭模块后是否正常
+      options:
+        - 正常
+        - 仍异常
+        - 未测试
+    validations:
+      required: true
+
+  - type: dropdown
+    id: resource_updated
+    attributes:
+      label: 是否已更新模块、脚本、全部资源
+      options:
+        - 是
+        - 否
+        - 不确定
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Shadowrocket / Surge 日志关键命中
+      description: 粘贴和异常 App 相关的 reject、script、rewrite、mitm 命中。不要粘贴账号、Cookie、Token、验证码。
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 截图或录屏
+      description: 可以拖入图片。请遮挡账号、手机号、订单、支付、验证码等敏感信息。
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 其他补充
+      placeholder: 例如：只在 Wi-Fi 出现；换节点后正常；某个 App 版本后才出现。
+    validations:
+      required: false
