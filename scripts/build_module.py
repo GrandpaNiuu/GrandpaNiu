@@ -47,6 +47,10 @@ SCRIPT_NAME_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=")
 HOSTNAME_RE = re.compile(r"^\s*hostname\s*=\s*(.+)$")
 REMOTE_REQUIRED_FIELDS = {"name", "type", "url", "policy", "enabled", "protected", "purpose"}
 DISALLOWED_REMOTE_TOKENS = ("ghproxy", "mirror", "tinyurl", "bit.ly", "t.co/", "shorturl")
+KNOWN_DOMAIN_SET_URLS = {
+    "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list",
+    "https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt",
+}
 
 
 def stop(message: str) -> None:
@@ -135,8 +139,16 @@ def iter_profile_paths(profile: configparser.ConfigParser, section: str) -> Iter
     return paths
 
 
+def normalize_known_remote_line(line: str) -> str:
+    stripped = line.strip()
+    for url in KNOWN_DOMAIN_SET_URLS:
+        if stripped.startswith(f"RULE-SET,{url},"):
+            return line.replace(f"RULE-SET,{url},", f"DOMAIN-SET,{url},", 1)
+    return line
+
+
 def active_key(line: str) -> str:
-    return line.strip()
+    return normalize_known_remote_line(line).strip()
 
 
 def merge_lines(blocks: Iterable[str]) -> str:
@@ -145,6 +157,7 @@ def merge_lines(blocks: Iterable[str]) -> str:
     last_blank = False
     for block in blocks:
         for line in block.splitlines():
+            line = normalize_known_remote_line(line.rstrip())
             key = active_key(line)
             if key and key in seen:
                 continue
@@ -169,7 +182,7 @@ def minify_module_text(text: str) -> str:
     """Remove blank lines and ordinary comments from generated module output."""
     lines: list[str] = []
     for raw in text.splitlines():
-        line = raw.rstrip()
+        line = normalize_known_remote_line(raw.rstrip())
         stripped = line.strip()
         if not stripped:
             continue
@@ -200,6 +213,8 @@ def remote_rule_lines() -> str:
         rule_type = str(item.get("type", "")).strip()
         url = str(item.get("url", "")).strip()
         policy = str(item.get("policy", "REJECT")).strip()
+        if url in KNOWN_DOMAIN_SET_URLS:
+            rule_type = "DOMAIN-SET"
         if rule_type not in {"RULE-SET", "DOMAIN-SET"}:
             stop(f"unsupported remote source type: {item}")
         if not url.startswith("https://"):
@@ -354,6 +369,9 @@ def validate(text: str) -> None:
         mitm_dupes = duplicates(hosts)
         if mitm_dupes:
             stop("duplicate MITM hostnames: " + ", ".join(mitm_dupes[:20]))
+    stale = f"RULE-SET,https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list,REJECT"
+    if stale in text:
+        stop("217heidai adblocksurge is a pure domain set; it must be DOMAIN-SET, not RULE-SET")
 
 
 def make_report(release_text: str, extracted: bool, profile: str) -> str:
@@ -396,6 +414,7 @@ def make_report(release_text: str, extracted: bool, profile: str) -> str:
         "## 模块输出清理",
         "- 生成模块会自动删除空行和普通 # 注释说明。",
         "- 保留 #!update-url、#!name、#!desc 和 # update-date: 等必要元数据。",
+        "- 已知纯域名远程源会自动规范为 DOMAIN-SET，避免 Shadowrocket 红叉。",
         "",
         "## 说明",
         "- 日常维护应优先修改 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。",
