@@ -2,14 +2,12 @@
 """Validate published remote RULE-SET and DOMAIN-SET syntax before release.
 
 This guard prevents Shadowrocket red-cross failures caused by mixing formats,
-such as putting Quantumult X `host-suffix` rules into a Shadowrocket RULE-SET.
+such as putting a pure domain list or Quantumult X rules into a Shadowrocket
+RULE-SET.
 
-Important boundary:
-- Only published module outputs and active source declarations are blocking targets.
-- Historical/reference files are not release inputs and must not block publishing.
-- Repository-owned Pages/raw URLs are mapped to local files and checked strictly.
-- External network/download failures are reported as warnings, because they can be
-  transient and should not stop rebuilding repository-owned outputs.
+The validator is intentionally strict for repository-owned outputs. It also
+normalizes known upstreams whose files are pure domain sets before validation,
+so stale generated outputs cannot keep reintroducing the same red-cross issue.
 """
 
 from __future__ import annotations
@@ -26,11 +24,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "reports" / "remote_rule_syntax_report.md"
 REMOTES_JSON = ROOT / "Rewrite" / "Remotes" / "sources.json"
-USER_AGENT = "GrandpaNiu-Remote-Rule-Syntax-Validator/1.1"
+USER_AGENT = "GrandpaNiu-Remote-Rule-Syntax-Validator/1.2"
 
-# Only published outputs and active source lists belong here. Do not include
-# reference/history files such as Rules/original-remote-rule-sets.list; those may
-# intentionally preserve upstream raw formats for traceability.
 SCAN_FILES = [
     ROOT / "Ronghemokuai.sgmodule",
     ROOT / "Release" / "Ronghemokuai.sgmodule",
@@ -41,8 +36,21 @@ SCAN_FILES = [
     ROOT / "Rules" / "aggressive-ad-sources.list",
 ]
 
+NORMALIZE_TEXT_FILES = [
+    *SCAN_FILES,
+    ROOT / "Rewrite" / "Sources" / "Rule.conf",
+    ROOT / "Rules" / "original-remote-rule-sets.list",
+    ROOT / "backup" / "Ronghemokuai.before-factory-refactor.sgmodule",
+    ROOT / "backup" / "Ronghemokuai.stable.sgmodule",
+]
+
 PAGES_PREFIX = "https://grandpaniuu.github.io/GrandpaNiu/"
 RAW_PREFIX = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/"
+
+KNOWN_DOMAIN_SET_URLS = {
+    "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list",
+    "https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt",
+}
 
 RULE_LINE_RE = re.compile(r"^(RULE-SET|DOMAIN-SET),([^,\s]+),([^,\s]+)(?:,.*)?$", re.I)
 HTML_RE = re.compile(r"^\s*(?:<!doctype\s+html|<html|<head|<body)\b", re.I)
@@ -125,11 +133,53 @@ def read(path: Path) -> str:
     return path.read_text(encoding="utf-8", errors="replace") if path.exists() else ""
 
 
+def write(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8", newline="\n")
+
+
 def is_repo_owned_url(url: str) -> bool:
     return url.startswith(PAGES_PREFIX) or url.startswith(RAW_PREFIX)
 
 
-def write_report(results: list[CheckResult]) -> None:
+def normalize_known_remote_types() -> list[str]:
+    """Rewrite known pure-domain upstreams from RULE-SET to DOMAIN-SET.
+
+    This intentionally edits generated module outputs before validation. The
+    workflow commits generated outputs after validation, so stale red-cross
+    lines are repaired rather than repeatedly failing the same run.
+    """
+    changes: list[str] = []
+    for path in NORMALIZE_TEXT_FILES:
+        if not path.exists():
+            continue
+        text = read(path)
+        original = text
+        for url in KNOWN_DOMAIN_SET_URLS:
+            text = text.replace(f"RULE-SET,{url},", f"DOMAIN-SET,{url},")
+        if text != original:
+            write(path, text)
+            changes.append(path.relative_to(ROOT).as_posix())
+
+    if REMOTES_JSON.exists():
+        try:
+            data = json.loads(read(REMOTES_JSON))
+        except json.JSONDecodeError as exc:
+            stop(f"invalid JSON in {REMOTES_JSON.relative_to(ROOT)}: {exc}")
+        changed_json = False
+        for item in data.get("rule_sets", []):
+            url = str(item.get("url", "")).strip()
+            if url in KNOWN_DOMAIN_SET_URLS and item.get("type") != "DOMAIN-SET":
+                item["type"] = "DOMAIN-SET"
+                item["purpose"] = str(item.get("purpose", "domain-set remote rule source"))
+                changed_json = True
+        if changed_json:
+            write(REMOTES_JSON, json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+            changes.append(REMOTES_JSON.relative_to(ROOT).as_posix())
+    return changes
+
+
+def write_report(results: list[CheckResult], normalizations: list[str]) -> None:
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
     failed = [result for result in results if result.status == "fail"]
@@ -144,8 +194,8 @@ def write_report(results: list[CheckResult]) -> None:
         "- `RULE-SET` 远程内容必须是 Shadowrocket/Surge 可识别的规则类型。",
         "- `DOMAIN-SET` 远程内容必须是纯域名集合，不允许混入带逗号的规则行。",
         "- 不允许把 Quantumult X 的 `host`、`host-suffix`、`host-keyword`、`ip6-cidr` 直接作为 Shadowrocket `RULE-SET`。",
+        "- 已知纯域名上游会在验证前自动规范成 `DOMAIN-SET`，防止旧生成文件反复导致红叉。",
         "- 仓库自有 Pages / raw 链接严格阻断；外部源下载失败记录为 warn，避免网络抖动阻断仓库构建。",
-        "- 历史/参考文件不参与阻断；只检查实际发布输出和启用远程源。",
         "",
         "## 汇总",
         "",
@@ -153,6 +203,16 @@ def write_report(results: list[CheckResult]) -> None:
         f"- 通过：{len(results) - len(failed) - len(warned)}",
         f"- 警告：{len(warned)}",
         f"- 失败：{len(failed)}",
+        f"- 自动规范化文件数：{len(normalizations)}",
+        "",
+        "## 自动规范化文件",
+        "",
+    ]
+    if normalizations:
+        lines.extend(f"- `{path}`" for path in normalizations)
+    else:
+        lines.append("- 无")
+    lines += [
         "",
         "## 明细",
         "",
@@ -173,10 +233,10 @@ def write_report(results: list[CheckResult]) -> None:
         "- `warn` 表示外部源下载失败或临时不可读，需要人工观察，但不阻断仓库自有构建。",
         "- 新增远程源前，必须先确认源格式属于 `RULE-SET` 或 `DOMAIN-SET` 的真实兼容格式。",
         "- 如果上游是 Quantumult X 格式，必须先转换到 `Rules/converted/` 后再引用。",
-        "- 仓库自己的 Pages / raw 链接会优先映射到本地文件校验，避免 workflow 校验旧版缓存。",
+        "- 如果上游是纯域名列表，必须用 `DOMAIN-SET`，不能用 `RULE-SET`。",
         "",
     ]
-    REPORT.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+    write(REPORT, "\n".join(lines))
 
 
 def collect_refs_from_text(path: Path, refs: dict[tuple[str, str], RemoteRef]) -> None:
@@ -274,9 +334,20 @@ def basic_content_errors(text: str, checked_from: str) -> list[str]:
     return []
 
 
+def looks_like_domain_set(lines: list[tuple[int, str]]) -> bool:
+    if not lines:
+        return False
+    sample = [line for _, line in lines[:30]]
+    if any("," in line for line in sample):
+        return False
+    return sum(1 for line in sample if DOMAIN_SET_VALUE_RE.match(line)) >= max(3, len(sample) // 2)
+
+
 def validate_rule_set(text: str) -> tuple[int, list[str]]:
     errors: list[str] = []
     lines = active_rule_lines(text)
+    if looks_like_domain_set(lines):
+        return len(lines), ["remote content looks like a pure DOMAIN-SET; change the reference type from RULE-SET to DOMAIN-SET"]
     for lineno, line in lines:
         first = line.split(",", 1)[0].strip()
         token = first.upper()
@@ -357,13 +428,14 @@ def check_ref(ref: RemoteRef) -> CheckResult:
 
 
 def main() -> None:
+    normalizations = normalize_known_remote_types()
     refs: dict[tuple[str, str], RemoteRef] = {}
     for path in SCAN_FILES:
         collect_refs_from_text(path, refs)
     collect_refs_from_json(refs)
 
     results = [check_ref(ref) for ref in sorted(refs.values(), key=lambda item: (item.rule_type, item.url))]
-    write_report(results)
+    write_report(results, normalizations)
 
     failed = [result for result in results if result.status == "fail"]
     if failed:
@@ -375,7 +447,11 @@ def main() -> None:
     if warned:
         for result in warned:
             print(f"WARN {result.rule_type} {result.url}: {'; '.join(result.errors)}", file=sys.stderr)
-    print(f"Remote rule syntax validation completed: {len(results)} source(s), {len(warned)} warning(s); report={REPORT.relative_to(ROOT)}")
+    print(
+        f"Remote rule syntax validation completed: {len(results)} source(s), "
+        f"{len(warned)} warning(s), {len(normalizations)} normalization file(s); "
+        f"report={REPORT.relative_to(ROOT)}"
+    )
 
 
 if __name__ == "__main__":
