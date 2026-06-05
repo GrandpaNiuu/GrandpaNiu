@@ -47,12 +47,12 @@
     },
     {
       "name": "217heidai adblockfilters",
-      "type": "RULE-SET",
+      "type": "DOMAIN-SET",
       "url": "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list",
       "policy": "REJECT",
       "enabled": true,
       "protected": false,
-      "purpose": "advertising supplement"
+      "purpose": "domain-set advertising supplement"
     },
     {
       "name": "blackmatrix7 Advertising Lite",
