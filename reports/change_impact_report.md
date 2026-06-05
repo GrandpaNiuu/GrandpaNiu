@@ -1,11 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-06 00:40:11 +0800
+- 生成时间：2026-06-06 00:42:51 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `reports/manual_test_log.md`
+- `docs/PROFILE_POLICY.md`
 
 ## 新增文件
 
@@ -17,7 +17,7 @@
 
 ## 修改文件
 
-- `reports/manual_test_log.md`
+- `docs/PROFILE_POLICY.md`
 
 ## 影响的模块层
 
@@ -32,9 +32,9 @@
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：否
+- 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：否
-- 是否涉及远程规则源：否
+- 是否涉及远程规则源：是
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
 - 是否需要测试知乎：按需
