@@ -3,9 +3,9 @@
 - 日期：2026-06-05
 - 构建 profile：stable
 - 是否从 root 反拆：否
-- 构建阶段 Root/Release 是否一致：是
-- Release 行数：2632
-- Release MITM hostname 数量：120
+- 构建阶段 Root/Release 是否一致：否
+- Release 行数：2921
+- Release MITM hostname 数量：264
 
 ## 源文件统计
 - Rule: 525 行
