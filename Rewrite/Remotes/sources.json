@@ -20,12 +20,12 @@
     },
     {
       "name": "anti-AD Surge",
-      "type": "RULE-SET",
+      "type": "DOMAIN-SET",
       "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt",
       "policy": "REJECT",
       "enabled": true,
       "protected": false,
-      "purpose": "general advertising supplement"
+      "purpose": "domain-set advertising supplement"
     },
     {
       "name": "ACL4SSR BanAD",
@@ -38,12 +38,12 @@
     },
     {
       "name": "Loyalsoldier reject",
-      "type": "RULE-SET",
+      "type": "DOMAIN-SET",
       "url": "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt",
       "policy": "REJECT",
       "enabled": true,
       "protected": false,
-      "purpose": "advertising supplement"
+      "purpose": "domain-set advertising supplement"
     },
     {
       "name": "217heidai adblockfilters",
