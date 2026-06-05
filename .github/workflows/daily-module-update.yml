@@ -10,7 +10,11 @@ on:
       - main
     paths:
       - ".github/workflows/daily-module-update.yml"
+      - ".github/ISSUE_TEMPLATE/**"
       - "scripts/validate_repository.py"
+      - "scripts/validate_remote_rule_syntax.py"
+      - "scripts/validate_governance_extensions.py"
+      - "scripts/convert_quanx_rules.py"
       - "scripts/build_module.py"
       - "scripts/build_release_variants.py"
       - "scripts/factory_finalize.py"
@@ -19,6 +23,7 @@ on:
       - "scripts/import_legacy_sgmodule.py"
       - "scripts/repository_health_check.py"
       - "Rewrite/Sources/Meta.conf"
+      - "Rules/**"
       - "Android/**"
 
 permissions:
@@ -44,6 +49,8 @@ jobs:
             scripts/build_release_variants.py \
             scripts/factory_finalize.py \
             scripts/validate_repository.py \
+            scripts/validate_remote_rule_syntax.py \
+            scripts/validate_governance_extensions.py \
             scripts/validate_profiles.py \
             scripts/audit_reject_risk.py \
             scripts/generate_app_status_matrix.py \
@@ -55,7 +62,8 @@ jobs:
             scripts/repository_health_check.py \
             scripts/build_android_rules.py \
             scripts/android_format_check.py \
-            scripts/import_legacy_sgmodule.py
+            scripts/import_legacy_sgmodule.py \
+            scripts/convert_quanx_rules.py
 
       - name: Update source metadata date, build, finalize and report
         run: |
@@ -71,10 +79,18 @@ jobs:
           release = Path("Release/Ronghemokuai.sgmodule")
           report = Path("reports/daily_update_report.md")
           android_report = Path("reports/android_rules_report.md")
+          remote_syntax_report = Path("reports/remote_rule_syntax_report.md")
           report.parent.mkdir(parents=True, exist_ok=True)
 
           if not meta.exists():
               raise SystemExit("Rewrite/Sources/Meta.conf not found")
+
+          def run_checked(label, command):
+              proc = subprocess.run(command, text=True, capture_output=True)
+              output = (proc.stdout + proc.stderr).strip() or "no output"
+              if proc.returncode != 0:
+                  raise SystemExit(f"{label} failed:\n{output}")
+              return output
 
           today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
           meta_text = meta.read_text(encoding="utf-8")
@@ -82,25 +98,16 @@ jobs:
           meta_text = re.sub(r"^# update-date:.*$", f"# update-date: {today}", meta_text, flags=re.M)
           meta.write_text(meta_text, encoding="utf-8", newline="\n")
 
-          android_build = subprocess.run(["python3", "scripts/build_android_rules.py"], text=True, capture_output=True)
-          android_build_output = (android_build.stdout + android_build.stderr).strip() or "no output"
-          if android_build.returncode != 0:
-              raise SystemExit(android_build_output)
+          quanx_output = run_checked("convert_quanx_rules.py", ["python3", "scripts/convert_quanx_rules.py"])
 
-          android_check = subprocess.run(["python3", "scripts/android_format_check.py"], text=True, capture_output=True)
-          android_check_output = (android_check.stdout + android_check.stderr).strip() or "no output"
-          if android_check.returncode != 0:
-              raise SystemExit(android_check_output)
+          android_build_output = run_checked("build_android_rules.py", ["python3", "scripts/build_android_rules.py"])
+          android_check_output = run_checked("android_format_check.py", ["python3", "scripts/android_format_check.py"])
 
-          build = subprocess.run(["python3", "scripts/build_module.py", "--build", "--profile", "stable"], text=True, capture_output=True)
-          if build.returncode != 0:
-              raise SystemExit((build.stdout + build.stderr).strip())
-          finalize = subprocess.run(["python3", "scripts/factory_finalize.py", "--sync-root"], text=True, capture_output=True)
-          if finalize.returncode != 0:
-              raise SystemExit((finalize.stdout + finalize.stderr).strip())
-          variants = subprocess.run(["python3", "scripts/build_release_variants.py"], text=True, capture_output=True)
-          if variants.returncode != 0:
-              raise SystemExit((variants.stdout + variants.stderr).strip())
+          build_output = run_checked("build_module.py", ["python3", "scripts/build_module.py", "--build", "--profile", "stable"])
+          finalize_output = run_checked("factory_finalize.py", ["python3", "scripts/factory_finalize.py", "--sync-root"])
+          variants_output = run_checked("build_release_variants.py", ["python3", "scripts/build_release_variants.py"])
+          remote_syntax_output = run_checked("validate_remote_rule_syntax.py", ["python3", "scripts/validate_remote_rule_syntax.py"])
+          governance_extension_output = run_checked("validate_governance_extensions.py", ["python3", "scripts/validate_governance_extensions.py"])
 
           text = module.read_text(encoding="utf-8")
           release_text = release.read_text(encoding="utf-8")
@@ -152,6 +159,8 @@ jobs:
           urls = [
               "https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule",
               "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/zhihu-enhance.js",
+              "https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-appAdBlock-shadowrocket.list",
+              "https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-allAdBlock-shadowrocket.list",
               "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list",
               "https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt",
               "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt",
@@ -183,10 +192,7 @@ jobs:
                       return f"CHECK_FAILED HEAD={head_error} GET={get_error}"
 
           url_results = [(url, check_url(url)) for url in urls]
-          validator = subprocess.run(["python3", "scripts/validate_repository.py"], text=True, capture_output=True)
-          validate_output = (validator.stdout + validator.stderr).strip() or "no output"
-          if validator.returncode != 0:
-              raise SystemExit(validate_output)
+          validate_output = run_checked("validate_repository.py", ["python3", "scripts/validate_repository.py"])
 
           governance_commands = [
               ("validate_profiles.py", ["python3", "scripts/validate_profiles.py"]),
@@ -200,29 +206,27 @@ jobs:
           ]
           governance_outputs = []
           for label, command in governance_commands:
-              proc = subprocess.run(command, text=True, capture_output=True)
-              output = (proc.stdout + proc.stderr).strip() or "no output"
+              output = run_checked(label, command)
               governance_outputs.append(f"$ {label}\n{output}")
-              if proc.returncode != 0:
-                  raise SystemExit(f"{label} failed:\n{output}")
 
-          health = subprocess.run(["python3", "scripts/repository_health_check.py"], text=True, capture_output=True)
-          health_output = (health.stdout + health.stderr).strip() or "no output"
-          if health.returncode != 0:
-              raise SystemExit(health_output)
-          freshness = subprocess.run(["python3", "scripts/check_report_freshness.py"], text=True, capture_output=True)
-          freshness_output = (freshness.stdout + freshness.stderr).strip() or "no output"
-          if freshness.returncode != 0:
-              raise SystemExit(freshness_output)
+          health_output = run_checked("repository_health_check.py", ["python3", "scripts/repository_health_check.py"])
+          freshness_output = run_checked("check_report_freshness.py", ["python3", "scripts/check_report_freshness.py"])
 
           android_report_text = android_report.read_text(encoding="utf-8") if android_report.exists() else "reports/android_rules_report.md not generated"
+          remote_syntax_report_text = remote_syntax_report.read_text(encoding="utf-8") if remote_syntax_report.exists() else "reports/remote_rule_syntax_report.md not generated"
 
           lines = [
               "# 每日模块更新报告",
               "",
               f"- 日期：{today}",
               "- 日期源头：Rewrite/Sources/Meta.conf",
-              "- 构建流程：Meta.conf -> build_android_rules.py -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> build_release_variants.py -> validate_repository.py -> repository_health_check.py",
+              "- 构建流程：Meta.conf -> convert_quanx_rules.py -> build_android_rules.py -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> build_release_variants.py -> validate_remote_rule_syntax.py -> validate_governance_extensions.py -> validate_repository.py -> repository_health_check.py",
+              "",
+              "## QuanX 转换结果",
+              "",
+              "```text",
+              quanx_output,
+              "```",
               "",
               "## Android 生成检查结果",
               "",
@@ -232,9 +236,23 @@ jobs:
               android_check_output,
               "```",
               "",
+              "## Stable 构建输出",
+              "",
+              "```text",
+              build_output,
+              "",
+              finalize_output,
+              "",
+              variants_output,
+              "```",
+              "",
               "## Android 规则报告",
               "",
               android_report_text,
+              "",
+              "## 远程规则语法报告",
+              "",
+              remote_syntax_report_text,
               "",
               "## 完整区块检查结果",
               "",
@@ -246,6 +264,8 @@ jobs:
           lines += [f"- `{path}`：通过" for path in required_variant_files]
           lines += ["", "## 远程链接检查结果", ""]
           lines += [f"- `{url}`：{result}" for url, result in url_results]
+          lines += ["", "## validate_remote_rule_syntax.py 输出", "", "```text", remote_syntax_output, "```"]
+          lines += ["", "## validate_governance_extensions.py 输出", "", "```text", governance_extension_output, "```"]
           lines += ["", "## validate_repository.py 输出", "", "```text", validate_output, "```"]
           lines += ["", "## 治理报告刷新输出", "", "```text", "\n\n".join(governance_outputs), "```"]
           lines += ["", "## repository_health_check.py 输出", "", "```text", health_output, "```"]
@@ -254,22 +274,20 @@ jobs:
               "",
               "## 自动更新边界说明",
               "",
-              "- 本 workflow 会更新源头日期、重新构建 stable、同步 Release 与 Root，并生成四个独立 Release 版本。",
+              "- 本 workflow 会更新源头日期、转换 QuanX 远程规则、重新构建 stable、同步 Release 与 Root，并生成四个独立 Release 版本。",
+              "- 本 workflow 会校验远程 RULE-SET / DOMAIN-SET 语法，失败时阻断发布。",
               "- 本 workflow 会从 Android/mihomo/apps/*.yaml 生成 Android 多格式 App 规则。",
               "- 默认根目录 Ronghemokuai.sgmodule 仍保持 stable。",
+              "- Full 只用于排查，不自动合并进 Stable。",
               "- 不自动删除规则。",
-              "- 不自动注释脚本。",
-              "- 不自动替换 Spotify / YouTube / 知乎核心脚本。",
-              "- 不自动修改 MITM hostname 内容；MITM 分层由 profile 选择，源头完整列表保留可回滚。",
-              "",
           ]
-          report.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+          report.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
           PY
 
       - name: Commit daily update
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule Android/mihomo/apps Android/sing-box/apps Android/adguard/apps Android/v2rayng/apps reports/daily_update_report.md reports/android_rules_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/repository_health_report.md reports/profile_validation_report.md reports/report_freshness_report.md reports/reject_risk_report.md reports/app_status_matrix.md reports/promotion_pr_report.md reports/candidate_security_score_report.md reports/domestic_app_connectivity_audit.md reports/workflow_health_report.md
+          git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule Rules/converted Android/mihomo/apps Android/sing-box/apps Android/adguard/apps Android/v2rayng/apps reports/daily_update_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/remote_rule_syntax_report.md reports/android_rules_report.md reports/profile_validation_report.md reports/reject_risk_report.md reports/app_status_matrix.md reports/promotion_pr_report.md reports/candidate_security_score_report.md reports/domestic_app_connectivity_audit.md reports/workflow_health_report.md reports/report_freshness_report.md
           git diff --cached --quiet || git commit -m "Daily module update"
           git push
