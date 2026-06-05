@@ -7,7 +7,7 @@
 ## QuanX 转换结果
 
 ```text
-Normalized pure DOMAIN-SET remotes in: Ronghemokuai.sgmodule, Release/Ronghemokuai.sgmodule, Release/Ronghemokuai-stable.sgmodule, Release/Ronghemokuai-stable-plus.sgmodule, Release/Ronghemokuai-lite.sgmodule, Release/Ronghemokuai-full.sgmodule, Rewrite/Sources/Rule.conf, Rules/original-remote-rule-sets.list, backup/Ronghemokuai.before-factory-refactor.sgmodule, backup/Ronghemokuai.stable.sgmodule
+Normalized pure DOMAIN-SET remotes in: backup/Ronghemokuai.before-factory-refactor.sgmodule, backup/Ronghemokuai.stable.sgmodule
 Converted zirawell App AdBlock: Rules/converted/zirawell-appAdBlock-shadowrocket.list (1411 lines)
 Converted zirawell All AdBlock: Rules/converted/zirawell-allAdBlock-shadowrocket.list (1435 lines)
 ```
@@ -34,7 +34,7 @@ Built 4 release variants and wrote /home/runner/work/GrandpaNiu/GrandpaNiu/repor
 
 # Android 规则生成报告
 
-- 最后更新时间：2026-06-06 01:25:59
+- 最后更新时间：2026-06-06 03:42:43
 - App 总数：18
 - 当前 Android App 源头：Android/mihomo/apps/*.yaml
 - iOS 可复用源头：Rules/reject.list -> iOS-Compatible-Reject
@@ -66,7 +66,7 @@ Built 4 release variants and wrote /home/runner/work/GrandpaNiu/GrandpaNiu/repor
 
 # 远程规则语法校验报告
 
-生成时间：2026-06-06 01:26:01 +0800
+生成时间：2026-06-06 03:42:47 +0800
 
 本报告用于阻断 Shadowrocket / Surge 远程规则集红叉问题。校验目标包括：
 
