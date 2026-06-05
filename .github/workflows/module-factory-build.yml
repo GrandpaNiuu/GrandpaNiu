@@ -12,6 +12,7 @@ on:
       - "scripts/factory_finalize.py"
       - "scripts/validate_repository.py"
       - "scripts/validate_remote_rule_syntax.py"
+      - "scripts/validate_governance_extensions.py"
       - "scripts/dedupe_qq_news_script_path.py"
       - "scripts/build_android_rules.py"
       - "scripts/android_format_check.py"
@@ -26,6 +27,7 @@ on:
       - "Rules/**"
       - "Scripts/**"
       - "Android/**"
+      - ".github/ISSUE_TEMPLATE/**"
       - ".github/workflows/module-factory-build.yml"
 
 permissions:
@@ -75,7 +77,7 @@ jobs:
       - name: Validate Python scripts
         run: |
           set -euo pipefail
-          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/validate_remote_rule_syntax.py scripts/dedupe_qq_news_script_path.py scripts/build_android_rules.py scripts/android_format_check.py scripts/import_legacy_sgmodule.py scripts/import_qingrex_official_module.py scripts/convert_quanx_rules.py scripts/quality_gate.py
+          python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/validate_remote_rule_syntax.py scripts/validate_governance_extensions.py scripts/dedupe_qq_news_script_path.py scripts/build_android_rules.py scripts/android_format_check.py scripts/import_legacy_sgmodule.py scripts/import_qingrex_official_module.py scripts/convert_quanx_rules.py scripts/quality_gate.py
 
       - name: Import QingRex miniapp/app ad layer
         run: |
@@ -127,6 +129,11 @@ jobs:
         run: |
           set -euo pipefail
           python3 scripts/validate_remote_rule_syntax.py
+
+      - name: Validate governance extensions
+        run: |
+          set -euo pipefail
+          python3 scripts/validate_governance_extensions.py
 
       - name: Validate repository
         run: |
