@@ -1,0 +1,131 @@
+name: 导入失败 / 红叉 / Remote Rule Error
+
+description: 报告 Shadowrocket / Surge 中模块导入失败、远程规则红叉、RULE-SET 下载或解析失败。
+
+title: "[红叉] "
+
+labels:
+  - import-failed
+  - remote-rule
+  - needs-triage
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        这个模板只用于模块导入失败、红叉、远程规则下载或解析失败。App 页面异常、图片不加载、登录失败请使用“误伤反馈”模板。
+
+  - type: dropdown
+    id: client
+    attributes:
+      label: 客户端
+      options:
+        - Shadowrocket
+        - Surge
+        - 其他
+    validations:
+      required: true
+
+  - type: input
+    id: client_version
+    attributes:
+      label: 客户端版本
+      placeholder: Shadowrocket x.x.x
+    validations:
+      required: true
+
+  - type: dropdown
+    id: profile
+    attributes:
+      label: 使用的模块版本
+      options:
+        - Stable
+        - Stable Plus
+        - Lite
+        - Full
+        - 不确定
+    validations:
+      required: true
+
+  - type: input
+    id: module_url
+    attributes:
+      label: 模块链接
+      placeholder: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule
+    validations:
+      required: true
+
+  - type: input
+    id: device_network
+    attributes:
+      label: 网络环境
+      placeholder: Wi-Fi / 蜂窝 / 是否使用代理 / 所在地区
+    validations:
+      required: true
+
+  - type: dropdown
+    id: raw_access
+    attributes:
+      label: 浏览器能否打开模块链接
+      options:
+        - 可以打开
+        - 打不开
+        - 未测试
+    validations:
+      required: true
+
+  - type: textarea
+    id: error_message
+    attributes:
+      label: 客户端错误提示
+      description: 粘贴 Shadowrocket / Surge 显示的错误。不要贴账号、Token、Cookie。
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: red_cross_items
+    attributes:
+      label: 哪些远程规则显示红叉
+      description: 如果能看到具体规则 URL，请贴出来。
+      render: text
+    validations:
+      required: false
+
+  - type: dropdown
+    id: tried_refresh
+    attributes:
+      label: 是否尝试更新模块、脚本、全部资源
+      options:
+        - 是
+        - 否
+        - 不确定
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tried_delete_reimport
+    attributes:
+      label: 是否尝试删除旧模块后重新导入
+      options:
+        - 是
+        - 否
+        - 不确定
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 截图
+      description: 可以拖入红叉界面截图。请遮挡敏感信息。
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 其他补充
+      placeholder: 例如：Stable 正常但 Stable Plus 红叉；换网络后正常；只有 raw.githubusercontent.com 失败。
+    validations:
+      required: false
