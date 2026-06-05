@@ -13,6 +13,13 @@ DOMAIN,un-acs.youku.com,DIRECT
 DOMAIN-SUFFIX,soulapp.cn,DIRECT
 IP-CIDR,8.210.3.170/32,DIRECT,no-resolve
 IP-CIDR,47.75.72.47/32,DIRECT,no-resolve
+DOMAIN-SUFFIX,ccb.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,abchina.com.cn,DIRECT,pre-matching
+DOMAIN-SUFFIX,psbc.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,boc.cn,DIRECT,pre-matching
+DOMAIN-SUFFIX,bankcomm.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,icbc.com.cn,DIRECT,pre-matching
+DOMAIN-SUFFIX,cmbchina.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,weixin.qq.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,wx.qq.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,wechat.com,DIRECT,pre-matching
