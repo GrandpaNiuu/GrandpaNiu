@@ -31,6 +31,7 @@
 ## 模块输出清理
 - 生成模块会自动删除空行和普通 # 注释说明。
 - 保留 #!update-url、#!name、#!desc 和 # update-date: 等必要元数据。
+- 已知纯域名远程源会自动规范为 DOMAIN-SET，避免 Shadowrocket 红叉。
 
 ## 说明
 - 日常维护应优先修改 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。
