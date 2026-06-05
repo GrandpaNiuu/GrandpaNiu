@@ -61,12 +61,13 @@
 修改源头文件后至少运行：
 
 ```text
-python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/validate_remote_rule_syntax.py scripts/repository_health_check.py
+python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/validate_remote_rule_syntax.py scripts/validate_governance_extensions.py scripts/repository_health_check.py
 python3 scripts/convert_quanx_rules.py
 python3 scripts/build_module.py --build --profile stable
 python3 scripts/factory_finalize.py --sync-root
 python3 scripts/build_release_variants.py
 python3 scripts/validate_remote_rule_syntax.py
+python3 scripts/validate_governance_extensions.py
 python3 scripts/validate_repository.py
 python3 scripts/repository_health_check.py
 ```
@@ -129,6 +130,7 @@ Full 是排查版，不是候选发布池。
 | 构建主模块 | `.github/workflows/module-factory-build.yml` |
 | QuanX 规则转换 | `scripts/convert_quanx_rules.py` |
 | 远程规则语法阻断校验 | `scripts/validate_remote_rule_syntax.py` |
+| 治理扩展阻断校验 | `scripts/validate_governance_extensions.py` |
 | 每日基础检查 | `.github/workflows/daily-module-update.yml` |
 | 失效源审计 | `.github/workflows/daily-invalid-source-repair.yml` |
 | 候选源收集 | `.github/workflows/upstream-collect.yml` |
