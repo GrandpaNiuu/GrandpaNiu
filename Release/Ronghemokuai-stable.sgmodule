@@ -539,9 +539,6 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgr
 RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list,REJECT
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingMiTV/AdvertisingMiTV.list,REJECT
 DOMAIN,api.iqiyi.com,REJECT,extended-matching,pre-matching
-DOMAIN,lookup.api.bsb.baidu.com,REJECT,extended-matching,pre-matching
-DOMAIN-SUFFIX,u3.ucweb.com,REJECT,extended-matching,pre-matching
-DOMAIN-KEYWORD,safebrowsing.,REJECT,extended-matching,pre-matching
 DOMAIN,mobads.baidu.com,REJECT,extended-matching,pre-matching
 DOMAIN-SUFFIX,pos.baidu.com,REJECT,extended-matching,pre-matching
 IP-CIDR,180.76.76.112/32,REJECT,no-resolve
@@ -594,8 +591,6 @@ DOMAIN-SUFFIX,l.qq.com,REJECT,extended-matching,pre-matching
 DOMAIN-KEYWORD,trace.qq.com,REJECT,extended-matching,pre-matching
 DOMAIN-KEYWORD,trace.video.qq.com,REJECT,extended-matching,pre-matching
 DOMAIN,badjs.weixinbridge.com,REJECT,extended-matching,pre-matching
-DOMAIN,dns.weixin.qq.com.cn,REJECT,extended-matching,pre-matching
-DOMAIN,dns.weixin.qq.com,REJECT,extended-matching,pre-matching
 DOMAIN-SUFFIX,wxs.qq.com,REJECT,extended-matching,pre-matching
 DOMAIN,sdkconfig.ad.xiaomi.com,REJECT,extended-matching,pre-matching
 DOMAIN,ads.95516.com,REJECT,extended-matching,pre-matching
