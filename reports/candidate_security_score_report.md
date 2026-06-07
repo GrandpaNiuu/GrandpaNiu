@@ -1,6 +1,6 @@
 # 候选源安全评分报告
 
-生成时间：2026-06-07 03:06:31 +0800
+生成时间：2026-06-08 03:08:08 +0800
 
 本报告只评分候选源，不自动启用、禁用、下载、替换或晋级 Stable。未知脚本默认 `manual-review`，高风险内容一律 `blocked`。
 
@@ -26,7 +26,7 @@
 | blackmatrix7 Advertising Lite | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=blackmatrix7/ios_rule_script; rule-hints=advert | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingLite/AdvertisingLite.list` |
 | blackmatrix7 Hijacking | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=blackmatrix7/ios_rule_script; rule-hints=hijacking | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Hijacking/Hijacking.list` |
 | blackmatrix7 Privacy | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=blackmatrix7/ios_rule_script; rule-hints=privacy,tracker | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy.list` |
-| blackmatrix7 Privacy Lite | remote_rule | 否 | 否 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | manual-review | trust=blackmatrix7/ios_rule_script; rule-hints=privacy,tracker; disabled=2026-06-06: source failed for 2 confirmed checks, last_error=HTTP 404 HTTP 404 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list` |
+| blackmatrix7 Privacy Lite | remote_rule | 否 | 否 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | manual-review | trust=blackmatrix7/ios_rule_script; rule-hints=privacy,tracker; disabled=2026-06-07: source failed for 2 confirmed checks, last_error=HTTP 404 HTTP 404 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list` |
 | blackmatrix7 Advertising MiTV | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=blackmatrix7/ios_rule_script; rule-hints=advert | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingMiTV/AdvertisingMiTV.list` |
 | ACL4SSR BanProgramAD | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=ACL4SSR/ACL4SSR; rule-hints=advert | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list` |
 | ACL4SSR BanEasyListChina | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=ACL4SSR/ACL4SSR; rule-hints=advert | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list` |
