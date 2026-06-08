@@ -1,6 +1,6 @@
 # 每日模块更新报告
 
-- 日期：2026-06-08
+- 日期：2026-06-09
 - 日期源头：Rewrite/Sources/Meta.conf
 - 构建流程：Meta.conf -> convert_quanx_rules.py -> build_android_rules.py -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> build_release_variants.py -> validate_remote_rule_syntax.py -> validate_governance_extensions.py -> validate_repository.py -> repository_health_check.py
 
@@ -34,7 +34,7 @@ Built 4 release variants and wrote /home/runner/work/GrandpaNiu/GrandpaNiu/repor
 
 # Android 规则生成报告
 
-- 最后更新时间：2026-06-08 03:07:59
+- 最后更新时间：2026-06-09 04:02:47
 - App 总数：18
 - 当前 Android App 源头：Android/mihomo/apps/*.yaml
 - iOS 可复用源头：Rules/reject.list -> iOS-Compatible-Reject
@@ -66,7 +66,7 @@ Built 4 release variants and wrote /home/runner/work/GrandpaNiu/GrandpaNiu/repor
 
 # 远程规则语法校验报告
 
-生成时间：2026-06-08 03:08:03 +0800
+生成时间：2026-06-09 04:02:50 +0800
 
 本报告用于阻断 Shadowrocket / Surge 远程规则集红叉问题。校验目标包括：
 
@@ -92,10 +92,10 @@ Built 4 release variants and wrote /home/runner/work/GrandpaNiu/GrandpaNiu/repor
 
 | 状态 | 类型 | 规则数 | 检查来源 | 引用位置 | URL | 错误 / 警告 |
 |---|---|---:|---|---|---|---|
-| pass | DOMAIN-SET | 193304 | http:200 | Release/Ronghemokuai-full.sgmodule:543<br>Release/Ronghemokuai-lite.sgmodule:475<br>Release/Ronghemokuai-stable-plus.sgmodule:568<br>Release/Ronghemokuai-stable.sgmodule:541<br>Release/Ronghemokuai.sgmodule:538<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:538 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
-| pass | DOMAIN-SET | 180816 | http:200 | Release/Ronghemokuai-full.sgmodule:539<br>Release/Ronghemokuai-lite.sgmodule:471<br>Release/Ronghemokuai-stable-plus.sgmodule:564<br>Release/Ronghemokuai-stable.sgmodule:537<br>Release/Ronghemokuai.sgmodule:534<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:534 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
-| pass | DOMAIN-SET | 170310 | http:200 | Release/Ronghemokuai-full.sgmodule:542<br>Release/Ronghemokuai-lite.sgmodule:474<br>Release/Ronghemokuai-stable-plus.sgmodule:567<br>Release/Ronghemokuai-stable.sgmodule:540<br>Release/Ronghemokuai.sgmodule:537<br>Rewrite/Remotes/sources.json:Loyalsoldier reject<br>Ronghemokuai.sgmodule:537 | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` | - |
-| pass | DOMAIN-SET | 105334 | http:200 | Release/Ronghemokuai-full.sgmodule:540<br>Release/Ronghemokuai-lite.sgmodule:472<br>Release/Ronghemokuai-stable-plus.sgmodule:565<br>Release/Ronghemokuai-stable.sgmodule:538<br>Release/Ronghemokuai.sgmodule:535<br>Rewrite/Remotes/sources.json:anti-AD Surge<br>Ronghemokuai.sgmodule:535 | `https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt` | - |
+| pass | DOMAIN-SET | 185608 | http:200 | Release/Ronghemokuai-full.sgmodule:543<br>Release/Ronghemokuai-lite.sgmodule:475<br>Release/Ronghemokuai-stable-plus.sgmodule:568<br>Release/Ronghemokuai-stable.sgmodule:541<br>Release/Ronghemokuai.sgmodule:538<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:538 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
+| pass | DOMAIN-SET | 175994 | http:200 | Release/Ronghemokuai-full.sgmodule:539<br>Release/Ronghemokuai-lite.sgmodule:471<br>Release/Ronghemokuai-stable-plus.sgmodule:564<br>Release/Ronghemokuai-stable.sgmodule:537<br>Release/Ronghemokuai.sgmodule:534<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:534 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
+| pass | DOMAIN-SET | 170611 | http:200 | Release/Ronghemokuai-full.sgmodule:542<br>Release/Ronghemokuai-lite.sgmodule:474<br>Release/Ronghemokuai-stable-plus.sgmodule:567<br>Release/Ronghemokuai-stable.sgmodule:540<br>Release/Ronghemokuai.sgmodule:537<br>Rewrite/Remotes/sources.json:Loyalsoldier reject<br>Ronghemokuai.sgmodule:537 | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` | - |
+| pass | DOMAIN-SET | 106021 | http:200 | Release/Ronghemokuai-full.sgmodule:540<br>Release/Ronghemokuai-lite.sgmodule:472<br>Release/Ronghemokuai-stable-plus.sgmodule:565<br>Release/Ronghemokuai-stable.sgmodule:538<br>Release/Ronghemokuai.sgmodule:535<br>Rewrite/Remotes/sources.json:anti-AD Surge<br>Ronghemokuai.sgmodule:535 | `https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt` | - |
 | pass | RULE-SET | 1423 | local:Rules/converted/zirawell-allAdBlock-shadowrocket.list | Release/Ronghemokuai-full.sgmodule:537<br>Release/Ronghemokuai-stable-plus.sgmodule:562<br>Rules/aggressive-ad-sources.list:2 | `https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-allAdBlock-shadowrocket.list` | - |
 | pass | RULE-SET | 1399 | local:Rules/converted/zirawell-appAdBlock-shadowrocket.list | Release/Ronghemokuai-full.sgmodule:536<br>Release/Ronghemokuai-stable-plus.sgmodule:561<br>Rules/aggressive-ad-sources.list:1 | `https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-appAdBlock-shadowrocket.list` | - |
 | pass | RULE-SET | 588 | http:200 | Release/Ronghemokuai-full.sgmodule:541<br>Release/Ronghemokuai-lite.sgmodule:473<br>Release/Ronghemokuai-stable-plus.sgmodule:566<br>Release/Ronghemokuai-stable.sgmodule:539<br>Release/Ronghemokuai.sgmodule:536<br>Rewrite/Remotes/sources.json:ACL4SSR BanAD<br>Ronghemokuai.sgmodule:536 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list` | - |
