@@ -3,226 +3,61 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GrandpaNiu 多版本导入</title>
+  <title>GrandpaNiu 融合模块导入</title>
   <style>
     * { box-sizing: border-box; }
-    :root {
-      --bg: #f5f7fb;
-      --card: #ffffff;
-      --text: #101828;
-      --muted: #667085;
-      --line: #e4e7ec;
-      --shadow: 0 18px 45px rgba(16, 24, 40, .08);
-    }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-      background:
-        radial-gradient(circle at 12% 0%, rgba(37, 99, 235, .18), transparent 34%),
-        radial-gradient(circle at 88% 0%, rgba(22, 163, 74, .16), transparent 34%),
-        linear-gradient(180deg, #ffffff 0%, var(--bg) 48%, #eef2f7 100%);
-      color: var(--text);
-      padding: 22px;
-    }
-    .wrap { width: 100%; max-width: 1140px; margin: 0 auto; }
-    header { text-align: center; margin: 14px 0 22px; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border-radius: 999px; background: #eef4ff; color: #1d4ed8; font-weight: 800; font-size: 13px; }
-    h1 { margin: 14px 0 10px; font-size: clamp(32px, 6vw, 52px); letter-spacing: -.045em; }
-    p { margin: 8px 0; color: var(--muted); line-height: 1.75; }
-    .hero-note { max-width: 740px; margin: 0 auto; font-size: 16px; }
-    .chooser { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 24px 0 18px; }
-    .choice {
-      display: block;
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.86);
-      border: 1px solid var(--line);
-      box-shadow: 0 10px 28px rgba(16,24,40,.05);
-      text-decoration: none;
-      color: var(--text);
-    }
-    .choice strong { display: block; margin-bottom: 4px; }
-    .choice span { color: var(--muted); font-size: 13px; line-height: 1.55; }
-    .notice { margin: 16px 0 22px; padding: 14px 16px; border-radius: 18px; background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; font-weight: 800; line-height: 1.7; }
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-    .card {
-      position: relative;
-      overflow: hidden;
-      background: rgba(255,255,255,.96);
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: 22px;
-      box-shadow: var(--shadow);
-      scroll-margin-top: 18px;
-    }
-    .card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: var(--accent); }
-    .topline { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
-    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; }
-    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 900; }
-    .badge.light { background: #f2f4f7; color: var(--text); border: 1px solid var(--line); }
-    .card h2 { margin: 8px 0 8px; font-size: 25px; letter-spacing: -.025em; }
-    .meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 14px 0; }
-    .meta span { padding: 10px 8px; border-radius: 14px; background: #f8fafc; border: 1px solid var(--line); color: var(--muted); font-size: 12px; text-align: center; }
-    ul { margin: 12px 0 16px; padding-left: 19px; color: #475467; line-height: 1.7; }
-    .method {
-      margin-top: 16px;
-      padding: 15px;
-      border-radius: 20px;
-      background: linear-gradient(180deg, #f9fafb, #ffffff);
-      border: 1px solid var(--line);
-    }
-    .method-title { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 12px; }
-    .method-title strong { font-size: 15px; }
-    .method-title span { color: var(--muted); font-size: 12px; }
-    .actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
-    .button {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 50px;
-      padding: 12px 16px;
-      border-radius: 16px;
-      border: 1px solid transparent;
-      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-      color: #fff;
-      text-decoration: none;
-      font-weight: 900;
-      font-size: 15px;
-      cursor: pointer;
-      font-family: inherit;
-      box-shadow: 0 12px 26px rgba(16, 24, 40, .16);
-      transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
-    }
-    .button:hover { transform: translateY(-1px); box-shadow: 0 16px 32px rgba(16, 24, 40, .18); }
-    .button:active { transform: translateY(0); opacity: .9; }
-    .button.secondary { background: #fff; color: var(--text); border-color: var(--line); box-shadow: none; }
-    .button.ghost { background: #f8fafc; color: #344054; border-color: var(--line); box-shadow: none; }
-    code { display: block; margin-top: 12px; padding: 12px; border-radius: 14px; background: #f8fafc; border: 1px solid var(--line); color: #475467; word-break: break-all; white-space: normal; font-size: 12px; line-height: 1.55; }
-    .status { display: none; position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); width: min(640px, calc(100vw - 28px)); padding: 16px; border-radius: 18px; background: #101828; color: #fff; box-shadow: 0 22px 60px rgba(0,0,0,.24); z-index: 50; }
-    .status strong { display: block; margin-bottom: 5px; }
-    .status p { color: #d0d5dd; margin: 0; font-size: 13px; }
-    footer { text-align: center; margin: 26px 0 6px; color: var(--muted); font-size: 13px; line-height: 1.7; }
-    @media (max-width: 900px) { .grid, .chooser { grid-template-columns: 1fr; } .meta { grid-template-columns: 1fr; } body { padding: 16px; } }
+    body { margin: 0; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; background: linear-gradient(180deg, #fff, #eef2f7); color: #101828; padding: 22px; }
+    .wrap { width: 100%; max-width: 760px; margin: 0 auto; }
+    header { text-align: center; margin: 28px 0 22px; }
+    .eyebrow { display: inline-block; padding: 7px 13px; border-radius: 999px; background: #eef4ff; color: #1d4ed8; font-weight: 800; font-size: 13px; }
+    h1 { margin: 16px 0 10px; font-size: clamp(32px, 6vw, 52px); letter-spacing: -.045em; }
+    p { color: #667085; line-height: 1.75; }
+    .card { background: #fff; border: 1px solid #e4e7ec; border-radius: 28px; padding: 24px; box-shadow: 0 18px 45px rgba(16,24,40,.08); }
+    .meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 16px 0; }
+    .meta span { padding: 10px 8px; border-radius: 14px; background: #f8fafc; border: 1px solid #e4e7ec; color: #667085; font-size: 12px; text-align: center; }
+    .button { display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 12px 16px; border-radius: 16px; background: linear-gradient(135deg, #16a34a, #15803d); color: #fff; text-decoration: none; font-weight: 900; margin: 12px 0; }
+    .button.secondary { background: #fff; color: #101828; border: 1px solid #e4e7ec; }
+    code { display: block; margin-top: 12px; padding: 12px; border-radius: 14px; background: #f8fafc; border: 1px solid #e4e7ec; color: #475467; word-break: break-all; white-space: normal; font-size: 12px; line-height: 1.55; }
+    .notice { margin: 16px 0 0; padding: 14px 16px; border-radius: 18px; background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; font-weight: 800; line-height: 1.7; }
+    footer { text-align: center; margin: 26px 0 6px; color: #667085; font-size: 13px; line-height: 1.7; }
+    @media (max-width: 700px) { .meta { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <main class="wrap">
     <header>
-      <span class="eyebrow">✨ Shadowrocket 多版本导入</span>
-      <h1>选择一个版本，然后单独导入</h1>
-      <p class="hero-note">每个版本都有独立导入方式。普通用户只选 Stable；排查问题用 Lite；Full 只临时查漏，不建议长期启用。</p>
+      <span class="eyebrow">Shadowrocket 单一融合模块</span>
+      <h1>只导入这一个模块</h1>
+      <p>本仓库不再拆分 Stable / Stable Plus / Lite / Full。iOS 用户统一使用 Fusion 融合模块。</p>
     </header>
 
-    <section class="chooser" aria-label="快速跳转版本">
-      <a class="choice" href="#stable"><strong>✅ Stable</strong><span>日常默认，最推荐</span></a>
-      <a class="choice" href="#stable-plus"><strong>🧪 Stable Plus</strong><span>增强测试，覆盖更多</span></a>
-      <a class="choice" href="#lite"><strong>🧯 Lite</strong><span>异常排查，轻量低风险</span></a>
-      <a class="choice" href="#full"><strong>🧰 Full</strong><span>高级查漏，临时使用</span></a>
+    <section class="card">
+      <h2>GrandpaNiu Fusion</h2>
+      <p>融合原有多个 profile 的规则、脚本、Rewrite 与 MITM 覆盖，作为唯一公开入口。</p>
+      <div class="meta">
+        <span>版本：Fusion</span>
+        <span>用途：日常 + 增强覆盖</span>
+        <span>入口：唯一</span>
+      </div>
+      <a class="button" id="install" href="#">一键导入 Shadowrocket</a>
+      <a class="button secondary" id="copy" href="#">复制模块链接</a>
+      <code id="url">https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule</code>
+      <div class="notice">导入前建议停用旧模块。不要把旧 Stable / Stable Plus / Lite / Full 与 Fusion 同时启用。</div>
     </section>
 
-    <div class="notice">导入新版本前，先停用旧版本。不要同时启用多个版本，否则容易规则叠加、误伤、发热或图片不加载。</div>
-
-    <section id="profile-grid" class="grid" aria-label="模块版本列表"></section>
-
-    <footer>
-      一键导入失败时，复制该版本模块链接，在 Shadowrocket 的“配置 → 模块 → +”中手动粘贴。覆盖说明来自规则、脚本、MITM 和静态扫描，不等于所有 App 均已真机测试通过。
-    </footer>
+    <footer>一键导入失败时，复制模块链接，在 Shadowrocket 的“配置 → 模块 → +”中手动粘贴。</footer>
   </main>
 
-  <div id="status" class="status" role="status" aria-live="polite">
-    <strong id="status-title">正在打开 Shadowrocket</strong>
-    <p id="status-body">如果没有跳转，请复制模块链接后手动导入。</p>
-  </div>
-
   <script>
-    const profiles = [
-      { key: "stable", title: "GrandpaNiu Stable", icon: "✅", tag: "默认推荐", color: "#16a34a", colorDark: "#15803d", file: "Release/Ronghemokuai-stable.sgmodule", risk: "低", use: "日常", people: "大多数用户", summary: "默认稳定版，优先低误伤、低维护风险，适合长期使用。", tips: ["普通用户首选", "导入后更新模块、脚本和资源", "不要和其他版本同时启用"] },
-      { key: "stable-plus", title: "GrandpaNiu Stable Plus", icon: "🧪", tag: "增强测试", color: "#7c3aed", colorDark: "#5b21b6", file: "Release/Ronghemokuai-stable-plus.sgmodule", risk: "中", use: "测试", people: "想测试更多覆盖的人", summary: "比 Stable 覆盖更激进，但不作为默认推荐版本。", tips: ["适合测试更多 App", "可能比 Stable 更容易误伤", "稳定后再考虑晋级默认版"] },
-      { key: "lite", title: "GrandpaNiu Lite", icon: "🧯", tag: "排查优先", color: "#2563eb", colorDark: "#1d4ed8", file: "Release/Ronghemokuai-lite.sgmodule", risk: "低", use: "排查", people: "登录异常、发热、图片不加载时", summary: "最小覆盖版本，用来判断是不是规则、脚本或 MITM 造成异常。", tips: ["适合排查误伤", "更省电、更轻量", "不追求覆盖广度"] },
-      { key: "full", title: "GrandpaNiu Full", icon: "🧰", tag: "高级排查", color: "#d97706", colorDark: "#b45309", file: "Release/Ronghemokuai-full.sgmodule", risk: "高", use: "临时", people: "高级用户", summary: "全量排查版本，用来查漏拦和定位缺失 hostname，不适合长期启用。", tips: ["只建议临时使用", "不适合登录、支付、验证码场景", "排查完成后切回 Stable"] }
-    ];
-
-    const pagesBase = "https://grandpaniuu.github.io/GrandpaNiu/";
-
-    function escapeHtml(value) {
-      return String(value).replace(/[&<>'\"]/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", "\"": "&quot;" }[character]));
-    }
-
-    function moduleUrl(profile) { return pagesBase + profile.file; }
-    function importScheme(profile) { return "shadowrocket://install?module=" + encodeURIComponent(moduleUrl(profile)); }
-
-    function showStatus(title, body) {
-      document.getElementById("status-title").textContent = title;
-      document.getElementById("status-body").textContent = body;
-      document.getElementById("status").style.display = "block";
-      clearTimeout(window.__statusTimer);
-      window.__statusTimer = setTimeout(() => { document.getElementById("status").style.display = "none"; }, 4200);
-    }
-
-    function openProfile(key) {
-      const profile = profiles.find(item => item.key === key);
-      if (!profile) return;
-      showStatus("正在打开 Shadowrocket", "当前版本：" + profile.title + "。如果没有跳转，请复制模块链接手动导入。");
-      setTimeout(() => { window.location.href = importScheme(profile); }, 120);
-    }
-
-    function copyUrl(url) {
-      navigator.clipboard.writeText(url).then(function () {
-        showStatus("已复制模块链接", "请到 Shadowrocket 的“配置 → 模块 → +”中粘贴导入。");
-      }).catch(function () { prompt("请手动复制模块地址：", url); });
-    }
-
-    function renderProfile(profile) {
-      const url = moduleUrl(profile);
-      const tips = profile.tips.map(item => `<li>${escapeHtml(item)}</li>`).join("");
-      return `
-        <article id="${escapeHtml(profile.key)}" class="card" style="--accent:${profile.color};--accent-dark:${profile.colorDark}">
-          <div class="topline">
-            <div class="badge-row">
-              <span class="badge">${escapeHtml(profile.icon)} ${escapeHtml(profile.tag)}</span>
-              <span class="badge light">风险：${escapeHtml(profile.risk)}</span>
-            </div>
-          </div>
-          <h2>${escapeHtml(profile.title)}</h2>
-          <p>${escapeHtml(profile.summary)}</p>
-          <div class="meta">
-            <span>用途：${escapeHtml(profile.use)}</span>
-            <span>适合：${escapeHtml(profile.people)}</span>
-            <span>文件：${escapeHtml(profile.file.split('/').pop())}</span>
-          </div>
-          <ul>${tips}</ul>
-          <div class="method">
-            <div class="method-title">
-              <strong>单独导入方式</strong>
-              <span>只导入这一版</span>
-            </div>
-            <div class="actions">
-              <button class="button" type="button" data-open-profile="${escapeHtml(profile.key)}">🚀 一键导入这一版</button>
-              <button class="button secondary" type="button" data-copy-url="${escapeHtml(url)}">📋 复制模块链接</button>
-              <a class="button ghost" href="${escapeHtml(url)}" target="_blank" rel="noopener">🔎 查看原始文件</a>
-            </div>
-            <code>${escapeHtml(url)}</code>
-          </div>
-        </article>
-      `;
-    }
-
-    document.getElementById("profile-grid").innerHTML = profiles.map(renderProfile).join("");
-    document.addEventListener("click", event => {
-      const openButton = event.target.closest("[data-open-profile]");
-      if (openButton) openProfile(openButton.getAttribute("data-open-profile"));
-      const copyButton = event.target.closest("[data-copy-url]");
-      if (copyButton) copyUrl(copyButton.getAttribute("data-copy-url"));
+    const moduleUrl = "https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule";
+    document.getElementById("install").addEventListener("click", function (event) {
+      event.preventDefault();
+      window.location.href = "shadowrocket://install?module=" + encodeURIComponent(moduleUrl);
     });
-
-    const params = new URLSearchParams(location.search);
-    const autoProfile = params.get("profile");
-    if (autoProfile && profiles.some(item => item.key === autoProfile)) {
-      setTimeout(() => openProfile(autoProfile), 500);
-    }
+    document.getElementById("copy").addEventListener("click", function (event) {
+      event.preventDefault();
+      navigator.clipboard.writeText(moduleUrl).then(function () { alert("已复制模块链接"); });
+    });
   </script>
 </body>
 </html>
