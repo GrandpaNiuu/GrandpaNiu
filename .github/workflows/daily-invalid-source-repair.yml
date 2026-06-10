@@ -2,7 +2,6 @@ name: Daily invalid source audit and repair
 
 on:
   schedule:
-    # 19:17 UTC = 03:17 Beijing time, avoiding the top-of-hour queue.
     - cron: "17 19 * * *"
   workflow_dispatch:
 
@@ -19,21 +18,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Validate Python scripts
-        run: |
-          python3 -m py_compile scripts/audit_repair_invalid_sources.py scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/validate_repository.py
+        run: python3 -m py_compile scripts/audit_repair_invalid_sources.py scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/validate_repository.py
 
       - name: Run source-first invalid source audit and repair
         run: python3 scripts/audit_repair_invalid_sources.py
 
-      - name: Build stable factory output
-        run: python3 scripts/build_module.py --build --profile stable
+      - name: Build fusion factory output
+        run: python3 scripts/build_module.py --build --profile fusion
 
       - name: Finalize factory output and sync root module
         run: python3 scripts/factory_finalize.py --sync-root
 
-      - name: Build independent release variants
+      - name: Generate single fusion release report
         run: python3 scripts/build_release_variants.py
 
       - name: Validate repository
@@ -43,10 +43,17 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Rewrite/Remotes/sources.json Rewrite/Remotes/candidates.json Rules Scripts Rewrite/Sources Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule Ronghemokuai.sgmodule reports/invalid_sources_report.md reports/invalid_sources_history.json reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md
+          git add -A
           if git diff --cached --quiet; then
             echo "No invalid source changes to commit."
             exit 0
           fi
-          git commit -m "Daily source-first invalid source audit and multi-version repair"
-          git push
+          git commit -m "Daily source-first invalid source audit and fusion repair"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
