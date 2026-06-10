@@ -2,7 +2,6 @@ name: Daily Module Update
 
 on:
   schedule:
-    # 18:00 UTC = 02:00 Beijing time next day.
     - cron: "0 18 * * *"
   workflow_dispatch:
   push:
@@ -10,20 +9,10 @@ on:
       - main
     paths:
       - ".github/workflows/daily-module-update.yml"
-      - ".github/ISSUE_TEMPLATE/**"
-      - "scripts/validate_repository.py"
-      - "scripts/validate_remote_rule_syntax.py"
-      - "scripts/validate_governance_extensions.py"
-      - "scripts/convert_quanx_rules.py"
-      - "scripts/build_module.py"
-      - "scripts/build_release_variants.py"
-      - "scripts/factory_finalize.py"
-      - "scripts/build_android_rules.py"
-      - "scripts/android_format_check.py"
-      - "scripts/import_legacy_sgmodule.py"
-      - "scripts/repository_health_check.py"
-      - "Rewrite/Sources/Meta.conf"
+      - "scripts/**"
+      - "Rewrite/**"
       - "Rules/**"
+      - "Scripts/**"
       - "Android/**"
 
 permissions:
@@ -37,33 +26,14 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Compile maintenance scripts
-        run: |
-          python3 -m py_compile \
-            scripts/build_module.py \
-            scripts/build_release_variants.py \
-            scripts/factory_finalize.py \
-            scripts/validate_repository.py \
-            scripts/validate_remote_rule_syntax.py \
-            scripts/validate_governance_extensions.py \
-            scripts/validate_profiles.py \
-            scripts/audit_reject_risk.py \
-            scripts/generate_app_status_matrix.py \
-            scripts/create_promotion_pr.py \
-            scripts/score_candidates.py \
-            scripts/audit_domestic_app_connectivity.py \
-            scripts/generate_workflow_health_report.py \
-            scripts/check_report_freshness.py \
-            scripts/repository_health_check.py \
-            scripts/build_android_rules.py \
-            scripts/android_format_check.py \
-            scripts/import_legacy_sgmodule.py \
-            scripts/convert_quanx_rules.py
+        run: python3 -m py_compile scripts/*.py
 
       - name: Update source metadata date, build, finalize and report
         run: |
@@ -72,18 +42,6 @@ jobs:
           from datetime import datetime, timezone, timedelta
           import re
           import subprocess
-          import urllib.request
-
-          meta = Path("Rewrite/Sources/Meta.conf")
-          module = Path("Ronghemokuai.sgmodule")
-          release = Path("Release/Ronghemokuai.sgmodule")
-          report = Path("reports/daily_update_report.md")
-          android_report = Path("reports/android_rules_report.md")
-          remote_syntax_report = Path("reports/remote_rule_syntax_report.md")
-          report.parent.mkdir(parents=True, exist_ok=True)
-
-          if not meta.exists():
-              raise SystemExit("Rewrite/Sources/Meta.conf not found")
 
           def run_checked(label, command):
               proc = subprocess.run(command, text=True, capture_output=True)
@@ -93,201 +51,63 @@ jobs:
               return output
 
           today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
-          meta_text = meta.read_text(encoding="utf-8")
-          meta_text = re.sub(r"^#!desc=.*$", f"#!desc={today}", meta_text, flags=re.M)
-          meta_text = re.sub(r"^# update-date:.*$", f"# update-date: {today}", meta_text, flags=re.M)
-          meta.write_text(meta_text, encoding="utf-8", newline="\n")
+          meta = Path("Rewrite/Sources/Meta.conf")
+          text = meta.read_text(encoding="utf-8")
+          text = re.sub(r"^#!desc=.*$", f"#!desc={today} / fusion", text, flags=re.M)
+          text = re.sub(r"^# update-date:.*$", f"# update-date: {today}", text, flags=re.M)
+          meta.write_text(text, encoding="utf-8", newline="\n")
 
-          quanx_output = run_checked("convert_quanx_rules.py", ["python3", "scripts/convert_quanx_rules.py"])
-
-          android_build_output = run_checked("build_android_rules.py", ["python3", "scripts/build_android_rules.py"])
-          android_check_output = run_checked("android_format_check.py", ["python3", "scripts/android_format_check.py"])
-
-          build_output = run_checked("build_module.py", ["python3", "scripts/build_module.py", "--build", "--profile", "stable"])
-          finalize_output = run_checked("factory_finalize.py", ["python3", "scripts/factory_finalize.py", "--sync-root"])
-          variants_output = run_checked("build_release_variants.py", ["python3", "scripts/build_release_variants.py"])
-          remote_syntax_output = run_checked("validate_remote_rule_syntax.py", ["python3", "scripts/validate_remote_rule_syntax.py"])
-          governance_extension_output = run_checked("validate_governance_extensions.py", ["python3", "scripts/validate_governance_extensions.py"])
-
-          text = module.read_text(encoding="utf-8")
-          release_text = release.read_text(encoding="utf-8")
-          if text != release_text:
-              raise SystemExit("Root and Release differ after daily build/finalize")
-
-          required_variant_files = [
-              "Release/Ronghemokuai-stable.sgmodule",
-              "Release/Ronghemokuai-stable-plus.sgmodule",
-              "Release/Ronghemokuai-lite.sgmodule",
-              "Release/Ronghemokuai-full.sgmodule",
-          ]
-          missing_variants = [path for path in required_variant_files if not Path(path).exists()]
-          if missing_variants:
-              raise SystemExit("Missing release variants: " + ", ".join(missing_variants))
-
-          android_outputs = [
-              "Android/mihomo/apps",
-              "Android/sing-box/apps",
-              "Android/adguard/apps",
-              "Android/v2rayng/apps",
-          ]
-          missing_android_outputs = [path for path in android_outputs if not Path(path).exists()]
-          if missing_android_outputs:
-              raise SystemExit("Missing Android output directories: " + ", ".join(missing_android_outputs))
-
-          section_checks = {
-              "[Rule]": "[Rule]" in text,
-              "[URL Rewrite]": "[URL Rewrite]" in text,
-              "[Header Rewrite]": "[Header Rewrite]" in text,
-              "[Body Rewrite]": "[Body Rewrite]" in text,
-              "[Map Local]": "[Map Local]" in text,
-              "[Script]": "[Script]" in text,
-              "[MITM]": "[MITM]" in text,
-          }
-          core_checks = {
-              "spotify-json": "spotify-json" in text,
-              "spotify-proto": "spotify-proto" in text,
-              "youtube.response": "youtube.response" in text,
-              "zhihu-enhance": "zhihu-enhance" in text,
-              "zhihu-enhance.js": "zhihu-enhance.js" in text,
-              "update-url": "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule" in text,
-              "meta-date": f"#!desc={today}" in text and f"# update-date: {today}" in text,
-          }
-          missing = [name for name, ok in {**section_checks, **core_checks}.items() if not ok]
-          if missing:
-              raise SystemExit("Missing required module markers: " + ", ".join(missing))
-
-          urls = [
-              "https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule",
-              "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/zhihu-enhance.js",
-              "https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-appAdBlock-shadowrocket.list",
-              "https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-allAdBlock-shadowrocket.list",
-              "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list",
-              "https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt",
-              "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt",
-              "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list",
-              "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt",
-              "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list",
-              "https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js",
-              "https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js",
-              "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js",
-          ]
-
-          def check_url(url: str) -> str:
-              headers = {"User-Agent": "GrandpaNiu-Daily-Module-Check/1.0"}
-              try:
-                  req = urllib.request.Request(url, method="HEAD", headers=headers)
-                  with urllib.request.urlopen(req, timeout=25) as resp:
-                      if 200 <= resp.status < 400:
-                          return f"OK HTTP {resp.status}"
-                      return f"WARN HTTP {resp.status}"
-              except Exception as head_error:
-                  try:
-                      req = urllib.request.Request(url, headers={**headers, "Range": "bytes=0-2048"})
-                      with urllib.request.urlopen(req, timeout=30) as resp:
-                          body = resp.read(2048)
-                          if resp.status in (200, 206) and body:
-                              return f"OK GET HTTP {resp.status}"
-                          return f"WARN GET HTTP {resp.status} empty"
-                  except Exception as get_error:
-                      return f"CHECK_FAILED HEAD={head_error} GET={get_error}"
-
-          url_results = [(url, check_url(url)) for url in urls]
-          validate_output = run_checked("validate_repository.py", ["python3", "scripts/validate_repository.py"])
-
-          governance_commands = [
-              ("validate_profiles.py", ["python3", "scripts/validate_profiles.py"]),
-              ("audit_reject_risk.py", ["python3", "scripts/audit_reject_risk.py"]),
-              ("generate_app_status_matrix.py", ["python3", "scripts/generate_app_status_matrix.py"]),
-              ("create_promotion_pr.py", ["python3", "scripts/create_promotion_pr.py"]),
-              ("score_candidates.py", ["python3", "scripts/score_candidates.py"]),
-              ("audit_domestic_app_connectivity.py", ["python3", "scripts/audit_domestic_app_connectivity.py"]),
-              ("generate_workflow_health_report.py", ["python3", "scripts/generate_workflow_health_report.py"]),
+          outputs = []
+          for label, command in [
+              ("convert_quanx_rules.py", ["python3", "scripts/convert_quanx_rules.py"]),
+              ("build_android_rules.py", ["python3", "scripts/build_android_rules.py"]),
+              ("android_format_check.py", ["python3", "scripts/android_format_check.py"]),
+              ("build_module.py", ["python3", "scripts/build_module.py", "--build", "--profile", "fusion"]),
+              ("factory_finalize.py", ["python3", "scripts/factory_finalize.py", "--sync-root"]),
+              ("build_release_variants.py", ["python3", "scripts/build_release_variants.py"]),
+              ("validate_remote_rule_syntax.py", ["python3", "scripts/validate_remote_rule_syntax.py"]),
+              ("validate_governance_extensions.py", ["python3", "scripts/validate_governance_extensions.py"]),
+              ("validate_repository.py", ["python3", "scripts/validate_repository.py"]),
+              ("repository_health_check.py", ["python3", "scripts/repository_health_check.py"]),
               ("check_report_freshness.py", ["python3", "scripts/check_report_freshness.py"]),
-          ]
-          governance_outputs = []
-          for label, command in governance_commands:
-              output = run_checked(label, command)
-              governance_outputs.append(f"$ {label}\n{output}")
+          ]:
+              outputs.append(f"$ {label}\n" + run_checked(label, command))
 
-          health_output = run_checked("repository_health_check.py", ["python3", "scripts/repository_health_check.py"])
-          freshness_output = run_checked("check_report_freshness.py", ["python3", "scripts/check_report_freshness.py"])
-
-          android_report_text = android_report.read_text(encoding="utf-8") if android_report.exists() else "reports/android_rules_report.md not generated"
-          remote_syntax_report_text = remote_syntax_report.read_text(encoding="utf-8") if remote_syntax_report.exists() else "reports/remote_rule_syntax_report.md not generated"
-
-          lines = [
+          report = Path("reports/daily_update_report.md")
+          report.parent.mkdir(parents=True, exist_ok=True)
+          report.write_text("\n".join([
               "# 每日模块更新报告",
               "",
               f"- 日期：{today}",
-              "- 日期源头：Rewrite/Sources/Meta.conf",
-              "- 构建流程：Meta.conf -> convert_quanx_rules.py -> build_android_rules.py -> build_module.py --build --profile stable -> factory_finalize.py --sync-root -> build_release_variants.py -> validate_remote_rule_syntax.py -> validate_governance_extensions.py -> validate_repository.py -> repository_health_check.py",
+              "- 构建 profile：fusion",
+              "- 发布模式：单一融合版",
               "",
-              "## QuanX 转换结果",
-              "",
-              "```text",
-              quanx_output,
-              "```",
-              "",
-              "## Android 生成检查结果",
+              "## 执行输出",
               "",
               "```text",
-              android_build_output,
-              "",
-              android_check_output,
+              "\n\n".join(outputs),
               "```",
-              "",
-              "## Stable 构建输出",
-              "",
-              "```text",
-              build_output,
-              "",
-              finalize_output,
-              "",
-              variants_output,
-              "```",
-              "",
-              "## Android 规则报告",
-              "",
-              android_report_text,
-              "",
-              "## 远程规则语法报告",
-              "",
-              remote_syntax_report_text,
-              "",
-              "## 完整区块检查结果",
-              "",
-          ]
-          lines += [f"- `{name}`：{'通过' if ok else '缺失'}" for name, ok in section_checks.items()]
-          lines += ["", "## 核心检查结果", ""]
-          lines += [f"- `{name}`：{'通过' if ok else '缺失'}" for name, ok in core_checks.items()]
-          lines += ["", "## 多版本文件检查", ""]
-          lines += [f"- `{path}`：通过" for path in required_variant_files]
-          lines += ["", "## 远程链接检查结果", ""]
-          lines += [f"- `{url}`：{result}" for url, result in url_results]
-          lines += ["", "## validate_remote_rule_syntax.py 输出", "", "```text", remote_syntax_output, "```"]
-          lines += ["", "## validate_governance_extensions.py 输出", "", "```text", governance_extension_output, "```"]
-          lines += ["", "## validate_repository.py 输出", "", "```text", validate_output, "```"]
-          lines += ["", "## 治理报告刷新输出", "", "```text", "\n\n".join(governance_outputs), "```"]
-          lines += ["", "## repository_health_check.py 输出", "", "```text", health_output, "```"]
-          lines += ["", "## check_report_freshness.py 输出", "", "```text", freshness_output, "```"]
-          lines += [
               "",
               "## 自动更新边界说明",
               "",
-              "- 本 workflow 会更新源头日期、转换 QuanX 远程规则、重新构建 stable、同步 Release 与 Root，并生成四个独立 Release 版本。",
-              "- 本 workflow 会校验远程 RULE-SET / DOMAIN-SET 语法，失败时阻断发布。",
-              "- 本 workflow 会从 Android/mihomo/apps/*.yaml 生成 Android 多格式 App 规则。",
-              "- 默认根目录 Ronghemokuai.sgmodule 仍保持 stable。",
-              "- Full 只用于排查，不自动合并进 Stable。",
+              "- 本 workflow 会更新源头日期、重新构建 fusion、同步 Release 与 Root。",
+              "- 不再生成 Stable / Stable Plus / Lite / Full 四个用户版本。",
               "- 不自动删除规则。",
-          ]
-          report.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+              "",
+          ]), encoding="utf-8", newline="\n")
           PY
 
       - name: Commit daily update
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release/Ronghemokuai.sgmodule Release/Ronghemokuai-stable.sgmodule Release/Ronghemokuai-stable-plus.sgmodule Release/Ronghemokuai-lite.sgmodule Release/Ronghemokuai-full.sgmodule Rules/converted Android/mihomo/apps Android/sing-box/apps Android/adguard/apps Android/v2rayng/apps reports/daily_update_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md reports/remote_rule_syntax_report.md reports/android_rules_report.md reports/profile_validation_report.md reports/reject_risk_report.md reports/app_status_matrix.md reports/promotion_pr_report.md reports/candidate_security_score_report.md reports/domestic_app_connectivity_audit.md reports/workflow_health_report.md reports/report_freshness_report.md
-          git diff --cached --quiet || git commit -m "Daily module update"
-          git push
+          git add -A
+          git diff --cached --quiet || git commit -m "Daily fusion module update"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
