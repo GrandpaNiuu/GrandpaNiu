@@ -184,4 +184,13 @@ jobs:
             exit 0
           fi
           git commit -m "Update repository health and governance reports"
-          git push
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push failed on attempt ${attempt}; rebasing on origin/main and retrying."
+            git fetch origin main
+            git rebase origin/main
+          done
+          echo "Push failed after 3 attempts."
+          exit 1
