@@ -5,7 +5,7 @@
 **Shadowrocket / Surge / Android 净化规则与模块集合**
 
 拦截常见广告、开屏、弹窗、横幅、信息流推荐、活动卡片和追踪请求。  
-新手只需要记住一句话：**先按设备选入口，不要同时启用多个版本。**
+新手只需要记住一句话：**iOS 只导入一个融合模块，不再选择多个版本。**
 
 ## 使用限制与风险声明
 
@@ -25,16 +25,15 @@
 
 | 图标 | 你现在的情况 | 点这里 | 说明 |
 |---|---|---|---|
-|  | iPhone / iPad，使用 Shadowrocket | [导入 Stable][stable-import] | 默认推荐，适合大多数用户 |
-|  | iPhone / iPad，想看 Lite / Stable Plus / Full | [打开 iOS 多版本页][import-page] | 不懂就先用 Stable，不要选 Full 日常用 |
+|  | iPhone / iPad，使用 Shadowrocket | [导入融合模块][fusion-import] | 唯一推荐入口 |
 | 📱 | Android 用户 | [打开 Android 导入页][android-import] | 进去后按“有无节点”选择版本 |
 | 📊 | 想看仓库健康和报告 | [查看报告][health-report] | 给维护者和高级用户查看 |
 
 **最简单选择：**
 
-- iOS 普通用户：选 **Stable**。
+- iOS 普通用户：只导入 **融合模块**。
 - Android 用户：进 **Android 导入页**。
-- 出问题：先用 **Lite** 或关闭增强包。
+- 出问题：先关闭模块或对应 App 增强规则，不再切换多版本。
 
 ---
 
@@ -42,10 +41,10 @@
 
 ### iOS / Shadowrocket
 
-1. 从上面的入口选择 **Stable**。
+1. 从上面的入口选择 **融合模块**。
 2. 打开 Shadowrocket，启用模块。
 3. 执行：**更新模块、更新脚本、更新全部资源**。
-4. 如果出现登录异常、页面空白、图片不加载，先切 Lite 排查。
+4. 如果出现登录异常、页面空白、图片不加载，先关闭模块或定位对应 App 规则。
 
 ### Android
 
@@ -57,16 +56,15 @@
 
 ---
 
-## 版本怎么选
+## 版本策略
+
+本仓库现在采用 **单一融合版**：
 
 | 版本 | 适合谁 | 一句话说明 | 风险 |
 |---|---|---|---|
-| **Stable** | 大多数 iOS 用户 | 默认稳定版，适合长期使用 | 低 |
-| **Stable Plus** | 想测试更多覆盖的人 | 比 Stable 更激进，不默认推荐 | 中 |
-| **Lite** | 排查问题的人 | 最小覆盖，用来判断是否误伤 | 低 |
-| **Full** | 高级用户 | 全量排查，适合查漏拦和定位 hostname | 高 |
+| **Fusion** | 所有 iOS 用户 | 合并原 Stable、Stable Plus、Lite、Full 的覆盖入口 | 高于旧 Stable，低于手动多版本叠加 |
 
-> 普通用户只用 **Stable**。不要同时启用 Stable、Stable Plus、Lite、Full。
+> 不再提供 Stable / Stable Plus / Lite / Full 给用户选择。后续维护只围绕 `Rewrite/Profiles/fusion.conf`。
 
 ---
 
@@ -116,10 +114,10 @@ Android 主要依靠域名、关键词和 IP 规则拦截。它不包含 iOS 的
 
 | 现象 | 先做什么 |
 |---|---|
-| 登录异常 | iOS 切 Lite；Android 关闭增强包 |
+| 登录异常 | 关闭模块，再定位对应 App 规则 |
 | 图片不加载 | 关闭 iOS 可复用规则包或对应 App 增强规则 |
 | 视频无法播放 | 关闭对应 App 增强规则 |
-| 手机发热、耗电 | 减少规则叠加，iOS 先用 Lite |
+| 手机发热、耗电 | 减少规则叠加，回滚 fusion 中对应源头 |
 | 一键导入无反应 | 复制入口链接，在客户端里从 URL 手动导入 |
 
 排查原则：**先减少规则，再逐步加回。**
@@ -128,13 +126,10 @@ Android 主要依靠域名、关键词和 IP 规则拦截。它不包含 iOS 的
 
 ## 不建议这样做
 
-- 不要同时启用多个版本。
 - 不要把 Android 文件导入 Shadowrocket。
 - 不要把 iOS `.sgmodule` 当成 Android 配置。
-- 不要把 Full 当日常版本长期使用。
 - 不要把“规则覆盖存在”理解成“已经完整真机测试”。
 - 不懂配置时，不要先改 sing-box 或 v2rayNG routing。
-
 
 <details>
 <summary>Android 使用边界</summary>
@@ -166,14 +161,14 @@ Android 版不包含这些 iOS 能力：
 本仓库采用 **source-first** 维护方式：
 
 ```text
-Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
-        -> scripts/build_module.py --build --profile stable
+Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles/fusion.conf
+        -> scripts/build_module.py --build --profile fusion
         -> scripts/factory_finalize.py --sync-root
         -> scripts/build_release_variants.py
-        -> Release/Ronghemokuai-*.sgmodule
+        -> Ronghemokuai.sgmodule + Release/Ronghemokuai.sgmodule
 ```
 
-根目录 `Ronghemokuai.sgmodule` 是默认 Stable 的生成结果。正常维护时应先改源头文件，再构建生成，不要只手动修改最终模块。
+根目录 `Ronghemokuai.sgmodule` 是融合版生成结果。正常维护时应先改源头文件，再构建生成，不要只手动修改最终模块。
 
 </details>
 
@@ -185,7 +180,7 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 | `Rules/` | 规则源头：direct、reject、app-clean、web-ads 等 |
 | `Scripts/` | 脚本源头与统一 cleaner |
 | `Rewrite/Sources/` | 模块各 section 的源头文件 |
-| `Rewrite/Profiles/` | Stable / Stable Plus / Lite / Full 构建配置 |
+| `Rewrite/Profiles/fusion.conf` | 单一融合构建配置 |
 | `Rewrite/Remotes/` | 外部规则源、候选源和参考模块 |
 | `Release/` | 自动生成的发布模块 |
 | `Android/` | Android 可用规则、配置和 App 增强规则 |
@@ -200,10 +195,10 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 
 | 类型 | 链接 | 用途 |
 |---|---|---|
-| 误杀预防标准 | [docs/FALSE_POSITIVE_PREVENTION.md](docs/FALSE_POSITIVE_PREVENTION.md) | 少误杀、Stable 准入、pending 边界和 Lite 对照排查 |
-| 模块功能 | [docs/MODULE_FEATURES.md](docs/MODULE_FEATURES.md) | 四个版本功能、App 覆盖和使用边界 |
-| 自动化策略 | [docs/AUTOMATION_POLICY.md](docs/AUTOMATION_POLICY.md) | 自动收集、自动筛选、人工晋级边界 |
-| Profile 边界 | [docs/PROFILE_POLICY.md](docs/PROFILE_POLICY.md) | Stable / Stable Plus / Lite / Full 发布边界 |
+| 误杀预防标准 | [docs/FALSE_POSITIVE_PREVENTION.md](docs/FALSE_POSITIVE_PREVENTION.md) | 少误杀、准入、pending 边界和对照排查 |
+| 模块功能 | [docs/MODULE_FEATURES.md](docs/MODULE_FEATURES.md) | App 覆盖和使用边界 |
+| 自动化策略 | [docs/AUTOMATION_POLICY.md](docs/AUTOMATION_POLICY.md) | 自动收集、自动筛选、人工复核边界 |
+| Profile 边界 | [docs/PROFILE_POLICY.md](docs/PROFILE_POLICY.md) | Fusion 发布边界 |
 | MITM 策略 | [docs/MITM_POLICY.md](docs/MITM_POLICY.md) | hostname 分级和增长控制 |
 | 测试标准 | [docs/TESTING.md](docs/TESTING.md) | 手动测试流程和记录要求 |
 | 发布回滚 | [docs/RELEASE.md](docs/RELEASE.md) | 发布、测试、回滚流程 |
@@ -219,12 +214,11 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 | 报告 | 用途 |
 |---|---|
 | [reports/repository_health_report.md][health-report] | 仓库健康总览 |
-| [reports/profile_validation_report.md](reports/profile_validation_report.md) | 四个 profile 构建结果、脚本数、MITM 数 |
+| [reports/profile_validation_report.md](reports/profile_validation_report.md) | fusion profile 构建结果、脚本数、MITM 数 |
 | [reports/app_coverage_matrix.md](reports/app_coverage_matrix.md) | App 覆盖矩阵 |
 | [reports/app_status_matrix.md](reports/app_status_matrix.md) | App 状态矩阵，区分覆盖与真实测试 |
 | [reports/reject_risk_report.md](reports/reject_risk_report.md) | REJECT 高风险误伤分类 |
 | [reports/rule_traceability_matrix.md](reports/rule_traceability_matrix.md) | 高风险规则来源、风险等级、测试状态和回滚路径 |
-| [reports/stable_plus_promotion_report.md](reports/stable_plus_promotion_report.md) | Stable Plus 晋级候选报告 |
 | [reports/manual_test_log.md](reports/manual_test_log.md) | 人工测试记录 |
 | [reports/candidate_security_score_report.md](reports/candidate_security_score_report.md) | 候选源安全评分 |
 | [reports/report_freshness_report.md](reports/report_freshness_report.md) | 治理报告新鲜度检查 |
@@ -236,19 +230,13 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 <details>
 <summary>发布文件直链</summary>
 
-这些链接用于发布校验和高级用户核对，不作为新手导入入口。普通用户仍按顶部“入口选择”操作。
-
 | 版本 | Pages 地址 |
 |---|---|
-| Stable | https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule |
-| Stable Plus | https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable-plus.sgmodule |
-| Lite | https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-lite.sgmodule |
-| Full | https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-full.sgmodule |
+| Fusion | https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule |
+| Fusion Release | https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai.sgmodule |
 
 </details>
 
-[import-page]: https://grandpaniuu.github.io/GrandpaNiu/import.html
-[stable-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-stable.sgmodule
-[lite-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRelease%2FRonghemokuai-lite.sgmodule
+[fusion-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRonghemokuai.sgmodule
 [android-import]: https://grandpaniuu.github.io/GrandpaNiu/android.html
 [health-report]: reports/repository_health_report.md
