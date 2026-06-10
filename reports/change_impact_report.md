@@ -1,12 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-08 05:22:39 +0800
+- 生成时间：2026-06-11 05:38:26 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `reports/multi_release_report.md`
-- `reports/upstream_collect_report.md`
+- `.github/workflows/repository-health.yml`
 
 ## 新增文件
 
@@ -18,12 +17,11 @@
 
 ## 修改文件
 
-- `reports/multi_release_report.md`
-- `reports/upstream_collect_report.md`
+- `.github/workflows/repository-health.yml`
 
 ## 影响的模块层
 
-- README/docs
+- Workflows
 
 ## 可能影响的 App
 
