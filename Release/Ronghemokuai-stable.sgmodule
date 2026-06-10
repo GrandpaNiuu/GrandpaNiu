@@ -1,11 +1,11 @@
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule
 #!name=GrandpaNiu Stable
-#!desc=2026-06-10 / stable
+#!desc=2026-06-11 / stable
 #!system=ios
 #!category=去广告 / 稳定净化
 #!arguments=屏蔽上传按钮:true,屏蔽选段按钮:true,屏蔽Shorts按钮:false,字幕翻译语言:off,歌词翻译语言:off,启用调试模式:false
 #!arguments-desc=- 屏蔽参数：[true, false]\n- 翻译参数：[语言代码, off]\n\n1. 语言代码遵循 Google Translate Languages Codes，填入 off 时关闭翻译。\n2. 开启调试模式用于输出更多日志。
-# update-date: 2026-06-10
+# update-date: 2026-06-11
 # profile: stable
 # profile-role: 默认正式版，优先长期稳定
 # profile-update-url: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule
