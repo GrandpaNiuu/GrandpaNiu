@@ -64,7 +64,7 @@
       "protected": false,
       "purpose": "trusted lightweight privacy and tracker rule candidate enabled for conservative collection",
       "watch_status": "HTTP 404 first seen 2026-05-30; keep enabled for observation until 2 consecutive failed checks",
-      "disabled_reason": "2026-06-10: source failed for 2 confirmed checks, last_error=HTTP 404 HTTP 404"
+      "disabled_reason": "2026-06-11: source failed for 2 confirmed checks, last_error=HTTP 404 HTTP 404"
     },
     {
       "name": "blackmatrix7 Advertising MiTV",
