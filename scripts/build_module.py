@@ -22,6 +22,7 @@ SOURCES = ROOT / "Rewrite" / "Sources"
 PROFILES = ROOT / "Rewrite" / "Profiles"
 REMOTES_JSON = ROOT / "Rewrite" / "Remotes" / "sources.json"
 
+DEFAULT_PROFILE = "fusion"
 SECTION_ORDER = ["Rule", "URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local", "Script", "MITM"]
 SECTION_FILES = {
     "META": "Meta.conf",
@@ -290,7 +291,7 @@ def build_mitm(profile: configparser.ConfigParser) -> str:
     return "\n".join(comments + ["hostname = %APPEND% " + ",".join(hosts)]) + "\n"
 
 
-def build_from_sources(profile_name: str) -> str:
+def build_from_sources(profile_name: str = DEFAULT_PROFILE) -> str:
     profile = load_profile(profile_name)
     parts: list[str] = [read_text(source_file("META")).rstrip()]
     for section in SECTION_ORDER:
@@ -391,6 +392,7 @@ def make_report(release_text: str, extracted: bool, profile: str) -> str:
         "",
         f"- 日期：{today}",
         f"- 构建 profile：{profile}",
+        f"- 默认公开入口：单一融合版",
         f"- 是否从 root 反拆：{'是' if extracted else '否'}",
         f"- 构建阶段 Root/Release 是否一致：{'是' if build_stage_same_as_root else '否'}",
         f"- Release 行数：{len(release_text.splitlines())}",
@@ -402,10 +404,10 @@ def make_report(release_text: str, extracted: bool, profile: str) -> str:
         "## 构建输入",
         f"- Rewrite/Profiles/{profile}.conf",
         "- Rewrite/Remotes/sources.json",
-        "- Rules/: DIRECT、Spotify、YouTube、本地 App、网页、Reject 和 legacy stable import 规则片段",
-        "- Scripts/: Spotify、YouTube、知乎、App-clean 和 legacy reviewed 脚本片段",
-        "- Rewrite/Sources/: Meta、Rewrite、Body Rewrite、Map Local、MITM、legacy reviewed 和兼容片段",
-        "- [mitm] profile 可选择 MITM-core / MITM-app-clean / MITM-extended / MITM-legacy-reviewed 分层输入；stable 默认只吃 reviewed legacy 层。",
+        "- Rules/: DIRECT、Spotify、YouTube、本地 App、网页、Reject、legacy、Stable Plus 与 Full 规则片段",
+        "- Scripts/: Spotify、YouTube、知乎、App-clean、legacy reviewed、QingRex 与 Stable Plus 脚本片段",
+        "- Rewrite/Sources/: Meta、Rewrite、Body Rewrite、Map Local、MITM、legacy reviewed、stable-plus、extended 和兼容片段",
+        "- [mitm] fusion profile 同时读取 core / app-clean / legacy-reviewed / qingrex / stable-plus / extended 层。",
         "",
         "## 重复检查",
         f"- 重复脚本名：{', '.join(script_dupes) if script_dupes else '无'}",
@@ -417,10 +419,10 @@ def make_report(release_text: str, extracted: bool, profile: str) -> str:
         "- 已知纯域名远程源会自动规范为 DOMAIN-SET，避免 Shadowrocket 红叉。",
         "",
         "## 说明",
-        "- 日常维护应优先修改 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles。",
+        "- 日常维护应优先修改 Rules、Scripts、Rewrite/Sources、Rewrite/Remotes 和 Rewrite/Profiles/fusion.conf。",
         "- Release/Ronghemokuai.sgmodule 由工厂源头生成。",
         "- 根目录 Ronghemokuai.sgmodule 由 factory_finalize.py 同步生成。",
-        "- legacy Script / MITM / Rewrite 必须进入 reviewed 源头后才会被 stable profile 读取。",
+        "- 本仓库默认不再拆分 Stable / Stable Plus / Lite / Full 作为用户入口。",
         "- --extract-from-root 只用于初始化或恢复源头，不是日常构建路径。",
         "",
     ])
@@ -456,7 +458,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Build the source-driven module factory output.")
     parser.add_argument("--extract-from-root", action="store_true", help="rebuild Rewrite/Sources from root module; use only for initialization or recovery")
     parser.add_argument("--build", action="store_true", help="build Release/Ronghemokuai.sgmodule from factory sources")
-    parser.add_argument("--profile", default="stable", help="profile name under Rewrite/Profiles, default: stable")
+    parser.add_argument("--profile", default=DEFAULT_PROFILE, help=f"profile name under Rewrite/Profiles, default: {DEFAULT_PROFILE}")
     args = parser.parse_args()
     if not args.extract_from_root and not args.build:
         args.build = True
