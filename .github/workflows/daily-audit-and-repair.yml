@@ -2,12 +2,15 @@ name: Daily invalid rule audit and safe repair
 
 on:
   schedule:
-    # 19:00 UTC = 03:00 Beijing time.
     - cron: "0 19 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: module-maintenance
+  cancel-in-progress: false
 
 jobs:
   audit-and-repair:
@@ -15,6 +18,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -24,14 +29,28 @@ jobs:
       - name: Run daily audit and safe repair
         run: python scripts/audit_and_repair_module.py
 
+      - name: Build fusion module after audit
+        run: |
+          python scripts/build_module.py --build --profile fusion
+          python scripts/factory_finalize.py --sync-root
+          python scripts/build_release_variants.py
+          python scripts/validate_repository.py
+
       - name: Commit audit report and safe repairs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Ronghemokuai.sgmodule reports/daily_audit_report.md reports/invalid_history.json
+          git add -A
           if git diff --cached --quiet; then
             echo "No audit changes to commit."
             exit 0
           fi
-          git commit -m "Daily audit and safe repair module"
-          git push
+          git commit -m "Daily audit and safe fusion repair"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
