@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate stable, stable-plus, lite and full profiles without syncing Root."""
+"""Validate the single fusion profile without leaving generated output changed."""
 
 from __future__ import annotations
 
@@ -14,10 +14,7 @@ REPORT = ROOT / "reports" / "profile_validation_report.md"
 FACTORY_REPORT = ROOT / "reports" / "module_factory_report.md"
 FACTORY_DIFF = ROOT / "reports" / "module_factory_diff_report.md"
 PROFILES = {
-    "stable": ("默认正式版", "是"),
-    "stable-plus": ("常用 App 增强测试版", "否"),
-    "lite": ("低耗电参考版", "否"),
-    "full": ("全覆盖测试版", "否"),
+    "fusion": ("单一融合正式版", "是"),
 }
 REQUIRED_MARKERS = (
     "[Rule]",
@@ -100,11 +97,11 @@ def main() -> None:
 
     now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
     lines = [
-        "# Profile 全量验证报告",
+        "# Profile 验证报告",
         "",
         f"生成时间：{now}",
         "",
-        "说明：本脚本只验证 stable / stable-plus / lite / full 是否可以构建，不会把 lite、stable-plus 或 full 同步到根目录主模块。验证结束后会恢复原 Release 和工厂报告。",
+        "说明：本脚本只验证单一融合 profile：`fusion`。仓库不再把 stable / stable-plus / lite / full 作为用户入口。",
         "",
         "| Profile | 构建结果 | 必要标记 | 脚本数 | MITM 数量 | 适用场景 | 是否可发布 |",
         "|---|---|---|---:|---:|---|---|",
@@ -116,12 +113,10 @@ def main() -> None:
         "",
         "## 规则",
         "",
-        "- stable 是默认正式版，可以发布。",
-        "- stable-plus 是常用 App 增强测试版，不默认发布。",
-        "- lite 是低耗电参考版，不默认发布。",
-        "- full 是全覆盖测试版，不默认发布。",
-        "- 默认 workflow 仍应使用 stable，不允许默认使用 stable-plus 或 full。",
-        "- 必要标记用于确认模块结构和已纳入脚本入口存在，不代表某几个 App 被单独设为例外。",
+        "- fusion 是唯一正式构建 profile。",
+        "- 默认 workflow 必须使用 fusion。",
+        "- 不再生成四个用户版本。",
+        "- 必要标记用于确认模块结构和核心脚本入口存在。",
         "",
     ]
     write(REPORT, "\n".join(lines))
