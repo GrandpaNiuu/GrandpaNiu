@@ -1,2 +1,12 @@
-# YouTube passthrough mode.
-# Do not reject YouTube UDP/QUIC traffic.
+# YouTube safe passthrough start
+DOMAIN-SUFFIX,youtube.com,PROXY,pre-matching
+DOMAIN-SUFFIX,youtu.be,PROXY,pre-matching
+DOMAIN-SUFFIX,ytimg.com,PROXY,pre-matching
+DOMAIN-SUFFIX,ggpht.com,PROXY,pre-matching
+DOMAIN-SUFFIX,googlevideo.com,PROXY,pre-matching
+DOMAIN,youtubei.googleapis.com,PROXY,pre-matching
+DOMAIN-SUFFIX,doubleclick.net,PROXY,pre-matching
+DOMAIN-SUFFIX,googleadservices.com,PROXY,pre-matching
+DOMAIN-SUFFIX,googlesyndication.com,PROXY,pre-matching
+DOMAIN-SUFFIX,googletagservices.com,PROXY,pre-matching
+# YouTube safe passthrough end
