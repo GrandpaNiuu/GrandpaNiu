@@ -1,0 +1,11 @@
+#!name=GrandpaNiu Yiche
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/yiche.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,yiche.com,DIRECT,pre-matching
+DOMAIN,adx.yiche.com,REJECT,pre-matching
+DOMAIN,log.ycapp.yiche.com,REJECT,pre-matching
+
+[MITM]
+hostname = %APPEND% *.yiche.com

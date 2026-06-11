@@ -2,8 +2,8 @@
 
 - Fusion fallback source: `Release/Ronghemokuai.sgmodule`
 - Output directory: `Release/Modules`
-- Configured modules: 14
-- Generated modules: 14
+- Configured modules: 18
+- Generated modules: 18
 - Skipped empty modules: 0
 
 ## GrandpaNiu Spotify
@@ -92,4 +92,24 @@
 ## GrandpaNiu Huya
 - Source: `Rewrite/Sources/Apps/huya.conf`
 - Rule: 6
+- MITM: 1
+
+## GrandpaNiu Yiche
+- Source: `Rewrite/Sources/Apps/yiche.conf`
+- Rule: 3
+- MITM: 1
+
+## GrandpaNiu PCAuto
+- Source: `Rewrite/Sources/Apps/pcauto.conf`
+- Rule: 7
+- MITM: 1
+
+## GrandpaNiu Umetrip
+- Source: `Rewrite/Sources/Apps/umetrip.conf`
+- Rule: 4
+- MITM: 1
+
+## GrandpaNiu Xiaopeng
+- Source: `Rewrite/Sources/Apps/xiaopeng.conf`
+- Rule: 3
 - MITM: 1

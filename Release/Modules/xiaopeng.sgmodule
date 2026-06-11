@@ -1,0 +1,11 @@
+#!name=GrandpaNiu Xiaopeng
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/xiaopeng.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,xiaopeng.com,DIRECT,pre-matching
+DOMAIN,apps-booster.xiaopeng.com,REJECT,pre-matching
+DOMAIN,collect.xiaopeng.com,REJECT,pre-matching
+
+[MITM]
+hostname = %APPEND% *.xiaopeng.com

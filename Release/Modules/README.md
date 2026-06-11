@@ -18,3 +18,7 @@ Generated per-app module outputs.
 | GrandpaNiu Netease Music | `netease-music.sgmodule` | `Rewrite/Sources/Apps/netease-music.conf` | Rule:14, MITM:1 |
 | GrandpaNiu MGTV | `mgtv.sgmodule` | `Rewrite/Sources/Apps/mgtv.conf` | Rule:12, MITM:1 |
 | GrandpaNiu Huya | `huya.sgmodule` | `Rewrite/Sources/Apps/huya.conf` | Rule:6, MITM:1 |
+| GrandpaNiu Yiche | `yiche.sgmodule` | `Rewrite/Sources/Apps/yiche.conf` | Rule:3, MITM:1 |
+| GrandpaNiu PCAuto | `pcauto.sgmodule` | `Rewrite/Sources/Apps/pcauto.conf` | Rule:7, MITM:1 |
+| GrandpaNiu Umetrip | `umetrip.sgmodule` | `Rewrite/Sources/Apps/umetrip.conf` | Rule:4, MITM:1 |
+| GrandpaNiu Xiaopeng | `xiaopeng.sgmodule` | `Rewrite/Sources/Apps/xiaopeng.conf` | Rule:3, MITM:1 |

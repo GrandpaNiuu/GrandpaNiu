@@ -132,6 +132,34 @@
       "source": "Rewrite/Sources/Apps/huya.conf",
       "sections": "Rule:6, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/huya.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Yiche",
+      "file": "Release/Modules/yiche.sgmodule",
+      "source": "Rewrite/Sources/Apps/yiche.conf",
+      "sections": "Rule:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/yiche.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu PCAuto",
+      "file": "Release/Modules/pcauto.sgmodule",
+      "source": "Rewrite/Sources/Apps/pcauto.conf",
+      "sections": "Rule:7, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/pcauto.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Umetrip",
+      "file": "Release/Modules/umetrip.sgmodule",
+      "source": "Rewrite/Sources/Apps/umetrip.conf",
+      "sections": "Rule:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/umetrip.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Xiaopeng",
+      "file": "Release/Modules/xiaopeng.sgmodule",
+      "source": "Rewrite/Sources/Apps/xiaopeng.conf",
+      "sections": "Rule:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xiaopeng.sgmodule"
     }
   ],
   "android": [

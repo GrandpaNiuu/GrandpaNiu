@@ -1,0 +1,12 @@
+#!name=GrandpaNiu Umetrip
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/umetrip.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,umetrip.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,variflight.com,DIRECT,pre-matching
+DOMAIN,adv-adlog.variflight.com,REJECT,pre-matching
+DOMAIN,sensors.umetrip.com.cn,REJECT,pre-matching
+
+[MITM]
+hostname = %APPEND% *.umetrip.com,*.variflight.com

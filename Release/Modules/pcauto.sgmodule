@@ -1,0 +1,15 @@
+#!name=GrandpaNiu PCAuto
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/pcauto.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,pcauto.com.cn,DIRECT,pre-matching
+DOMAIN-SUFFIX,pconline.com.cn,DIRECT,pre-matching
+DOMAIN,ad-analysis.pconline.com.cn,REJECT,pre-matching
+DOMAIN,iad0ssl.pcauto.com.cn,REJECT,pre-matching
+DOMAIN,iad0ssl.pconline.com.cn,REJECT,pre-matching
+DOMAIN,imgad0.pcauto.com.cn,REJECT,pre-matching
+DOMAIN,imgad0.pconline.com.cn,REJECT,pre-matching
+
+[MITM]
+hostname = %APPEND% *.pcauto.com.cn,*.pconline.com.cn
