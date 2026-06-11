@@ -1,23 +1,47 @@
 #!/usr/bin/env python3
 """Unified entry point for the GrandpaNiu module factory.
 
-This wrapper keeps the implementation in scripts/ while exposing the
-Rewrite/Generator/Builder.py entry point used by the module factory layout.
+The generator reads Rewrite/Generate.conf and then calls the existing scripts/
+implementation. This keeps the repository compatible while making the build
+flow config-driven instead of hard-coded.
 """
 
 from __future__ import annotations
 
 import argparse
+import configparser
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 PYTHON = sys.executable
+DEFAULT_CONFIG = ROOT / "Rewrite" / "Generate.conf"
 
 
 def rel(path: Path) -> str:
     return path.relative_to(ROOT).as_posix()
+
+
+def config_path(value: str | None) -> Path:
+    if not value:
+        return DEFAULT_CONFIG
+    path = Path(value)
+    return path if path.is_absolute() else ROOT / path
+
+
+def load_config(path: Path) -> configparser.ConfigParser:
+    cfg = configparser.ConfigParser()
+    cfg.optionxform = str
+    if path.exists():
+        cfg.read(path, encoding="utf-8")
+    return cfg
+
+
+def get_cfg(cfg: configparser.ConfigParser, section: str, key: str, fallback: str) -> str:
+    if cfg.has_option(section, key):
+        return cfg.get(section, key).strip()
+    return fallback
 
 
 def command(script: str, *args: str) -> list[str]:
@@ -27,6 +51,7 @@ def command(script: str, *args: str) -> list[str]:
 def existing_command(script: str, *args: str) -> list[str] | None:
     path = ROOT / script
     if not path.exists():
+        print(f"skip missing script: {script}")
         return None
     return command(script, *args)
 
@@ -43,40 +68,60 @@ def run(cmd: list[str], dry_run: bool) -> None:
     subprocess.run(cmd, cwd=ROOT, check=True)
 
 
-def build_plan(profile: str, release: bool, check: bool) -> list[list[str]]:
+def script_value_items(cfg: configparser.ConfigParser, section: str) -> list[str]:
+    if not cfg.has_section(section):
+        return []
+    scripts: list[str] = []
+    for _, value in cfg.items(section):
+        item = value.strip()
+        if item.endswith(".py") or ".py " in item:
+            scripts.append(item)
+    return scripts
+
+
+def build_plan(cfg: configparser.ConfigParser, profile: str, release: bool, check: bool, config_file: Path) -> list[list[str]]:
+    build_script = get_cfg(cfg, "builder", "build_script", "scripts/build_module.py")
+    finalize_script = get_cfg(cfg, "builder", "finalize_script", "scripts/factory_finalize.py")
+    release_report_script = get_cfg(cfg, "builder", "release_report_script", "scripts/build_release_variants.py")
+    release_rules_script = get_cfg(cfg, "builder", "release_rules_script", "scripts/build_release_rules.py")
+    release_modules_script = get_cfg(cfg, "builder", "release_modules_script", "scripts/build_release_modules.py")
+
     steps: list[list[str]] = [
-        command("scripts/build_module.py", "--build", "--profile", profile),
+        command(build_script, "--build", "--profile", profile),
     ]
 
     if release:
-        steps.extend([
-            command("scripts/factory_finalize.py", "--sync-root"),
-            command("scripts/build_release_variants.py"),
-            command("scripts/build_release_rules.py"),
-            command("scripts/build_release_modules.py"),
-        ])
+        release_steps: list[list[str] | None] = [
+            existing_command(finalize_script, "--sync-root"),
+            existing_command(release_report_script),
+            existing_command(release_rules_script),
+            existing_command(release_modules_script, "--config", rel(config_file)),
+        ]
+        steps.extend(step for step in release_steps if step is not None)
 
     if check:
-        optional_steps = [
-            existing_command("scripts/validate_remote_rule_syntax.py"),
-            existing_command("scripts/validate_repository.py"),
-            existing_command("scripts/validate_profiles.py"),
-            existing_command("scripts/validate_governance_extensions.py"),
-        ]
-        steps.extend(step for step in optional_steps if step is not None)
+        for script in script_value_items(cfg, "checks"):
+            step = existing_command(script)
+            if step is not None:
+                steps.append(step)
 
     return steps
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run the GrandpaNiu module factory pipeline.")
-    parser.add_argument("--profile", default="fusion", help="Profile name under Rewrite/Profiles. Default: fusion")
+    parser.add_argument("--config", default=rel(DEFAULT_CONFIG), help="Generation config path. Default: Rewrite/Generate.conf")
+    parser.add_argument("--profile", default=None, help="Profile name under Rewrite/Profiles. Defaults to [profile] active")
     parser.add_argument("--release", action="store_true", help="Finalize Release output and generate release artifacts")
-    parser.add_argument("--check", action="store_true", help="Run available validation scripts after build")
+    parser.add_argument("--check", action="store_true", help="Run validation scripts listed in the config")
     parser.add_argument("--dry-run", action="store_true", help="Print commands without executing them")
     args = parser.parse_args()
 
-    for step in build_plan(args.profile, args.release, args.check):
+    cfg_path = config_path(args.config)
+    cfg = load_config(cfg_path)
+    profile = args.profile or get_cfg(cfg, "profile", "active", "fusion")
+
+    for step in build_plan(cfg, profile, args.release, args.check, cfg_path):
         run(step, args.dry_run)
 
 
