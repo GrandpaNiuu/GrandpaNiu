@@ -1,19 +1,32 @@
 # 变更影响报告
 
-- 生成时间：2026-06-11 22:19:37 +0800
+- 生成时间：2026-06-11 23:13:09 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
+- `README.md`
+- `Rewrite/Profiles/README.md`
+- `Rules/qingrex-miniapp-app-ad.list`
+- `Rules/wechat-ad.list`
+- `docs/COVERAGE.md`
+- `docs/MODULE_FEATURES.md`
+- `docs/PROFILE_POLICY.md`
 - `reports/android_rules_report.md`
+- `reports/invalid_sources_history.json`
+- `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
+- `reports/profile_validation_report.md`
 - `reports/remote_rule_syntax_report.md`
 - `reports/report_freshness_report.md`
 - `reports/repository_health_report.md`
+- `scripts/validate_module_integrity.py`
+- `scripts/validate_repository.py`
 
 ## 新增文件
 
-- 无
+- `reports/module_integrity_report.md`
+- `scripts/validate_module_integrity.py`
 
 ## 删除文件
 
@@ -21,29 +34,47 @@
 
 ## 修改文件
 
+- `README.md`
+- `Rewrite/Profiles/README.md`
+- `Rules/qingrex-miniapp-app-ad.list`
+- `Rules/wechat-ad.list`
+- `docs/COVERAGE.md`
+- `docs/MODULE_FEATURES.md`
+- `docs/PROFILE_POLICY.md`
 - `reports/android_rules_report.md`
+- `reports/invalid_sources_history.json`
 - `reports/multi_release_report.md`
+- `reports/profile_validation_report.md`
 - `reports/remote_rule_syntax_report.md`
 - `reports/report_freshness_report.md`
 - `reports/repository_health_report.md`
+- `scripts/validate_repository.py`
 
 ## 影响的模块层
 
+- Profiles
 - README/docs
+- Rules
+- Scripts/maintenance
 
 ## 可能影响的 App
 
-- 待人工确认
+- Spotify
+- YouTube
+- 知乎
+- Bilibili
+- 12306
+- Reddit
 
 ## 风险判断
 
-- 是否涉及脚本：否
-- 是否涉及 MITM：否
-- 是否涉及 Body Rewrite：否
+- 是否涉及脚本：是
+- 是否涉及 MITM：是
+- 是否涉及 Body Rewrite：是
 - 是否涉及远程规则源：是
-- 是否需要测试 Spotify：按需
-- 是否需要测试 YouTube：按需
-- 是否需要测试知乎：按需
+- 是否需要测试 Spotify：是
+- 是否需要测试 YouTube：是
+- 是否需要测试知乎：是
 - 是否需要测试登录/支付/验证码：按需
 
 ## 回滚建议
