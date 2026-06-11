@@ -62,10 +62,24 @@ jobs:
             git commit -m "Collect trusted upstream candidates and fusion output"
           }
 
+          safe_rebase_push() {
+            echo "Push failed; trying safe rebase fallback before reset regeneration."
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                return 0
+              fi
+            else
+              git rebase --abort || true
+            fi
+            return 1
+          }
+
           commit_changes || exit 0
           if git push origin HEAD:main; then
             exit 0
           fi
+          safe_rebase_push && exit 0
 
           echo "Push failed; resetting to latest main and regenerating upstream collect outputs."
           for attempt in 2 3; do
@@ -76,6 +90,7 @@ jobs:
             if git push origin HEAD:main; then
               exit 0
             fi
+            safe_rebase_push && exit 0
             echo "Push failed on regenerated attempt ${attempt}."
           done
 
