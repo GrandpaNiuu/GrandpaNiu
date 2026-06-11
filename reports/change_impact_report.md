@@ -1,11 +1,26 @@
 # 变更影响报告
 
-- 生成时间：2026-06-11 08:33:49 +0800
+- 生成时间：2026-06-11 08:34:27 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `.github/workflows/repository-health.yml`
+- `reports/app_status_matrix.md`
+- `reports/candidate_security_score_report.md`
+- `reports/change_impact_report.md`
+- `reports/domestic_app_connectivity_audit.md`
+- `reports/multi_release_report.md`
+- `reports/profile_validation_report.md`
+- `reports/promotion_pr_report.md`
+- `reports/reject_risk_report.md`
+- `reports/remote_rule_syntax_report.md`
+- `reports/report_freshness_report.md`
+- `reports/repository_health_report.md`
+- `reports/script_consolidation_rollback_report.md`
+- `reports/script_dedupe_report.md`
+- `reports/script_inventory_report.md`
+- `reports/stable_plus_promotion_report.md`
+- `reports/workflow_health_report.md`
 
 ## 新增文件
 
@@ -17,11 +32,26 @@
 
 ## 修改文件
 
-- `.github/workflows/repository-health.yml`
+- `reports/app_status_matrix.md`
+- `reports/candidate_security_score_report.md`
+- `reports/change_impact_report.md`
+- `reports/domestic_app_connectivity_audit.md`
+- `reports/multi_release_report.md`
+- `reports/profile_validation_report.md`
+- `reports/promotion_pr_report.md`
+- `reports/reject_risk_report.md`
+- `reports/remote_rule_syntax_report.md`
+- `reports/report_freshness_report.md`
+- `reports/repository_health_report.md`
+- `reports/script_consolidation_rollback_report.md`
+- `reports/script_dedupe_report.md`
+- `reports/script_inventory_report.md`
+- `reports/stable_plus_promotion_report.md`
+- `reports/workflow_health_report.md`
 
 ## 影响的模块层
 
-- Workflows
+- README/docs
 
 ## 可能影响的 App
 
@@ -30,7 +60,7 @@
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：否
+- 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
 - 是否需要测试 Spotify：按需
