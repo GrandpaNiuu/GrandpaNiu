@@ -1,0 +1,10 @@
+#!name=GrandpaNiu Quark Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/quark.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,quark.cn,DIRECT,pre-matching
+DOMAIN,ucdc.upaas.quark.cn,REJECT,pre-matching
+
+[MITM]
+hostname = %APPEND% *.quark.cn

@@ -1,75 +1,71 @@
-# 仓库健康检查报告
+# Repository Health Report
 
-生成时间：2026-06-12 02:19:38 +0800
+- Generated at: 2026-06-12 03:01:52 +0800
+- Blocking issues: 0
+- Root and Release identical: yes
+- Fusion profile finalized: yes
+- validate_repository.py: passed
+- node --check Scripts/app-cleaner.js: passed
+- Script entries: 46
+- MITM hostnames: 1072
 
-## 总体状态
+## Section Counts
 
-- 阻断问题：1
-- Root 与 Release 一致：是
-- GrandpaNiu = 默认 Fusion：是
-- fusion profile：就绪
-- validate_repository.py：失败
-- node --check Scripts/app-cleaner.js：通过
-- 脚本总数：46
-- MITM hostname 数量：1072
+- [Rule]: 674
+- [URL Rewrite]: 1644
+- [Header Rewrite]: 1
+- [Body Rewrite]: 455
+- [Map Local]: 149
+- [Script]: 46
+- [MITM]: 1
 
-## 区块检查
+## Blocking Issues
 
-- [Rule]：642 行
-- [URL Rewrite]：1644 行
-- [Header Rewrite]：1 行
-- [Body Rewrite]：455 行
-- [Map Local]：149 行
-- [Script]：46 行
-- [MITM]：1 行
+- none
 
-## 阻断问题
+## Missing Files
 
-- validate_repository.py 未通过
+- none
 
-## 缺少文件
+## Missing Workflows
 
-- 无
+- none
 
-## 缺少 workflow
+## Missing Fusion Markers
 
-- 无
+- none
 
-## 主模块缺少标记
+## Duplicate Script Names
 
-- 无
+- none
 
-## 重复脚本名
+## Duplicate MITM Hostnames
 
-- 无
+- none
 
-## 重复 MITM hostname
+## Workflow Summary
 
-- 无
+- `.github/workflows/module-factory-build.yml`: contents: write; concurrency; fusion; rebase retry
+- `.github/workflows/daily-module-update.yml`: contents: write; concurrency; fusion; rebase retry
+- `.github/workflows/daily-audit-and-repair.yml`: contents: write; concurrency; fusion; rebase retry
+- `.github/workflows/daily-invalid-source-repair.yml`: contents: write; concurrency; fusion; rebase retry
+- `.github/workflows/upstream-collect.yml`: contents: write; concurrency; fusion; rebase retry
+- `.github/workflows/repository-health.yml`: contents: write; concurrency; fusion; rebase retry
 
-## Workflow 配置摘要
-
-- `.github/workflows/module-factory-build.yml`：contents: write；concurrency；缺少 fusion 构建；regenerate retry
-- `.github/workflows/daily-module-update.yml`：contents: write；concurrency；缺少 fusion 构建；regenerate retry
-- `.github/workflows/daily-audit-and-repair.yml`：contents: write；concurrency；fusion；regenerate retry
-- `.github/workflows/daily-invalid-source-repair.yml`：contents: write；concurrency；fusion；regenerate retry
-- `.github/workflows/upstream-collect.yml`：contents: write；concurrency；fusion；regenerate retry
-- `.github/workflows/repository-health.yml`：contents: write；concurrency；缺少 fusion 构建；regenerate retry
-
-## validate_repository.py 输出
+## validate_repository.py Output
 
 ```text
-ERROR: workflow must retry push after rebase: .github/workflows/module-factory-build.yml
+Repository validation passed.
 ```
 
-## node --check 输出
+## node --check Output
 
 ```text
-无输出
+no output
 ```
 
-## 维护边界
+## Maintenance Boundaries
 
-- 所有修改应 source-first，先改 Rules / Scripts / Rewrite/Sources / Rewrite/Remotes / Rewrite/Profiles/fusion.conf，再构建 Release 和 Root。
-- Fusion 是唯一用户入口，不再拆分 Stable / Stable Plus / Lite / Full。
-- 旧多版本文件如果存在，只作为历史兼容文件，不作为健康检查阻断项。
+- Source-first maintenance: edit `Rules/`, `Scripts/`, `Rewrite/Sources/`, `Rewrite/Remotes/`, and `Rewrite/Profiles/fusion.conf` first.
+- Fusion is the only public iOS entry; legacy Stable/Lite/Full files are compatibility placeholders only.
+- `Release/` and generated `Web/` catalogs must be rebuilt, not manually patched as source files.

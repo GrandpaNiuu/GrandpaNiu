@@ -1,8 +1,14 @@
 # Release
 
-This directory stores generated release files.
+This directory stores generated release files. Do not maintain `Release/` as the source of truth.
 
-## Current entries
+Regenerate release outputs with:
+
+```bash
+python3 Rewrite/Generator/Builder.py --profile fusion --release
+```
+
+## Current generated entries
 
 - `Release/Ronghemokuai.sgmodule`
 - root `Ronghemokuai.sgmodule`
@@ -20,11 +26,13 @@ The old full/lite/stable files are compatibility placeholders only:
 - `Release/Ronghemokuai-stable-plus.sgmodule`
 - `Release/Ronghemokuai-stable.sgmodule`
 
-They are not public catalog entries. See `Release/Legacy/README.md`.
+They are deprecated legacy files and are not public catalog entries. See `Release/Legacy/README.md`.
 
 ## Source of truth
 
 - Main source files: `Rewrite/Sources/`
 - App source files: `Rewrite/Sources/Apps/`
+- Misc source files: `Rewrite/Sources/Misc/`
+- Remote governance: `Rewrite/Remotes/`
 - Android source files: `Android/`
 - Generation plan: `Rewrite/Generate.conf`

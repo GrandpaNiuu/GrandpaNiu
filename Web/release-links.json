@@ -160,6 +160,69 @@
       "source": "Rewrite/Sources/Apps/xiaopeng.conf",
       "sections": "Rule:3, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xiaopeng.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Amap Source",
+      "file": "Release/Modules/amap.sgmodule",
+      "source": "Rewrite/Sources/Apps/amap.conf",
+      "sections": "Rule:1, URL Rewrite:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/amap.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Baidu Source",
+      "file": "Release/Modules/baidu.sgmodule",
+      "source": "Rewrite/Sources/Apps/baidu.conf",
+      "sections": "Rule:4, URL Rewrite:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/baidu.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Meituan Source",
+      "file": "Release/Modules/meituan.sgmodule",
+      "source": "Rewrite/Sources/Apps/meituan.conf",
+      "sections": "Rule:11, URL Rewrite:9, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/meituan.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Quark Source",
+      "file": "Release/Modules/quark.sgmodule",
+      "source": "Rewrite/Sources/Apps/quark.conf",
+      "sections": "Rule:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/quark.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Soul Source",
+      "file": "Release/Modules/soul.sgmodule",
+      "source": "Rewrite/Sources/Apps/soul.conf",
+      "sections": "Rule:4, URL Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/soul.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu WPS Source",
+      "file": "Release/Modules/wps.sgmodule",
+      "source": "Rewrite/Sources/Apps/wps.conf",
+      "sections": "Rule:4, URL Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/wps.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Youku Source",
+      "file": "Release/Modules/youku.sgmodule",
+      "source": "Rewrite/Sources/Apps/youku.conf",
+      "sections": "Rule:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/youku.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu ZDM Source",
+      "file": "Release/Modules/zdm.sgmodule",
+      "source": "Rewrite/Sources/Apps/zdm.conf",
+      "sections": "Rule:1, URL Rewrite:7, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/zdm.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Zuoyebang Source",
+      "file": "Release/Modules/zuoyebang.sgmodule",
+      "source": "Rewrite/Sources/Apps/zuoyebang.conf",
+      "sections": "Rule:1, URL Rewrite:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/zuoyebang.sgmodule"
     }
   ],
   "android": [

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Generate a health report for the single Fusion module."""
+"""Generate a health report for the single Fusion module repository."""
 
 from __future__ import annotations
 
 import datetime as dt
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -76,7 +77,7 @@ def read(path: Path) -> str:
 
 def write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8", newline="\n")
+    path.write_text(text.rstrip() + "\n", encoding="utf-8", newline="\n")
 
 
 def run_command(args: list[str]) -> tuple[bool, str]:
@@ -84,8 +85,20 @@ def run_command(args: list[str]) -> tuple[bool, str]:
         proc = subprocess.run(args, cwd=ROOT, text=True, capture_output=True)
     except OSError as exc:
         return False, f"{type(exc).__name__}: {exc}"
-    output = (proc.stdout + proc.stderr).strip() or "无输出"
+    output = (proc.stdout + proc.stderr).strip() or "no output"
     return proc.returncode == 0, output
+
+
+def node_executable() -> str | None:
+    found = shutil.which("node")
+    if found:
+        return found
+    bundled = Path.home() / ".cache" / "codex-runtimes" / "codex-primary-runtime" / "dependencies" / "node" / "bin"
+    candidates = [bundled / "node.exe", bundled / "node"]
+    for path in candidates:
+        if path.exists():
+            return str(path)
+    return None
 
 
 def active_script_names() -> list[str]:
@@ -115,20 +128,6 @@ def mitm_hosts(text: str) -> list[str]:
     return hosts
 
 
-def workflow_has_fusion_build(text: str) -> bool:
-    """Accept shell commands and Python subprocess list syntax."""
-    normalized = re.sub(r"\s+", " ", text)
-    patterns = (
-        "--profile fusion",
-        "--profile=fusion",
-        '"--profile", "fusion"',
-        "'--profile', 'fusion'",
-        '"--profile","fusion"',
-        "'--profile','fusion'",
-    )
-    return "build_module.py" in text and any(pattern in normalized for pattern in patterns)
-
-
 def section_counts(text: str) -> dict[str, int]:
     sections = ["Rule", "URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local", "Script", "MITM"]
     counts = {section: 0 for section in sections}
@@ -143,7 +142,7 @@ def section_counts(text: str) -> dict[str, int]:
     return counts
 
 
-def workflow_builds_fusion(text: str) -> bool:
+def workflow_has_fusion_build(text: str) -> bool:
     compact = re.sub(r"\s+", " ", text)
     return any(
         token in text or token in compact
@@ -151,6 +150,7 @@ def workflow_builds_fusion(text: str) -> bool:
             "fusion-build-marker: scripts/build_module.py --build --profile fusion",
             "scripts/build_module.py --build --profile fusion",
             "--profile fusion",
+            "--profile=fusion",
             '"--profile", "fusion"',
             "'--profile', 'fusion'",
             "profile=fusion",
@@ -160,18 +160,19 @@ def workflow_builds_fusion(text: str) -> bool:
 
 def workflow_summary(path: Path) -> str:
     text = read(path)
-    items = []
-    items.append("contents: write" if "contents: write" in text else "缺少 contents: write")
-    items.append("concurrency" if "concurrency:" in text else "缺少 concurrency")
-    items.append("fusion" if workflow_has_fusion_build(text) else "缺少 fusion 构建")
-    items.append("regenerate retry" if "reset --hard origin/main" in text or "git rebase origin/main" in text else "缺少 retry")
-    return "；".join(items)
+    items = [
+        "contents: write" if "contents: write" in text else "missing contents: write",
+        "concurrency" if "concurrency:" in text else "missing concurrency",
+        "fusion" if workflow_has_fusion_build(text) else "missing fusion build",
+        "rebase retry" if "git rebase origin/main" in text else "missing rebase retry",
+    ]
+    return "; ".join(items)
 
 
 def list_block(title: str, items: list[str]) -> list[str]:
     lines = ["", f"## {title}", ""]
     if not items:
-        lines.append("- 无")
+        lines.append("- none")
     else:
         lines.extend(f"- {item}" for item in items)
     return lines
@@ -181,8 +182,13 @@ def main() -> None:
     root_text = read(MODULE)
     release_text = read(RELEASE)
     fusion_text = read(ROOT / "Rewrite" / "Profiles" / "fusion.conf")
+
     validator_ok, validator_output = run_command([sys.executable, "scripts/validate_repository.py"])
-    js_ok, js_output = run_command(["node", "--check", "Scripts/app-cleaner.js"])
+    node_bin = node_executable()
+    if node_bin:
+        js_ok, js_output = run_command([node_bin, "--check", "Scripts/app-cleaner.js"])
+    else:
+        js_ok, js_output = False, "node executable not found"
 
     names = active_script_names()
     duplicate_scripts = sorted({name for name in names if names.count(name) > 1})
@@ -191,79 +197,74 @@ def main() -> None:
     missing_files = [item for item in REQUIRED_FILES if not (ROOT / item).exists()]
     missing_workflows = [item for item in REQUIRED_WORKFLOWS if not (ROOT / item).exists()]
     missing_markers = [marker for marker in REQUIRED_MARKERS if marker not in root_text]
-
-    workflow_items = [f"`{item}`：{workflow_summary(ROOT / item)}" for item in REQUIRED_WORKFLOWS if (ROOT / item).exists()]
+    workflow_items = [f"`{item}`: {workflow_summary(ROOT / item)}" for item in REQUIRED_WORKFLOWS if (ROOT / item).exists()]
 
     blockers: list[str] = []
     if root_text != release_text:
-        blockers.append("Root 与 Release 不一致")
+        blockers.append("Root module and Release module differ")
     if missing_files:
-        blockers.append("缺少必要文件")
+        blockers.append("Required files are missing")
     if missing_workflows:
-        blockers.append("缺少必要 workflow")
+        blockers.append("Required workflows are missing")
     if missing_markers:
-        blockers.append("主模块缺少必要标记")
+        blockers.append("Fusion module is missing required markers")
     if duplicate_scripts:
-        blockers.append("存在重复脚本名")
+        blockers.append("Duplicate script names exist")
     if duplicate_hosts:
-        blockers.append("存在重复 MITM hostname")
+        blockers.append("Duplicate MITM hostnames exist")
     if "name = fusion" not in fusion_text or "single_public_entry = true" not in fusion_text:
-        blockers.append("fusion profile 未就绪")
+        blockers.append("Fusion profile is not finalized")
     if not validator_ok:
-        blockers.append("validate_repository.py 未通过")
+        blockers.append("validate_repository.py failed")
     if not js_ok:
-        blockers.append("node --check Scripts/app-cleaner.js 未通过")
+        blockers.append("node --check Scripts/app-cleaner.js failed")
 
     counts = section_counts(root_text)
     now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
     lines = [
-        "# 仓库健康检查报告",
+        "# Repository Health Report",
         "",
-        f"生成时间：{now}",
+        f"- Generated at: {now}",
+        f"- Blocking issues: {len(blockers)}",
+        f"- Root and Release identical: {'yes' if root_text == release_text else 'no'}",
+        f"- Fusion profile finalized: {'yes' if 'name = fusion' in fusion_text and 'single_public_entry = true' in fusion_text else 'no'}",
+        f"- validate_repository.py: {'passed' if validator_ok else 'failed'}",
+        f"- node --check Scripts/app-cleaner.js: {'passed' if js_ok else 'failed'}",
+        f"- Script entries: {len(names)}",
+        f"- MITM hostnames: {len(hosts)}",
         "",
-        "## 总体状态",
-        "",
-        f"- 阻断问题：{len(blockers)}",
-        f"- Root 与 Release 一致：{'是' if root_text == release_text else '否'}",
-        "- GrandpaNiu = 默认 Fusion：是",
-        f"- fusion profile：{'就绪' if 'name = fusion' in fusion_text else '异常'}",
-        f"- validate_repository.py：{'通过' if validator_ok else '失败'}",
-        f"- node --check Scripts/app-cleaner.js：{'通过' if js_ok else '失败'}",
-        f"- 脚本总数：{len(names)}",
-        f"- MITM hostname 数量：{len(hosts)}",
-        "",
-        "## 区块检查",
+        "## Section Counts",
         "",
     ]
-    lines.extend(f"- [{section}]：{count} 行" for section, count in counts.items())
-    lines += list_block("阻断问题", blockers)
-    lines += list_block("缺少文件", missing_files)
-    lines += list_block("缺少 workflow", missing_workflows)
-    lines += list_block("主模块缺少标记", missing_markers)
-    lines += list_block("重复脚本名", duplicate_scripts)
-    lines += list_block("重复 MITM hostname", duplicate_hosts)
-    lines += list_block("Workflow 配置摘要", workflow_items)
+    lines.extend(f"- [{section}]: {count}" for section, count in counts.items())
+    lines += list_block("Blocking Issues", blockers)
+    lines += list_block("Missing Files", missing_files)
+    lines += list_block("Missing Workflows", missing_workflows)
+    lines += list_block("Missing Fusion Markers", missing_markers)
+    lines += list_block("Duplicate Script Names", duplicate_scripts)
+    lines += list_block("Duplicate MITM Hostnames", duplicate_hosts)
+    lines += list_block("Workflow Summary", workflow_items)
     lines += [
         "",
-        "## validate_repository.py 输出",
+        "## validate_repository.py Output",
         "",
         "```text",
         validator_output,
         "```",
         "",
-        "## node --check 输出",
+        "## node --check Output",
         "",
         "```text",
         js_output,
         "```",
         "",
-        "## 维护边界",
+        "## Maintenance Boundaries",
         "",
-        "- 所有修改应 source-first，先改 Rules / Scripts / Rewrite/Sources / Rewrite/Remotes / Rewrite/Profiles/fusion.conf，再构建 Release 和 Root。",
-        "- Fusion 是唯一用户入口，不再拆分 Stable / Stable Plus / Lite / Full。",
-        "- 旧多版本文件如果存在，只作为历史兼容文件，不作为健康检查阻断项。",
-        "",
+        "- Source-first maintenance: edit `Rules/`, `Scripts/`, `Rewrite/Sources/`, `Rewrite/Remotes/`, and `Rewrite/Profiles/fusion.conf` first.",
+        "- Fusion is the only public iOS entry; legacy Stable/Lite/Full files are compatibility placeholders only.",
+        "- `Release/` and generated `Web/` catalogs must be rebuilt, not manually patched as source files.",
     ]
+
     write(REPORT, "\n".join(lines))
     print(f"Repository health report written to {REPORT}")
     if blockers:

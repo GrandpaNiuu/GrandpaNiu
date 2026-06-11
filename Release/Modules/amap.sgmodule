@@ -1,0 +1,17 @@
+#!name=GrandpaNiu Amap Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/amap.sgmodule
+
+[Rule]
+DOMAIN,amap-aos-info-nogw.amap.com,REJECT,pre-matching
+
+[URL Rewrite]
+^https?:\/\/ai\.amap\.com\/v1\/ai_rec\/home_qs\? - reject-dict
+^https?:\/\/m5\.amap\.com\/ws\/(?:mapapi\/hint_text\/offline_data|message\/notice\/list|shield\/search\/new_hotword) - reject-dict
+^https?:\/\/m5\.amap\.com\/ws\/shield\/search_poi\/tips_adv\? - reject-dict
+^https?:\/\/m5\.amap\.com\/ws\/valueadded\/weather\/v2\? - reject-dict
+^https?:\/\/oss\.amap\.com\/ws\/banner\/lists\/\? - reject-dict
+^https?:\/\/sns\.amap\.com\/ws\/msgbox\/pull_mp\? - reject-dict
+
+[MITM]
+hostname = %APPEND% ai.amap.com,m5.amap.com,oss.amap.com,sns.amap.com

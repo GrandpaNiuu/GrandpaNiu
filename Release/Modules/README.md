@@ -22,3 +22,12 @@ Generated per-app module outputs.
 | GrandpaNiu PCAuto | `pcauto.sgmodule` | `Rewrite/Sources/Apps/pcauto.conf` | Rule:7, MITM:1 |
 | GrandpaNiu Umetrip | `umetrip.sgmodule` | `Rewrite/Sources/Apps/umetrip.conf` | Rule:4, MITM:1 |
 | GrandpaNiu Xiaopeng | `xiaopeng.sgmodule` | `Rewrite/Sources/Apps/xiaopeng.conf` | Rule:3, MITM:1 |
+| GrandpaNiu Amap Source | `amap.sgmodule` | `Rewrite/Sources/Apps/amap.conf` | Rule:1, URL Rewrite:6, MITM:1 |
+| GrandpaNiu Baidu Source | `baidu.sgmodule` | `Rewrite/Sources/Apps/baidu.conf` | Rule:4, URL Rewrite:6, MITM:1 |
+| GrandpaNiu Meituan Source | `meituan.sgmodule` | `Rewrite/Sources/Apps/meituan.conf` | Rule:11, URL Rewrite:9, MITM:1 |
+| GrandpaNiu Quark Source | `quark.sgmodule` | `Rewrite/Sources/Apps/quark.conf` | Rule:2, MITM:1 |
+| GrandpaNiu Soul Source | `soul.sgmodule` | `Rewrite/Sources/Apps/soul.conf` | Rule:4, URL Rewrite:2, MITM:1 |
+| GrandpaNiu WPS Source | `wps.sgmodule` | `Rewrite/Sources/Apps/wps.conf` | Rule:4, URL Rewrite:3, MITM:1 |
+| GrandpaNiu Youku Source | `youku.sgmodule` | `Rewrite/Sources/Apps/youku.conf` | Rule:4, MITM:1 |
+| GrandpaNiu ZDM Source | `zdm.sgmodule` | `Rewrite/Sources/Apps/zdm.conf` | Rule:1, URL Rewrite:7, MITM:1 |
+| GrandpaNiu Zuoyebang Source | `zuoyebang.sgmodule` | `Rewrite/Sources/Apps/zuoyebang.conf` | Rule:1, URL Rewrite:4, MITM:1 |

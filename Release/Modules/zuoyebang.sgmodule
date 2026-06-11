@@ -1,0 +1,15 @@
+#!name=GrandpaNiu Zuoyebang Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/zuoyebang.sgmodule
+
+[Rule]
+DOMAIN,adx.zuoyebang.com,REJECT,pre-matching
+
+[URL Rewrite]
+^https?:\/\/(syh|www)\.zybang\.com\/adx\/ - reject-200
+^https?:\/\/www\.kuaiduizuoye\.com\/init\/ad\/ - reject-dict
+^https?:\/\/www\.kuaiduizuoye\.com\/kdapi\/conf\/appbannersv3$ - reject-dict
+^https?:\/\/www\.kuaiduizuoye\.com\/kdapi\/conf\/initbanner$ - reject-dict
+
+[MITM]
+hostname = %APPEND% syh.zybang.com,www.zybang.com,www.kuaiduizuoye.com

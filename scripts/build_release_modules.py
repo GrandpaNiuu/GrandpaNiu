@@ -6,6 +6,11 @@ Each value uses this format:
 
 slug = Display Name | keyword1, keyword2, keyword3
 
+After configured modules are loaded, Rewrite/Sources/Apps/*.conf is scanned and
+any unregistered source file is auto-discovered as a conservative release
+module. This keeps app source files useful without forcing every low-risk
+addition into Rewrite/Generate.conf by hand.
+
 If Rewrite/Sources/Apps/<slug>.conf exists, that app source file is used as the
 module source. Otherwise the builder falls back to extracting matching lines from
 Release/Ronghemokuai.sgmodule.
@@ -28,6 +33,28 @@ DEFAULT_APP_SOURCES_DIR = ROOT / "Rewrite" / "Sources" / "Apps"
 REPORT = ROOT / "reports" / "release_modules_report.md"
 BASE_URL = "https://grandpaniuu.github.io/GrandpaNiu/Release/Modules"
 SECTION_ORDER = ["Rule", "URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local", "Script", "MITM"]
+AUTO_KEYWORDS = {
+    "pinduoduo": ("pinduoduo", "yangkeduo", "pddpic", "pddcdn"),
+    "jd": ("jd.com", "jdimg", "360buyimg"),
+    "taobao": ("taobao", "tmall", "alicdn", "tbcdn", "taobaocdn", "mmstat"),
+    "netease-music": ("music.163.com", "music.126.net", "netease"),
+    "mgtv": ("mgtv", "bz.mgtv.com"),
+    "huya": ("huya", "msstatic"),
+    "yiche": ("yiche",),
+    "pcauto": ("pcauto", "pconline"),
+    "umetrip": ("umetrip", "variflight"),
+    "xiaopeng": ("xiaopeng",),
+    "youku": ("youku", "ykccn"),
+    "quark": ("quark",),
+    "meituan": ("meituan", "dianping", "sankuai"),
+    "amap": ("amap",),
+    "gaode": ("amap",),
+    "wps": ("wps", "ksosoft"),
+    "baidu": ("baidu", "bdimg"),
+    "soul": ("soulapp",),
+    "zdm": ("smzdm", "zdmimg"),
+    "zuoyebang": ("zuoyebang",),
+}
 
 
 @dataclass(frozen=True)
@@ -35,6 +62,7 @@ class ModuleSpec:
     slug: str
     name: str
     keywords: tuple[str, ...]
+    auto_discovered: bool = False
 
 
 @dataclass(frozen=True)
@@ -93,15 +121,43 @@ def parse_spec(slug: str, value: str) -> ModuleSpec | None:
     return ModuleSpec(slug.strip(), name.strip(), keywords)
 
 
-def load_specs(cfg: configparser.ConfigParser) -> list[ModuleSpec]:
+def title_from_slug(slug: str) -> str:
+    return " ".join(part.upper() if part in {"jd", "wps"} else part.capitalize() for part in slug.split("-"))
+
+
+def name_from_source(path: Path, slug: str) -> str:
+    for raw in read(path).splitlines():
+        line = raw.strip()
+        if line.startswith("#!name="):
+            name = line.split("=", 1)[1].strip()
+            if name:
+                return name
+    return f"GrandpaNiu {title_from_slug(slug)}"
+
+
+def load_specs(cfg: configparser.ConfigParser, app_dir: Path) -> tuple[list[ModuleSpec], int, int]:
     if not cfg.has_section("release_modules"):
-        return FALLBACK_SPECS
+        return FALLBACK_SPECS, len(FALLBACK_SPECS), 0
     specs: list[ModuleSpec] = []
     for slug, value in cfg.items("release_modules"):
         spec = parse_spec(slug, value)
         if spec is not None:
             specs.append(spec)
-    return specs or FALLBACK_SPECS
+    if not specs:
+        return FALLBACK_SPECS, len(FALLBACK_SPECS), 0
+
+    seen = {spec.slug for spec in specs}
+    auto_count = 0
+    if app_dir.exists():
+        for path in sorted(app_dir.glob("*.conf")):
+            slug = path.stem
+            if slug in seen:
+                continue
+            keywords = AUTO_KEYWORDS.get(slug, (slug,))
+            specs.append(ModuleSpec(slug, name_from_source(path, slug), tuple(keywords), True))
+            seen.add(slug)
+            auto_count += 1
+    return specs, len(specs) - auto_count, auto_count
 
 
 def output_dir(cfg: configparser.ConfigParser) -> Path:
@@ -227,13 +283,17 @@ def make_index(summary: list[ModuleBuild]) -> str:
     return "\n".join(lines)
 
 
-def make_report(summary: list[ModuleBuild], configured: int, skipped: list[tuple[ModuleSpec, str]], modules_dir: Path) -> str:
+def make_report(summary: list[ModuleBuild], manual_count: int, auto_count: int, skipped: list[tuple[ModuleSpec, str]], modules_dir: Path) -> str:
+    auto_generated = sum(1 for item in summary if item.spec.auto_discovered)
     lines = [
         "# Release modules report",
         "",
         f"- Fusion fallback source: `{rel(RELEASE_MODULE)}`",
         f"- Output directory: `{rel(modules_dir)}`",
-        f"- Configured modules: {configured}",
+        f"- Manual modules: {manual_count}",
+        f"- Auto-discovered modules: {auto_count}",
+        f"- Auto-discovered generated modules: {auto_generated}",
+        f"- Total module specs: {manual_count + auto_count}",
         f"- Generated modules: {len(summary)}",
         f"- Skipped empty modules: {len(skipped)}",
         "",
@@ -241,6 +301,7 @@ def make_report(summary: list[ModuleBuild], configured: int, skipped: list[tuple
     for item in summary:
         lines.append(f"## {item.spec.name}")
         lines.append(f"- Source: `{item.source}`")
+        lines.append(f"- Discovery: {'auto' if item.spec.auto_discovered else 'manual'}")
         for section, count in item.counts.items():
             lines.append(f"- {section}: {count}")
         lines.append("")
@@ -268,9 +329,9 @@ def main() -> None:
     args = parser.parse_args()
 
     cfg = load_config(repo_path(args.config))
-    specs = load_specs(cfg)
     modules_dir = output_dir(cfg)
     app_dir = app_sources_dir(cfg)
+    specs, manual_count, auto_count = load_specs(cfg, app_dir)
     include_empty = bool_cfg(cfg, "output", "include_empty_modules", False)
 
     text = read(RELEASE_MODULE)
@@ -290,7 +351,7 @@ def main() -> None:
         summary.append(ModuleBuild(spec, counts, source))
 
     write(modules_dir / "README.md", make_index(summary))
-    write(REPORT, make_report(summary, len(specs), skipped, modules_dir))
+    write(REPORT, make_report(summary, manual_count, auto_count, skipped, modules_dir))
     run_followup_builds(args.config)
     print(f"Built {len(summary)} per-app modules in {modules_dir}; skipped {len(skipped)} empty modules")
 

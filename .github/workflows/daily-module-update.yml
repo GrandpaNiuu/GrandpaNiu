@@ -74,7 +74,12 @@ jobs:
             python3 scripts/build_android_rules.py
             python3 scripts/android_format_check.py
             python3 scripts/convert_quanx_rules.py
+            # fusion-build-marker: scripts/build_module.py --build --profile fusion
+            # Builder release path runs scripts/factory_finalize.py --sync-root and scripts/build_release_variants.py.
             python3 Rewrite/Generator/Builder.py --profile fusion --release
+            python3 scripts/validate_remote_rule_syntax.py
+            python3 scripts/validate_governance_extensions.py
+            python3 scripts/validate_repository.py
           }
 
           for attempt in 1 2 3; do
@@ -90,7 +95,15 @@ jobs:
             if git push origin HEAD:main; then
               exit 0
             fi
-            echo "Push failed on attempt ${attempt}; retrying from latest main."
+            echo "Push failed on attempt ${attempt}; rebasing on origin/main and retrying."
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
           done
 
           echo "Push failed after 3 regenerated attempts."

@@ -19,6 +19,7 @@ RELEASE = ROOT / "Release" / "Ronghemokuai.sgmodule"
 REPORT = ROOT / "reports" / "module_factory_report.md"
 DIFF_REPORT = ROOT / "reports" / "module_factory_diff_report.md"
 SOURCES = ROOT / "Rewrite" / "Sources"
+MISC_SOURCES = SOURCES / "Misc"
 PROFILES = ROOT / "Rewrite" / "Profiles"
 REMOTES_JSON = ROOT / "Rewrite" / "Remotes" / "sources.json"
 
@@ -52,6 +53,7 @@ KNOWN_DOMAIN_SET_URLS = {
     "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list",
     "https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt",
 }
+MISC_PROTECT_RULE_FILES = ("cdn-direct.conf", "finance-protect.conf", "video-protect.conf")
 
 
 def stop(message: str) -> None:
@@ -99,6 +101,21 @@ def split_module(text: str) -> tuple[str, dict[str, str]]:
     }
 
 
+def split_source_fragment(text: str) -> dict[str, str]:
+    """Split a partial source fragment without requiring every module section."""
+    sections: dict[str, list[str]] = {name: [] for name in SECTION_ORDER}
+    current: str | None = None
+    for line in text.splitlines():
+        match = SECTION_RE.match(line.strip())
+        if match:
+            section = match.group(1)
+            current = section if section in sections else None
+            continue
+        if current is not None:
+            sections[current].append(line)
+    return {section: "\n".join(lines).rstrip() + ("\n" if lines else "") for section, lines in sections.items()}
+
+
 def extract_sources() -> None:
     meta, sections = split_module(read_text(MODULE))
     write_text(SOURCES / SECTION_FILES["META"], meta)
@@ -127,6 +144,38 @@ def as_bool(profile: configparser.ConfigParser, section: str, key: str, default:
 
 def source_file(section: str) -> Path:
     return SOURCES / SECTION_FILES[section]
+
+
+def misc_paths(preferred: Iterable[str] = (), exclude: Iterable[str] = ()) -> list[Path]:
+    if not MISC_SOURCES.exists():
+        return []
+    by_name = {path.name: path for path in MISC_SOURCES.glob("*.conf")}
+    excluded = set(exclude)
+    ordered: list[Path] = []
+    for name in preferred:
+        path = by_name.pop(name, None)
+        if path is not None and path.name not in excluded:
+            ordered.append(path)
+    ordered.extend(path for name, path in sorted(by_name.items()) if name not in excluded)
+    return ordered
+
+
+def misc_section_blocks(section: str, preferred: Iterable[str] = (), exclude: Iterable[str] = ()) -> list[str]:
+    blocks: list[str] = []
+    for path in misc_paths(preferred=preferred, exclude=exclude):
+        body = split_source_fragment(read_text(path, required=False)).get(section, "")
+        if body.strip():
+            blocks.append(body)
+    return blocks
+
+
+def misc_mitm_blocks() -> list[tuple[Path, str]]:
+    blocks: list[tuple[Path, str]] = []
+    for path in misc_paths():
+        body = split_source_fragment(read_text(path, required=False)).get("MITM", "")
+        if body.strip():
+            blocks.append((path, body))
+    return blocks
 
 
 def iter_profile_paths(profile: configparser.ConfigParser, section: str) -> Iterable[Path]:
@@ -230,8 +279,10 @@ def remote_rule_lines() -> str:
 
 def build_rules(profile: configparser.ConfigParser) -> str:
     blocks: list[str] = []
+    blocks.extend(misc_section_blocks("Rule", preferred=MISC_PROTECT_RULE_FILES))
     if as_bool(profile, "include", "rules", True):
         blocks.extend(load_optional_files(iter_profile_paths(profile, "rules")))
+    blocks.extend(misc_section_blocks("Rule", exclude=MISC_PROTECT_RULE_FILES))
     if as_bool(profile, "include", "remotes", True):
         blocks.append(remote_rule_lines())
     if as_bool(profile, "include", "source_rule_compat", True):
@@ -243,6 +294,7 @@ def build_scripts(profile: configparser.ConfigParser) -> str:
     blocks: list[str] = []
     if as_bool(profile, "include", "scripts", True):
         blocks.extend(load_optional_files(iter_profile_paths(profile, "scripts")))
+    blocks.extend(misc_section_blocks("Script"))
     if as_bool(profile, "include", "source_script_compat", True):
         blocks.append(read_text(source_file("Script"), required=False))
     return merge_lines(blocks)
@@ -253,6 +305,7 @@ def build_rewrite_section(profile: configparser.ConfigParser, section: str) -> s
     profile_section = REWRITE_PROFILE_SECTIONS.get(section)
     if profile_section:
         blocks.extend(load_optional_files(iter_profile_paths(profile, profile_section)))
+    blocks.extend(misc_section_blocks(section))
     return merge_lines(blocks)
 
 
@@ -283,6 +336,12 @@ def build_mitm(profile: configparser.ConfigParser) -> str:
             stop(f"profile MITM source missing: {path.relative_to(ROOT)}")
         comments.append(f"# source: {path.relative_to(ROOT).as_posix()}")
         for host in parse_mitm_hosts(read_text(path)):
+            if host not in seen:
+                seen.add(host)
+                hosts.append(host)
+    for path, block in misc_mitm_blocks():
+        comments.append(f"# source: {path.relative_to(ROOT).as_posix()}")
+        for host in parse_mitm_hosts(block):
             if host not in seen:
                 seen.add(host)
                 hosts.append(host)

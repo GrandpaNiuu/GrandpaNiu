@@ -1,0 +1,18 @@
+#!name=GrandpaNiu ZDM Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/zdm.sgmodule
+
+[Rule]
+DOMAIN,adx-api.zdmimg.com,REJECT,pre-matching
+
+[URL Rewrite]
+^https?:\/\/app-api\.smzdm\.com\/mychannel\/list$ - reject-dict
+^https?:\/\/app-api\.smzdm\.com\/util\/loading\? - reject-dict
+^https?:\/\/article-api\.smzdm\.com\/publish\/get_bubble\? - reject-dict
+^https?:\/\/h5\.smzdm\.com\/user\/coupon\/coupon_list\? - reject
+^https?:\/\/s-api\.smzdm\.com\/sou\/popup_coupon\? - reject-dict
+^https?:\/\/s-api\.smzdm\.com\/sou\/search_default_keyword\? - reject-dict
+^https?:\/\/user-api\.smzdm\.com\/vip\/bottom_card_list\? - reject-dict
+
+[MITM]
+hostname = %APPEND% app-api.smzdm.com,article-api.smzdm.com,h5.smzdm.com,s-api.smzdm.com,user-api.smzdm.com

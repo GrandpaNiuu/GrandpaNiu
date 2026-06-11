@@ -1,0 +1,12 @@
+#!name=GrandpaNiu Youku Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/youku.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,youku.com,DIRECT,pre-matching
+DOMAIN,push.m.youku.com,DIRECT
+DOMAIN,un-acs.youku.com,DIRECT
+DOMAIN,et.ykccn.com,REJECT,pre-matching
+
+[MITM]
+hostname = %APPEND% *.youku.com,*.ykccn.com

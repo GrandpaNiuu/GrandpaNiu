@@ -1,0 +1,30 @@
+#!name=GrandpaNiu Meituan Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/meituan.sgmodule
+
+[Rule]
+DOMAIN,dpmtpush.dianping.com,REJECT,pre-matching
+DOMAIN,dynamicf.sankuai.com,REJECT,pre-matching
+DOMAIN,layout.meituan.net,REJECT,pre-matching
+DOMAIN,live-monitor-broker.sankuai.com,REJECT,pre-matching
+DOMAIN,lx0.meituan.com,REJECT,pre-matching
+DOMAIN,r.dianping.com,REJECT,pre-matching
+DOMAIN,tte.meituan.com,REJECT,pre-matching
+DOMAIN-SUFFIX,wmlog.meituan.com,REJECT,pre-matching
+DOMAIN-SUFFIX,ad.e.waimai.sankuai.com,REJECT,pre-matching
+DOMAIN-SUFFIX,mads.meituan.com,REJECT,pre-matching
+DOMAIN-KEYWORD,report.meituan,REJECT,pre-matching
+
+[URL Rewrite]
+^https?:\/\/apimobile\.meituan\.com\/appupdate - reject
+^https?:\/\/apimobile\.meituan\.com\/group\/v\d\/recommend\/unity\/recommends - reject
+^https?:\/\/cdb\.meituan\.com\/marketing\/source\/getPageSlotList - reject-dict
+^https?:\/\/mall\.meituan\.com\/api\/c\/homepage\/splash - reject-dict
+^https?:\/\/mapi\.dianping\.com\/adshopping - reject
+^https?:\/\/mapi\.dianping\.com\/mapi\/operating\/(?:indexopsmodules|loadsplashconfig) - reject
+^https?:\/\/rms\.meituan\.com\/api\/v\d\/rmsmina\/c\/queryWechatAdvertisement - reject-dict
+^https?:\/\/web\.meituan\.com\/newUser\/returnMoney\/popWindow - reject-dict
+^https?:\/\/wmapi\.meituan\.com\/api\/v\d+\/(?:loadInfo|openscreen|startpicture) - reject
+
+[MITM]
+hostname = %APPEND% apimobile.meituan.com,cdb.meituan.com,mall.meituan.com,*.dianping.com,rms.meituan.com,web.meituan.com,wmapi.meituan.com
