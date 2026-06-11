@@ -41,6 +41,12 @@ This is the master source index for the module factory. It links editable source
 | app.wechat | source | App module | `Rewrite/Sources/Apps/wechat.conf` | `Release/Modules/wechat.sgmodule` | `scripts/build_release_modules.py` | yes | high | Remove app source and fallback to fusion extraction |
 | app.qqnews | source | App module | `Rewrite/Sources/Apps/qqnews.conf` | `Release/Modules/qqnews.sgmodule` | `scripts/build_release_modules.py` | yes | medium | Remove app source and fallback to fusion extraction |
 | app.weibo | source | App module | `Rewrite/Sources/Apps/weibo.conf` | `Release/Modules/weibo.sgmodule` | `scripts/build_release_modules.py` | yes | high | Remove app source and fallback to fusion extraction |
+| app.pinduoduo | source | App module | `Rewrite/Sources/Apps/pinduoduo.conf` | `Release/Modules/pinduoduo.sgmodule` | `scripts/build_release_modules.py` | yes | medium | Remove app source and fallback to fusion extraction |
+| app.jd | source | App module | `Rewrite/Sources/Apps/jd.conf` | `Release/Modules/jd.sgmodule` | `scripts/build_release_modules.py` | yes | medium | Remove app source and fallback to fusion extraction |
+| app.taobao | source | App module | `Rewrite/Sources/Apps/taobao.conf` | `Release/Modules/taobao.sgmodule` | `scripts/build_release_modules.py` | yes | medium | Remove app source and fallback to fusion extraction |
+| app.netease_music | source | App module | `Rewrite/Sources/Apps/netease-music.conf` | `Release/Modules/netease-music.sgmodule` | `scripts/build_release_modules.py` | yes | medium | Remove app source and fallback to fusion extraction |
+| app.mgtv | source | App module | `Rewrite/Sources/Apps/mgtv.conf` | `Release/Modules/mgtv.sgmodule` | `scripts/build_release_modules.py` | yes | medium | Remove app source and fallback to fusion extraction |
+| app.huya | source | App module | `Rewrite/Sources/Apps/huya.conf` | `Release/Modules/huya.sgmodule` | `scripts/build_release_modules.py` | yes | medium | Remove app source and fallback to fusion extraction |
 
 ## Remote governance layer
 
