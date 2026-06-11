@@ -6,7 +6,7 @@ extracts section bodies, writes reviewable source files, and emits a small repor
 If the download fails but target source files already exist, it keeps the cached
 sources so normal builds do not break because of a temporary upstream outage.
 
-Stable safety boundary:
+Fusion safety boundary:
 - Do not import the upstream "安全浏览限制解除" block. It is not an ad-removal
   function and can weaken browser/app safety checks.
 - Do not import WeChat HTTPDNS rejects, because this repository already keeps
@@ -42,40 +42,40 @@ HEADERS = {
         "# QingRex mini-program and app lazy ad removal rule layer\n"
         "# Source module: 小程序和应用懒人去广告合集.official.sgmodule\n"
         "# Scope: app and mini-program ad domain/IP rejects.\n"
-        "# Stable safety: non-ad safe-browsing bypass and WeChat HTTPDNS rejects are filtered out.\n"
-        "# Rollback: remove qingrex_miniapp_rules from Rewrite/Profiles/stable.conf.\n\n"
+        "# Fusion safety: non-ad safe-browsing bypass and WeChat HTTPDNS rejects are filtered out.\n"
+        "# Rollback: remove qingrex_miniapp_rules from Rewrite/Profiles/fusion.conf and rebuild Fusion.\n\n"
     ),
     "URL Rewrite": (
         "# QingRex mini-program and app lazy ad removal URL Rewrite layer\n"
         "# Source module: 小程序和应用懒人去广告合集.official.sgmodule\n"
         "# Scope: mini-program and app ad URL rejects/redirect rules.\n"
-        "# Rollback: remove qingrex_miniapp from [url_rewrite] in Rewrite/Profiles/stable.conf.\n\n"
+        "# Rollback: remove qingrex_miniapp from [url_rewrite] in Rewrite/Profiles/fusion.conf and rebuild Fusion.\n\n"
     ),
     "Body Rewrite": (
         "# QingRex mini-program and app lazy ad removal Body Rewrite layer\n"
         "# Source module: 小程序和应用懒人去广告合集.official.sgmodule\n"
         "# Scope: jq body cleanup for selected mini-program ad payloads.\n"
-        "# Rollback: remove qingrex_miniapp from [body_rewrite] in Rewrite/Profiles/stable.conf.\n\n"
+        "# Rollback: remove qingrex_miniapp from [body_rewrite] in Rewrite/Profiles/fusion.conf and rebuild Fusion.\n\n"
     ),
     "Map Local": (
         "# QingRex mini-program and app lazy ad removal Map Local layer\n"
         "# Source module: 小程序和应用懒人去广告合集.official.sgmodule\n"
         "# Scope: mock empty ad/config responses for mini-program and app endpoints.\n"
         "# Keep data/status-code lines raw. Do not auto-escape quotes here.\n"
-        "# Rollback: remove qingrex_miniapp from [map_local] in Rewrite/Profiles/stable.conf.\n\n"
+        "# Rollback: remove qingrex_miniapp from [map_local] in Rewrite/Profiles/fusion.conf and rebuild Fusion.\n\n"
     ),
     "Script": (
         "# QingRex mini-program and app lazy ad removal Script layer\n"
         "# Source module: 小程序和应用懒人去广告合集.official.sgmodule\n"
         "# Scope: response-body cleaners for selected mini-program endpoints.\n"
         "# External script paths are preserved from the source module and should be reviewed if failures appear.\n"
-        "# Rollback: remove qingrex_miniapp from [scripts] in Rewrite/Profiles/stable.conf.\n\n"
+        "# Rollback: remove qingrex_miniapp from [scripts] in Rewrite/Profiles/fusion.conf and rebuild Fusion.\n\n"
     ),
     "MITM": (
         "# QingRex mini-program and app lazy ad removal MITM hostname layer\n"
         "# Source module: 小程序和应用懒人去广告合集.official.sgmodule\n"
         "# Scope: hostname coverage needed by QingRex mini-program/app rewrite, map-local and script rules.\n"
-        "# Rollback: remove qingrex_miniapp from [mitm] in Rewrite/Profiles/stable.conf.\n\n"
+        "# Rollback: remove qingrex_miniapp from [mitm] in Rewrite/Profiles/fusion.conf and rebuild Fusion.\n\n"
     ),
 }
 
@@ -129,11 +129,26 @@ def filter_rule_lines(lines: list[str]) -> tuple[list[str], list[str]]:
     return filtered, excluded
 
 
+def dedupe_active_lines(lines: list[str]) -> list[str]:
+    """Keep comments/context but drop exact duplicate active module entries."""
+    seen: set[str] = set()
+    deduped: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped and not stripped.startswith("#"):
+            if stripped in seen:
+                continue
+            seen.add(stripped)
+        deduped.append(line)
+    return deduped
+
+
 def section_body(section: str, lines: list[str]) -> tuple[str, list[str]]:
     excluded: list[str] = []
     cleaned = list(lines)
     if section == "Rule":
         cleaned, excluded = filter_rule_lines(cleaned)
+    cleaned = dedupe_active_lines(cleaned)
     while cleaned and not cleaned[0].strip():
         cleaned.pop(0)
     while cleaned and not cleaned[-1].strip():
@@ -158,8 +173,8 @@ def write_report(written: dict[str, str], status: str, excluded: list[str]) -> N
         f"- Status: {status}",
         f"- Upstream: {UPSTREAM_URL}",
         f"- Generated at: {now}",
-        "- Integration: source-first layer, connected through Rewrite/Profiles/stable.conf.",
-        "- Rollback: remove qingrex_miniapp* entries from Rewrite/Profiles/stable.conf.",
+        "- Integration: source-first layer, connected through Rewrite/Profiles/fusion.conf.",
+        "- Rollback: remove qingrex_miniapp* entries from Rewrite/Profiles/fusion.conf and rebuild Fusion.",
         "",
         "## Imported sections",
         "",
@@ -182,7 +197,7 @@ def write_report(written: dict[str, str], status: str, excluded: list[str]) -> N
         "",
         "## Excluded from Stable import",
         "",
-        "These lines are intentionally not imported into Stable because they are not pure ad-removal entries or have high false-positive risk.",
+        "These lines are intentionally not imported into Fusion because they are not pure ad-removal entries or have high false-positive risk.",
         "",
     ])
     if excluded:
