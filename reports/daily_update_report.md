@@ -8,7 +8,6 @@
 
 ```text
 $ convert_quanx_rules.py
-Normalized pure DOMAIN-SET remotes in: backup/Ronghemokuai.before-factory-refactor.sgmodule, backup/Ronghemokuai.stable.sgmodule
 Converted zirawell App AdBlock: Rules/converted/zirawell-appAdBlock-shadowrocket.list (1411 lines)
 Converted zirawell All AdBlock: Rules/converted/zirawell-allAdBlock-shadowrocket.list (1435 lines)
 
