@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GrandpaNiu Module Factory</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; background: #0f172a; color: #e5e7eb; }
+    main { max-width: 920px; margin: 0 auto; padding: 40px 20px; }
+    h1 { margin: 0 0 8px; font-size: 32px; }
+    p { color: #cbd5e1; line-height: 1.7; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+    a.card { display: block; padding: 18px; border: 1px solid #334155; border-radius: 14px; color: #e5e7eb; text-decoration: none; background: #111827; }
+    a.card:hover { border-color: #60a5fa; }
+    .title { font-weight: 700; margin-bottom: 8px; }
+    .desc { color: #94a3b8; font-size: 14px; }
+    code { color: #bfdbfe; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>GrandpaNiu Module Factory</h1>
+  <p>统一入口页。Release 文件由 <code>Rewrite/Generator/Builder.py</code> 根据 <code>Rewrite/Generate.conf</code> 生成。</p>
+
+  <div class="grid">
+    <a class="card" href="../Ronghemokuai.sgmodule">
+      <div class="title">融合模块</div>
+      <div class="desc">根目录公开导入入口。</div>
+    </a>
+    <a class="card" href="../Release/Ronghemokuai.sgmodule">
+      <div class="title">Release 模块</div>
+      <div class="desc">Release 目录生成产物。</div>
+    </a>
+    <a class="card" href="../Release/Rules.conf">
+      <div class="title">Rules.conf</div>
+      <div class="desc">纯规则输出。</div>
+    </a>
+    <a class="card" href="../Release/RulesGroup.conf">
+      <div class="title">RulesGroup.conf</div>
+      <div class="desc">按策略分组的规则输出。</div>
+    </a>
+    <a class="card" href="../Release/Modules/">
+      <div class="title">Modules</div>
+      <div class="desc">按 App 拆分的模块目录。</div>
+    </a>
+    <a class="card" href="../android.html">
+      <div class="title">Android</div>
+      <div class="desc">Android 规则入口。</div>
+    </a>
+  </div>
+</main>
+</body>
+</html>
