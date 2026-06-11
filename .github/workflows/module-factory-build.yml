@@ -15,7 +15,6 @@ on:
       - "Android/**"
       - "Web/**"
       - ".github/workflows/module-factory-build.yml"
-      - ".github/workflows/scheduled-module-update.yml"
 
 permissions:
   contents: write
