@@ -1,6 +1,6 @@
 # 仓库健康检查报告
 
-生成时间：2026-06-11 08:25:43 +0800
+生成时间：2026-06-11 08:33:50 +0800
 
 ## 总体状态
 
@@ -49,12 +49,12 @@
 
 ## Workflow 配置摘要
 
-- `.github/workflows/module-factory-build.yml`：contents: write；concurrency；fusion；rebase retry
-- `.github/workflows/daily-module-update.yml`：contents: write；concurrency；缺少 fusion 构建；rebase retry
-- `.github/workflows/daily-audit-and-repair.yml`：contents: write；concurrency；fusion；rebase retry
-- `.github/workflows/daily-invalid-source-repair.yml`：contents: write；concurrency；fusion；rebase retry
-- `.github/workflows/upstream-collect.yml`：contents: write；concurrency；fusion；rebase retry
-- `.github/workflows/repository-health.yml`：contents: write；concurrency；fusion；rebase retry
+- `.github/workflows/module-factory-build.yml`：contents: write；concurrency；fusion；regenerate retry
+- `.github/workflows/daily-module-update.yml`：contents: write；concurrency；fusion；regenerate retry
+- `.github/workflows/daily-audit-and-repair.yml`：contents: write；concurrency；fusion；regenerate retry
+- `.github/workflows/daily-invalid-source-repair.yml`：contents: write；concurrency；fusion；regenerate retry
+- `.github/workflows/upstream-collect.yml`：contents: write；concurrency；fusion；regenerate retry
+- `.github/workflows/repository-health.yml`：contents: write；concurrency；fusion；regenerate retry
 
 ## validate_repository.py 输出
 
