@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import datetime as dt
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -101,12 +100,10 @@ def filter_mitm(lines: list[str], spec: ModuleSpec) -> list[str]:
 
 
 def module_text(spec: ModuleSpec, sections: dict[str, list[str]]) -> tuple[str, dict[str, int]]:
-    today = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
     lines = [
         f"#!name={spec.name}",
-        f"#!desc=Generated per-app module from GrandpaNiu fusion output",
+        "#!desc=Generated per-app module from GrandpaNiu fusion output",
         f"#!update-url={BASE_URL}/{spec.slug}.sgmodule",
-        f"# generated-at: {today}",
     ]
     counts: dict[str, int] = {}
     for section in SECTION_ORDER:
