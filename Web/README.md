@@ -1,21 +1,18 @@
 # Web
 
-This directory is the planned web distribution layer.
+This directory is the web distribution layer for the module factory.
 
-## Current state
+## Current files
 
-The repository already has these root HTML entry files:
-
-- `import.html`
-- `android.html`
-- `redirect.html`
-
-They remain in place for compatibility.
+- `Web/index.html`: factory landing page for Release links.
+- Root `import.html`: existing import entry, kept for compatibility.
+- Root `android.html`: existing Android entry, kept for compatibility.
+- Root `redirect.html`: existing redirect entry, kept for compatibility.
 
 ## Target state
 
-This directory will hold the unified web entry layer for import pages, Android instructions, redirects, and release links.
+The long-term target is to keep root HTML links stable while using `Web/` as the organized static-site source layer.
 
 ## Rule
 
-Do not move the existing root HTML files until links and GitHub Pages paths are checked.
+Do not move the existing root HTML files until GitHub Pages paths and old import links are checked.
