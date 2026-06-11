@@ -3,7 +3,6 @@
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/youtube.sgmodule
 
 [Rule]
-AND,((DOMAIN-SUFFIX,googlevideo.com), (PROTOCOL,UDP)),REJECT-NO-DROP
 AND,((DOMAIN), (PROTOCOL,UDP)),REJECT-NO-DROP
 
 [Map Local]

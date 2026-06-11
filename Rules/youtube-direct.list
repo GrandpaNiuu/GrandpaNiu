@@ -1,3 +1,2 @@
-# YouTube rules
-AND,((DOMAIN-SUFFIX,googlevideo.com), (PROTOCOL,UDP)),REJECT-NO-DROP
-AND,((DOMAIN,youtubei.googleapis.com), (PROTOCOL,UDP)),REJECT-NO-DROP
+# YouTube passthrough mode.
+# Do not reject YouTube UDP/QUIC traffic.
