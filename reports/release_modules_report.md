@@ -21,7 +21,7 @@
 - MITM: 1
 
 ## GrandpaNiu Zhihu
-- Source: `Release/Ronghemokuai.sgmodule`
+- Source: `Rewrite/Sources/Apps/zhihu.conf`
 - Rule: 5
 - URL Rewrite: 24
 - Body Rewrite: 7
