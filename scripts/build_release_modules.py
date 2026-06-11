@@ -15,6 +15,8 @@ from __future__ import annotations
 
 import argparse
 import configparser
+import subprocess
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -250,6 +252,16 @@ def make_report(summary: list[ModuleBuild], configured: int, skipped: list[tuple
     return "\n".join(lines)
 
 
+def run_followup_builds(config_path: str) -> None:
+    steps = [
+        [sys.executable, str(ROOT / "scripts" / "build_release_android.py"), "--config", config_path],
+        [sys.executable, str(ROOT / "scripts" / "build_web_catalog.py")],
+    ]
+    for step in steps:
+        print("$ " + " ".join([Path(step[0]).name, rel(Path(step[1])), *step[2:]]))
+        subprocess.run(step, cwd=ROOT, check=True)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate configured per-app release modules.")
     parser.add_argument("--config", default=DEFAULT_CONFIG.relative_to(ROOT).as_posix(), help="Generation config path")
@@ -279,6 +291,7 @@ def main() -> None:
 
     write(modules_dir / "README.md", make_index(summary))
     write(REPORT, make_report(summary, len(specs), skipped, modules_dir))
+    run_followup_builds(args.config)
     print(f"Built {len(summary)} per-app modules in {modules_dir}; skipped {len(skipped)} empty modules")
 
 
