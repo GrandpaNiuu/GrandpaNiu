@@ -116,6 +116,20 @@ def parse_hosts(text: str) -> list[str]:
     return hosts
 
 
+def workflow_has_fusion_build(text: str) -> bool:
+    """Accept shell commands and Python subprocess list syntax."""
+    normalized = re.sub(r"\s+", " ", text)
+    patterns = (
+        "--profile fusion",
+        "--profile=fusion",
+        '"--profile", "fusion"',
+        "'--profile', 'fusion'",
+        '"--profile","fusion"',
+        "'--profile','fusion'",
+    )
+    return "build_module.py" in text and any(pattern in normalized for pattern in patterns)
+
+
 def validate_root_release() -> None:
     root_text = read_text(MODULE)
     release_text = read_text(RELEASE)
@@ -252,17 +266,10 @@ def validate_workflows() -> None:
         if "git rebase origin/main" not in text:
             fail(f"workflow must retry push after rebase: {relative}")
 
-    for relative in (
-        ".github/workflows/module-factory-build.yml",
-        ".github/workflows/daily-module-update.yml",
-        ".github/workflows/daily-audit-and-repair.yml",
-        ".github/workflows/daily-invalid-source-repair.yml",
-        ".github/workflows/upstream-collect.yml",
-        ".github/workflows/repository-health.yml",
-    ):
+    for relative in REQUIRED_WORKFLOWS:
         text = read_text(ROOT / relative)
-        if "--profile fusion" not in text:
-            fail(f"{relative} must build with --profile fusion")
+        if not workflow_has_fusion_build(text):
+            fail(f"{relative} must build with fusion profile")
 
     daily = read_text(ROOT / ".github" / "workflows" / "daily-module-update.yml")
     for token in ("build_module.py", "factory_finalize.py", "build_release_variants.py", "validate_repository.py"):
