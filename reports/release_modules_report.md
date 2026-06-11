@@ -14,7 +14,7 @@
 - MITM: 1
 
 ## GrandpaNiu YouTube
-- Source: `Release/Ronghemokuai.sgmodule`
+- Source: `Rewrite/Sources/Apps/youtube.conf`
 - Rule: 2
 - Map Local: 1
 - Script: 1
