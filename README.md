@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <div align="center">
 
 # GrandpaNiu
@@ -255,3 +256,6 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles/fusion.co
 [fusion-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRonghemokuai.sgmodule
 [android-import]: https://grandpaniuu.github.io/GrandpaNiu/android.html
 [health-report]: reports/repository_health_report.md
+=======
+﻿Get-Clipboard | Set-Content -Path README.md -Encoding UTF8
+>>>>>>> Stashed changes
