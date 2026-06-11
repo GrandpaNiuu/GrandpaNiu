@@ -4,6 +4,11 @@
   "raw_base_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main",
   "core": [
     {
+      "name": "GitHub Pages home",
+      "path": "Web/index.html",
+      "url": "https://grandpaniuu.github.io/GrandpaNiu/Web/index.html"
+    },
+    {
       "name": "Fusion module",
       "path": "Ronghemokuai.sgmodule",
       "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule"

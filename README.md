@@ -4,6 +4,10 @@
 
 **Shadowrocket / Surge / Android 净化规则与模块集合**
 
+[![Module Factory Build](https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/module-factory-build.yml/badge.svg)](https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/module-factory-build.yml)
+[![Repository Health Check](https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/repository-health.yml/badge.svg)](https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/repository-health.yml)
+[![Scheduled Module Update](https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/scheduled-module-update.yml/badge.svg)](https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/scheduled-module-update.yml)
+
 拦截常见广告、开屏、弹窗、横幅、信息流推荐、活动卡片和追踪请求。  
 
 ## 使用限制与风险声明
@@ -17,6 +21,17 @@
 详细安全策略见：[SECURITY.md](SECURITY.md)。
 
 </div>
+
+---
+
+## 公开入口
+
+- GitHub Pages 首页：<https://grandpaniuu.github.io/GrandpaNiu/>
+- iOS Fusion 模块：<https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule>
+- Shadowrocket 导入页：<https://grandpaniuu.github.io/GrandpaNiu/import.html>
+- Android 导入页：<https://grandpaniuu.github.io/GrandpaNiu/android.html>
+- Release 目录：<https://grandpaniuu.github.io/GrandpaNiu/Web/catalog.md>
+- 机器可读索引：<https://grandpaniuu.github.io/GrandpaNiu/Web/release-links.json>
 
 ---
 

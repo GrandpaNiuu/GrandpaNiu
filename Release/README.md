@@ -17,6 +17,16 @@ python3 Rewrite/Generator/Builder.py --profile fusion --release
 - `Release/Modules/`
 - `Release/Android/`
 
+## Public release entry points
+
+- Fusion module: <https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule>
+- Release catalog: <https://grandpaniuu.github.io/GrandpaNiu/Web/catalog.md>
+- Release JSON: <https://grandpaniuu.github.io/GrandpaNiu/Web/release-links.json>
+- App modules: <https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/>
+- Android release: <https://grandpaniuu.github.io/GrandpaNiu/Release/Android/>
+
+The stable tag can be created after local build validation and a green `Module Factory Build` run. Do not edit generated files here directly.
+
 ## Legacy entries
 
 The old full/lite/stable files are compatibility placeholders only:

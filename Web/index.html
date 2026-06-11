@@ -9,6 +9,8 @@
     main { max-width: 1040px; margin: 0 auto; padding: 40px 20px; }
     h1 { margin: 0 0 8px; font-size: 32px; }
     p { color: #cbd5e1; line-height: 1.7; }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px; }
+    .badges img { height: 20px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
     a.card { display: block; padding: 18px; border: 1px solid #334155; border-radius: 14px; color: #e5e7eb; text-decoration: none; background: #111827; }
     a.card:hover { border-color: #60a5fa; }
@@ -20,9 +22,15 @@
 <body>
 <main>
   <h1>GrandpaNiu Module Factory</h1>
+  <div class="badges">
+    <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/module-factory-build.yml"><img alt="Module Factory Build" src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/module-factory-build.yml/badge.svg"></a>
+    <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/repository-health.yml"><img alt="Repository Health Check" src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/repository-health.yml/badge.svg"></a>
+    <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/scheduled-module-update.yml"><img alt="Scheduled Module Update" src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/scheduled-module-update.yml/badge.svg"></a>
+  </div>
   <p>统一公开目录入口。Release 文件由 <code>Rewrite/Generator/Builder.py</code> 根据 <code>Rewrite/Generate.conf</code> 生成。</p>
 
   <div class="grid">
+    <a class="card" href="../import.html"><div class="title">Shadowrocket 导入页</div><div class="desc">iOS 推荐入口，只导入 Fusion 融合模块。</div></a>
     <a class="card" href="../Ronghemokuai.sgmodule"><div class="title">融合模块</div><div class="desc">根目录公开导入入口。</div></a>
     <a class="card" href="../Release/Ronghemokuai.sgmodule"><div class="title">Release 模块</div><div class="desc">Release 目录生成产物。</div></a>
     <a class="card" href="../Release/Rules.conf"><div class="title">Rules.conf</div><div class="desc">纯规则输出。</div></a>
