@@ -1,5 +1,5 @@
 #!name=GrandpaNiu Zhihu
-#!desc=Generated per-app module from GrandpaNiu fusion output
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/zhihu.sgmodule
 
 [Rule]
