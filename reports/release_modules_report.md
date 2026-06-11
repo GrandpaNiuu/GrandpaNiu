@@ -37,14 +37,14 @@
 - MITM: 1
 
 ## GrandpaNiu RedNote
-- Source: `Release/Ronghemokuai.sgmodule`
+- Source: `Rewrite/Sources/Apps/rednote.conf`
 - Rule: 3
 - URL Rewrite: 7
 - Script: 1
 - MITM: 1
 
 ## GrandpaNiu WeChat
-- Source: `Release/Ronghemokuai.sgmodule`
+- Source: `Rewrite/Sources/Apps/wechat.conf`
 - Rule: 11
 - URL Rewrite: 15
 - Map Local: 4
