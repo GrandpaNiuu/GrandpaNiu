@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Build a web-facing release catalog for GrandpaNiu.
-
-The catalog is a lightweight distribution index. It does not replace existing
-root HTML pages. It adds structured links under Web/ so users can find the
-current module, rule, app module, and Android release entries from one place.
-"""
+"""Build web-facing catalogs for release and remote source governance."""
 
 from __future__ import annotations
 
@@ -13,9 +8,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 WEB_DIR = ROOT / "Web"
+REMOTES_DIR = ROOT / "Rewrite" / "Remotes"
 MODULES_README = ROOT / "Release" / "Modules" / "README.md"
+SOURCES_JSON = REMOTES_DIR / "sources.json"
 CATALOG_MD = WEB_DIR / "catalog.md"
 CATALOG_JSON = WEB_DIR / "release-links.json"
+REMOTES_WEB_MD = WEB_DIR / "remotes.md"
+REMOTES_CATALOG_MD = REMOTES_DIR / "Catalog.md"
 BASE = "https://grandpaniuu.github.io/GrandpaNiu"
 RAW = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main"
 
@@ -67,20 +66,39 @@ def parse_modules() -> list[dict[str, str]]:
     return rows
 
 
-def build_json(modules: list[dict[str, str]]) -> str:
+def parse_remotes() -> dict[str, list[dict[str, object]]]:
+    try:
+        data = json.loads(read(SOURCES_JSON) or "{}")
+    except json.JSONDecodeError:
+        return {"rule_sets": [], "reference_modules": []}
+    return {
+        "rule_sets": list(data.get("rule_sets", [])),
+        "reference_modules": list(data.get("reference_modules", [])),
+    }
+
+
+def remote_summary(remotes: dict[str, list[dict[str, object]]]) -> dict[str, int]:
+    rule_sets = remotes["rule_sets"]
+    refs = remotes["reference_modules"]
+    return {
+        "rule_sets": len(rule_sets),
+        "enabled_rule_sets": sum(1 for item in rule_sets if item.get("enabled") is True),
+        "protected_rule_sets": sum(1 for item in rule_sets if item.get("protected") is True),
+        "reference_modules": len(refs),
+        "enabled_reference_modules": sum(1 for item in refs if item.get("enabled") is True),
+        "protected_reference_modules": sum(1 for item in refs if item.get("protected") is True),
+    }
+
+
+def build_json(modules: list[dict[str, str]], remotes: dict[str, list[dict[str, object]]]) -> str:
     payload = {
         "name": "GrandpaNiu release catalog",
         "base_url": BASE,
         "raw_base_url": RAW,
-        "core": [
-            {"name": name, "path": path, "url": url}
-            for name, path, url in CORE_LINKS
-        ],
+        "core": [{"name": name, "path": path, "url": url} for name, path, url in CORE_LINKS],
         "modules": modules,
-        "android": [
-            {"name": name, "path": path, "url": f"{RAW}/{path}"}
-            for name, path in ANDROID_LINKS
-        ],
+        "android": [{"name": name, "path": path, "url": f"{RAW}/{path}"} for name, path in ANDROID_LINKS],
+        "remotes": remote_summary(remotes),
     }
     return json.dumps(payload, ensure_ascii=False, indent=2)
 
@@ -98,33 +116,56 @@ def build_md(modules: list[dict[str, str]]) -> str:
     ]
     for name, path, url in CORE_LINKS:
         lines.append(f"| {name} | `{path}` | {url} |")
-    lines.extend([
-        "",
-        "## App modules",
-        "",
-        "| Module | File | Source | Sections | URL |",
-        "|---|---|---|---|---|",
-    ])
+    lines.extend(["", "## App modules", "", "| Module | File | Source | Sections | URL |", "|---|---|---|---|---|"])
     for item in modules:
         lines.append(f"| {item['name']} | `{item['file']}` | `{item['source']}` | {item['sections']} | {item['raw_url']} |")
-    lines.extend([
-        "",
-        "## Android release directories",
-        "",
-        "| Format | Path | URL |",
-        "|---|---|---|",
-    ])
+    lines.extend(["", "## Android release directories", "", "| Format | Path | URL |", "|---|---|---|"])
     for name, path in ANDROID_LINKS:
         lines.append(f"| {name} | `{path}` | {RAW}/{path} |")
+    lines.extend(["", "## Remote governance", "", "See `Web/remotes.md` and `Rewrite/Remotes/Catalog.md`.", ""])
+    return "\n".join(lines)
+
+
+def build_remotes_md(remotes: dict[str, list[dict[str, object]]], target: str) -> str:
+    summary = remote_summary(remotes)
+    lines = [
+        "# Remote Source Catalog",
+        "",
+        f"Target: {target}",
+        "",
+        "## Summary",
+        "",
+        f"- Rule sets: {summary['rule_sets']}",
+        f"- Enabled rule sets: {summary['enabled_rule_sets']}",
+        f"- Protected rule sets: {summary['protected_rule_sets']}",
+        f"- Reference modules: {summary['reference_modules']}",
+        f"- Enabled reference modules: {summary['enabled_reference_modules']}",
+        f"- Protected reference modules: {summary['protected_reference_modules']}",
+        "",
+        "## Active rule sets",
+        "",
+        "| Name | Type | Policy | Protected | Purpose | URL |",
+        "|---|---|---|---|---|---|",
+    ]
+    for item in remotes["rule_sets"]:
+        if item.get("enabled") is not True:
+            continue
+        lines.append(f"| {item.get('name', '')} | {item.get('type', '')} | {item.get('policy', '')} | {item.get('protected', False)} | {item.get('purpose', '')} | {item.get('url', '')} |")
+    lines.extend(["", "## Reference modules", "", "| Name | Enabled | Protected | Purpose | URL |", "|---|---:|---:|---|---|"])
+    for item in remotes["reference_modules"]:
+        lines.append(f"| {item.get('name', '')} | {item.get('enabled', False)} | {item.get('protected', False)} | {item.get('purpose', '')} | {item.get('url', '')} |")
     lines.append("")
     return "\n".join(lines)
 
 
 def main() -> None:
     modules = parse_modules()
-    write(CATALOG_JSON, build_json(modules))
+    remotes = parse_remotes()
+    write(CATALOG_JSON, build_json(modules, remotes))
     write(CATALOG_MD, build_md(modules))
-    print(f"Built {CATALOG_MD} and {CATALOG_JSON}")
+    write(REMOTES_WEB_MD, build_remotes_md(remotes, "Web distribution"))
+    write(REMOTES_CATALOG_MD, build_remotes_md(remotes, "Rewrite remote governance"))
+    print(f"Built {CATALOG_MD}, {CATALOG_JSON}, {REMOTES_WEB_MD}, and {REMOTES_CATALOG_MD}")
 
 
 if __name__ == "__main__":
