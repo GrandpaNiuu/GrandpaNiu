@@ -2,61 +2,328 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GrandpaNiu 融合模块导入</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>GrandpaNiu 模块导航</title>
   <style>
+    :root {
+      --bg: #16171d;
+      --panel: rgba(255, 255, 255, 0.055);
+      --panel-2: rgba(255, 255, 255, 0.08);
+      --line: rgba(148, 163, 184, 0.36);
+      --text: #f7f8fb;
+      --muted: #a4a8b8;
+      --muted-2: #7f8494;
+      --blue: #2f9cff;
+      --blue-2: #087ccf;
+      --green: #35b779;
+      --green-2: #158a55;
+      --tab: rgba(255,255,255,.12);
+      --nav: rgba(31, 34, 44, 0.82);
+    }
+
     * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; background: linear-gradient(180deg, #fff, #eef2f7); color: #101828; padding: 22px; }
-    .wrap { width: 100%; max-width: 760px; margin: 0 auto; }
-    header { text-align: center; margin: 28px 0 22px; }
-    .eyebrow { display: inline-block; padding: 7px 13px; border-radius: 999px; background: #eef4ff; color: #1d4ed8; font-weight: 800; font-size: 13px; }
-    h1 { margin: 16px 0 10px; font-size: clamp(32px, 6vw, 52px); letter-spacing: -.045em; }
-    p { color: #667085; line-height: 1.75; }
-    .card { background: #fff; border: 1px solid #e4e7ec; border-radius: 28px; padding: 24px; box-shadow: 0 18px 45px rgba(16,24,40,.08); }
-    .meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 16px 0; }
-    .meta span { padding: 10px 8px; border-radius: 14px; background: #f8fafc; border: 1px solid #e4e7ec; color: #667085; font-size: 12px; text-align: center; }
-    .button { display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 12px 16px; border-radius: 16px; background: linear-gradient(135deg, #16a34a, #15803d); color: #fff; text-decoration: none; font-weight: 900; margin: 12px 0; }
-    .button.secondary { background: #fff; color: #101828; border: 1px solid #e4e7ec; }
-    code { display: block; margin-top: 12px; padding: 12px; border-radius: 14px; background: #f8fafc; border: 1px solid #e4e7ec; color: #475467; word-break: break-all; white-space: normal; font-size: 12px; line-height: 1.55; }
-    .notice { margin: 16px 0 0; padding: 14px 16px; border-radius: 18px; background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; font-weight: 800; line-height: 1.7; }
-    footer { text-align: center; margin: 26px 0 6px; color: #667085; font-size: 13px; line-height: 1.7; }
-    @media (max-width: 700px) { .meta { grid-template-columns: 1fr; } }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      padding: max(26px, env(safe-area-inset-top)) 18px calc(112px + env(safe-area-inset-bottom));
+      background:
+        radial-gradient(circle at 18% -10%, rgba(47, 156, 255, .18), transparent 32%),
+        radial-gradient(circle at 85% 6%, rgba(53, 183, 121, .10), transparent 26%),
+        #16171d;
+    }
+
+    .wrap {
+      width: min(100%, 820px);
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 14px 0 28px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 7px 11px;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 999px;
+      color: #d7eaff;
+      background: rgba(47,156,255,.11);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 9vw, 60px);
+      line-height: 1.04;
+      letter-spacing: -.06em;
+      font-weight: 900;
+    }
+
+    .lead {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: clamp(18px, 4.3vw, 24px);
+      line-height: 1.65;
+      font-weight: 520;
+    }
+
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 22px 0 0;
+    }
+
+    .quick a,
+    .chip {
+      min-width: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 37px;
+      padding: 0 10px;
+      border-radius: 7px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.16);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .quick .install,
+    .chip.install { background: linear-gradient(90deg, var(--blue), var(--blue-2)); }
+    .quick .file,
+    .chip.file { background: linear-gradient(90deg, var(--green), var(--green-2)); }
+    .chip.gray { background: rgba(255,255,255,.18); color: #f4f4f5; }
+
+    .section {
+      position: relative;
+      margin: 28px 0 0;
+      padding-left: 24px;
+    }
+
+    .section::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 0;
+      width: 3px;
+      border-radius: 99px;
+      background: linear-gradient(180deg, rgba(148,163,184,.72), rgba(148,163,184,.22));
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      color: var(--blue);
+      font-size: clamp(26px, 7vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -.045em;
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+    }
+
+    .desc {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: clamp(18px, 4.8vw, 26px);
+      line-height: 1.65;
+      font-weight: 500;
+    }
+
+    .desc b {
+      color: #c8cad4;
+      font-weight: 900;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 13px 0 24px;
+    }
+
+    .buttons a {
+      text-decoration: none;
+    }
+
+    .small-note {
+      color: var(--muted-2);
+      font-size: 14px;
+      line-height: 1.6;
+      margin: -8px 0 18px;
+    }
+
+    code {
+      display: block;
+      margin: 12px 0 22px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.06);
+      color: #cbd5e1;
+      word-break: break-all;
+      white-space: normal;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .warning {
+      margin: 18px 0 0;
+      padding: 15px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 186, 73, .25);
+      background: rgba(255, 186, 73, .08);
+      color: #d6b079;
+      line-height: 1.7;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: max(14px, env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      width: min(calc(100% - 28px), 760px);
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 4px;
+      padding: 8px;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 30px;
+      background: var(--nav);
+      box-shadow: 0 18px 48px rgba(0,0,0,.45);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      z-index: 10;
+    }
+
+    .bottom-nav a {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      min-height: 58px;
+      border-radius: 22px;
+      color: #e5e7eb;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 750;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .bottom-nav a.active {
+      color: #58a6ff;
+      background: rgba(47, 156, 255, .16);
+    }
+
+    .nav-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    @media (min-width: 760px) {
+      body { padding-left: 32px; padding-right: 32px; }
+      .section { padding-left: 30px; }
+      .quick { width: 520px; }
+    }
   </style>
 </head>
 <body>
-  <main class="wrap">
+  <main class="wrap" id="home">
     <header>
-      <span class="eyebrow">Shadowrocket 单一融合模块</span>
-      <h1>只导入这一个模块</h1>
-      <p>本仓库不再拆分 Stable / Stable Plus / Lite / Full。iOS 用户统一使用 Fusion 融合模块。</p>
+      <div class="eyebrow">🐮 GrandpaNiu · Shadowrocket-First</div>
+      <h1>GrandpaNiu<br>融合模块</h1>
+      <p class="lead">面向 Shadowrocket / Surge / Android 的广告净化规则集合。普通用户只需要安装一个 Fusion 模块。</p>
+      <div class="quick">
+        <a class="install" id="topInstall" href="#">↪ 安装模块</a>
+        <a class="file" href="Ronghemokuai.sgmodule">▰ 模块文件</a>
+      </div>
     </header>
 
-    <section class="card">
-      <h2>GrandpaNiu Fusion</h2>
-      <p>融合原有多个 profile 的规则、脚本、Rewrite 与 MITM 覆盖，作为唯一公开入口。</p>
-      <div class="meta">
-        <span>版本：Fusion</span>
-        <span>用途：日常 + 增强覆盖</span>
-        <span>入口：唯一</span>
+    <section class="section" id="ios">
+      <h2>iOS Fusion 模块</h2>
+      <p class="desc"><b>推荐入口：</b>适用于 Shadowrocket / Surge。融合常见 App 净化规则、脚本、Rewrite 与 MITM 覆盖，支持在模块内使用 <b>编辑参数</b> 调整部分功能。</p>
+      <div class="buttons">
+        <a class="chip install" id="install" href="#">↪ 安装模块</a>
+        <a class="chip file" href="Ronghemokuai.sgmodule">▰ 模块文件</a>
+        <a class="chip gray" id="copy" href="#">复制链接</a>
       </div>
-      <a class="button" id="install" href="#">一键导入 Shadowrocket</a>
-      <a class="button secondary" id="copy" href="#">复制模块链接</a>
+      <p class="small-note">安装前建议停用旧模块，不要把旧 Stable / Stable Plus / Lite / Full 与 Fusion 同时启用。</p>
       <code id="url">https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule</code>
-      <div class="notice">导入前建议停用旧模块。不要把旧 Stable / Stable Plus / Lite / Full 与 Fusion 同时启用。</div>
     </section>
 
-    <footer>一键导入失败时，复制模块链接，在 Shadowrocket 的“配置 → 模块 → +”中手动粘贴。</footer>
+    <section class="section" id="android">
+      <h2>Android 规则</h2>
+      <p class="desc"><b>Android 用户：</b>根据自己的客户端选择规则格式。适合 Mihomo、Clash Meta、FlClash、sing-box、AdGuard DNS、AdGuard Home、v2rayNG / V2Ray / Xray 等场景。</p>
+      <div class="buttons">
+        <a class="chip file" href="android.html">▰ Android 导入页</a>
+        <a class="chip gray" href="Web/catalog.md">Release 目录</a>
+      </div>
+      <p class="small-note">Android 规则主要是域名、IP、DNS 和分流规则，不能完全等同 iOS 的 Script、MITM、Rewrite 效果。</p>
+    </section>
+
+    <section class="section" id="report">
+      <h2>仓库报告</h2>
+      <p class="desc"><b>维护者入口：</b>查看仓库健康、构建产物和规则覆盖情况。普通用户遇到异常时，优先关闭模块或对应 App 增强规则排查。</p>
+      <div class="buttons">
+        <a class="chip file" href="reports/repository_health_report.md">▰ 健康报告</a>
+        <a class="chip gray" href="Web/release-links.json">机器索引</a>
+      </div>
+      <div class="warning">规则净化存在误杀风险。本项目仅供个人学习、研究和实验使用。</div>
+    </section>
   </main>
+
+  <nav class="bottom-nav" aria-label="底部导航">
+    <a class="active" href="#home"><span class="nav-icon">⌂</span><span>主页</span></a>
+    <a href="#ios"><span class="nav-icon">▰</span><span>模块</span></a>
+    <a href="#android"><span class="nav-icon">▱</span><span>Android</span></a>
+    <a href="#report"><span class="nav-icon">☷</span><span>报告</span></a>
+  </nav>
 
   <script>
     const moduleUrl = "https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule";
-    document.getElementById("install").addEventListener("click", function (event) {
+    const installUrl = "shadowrocket://install?module=" + encodeURIComponent(moduleUrl);
+
+    function install(event) {
       event.preventDefault();
-      window.location.href = "shadowrocket://install?module=" + encodeURIComponent(moduleUrl);
-    });
+      window.location.href = installUrl;
+    }
+
+    document.getElementById("install").addEventListener("click", install);
+    document.getElementById("topInstall").addEventListener("click", install);
+
     document.getElementById("copy").addEventListener("click", function (event) {
       event.preventDefault();
-      navigator.clipboard.writeText(moduleUrl).then(function () { alert("已复制模块链接"); });
+      navigator.clipboard.writeText(moduleUrl).then(function () {
+        alert("已复制模块链接");
+      }).catch(function () {
+        prompt("复制模块链接", moduleUrl);
+      });
     });
   </script>
 </body>
