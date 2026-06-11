@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
-"""Generate per-app module files from the built fusion module.
+"""Generate per-app module files.
 
 Module definitions are read from Rewrite/Generate.conf [release_modules].
 Each value uses this format:
 
 slug = Display Name | keyword1, keyword2, keyword3
+
+If Rewrite/Sources/Apps/<slug>.conf exists, that app source file is used as the
+module source. Otherwise the builder falls back to extracting matching lines from
+Release/Ronghemokuai.sgmodule.
 """
 
 from __future__ import annotations
@@ -17,10 +21,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = ROOT / "Rewrite" / "Generate.conf"
 RELEASE_MODULE = ROOT / "Release" / "Ronghemokuai.sgmodule"
-MODULES_DIR = ROOT / "Release" / "Modules"
+DEFAULT_MODULES_DIR = ROOT / "Release" / "Modules"
+DEFAULT_APP_SOURCES_DIR = ROOT / "Rewrite" / "Sources" / "Apps"
 REPORT = ROOT / "reports" / "release_modules_report.md"
 BASE_URL = "https://grandpaniuu.github.io/GrandpaNiu/Release/Modules"
-
 SECTION_ORDER = ["Rule", "URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local", "Script", "MITM"]
 
 
@@ -29,6 +33,13 @@ class ModuleSpec:
     slug: str
     name: str
     keywords: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class ModuleBuild:
+    spec: ModuleSpec
+    counts: dict[str, int]
+    source: str
 
 
 FALLBACK_SPECS = [
@@ -41,6 +52,10 @@ FALLBACK_SPECS = [
 def repo_path(path: str | Path) -> Path:
     p = Path(path)
     return p if p.is_absolute() else ROOT / p
+
+
+def rel(path: Path) -> str:
+    return path.relative_to(ROOT).as_posix()
 
 
 def read(path: Path) -> str:
@@ -90,7 +105,13 @@ def load_specs(cfg: configparser.ConfigParser) -> list[ModuleSpec]:
 def output_dir(cfg: configparser.ConfigParser) -> Path:
     if cfg.has_option("output", "modules_dir"):
         return repo_path(cfg.get("output", "modules_dir"))
-    return MODULES_DIR
+    return DEFAULT_MODULES_DIR
+
+
+def app_sources_dir(cfg: configparser.ConfigParser) -> Path:
+    if cfg.has_option("output", "app_sources_dir"):
+        return repo_path(cfg.get("output", "app_sources_dir"))
+    return DEFAULT_APP_SOURCES_DIR
 
 
 def split_sections(text: str) -> tuple[list[str], dict[str, list[str]]]:
@@ -154,15 +175,24 @@ def filter_mitm(lines: list[str], spec: ModuleSpec) -> list[str]:
     return ["hostname = %APPEND% " + ",".join(hosts)]
 
 
+def extract_sections(fusion_sections: dict[str, list[str]], spec: ModuleSpec) -> dict[str, list[str]]:
+    selected: dict[str, list[str]] = {}
+    for section in SECTION_ORDER:
+        body = filter_mitm(fusion_sections[section], spec) if section == "MITM" else filter_regular_lines(fusion_sections[section], spec)
+        if body:
+            selected[section] = body
+    return selected
+
+
 def module_text(spec: ModuleSpec, sections: dict[str, list[str]]) -> tuple[str, dict[str, int]]:
     lines = [
         f"#!name={spec.name}",
-        "#!desc=Generated per-app module from GrandpaNiu fusion output",
+        "#!desc=Generated per-app module from GrandpaNiu app source or fusion output",
         f"#!update-url={BASE_URL}/{spec.slug}.sgmodule",
     ]
     counts: dict[str, int] = {}
     for section in SECTION_ORDER:
-        body = filter_mitm(sections[section], spec) if section == "MITM" else filter_regular_lines(sections[section], spec)
+        body = [line.strip() for line in sections.get(section, []) if active(line)]
         if not body:
             continue
         lines.extend(["", f"[{section}]", *body])
@@ -171,42 +201,51 @@ def module_text(spec: ModuleSpec, sections: dict[str, list[str]]) -> tuple[str, 
     return "\n".join(lines), counts
 
 
-def make_index(summary: list[tuple[ModuleSpec, dict[str, int]]]) -> str:
+def source_sections(spec: ModuleSpec, app_dir: Path, fusion_sections: dict[str, list[str]]) -> tuple[dict[str, list[str]], str]:
+    app_source = app_dir / f"{spec.slug}.conf"
+    if app_source.exists():
+        _, sections = split_sections(read(app_source))
+        return sections, rel(app_source)
+    return extract_sections(fusion_sections, spec), rel(RELEASE_MODULE)
+
+
+def make_index(summary: list[ModuleBuild]) -> str:
     lines = [
         "# Release Modules",
         "",
         "Generated per-app module outputs.",
         "",
-        "| Module | File | Sections |",
-        "|---|---|---|",
+        "| Module | File | Source | Sections |",
+        "|---|---|---|---|",
     ]
-    for spec, counts in summary:
-        section_text = ", ".join(f"{name}:{count}" for name, count in counts.items()) or "empty"
-        lines.append(f"| {spec.name} | `{spec.slug}.sgmodule` | {section_text} |")
+    for item in summary:
+        section_text = ", ".join(f"{name}:{count}" for name, count in item.counts.items()) or "empty"
+        lines.append(f"| {item.spec.name} | `{item.spec.slug}.sgmodule` | `{item.source}` | {section_text} |")
     lines.append("")
     return "\n".join(lines)
 
 
-def make_report(summary: list[tuple[ModuleSpec, dict[str, int]]], configured: int, skipped: list[ModuleSpec], modules_dir: Path) -> str:
+def make_report(summary: list[ModuleBuild], configured: int, skipped: list[tuple[ModuleSpec, str]], modules_dir: Path) -> str:
     lines = [
         "# Release modules report",
         "",
-        f"- Source: `{RELEASE_MODULE.relative_to(ROOT).as_posix()}`",
-        f"- Output directory: `{modules_dir.relative_to(ROOT).as_posix()}`",
+        f"- Fusion fallback source: `{rel(RELEASE_MODULE)}`",
+        f"- Output directory: `{rel(modules_dir)}`",
         f"- Configured modules: {configured}",
         f"- Generated modules: {len(summary)}",
         f"- Skipped empty modules: {len(skipped)}",
         "",
     ]
-    for spec, counts in summary:
-        lines.append(f"## {spec.name}")
-        for section, count in counts.items():
+    for item in summary:
+        lines.append(f"## {item.spec.name}")
+        lines.append(f"- Source: `{item.source}`")
+        for section, count in item.counts.items():
             lines.append(f"- {section}: {count}")
         lines.append("")
     if skipped:
         lines.append("## Skipped empty modules")
-        for spec in skipped:
-            lines.append(f"- {spec.name} (`{spec.slug}`)")
+        for spec, source in skipped:
+            lines.append(f"- {spec.name} (`{spec.slug}`) from `{source}`")
         lines.append("")
     return "\n".join(lines)
 
@@ -219,22 +258,24 @@ def main() -> None:
     cfg = load_config(repo_path(args.config))
     specs = load_specs(cfg)
     modules_dir = output_dir(cfg)
+    app_dir = app_sources_dir(cfg)
     include_empty = bool_cfg(cfg, "output", "include_empty_modules", False)
 
     text = read(RELEASE_MODULE)
     if not text:
         raise SystemExit(f"missing release module: {RELEASE_MODULE}")
-    _, sections = split_sections(text)
+    _, fusion_sections = split_sections(text)
 
-    summary: list[tuple[ModuleSpec, dict[str, int]]] = []
-    skipped: list[ModuleSpec] = []
+    summary: list[ModuleBuild] = []
+    skipped: list[tuple[ModuleSpec, str]] = []
     for spec in specs:
+        sections, source = source_sections(spec, app_dir, fusion_sections)
         content, counts = module_text(spec, sections)
         if not counts and not include_empty:
-            skipped.append(spec)
+            skipped.append((spec, source))
             continue
         write(modules_dir / f"{spec.slug}.sgmodule", content)
-        summary.append((spec, counts))
+        summary.append(ModuleBuild(spec, counts, source))
 
     write(modules_dir / "README.md", make_index(summary))
     write(REPORT, make_report(summary, len(specs), skipped, modules_dir))
