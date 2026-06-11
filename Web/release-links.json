@@ -113,5 +113,13 @@
       "path": "Release/Android/v2rayng/",
       "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Android/v2rayng/"
     }
-  ]
+  ],
+  "remotes": {
+    "rule_sets": 16,
+    "enabled_rule_sets": 14,
+    "protected_rule_sets": 2,
+    "reference_modules": 24,
+    "enabled_reference_modules": 0,
+    "protected_reference_modules": 12
+  }
 }

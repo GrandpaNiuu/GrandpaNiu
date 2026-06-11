@@ -1,6 +1,6 @@
 # Remote Source Catalog
 
-Target: Rewrite remote governance
+Target: Web distribution
 
 ## Summary
 
