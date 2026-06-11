@@ -1,19 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-06-12 02:15:15 +0800
+- 生成时间：2026-06-12 02:17:03 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `reports/android_rules_report.md`
-- `reports/multi_release_report.md`
-- `reports/qingrex_miniapp_import_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
+- `Rewrite/Sources/Apps/umetrip.conf`
 
 ## 新增文件
 
-- 无
+- `Rewrite/Sources/Apps/umetrip.conf`
 
 ## 删除文件
 
@@ -21,15 +17,11 @@
 
 ## 修改文件
 
-- `reports/android_rules_report.md`
-- `reports/multi_release_report.md`
-- `reports/qingrex_miniapp_import_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
+- 无
 
 ## 影响的模块层
 
-- README/docs
+- Rewrite/Sources
 
 ## 可能影响的 App
 
@@ -38,13 +30,13 @@
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：否
+- 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
 - 是否需要测试 Spotify：按需
 - 是否需要测试 YouTube：按需
 - 是否需要测试知乎：按需
-- 是否需要测试登录/支付/验证码：按需
+- 是否需要测试登录/支付/验证码：是
 
 ## 回滚建议
 
