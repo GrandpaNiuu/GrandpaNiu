@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Generate rule-only release files from the built fusion module."""
+"""Create rule release files from the built fusion module."""
 
 from __future__ import annotations
 
-import datetime as dt
 from collections import OrderedDict
 from pathlib import Path
 
@@ -12,9 +11,8 @@ RELEASE_MODULE = ROOT / "Release" / "Ronghemokuai.sgmodule"
 RULES_OUT = ROOT / "Release" / "Rules.conf"
 GROUPS_OUT = ROOT / "Release" / "RulesGroup.conf"
 REPORT = ROOT / "reports" / "release_rules_report.md"
-
-SECTION_ORDER = ["Rule", "URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local", "Script", "MITM"]
-POLICY_ORDER = ["DIRECT", "REJECT", "PROXY", "REJECT-TINYGIF", "REJECT-DROP", "OTHER"]
+SECTIONS = ["Rule", "URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local", "Script", "MITM"]
+POLICIES = ["DIRECT", "REJECT", "PROXY", "OTHER"]
 
 
 def read(path: Path) -> str:
@@ -27,85 +25,75 @@ def write(path: Path, text: str) -> None:
 
 
 def split_sections(text: str) -> dict[str, list[str]]:
-    sections: dict[str, list[str]] = {name: [] for name in SECTION_ORDER}
-    current: str | None = None
+    data = {name: [] for name in SECTIONS}
+    current = None
     for raw in text.splitlines():
         line = raw.rstrip()
         if line.startswith("[") and line.endswith("]"):
             name = line[1:-1]
-            current = name if name in sections else None
+            current = name if name in data else None
             continue
         if current:
-            sections[current].append(line)
-    return sections
+            data[current].append(line)
+    return data
 
 
-def active_rule_lines(lines: list[str]) -> list[str]:
-    out: list[str] = []
-    seen: set[str] = set()
+def active_rules(lines: list[str]) -> list[str]:
+    result = []
+    seen = set()
     for raw in lines:
         line = raw.strip()
-        if not line or line.startswith("#"):
-            continue
-        if line in seen:
+        if not line or line.startswith("#") or line in seen:
             continue
         seen.add(line)
-        out.append(line)
-    return out
+        result.append(line)
+    return result
 
 
-def rule_policy(line: str) -> str:
-    parts = [part.strip() for part in line.split(",") if part.strip()]
+def policy_of(line: str) -> str:
+    parts = [part.strip().upper() for part in line.split(",") if part.strip()]
     for part in reversed(parts):
-        upper = part.upper()
-        if upper in POLICY_ORDER:
-            return upper
+        if part in POLICIES:
+            return part
     return "OTHER"
 
 
-def grouped_rules(rules: list[str]) -> OrderedDict[str, list[str]]:
-    groups: OrderedDict[str, list[str]] = OrderedDict((policy, []) for policy in POLICY_ORDER)
+def grouped(rules: list[str]) -> OrderedDict[str, list[str]]:
+    result = OrderedDict((name, []) for name in POLICIES)
     for line in rules:
-        groups.setdefault(rule_policy(line), []).append(line)
-    return groups
+        result.setdefault(policy_of(line), []).append(line)
+    return result
 
 
-def build_rules_conf(rules: list[str]) -> str:
-    today = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
-    lines = [
+def rules_conf(rules: list[str]) -> str:
+    return "\n".join([
         "#!name=GrandpaNiu Rules",
         "#!desc=Rule-only output generated from Release/Ronghemokuai.sgmodule",
         "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Rules.conf",
-        f"# generated-at: {today}",
         "",
         "[Rule]",
         *rules,
         "",
-    ]
-    return "\n".join(lines)
+    ])
 
 
-def build_groups_conf(rules: list[str]) -> str:
-    today = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
+def groups_conf(rules: list[str]) -> str:
     lines = [
         "#!name=GrandpaNiu Rule Groups",
         "#!desc=Grouped rule output generated from Release/Ronghemokuai.sgmodule",
         "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/RulesGroup.conf",
-        f"# generated-at: {today}",
         "",
         "[Rule]",
     ]
-    for policy, items in grouped_rules(rules).items():
-        if not items:
-            continue
-        lines.append(f"# group: {policy}")
-        lines.extend(items)
-        lines.append("")
+    for name, items in grouped(rules).items():
+        if items:
+            lines.append(f"# group: {name}")
+            lines.extend(items)
+            lines.append("")
     return "\n".join(lines)
 
 
-def make_report(rules: list[str]) -> str:
-    groups = grouped_rules(rules)
+def report(rules: list[str]) -> str:
     lines = [
         "# Release rule output report",
         "",
@@ -116,23 +104,21 @@ def make_report(rules: list[str]) -> str:
         "",
         "## Groups",
     ]
-    for policy, items in groups.items():
-        lines.append(f"- {policy}: {len(items)}")
-    lines.append("")
-    return "\n".join(lines)
+    for name, items in grouped(rules).items():
+        lines.append(f"- {name}: {len(items)}")
+    return "\n".join(lines) + "\n"
 
 
 def main() -> None:
-    module_text = read(RELEASE_MODULE)
-    if not module_text:
+    module = read(RELEASE_MODULE)
+    if not module:
         raise SystemExit(f"missing release module: {RELEASE_MODULE}")
-    sections = split_sections(module_text)
-    rules = active_rule_lines(sections["Rule"])
+    rules = active_rules(split_sections(module)["Rule"])
     if not rules:
         raise SystemExit("release module has no active rules")
-    write(RULES_OUT, build_rules_conf(rules))
-    write(GROUPS_OUT, build_groups_conf(rules))
-    write(REPORT, make_report(rules))
+    write(RULES_OUT, rules_conf(rules))
+    write(GROUPS_OUT, groups_conf(rules))
+    write(REPORT, report(rules))
     print(f"Built {RULES_OUT} and {GROUPS_OUT} with {len(rules)} rules")
 
 
