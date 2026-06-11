@@ -35,9 +35,14 @@ jobs:
       - name: Compile maintenance scripts
         run: python3 -m py_compile scripts/*.py
 
-      - name: Update source metadata date, build, finalize and report
+      - name: Generate and commit daily update
         run: |
-          python3 <<'PY'
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          regenerate() {
+            python3 <<'PY'
           from pathlib import Path
           from datetime import datetime, timezone, timedelta
           import re
@@ -96,18 +101,34 @@ jobs:
               "",
           ]), encoding="utf-8", newline="\n")
           PY
+          }
 
-      - name: Commit daily update
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git diff --cached --quiet || git commit -m "Daily fusion module update"
-          for attempt in 1 2 3; do
+          commit_changes() {
+            git add -A
+            if git diff --cached --quiet; then
+              echo "No daily update changes to commit."
+              return 1
+            fi
+            git commit -m "Daily fusion module update"
+          }
+
+          regenerate
+          commit_changes || exit 0
+          if git push origin HEAD:main; then
+            exit 0
+          fi
+
+          echo "Push failed; resetting to latest main and regenerating daily update outputs."
+          for attempt in 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            regenerate
+            commit_changes || exit 0
             if git push origin HEAD:main; then
               exit 0
             fi
-            git fetch origin main
-            git rebase origin/main
+            echo "Push failed on regenerated attempt ${attempt}."
           done
+
+          echo "Push failed after 3 regenerated attempts."
           exit 1
