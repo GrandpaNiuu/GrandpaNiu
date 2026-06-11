@@ -20,7 +20,6 @@
 ## GrandpaNiu YouTube
 - Source: `Rewrite/Sources/Apps/youtube.conf`
 - Discovery: manual
-- Rule: 2
 - Map Local: 1
 - Script: 1
 - MITM: 1

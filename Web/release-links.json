@@ -51,7 +51,7 @@
       "name": "GrandpaNiu YouTube",
       "file": "Release/Modules/youtube.sgmodule",
       "source": "Rewrite/Sources/Apps/youtube.conf",
-      "sections": "Rule:2, Map Local:1, Script:1, MITM:1",
+      "sections": "Map Local:1, Script:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/youtube.sgmodule"
     },
     {

@@ -18,11 +18,11 @@
 
 | Section | Active line 数 |
 |---|---:|
-| `Rule` | 674 |
+| `Rule` | 680 |
 | `URL Rewrite` | 1644 |
 | `Header Rewrite` | 1 |
 | `Body Rewrite` | 455 |
-| `Map Local` | 149 |
+| `Map Local` | 148 |
 | `Script` | 46 |
 | `MITM` | 1 |
 
@@ -30,7 +30,7 @@
 
 | 检查项 | 结果 |
 |---|---:|
-| 本地规则 active entries | 3597 |
+| 本地规则 active entries | 3605 |
 | 跨文件交集 entries | 1405 |
 | 远程规则源总数 | 16 |
 | 已启用远程规则源 | 14 |
