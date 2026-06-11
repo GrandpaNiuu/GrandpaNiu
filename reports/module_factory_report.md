@@ -1,12 +1,12 @@
 # 模块工厂报告
 
 - 日期：2026-06-11
-- 构建 profile：fusion
+- 构建 profile：stable
 - 默认公开入口：单一融合版
 - 是否从 root 反拆：否
-- 构建阶段 Root/Release 是否一致：是
-- Release 行数：2951
-- Release MITM hostname 数量：1072
+- 构建阶段 Root/Release 是否一致：否
+- Release 行数：2923
+- Release MITM hostname 数量：264
 
 ## 源文件统计
 - Rule: 525 行
@@ -18,7 +18,7 @@
 - MITM: 2 行
 
 ## 构建输入
-- Rewrite/Profiles/fusion.conf
+- Rewrite/Profiles/stable.conf
 - Rewrite/Remotes/sources.json
 - Rules/: DIRECT、Spotify、YouTube、本地 App、网页、Reject、legacy、Stable Plus 与 Full 规则片段
 - Scripts/: Spotify、YouTube、知乎、App-clean、legacy reviewed、QingRex 与 Stable Plus 脚本片段

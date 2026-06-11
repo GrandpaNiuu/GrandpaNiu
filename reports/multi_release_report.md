@@ -1,6 +1,6 @@
 # 单一融合版发布报告
 
-生成时间：2026-06-11 08:48:49 +0800
+生成时间：2026-06-11 08:56:50 +0800
 
 本仓库现在只发布一个融合模块，不再拆分 Stable / Stable Plus / Lite / Full 给用户选择。
 
@@ -19,5 +19,5 @@
 ## 构建状态
 
 - 构建 profile：fusion
-- Release 与 Root 当前是否一致：是
+- Release 与 Root 当前是否一致：否，后续 factory_finalize.py 会同步 Root
 - 旧多版本文件不再作为公开入口。
