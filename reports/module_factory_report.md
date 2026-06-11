@@ -4,17 +4,17 @@
 - 构建 profile：fusion
 - 默认公开入口：单一融合版
 - 是否从 root 反拆：否
-- 构建阶段 Root/Release 是否一致：是
-- Release 行数：2985
+- 构建阶段 Root/Release 是否一致：否
+- Release 行数：2990
 - Release MITM hostname 数量：1072
 
 ## 源文件统计
-- Rule: 525 行
+- Rule: 535 行
 - URL Rewrite: 1598 行
 - Header Rewrite: 5 行
 - Body Rewrite: 456 行
-- Map Local: 16 行
-- Script: 141 行
+- Map Local: 14 行
+- Script: 140 行
 - MITM: 2 行
 
 ## 构建输入
