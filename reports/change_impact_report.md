@@ -1,15 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-06-12 00:46:51 +0800
+- 生成时间：2026-06-12 00:47:09 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Rewrite/Sources/Apps/weibo.conf`
+- `Rewrite/Sources/Apps/README.md`
 
 ## 新增文件
 
-- `Rewrite/Sources/Apps/weibo.conf`
+- 无
 
 ## 删除文件
 
@@ -17,7 +17,7 @@
 
 ## 修改文件
 
-- 无
+- `Rewrite/Sources/Apps/README.md`
 
 ## 影响的模块层
 
@@ -30,8 +30,8 @@
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：是
-- 是否涉及 Body Rewrite：是
+- 是否涉及 MITM：否
+- 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
 - 是否需要测试 Spotify：按需
 - 是否需要测试 YouTube：按需
