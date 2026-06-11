@@ -67,21 +67,52 @@ GrandpaNiu 是一个用于 **Shadowrocket、Surge 和 Android 规则客户端** 
 
 ---
 
+## 🔗 公开入口
+
+* GitHub Pages 首页：<https://grandpaniuu.github.io/GrandpaNiu/>
+* iOS Fusion 模块：<https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule>
+* Shadowrocket 一键导入：<https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRonghemokuai.sgmodule>
+* Android 导入页：<https://grandpaniuu.github.io/GrandpaNiu/android.html>
+* Release 目录：<https://grandpaniuu.github.io/GrandpaNiu/Web/catalog.md>
+* 机器可读索引：<https://grandpaniuu.github.io/GrandpaNiu/Web/release-links.json>
+
+---
+
+## 🧭 入口选择
+
+| 图标 | 你现在的情况 | 点这里 | 说明 |
+|---|---|---|---|
+| 🍎 | iPhone / iPad，使用 Shadowrocket | [导入融合模块][fusion-import] | 推荐入口，支持跳转安装 |
+| 🤖 | Android 用户 | [打开 Android 导入页][android-import] | 进去后按客户端选择规则 |
+| 📊 | 想看仓库健康和报告 | [查看报告][health-report] | 给维护者和高级用户查看 |
+
+**最简单选择：**
+
+* iOS 普通用户：只点 **导入融合模块**。
+* Android 用户：进 **Android 导入页**。
+* 出问题：先关闭模块或对应 App 增强规则，不要反复叠加多个规则。
+
+---
+
 ## ✅ 小白怎么用？
 
-普通用户只需要用下面这个主模块链接。
+普通用户只需要用下面这个主模块入口。
 
 ### 🍎 iPhone / Shadowrocket / Surge
 
 推荐使用主融合模块：
 
 ```text
-https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule
+https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
 ```
+
+也可以直接点这里跳转安装：
+
+[导入融合模块][fusion-import]
 
 使用步骤：
 
-1. 复制上面的链接。
+1. 点击上面的“导入融合模块”，或复制模块链接。
 2. 打开 Shadowrocket 或 Surge。
 3. 找到“模块”或“Module”。
 4. 选择“从 URL 导入”。
@@ -94,9 +125,7 @@ https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmod
 
 Android 用户可以查看 Android 规则入口：
 
-```text
-https://grandpaniuu.github.io/GrandpaNiu/android.html
-```
+[打开 Android 导入页][android-import]
 
 Android 规则主要适合：
 
@@ -248,3 +277,6 @@ YouTube 对视频播放、广告接口、CDN 和脚本处理比较敏感。模�
 普通用户只需要导入主模块。
 维护者请优先修改源文件，并通过自动化构建生成最终模块。
 
+[fusion-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRonghemokuai.sgmodule
+[android-import]: https://grandpaniuu.github.io/GrandpaNiu/android.html
+[health-report]: reports/repository_health_report.md
