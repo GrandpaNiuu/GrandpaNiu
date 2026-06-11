@@ -9,12 +9,11 @@ on:
       - "Ronghemokuai.sgmodule"
       - "scripts/**"
       - "docs/**"
-      - "reports/**"
+      - "reports/manual_test_log.md"
       - "Rewrite/**"
       - "Rules/**"
       - "Scripts/**"
       - "Android/**"
-      - "Release/**"
       - "Web/**"
       - ".github/workflows/module-factory-build.yml"
 
