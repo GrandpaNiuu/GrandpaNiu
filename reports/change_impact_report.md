@@ -1,11 +1,17 @@
 # 变更影响报告
 
-- 生成时间：2026-06-11 09:23:12 +0800
+- 生成时间：2026-06-11 21:58:05 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
+- `reports/android_rules_report.md`
+- `reports/daily_update_report.md`
+- `reports/module_factory_report.md`
 - `reports/multi_release_report.md`
+- `reports/remote_rule_syntax_report.md`
+- `reports/report_freshness_report.md`
+- `reports/repository_health_report.md`
 
 ## 新增文件
 
@@ -17,7 +23,13 @@
 
 ## 修改文件
 
+- `reports/android_rules_report.md`
+- `reports/daily_update_report.md`
+- `reports/module_factory_report.md`
 - `reports/multi_release_report.md`
+- `reports/remote_rule_syntax_report.md`
+- `reports/report_freshness_report.md`
+- `reports/repository_health_report.md`
 
 ## 影响的模块层
 
@@ -30,9 +42,9 @@
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：否
+- 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：否
-- 是否涉及远程规则源：否
+- 是否涉及远程规则源：是
 - 是否需要测试 Spotify：按需
 - 是否需要测试 YouTube：按需
 - 是否需要测试知乎：按需
@@ -41,5 +53,5 @@
 ## 回滚建议
 
 - 优先回滚最近一次提交。
-- 若主模块导入异常，可用 `backup/Ronghemokuai.stable.sgmodule` 人工恢复。
+- 若主模块导入异常，优先回滚最近一次 Fusion 输出提交。
 - 回滚后运行 `build_module.py --build --profile fusion`、`factory_finalize.py --sync-root`、`validate_repository.py` 和 `repository_health_check.py`。

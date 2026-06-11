@@ -1,13 +1,13 @@
 # 候选源安全评分报告
 
-生成时间：2026-06-11 09:23:11 +0800
+生成时间：2026-06-11 21:58:05 +0800
 
 本报告只评分候选源，不自动启用、禁用、下载、替换或晋级 Stable。未知脚本默认 `manual-review`，高风险内容一律 `blocked`。
 
 ## 统计
 
-- 候选总数：11
-- safe-rule-candidate：6
+- 候选总数：13
+- safe-rule-candidate：8
 - stable-plus-only：0
 - manual-review：5
 - blocked：0
@@ -30,6 +30,8 @@
 | blackmatrix7 Advertising MiTV | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=blackmatrix7/ios_rule_script; rule-hints=advert | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingMiTV/AdvertisingMiTV.list` |
 | ACL4SSR BanProgramAD | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=ACL4SSR/ACL4SSR; rule-hints=advert | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list` |
 | ACL4SSR BanEasyListChina | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=ACL4SSR/ACL4SSR; rule-hints=advert | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list` |
+| ACL4SSR BanEasyList | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=ACL4SSR/ACL4SSR; rule-hints=advert | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list` |
+| ACL4SSR BanEasyPrivacy | remote_rule | 是 | 是 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | safe-rule-candidate | trust=ACL4SSR/ACL4SSR; rule-hints=privacy,tracker | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list` |
 | Loyalsoldier reject domain set | remote_rule | 否 | 否 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | manual-review | trust=Loyalsoldier/surge-rules; rule-hints=domain,reject | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` |
 | Cats-Team AdRules DNS list | remote_rule | 否 | 否 | 95 | 低 | 低 | 低 | 低 | 低 | upstream-public-rule | 是 | manual-review | trust=Cats-Team/AdRules; rule-hints=domain,domain-set | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt` |
 | app2smile Tieba script | script | 否 | 否 | 95 | 低 | 中 | 低 | 低 | 低 | unknown | 是 | manual-review | trust=app2smile/rules; script默认 pending，不能自动进入 stable | `https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js` |
