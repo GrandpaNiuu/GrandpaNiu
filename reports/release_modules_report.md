@@ -2,8 +2,8 @@
 
 - Fusion fallback source: `Release/Ronghemokuai.sgmodule`
 - Output directory: `Release/Modules`
-- Configured modules: 8
-- Generated modules: 8
+- Configured modules: 14
+- Generated modules: 14
 - Skipped empty modules: 0
 
 ## GrandpaNiu Spotify
@@ -62,4 +62,34 @@
 - URL Rewrite: 6
 - Body Rewrite: 8
 - Script: 1
+- MITM: 1
+
+## GrandpaNiu Pinduoduo
+- Source: `Rewrite/Sources/Apps/pinduoduo.conf`
+- Rule: 15
+- MITM: 1
+
+## GrandpaNiu JD
+- Source: `Rewrite/Sources/Apps/jd.conf`
+- Rule: 7
+- MITM: 1
+
+## GrandpaNiu Taobao
+- Source: `Rewrite/Sources/Apps/taobao.conf`
+- Rule: 11
+- MITM: 1
+
+## GrandpaNiu Netease Music
+- Source: `Rewrite/Sources/Apps/netease-music.conf`
+- Rule: 14
+- MITM: 1
+
+## GrandpaNiu MGTV
+- Source: `Rewrite/Sources/Apps/mgtv.conf`
+- Rule: 12
+- MITM: 1
+
+## GrandpaNiu Huya
+- Source: `Rewrite/Sources/Apps/huya.conf`
+- Rule: 6
 - MITM: 1

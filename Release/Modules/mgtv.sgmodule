@@ -1,0 +1,20 @@
+#!name=GrandpaNiu MGTV
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/mgtv.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,mgtv.com,DIRECT,pre-matching
+DOMAIN,credits.bz.mgtv.com,REJECT,pre-matching
+DOMAIN,credits2.bz.mgtv.com,REJECT,pre-matching
+DOMAIN,credits3.bz.mgtv.com,REJECT,pre-matching
+DOMAIN,dflow.bz.mgtv.com,REJECT,pre-matching
+DOMAIN,encounter.bz.mgtv.com,REJECT,pre-matching
+DOMAIN,floor.bz.mgtv.com,REJECT,pre-matching
+DOMAIN,layer.bz.mgtv.com,REJECT,pre-matching
+DOMAIN,mob.bz.mgtv.com,REJECT,pre-matching
+DOMAIN,rc-topic-api.bz.mgtv.com,REJECT,pre-matching
+DOMAIN,rprain.bz.mgtv.com,REJECT,pre-matching
+DOMAIN,rprain.log.mgtv.com,REJECT,pre-matching
+
+[MITM]
+hostname = %APPEND% *.mgtv.com,*.bz.mgtv.com

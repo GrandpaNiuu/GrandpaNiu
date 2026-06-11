@@ -90,6 +90,48 @@
       "source": "Rewrite/Sources/Apps/weibo.conf",
       "sections": "URL Rewrite:6, Body Rewrite:8, Script:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/weibo.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Pinduoduo",
+      "file": "Release/Modules/pinduoduo.sgmodule",
+      "source": "Rewrite/Sources/Apps/pinduoduo.conf",
+      "sections": "Rule:15, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/pinduoduo.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu JD",
+      "file": "Release/Modules/jd.sgmodule",
+      "source": "Rewrite/Sources/Apps/jd.conf",
+      "sections": "Rule:7, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/jd.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Taobao",
+      "file": "Release/Modules/taobao.sgmodule",
+      "source": "Rewrite/Sources/Apps/taobao.conf",
+      "sections": "Rule:11, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/taobao.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Netease Music",
+      "file": "Release/Modules/netease-music.sgmodule",
+      "source": "Rewrite/Sources/Apps/netease-music.conf",
+      "sections": "Rule:14, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/netease-music.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu MGTV",
+      "file": "Release/Modules/mgtv.sgmodule",
+      "source": "Rewrite/Sources/Apps/mgtv.conf",
+      "sections": "Rule:12, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/mgtv.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Huya",
+      "file": "Release/Modules/huya.sgmodule",
+      "source": "Rewrite/Sources/Apps/huya.conf",
+      "sections": "Rule:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/huya.sgmodule"
     }
   ],
   "android": [

@@ -1,0 +1,19 @@
+#!name=GrandpaNiu Taobao
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/taobao.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,taobao.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,tmall.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,alicdn.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,alicdn.net,DIRECT,pre-matching
+DOMAIN-SUFFIX,tbcdn.cn,DIRECT,pre-matching
+DOMAIN-SUFFIX,taobaocdn.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,mmstat.com,REJECT,pre-matching
+DOMAIN,wgo.mmstat.com,REJECT,pre-matching
+DOMAIN,nbsdk-baichuan.alicdn.com,REJECT,pre-matching
+DOMAIN,ossgw.alicdn.com,REJECT,pre-matching
+DOMAIN,hudong.alicdn.com,REJECT,pre-matching
+
+[MITM]
+hostname = %APPEND% *.taobao.com,*.tmall.com,*.alicdn.com,*.mmstat.com
