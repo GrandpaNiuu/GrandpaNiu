@@ -169,8 +169,8 @@ def main() -> None:
         "## 回滚建议",
         "",
         "- 优先回滚最近一次提交。",
-        "- 若主模块导入异常，可用 `backup/Ronghemokuai.stable.sgmodule` 人工恢复。",
-        "- 回滚后运行 `build_module.py --build --profile stable`、`factory_finalize.py --sync-root`、`validate_repository.py` 和 `repository_health_check.py`。",
+        "- 若主模块导入异常，优先回滚最近一次 Fusion 输出提交。",
+        "- 回滚后运行 `build_module.py --build --profile fusion`、`factory_finalize.py --sync-root`、`validate_repository.py` 和 `repository_health_check.py`。",
         "",
     ]
     REPORT.parent.mkdir(parents=True, exist_ok=True)

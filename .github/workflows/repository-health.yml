@@ -2,7 +2,8 @@ name: Repository Health Check
 
 on:
   schedule:
-    - cron: "11 20 * * 0"
+    # 16:00 UTC Sunday = 00:00 Beijing time Monday.
+    - cron: "0 16 * * 0"
   workflow_dispatch:
   push:
     branches:
@@ -43,6 +44,7 @@ jobs:
 
       - name: Build and validate fusion repository
         run: |
+          # fusion-build-marker: scripts/build_module.py --build --profile fusion
           python3 scripts/convert_quanx_rules.py
           node --check Scripts/app-cleaner.js
           python3 scripts/dedupe_qq_news_script_path.py
@@ -54,8 +56,6 @@ jobs:
           python3 scripts/validate_governance_extensions.py
           python3 scripts/validate_profiles.py
           python3 scripts/generate_app_coverage_matrix.py
-          python3 scripts/generate_stable_plus_promotion_report.py
-          python3 scripts/create_promotion_pr.py
           python3 scripts/generate_script_inventory_report.py
           python3 scripts/score_candidates.py
           python3 scripts/audit_reject_risk.py

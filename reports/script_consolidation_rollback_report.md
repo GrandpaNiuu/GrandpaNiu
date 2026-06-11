@@ -26,7 +26,7 @@
 ## 验证命令
 
 ```bash
-python3 scripts/build_module.py --build --profile stable
+python3 scripts/build_module.py --build --profile fusion
 python3 scripts/factory_finalize.py --sync-root
 python3 scripts/build_release_variants.py
 python3 scripts/validate_repository.py

@@ -23,7 +23,7 @@
 
 ```text
 Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
-        -> scripts/build_module.py --build --profile stable
+        -> scripts/build_module.py --build --profile fusion
         -> scripts/factory_finalize.py --sync-root
         -> scripts/build_release_variants.py
         -> Release/Ronghemokuai-*.sgmodule

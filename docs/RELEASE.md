@@ -26,7 +26,7 @@ Root 与 Release 必须一致。
 
 ```text
 python3 -m py_compile scripts/build_module.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/repository_health_check.py
-python3 scripts/build_module.py --build --profile stable
+python3 scripts/build_module.py --build --profile fusion
 python3 scripts/factory_finalize.py --sync-root
 python3 scripts/validate_repository.py
 python3 scripts/repository_health_check.py

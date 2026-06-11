@@ -23,7 +23,6 @@ WORKFLOWS = [
     ("Daily invalid source audit and repair", ".github/workflows/daily-invalid-source-repair.yml", "连续失效源审计和安全处理"),
     ("Upstream candidate collect", ".github/workflows/upstream-collect.yml", "每周可信候选源收集"),
     ("Repository Health Check", ".github/workflows/repository-health.yml", "仓库治理健康检查"),
-    ("Stable Plus Promotion PR", ".github/workflows/stable-plus-promotion-pr.yml", "单项 App 晋级审查 PR 入口"),
 ]
 
 
@@ -53,8 +52,6 @@ def priority(path: str) -> str:
         return "candidates.json、风险词、重复源、trusted_repositories"
     if "repository-health" in path:
         return "治理文件、README 链接、重复脚本、重复 MITM、报告新鲜度"
-    if "promotion" in path:
-        return "manual_test_log.md、单项 App 范围、PR 是否为 draft"
     return "待确认"
 
 
@@ -144,7 +141,7 @@ def main() -> None:
         "- `success` 才能视为 workflow 最近一次运行通过。",
         "- `failure`、`cancelled`、`timed_out`、`action_required` 必须打开对应 run 日志排查。",
         "- API 不可用时，本报告只确认配置存在，不确认真实运行状态。",
-        "- Promotion PR 只允许单项 App 审查，不自动合并，不整体合并 Stable Plus。",
+        "- iOS 公开入口只保留 Fusion；旧 Stable / Stable Plus / Lite / Full 不再作为正式 workflow 入口。",
         "",
     ]
     REPORT.parent.mkdir(parents=True, exist_ok=True)

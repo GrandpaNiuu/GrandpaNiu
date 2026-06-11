@@ -125,6 +125,24 @@
       "enabled": false,
       "protected": false,
       "purpose": "disabled in default remotes; use Rules/aggressive-ad-sources.list through testing profiles only"
+    },
+    {
+      "name": "ACL4SSR BanEasyList",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list",
+      "policy": "REJECT",
+      "enabled": true,
+      "protected": false,
+      "purpose": "trusted EasyList advertising supplement enabled for conservative collection"
+    },
+    {
+      "name": "ACL4SSR BanEasyPrivacy",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list",
+      "policy": "REJECT",
+      "enabled": true,
+      "protected": false,
+      "purpose": "trusted EasyPrivacy tracker supplement enabled for conservative collection"
     }
   ],
   "reference_modules": [

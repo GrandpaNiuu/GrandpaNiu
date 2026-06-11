@@ -41,6 +41,7 @@ SCRIPT_PATH_RE = re.compile(r"script-path=(https?://[^,\s]+)")
 UPDATE_URL_RE = re.compile(r"^#!update-url=(https?://\S+)\s*$")
 GITHUB_RAW_RE = re.compile(r"^https://raw\.githubusercontent\.com/([^/]+)/([^/]+)/([^/]+)/(.+)$")
 GITHUB_BLOB_RE = re.compile(r"^https://github\.com/([^/]+)/([^/]+)/blob/([^/]+)/(.+)$")
+DOMAIN_SET_VALUE_RE = re.compile(r"^(?:\+\.)?(?:\*\.)?\.?[A-Za-z0-9_][A-Za-z0-9_.-]*[A-Za-z0-9_]$|^localhost$", re.I)
 PROTECTED_PATTERNS = (
     "spotify-json",
     "spotify-proto",
@@ -58,6 +59,33 @@ PROTECTED_PATTERNS = (
 DISALLOWED_REPLACEMENT_HOSTS = ("ghproxy", "mirror", "tinyurl.com", "bit.ly", "t.co", "shorturl")
 HTML_ERROR_TOKENS = ("404 not found", "repository not found", "file not found", "there isn't a github pages site here")
 RULE_FEATURES = ("DOMAIN", "DOMAIN-SUFFIX", "URL-REGEX", "RULE-SET", "DOMAIN-SET", "payload", "host-suffix")
+RISK_PATTERNS = (
+    "premium",
+    "vip",
+    "unlock",
+    "crack",
+    "bypass payment",
+    "payment bypass",
+    "login bypass",
+    "cookie",
+    "token",
+    "authorization",
+    "boxjs",
+    "adult",
+    "casino",
+    "gambling",
+    "ghproxy",
+    "mirror",
+    "tinyurl",
+    "bit.ly",
+    "t.co/",
+    "shorturl",
+    "会员",
+    "破解",
+    "解锁",
+    "支付绕过",
+    "登录绕过",
+)
 
 
 @dataclass(frozen=True)
@@ -271,6 +299,29 @@ def valid_replacement_host(url: str) -> bool:
     return not any(blocked in host for blocked in DISALLOWED_REPLACEMENT_HOSTS)
 
 
+def github_repo_from_url(url: str) -> str:
+    parsed = urllib.parse.urlparse(url)
+    parts = [part for part in parsed.path.split("/") if part]
+    if parsed.netloc == "raw.githubusercontent.com" and len(parts) >= 2:
+        return f"{parts[0]}/{parts[1]}"
+    if parsed.netloc == "github.com" and len(parts) >= 2:
+        return f"{parts[0]}/{parts[1]}"
+    return ""
+
+
+def trusted_repo_ok(url: str, trusted_repositories: set[str]) -> bool:
+    parsed = urllib.parse.urlparse(url)
+    if parsed.scheme != "https" or not valid_replacement_host(url):
+        return False
+    repo = github_repo_from_url(url)
+    return bool(repo and repo in trusted_repositories)
+
+
+def has_risk_text(text: str) -> bool:
+    lowered = text.lower()
+    return any(token.lower() in lowered for token in RISK_PATTERNS)
+
+
 def github_parts(url: str) -> tuple[str, str, str, str] | None:
     match = GITHUB_RAW_RE.match(url) or GITHUB_BLOB_RE.match(url)
     if not match:
@@ -282,12 +333,69 @@ def raw_url(owner: str, repo: str, branch: str, path: str) -> str:
     return f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}"
 
 
-def replacement_candidates(source: Source) -> list[str]:
-    parts = github_parts(source.url)
-    if not parts:
+def source_type_policy(source: Source) -> tuple[str, str]:
+    if source.json_group:
+        try:
+            item = json.loads(source.line)
+        except json.JSONDecodeError:
+            item = {}
+        return str(item.get("type", "")).upper(), str(item.get("policy", "REJECT")).upper()
+    parts = [part.strip() for part in source.line.split(",")]
+    if len(parts) >= 3 and parts[0] in {"RULE-SET", "DOMAIN-SET"}:
+        return parts[0].upper(), parts[2].upper()
+    if source.kind == "rule-set":
+        return "RULE-SET", "REJECT"
+    if source.kind == "domain-set":
+        return "DOMAIN-SET", "REJECT"
+    return "", ""
+
+
+def active_remote_urls(skip_url: str) -> set[str]:
+    data = read_json(SOURCES_JSON)
+    urls: set[str] = set()
+    for item in data.get("rule_sets", []):
+        url = str(item.get("url", "")).strip()
+        if url and url != skip_url and item.get("enabled", False):
+            urls.add(url)
+    return urls
+
+
+def candidate_pool_replacements(source: Source) -> list[str]:
+    if source.kind not in {"rule-set", "domain-set"} and not source.json_group:
         return []
-    owner, repo, branch, path = parts
-    candidates = [raw_url(owner, repo, other, path) for other in ("main", "master") if other != branch]
+    data = read_json(CANDIDATES_JSON)
+    trusted_repositories = set(data.get("trusted_repositories", []))
+    source_type, source_policy = source_type_policy(source)
+    existing_active = active_remote_urls(source.url)
+    urls: list[str] = []
+    for candidate in data.get("candidates", []):
+        if candidate.get("kind") != "remote_rule":
+            continue
+        if not candidate.get("enabled", False) or not candidate.get("activate", False):
+            continue
+        if candidate.get("protected", False):
+            continue
+        if str(candidate.get("type", "")).upper() != source_type:
+            continue
+        if str(candidate.get("policy", "REJECT")).upper() != source_policy:
+            continue
+        url = str(candidate.get("url", "")).strip()
+        if not url or url == source.url or url in existing_active:
+            continue
+        metadata = "\n".join(str(candidate.get(key, "")) for key in ("name", "url", "purpose"))
+        if has_risk_text(metadata) or not trusted_repo_ok(url, trusted_repositories):
+            continue
+        urls.append(url)
+    return urls
+
+
+def replacement_candidates(source: Source) -> list[str]:
+    candidates: list[str] = []
+    parts = github_parts(source.url)
+    if parts:
+        owner, repo, branch, path = parts
+        candidates.extend(raw_url(owner, repo, other, path) for other in ("main", "master") if other != branch)
+    candidates.extend(candidate_pool_replacements(source))
     return [url for url in dict.fromkeys(candidates) if valid_replacement_host(url)]
 
 
@@ -296,9 +404,17 @@ def verify_replacement(source: Source, url: str) -> bool:
     if not check.ok or check.status not in {200, 206} or is_html_error(check):
         return False
     sample = check.sample
+    source_type, _ = source_type_policy(source)
     if source.kind == "script":
         return any(token in sample for token in ("$done", "function", "=>", "const ", "let ", "var "))
-    if source.kind in {"rule-set", "domain-set", "raw"}:
+    if source_type == "DOMAIN-SET":
+        values = [
+            line.strip()
+            for line in sample.splitlines()
+            if line.strip() and not line.lstrip().startswith(("#", "//"))
+        ]
+        return bool(values) and sum(1 for line in values[:50] if DOMAIN_SET_VALUE_RE.match(line)) >= min(3, len(values))
+    if source_type == "RULE-SET" or source.kind in {"rule-set", "raw"}:
         return any(token in sample for token in RULE_FEATURES)
     return "<html" not in sample.lower()
 

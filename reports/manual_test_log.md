@@ -81,7 +81,7 @@
 | Daily invalid rule audit and safe repair | 27307325073 | GitHub Actions job 明细 | completed | success | 通过 |
 | Upstream candidate collect | 27236314334 | GitHub Actions job 明细 | completed | success | 通过 |
 | Repository Health Check | 27105193304 | GitHub Actions job 明细 | completed | success | 通过 |
-| Stable Plus Promotion PR | 27026755128 | GitHub Actions job 明细 | completed | success / draft PR step skipped | 通过；未创建晋级 PR，保持人工审查 |
+| Legacy promotion workflow (deprecated) | 27026755128 | GitHub Actions job 明细 | completed | success / draft PR step skipped | 通过；未创建晋级 PR，保持人工审查 |
 
 补充说明：GitHub Pages deployment 属于页面部署，不作为 Stable / Stable Plus 晋级依据。若 Actions 页面出现新的 in_progress 运行，需等待完成后重新记录。
 
@@ -129,7 +129,7 @@ Stable Plus 仍需逐个 App 单项测试。Stable 第一轮通过不代表 Stab
 git fetch origin
 git checkout main
 git pull --ff-only origin main
-python3 scripts/build_module.py --build --profile stable
+python3 scripts/build_module.py --build --profile fusion
 python3 scripts/factory_finalize.py --sync-root
 python3 scripts/build_release_variants.py
 python3 scripts/validate_repository.py

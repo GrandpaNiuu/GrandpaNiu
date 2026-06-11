@@ -13,11 +13,10 @@
 
 ## 默认发布规则
 
-- 默认 workflow 必须使用 `--profile stable`。
-- 默认 workflow 不允许使用 `--profile stable-plus`。
-- 默认 workflow 不允许使用 `--profile full`。
-- 根目录 `Ronghemokuai.sgmodule` 只允许由 stable 构建后同步生成。
-- 任何 workflow 不得把 Full 或 Stable Plus 当成默认入口。
+- 默认 workflow 必须使用 `--profile fusion`。
+- 默认 workflow 不允许使用旧 `stable-plus`、`lite` 或 `full` profile。
+- 根目录 `Ronghemokuai.sgmodule` 只允许由 fusion 构建后同步生成。
+- 任何 workflow 不得把旧 Stable / Stable Plus / Lite / Full 当成默认入口。
 
 ## MITM 晋级规则
 
@@ -117,7 +116,7 @@ request-body / binary / protobuf / Cookie / Token / 登录 / 支付 / 验证码
 ```bash
 python3 -m py_compile scripts/*.py
 python3 scripts/convert_quanx_rules.py
-python3 scripts/build_module.py --build --profile stable
+python3 scripts/build_module.py --build --profile fusion
 python3 scripts/factory_finalize.py --sync-root
 python3 scripts/build_release_variants.py
 python3 scripts/validate_remote_rule_syntax.py

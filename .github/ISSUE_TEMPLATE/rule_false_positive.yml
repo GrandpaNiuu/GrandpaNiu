@@ -12,7 +12,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        请尽量完整填写。没有 Lite 对照和关闭模块对照时，维护者很难判断是模块误伤、节点问题、App 自身问题，还是网络问题。
+        请尽量完整填写。没有关闭模块对照和关键日志时，维护者很难判断是模块误伤、节点问题、App 自身问题，还是网络问题。
 
   - type: dropdown
     id: profile
@@ -20,10 +20,8 @@ body:
       label: 使用的模块版本
       description: 不要同时启用多个版本。
       options:
-        - Stable
-        - Stable Plus
-        - Lite
-        - Full
+        - Fusion
+        - Legacy / Deprecated
         - 不确定
     validations:
       required: true
@@ -33,7 +31,7 @@ body:
     attributes:
       label: 模块链接或 commit
       description: 粘贴你导入的模块链接，或出现问题时的 commit / 日期。
-      placeholder: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule
+      placeholder: https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
     validations:
       required: false
 
@@ -83,9 +81,9 @@ body:
       required: true
 
   - type: dropdown
-    id: lite_compare
+    id: fusion_latest_compare
     attributes:
-      label: 切换 Lite 后是否正常
+      label: 更新到最新 Fusion 后是否正常
       options:
         - 正常
         - 仍异常

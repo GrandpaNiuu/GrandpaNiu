@@ -105,6 +105,21 @@ def active_lines(text: str):
             yield stripped
 
 
+def workflow_builds_fusion(text: str) -> bool:
+    compact = re.sub(r"\s+", " ", text)
+    return any(
+        token in text or token in compact
+        for token in (
+            "fusion-build-marker: scripts/build_module.py --build --profile fusion",
+            "scripts/build_module.py --build --profile fusion",
+            "--profile fusion",
+            '"--profile", "fusion"',
+            "'--profile', 'fusion'",
+            "profile=fusion",
+        )
+    )
+
+
 def parse_hosts(text: str) -> list[str]:
     hosts: list[str] = []
     for line in text.splitlines():
@@ -275,6 +290,25 @@ def validate_workflows() -> None:
     for token in ("build_module.py", "factory_finalize.py", "build_release_variants.py", "validate_repository.py"):
         if token not in daily:
             fail(f"daily-module-update workflow missing command token: {token}")
+
+    for relative in (
+        ".github/workflows/daily-module-update.yml",
+        ".github/workflows/daily-audit-and-repair.yml",
+        ".github/workflows/daily-invalid-source-repair.yml",
+        ".github/workflows/upstream-collect.yml",
+    ):
+        text = read_text(ROOT / relative)
+        if 'cron: "0 16 * * *"' not in text and "cron: '0 16 * * *'" not in text:
+            fail(f"{relative} must run daily at Beijing 00:00")
+
+    invalid_source = read_text(ROOT / ".github" / "workflows" / "daily-invalid-source-repair.yml")
+    for token in ("collect_upstreams.py", "audit_repair_invalid_sources.py", "validate_remote_rule_syntax.py"):
+        if token not in invalid_source:
+            fail(f"daily-invalid-source-repair workflow missing command token: {token}")
+
+    audit = read_text(ROOT / ".github" / "workflows" / "daily-audit-and-repair.yml")
+    if "validate_remote_rule_syntax.py" not in audit:
+        fail("daily-audit-and-repair workflow missing validate_remote_rule_syntax.py")
 
 
 def validate_no_tool_traces() -> None:

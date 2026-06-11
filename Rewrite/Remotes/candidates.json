@@ -100,6 +100,28 @@
       "purpose": "trusted China advertising supplement candidate enabled for conservative collection"
     },
     {
+      "name": "ACL4SSR BanEasyList",
+      "kind": "remote_rule",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list",
+      "policy": "REJECT",
+      "enabled": true,
+      "activate": true,
+      "protected": false,
+      "purpose": "trusted EasyList advertising supplement enabled for conservative collection"
+    },
+    {
+      "name": "ACL4SSR BanEasyPrivacy",
+      "kind": "remote_rule",
+      "type": "RULE-SET",
+      "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list",
+      "policy": "REJECT",
+      "enabled": true,
+      "activate": true,
+      "protected": false,
+      "purpose": "trusted EasyPrivacy tracker supplement enabled for conservative collection"
+    },
+    {
       "name": "Loyalsoldier reject domain set",
       "kind": "remote_rule",
       "type": "DOMAIN-SET",

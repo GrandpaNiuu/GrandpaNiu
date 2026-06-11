@@ -29,10 +29,6 @@ USER_AGENT = "GrandpaNiu-Remote-Rule-Syntax-Validator/1.2"
 SCAN_FILES = [
     ROOT / "Ronghemokuai.sgmodule",
     ROOT / "Release" / "Ronghemokuai.sgmodule",
-    ROOT / "Release" / "Ronghemokuai-stable.sgmodule",
-    ROOT / "Release" / "Ronghemokuai-stable-plus.sgmodule",
-    ROOT / "Release" / "Ronghemokuai-lite.sgmodule",
-    ROOT / "Release" / "Ronghemokuai-full.sgmodule",
     ROOT / "Rules" / "aggressive-ad-sources.list",
 ]
 
@@ -40,8 +36,6 @@ NORMALIZE_TEXT_FILES = [
     *SCAN_FILES,
     ROOT / "Rewrite" / "Sources" / "Rule.conf",
     ROOT / "Rules" / "original-remote-rule-sets.list",
-    ROOT / "backup" / "Ronghemokuai.before-factory-refactor.sgmodule",
-    ROOT / "backup" / "Ronghemokuai.stable.sgmodule",
 ]
 
 PAGES_PREFIX = "https://grandpaniuu.github.io/GrandpaNiu/"

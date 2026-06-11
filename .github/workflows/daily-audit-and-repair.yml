@@ -2,7 +2,8 @@ name: Daily invalid rule audit and safe repair
 
 on:
   schedule:
-    - cron: "0 19 * * *"
+    # 16:00 UTC = 00:00 Beijing time.
+    - cron: "0 16 * * *"
   workflow_dispatch:
 
 permissions:
@@ -27,14 +28,16 @@ jobs:
           python-version: "3.x"
 
       - name: Run daily audit and safe repair
-        run: python scripts/audit_and_repair_module.py
+        run: python3 scripts/audit_and_repair_module.py
 
       - name: Build fusion module after audit
         run: |
-          python scripts/build_module.py --build --profile fusion
-          python scripts/factory_finalize.py --sync-root
-          python scripts/build_release_variants.py
-          python scripts/validate_repository.py
+          # fusion-build-marker: scripts/build_module.py --build --profile fusion
+          python3 scripts/build_module.py --build --profile fusion
+          python3 scripts/factory_finalize.py --sync-root
+          python3 scripts/build_release_variants.py
+          python3 scripts/validate_remote_rule_syntax.py
+          python3 scripts/validate_repository.py
 
       - name: Commit audit report and safe repairs
         run: |
@@ -43,11 +46,12 @@ jobs:
           for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
-            python scripts/audit_and_repair_module.py
-            python scripts/build_module.py --build --profile fusion
-            python scripts/factory_finalize.py --sync-root
-            python scripts/build_release_variants.py
-            python scripts/validate_repository.py
+            python3 scripts/audit_and_repair_module.py
+            python3 scripts/build_module.py --build --profile fusion
+            python3 scripts/factory_finalize.py --sync-root
+            python3 scripts/build_release_variants.py
+            python3 scripts/validate_remote_rule_syntax.py
+            python3 scripts/validate_repository.py
             git add -A
             if git diff --cached --quiet; then
               echo "No audit changes to commit."

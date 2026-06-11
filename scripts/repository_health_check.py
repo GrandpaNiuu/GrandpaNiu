@@ -80,7 +80,10 @@ def write(path: Path, text: str) -> None:
 
 
 def run_command(args: list[str]) -> tuple[bool, str]:
-    proc = subprocess.run(args, cwd=ROOT, text=True, capture_output=True)
+    try:
+        proc = subprocess.run(args, cwd=ROOT, text=True, capture_output=True)
+    except OSError as exc:
+        return False, f"{type(exc).__name__}: {exc}"
     output = (proc.stdout + proc.stderr).strip() or "无输出"
     return proc.returncode == 0, output
 
@@ -138,6 +141,21 @@ def section_counts(text: str) -> dict[str, int]:
         if current in counts and stripped:
             counts[current] += 1
     return counts
+
+
+def workflow_builds_fusion(text: str) -> bool:
+    compact = re.sub(r"\s+", " ", text)
+    return any(
+        token in text or token in compact
+        for token in (
+            "fusion-build-marker: scripts/build_module.py --build --profile fusion",
+            "scripts/build_module.py --build --profile fusion",
+            "--profile fusion",
+            '"--profile", "fusion"',
+            "'--profile', 'fusion'",
+            "profile=fusion",
+        )
+    )
 
 
 def workflow_summary(path: Path) -> str:

@@ -647,6 +647,8 @@ DOMAIN-SUFFIX,adstextview.qq.com,REJECT,pre-matching
 DOMAIN-SUFFIX,adsview.qq.com,REJECT,pre-matching
 RULE-SET,https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-appAdBlock-shadowrocket.list,REJECT
 RULE-SET,https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-allAdBlock-shadowrocket.list,REJECT
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list,REJECT
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list,REJECT
 [URL Rewrite]
 ^(^https?:\/\/www\.vgtime\.com\/app\/topic\/\d+\.jhtml\?.*?&close_ad=)false(&page=\d&sign=\w+&timestamp=\d+&font_size=\d$) $1true$2 302
 ^https?:\/\/((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\/music\/common\/upload\/t_splash_info\/ - reject

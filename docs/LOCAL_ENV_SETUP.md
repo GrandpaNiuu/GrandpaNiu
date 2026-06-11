@@ -38,7 +38,7 @@ node --check Scripts/app-cleaner.js
 Stable 是默认正式版；根目录 `Ronghemokuai.sgmodule` 必须等于 Stable 构建结果。
 
 ```bash
-python3 scripts/build_module.py --build --profile stable
+python3 scripts/build_module.py --build --profile fusion
 python3 scripts/factory_finalize.py --sync-root
 python3 scripts/build_release_variants.py
 python3 scripts/validate_repository.py
@@ -50,7 +50,7 @@ python3 scripts/repository_health_check.py
 
 ```text
 Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
-        -> scripts/build_module.py --build --profile stable
+        -> scripts/build_module.py --build --profile fusion
         -> Release/Ronghemokuai.sgmodule
         -> scripts/factory_finalize.py --sync-root
         -> Ronghemokuai.sgmodule

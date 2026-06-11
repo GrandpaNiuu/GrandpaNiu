@@ -38,8 +38,8 @@
 ## 测试命令
 
 ```text
-python3 scripts/build_module.py --build --profile lite
-python3 scripts/build_module.py --build --profile full
+python3 scripts/build_module.py --build --profile fusion
+python3 scripts/build_module.py --build --profile fusion
 ```
 
 注意：构建 lite 或 full 会更新 `Release/Ronghemokuai.sgmodule`。正式发布前必须重新用 stable 构建并同步。

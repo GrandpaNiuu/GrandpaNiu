@@ -56,7 +56,7 @@ PROFILE_POLICY_REQUIRED_TOKENS = [
 
 FALSE_POSITIVE_TEMPLATE_REQUIRED_TOKENS = [
     "使用的模块版本",
-    "切换 Lite 后是否正常",
+    "更新到最新 Fusion 后是否正常",
     "关闭模块后是否正常",
     "是否已更新模块、脚本、全部资源",
     "Shadowrocket / Surge 日志关键命中",

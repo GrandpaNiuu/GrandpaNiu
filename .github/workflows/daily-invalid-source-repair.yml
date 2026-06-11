@@ -2,7 +2,8 @@ name: Daily invalid source audit and repair
 
 on:
   schedule:
-    - cron: "17 19 * * *"
+    # 16:00 UTC = 00:00 Beijing time.
+    - cron: "0 16 * * *"
   workflow_dispatch:
 
 permissions:
@@ -22,13 +23,18 @@ jobs:
           fetch-depth: 0
 
       - name: Validate Python scripts
-        run: python3 -m py_compile scripts/audit_repair_invalid_sources.py scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/validate_repository.py
+        run: python3 -m py_compile scripts/collect_upstreams.py scripts/audit_repair_invalid_sources.py scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/validate_repository.py
+
+      - name: Refresh trusted upstream candidate pool
+        run: python3 scripts/collect_upstreams.py
 
       - name: Run source-first invalid source audit and repair
         run: python3 scripts/audit_repair_invalid_sources.py
 
       - name: Build fusion factory output
-        run: python3 scripts/build_module.py --build --profile fusion
+        run: |
+          # fusion-build-marker: scripts/build_module.py --build --profile fusion
+          python3 scripts/build_module.py --build --profile fusion
 
       - name: Finalize factory output and sync root module
         run: python3 scripts/factory_finalize.py --sync-root
@@ -37,7 +43,9 @@ jobs:
         run: python3 scripts/build_release_variants.py
 
       - name: Validate repository
-        run: python3 scripts/validate_repository.py
+        run: |
+          python3 scripts/validate_remote_rule_syntax.py
+          python3 scripts/validate_repository.py
 
       - name: Commit invalid source report and source-first repairs
         run: |
@@ -53,7 +61,9 @@ jobs:
             if git push origin HEAD:main; then
               exit 0
             fi
+            echo "Push failed on attempt ${attempt}; rebasing on origin/main and retrying."
             git fetch origin main
             git rebase origin/main
           done
+          echo "Push failed after 3 attempts."
           exit 1

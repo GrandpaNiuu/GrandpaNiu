@@ -63,7 +63,7 @@
 ```text
 python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/validate_remote_rule_syntax.py scripts/validate_governance_extensions.py scripts/repository_health_check.py
 python3 scripts/convert_quanx_rules.py
-python3 scripts/build_module.py --build --profile stable
+python3 scripts/build_module.py --build --profile fusion
 python3 scripts/factory_finalize.py --sync-root
 python3 scripts/build_release_variants.py
 python3 scripts/validate_remote_rule_syntax.py

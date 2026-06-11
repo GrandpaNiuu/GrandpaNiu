@@ -35,14 +35,8 @@ PURE_DOMAIN_SET_URLS = {
 NORMALIZE_TEXT_FILES = [
     ROOT / "Ronghemokuai.sgmodule",
     ROOT / "Release" / "Ronghemokuai.sgmodule",
-    ROOT / "Release" / "Ronghemokuai-stable.sgmodule",
-    ROOT / "Release" / "Ronghemokuai-stable-plus.sgmodule",
-    ROOT / "Release" / "Ronghemokuai-lite.sgmodule",
-    ROOT / "Release" / "Ronghemokuai-full.sgmodule",
     ROOT / "Rewrite" / "Sources" / "Rule.conf",
     ROOT / "Rules" / "original-remote-rule-sets.list",
-    ROOT / "backup" / "Ronghemokuai.before-factory-refactor.sgmodule",
-    ROOT / "backup" / "Ronghemokuai.stable.sgmodule",
 ]
 
 

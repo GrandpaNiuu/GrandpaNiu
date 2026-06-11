@@ -13,7 +13,6 @@ on:
       - Daily invalid source audit and repair
       - Upstream candidate collect
       - Repository Health Check
-      - Stable Plus Promotion PR
     types:
       - completed
 
@@ -81,14 +80,14 @@ jobs:
           1. Open the failed run and inspect the failed job / step.
           2. Check whether `validate_repository.py` failed.
           3. Check whether Root and Release still match.
-          4. Check whether multi-version release files still exist.
+          4. Check whether Fusion root and Release output still match.
           5. Check whether this was caused by a temporary upstream network failure.
-          6. If the failed workflow is `Stable Plus Promotion PR`, verify that the change is single-App scoped and backed by `manual_test_log.md`.
+          6. Confirm the failed workflow is still using Fusion as the single public module entry.
 
           ## Recovery commands
 
           ```bash
-          python3 scripts/build_module.py --build --profile stable
+          python3 scripts/build_module.py --build --profile fusion
           python3 scripts/factory_finalize.py --sync-root
           python3 scripts/build_release_variants.py
           python3 scripts/validate_repository.py

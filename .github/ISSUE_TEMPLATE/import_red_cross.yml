@@ -39,10 +39,8 @@ body:
     attributes:
       label: 使用的模块版本
       options:
-        - Stable
-        - Stable Plus
-        - Lite
-        - Full
+        - Fusion
+        - Legacy / Deprecated
         - 不确定
     validations:
       required: true
@@ -51,7 +49,7 @@ body:
     id: module_url
     attributes:
       label: 模块链接
-      placeholder: https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai-stable.sgmodule
+      placeholder: https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
     validations:
       required: true
 
@@ -126,6 +124,6 @@ body:
     id: notes
     attributes:
       label: 其他补充
-      placeholder: 例如：Stable 正常但 Stable Plus 红叉；换网络后正常；只有 raw.githubusercontent.com 失败。
+      placeholder: 例如：Fusion 导入红叉；换网络后正常；只有 raw.githubusercontent.com 失败。
     validations:
       required: false

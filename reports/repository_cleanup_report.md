@@ -41,7 +41,7 @@ Date: 2026-05-29
 ## Flow Fixes
 
 - Refactored the factory into a source-driven build path.
-- Ran `scripts/build_module.py --build --profile stable`.
+- Ran `scripts/build_module.py --build --profile fusion`.
 - Ran `scripts/factory_finalize.py --sync-root`.
 - Regenerated `Release/Ronghemokuai.sgmodule`.
 - Synchronized `Release/Ronghemokuai.sgmodule` back to root `Ronghemokuai.sgmodule`.

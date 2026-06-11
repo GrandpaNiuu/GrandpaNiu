@@ -156,9 +156,9 @@ def candidate_text(candidate: dict[str, Any]) -> str:
     return "\n".join(str(candidate.get(key, "")) for key in ("name", "url", "purpose", "script_entry"))
 
 
-def has_risk_text(text: str) -> str:
+def has_risk_text(text: str, patterns: tuple[str, ...] = RISK_PATTERNS) -> str:
     lowered = text.lower()
-    for token in RISK_PATTERNS:
+    for token in patterns:
         if token.lower() in lowered:
             return token
     return ""
@@ -365,10 +365,11 @@ def process_candidate(
     if looks_like_html_error(fetched):
         result.reason = "candidate returned an HTML/error page"
         return result
-    risk = has_risk_text(fetched.text)
-    if risk:
-        result.reason = f"risk keyword in content: {risk}"
-        return result
+    if kind == "script":
+        risk = has_risk_text(fetched.text)
+        if risk:
+            result.reason = f"risk keyword in script content: {risk}"
+            return result
 
     if kind == "reference_module":
         result.reason = "reference module is report-only"

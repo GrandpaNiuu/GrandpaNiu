@@ -108,7 +108,7 @@ python3 -m py_compile \
 
 node --check Scripts/app-cleaner.js
 
-python3 scripts/build_module.py --build --profile stable
+python3 scripts/build_module.py --build --profile fusion
 python3 scripts/factory_finalize.py --sync-root
 python3 scripts/build_release_variants.py
 python3 scripts/validate_profiles.py
