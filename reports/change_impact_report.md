@@ -1,16 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-11 08:45:12 +0800
+- 生成时间：2026-06-11 09:23:12 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `reports/android_rules_report.md`
 - `reports/multi_release_report.md`
-- `reports/qingrex_miniapp_import_report.md`
-- `reports/remote_rule_syntax_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
 
 ## 新增文件
 
@@ -22,12 +17,7 @@
 
 ## 修改文件
 
-- `reports/android_rules_report.md`
 - `reports/multi_release_report.md`
-- `reports/qingrex_miniapp_import_report.md`
-- `reports/remote_rule_syntax_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
 
 ## 影响的模块层
 
