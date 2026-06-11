@@ -67,17 +67,6 @@ GrandpaNiu 是一个用于 **Shadowrocket、Surge 和 Android 规则客户端** 
 
 ---
 
-## 🔗 公开入口
-
-* GitHub Pages 首页：<https://grandpaniuu.github.io/GrandpaNiu/>
-* iOS Fusion 模块：<https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule>
-* Shadowrocket 一键导入：<https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRonghemokuai.sgmodule>
-* Android 导入页：<https://grandpaniuu.github.io/GrandpaNiu/android.html>
-* Release 目录：<https://grandpaniuu.github.io/GrandpaNiu/Web/catalog.md>
-* 机器可读索引：<https://grandpaniuu.github.io/GrandpaNiu/Web/release-links.json>
-
----
-
 ## 🧭 入口选择
 
 | 图标 | 你现在的情况 | 点这里 | 说明 |
