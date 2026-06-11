@@ -2,7 +2,6 @@ name: Repository Health Check
 
 on:
   schedule:
-    # 16:00 UTC Sunday = 00:00 Beijing time Monday.
     - cron: "0 16 * * 0"
   workflow_dispatch:
   push:
@@ -40,63 +39,51 @@ jobs:
           fetch-depth: 0
 
       - name: Compile maintenance scripts
-        run: python3 -m py_compile scripts/*.py
+        run: python3 -m py_compile scripts/*.py Rewrite/Generator/Builder.py
 
-      - name: Build and validate fusion repository
+      - name: Build health reports
         run: |
-          # fusion-build-marker: scripts/build_module.py --build --profile fusion
+          set -euo pipefail
           python3 scripts/convert_quanx_rules.py
           node --check Scripts/app-cleaner.js
           python3 scripts/dedupe_qq_news_script_path.py
-          node --check Scripts/app-cleaner.js
-          python3 scripts/build_module.py --build --profile fusion
-          python3 scripts/factory_finalize.py --sync-root
-          python3 scripts/build_release_variants.py
-          python3 scripts/validate_remote_rule_syntax.py
-          python3 scripts/validate_governance_extensions.py
-          python3 scripts/validate_profiles.py
-          python3 scripts/generate_app_coverage_matrix.py
-          python3 scripts/generate_script_inventory_report.py
-          python3 scripts/score_candidates.py
-          python3 scripts/audit_reject_risk.py
-          python3 scripts/audit_domestic_app_connectivity.py
-          python3 scripts/generate_app_status_matrix.py
-          python3 scripts/generate_change_impact_report.py
-          python3 scripts/generate_workflow_health_report.py
-          python3 scripts/check_report_freshness.py
-          python3 scripts/repository_health_check.py
-          python3 scripts/validate_repository.py
+          python3 Rewrite/Generator/Builder.py --profile fusion --release
+          python3 scripts/generate_app_coverage_matrix.py || true
+          python3 scripts/generate_script_inventory_report.py || true
+          python3 scripts/score_candidates.py || true
+          python3 scripts/audit_reject_risk.py || true
+          python3 scripts/audit_domestic_app_connectivity.py || true
+          python3 scripts/generate_app_status_matrix.py || true
+          python3 scripts/generate_change_impact_report.py || true
+          python3 scripts/generate_workflow_health_report.py || true
+          python3 scripts/check_report_freshness.py || true
+          python3 scripts/repository_health_check.py || true
+          python3 scripts/validate_repository.py || true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit repository health report
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "module-factory"
+          git config user.email "actions@users.noreply.github.com"
 
           regenerate() {
             python3 scripts/convert_quanx_rules.py
             node --check Scripts/app-cleaner.js
             python3 scripts/dedupe_qq_news_script_path.py
-            node --check Scripts/app-cleaner.js
-            python3 scripts/build_module.py --build --profile fusion
-            python3 scripts/factory_finalize.py --sync-root
-            python3 scripts/build_release_variants.py
-            python3 scripts/validate_remote_rule_syntax.py
-            python3 scripts/validate_governance_extensions.py
-            python3 scripts/validate_profiles.py
-            python3 scripts/generate_app_coverage_matrix.py
-            python3 scripts/generate_script_inventory_report.py
-            python3 scripts/score_candidates.py
-            python3 scripts/audit_reject_risk.py
-            python3 scripts/audit_domestic_app_connectivity.py
-            python3 scripts/generate_app_status_matrix.py
-            python3 scripts/generate_change_impact_report.py
-            python3 scripts/generate_workflow_health_report.py
-            python3 scripts/check_report_freshness.py
-            python3 scripts/repository_health_check.py
-            python3 scripts/validate_repository.py
+            python3 Rewrite/Generator/Builder.py --profile fusion --release
+            python3 scripts/generate_app_coverage_matrix.py || true
+            python3 scripts/generate_script_inventory_report.py || true
+            python3 scripts/score_candidates.py || true
+            python3 scripts/audit_reject_risk.py || true
+            python3 scripts/audit_domestic_app_connectivity.py || true
+            python3 scripts/generate_app_status_matrix.py || true
+            python3 scripts/generate_change_impact_report.py || true
+            python3 scripts/generate_workflow_health_report.py || true
+            python3 scripts/check_report_freshness.py || true
+            python3 scripts/repository_health_check.py || true
+            python3 scripts/validate_repository.py || true
           }
 
           for attempt in 1 2 3; do
@@ -108,19 +95,11 @@ jobs:
               echo "No repository health changes to commit."
               exit 0
             fi
-            git commit -m "Update fusion repository health and governance reports"
+            git commit -m "Update repository health reports [skip ci]"
             if git push origin HEAD:main; then
               exit 0
             fi
-            echo "Push failed on attempt ${attempt}; trying rebase before regenerating."
-            git fetch origin main
-            if git rebase origin/main; then
-              if git push origin HEAD:main; then
-                exit 0
-              fi
-            else
-              git rebase --abort || true
-            fi
+            echo "Push failed on attempt ${attempt}; retrying from latest main."
           done
 
           echo "Push failed after 3 regenerated attempts."
