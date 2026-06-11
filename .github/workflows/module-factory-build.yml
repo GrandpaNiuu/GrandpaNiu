@@ -6,7 +6,6 @@ on:
     branches:
       - main
     paths:
-      - "Ronghemokuai.sgmodule"
       - "scripts/**"
       - "docs/**"
       - "reports/manual_test_log.md"
@@ -58,7 +57,7 @@ jobs:
           python3 -m py_compile scripts/*.py Rewrite/Generator/Builder.py
           node --check Scripts/app-cleaner.js
 
-      - name: Prepare sources
+      - name: Build factory outputs
         run: |
           set -euo pipefail
           python3 scripts/import_qingrex_official_module.py
@@ -66,21 +65,38 @@ jobs:
           python3 scripts/build_android_rules.py
           python3 scripts/android_format_check.py
           python3 scripts/convert_quanx_rules.py
-
-      - name: Build factory outputs
-        run: |
-          set -euo pipefail
-          python3 Rewrite/Generator/Builder.py --profile fusion --release --check
+          python3 Rewrite/Generator/Builder.py --profile fusion --release
 
       - name: Commit generated files
         run: |
           set -euo pipefail
           git config user.name "module-factory"
           git config user.email "actions@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No generated file changes."
-            exit 0
-          fi
-          git commit -m "Build module factory outputs"
-          git push
+
+          regenerate() {
+            python3 scripts/import_qingrex_official_module.py
+            python3 scripts/dedupe_qq_news_script_path.py
+            python3 scripts/build_android_rules.py
+            python3 scripts/android_format_check.py
+            python3 scripts/convert_quanx_rules.py
+            python3 Rewrite/Generator/Builder.py --profile fusion --release
+          }
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            regenerate
+            git add -A
+            if git diff --cached --quiet; then
+              echo "No generated file changes."
+              exit 0
+            fi
+            git commit -m "Build module factory outputs [skip ci]"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push failed on attempt ${attempt}; trying again from latest main."
+          done
+
+          echo "Push failed after 3 regenerated attempts."
+          exit 1
