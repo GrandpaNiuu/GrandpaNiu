@@ -1,21 +1,26 @@
 # Rewrite Registry
 
-本文件用于登记模块片段来源、用途、状态和风险级别。
+This file records source ownership, status, risk level, test status, and fallback path for the module factory.
 
-| 分类 | 文件 | 用途 | 状态 | 备注 |
-|---|---|---|---|---|
-| Rule | Rewrite/Sources/Rule.conf | 主规则区块拆分片段 | 待拆分 | 来源为 Ronghemokuai.sgmodule |
-| URL Rewrite | Rewrite/Sources/URL-Rewrite.conf | URL 重写片段 | 待拆分 | 后续从主模块迁移 |
-| Header Rewrite | Rewrite/Sources/Header-Rewrite.conf | Header 重写片段 | 待拆分 | Spotify 相关内容需重点保护 |
-| Body Rewrite | Rewrite/Sources/Body-Rewrite.conf | Body 重写片段 | 待拆分 | 仅保留广告净化用途 |
-| Map Local | Rewrite/Sources/Map-Local.conf | 本地映射片段 | 待拆分 | 避免误伤播放、登录、支付 |
-| Script | Rewrite/Sources/Script.conf | 脚本片段 | 待拆分 | Spotify / YouTube 不自动删除 |
-| MITM | Rewrite/Sources/MITM.conf | MITM hostname 片段 | 待拆分 | 使用 %APPEND% 保持兼容 |
-| Remote | Rewrite/Remotes/Index.md | 远程规则源索引 | 已建立 | 只登记可信来源 |
+| ID | Name | Type | Local file | Source | Enabled | Risk | Test status | Fallback |
+|---|---|---|---|---|---|---|---|---|
+| core.meta | Module metadata | Meta | `Rewrite/Sources/Meta.conf` | Root module split | yes | low | pending | Rebuild from previous root module |
+| core.rule | Main rules | Rule | `Rewrite/Sources/Rule.conf` | Root module split and `Rules/` | yes | high | partial | Revert recent rule change |
+| core.url_rewrite | URL rewrite | Rewrite | `Rewrite/Sources/URL-Rewrite.conf` | Local source fragment | yes | medium | pending | Revert recent fragment change |
+| core.header_rewrite | Header rewrite | Rewrite | `Rewrite/Sources/Header-Rewrite.conf` | Local source fragment | yes | high | pending | Revert recent fragment change |
+| core.body_rewrite | Body rewrite | Rewrite | `Rewrite/Sources/Body-Rewrite.conf` | Local source fragment | yes | high | pending | Revert recent fragment change |
+| core.map_local | Map local | Rewrite | `Rewrite/Sources/Map-Local.conf` | Local source fragment | yes | high | pending | Revert recent fragment change |
+| core.script | Scripts | Script | `Rewrite/Sources/Script.conf` | `Scripts/` and local fragment | yes | high | partial | Revert recent script entry |
+| core.mitm | MITM hosts | MITM | `Rewrite/Sources/MITM.conf` | Profile layers | yes | high | partial | Revert recent hostname layer |
+| remote.index | Remote index | Remote | `Rewrite/Remotes/Index.md` | Manual record | yes | medium | pending | Disable related remote item |
+| remote.sources | Remote sources | Remote | `Rewrite/Remotes/sources.json` | Manual record | yes | medium | pending | Set item enabled to false |
+| build.plan | Generation plan | Config | `Rewrite/Generate.conf` | Local plan | yes | low | pending | Revert plan change |
+| build.manifest | Manifest | Config | `Rewrite/Manifest.conf` | Local plan | yes | low | pending | Revert manifest change |
+| build.generator | Generator entry | Script | `Rewrite/Generator/Builder.py` | Local wrapper | yes | medium | pending | Run scripts directly |
 
-维护要求：
+## Rules
 
-- 新增来源必须能访问、能验证、用途明确。
-- 不登记未知混淆脚本、短链、镜像站、破解类来源。
-- Spotify / YouTube 相关内容只允许人工确认后调整。
-- 失效来源先写入报告，再决定替换、注释或删除。
+- New active sources must have a clear purpose.
+- High-risk changes must include a fallback path.
+- Spotify and YouTube entries need manual review before changes.
+- Stale sources should be recorded in reports before replacement.
