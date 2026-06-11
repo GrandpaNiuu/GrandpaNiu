@@ -67,22 +67,6 @@ GrandpaNiu 是一个用于 **Shadowrocket、Surge 和 Android 规则客户端** 
 
 ---
 
-## 🧭 入口选择
-
-| 图标 | 你现在的情况 | 点这里 | 说明 |
-|---|---|---|---|
-| 🍎 | iPhone / iPad，使用 Shadowrocket | [导入融合模块][fusion-import] | 推荐入口，支持跳转安装 |
-| 🤖 | Android 用户 | [打开 Android 导入页][android-import] | 进去后按客户端选择规则 |
-| 📊 | 想看仓库健康和报告 | [查看报告][health-report] | 给维护者和高级用户查看 |
-
-**最简单选择：**
-
-* iOS 普通用户：只点 **导入融合模块**。
-* Android 用户：进 **Android 导入页**。
-* 出问题：先关闭模块或对应 App 增强规则，不要反复叠加多个规则。
-
----
-
 ## ✅ 小白怎么用？
 
 普通用户只需要用下面这个主模块入口。
