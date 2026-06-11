@@ -1,6 +1,6 @@
 # 脚本清单与瘦身分析报告
 
-生成时间：2026-06-12 03:49:37 +0800
+生成时间：2026-06-12 07:28:53 +0800
 
 本报告只做静态分析，不删除、不合并、不禁用任何脚本。减少脚本前必须先完成真机测试和回滚准备。
 
@@ -108,5 +108,5 @@
 | `古茗去广告` | Scripts/qingrex-miniapp-app-ad.conf:41 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 需要人工复核 | 无法静态判断，需结合脚本内容和真机测试 | `^https:\/\/newton\.gumingnc\.com\/newton-buyer\/newton\/buyer\/(ump\|touch\|external\/front)` | `https://raw.perzikkop.com/Scripts/MiniPrograms/ming.js` |
 | `spotify-json` | Scripts/spotify.conf:2 | Spotify | http-request | 0 | app2smile | 必须独立保留 | request-body 类处理风险较高，不能并入 response JSON cleaner | `^https:\/\/(spclient\.wg\.spotify\.com\|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\` | `https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js` |
 | `spotify-proto` | Scripts/spotify.conf:3 | Spotify | http-response | 1 | app2smile | 必须独立保留 | 二进制 body / protobuf 类处理，不能简单合并 | `^https:\/\/(spclient\.wg\.spotify\.com\|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/` | `https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js` |
-| `youtube.response` | Scripts/youtube.conf:2 | YouTube | http-response | 1 | Maasea | 必须独立保留 | 二进制 body / protobuf 类处理，不能简单合并 | `^https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse\|next\|player\|search\|reel\/reel` | `https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js` |
+| `﻿youtube.response` | Scripts/youtube.conf:1 | YouTube | http-response | 1 | Maasea | 必须独立保留 | 二进制 body / protobuf 类处理，不能简单合并 | `^https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse\|next\|player\|search\|reel\/reel` | `https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js` |
 | `zhihu-enhance` | Scripts/zhihu-enhance.conf:4 | 知乎 | http-response | 1 | local | 需要人工复核 | 脚本逻辑较大或涉及深层结构，不能仅凭入口判断为低风险 | `^https?:\/\/api\.zhihu\.com\/(topstory\|moments\|feed\|notifications\|v\d+\/questions\/\d+\/(f` | `https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/zhihu-enhance.js` |

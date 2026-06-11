@@ -7,7 +7,7 @@
 | App / 服务 | 覆盖方式 | 覆盖强度 | 风险等级 | 来源文件 | 测试状态 | 最近测试日期 | 需要测试项目 | 备注 |
 |---|---|---|---|---|---|---|---|---|
 | Spotify | Header Rewrite, MITM, Remote Rule, Rule, Script | 重点专项 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/Header-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rules/spotify-direct.list<br>Scripts/spotify.conf | 未测 | 未测试 | 连续播放、切歌、搜索、歌单加载 | 高风险项需手动复测 |
-| YouTube | MITM, Map Local, Remote Rule, Rule, Script | 重点专项 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/Map-Local.conf<br>Rules/youtube-direct.list<br>Scripts/youtube.conf | 未测 | 未测试 | 首页、搜索、播放、Shorts、评论区 | 高风险项需手动复测 |
+| YouTube | MITM, Remote Rule, Rule, Script | 重点专项 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/MITM.conf<br>Rules/youtube-direct.list<br>Scripts/youtube.conf | 未测 | 未测试 | 首页、搜索、播放、Shorts、评论区 | 高风险项需手动复测 |
 | 知乎 | Body Rewrite, MITM, Remote Rule, Rule, Script, URL Rewrite | 重点专项 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list<br>Scripts/app-clean.conf<br>Scripts/zhihu-enhance.conf | 未测 | 未测试 | 首页、回答页、搜索、评论、点赞、收藏 | 高风险项需手动复测 |
 | Bilibili | Body Rewrite, MITM, Map Local, Remote Rule, Rule, URL Rewrite | 明确覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/Map-Local.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list<br>Rules/web-ads.list | 未测 | 未测试 | 首页、搜索、播放页、评论区 | 高风险项需手动复测 |
 | 微博 | Body Rewrite, MITM, Script, URL Rewrite | 明确覆盖 | 高 | Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Scripts/app-clean.conf | 未测 | 未测试 | 首页、搜索、详情页、核心流程 | 高风险项需手动复测 |

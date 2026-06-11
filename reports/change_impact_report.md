@@ -1,11 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-12 03:49:38 +0800
+- 生成时间：2026-06-12 07:28:53 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `.github/workflows/repository-health.yml`
+- `README.md`
 
 ## 新增文件
 
@@ -17,11 +17,11 @@
 
 ## 修改文件
 
-- `.github/workflows/repository-health.yml`
+- `README.md`
 
 ## 影响的模块层
 
-- Workflows
+- README/docs
 
 ## 可能影响的 App
 
