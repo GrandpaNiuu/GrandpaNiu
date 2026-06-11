@@ -1,16 +1,16 @@
-name: Stable Plus Promotion PR
+name: Fusion Promotion Review
 
 on:
   workflow_dispatch:
     inputs:
       app:
-        description: "Single App name to evaluate for Stable promotion"
+        description: "Single App name to evaluate in Fusion"
         required: true
         default: "未指定"
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  pull-requests: read
 
 concurrency:
   group: module-maintenance
@@ -23,61 +23,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Compile maintenance scripts
-        run: |
-          python3 -m py_compile scripts/create_promotion_pr.py scripts/build_module.py scripts/factory_finalize.py scripts/build_release_variants.py scripts/validate_repository.py scripts/validate_profiles.py
+        run: python3 -m py_compile scripts/create_promotion_pr.py scripts/build_module.py scripts/factory_finalize.py scripts/build_release_variants.py scripts/validate_repository.py scripts/validate_profiles.py
 
-      - name: Generate promotion PR report
+      - name: Generate Fusion review report
         run: python3 scripts/create_promotion_pr.py --app "${{ github.event.inputs.app }}"
 
-      - name: Build stable module without changing promotion scope
+      - name: Build and validate Fusion module
         run: |
-          python3 scripts/build_module.py --build --profile stable
+          python3 scripts/build_module.py --build --profile fusion
           python3 scripts/factory_finalize.py --sync-root
           python3 scripts/build_release_variants.py
-          python3 scripts/validate_repository.py
           python3 scripts/validate_profiles.py
+          python3 scripts/validate_repository.py
 
-      - name: Check promotion verdict
-        id: verdict
+      - name: Print review report
         run: |
-          if grep -q "晋级判定：stable-ready" reports/promotion_pr_report.md; then
-            echo "ready=true" >> "$GITHUB_OUTPUT"
+          if [ -f reports/promotion_pr_report.md ]; then
+            cat reports/promotion_pr_report.md
           else
-            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "promotion_pr_report.md was not generated"
+            exit 1
           fi
-
-      - name: Commit report when manual review is required
-        if: steps.verdict.outputs.ready != 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reports/promotion_pr_report.md reports/profile_validation_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md
-          if git diff --cached --quiet; then
-            echo "No promotion report changes to commit."
-            exit 0
-          fi
-          git commit -m "Update Stable Plus promotion review report"
-          git push
-
-      - name: Create draft promotion PR
-        if: steps.verdict.outputs.ready == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          APP_NAME: ${{ github.event.inputs.app }}
-        run: |
-          branch="stable-plus-promotion/${APP_NAME// /-}-${GITHUB_RUN_ID}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git switch -c "$branch"
-          git add reports/promotion_pr_report.md reports/profile_validation_report.md reports/module_factory_report.md reports/module_factory_diff_report.md reports/factory_finalize_report.md reports/multi_release_report.md
-          git commit -m "Prepare Stable Plus promotion review for $APP_NAME"
-          git push --set-upstream origin "$branch"
-          gh pr create \
-            --draft \
-            --title "Review Stable Plus promotion: $APP_NAME" \
-            --body-file reports/promotion_pr_report.md \
-            --base main \
-            --head "$branch"
