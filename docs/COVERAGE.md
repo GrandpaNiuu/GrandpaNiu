@@ -1,120 +1,97 @@
 # 功能覆盖清单
 
-本清单记录 `Ronghemokuai.sgmodule` 当前重点覆盖对象、覆盖强度和维护状态。实际生效范围由 `Rules/`、`Scripts/`、`Rewrite/Sources/`、`Rewrite/Remotes/sources.json` 和 `Rewrite/Profiles/stable.conf` 共同决定。
+本清单记录 Fusion 模块当前覆盖对象、覆盖方式和维护边界。实际生效范围由 `Rules/`、`Scripts/`、`Rewrite/Sources/`、`Rewrite/Remotes/sources.json` 与 `Rewrite/Profiles/fusion.conf` 共同决定。
 
-## 覆盖强度说明
+## 覆盖强度
 
 | 状态 | 含义 |
 |---|---|
-| 重点专项 | 有白名单、脚本、MITM 或专门保护逻辑 |
-| 明确覆盖 | 有脚本、Body Rewrite、Map Local 或明确本地规则 |
-| 部分覆盖 | 有规则或局部接口处理，但不是完整独立模块 |
-| 不建议加入 | 容易影响登录、支付、验证码或账户安全 |
+| 重点专项 | 有专门脚本、MITM、白名单或保护逻辑 |
+| 明确覆盖 | 有 Script、Body Rewrite、Map Local 或明确本地规则 |
+| 局部覆盖 | 只有部分接口、域名或远程规则命中 |
+| 高风险保守 | 涉及登录、支付、验证码、图片/CDN 或核心 API，只允许小范围处理 |
 
 ## 重点专项
 
-| App / 服务 | 状态 | 说明 |
+| App / 服务 | 覆盖方式 | 作用 | 备注 |
+|---|---|---|---|
+| Spotify | DIRECT、Header Rewrite、Script、MITM | 减少广告响应与异常缓存影响 | 不改账号、订阅、权限状态 |
+| YouTube | DIRECT、Script、Map Local、MITM | 响应清理和局部广告接口处理 | 需复测播放、搜索、评论、Shorts |
+| 知乎 | Script、Body Rewrite、URL Rewrite、MITM | 清理信息流、回答页、推广字段 | 不处理会员、付费、登录状态 |
+| Bilibili | Rule、URL Rewrite、Body Rewrite、Map Local、MITM | 搜索、活动、广告素材等局部净化 | 不引入会员破解或支付绕过 |
+
+## App 类别覆盖
+
+| 类别 | 代表对象 | 覆盖说明 |
 |---|---|---|
-| Spotify | 重点专项 | DIRECT 白名单、Header Rewrite、`spotify-json`、`spotify-proto`、必要 MITM |
-| YouTube | 重点专项 | `youtube.response`，保留 YouTube Enhance 逻辑 |
-| 知乎 | 重点专项 | `zhihu-enhance` 与既有问题页清理，处理广告卡片、推荐广告、商业字段 |
-| Bilibili | 部分覆盖 | 当前为规则和 Map Local 局部净化，不是完整独立脚本模块 |
+| 视频音乐 | Bilibili、YouTube、Spotify、芒果 TV、网易云音乐、喜马拉雅、小宇宙、斗鱼、虎牙 | 主要处理广告接口、开屏、活动入口、推荐位和部分响应字段 |
+| 内容社区 | 知乎、微博、小红书、贴吧、酷安、Reddit、小黑盒、脉脉 | 主要处理信息流广告、详情页推广、弹窗和商业字段 |
+| 电商消费 | 淘宝、闲鱼、京东、拼多多、什么值得买、转转、盒马、菜鸟 | 只处理广告和活动入口，商品图、购物车、订单页保持保守 |
+| 本地生活 | 美团、大众点评、饿了么、瑞幸、麦当劳、星巴克、便利店类 App | 只处理广告、活动卡片和弹窗，下单前置和支付链路不做绕过 |
+| 地图出行 | 高德地图、百度地图、滴滴、航旅纵横、12306、航空类 App | 只处理广告入口和活动位，定位、路线、票务、订单链路需保守 |
+| 工具办公 | WPS、有道、360 摄像机、萤石、配音秀、输入法类 App | 主要处理首页推广、配置广告字段和弹窗 |
+| 微信相关 | 微信广告域、广点通广告域 | 不覆盖微信图片、小程序、支付、登录、公众号核心资源 |
 
-## 明确覆盖对象
+## 远程规则源
 
-| 分类 | App / 服务 |
+远程规则源由 `Rewrite/Remotes/sources.json` 管理，构建时写入 `[Rule]`。当前规则源主要用于：
+
+- 通用广告域名。
+- 常见广告 SDK。
+- 隐私追踪。
+- 劫持域名。
+- 网页广告与程序化广告。
+
+远程源必须满足：
+
+- 使用 `https://`。
+- 不使用短链、代理镜像或不可信中转。
+- 语法通过 `scripts/validate_remote_rule_syntax.py`。
+- 失效源由 `scripts/audit_repair_invalid_sources.py` 记录、禁用或等待替换。
+
+## 重复项策略
+
+| 重复类型 | 处理方式 |
 |---|---|
-| 社区内容 | 微博、百度贴吧、小红书、酷安、小黑盒、脉脉、Reddit、飞客茶馆、盖得排行、Soul、皮皮虾 |
-| 新闻资讯 | QQ 新闻 / 腾讯新闻、网易新闻、财新、IT之家、什么值得买、51CTO |
-| 视频音乐 | 芒果 TV、人人视频、网易云音乐、咪咕视频、斗鱼、喜马拉雅、小宇宙 FM、快看漫画 |
-| 电商生活 | 淘宝、闲鱼、京东、拼多多、盒马、菜鸟、美团、美团外卖、大众点评、饿了么、瑞幸、Cotti、Manner、朴朴、Lawson、途虎养车 |
-| 出行地图 | 滴滴、12306、航旅纵横、高德地图、百度地图、飞猪、国航、吉祥航空、深圳通类 App |
-| 阅读教育 | 起点、网易有道词典、问卷星、宝宝树、薄荷、Gaoding、51CTO |
-| 工具其他 | 迅雷、转转、海尔、配音秀、360 摄像机、萤石云、搜狗输入法、韵达、Usmile、QBB6 |
+| 最终 Fusion 模块重复 active line | 阻断验证 |
+| 重复 script name | 阻断验证 |
+| 重复 MITM hostname | 阻断验证 |
+| 同一规则文件内部重复 entry | 阻断验证 |
+| 不同规则包之间存在交集 | 允许保留，最终 Fusion 构建时自动去重 |
 
-## 远程规则覆盖
+跨文件交集不直接删除，因为 Android 输出、单 App 规则包和兼容包可能需要独立保留相同规则。
 
-当前远程规则源以 `Rewrite/Remotes/sources.json` 为准，主要包括：
+## 不建议加入
 
-```text
-blackmatrix7 Advertising
-blackmatrix7 Advertising Lite
-blackmatrix7 Hijacking
-blackmatrix7 Privacy
-Cats-Team AdRules
-privacy-protection-tools anti-AD
-ACL4SSR BanAD
-ACL4SSR BanProgramAD
-ACL4SSR BanEasyListChina
-Loyalsoldier reject
-217heidai adblockfilters
-```
-
-远程规则源主要用于通用广告域名、隐私追踪、劫持域名、网页广告和常见广告 SDK。不要把远程规则源理解为每个 App 都有完整脚本模块。
-
-## 本地规则与重写覆盖
-
-| 区块 | 作用 |
-|---|---|
-| `[Rule]` | DIRECT 白名单、本地 REJECT、远程 RULE-SET / DOMAIN-SET |
-| `[URL Rewrite]` | URL 层广告接口清理 |
-| `[Header Rewrite]` | Header 层处理，例如 Spotify 缓存头处理 |
-| `[Body Rewrite]` | JSON 字段清理，处理广告卡片、弹窗、活动字段 |
-| `[Map Local]` | 本地空响应，例如 Bilibili、喜马拉雅、瑞幸、转转、美团等局部接口 |
-| `[Script]` | Spotify、YouTube、知乎和普通 App 去广告脚本 |
-| `[MITM]` | 使用 `%APPEND%` 追加必要 hostname |
-
-## Bilibili 当前状态
-
-Bilibili 目前是局部净化：
+以下对象默认不加入拦截或脚本处理：
 
 ```text
-规则层：biliapi 相关域名拦截
-Map Local：活动、搜索、广告素材、PGC 活动物料等接口
-```
-
-不加入权益类、账号类、付费类改写。
-
-## 知乎当前状态
-
-知乎已经加入增强净化层：
-
-```text
-Scripts/zhihu-enhance.conf
-Scripts/zhihu-enhance.js
-```
-
-处理范围：
-
-```text
-信息流广告
-回答页广告
-推荐广告
-商业卡片
-推广字段
-赞助字段
-```
-
-不处理：
-
-```text
-会员
-盐选 / 付费内容
-支付状态
-登录状态
-账号身份
-Cookie / Token
-```
-
-## 不建议加入拦截的对象
-
-```text
-微信 / 支付宝 / 银行 App 登录与支付接口
+银行 App
+支付接口
 验证码接口
 证书校验接口
-账号安全接口
-会员权益接口
-Cookie / Token / 账户状态接口
+登录态接口
+Cookie / Token / Authorization
+会员权益与付费内容
+微信图片 / 小程序 / 支付 / 登录核心域
+地图定位与路线核心接口
+订单、票务、下单前置核心接口
 ```
 
-上述对象如果出现广告，只能做极小范围、可回滚的局部处理，不允许大面积 MITM 或脚本覆盖。
+## 报告入口
+
+| 报告 | 用途 |
+|---|---|
+| `reports/module_integrity_report.md` | Fusion 输出结构、重复项和规则源完整性 |
+| `reports/profile_validation_report.md` | Fusion profile 构建状态、脚本数、MITM 数 |
+| `reports/remote_rule_syntax_report.md` | 远程规则源语法与可用性 |
+| `reports/invalid_sources_report.md` | 失效源审核与自动修复结果 |
+| `reports/app_coverage_matrix.md` | App 覆盖矩阵 |
+| `reports/rule_traceability_matrix.md` | 高风险规则来源、风险和回滚路径 |
+
+## 结论口径
+
+- “已纳入覆盖”：仓库存在对应规则、脚本、Rewrite 或 MITM。
+- “语法通过”：本地构建和静态验证通过。
+- “远程源可用”：远程源在本次 `validate_remote_rule_syntax.py` 检查中可拉取并解析。
+- “真机通过”：必须有人工测试记录或明确用户反馈，不能由静态扫描自动推断。

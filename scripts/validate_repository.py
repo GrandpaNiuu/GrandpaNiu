@@ -8,6 +8,8 @@ import re
 import sys
 from pathlib import Path
 
+from validate_module_integrity import validate_all as validate_module_integrity
+
 ROOT = Path(__file__).resolve().parents[1]
 MODULE = ROOT / "Ronghemokuai.sgmodule"
 RELEASE = ROOT / "Release" / "Ronghemokuai.sgmodule"
@@ -59,8 +61,10 @@ REQUIRED_FILES = (
     "scripts/build_release_variants.py",
     "scripts/factory_finalize.py",
     "scripts/validate_profiles.py",
+    "scripts/validate_module_integrity.py",
     "scripts/validate_repository.py",
     "reports/multi_release_report.md",
+    "reports/module_integrity_report.md",
 )
 
 REQUIRED_WORKFLOWS = (
@@ -333,6 +337,7 @@ def validate_no_tool_traces() -> None:
 def main() -> None:
     validate_files()
     validate_root_release()
+    validate_module_integrity(write_report=True)
     validate_single_release_report()
     validate_remote_schema()
     validate_scripts()

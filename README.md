@@ -214,6 +214,7 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles/fusion.co
 |---|---|
 | [reports/repository_health_report.md][health-report] | 仓库健康总览 |
 | [reports/profile_validation_report.md](reports/profile_validation_report.md) | fusion profile 构建结果、脚本数、MITM 数 |
+| [reports/module_integrity_report.md](reports/module_integrity_report.md) | Fusion 模块语法、重复项、脚本入口和 MITM 完整性 |
 | [reports/app_coverage_matrix.md](reports/app_coverage_matrix.md) | App 覆盖矩阵 |
 | [reports/app_status_matrix.md](reports/app_status_matrix.md) | App 状态矩阵，区分覆盖与真实测试 |
 | [reports/reject_risk_report.md](reports/reject_risk_report.md) | REJECT 高风险误伤分类 |

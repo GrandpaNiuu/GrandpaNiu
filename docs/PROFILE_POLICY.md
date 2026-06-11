@@ -1,141 +1,110 @@
 # Profile 策略与发布边界
 
-本文件定义 GrandpaNiu 模块工厂的 profile 边界。任何 workflow、脚本或人工修改都应遵守本策略。
+GrandpaNiu 当前采用单一 Fusion profile。所有公开 iOS 构建、验证、报告和 workflow 都应围绕 `Rewrite/Profiles/fusion.conf`。
 
-## Profile 定义
+## 当前策略
 
-| Profile | MITM 来源 | 用途 | 是否默认发布 | 晋级权限 |
-|---|---|---|---|---|
-| `lite` | `MITM-core.conf` | 低耗电、低风险参考 | 否 | 不作为晋级来源，只用于对照排查 |
-| `stable` | `MITM-core.conf` + `MITM-app-clean.conf` | 默认正式版 | 是 | 只接收已测试、可回滚的单项变更 |
-| `stable-plus` | stable + `MITM-stable-plus.conf` | 常用 App 增强测试版 | 否 | 可作为单项 App 晋级候选来源 |
-| `full` | stable-plus + `MITM-extended.conf` 或 core/app/extended | 全量排查测试版 | 否 | 冻结为排查版，不允许批量晋级 Stable |
+| 项目 | 规则 |
+|---|---|
+| 默认 profile | `fusion` |
+| 默认构建命令 | `python3 scripts/build_module.py --build --profile fusion` |
+| Root 同步 | `python3 scripts/factory_finalize.py --sync-root` |
+| 公开入口 | `Ronghemokuai.sgmodule`、`Release/Ronghemokuai.sgmodule` |
+| 旧四版本 | 历史兼容或废弃文件，不作为 README、导入页、workflow、报告的正式入口 |
 
-## 默认发布规则
+## 旧 profile 处理
 
-- 默认 workflow 必须使用 `--profile fusion`。
-- 默认 workflow 不允许使用旧 `stable-plus`、`lite` 或 `full` profile。
-- 根目录 `Ronghemokuai.sgmodule` 只允许由 fusion 构建后同步生成。
-- 任何 workflow 不得把旧 Stable / Stable Plus / Lite / Full 当成默认入口。
+`stable.conf`、`stable-plus.conf`、`lite.conf`、`full.conf` 如果仍保留，只能用于历史审计、对照或回滚参考。不得再新增用户入口，也不得作为默认 workflow 参数。
 
-## MITM 晋级规则
+允许出现的旧名称场景：
 
-MITM hostname 的晋级路径：
+- 文件名、历史报告、迁移记录。
+- 说明“deprecated / legacy only”。
+- 源文件名里保留上游来源，例如 `MITM-stable-plus.conf` 或 `app2smile-qqnews-stable-plus.conf`。
 
-```text
-MITM-extended.conf
--> MITM-stable-plus.conf
--> 人工测试
--> MITM-app-clean.conf
-```
+不允许出现的旧逻辑：
 
-要求：
+- workflow 使用 `--profile stable`、`--profile stable-plus`、`--profile lite`、`--profile full`。
+- README 或导入页引导用户选择四版本。
+- 验证脚本强制要求四版本同时存在或同时发布。
+- 报告把旧四版本当成当前正式发布入口。
 
-1. 不允许从 extended 批量直接进入 stable。
-2. 不允许从 full 批量直接进入 stable。
-3. 进入 `MITM-stable-plus.conf` 的 hostname 必须说明对应 App 或服务类别。
-4. 进入 `MITM-app-clean.conf` 前，必须在 `reports/manual_test_log.md` 有真实测试记录。
-5. 银行、支付、登录、验证码、token、cookie、passport、security 相关 hostname 不得进入 stable。
-6. 涉及微信媒体、小程序、图片 CDN、地图、订单前置的 hostname，即使测试通过，也必须单项晋级。
+## Fusion 分层
+
+Fusion 并不是把所有内容无条件混在一起。它仍按 source-first 分层维护：
+
+| 层 | 文件 | 用途 |
+|---|---|---|
+| core | `MITM-core.conf`、核心 Script / Rule | Spotify、YouTube、知乎等基础专项 |
+| app-clean | `MITM-app-clean.conf`、`Scripts/app-cleaner.js` | 通用低风险 JSON 清理 |
+| legacy-reviewed | `*-legacy-reviewed.conf` | 已审阅历史兼容内容 |
+| qingrex | `*-qingrex-miniapp-app-ad.conf`、`Rules/qingrex-miniapp-app-ad.list` | 小程序 / App 广告层 |
+| selected extensions | `MITM-stable-plus.conf`、`MITM-extended.conf` 中被 Fusion 引用的部分 | 扩展覆盖，必须保留风险说明和回滚路径 |
+
+## 安全边界
+
+不得进入 Fusion 的内容：
+
+- 会员破解、付费绕过、登录绕过。
+- 支付、银行、验证码、证书校验、账号安全改写。
+- Cookie / Token / Authorization 读写或伪造。
+- 未知、混淆、短链、代理镜像来源脚本。
+- request-body、binary、protobuf、加密 body 脚本，除非有明确人工审查和回滚方案。
 
 ## Full 冻结规则
 
-Full 的定位是排查和查漏拦，不是默认发布池，也不是 Stable 候选池。
+旧 `full` 只能作为历史排查概念保留，不再作为公开入口或默认构建入口。
 
-禁止：
-
-- 将 Full 整体合并进 Stable。
-- 将 Full 的 MITM、Rule、Rewrite、Script 批量迁移到 Stable。
-- 用 Full 的“能用”替代 Stable 的真实测试记录。
-- 把 Full 的排查结果写成“Stable 通过”。
-
-允许：
-
-- 使用 Full 定位缺失的 hostname、规则或脚本覆盖。
-- 将 Full 中的单个 App、单类规则、单组 hostname 拆出来进入 Stable Plus 测试。
-- Stable Plus 单项测试通过后，再按晋级流程进入 Stable。
-
-Full 到 Stable 的任何变更必须包含：
-
-```text
-影响范围
-具体文件和规则差异
-manual_test_log.md 测试记录
-Lite 对照结果
-关闭模块对照结果
-回滚路径
-误伤风险说明
-```
-
-## Script 晋级规则
-
-脚本候选必须先进入 pending：
-
-```text
-candidates.json pending
--> 人工审查
--> stable-plus 或 app-clean 测试
--> stable
-```
-
-不允许新脚本直接进入 stable，除非它是已有脚本的安全修复，并且通过人工验证。
-
-脚本风险排序：
-
-```text
-request-body / binary / protobuf / Cookie / Token / 登录 / 支付 / 验证码
-> response-body JSON cleaner
-> requires-body=0 的请求清理
-> 可替换为 Rule / URL Rewrite 的轻量逻辑
-```
-
-高风险脚本默认不得进入 Stable。
-
-## 远程规则晋级规则
-
-- `RULE-SET` 必须通过 `scripts/validate_remote_rule_syntax.py`。
-- `DOMAIN-SET` 必须是纯域名集合。
-- Quantumult X 规则必须先由 `scripts/convert_quanx_rules.py` 转换后再引用。
+- 不允许从 full 批量直接进入 stable。
+- 不允许 Full 整体合并进 Fusion。
 - 不允许把 `host`、`host-suffix`、`host-keyword`、`ip6-cidr` 直接作为 Shadowrocket `RULE-SET`。
-- 远程规则源失败时，优先移入 pending 或替换为仓库内转换文件，不允许用短链、代理、镜像绕过。
+- 任何高风险迁移必须先有 `reports/manual_test_log.md` 记录。
+- 高风险规则复核必须包含 Lite 对照结果、关闭模块对照结果和可回滚源头。
 
-## 回滚规则
+## 自动维护边界
 
-每次重大变更都必须可回滚：
+自动化可以做：
 
-- Root 与 Release 不一致时，先运行 `factory_finalize.py --sync-root`。
-- stable 出现严重误杀时，优先回滚最近一次 profile 或 MITM 分层变更。
-- 新增的 MITM 层应先从 `stable-plus` 移除，不要先删除源文件。
-- full 只用于排查，不作为回滚目标发布。
-- 远程规则语法失败时，先移除或转换对应源，再重建四个 Release 版本。
+- 拉取可信候选规则源。
+- 运行远程规则语法检查。
+- 失效源审核、禁用或替换候选。
+- 构建 Fusion。
+- 同步 Root / Release。
+- 生成报告。
+- 检查重复项和必要 section。
 
-## 验证命令
+自动化不能宣称：
 
-每次大改后运行：
+- 任意 App 真机已通过。
+- 支付、登录、验证码、订单链路已安全。
+- 外部脚本可以无审核进入 Fusion。
+
+## 必跑验证
 
 ```bash
 python3 -m py_compile scripts/*.py
-python3 scripts/convert_quanx_rules.py
+node --check Scripts/app-cleaner.js
 python3 scripts/build_module.py --build --profile fusion
 python3 scripts/factory_finalize.py --sync-root
 python3 scripts/build_release_variants.py
+python3 scripts/validate_module_integrity.py
 python3 scripts/validate_remote_rule_syntax.py
-python3 scripts/validate_repository.py
 python3 scripts/validate_profiles.py
+python3 scripts/validate_repository.py
 python3 scripts/repository_health_check.py
 ```
 
-## 人工测试要求
+Android 改动还必须运行：
 
-没有真实测试时，不得写“通过”。测试最少覆盖：
+```bash
+python3 scripts/build_android_rules.py
+python3 scripts/android_format_check.py
+```
 
-- Stable 与 Lite 对照。
-- Spotify。
-- YouTube。
-- 知乎。
-- Bilibili。
-- 淘宝 / 京东 / 拼多多。
-- 微信 / 支付宝 / 银行 App 登录、验证码、支付前置流程。
-- 图片 CDN、小程序资源、地图搜索和定位。
+## 回滚原则
 
-测试必须记录到 `reports/manual_test_log.md`。Issue 反馈必须优先要求用户提供 Lite 对照、关闭模块对照和日志。
+- Root / Release 不一致时，先运行 `factory_finalize.py --sync-root`。
+- Fusion 出现严重误伤时，先从 `Rewrite/Profiles/fusion.conf` 移除对应源头引用并重建。
+- 远程规则源失效时，优先禁用或替换源，不使用短链、代理或镜像绕过。
+- 高风险 App 只做单项回滚，不批量删规则。
+- 回滚后必须重新生成 `reports/module_integrity_report.md`、`reports/remote_rule_syntax_report.md` 和仓库健康报告。

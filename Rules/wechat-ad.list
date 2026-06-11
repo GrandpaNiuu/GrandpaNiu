@@ -1,5 +1,5 @@
 # WeChat ad insertion test rules
-# Scope: Stable Plus only until manual testing confirms no impact on WeChat images, mini programs, login, payment, and media upload.
+# Scope: Fusion conservative WeChat ad layer. Keep it narrow until manual testing confirms no impact on images, mini programs, login, payment, and media upload.
 # Do not add qpic.cn, gtimg.cn, wx.qq.com, weixin.qq.com, servicewechat.com, wxapp.tc.qq.com, or wechatpay.cn here.
 
 # Tencent advertising / Guangdiantong
@@ -14,7 +14,6 @@ DOMAIN-SUFFIX,v.gdt.qq.com,REJECT,pre-matching
 DOMAIN-SUFFIX,c.gdt.qq.com,REJECT,pre-matching
 DOMAIN-SUFFIX,m.gdt.qq.com,REJECT,pre-matching
 DOMAIN-SUFFIX,adsmind.gdtimg.com,REJECT,pre-matching
-DOMAIN-SUFFIX,pgdt.gtimg.cn,REJECT,pre-matching
 
 # Tencent ad analytics / report endpoints, conservative set
 DOMAIN-SUFFIX,ad.qq.com,REJECT,pre-matching
