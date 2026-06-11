@@ -51,7 +51,7 @@
 - MITM: 1
 
 ## GrandpaNiu QQ News
-- Source: `Release/Ronghemokuai.sgmodule`
+- Source: `Rewrite/Sources/Apps/qqnews.conf`
 - URL Rewrite: 1
 - Body Rewrite: 1
 - Script: 1
