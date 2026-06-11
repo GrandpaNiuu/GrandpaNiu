@@ -13,7 +13,24 @@ Rewrite/Sources/Apps/
 ├─ rednote.conf
 ├─ wechat.conf
 ├─ qqnews.conf
-└─ weibo.conf
+├─ weibo.conf
+├─ pinduoduo.conf
+├─ jd.conf
+├─ taobao.conf
+├─ netease-music.conf
+├─ mgtv.conf
+└─ huya.conf
+```
+
+## Pending app fragments
+
+Some candidates still need safer manual extraction before they become active source files:
+
+```text
+meituan.conf
+amap.conf
+wps.conf
+baidu.conf
 ```
 
 ## Build behavior
