@@ -1,0 +1,15 @@
+#!name=GrandpaNiu QQ News
+#!desc=Generated per-app module from GrandpaNiu fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/qqnews.sgmodule
+
+[URL Rewrite]
+^https?:\/\/r\.inews\.qq\.com\/(?:adsBlacklist|getFullScreenPic|getQQNewsRemoteConfig) - reject
+
+[Body Rewrite]
+http-response-jq ^https?:\/\/(news\.ssp\.qq\.com\/app|r\.inews\.qq\.com\/(get(QQNewsUnreadList|TagFeedList)|news_feed\/hot_module_list)) 'if .adList then .adList = null else . end'
+
+[Script]
+app2smile_qqnews_json = type=http-response,pattern=^https:\/\/(news\.ssp\.qq\.com\/app|r\.inews\.qq\.com\/(get(QQNewsUnreadList|TagFeedList)|gw\/page\/(channel_feed|event_detail)|news_feed\/hot_module_list)),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js,script-update-interval=86400
+
+[MITM]
+hostname = %APPEND% r.inews.qq.com
