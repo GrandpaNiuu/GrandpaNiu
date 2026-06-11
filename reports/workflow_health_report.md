@@ -1,6 +1,6 @@
 # Workflow 健康报告
 
-生成时间：2026-06-12 07:28:53 +0800
+生成时间：2026-06-12 07:33:26 +0800
 
 本报告用于确认 workflow 文件是否存在，并尽量读取 GitHub Actions 最近运行状态。若 API 不可用，则只报告配置存在性，不伪造成功状态。
 
@@ -12,7 +12,7 @@
 | Daily Module Update | `.github/workflows/daily-module-update.yml` | 每日日期、结构、链接和验证检查 | 手动 / 定时 / push | 2026-06-11T22:10:08Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27380606003) | 通过 |
 | Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | 连续失效源审计和安全处理 | 手动 / 定时 / push | 2026-06-11T19:31:09Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27372221315) | 通过 |
 | Upstream candidate collect | `.github/workflows/upstream-collect.yml` | 每周可信候选源收集 | 手动 / 定时 / push | 2026-06-11T19:34:13Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27372391330) | 通过 |
-| Repository Health Check | `.github/workflows/repository-health.yml` | 仓库治理健康检查 | 手动 / 定时 / push | 2026-06-11T23:28:32Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27384013738) | 运行中或未完成，等待完成后复查 |
+| Repository Health Check | `.github/workflows/repository-health.yml` | 仓库治理健康检查 | 手动 / 定时 / push | 2026-06-11T23:33:07Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27384203460) | 运行中或未完成，等待完成后复查 |
 
 ## 说明
 
