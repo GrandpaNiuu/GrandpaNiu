@@ -6,7 +6,7 @@
   <title>GrandpaNiu Module Factory</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; background: #0f172a; color: #e5e7eb; }
-    main { max-width: 920px; margin: 0 auto; padding: 40px 20px; }
+    main { max-width: 1040px; margin: 0 auto; padding: 40px 20px; }
     h1 { margin: 0 0 8px; font-size: 32px; }
     p { color: #cbd5e1; line-height: 1.7; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
@@ -23,30 +23,16 @@
   <p>统一入口页。Release 文件由 <code>Rewrite/Generator/Builder.py</code> 根据 <code>Rewrite/Generate.conf</code> 生成。</p>
 
   <div class="grid">
-    <a class="card" href="../Ronghemokuai.sgmodule">
-      <div class="title">融合模块</div>
-      <div class="desc">根目录公开导入入口。</div>
-    </a>
-    <a class="card" href="../Release/Ronghemokuai.sgmodule">
-      <div class="title">Release 模块</div>
-      <div class="desc">Release 目录生成产物。</div>
-    </a>
-    <a class="card" href="../Release/Rules.conf">
-      <div class="title">Rules.conf</div>
-      <div class="desc">纯规则输出。</div>
-    </a>
-    <a class="card" href="../Release/RulesGroup.conf">
-      <div class="title">RulesGroup.conf</div>
-      <div class="desc">按策略分组的规则输出。</div>
-    </a>
-    <a class="card" href="../Release/Modules/">
-      <div class="title">Modules</div>
-      <div class="desc">按 App 拆分的模块目录。</div>
-    </a>
-    <a class="card" href="../android.html">
-      <div class="title">Android</div>
-      <div class="desc">Android 规则入口。</div>
-    </a>
+    <a class="card" href="../Ronghemokuai.sgmodule"><div class="title">融合模块</div><div class="desc">根目录公开导入入口。</div></a>
+    <a class="card" href="../Release/Ronghemokuai.sgmodule"><div class="title">Release 模块</div><div class="desc">Release 目录生成产物。</div></a>
+    <a class="card" href="../Release/Rules.conf"><div class="title">Rules.conf</div><div class="desc">纯规则输出。</div></a>
+    <a class="card" href="../Release/RulesGroup.conf"><div class="title">RulesGroup.conf</div><div class="desc">按策略分组的规则输出。</div></a>
+    <a class="card" href="../Release/Modules/"><div class="title">App Modules</div><div class="desc">按 App 拆分的模块目录。</div></a>
+    <a class="card" href="../Release/Android/"><div class="title">Android Release</div><div class="desc">Android 发布目录。</div></a>
+    <a class="card" href="catalog.md"><div class="title">Release Catalog</div><div class="desc">全部公开发布链接。</div></a>
+    <a class="card" href="release-links.json"><div class="title">Release JSON</div><div class="desc">机器可读发布索引。</div></a>
+    <a class="card" href="remotes.md"><div class="title">Remote Sources</div><div class="desc">上游源治理目录。</div></a>
+    <a class="card" href="../android.html"><div class="title">Android 导入页</div><div class="desc">兼容旧入口。</div></a>
   </div>
 </main>
 </body>
