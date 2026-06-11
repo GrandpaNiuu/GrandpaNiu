@@ -1,6 +1,6 @@
 # Workflow 健康报告
 
-生成时间：2026-06-12 02:19:38 +0800
+生成时间：2026-06-12 03:06:34 +0800
 
 本报告用于确认 workflow 文件是否存在，并尽量读取 GitHub Actions 最近运行状态。若 API 不可用，则只报告配置存在性，不伪造成功状态。
 
@@ -8,11 +8,11 @@
 
 | Workflow | 文件 | 用途 | 触发方式 | 最近运行时间 | Status | Conclusion | Run URL | 处理建议 |
 |---|---|---|---|---|---|---|---|---|
-| Module Factory Build | `.github/workflows/module-factory-build.yml` | 构建 Release 并同步 Root | 手动 / push | 2026-06-11T18:19:14Z | completed | cancelled | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27368189147) | 已取消；通常是 module-maintenance 并发组被更新运行替代，连续取消时再人工复核 |
-| Daily Module Update | `.github/workflows/daily-module-update.yml` | 每日日期、结构、链接和验证检查 | 手动 / 定时 / push | 2026-06-11T18:19:33Z | pending | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27368206929) | 运行中或未完成，等待完成后复查 |
-| Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | 连续失效源审计和安全处理 | 手动 / 定时 | 2026-06-11T14:33:02Z | completed | cancelled | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27354396835) | 已取消；通常是 module-maintenance 并发组被更新运行替代，连续取消时再人工复核 |
-| Upstream candidate collect | `.github/workflows/upstream-collect.yml` | 每周可信候选源收集 | 手动 / 定时 | 2026-06-11T14:33:52Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27354451083) | 通过 |
-| Repository Health Check | `.github/workflows/repository-health.yml` | 仓库治理健康检查 | 手动 / 定时 / push | 2026-06-11T18:19:34Z | queued | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27368207620) | 运行中或未完成，等待完成后复查 |
+| Module Factory Build | `.github/workflows/module-factory-build.yml` | 构建 Release 并同步 Root | 手动 / push | 2026-06-11T19:06:11Z | completed | cancelled | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27370852217) | 已取消；通常是 module-maintenance 并发组被更新运行替代，连续取消时再人工复核 |
+| Daily Module Update | `.github/workflows/daily-module-update.yml` | 每日日期、结构、链接和验证检查 | 手动 / 定时 / push | 2026-06-11T19:06:12Z | pending | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27370853950) | 运行中或未完成，等待完成后复查 |
+| Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | 连续失效源审计和安全处理 | 手动 / 定时 | 2026-06-11T18:50:42Z | completed | failure | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27369952890) | 打开 run 日志，优先排查失败步骤 |
+| Upstream candidate collect | `.github/workflows/upstream-collect.yml` | 每周可信候选源收集 | 手动 / 定时 | 2026-06-11T18:44:27Z | completed | failure | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27369606805) | 打开 run 日志，优先排查失败步骤 |
+| Repository Health Check | `.github/workflows/repository-health.yml` | 仓库治理健康检查 | 手动 / 定时 / push | 2026-06-11T19:06:11Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27370852235) | 运行中或未完成，等待完成后复查 |
 
 ## 说明
 
