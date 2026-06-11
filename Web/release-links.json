@@ -1,0 +1,29 @@
+{
+  "name": "GrandpaNiu release catalog",
+  "base_url": "https://grandpaniuu.github.io/GrandpaNiu",
+  "raw_base_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main",
+  "core": [
+    {"name": "Fusion module", "path": "Ronghemokuai.sgmodule", "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule"},
+    {"name": "Release module", "path": "Release/Ronghemokuai.sgmodule", "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai.sgmodule"},
+    {"name": "Rules", "path": "Release/Rules.conf", "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Rules.conf"},
+    {"name": "Rule groups", "path": "Release/RulesGroup.conf", "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/RulesGroup.conf"},
+    {"name": "Web import page", "path": "import.html", "url": "https://grandpaniuu.github.io/GrandpaNiu/import.html"},
+    {"name": "Android import page", "path": "android.html", "url": "https://grandpaniuu.github.io/GrandpaNiu/android.html"}
+  ],
+  "modules": [
+    {"name": "GrandpaNiu Spotify", "file": "Release/Modules/spotify.sgmodule", "source": "Rewrite/Sources/Apps/spotify.conf", "sections": "Rule:9, Header Rewrite:1, Script:2, MITM:1", "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/spotify.sgmodule"},
+    {"name": "GrandpaNiu YouTube", "file": "Release/Modules/youtube.sgmodule", "source": "Rewrite/Sources/Apps/youtube.conf", "sections": "Rule:2, Map Local:1, Script:1, MITM:1", "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/youtube.sgmodule"},
+    {"name": "GrandpaNiu Zhihu", "file": "Release/Modules/zhihu.sgmodule", "source": "Rewrite/Sources/Apps/zhihu.conf", "sections": "Rule:5, URL Rewrite:24, Body Rewrite:7, Script:2, MITM:1", "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/zhihu.sgmodule"},
+    {"name": "GrandpaNiu Bilibili", "file": "Release/Modules/bilibili.sgmodule", "source": "Rewrite/Sources/Apps/bilibili.conf", "sections": "Rule:8, URL Rewrite:12, Body Rewrite:11, Map Local:2, MITM:1", "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/bilibili.sgmodule"},
+    {"name": "GrandpaNiu RedNote", "file": "Release/Modules/rednote.sgmodule", "source": "Rewrite/Sources/Apps/rednote.conf", "sections": "Rule:3, URL Rewrite:7, Script:1, MITM:1", "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/rednote.sgmodule"},
+    {"name": "GrandpaNiu WeChat", "file": "Release/Modules/wechat.sgmodule", "source": "Rewrite/Sources/Apps/wechat.conf", "sections": "Rule:11, URL Rewrite:15, Map Local:4, MITM:1", "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/wechat.sgmodule"},
+    {"name": "GrandpaNiu QQ News", "file": "Release/Modules/qqnews.sgmodule", "source": "Rewrite/Sources/Apps/qqnews.conf", "sections": "URL Rewrite:1, Body Rewrite:1, Script:1, MITM:1", "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/qqnews.sgmodule"},
+    {"name": "GrandpaNiu Weibo", "file": "Release/Modules/weibo.sgmodule", "source": "Rewrite/Sources/Apps/weibo.conf", "sections": "URL Rewrite:6, Body Rewrite:8, Script:1, MITM:1", "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/weibo.sgmodule"}
+  ],
+  "android": [
+    {"name": "Mihomo", "path": "Release/Android/mihomo/", "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Android/mihomo/"},
+    {"name": "sing-box", "path": "Release/Android/sing-box/", "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Android/sing-box/"},
+    {"name": "AdGuard", "path": "Release/Android/adguard/", "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Android/adguard/"},
+    {"name": "v2rayNG", "path": "Release/Android/v2rayng/", "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Android/v2rayng/"}
+  ]
+}
