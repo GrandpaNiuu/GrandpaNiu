@@ -1,15 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-06-12 02:17:18 +0800
+- 生成时间：2026-06-12 02:19:38 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Rewrite/Sources/Apps/pcauto.conf`
+- `Rewrite/Sources/Apps/README.md`
 
 ## 新增文件
 
-- `Rewrite/Sources/Apps/pcauto.conf`
+- 无
 
 ## 删除文件
 
@@ -17,7 +17,7 @@
 
 ## 修改文件
 
-- 无
+- `Rewrite/Sources/Apps/README.md`
 
 ## 影响的模块层
 
@@ -25,12 +25,15 @@
 
 ## 可能影响的 App
 
-- 待人工确认
+- 淘宝
+- 美团
+- 高德地图
+- 网易云音乐
 
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：是
+- 是否涉及 MITM：否
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
 - 是否需要测试 Spotify：按需
