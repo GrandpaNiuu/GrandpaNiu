@@ -1,15 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-06-12 00:45:18 +0800
+- 生成时间：2026-06-12 00:46:51 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Rewrite/Sources/Apps/bilibili.conf`
+- `Rewrite/Sources/Apps/weibo.conf`
 
 ## 新增文件
 
-- `Rewrite/Sources/Apps/bilibili.conf`
+- `Rewrite/Sources/Apps/weibo.conf`
 
 ## 删除文件
 
@@ -25,7 +25,7 @@
 
 ## 可能影响的 App
 
-- Bilibili
+- 微博
 
 ## 风险判断
 

@@ -1,6 +1,6 @@
 # App 状态矩阵
 
-生成时间：2026-06-12 00:45:17 +0800
+生成时间：2026-06-12 00:46:50 +0800
 
 本矩阵是质量总览，不把静态覆盖写成已经验证。真实测试来源只允许来自 `reports/manual_test_log.md`；没有记录时一律标记为“未测”。
 
@@ -34,7 +34,7 @@
 | 支付宝 | 支付 | Rewrite, Rule | 未确认 | 通过 | 高 | 2026-06-11 | manual_test_log.md / 用户确认 | Stable 第一轮通过；后续敏感链路变更仍需复测 | 回滚 Rewrite、Rules 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
 | 银行 / 验证码 | 安全敏感 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 通过 | 高 | 2026-06-11 | manual_test_log.md / 用户确认 | Stable 第一轮通过；后续敏感链路变更仍需复测 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
 | 图片 CDN | 资源加载 | MITM, Rewrite, Rule, Script | stable, stable-plus, lite, full | 通过 | 高 | 2026-06-11 | manual_test_log.md / 用户确认 | Stable 第一轮通过；后续敏感链路变更仍需复测 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
-| 小程序资源 | 微信生态 | Rule | stable, stable-plus, lite, full | 通过 | 高 | 2026-06-11 | manual_test_log.md / 用户确认 | Stable 第一轮通过；后续敏感链路变更仍需复测 | 回滚 Rules 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
+| 小程序资源 | 微信生态 | Rewrite, Rule | stable, stable-plus, lite, full | 通过 | 高 | 2026-06-11 | manual_test_log.md / 用户确认 | Stable 第一轮通过；后续敏感链路变更仍需复测 | 回滚 Rewrite、Rules 中对应源头后重建 | 用户确认，不是助手亲测；大改后仍需复测 |
 
 ## 晋级边界
 

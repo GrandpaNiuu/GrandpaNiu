@@ -58,7 +58,7 @@
 - MITM: 1
 
 ## GrandpaNiu Weibo
-- Source: `Release/Ronghemokuai.sgmodule`
+- Source: `Rewrite/Sources/Apps/weibo.conf`
 - URL Rewrite: 6
 - Body Rewrite: 8
 - Script: 1
