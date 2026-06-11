@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Unified entry point for the GrandpaNiu module factory.
 
-This wrapper keeps the current implementation in scripts/ while exposing the
+This wrapper keeps the implementation in scripts/ while exposing the
 Rewrite/Generator/Builder.py entry point used by the module factory layout.
 """
 
@@ -52,10 +52,13 @@ def build_plan(profile: str, release: bool, check: bool) -> list[list[str]]:
         steps.extend([
             command("scripts/factory_finalize.py", "--sync-root"),
             command("scripts/build_release_variants.py"),
+            command("scripts/build_release_rules.py"),
+            command("scripts/build_release_modules.py"),
         ])
 
     if check:
         optional_steps = [
+            existing_command("scripts/validate_remote_rule_syntax.py"),
             existing_command("scripts/validate_repository.py"),
             existing_command("scripts/validate_profiles.py"),
             existing_command("scripts/validate_governance_extensions.py"),
@@ -68,7 +71,7 @@ def build_plan(profile: str, release: bool, check: bool) -> list[list[str]]:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run the GrandpaNiu module factory pipeline.")
     parser.add_argument("--profile", default="fusion", help="Profile name under Rewrite/Profiles. Default: fusion")
-    parser.add_argument("--release", action="store_true", help="Finalize Release output and sync root module")
+    parser.add_argument("--release", action="store_true", help="Finalize Release output and generate release artifacts")
     parser.add_argument("--check", action="store_true", help="Run available validation scripts after build")
     parser.add_argument("--dry-run", action="store_true", help="Print commands without executing them")
     args = parser.parse_args()
