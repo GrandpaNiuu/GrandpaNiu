@@ -6,6 +6,7 @@ on:
     - cron: "0 16 * * *"
   workflow_dispatch:
   push:
+    # Verify collector changes immediately so stale automation-failure issues can close after success.
     branches:
       - main
     paths:
