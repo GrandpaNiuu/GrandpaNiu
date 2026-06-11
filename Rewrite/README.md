@@ -1,21 +1,27 @@
 # Rewrite
 
-本目录用于管理模块生成相关的重写框架。
+This directory is the module factory processing layer.
 
-目录设计：
+## Layout
 
-```text
-Rewrite/
-├─ Generator/       生成器与构建说明
-├─ Profiles/        模块配置模板
-├─ Remotes/         远程规则源清单
-├─ Sources/         本地模块片段
-├─ Manifest.conf    构建清单
-└─ Registry.md      模块片段登记表
-```
+- `Generator/`: unified build entry point.
+- `Profiles/`: build profiles. Main profile: `fusion.conf`.
+- `Remotes/`: remote source records.
+- `Sources/`: local source fragments.
+- `Generate.conf`: top-level build plan.
+- `Manifest.conf`: section mapping.
+- `Registry.md`: source and risk registry.
 
-当前状态：
+## Command
 
-- 根目录 `Ronghemokuai.sgmodule` 仍然是正式导入入口。
-- `Rewrite/` 先作为结构化维护层使用。
-- 后续可逐步把主模块内容拆分到 `Rewrite/Sources/`，再由生成器输出发布版本。
+Run:
+
+`python Rewrite/Generator/Builder.py --profile fusion --release --check`
+
+Dry run:
+
+`python Rewrite/Generator/Builder.py --profile fusion --release --check --dry-run`
+
+## Rule
+
+Edit source files first. Treat `Release/` as generated output.
