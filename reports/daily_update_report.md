@@ -18,7 +18,7 @@ $ android_format_check.py
 Android format check passed.
 
 $ build_module.py
-Built /home/runner/work/GrandpaNiu/GrandpaNiu/Release/Ronghemokuai.sgmodule (2951 lines) using profile=fusion
+Built /home/runner/work/GrandpaNiu/GrandpaNiu/Release/Ronghemokuai.sgmodule (2953 lines) using profile=fusion
 
 $ factory_finalize.py
 no output
@@ -27,7 +27,7 @@ $ build_release_variants.py
 Built single fusion release report and wrote /home/runner/work/GrandpaNiu/GrandpaNiu/reports/multi_release_report.md
 
 $ validate_remote_rule_syntax.py
-Remote rule syntax validation completed: 14 source(s), 0 warning(s), 0 normalization file(s); report=reports/remote_rule_syntax_report.md
+Remote rule syntax validation completed: 16 source(s), 0 warning(s), 0 normalization file(s); report=reports/remote_rule_syntax_report.md
 
 $ validate_governance_extensions.py
 Governance extension validation passed.
