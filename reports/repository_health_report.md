@@ -1,14 +1,14 @@
 # 仓库健康检查报告
 
-生成时间：2026-06-12 00:11:27 +0800
+生成时间：2026-06-12 00:22:17 +0800
 
 ## 总体状态
 
-- 阻断问题：0
+- 阻断问题：1
 - Root 与 Release 一致：是
 - GrandpaNiu = 默认 Fusion：是
 - fusion profile：就绪
-- validate_repository.py：通过
+- validate_repository.py：失败
 - node --check Scripts/app-cleaner.js：通过
 - 脚本总数：46
 - MITM hostname 数量：1072
@@ -25,7 +25,7 @@
 
 ## 阻断问题
 
-- 无
+- validate_repository.py 未通过
 
 ## 缺少文件
 
@@ -49,17 +49,17 @@
 
 ## Workflow 配置摘要
 
-- `.github/workflows/module-factory-build.yml`：contents: write；concurrency；fusion；regenerate retry
-- `.github/workflows/daily-module-update.yml`：contents: write；concurrency；fusion；regenerate retry
+- `.github/workflows/module-factory-build.yml`：contents: write；concurrency；缺少 fusion 构建；regenerate retry
+- `.github/workflows/daily-module-update.yml`：contents: write；concurrency；缺少 fusion 构建；regenerate retry
 - `.github/workflows/daily-audit-and-repair.yml`：contents: write；concurrency；fusion；regenerate retry
 - `.github/workflows/daily-invalid-source-repair.yml`：contents: write；concurrency；fusion；regenerate retry
 - `.github/workflows/upstream-collect.yml`：contents: write；concurrency；fusion；regenerate retry
-- `.github/workflows/repository-health.yml`：contents: write；concurrency；fusion；regenerate retry
+- `.github/workflows/repository-health.yml`：contents: write；concurrency；缺少 fusion 构建；regenerate retry
 
 ## validate_repository.py 输出
 
 ```text
-Repository validation passed.
+ERROR: workflow must retry push after rebase: .github/workflows/module-factory-build.yml
 ```
 
 ## node --check 输出

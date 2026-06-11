@@ -1,6 +1,6 @@
 # Workflow 健康报告
 
-生成时间：2026-06-12 00:11:26 +0800
+生成时间：2026-06-12 00:22:16 +0800
 
 本报告用于确认 workflow 文件是否存在，并尽量读取 GitHub Actions 最近运行状态。若 API 不可用，则只报告配置存在性，不伪造成功状态。
 
@@ -8,11 +8,11 @@
 
 | Workflow | 文件 | 用途 | 触发方式 | 最近运行时间 | Status | Conclusion | Run URL | 处理建议 |
 |---|---|---|---|---|---|---|---|---|
-| Module Factory Build | `.github/workflows/module-factory-build.yml` | 构建 Release 并同步 Root | 手动 / push | 2026-06-11T16:11:05Z | queued | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27360743518) | 运行中或未完成，等待完成后复查 |
-| Daily Module Update | `.github/workflows/daily-module-update.yml` | 每日日期、结构、链接和验证检查 | 手动 / 定时 / push | 2026-06-11T16:11:05Z | completed | cancelled | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27360743654) | 已取消；通常是 module-maintenance 并发组被更新运行替代，连续取消时再人工复核 |
+| Module Factory Build | `.github/workflows/module-factory-build.yml` | 构建 Release 并同步 Root | 手动 / push | 2026-06-11T16:21:03Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27361363571) | 通过 |
+| Daily Module Update | `.github/workflows/daily-module-update.yml` | 每日日期、结构、链接和验证检查 | 手动 / 定时 / push | 2026-06-11T16:21:24Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27361386007) | 通过 |
 | Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | 连续失效源审计和安全处理 | 手动 / 定时 | 2026-06-11T14:33:02Z | completed | cancelled | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27354396835) | 已取消；通常是 module-maintenance 并发组被更新运行替代，连续取消时再人工复核 |
 | Upstream candidate collect | `.github/workflows/upstream-collect.yml` | 每周可信候选源收集 | 手动 / 定时 | 2026-06-11T14:33:52Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27354451083) | 通过 |
-| Repository Health Check | `.github/workflows/repository-health.yml` | 仓库治理健康检查 | 手动 / 定时 / push | 2026-06-11T16:11:04Z | completed | cancelled | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27360742920) | 已取消；通常是 module-maintenance 并发组被更新运行替代，连续取消时再人工复核 |
+| Repository Health Check | `.github/workflows/repository-health.yml` | 仓库治理健康检查 | 手动 / 定时 / push | 2026-06-11T16:21:50Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27361412374) | 运行中或未完成，等待完成后复查 |
 
 ## 说明
 
