@@ -112,6 +112,20 @@ def mitm_hosts(text: str) -> list[str]:
     return hosts
 
 
+def workflow_has_fusion_build(text: str) -> bool:
+    """Accept shell commands and Python subprocess list syntax."""
+    normalized = re.sub(r"\s+", " ", text)
+    patterns = (
+        "--profile fusion",
+        "--profile=fusion",
+        '"--profile", "fusion"',
+        "'--profile', 'fusion'",
+        '"--profile","fusion"',
+        "'--profile','fusion'",
+    )
+    return "build_module.py" in text and any(pattern in normalized for pattern in patterns)
+
+
 def section_counts(text: str) -> dict[str, int]:
     sections = ["Rule", "URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local", "Script", "MITM"]
     counts = {section: 0 for section in sections}
@@ -131,8 +145,8 @@ def workflow_summary(path: Path) -> str:
     items = []
     items.append("contents: write" if "contents: write" in text else "缺少 contents: write")
     items.append("concurrency" if "concurrency:" in text else "缺少 concurrency")
-    items.append("fusion" if "--profile fusion" in text else "缺少 fusion 构建")
-    items.append("rebase retry" if "git rebase origin/main" in text else "缺少 rebase retry")
+    items.append("fusion" if workflow_has_fusion_build(text) else "缺少 fusion 构建")
+    items.append("regenerate retry" if "reset --hard origin/main" in text or "git rebase origin/main" in text else "缺少 retry")
     return "；".join(items)
 
 
