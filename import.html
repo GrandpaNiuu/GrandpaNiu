@@ -8,17 +8,14 @@
   <style>
     :root {
       --bg: #16171d;
-      --panel: rgba(255, 255, 255, 0.055);
-      --panel-2: rgba(255, 255, 255, 0.08);
-      --line: rgba(148, 163, 184, 0.36);
       --text: #f7f8fb;
       --muted: #a4a8b8;
       --muted-2: #7f8494;
-      --blue: #2f9cff;
-      --blue-2: #087ccf;
-      --green: #35b779;
-      --green-2: #158a55;
-      --tab: rgba(255,255,255,.12);
+      --blue: #2388d9;
+      --blue-dark: #4b5563;
+      --green: #25a162;
+      --green-dark: #4b5563;
+      --gray: rgba(255,255,255,.18);
       --nav: rgba(31, 34, 44, 0.82);
     }
 
@@ -37,19 +34,14 @@
     body {
       padding: max(26px, env(safe-area-inset-top)) 18px calc(112px + env(safe-area-inset-bottom));
       background:
-        radial-gradient(circle at 18% -10%, rgba(47, 156, 255, .18), transparent 32%),
-        radial-gradient(circle at 85% 6%, rgba(53, 183, 121, .10), transparent 26%),
+        radial-gradient(circle at 18% -10%, rgba(47, 156, 255, .14), transparent 32%),
+        radial-gradient(circle at 85% 6%, rgba(53, 183, 121, .08), transparent 26%),
         #16171d;
     }
 
-    .wrap {
-      width: min(100%, 820px);
-      margin: 0 auto;
-    }
+    .wrap { width: min(100%, 820px); margin: 0 auto; }
 
-    header {
-      padding: 14px 0 28px;
-    }
+    header { padding: 14px 0 28px; }
 
     .eyebrow {
       display: inline-flex;
@@ -81,43 +73,52 @@
       font-weight: 520;
     }
 
-    .quick {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin: 22px 0 0;
+    .quick,
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 0;
     }
 
-    .quick a,
-    .chip {
-      min-width: 0;
+    .buttons { margin: 13px 0 24px; }
+
+    .badge-btn {
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      height: 37px;
-      padding: 0 10px;
-      border-radius: 7px;
+      align-items: stretch;
+      height: 31px;
       color: #fff;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 800;
-      white-space: nowrap;
+      border-radius: 5px;
       overflow: hidden;
-      text-overflow: ellipsis;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.16);
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 31px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
       -webkit-tap-highlight-color: transparent;
     }
 
-    .quick .install,
-    .chip.install { background: linear-gradient(90deg, var(--blue), var(--blue-2)); }
-    .quick .file,
-    .chip.file { background: linear-gradient(90deg, var(--green), var(--green-2)); }
-    .chip.gray { background: rgba(255,255,255,.18); color: #f4f4f5; }
+    .badge-btn .label,
+    .badge-btn .name {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 9px;
+      white-space: nowrap;
+    }
+
+    .badge-btn.install .label { background: var(--blue); }
+    .badge-btn.install .name { background: var(--blue-dark); }
+    .badge-btn.file .label { background: var(--green); }
+    .badge-btn.file .name { background: var(--green-dark); }
+    .badge-btn.gray .label { background: #6b7280; }
+    .badge-btn.gray .name { background: #4b5563; }
+
+    .badge-btn:active { filter: brightness(.92); }
 
     .section {
       position: relative;
-      margin: 28px 0 0;
+      margin: 30px 0 0;
       padding-left: 24px;
     }
 
@@ -134,7 +135,7 @@
 
     h2 {
       margin: 0 0 14px;
-      color: var(--blue);
+      color: #2f9cff;
       font-size: clamp(26px, 7vw, 40px);
       line-height: 1.15;
       letter-spacing: -.045em;
@@ -152,21 +153,7 @@
       font-weight: 500;
     }
 
-    .desc b {
-      color: #c8cad4;
-      font-weight: 900;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 13px 0 24px;
-    }
-
-    .buttons a {
-      text-decoration: none;
-    }
+    .desc b { color: #c8cad4; font-weight: 900; }
 
     .small-note {
       color: var(--muted-2);
@@ -241,27 +228,23 @@
       background: rgba(47, 156, 255, .16);
     }
 
-    .nav-icon {
-      font-size: 22px;
-      line-height: 1;
-    }
+    .nav-icon { font-size: 22px; line-height: 1; }
 
     @media (min-width: 760px) {
       body { padding-left: 32px; padding-right: 32px; }
       .section { padding-left: 30px; }
-      .quick { width: 520px; }
     }
   </style>
 </head>
 <body>
   <main class="wrap" id="home">
     <header>
-      <div class="eyebrow">🐮 GrandpaNiu · Shadowrocket-First</div>
+      <div class="eyebrow">🐮 GrandpaNiu · Shadowrocket-First Style</div>
       <h1>GrandpaNiu<br>融合模块</h1>
       <p class="lead">面向 Shadowrocket / Surge / Android 的广告净化规则集合。普通用户只需要安装一个 Fusion 模块。</p>
       <div class="quick">
-        <a class="install" id="topInstall" href="#">↪ 安装模块</a>
-        <a class="file" href="Ronghemokuai.sgmodule">▰ 模块文件</a>
+        <a class="badge-btn install" id="topInstall" href="#"><span class="label">↪ 安装模块</span><span class="name">Fusion</span></a>
+        <a class="badge-btn file" href="Ronghemokuai.sgmodule"><span class="label">▰ 模块文件</span><span class="name">Fusion</span></a>
       </div>
     </header>
 
@@ -269,9 +252,9 @@
       <h2>iOS Fusion 模块</h2>
       <p class="desc"><b>推荐入口：</b>适用于 Shadowrocket / Surge。融合常见 App 净化规则、脚本、Rewrite 与 MITM 覆盖，支持在模块内使用 <b>编辑参数</b> 调整部分功能。</p>
       <div class="buttons">
-        <a class="chip install" id="install" href="#">↪ 安装模块</a>
-        <a class="chip file" href="Ronghemokuai.sgmodule">▰ 模块文件</a>
-        <a class="chip gray" id="copy" href="#">复制链接</a>
+        <a class="badge-btn install" id="install" href="#"><span class="label">↪ 安装模块</span><span class="name">Fusion</span></a>
+        <a class="badge-btn file" href="Ronghemokuai.sgmodule"><span class="label">▰ 模块文件</span><span class="name">Fusion</span></a>
+        <a class="badge-btn gray" id="copy" href="#"><span class="label">复制链接</span><span class="name">Module</span></a>
       </div>
       <p class="small-note">安装前建议停用旧模块，不要把旧 Stable / Stable Plus / Lite / Full 与 Fusion 同时启用。</p>
       <code id="url">https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule</code>
@@ -281,8 +264,8 @@
       <h2>Android 规则</h2>
       <p class="desc"><b>Android 用户：</b>根据自己的客户端选择规则格式。适合 Mihomo、Clash Meta、FlClash、sing-box、AdGuard DNS、AdGuard Home、v2rayNG / V2Ray / Xray 等场景。</p>
       <div class="buttons">
-        <a class="chip file" href="android.html">▰ Android 导入页</a>
-        <a class="chip gray" href="Web/catalog.md">Release 目录</a>
+        <a class="badge-btn file" href="android.html"><span class="label">▰ 规则文件</span><span class="name">Android</span></a>
+        <a class="badge-btn gray" href="Web/catalog.md"><span class="label">Release</span><span class="name">目录</span></a>
       </div>
       <p class="small-note">Android 规则主要是域名、IP、DNS 和分流规则，不能完全等同 iOS 的 Script、MITM、Rewrite 效果。</p>
     </section>
@@ -291,8 +274,8 @@
       <h2>仓库报告</h2>
       <p class="desc"><b>维护者入口：</b>查看仓库健康、构建产物和规则覆盖情况。普通用户遇到异常时，优先关闭模块或对应 App 增强规则排查。</p>
       <div class="buttons">
-        <a class="chip file" href="reports/repository_health_report.md">▰ 健康报告</a>
-        <a class="chip gray" href="Web/release-links.json">机器索引</a>
+        <a class="badge-btn file" href="reports/repository_health_report.md"><span class="label">▰ 仓库报告</span><span class="name">Health</span></a>
+        <a class="badge-btn gray" href="Web/release-links.json"><span class="label">机器索引</span><span class="name">JSON</span></a>
       </div>
       <div class="warning">规则净化存在误杀风险。本项目仅供个人学习、研究和实验使用。</div>
     </section>
