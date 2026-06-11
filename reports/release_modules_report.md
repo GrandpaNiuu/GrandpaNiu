@@ -29,7 +29,7 @@
 - MITM: 1
 
 ## GrandpaNiu Bilibili
-- Source: `Release/Ronghemokuai.sgmodule`
+- Source: `Rewrite/Sources/Apps/bilibili.conf`
 - Rule: 8
 - URL Rewrite: 12
 - Body Rewrite: 11
