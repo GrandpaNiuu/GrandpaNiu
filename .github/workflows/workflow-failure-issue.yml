@@ -1,7 +1,8 @@
 # This watcher intentionally shows "skipped" when the upstream workflow completed successfully
 # or when no failure issue is needed. Skipped here does not mean this watcher is broken.
-# It only opens or updates an issue for non-normal upstream conclusions:
-# failure, timed_out, action_required, or cancelled. Normal success stays skipped.
+# It only opens or updates an issue for blocking upstream conclusions:
+# failure, timed_out, or action_required. Normal success and concurrency cancellation
+# do not open new issues.
 
 name: Workflow failure issue
 
@@ -30,8 +31,9 @@ jobs:
     # Expected behavior:
     # - success: skipped, no issue
     # - skipped: skipped, no issue, because normal skipped runs can happen in GitHub Actions
-    # - failure / timed_out / action_required / cancelled: open or update issue
-    if: ${{ contains(fromJSON('["failure","timed_out","action_required","cancelled"]'), github.event.workflow_run.conclusion) }}
+    # - failure / timed_out / action_required: open or update issue
+    # - cancelled: ignored, because module-maintenance concurrency can cancel older runs normally
+    if: ${{ contains(fromJSON('["failure","timed_out","action_required"]'), github.event.workflow_run.conclusion) }}
     runs-on: ubuntu-latest
     steps:
       - name: Ensure label exists
@@ -55,7 +57,7 @@ jobs:
           EVENT_NAME: ${{ github.event.workflow_run.event }}
         run: |
           set -euo pipefail
-          TITLE="[Automation Failure] ${WORKFLOW_NAME} #${RUN_NUMBER}"
+          TITLE="[Automation Failure] ${WORKFLOW_NAME}"
           BODY_FILE="failure_issue_body.md"
           cat > "$BODY_FILE" <<EOF
           ## Workflow failure detected
@@ -73,7 +75,7 @@ jobs:
 
           ## Expected watcher behavior
 
-          The `Workflow failure issue` watcher is expected to show `skipped` when upstream workflows complete with `success` or when no issue is required. This issue is only created for `failure`, `timed_out`, `action_required`, or `cancelled` conclusions.
+          The `Workflow failure issue` watcher is expected to show `skipped` when upstream workflows complete with `success`, `cancelled`, or when no issue is required. This issue is only created for `failure`, `timed_out`, or `action_required` conclusions.
 
           ## Required checks
 
@@ -98,7 +100,7 @@ jobs:
           This issue was created automatically. Close it only after the workflow has returned to `completed / success` or the cancellation has been confirmed as intentional.
           EOF
 
-          EXISTING=$(gh issue list --repo "$REPO" --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')
+          EXISTING=$(gh issue list --repo "$REPO" --state open --search "\"[Automation Failure] ${WORKFLOW_NAME}\" in:title label:automation-failure" --json number --jq '.[0].number // empty')
           if [ -n "$EXISTING" ]; then
             gh issue comment "$EXISTING" --repo "$REPO" --body-file "$BODY_FILE"
             echo "Updated existing issue #$EXISTING"
@@ -106,3 +108,28 @@ jobs:
             gh issue create --repo "$REPO" --title "$TITLE" --body-file "$BODY_FILE" --label automation-failure
             echo "Created new failure issue"
           fi
+
+  close-resolved-issues:
+    # Close stale automation-failure issues after a newer run for the same workflow succeeds.
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close resolved automation failure issues
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          RUN_NUMBER: ${{ github.event.workflow_run.run_number }}
+          HTML_URL: ${{ github.event.workflow_run.html_url }}
+        run: |
+          set -euo pipefail
+          query="\"[Automation Failure] ${WORKFLOW_NAME}\" in:title label:automation-failure"
+          mapfile -t issues < <(gh issue list --repo "$REPO" --state open --search "$query" --json number --jq '.[].number')
+          if [ "${#issues[@]}" -eq 0 ]; then
+            echo "No stale automation failure issues to close."
+            exit 0
+          fi
+          for issue in "${issues[@]}"; do
+            gh issue comment "$issue" --repo "$REPO" --body "Resolved by successful ${WORKFLOW_NAME} run #${RUN_NUMBER}: ${HTML_URL}"
+            gh issue close "$issue" --repo "$REPO" --reason completed
+          done

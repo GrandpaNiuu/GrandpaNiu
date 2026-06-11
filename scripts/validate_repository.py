@@ -305,10 +305,23 @@ def validate_workflows() -> None:
     for token in ("collect_upstreams.py", "audit_repair_invalid_sources.py", "validate_remote_rule_syntax.py"):
         if token not in invalid_source:
             fail(f"daily-invalid-source-repair workflow missing command token: {token}")
+    if "reset --hard origin/main" not in invalid_source:
+        fail("daily-invalid-source-repair workflow must regenerate after reset to origin/main before push retry")
 
     audit = read_text(ROOT / ".github" / "workflows" / "daily-audit-and-repair.yml")
     if "validate_remote_rule_syntax.py" not in audit:
         fail("daily-audit-and-repair workflow missing validate_remote_rule_syntax.py")
+
+    health = read_text(ROOT / ".github" / "workflows" / "repository-health.yml")
+    for token in ("generate_stable_plus_promotion_report.py", "create_promotion_pr.py"):
+        if token in health:
+            fail(f"repository-health workflow must not run legacy promotion command: {token}")
+
+    watcher = read_text(ROOT / ".github" / "workflows" / "workflow-failure-issue.yml")
+    if re.search(r"fromJSON\([^)]*cancelled", watcher):
+        fail("workflow-failure-issue must not open issues for cancelled runs")
+    if "close-resolved-issues" not in watcher:
+        fail("workflow-failure-issue must close stale automation issues after successful runs")
 
 
 def validate_no_tool_traces() -> None:

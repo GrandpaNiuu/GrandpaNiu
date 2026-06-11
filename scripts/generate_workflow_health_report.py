@@ -98,7 +98,9 @@ def conclusion_advice(status: str, conclusion: str, fallback: str) -> str:
         return "运行中或未完成，等待完成后复查"
     if conclusion == "success":
         return "通过"
-    if conclusion in {"failure", "cancelled", "timed_out", "action_required"}:
+    if conclusion == "cancelled":
+        return "已取消；通常是 module-maintenance 并发组被更新运行替代，连续取消时再人工复核"
+    if conclusion in {"failure", "timed_out", "action_required"}:
         return "打开 run 日志，优先排查失败步骤"
     return "状态未知，人工复核"
 
@@ -139,7 +141,7 @@ def main() -> None:
         "## 说明",
         "",
         "- `success` 才能视为 workflow 最近一次运行通过。",
-        "- `failure`、`cancelled`、`timed_out`、`action_required` 必须打开对应 run 日志排查。",
+        "- `failure`、`timed_out`、`action_required` 必须打开对应 run 日志排查；`cancelled` 通常由并发组替代旧运行导致。",
         "- API 不可用时，本报告只确认配置存在，不确认真实运行状态。",
         "- iOS 公开入口只保留 Fusion；旧 Stable / Stable Plus / Lite / Full 不再作为正式 workflow 入口。",
         "",

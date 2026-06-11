@@ -49,21 +49,43 @@ jobs:
 
       - name: Commit invalid source report and source-first repairs
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No invalid source changes to commit."
-            exit 0
-          fi
-          git commit -m "Daily source-first invalid source audit and fusion repair"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          regenerate() {
+            python3 scripts/collect_upstreams.py
+            python3 scripts/audit_repair_invalid_sources.py
+            # fusion-build-marker: scripts/build_module.py --build --profile fusion
+            python3 scripts/build_module.py --build --profile fusion
+            python3 scripts/factory_finalize.py --sync-root
+            python3 scripts/build_release_variants.py
+            python3 scripts/validate_remote_rule_syntax.py
+            python3 scripts/validate_repository.py
+          }
+
           for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            regenerate
+            git add -A
+            if git diff --cached --quiet; then
+              echo "No invalid source changes to commit."
+              exit 0
+            fi
+            git commit -m "Daily source-first invalid source audit and fusion repair"
             if git push origin HEAD:main; then
               exit 0
             fi
-            echo "Push failed on attempt ${attempt}; rebasing on origin/main and retrying."
+            echo "Push failed on attempt ${attempt}; trying rebase before regenerating."
             git fetch origin main
-            git rebase origin/main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
           done
-          echo "Push failed after 3 attempts."
+          echo "Push failed after 3 regenerated attempts."
           exit 1
