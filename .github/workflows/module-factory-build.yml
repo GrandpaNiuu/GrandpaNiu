@@ -8,14 +8,14 @@ on:
     paths:
       - "Ronghemokuai.sgmodule"
       - "scripts/**"
-      - "docs/QUALITY_GATE.md"
-      - "docs/PROFILE_POLICY.md"
-      - "reports/manual_test_log.md"
+      - "docs/**"
+      - "reports/**"
       - "Rewrite/**"
       - "Rules/**"
       - "Scripts/**"
       - "Android/**"
-      - ".github/ISSUE_TEMPLATE/**"
+      - "Release/**"
+      - "Web/**"
       - ".github/workflows/module-factory-build.yml"
 
 permissions:
@@ -56,71 +56,32 @@ jobs:
       - name: Validate scripts
         run: |
           set -euo pipefail
-          python3 -m py_compile scripts/*.py
+          python3 -m py_compile scripts/*.py Rewrite/Generator/Builder.py
           node --check Scripts/app-cleaner.js
 
-      - name: Build fusion module
+      - name: Prepare sources
         run: |
           set -euo pipefail
-          # fusion-build-marker: scripts/build_module.py --build --profile fusion
           python3 scripts/import_qingrex_official_module.py
           python3 scripts/dedupe_qq_news_script_path.py
-          node --check Scripts/app-cleaner.js
           python3 scripts/build_android_rules.py
           python3 scripts/android_format_check.py
           python3 scripts/convert_quanx_rules.py
-          python3 scripts/build_module.py --build --profile fusion
-          python3 scripts/factory_finalize.py --sync-root
-          python3 scripts/build_release_variants.py
-          python3 scripts/validate_remote_rule_syntax.py
-          python3 scripts/validate_governance_extensions.py
-          python3 scripts/validate_repository.py
 
-      - name: Commit fusion output
+      - name: Build factory outputs
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          python3 Rewrite/Generator/Builder.py --profile fusion --release --check
 
-          regenerate() {
-            # fusion-build-marker: scripts/build_module.py --build --profile fusion
-            python3 scripts/import_qingrex_official_module.py
-            python3 scripts/dedupe_qq_news_script_path.py
-            node --check Scripts/app-cleaner.js
-            python3 scripts/build_android_rules.py
-            python3 scripts/android_format_check.py
-            python3 scripts/convert_quanx_rules.py
-            python3 scripts/build_module.py --build --profile fusion
-            python3 scripts/factory_finalize.py --sync-root
-            python3 scripts/build_release_variants.py
-            python3 scripts/validate_remote_rule_syntax.py
-            python3 scripts/validate_governance_extensions.py
-            python3 scripts/validate_repository.py
-          }
-
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git reset --hard origin/main
-            regenerate
-            git add -A
-            if git diff --cached --quiet; then
-              echo "No fusion output changes to commit."
-              exit 0
-            fi
-            git commit -m "Build fusion module factory output"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            echo "Push failed on attempt ${attempt}; trying rebase before regenerating."
-            git fetch origin main
-            if git rebase origin/main; then
-              if git push origin HEAD:main; then
-                exit 0
-              fi
-            else
-              git rebase --abort || true
-            fi
-          done
-
-          echo "Push failed after 3 regenerated attempts."
-          exit 1
+      - name: Commit generated files
+        run: |
+          set -euo pipefail
+          git config user.name "module-factory"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No generated file changes."
+            exit 0
+          fi
+          git commit -m "Build module factory outputs"
+          git push
