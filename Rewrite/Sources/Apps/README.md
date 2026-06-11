@@ -19,18 +19,11 @@ Rewrite/Sources/Apps/
 ├─ taobao.conf
 ├─ netease-music.conf
 ├─ mgtv.conf
-└─ huya.conf
-```
-
-## Pending app fragments
-
-Some candidates still need safer manual extraction before they become active source files:
-
-```text
-meituan.conf
-amap.conf
-wps.conf
-baidu.conf
+├─ huya.conf
+├─ yiche.conf
+├─ pcauto.conf
+├─ umetrip.conf
+└─ xiaopeng.conf
 ```
 
 ## Build behavior
