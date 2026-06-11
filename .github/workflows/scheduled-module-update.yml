@@ -4,6 +4,12 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 2 * * *"
+  push:
+    # Verify this scheduled workflow when its definition changes.
+    branches:
+      - main
+    paths:
+      - ".github/workflows/scheduled-module-update.yml"
 
 permissions:
   contents: write
