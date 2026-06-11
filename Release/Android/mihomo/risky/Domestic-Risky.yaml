@@ -1,0 +1,46 @@
+payload:
+  # Risky rules: enable only when troubleshooting or testing.
+  # These may affect app startup, image loading, routing, or connectivity.
+
+  # Broad CDN / asset suffixes
+  - DOMAIN-SUFFIX,xhscdn.com
+  - DOMAIN-SUFFIX,zjcdn.com
+
+  # HTTPDNS / routing-related endpoints
+  - DOMAIN,httpdns.music.163.com
+  - DOMAIN,music.httpdns.c.163.com
+  - DOMAIN,ipv4.music.163.com
+  - DOMAIN,ipv6.music.163.com
+  - DOMAIN,httpdnsmultiapi.meituan.com
+  - DOMAIN,httpdnsmultiapivip.meituan.com
+  - DOMAIN,httpdns.baidubce.com
+  - DOMAIN,amdc.m.taobao.com
+
+  # Broad domestic SDK keywords
+  - DOMAIN-KEYWORD,adash
+  - DOMAIN-KEYWORD,adsdk
+  - DOMAIN-KEYWORD,adservice
+  - DOMAIN-KEYWORD,adtrack
+  - DOMAIN-KEYWORD,analytics
+  - DOMAIN-KEYWORD,applog
+  - DOMAIN-KEYWORD,beacon
+  - DOMAIN-KEYWORD,clicklog
+  - DOMAIN-KEYWORD,commercial
+  - DOMAIN-KEYWORD,eventlog
+  - DOMAIN-KEYWORD,exposure
+  - DOMAIN-KEYWORD,feedad
+  - DOMAIN-KEYWORD,gdt
+  - DOMAIN-KEYWORD,guanggao
+  - DOMAIN-KEYWORD,log-upload
+  - DOMAIN-KEYWORD,logcollect
+  - DOMAIN-KEYWORD,logservice
+  - DOMAIN-KEYWORD,mobads
+  - DOMAIN-KEYWORD,openads
+  - DOMAIN-KEYWORD,promotion
+  - DOMAIN-KEYWORD,recommend-ad
+  - DOMAIN-KEYWORD,splash-ad
+  - DOMAIN-KEYWORD,tracker
+  - DOMAIN-KEYWORD,tracking
+  - DOMAIN-KEYWORD,umeng
+  - DOMAIN-KEYWORD,umtrack
+  - DOMAIN-KEYWORD,unionad

@@ -1,0 +1,15 @@
+||ads.youtube.com^
+||adservice.google.com^
+||googleads.g.doubleclick.net^
+||pagead-googlehosted.l.google.com^
+||pagead2.googlesyndication.com^
+||partnerad.l.doubleclick.net^
+||static.doubleclick.net^
+||tpc.googlesyndication.com^
+||www.googleadservices.com^
+/doubleclick/
+/googleads/
+/googlesyndication/
+||doubleclick.net^
+||googleadservices.com^
+||googlesyndication.com^

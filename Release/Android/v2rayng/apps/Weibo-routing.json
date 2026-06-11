@@ -1,0 +1,18 @@
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "block",
+        "domain": [
+          "full:sax.sina.com.cn",
+          "full:saxn.sina.com.cn",
+          "full:saxs.sina.com.cn",
+          "full:u1.img.mobile.sina.cn",
+          "keyword:weibo-ad",
+          "domain:sax.sina.com.cn"
+        ]
+      }
+    ]
+  }
+}

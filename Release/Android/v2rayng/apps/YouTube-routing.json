@@ -1,0 +1,27 @@
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "block",
+        "domain": [
+          "full:ads.youtube.com",
+          "full:adservice.google.com",
+          "full:googleads.g.doubleclick.net",
+          "full:pagead-googlehosted.l.google.com",
+          "full:pagead2.googlesyndication.com",
+          "full:partnerad.l.doubleclick.net",
+          "full:static.doubleclick.net",
+          "full:tpc.googlesyndication.com",
+          "full:www.googleadservices.com",
+          "keyword:doubleclick",
+          "keyword:googleads",
+          "keyword:googlesyndication",
+          "domain:doubleclick.net",
+          "domain:googleadservices.com",
+          "domain:googlesyndication.com"
+        ]
+      }
+    ]
+  }
+}

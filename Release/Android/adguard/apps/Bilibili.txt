@@ -1,0 +1,5 @@
+||cm.bilibili.com^
+||data.bilibili.com^
+||miniapp.bilibili.com^
+/bili-ad/
+||cm.bilibili.com^

@@ -1,0 +1,16 @@
+payload:
+  - DOMAIN,ads.youtube.com
+  - DOMAIN,adservice.google.com
+  - DOMAIN,googleads.g.doubleclick.net
+  - DOMAIN,pagead-googlehosted.l.google.com
+  - DOMAIN,pagead2.googlesyndication.com
+  - DOMAIN,partnerad.l.doubleclick.net
+  - DOMAIN,static.doubleclick.net
+  - DOMAIN,tpc.googlesyndication.com
+  - DOMAIN,www.googleadservices.com
+  - DOMAIN-KEYWORD,doubleclick
+  - DOMAIN-KEYWORD,googleads
+  - DOMAIN-KEYWORD,googlesyndication
+  - DOMAIN-SUFFIX,doubleclick.net
+  - DOMAIN-SUFFIX,googleadservices.com
+  - DOMAIN-SUFFIX,googlesyndication.com

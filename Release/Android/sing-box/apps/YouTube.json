@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain": [
+        "ads.youtube.com",
+        "adservice.google.com",
+        "googleads.g.doubleclick.net",
+        "pagead-googlehosted.l.google.com",
+        "pagead2.googlesyndication.com",
+        "partnerad.l.doubleclick.net",
+        "static.doubleclick.net",
+        "tpc.googlesyndication.com",
+        "www.googleadservices.com"
+      ],
+      "domain_suffix": [
+        "doubleclick.net",
+        "googleadservices.com",
+        "googlesyndication.com"
+      ],
+      "domain_keyword": [
+        "doubleclick",
+        "googleads",
+        "googlesyndication"
+      ]
+    }
+  ]
+}

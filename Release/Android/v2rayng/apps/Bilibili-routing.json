@@ -1,0 +1,17 @@
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "block",
+        "domain": [
+          "full:cm.bilibili.com",
+          "full:data.bilibili.com",
+          "full:miniapp.bilibili.com",
+          "keyword:bili-ad",
+          "domain:cm.bilibili.com"
+        ]
+      }
+    ]
+  }
+}

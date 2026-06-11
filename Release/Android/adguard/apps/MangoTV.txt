@@ -1,0 +1,12 @@
+||credits.bz.mgtv.com^
+||credits2.bz.mgtv.com^
+||credits3.bz.mgtv.com^
+||dflow.bz.mgtv.com^
+||encounter.bz.mgtv.com^
+||floor.bz.mgtv.com^
+||layer.bz.mgtv.com^
+||mob.bz.mgtv.com^
+||rc-topic-api.bz.mgtv.com^
+||rprain.bz.mgtv.com^
+||rprain.log.mgtv.com^
+||vip.bz.mgtv.com^

@@ -1,0 +1,26 @@
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "block",
+        "domain": [
+          "full:adeventtracker.spotify.com",
+          "full:ads-fa.spotify.com",
+          "full:adstudio.spotify.com",
+          "full:analytics.spotify.com",
+          "full:audio-ads.spotify.com",
+          "full:gew1-spclient.spotify.com",
+          "full:gew4-spclient.spotify.com",
+          "full:heads-ak.spotify.com",
+          "full:log.spotify.com",
+          "full:spclient.wg.spotify.com",
+          "full:spotify-ads.spotifycdn.com",
+          "keyword:spotify-ad",
+          "keyword:spotify-ads",
+          "domain:spotifycdn.com"
+        ]
+      }
+    ]
+  }
+}

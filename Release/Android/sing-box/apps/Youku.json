@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain": [
+        "adx-core.youku.com",
+        "adx-open-service.youku.com",
+        "cad.youku.com",
+        "ems.youku.com",
+        "m.atm.youku.com",
+        "mc.atm.youku.com",
+        "yk-ssp.ad.youku.com",
+        "ykad-data.youku.com"
+      ]
+    }
+  ]
+}

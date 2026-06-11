@@ -1,0 +1,6 @@
+||sax.sina.com.cn^
+||saxn.sina.com.cn^
+||saxs.sina.com.cn^
+||u1.img.mobile.sina.cn^
+/weibo-ad/
+||sax.sina.com.cn^

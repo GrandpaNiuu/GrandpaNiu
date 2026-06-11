@@ -1,0 +1,30 @@
+# GrandpaNiu Android full config for Mihomo / Clash Meta
+# This config contains no proxy nodes. It rejects matched main rules.
+# The main rule set already includes base rules + YouTube / Spotify + domestic app enhancements.
+# Risky rules are not enabled here.
+
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+
+proxies: []
+
+proxy-groups:
+  - name: DIRECT
+    type: select
+    proxies:
+      - DIRECT
+
+rule-providers:
+  grandpaniu_ads:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Ads.yaml"
+    path: ./ruleset/GrandpaNiu-Ads.yaml
+    interval: 86400
+
+rules:
+  - RULE-SET,grandpaniu_ads,REJECT
+  - MATCH,DIRECT

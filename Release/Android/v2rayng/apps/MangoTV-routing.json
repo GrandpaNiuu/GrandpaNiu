@@ -1,0 +1,24 @@
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "block",
+        "domain": [
+          "full:credits.bz.mgtv.com",
+          "full:credits2.bz.mgtv.com",
+          "full:credits3.bz.mgtv.com",
+          "full:dflow.bz.mgtv.com",
+          "full:encounter.bz.mgtv.com",
+          "full:floor.bz.mgtv.com",
+          "full:layer.bz.mgtv.com",
+          "full:mob.bz.mgtv.com",
+          "full:rc-topic-api.bz.mgtv.com",
+          "full:rprain.bz.mgtv.com",
+          "full:rprain.log.mgtv.com",
+          "full:vip.bz.mgtv.com"
+        ]
+      }
+    ]
+  }
+}

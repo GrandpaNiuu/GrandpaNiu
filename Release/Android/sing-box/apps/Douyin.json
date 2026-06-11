@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain": [
+        "ad.toutiao.com",
+        "ad.zijieapi.com",
+        "log.snssdk.com",
+        "mon.snssdk.com",
+        "pangolin-sdk-toutiao.com",
+        "pangolin.snssdk.com",
+        "temai.snssdk.com"
+      ],
+      "domain_suffix": [
+        "pangolin-sdk-toutiao.com",
+        "pglstatp-toutiao.com",
+        "zjcdn.com"
+      ],
+      "domain_keyword": [
+        "pangolin",
+        "pglstatp"
+      ]
+    }
+  ]
+}

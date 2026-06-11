@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain": [
+        "sax.sina.com.cn",
+        "saxn.sina.com.cn",
+        "saxs.sina.com.cn",
+        "u1.img.mobile.sina.cn"
+      ],
+      "domain_suffix": [
+        "sax.sina.com.cn"
+      ],
+      "domain_keyword": [
+        "weibo-ad"
+      ]
+    }
+  ]
+}

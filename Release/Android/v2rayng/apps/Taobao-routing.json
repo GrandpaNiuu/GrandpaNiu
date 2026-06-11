@@ -1,0 +1,25 @@
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "block",
+        "domain": [
+          "full:acs4baichuan.m.taobao.com",
+          "full:adash.m.taobao.com",
+          "full:adashbc.m.taobao.com",
+          "full:adashx.m.taobao.com",
+          "full:h-adashx.ut.taobao.com",
+          "full:market.m.taobao.com",
+          "full:nbsdk-baichuan.alicdn.com",
+          "full:openjmacs.m.taobao.com",
+          "full:retcode.taobao.com",
+          "full:tns.simba.taobao.com",
+          "full:umengacs.m.taobao.com",
+          "full:ut.taobao.com",
+          "full:wgo.mmstat.com"
+        ]
+      }
+    ]
+  }
+}

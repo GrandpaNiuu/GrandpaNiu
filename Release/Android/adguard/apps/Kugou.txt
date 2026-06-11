@@ -1,0 +1,4 @@
+||ads.service.kugou.com^
+||adservice.kugou.com^
+||adserviceretry.kugou.com^
+||splashimgretrybssdl.cloud.kugou.com^

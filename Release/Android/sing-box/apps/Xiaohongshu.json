@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain": [
+        "ads-img-qc.xhscdn.com",
+        "ads-video-al.xhscdn.com",
+        "ads-video-qc.xhscdn.com",
+        "apm-native.xiaohongshu.com",
+        "t-ads.xiaohongshu.com"
+      ],
+      "domain_keyword": [
+        "xhs-ad",
+        "xiaohongshu-ad"
+      ]
+    }
+  ]
+}
