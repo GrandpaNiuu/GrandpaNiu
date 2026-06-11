@@ -79,13 +79,12 @@ GrandpaNiu 是一个用于 **Shadowrocket、Surge 和 Android 规则客户端** 
 https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
 ```
 
-也可以直接点这里跳转安装：
-
-[导入融合模块][fusion-import]
+[![安装模块 GrandpaNiu Fusion](https://img.shields.io/static/v1?label=安装模块&message=GrandpaNiu%20Fusion&color=grey&logo=educative&logoColor=white&labelColor=blue&messageColor=white)](https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRonghemokuai.sgmodule "一键安装 Fusion 模块")
+[![模块文件 Fusion](https://img.shields.io/static/v1?label=模块文件&message=Fusion&color=grey&logo=todoist&logoColor=white&labelColor=%2325A162&messageColor=white)](https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule "点击访问模块文件")
 
 使用步骤：
 
-1. 点击上面的“导入融合模块”，或复制模块链接。
+1. 点击上面的“安装模块”按钮，或复制模块链接。
 2. 打开 Shadowrocket 或 Surge。
 3. 找到“模块”或“Module”。
 4. 选择“从 URL 导入”。
@@ -98,7 +97,8 @@ https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
 
 Android 用户可以查看 Android 规则入口：
 
-[打开 Android 导入页][android-import]
+[![Android 导入页](https://img.shields.io/static/v1?label=Android&message=导入页&color=grey&logo=android&logoColor=white&labelColor=%2325A162&messageColor=white)](https://grandpaniuu.github.io/GrandpaNiu/android.html "打开 Android 导入页")
+[![Release 目录](https://img.shields.io/static/v1?label=Release&message=目录&color=grey&logo=github&logoColor=white&labelColor=blue&messageColor=white)](https://grandpaniuu.github.io/GrandpaNiu/Web/catalog.md "查看 Release 目录")
 
 Android 规则主要适合：
 
