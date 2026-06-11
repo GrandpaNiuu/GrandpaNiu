@@ -2,7 +2,6 @@ name: Daily Module Update
 
 on:
   schedule:
-    # 16:00 UTC = 00:00 Beijing time.
     - cron: "0 16 * * *"
   workflow_dispatch:
   push:
@@ -34,28 +33,19 @@ jobs:
           fetch-depth: 0
 
       - name: Compile maintenance scripts
-        run: python3 -m py_compile scripts/*.py
+        run: python3 -m py_compile scripts/*.py Rewrite/Generator/Builder.py
 
       - name: Generate and commit daily update
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "module-factory"
+          git config user.email "actions@users.noreply.github.com"
 
-          regenerate() {
-            # fusion-build-marker: scripts/build_module.py --build --profile fusion
+          update_date() {
             python3 <<'PY'
           from pathlib import Path
           from datetime import datetime, timezone, timedelta
           import re
-          import subprocess
-
-          def run_checked(label, command):
-              proc = subprocess.run(command, text=True, capture_output=True)
-              output = (proc.stdout + proc.stderr).strip() or "no output"
-              if proc.returncode != 0:
-                  raise SystemExit(f"{label} failed:\n{output}")
-              return output
 
           today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
           meta = Path("Rewrite/Sources/Meta.conf")
@@ -64,87 +54,43 @@ jobs:
           text = re.sub(r"^# update-date:.*$", f"# update-date: {today}", text, flags=re.M)
           meta.write_text(text, encoding="utf-8", newline="\n")
 
-          outputs = []
-          for label, command in [
-              ("convert_quanx_rules.py", ["python3", "scripts/convert_quanx_rules.py"]),
-              ("build_android_rules.py", ["python3", "scripts/build_android_rules.py"]),
-              ("android_format_check.py", ["python3", "scripts/android_format_check.py"]),
-              ("build_module.py", ["python3", "scripts/build_module.py", "--build", "--profile", "fusion"]),
-              ("factory_finalize.py", ["python3", "scripts/factory_finalize.py", "--sync-root"]),
-              ("build_release_variants.py", ["python3", "scripts/build_release_variants.py"]),
-              ("validate_remote_rule_syntax.py", ["python3", "scripts/validate_remote_rule_syntax.py"]),
-              ("validate_governance_extensions.py", ["python3", "scripts/validate_governance_extensions.py"]),
-              ("validate_repository.py", ["python3", "scripts/validate_repository.py"]),
-              ("repository_health_check.py", ["python3", "scripts/repository_health_check.py"]),
-              ("check_report_freshness.py", ["python3", "scripts/check_report_freshness.py"]),
-          ]:
-              outputs.append(f"$ {label}\n" + run_checked(label, command))
-
           report = Path("reports/daily_update_report.md")
           report.parent.mkdir(parents=True, exist_ok=True)
           report.write_text("\n".join([
-              "# 每日模块更新报告",
+              "# Daily module update report",
               "",
-              f"- 日期：{today}",
-              "- 构建 profile：fusion",
-              "- 发布模式：单一融合版",
-              "",
-              "## 执行输出",
-              "",
-              "```text",
-              "\n\n".join(outputs),
-              "```",
-              "",
-              "## 自动更新边界说明",
-              "",
-              "- 本 workflow 会更新源头日期、重新构建 fusion、同步 Release 与 Root。",
-              "- 不再生成 Stable / Stable Plus / Lite / Full 四个用户版本。",
-              "- 不自动删除规则。",
+              f"- Date: {today}",
+              "- Profile: fusion",
+              "- Entry: Ronghemokuai.sgmodule",
               "",
           ]), encoding="utf-8", newline="\n")
           PY
           }
 
-          commit_changes() {
-            git add -A
-            if git diff --cached --quiet; then
-              echo "No daily update changes to commit."
-              return 1
-            fi
-            git commit -m "Daily fusion module update"
+          regenerate() {
+            update_date
+            python3 scripts/import_qingrex_official_module.py
+            python3 scripts/dedupe_qq_news_script_path.py
+            python3 scripts/build_android_rules.py
+            python3 scripts/android_format_check.py
+            python3 scripts/convert_quanx_rules.py
+            python3 Rewrite/Generator/Builder.py --profile fusion --release
           }
 
-          safe_rebase_push() {
-            echo "Push failed; trying safe rebase fallback before reset regeneration."
-            git fetch origin main
-            if git rebase origin/main; then
-              if git push origin HEAD:main; then
-                return 0
-              fi
-            else
-              git rebase --abort || true
-            fi
-            return 1
-          }
-
-          regenerate
-          commit_changes || exit 0
-          if git push origin HEAD:main; then
-            exit 0
-          fi
-          safe_rebase_push && exit 0
-
-          echo "Push failed; resetting to latest main and regenerating daily update outputs."
-          for attempt in 2 3; do
+          for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
             regenerate
-            commit_changes || exit 0
+            git add -A
+            if git diff --cached --quiet; then
+              echo "No daily update changes to commit."
+              exit 0
+            fi
+            git commit -m "Daily fusion module update [skip ci]"
             if git push origin HEAD:main; then
               exit 0
             fi
-            safe_rebase_push && exit 0
-            echo "Push failed on regenerated attempt ${attempt}."
+            echo "Push failed on attempt ${attempt}; retrying from latest main."
           done
 
           echo "Push failed after 3 regenerated attempts."
