@@ -4,7 +4,7 @@
     "path": "Rewrite/Remotes/candidates.json",
     "first_failed_date": "2026-05-30",
     "last_failed_date": "2026-06-11",
-    "fail_count": 19,
+    "fail_count": 20,
     "last_error": "HTTP 404 HTTP 404",
     "line_number": 4,
     "line_preview": "{\"name\": \"blackmatrix7 Privacy Lite\", \"kind\": \"remote_rule\", \"type\": \"RULE-SET\", \"url\": \"https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list\", \"policy\": \"REJECT\", \"enabled\": false, \""
