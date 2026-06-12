@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T18:01:36.025248Z",
+  "generated_at": "2026-06-12T18:04:02.078916Z",
   "algorithm": "sha256",
   "count": 59,
   "files": [
@@ -115,8 +115,8 @@
     },
     {
       "path": "Release/Modules/spotify.sgmodule",
-      "size": 1436,
-      "sha256": "75027d94f2a5b5b7d9c8a7899f9fc1d63b9d210c1389f0373fae5535d07a1e8f"
+      "size": 1469,
+      "sha256": "d35fd37d657fce47003d6d35b606a337068ad95ac273af859ccb6d6fa0a62d60"
     },
     {
       "path": "Release/Modules/taobao.sgmodule",
