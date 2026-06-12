@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T19:40:13.612238Z",
+  "generated_at": "2026-06-12T20:00:33.315431Z",
   "algorithm": "sha256",
   "count": 242,
   "files": [
@@ -1055,8 +1055,8 @@
     },
     {
       "path": "Release/Modules/youtube.sgmodule",
-      "size": 1017,
-      "sha256": "0af217035edbd2adde5e3b2badc69b388a7eacd2dca8f12e3e86deeaa8b9ce4f"
+      "size": 1016,
+      "sha256": "7ef980f68e61ebcf7b5ba2234a419420a02ea46a001745a52b824bfdd642bb0a"
     },
     {
       "path": "Release/Modules/yue-dan-ba.sgmodule",
