@@ -55,6 +55,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 -m py_compile scripts/*.py Rewrite/Generator/Builder.py
+          python3 scripts/validate_generator_config.py
           node --check Scripts/app-cleaner.js
 
       - name: Build factory outputs
@@ -67,6 +68,7 @@ jobs:
           python3 scripts/convert_quanx_rules.py
           # fusion-build-marker: scripts/build_module.py --build --profile fusion
           python3 Rewrite/Generator/Builder.py --profile fusion --release
+          python3 scripts/validate_generator_config.py
           python3 scripts/validate_manifest.py
           python3 scripts/validate_remote_rule_syntax.py
           python3 scripts/validate_governance_extensions.py
@@ -87,6 +89,7 @@ jobs:
             python3 scripts/convert_quanx_rules.py
             # fusion-build-marker: scripts/build_module.py --build --profile fusion
             python3 Rewrite/Generator/Builder.py --profile fusion --release
+            python3 scripts/validate_generator_config.py
             python3 scripts/validate_manifest.py
             python3 scripts/validate_remote_rule_syntax.py
             python3 scripts/validate_governance_extensions.py
