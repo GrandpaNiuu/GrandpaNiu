@@ -6,6 +6,18 @@
   ],
   "modules": [
     {
+      "id": "123pan",
+      "name": "123Pan",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/123%E4%BA%91%E7%9B%98%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/123pan.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "QingRex/LoonKissSurge",
+      "last_sync_mode": "configured"
+    },
+    {
       "id": "amap",
       "name": "Amap",
       "source_url": "",
@@ -30,6 +42,30 @@
       "last_sync_mode": "discovered-disabled"
     },
     {
+      "id": "baidu-wenku",
+      "name": "Baidu Wenku",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/baidu-wenku.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "QingRex/LoonKissSurge",
+      "last_sync_mode": "configured"
+    },
+    {
+      "id": "baidupan",
+      "name": "BaiduPan",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/baidupan.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "high",
+      "backup": true,
+      "upstream_project": "QingRex/LoonKissSurge",
+      "last_sync_mode": "configured"
+    },
+    {
       "id": "bilibili",
       "name": "Bilibili",
       "source_url": "",
@@ -42,6 +78,18 @@
       "last_sync_mode": "discovered-disabled"
     },
     {
+      "id": "cainiao",
+      "name": "Cainiao",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E8%8F%9C%E9%B8%9F%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/cainiao.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "QingRex/LoonKissSurge",
+      "last_sync_mode": "configured"
+    },
+    {
       "id": "caiyun-weather",
       "name": "Caiyun Weather",
       "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E5%BD%A9%E4%BA%91%E5%A4%A9%E6%B0%94%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
@@ -52,6 +100,42 @@
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
       "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "china-unicom",
+      "name": "China Unicom",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Official/%E4%B8%AD%E5%9B%BD%E8%81%94%E9%80%9A%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule",
+      "target": "Rewrite/Sources/Apps/china-unicom.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "high",
+      "backup": true,
+      "upstream_project": "QingRex/LoonKissSurge",
+      "last_sync_mode": "configured"
+    },
+    {
+      "id": "didi",
+      "name": "Didi",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E6%BB%B4%E6%BB%B4%E5%87%BA%E8%A1%8C%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/didi.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "high",
+      "backup": true,
+      "upstream_project": "QingRex/LoonKissSurge",
+      "last_sync_mode": "configured"
+    },
+    {
+      "id": "goofish",
+      "name": "Goofish",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E9%97%B2%E9%B1%BC%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/goofish.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "high",
+      "backup": true,
+      "upstream_project": "QingRex/LoonKissSurge",
+      "last_sync_mode": "configured"
     },
     {
       "id": "huya",
@@ -126,6 +210,30 @@
       "last_sync_mode": "discovered-disabled"
     },
     {
+      "id": "moji-weather",
+      "name": "Moji Weather",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E5%A2%A8%E8%BF%B9%E5%A4%A9%E6%B0%94%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/moji-weather.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "QingRex/LoonKissSurge",
+      "last_sync_mode": "configured"
+    },
+    {
+      "id": "netease-mail",
+      "name": "Netease Mail",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E7%BD%91%E6%98%93%E9%82%AE%E7%AE%B1%E5%A4%A7%E5%B8%88%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/netease-mail.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "high",
+      "backup": true,
+      "upstream_project": "QingRex/LoonKissSurge",
+      "last_sync_mode": "configured"
+    },
+    {
       "id": "netease-music",
       "name": "Netease Music",
       "source_url": "",
@@ -196,6 +304,18 @@
       "backup": false,
       "upstream_project": "",
       "last_sync_mode": "discovered-disabled"
+    },
+    {
+      "id": "railway12306",
+      "name": "Railway 12306",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/12306%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/railway12306.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "high",
+      "backup": true,
+      "upstream_project": "QingRex/LoonKissSurge",
+      "last_sync_mode": "configured"
     },
     {
       "id": "reddit",
