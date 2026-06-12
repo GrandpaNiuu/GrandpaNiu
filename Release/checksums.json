@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-12T16:54:24.980302Z",
+  "generated_at": "2026-06-12T16:54:40.844352Z",
   "algorithm": "sha256",
-  "count": 52,
+  "count": 53,
   "files": [
     {
       "path": "Release/Beta/README.md",
@@ -87,6 +87,11 @@
       "path": "Release/Modules/quark.sgmodule",
       "size": 329,
       "sha256": "ef447a512fdb7dc9cc9e1e94e71c47185b737efaba42e65b69d3dd6bfb05d8b8"
+    },
+    {
+      "path": "Release/Modules/reddit.sgmodule",
+      "size": 988,
+      "sha256": "88ae74fcaefe3dbf9dc6cba7c40cdf78436f61c481506fc486fa6b2df39385b5"
     },
     {
       "path": "Release/Modules/rednote.sgmodule",
@@ -235,8 +240,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 9216,
-      "sha256": "db4efadbb6be9d364b7439fee9cbe1d1c7acbf53f9a7eaaf67824650cb76d863"
+      "size": 9439,
+      "sha256": "7d682e717a654538a65056d2ede03d1d2f024a0f7cd05404fa38a3d0e55ec394"
     },
     {
       "path": "Web/index.html",
@@ -245,8 +250,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 33233,
-      "sha256": "3838d8f203a7ef5a2660974b48f93bf305e1a17130262057c93d3e0433ba302f"
+      "size": 34170,
+      "sha256": "37f3aa93d08acffaa6989b90cc429e2e2ada63c23e13807860fe0ec26945cf30"
     },
     {
       "path": "Web/registry.md",
@@ -255,8 +260,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 11939,
-      "sha256": "909552ed72fcd07acf3fe016dda14e7bc853a57189f675417d73a390c8dba211"
+      "size": 12252,
+      "sha256": "89cbbc7e3e71568217cf4cfb74d5773fc3282df9958911a174471095e7b6dc87"
     },
     {
       "path": "Web/remotes.md",

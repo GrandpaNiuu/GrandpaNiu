@@ -28,6 +28,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Meituan Source | `meituan.sgmodule` | `Rewrite/Sources/Apps/meituan.conf` | Rule:11, URL Rewrite:9, MITM:1 |
 | GrandpaNiu QQ Music Source | `qqmusic.sgmodule` | `Rewrite/Sources/Apps/qqmusic.conf` | Rule:11 |
 | GrandpaNiu Quark Source | `quark.sgmodule` | `Rewrite/Sources/Apps/quark.conf` | Rule:2, MITM:1 |
+| GrandpaNiu Reddit Source | `reddit.sgmodule` | `Rewrite/Sources/Apps/reddit.conf` | Body Rewrite:1, MITM:1 |
 | GrandpaNiu Soul Source | `soul.sgmodule` | `Rewrite/Sources/Apps/soul.conf` | Rule:4, URL Rewrite:2, MITM:1 |
 | GrandpaNiu Tieba Source | `tieba.sgmodule` | `Rewrite/Sources/Apps/tieba.conf` | Rule:1, Script:2, MITM:1 |
 | GrandpaNiu WPS Source | `wps.sgmodule` | `Rewrite/Sources/Apps/wps.conf` | Rule:4, URL Rewrite:3, MITM:1 |

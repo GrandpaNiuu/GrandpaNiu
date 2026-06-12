@@ -4,10 +4,10 @@
 - Fusion fallback source: `Release/Ronghemokuai.sgmodule`
 - Output directory: `Release/Modules`
 - Manual modules: 18
-- Auto-discovered modules: 12
-- Auto-discovered generated modules: 12
-- Total module specs: 30
-- Generated modules: 30
+- Auto-discovered modules: 13
+- Auto-discovered generated modules: 13
+- Total module specs: 31
+- Generated modules: 31
 - Skipped empty modules: 0
 
 ## GrandpaNiu Spotify
@@ -172,6 +172,12 @@
 - Source: `Rewrite/Sources/Apps/quark.conf`
 - Discovery: auto
 - Rule: 2
+- MITM: 1
+
+## GrandpaNiu Reddit Source
+- Source: `Rewrite/Sources/Apps/reddit.conf`
+- Discovery: auto
+- Body Rewrite: 1
 - MITM: 1
 
 ## GrandpaNiu Soul Source
