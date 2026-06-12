@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T14:38:04.385677Z",
+  "generated_at": "2026-06-12T16:08:18.436909Z",
   "algorithm": "sha256",
   "count": 49,
   "files": [
@@ -220,8 +220,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 8408,
-      "sha256": "3675d018b102752f2419a093ac217eb10c96cee164508371951f5d11e7e53233"
+      "size": 8549,
+      "sha256": "f9e71b7e29e448a38e35eff943e418c54b8899a6169c21b4065127827349575f"
     },
     {
       "path": "Web/index.html",
@@ -240,8 +240,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 10809,
-      "sha256": "7ecc0c513359bff9e5356ff06eb9562aa65159f34e6b422a1b5070cc63a2653d"
+      "size": 11002,
+      "sha256": "02aa710a8058eaf32f3fb8a603317851d1946dc797528316c22e67d5597eed1d"
     },
     {
       "path": "Web/remotes.md",

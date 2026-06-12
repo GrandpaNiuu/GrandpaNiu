@@ -19,6 +19,11 @@
       "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai.sgmodule"
     },
     {
+      "name": "Release module alias",
+      "path": "Release/Module.sgmodule",
+      "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Module.sgmodule"
+    },
+    {
       "name": "Rules",
       "path": "Release/Rules.conf",
       "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Rules.conf"

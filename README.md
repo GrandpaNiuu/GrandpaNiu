@@ -77,6 +77,8 @@ GrandpaNiu 的公开入口只保留一个主模块：
 Ronghemokuai.sgmodule
 ```
 
+Release 目录里的 `Release/Module.sgmodule` 是兼容别名，由构建器从 `Release/Ronghemokuai.sgmodule` 复制生成；新用户仍然只导入根目录 `Ronghemokuai.sgmodule`。
+
 设计原则是：
 
 ```text
@@ -185,3 +187,4 @@ Android 规则主要适合：
 * 不适合的规则归档到 `Rewrite/Sources/Rejected/`
 * 登录、支付、视频播放、CDN 等稳定性保护规则优先加载
 * 最终公开输出仍然是 `Ronghemokuai.sgmodule`
+* `Release/Module.sgmodule` 仅作为 Release 目录兼容别名，不是新的公开版本线

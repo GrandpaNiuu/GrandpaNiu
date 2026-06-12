@@ -11,6 +11,7 @@ python3 Rewrite/Generator/Builder.py --profile fusion --release
 ## Current generated entries
 
 - `Release/Ronghemokuai.sgmodule`
+- `Release/Module.sgmodule` compatibility alias copied from `Release/Ronghemokuai.sgmodule`
 - root `Ronghemokuai.sgmodule`
 - `Release/Rules.conf`
 - `Release/RulesGroup.conf`
@@ -20,6 +21,7 @@ python3 Rewrite/Generator/Builder.py --profile fusion --release
 ## Public release entry points
 
 - Fusion module: <https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule>
+- Release module alias: <https://grandpaniuu.github.io/GrandpaNiu/Release/Module.sgmodule>
 - Release catalog: <https://grandpaniuu.github.io/GrandpaNiu/Web/catalog.md>
 - Release JSON: <https://grandpaniuu.github.io/GrandpaNiu/Web/release-links.json>
 - App modules: <https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/>

@@ -112,6 +112,7 @@ Manual app specs are listed in `Rewrite/Generate.conf` `[release_modules]`. Addi
 |---|---|---|---|---|---|---|---|---|
 | release.main | release | Main module | `Rewrite/Sources/`; `Rules/`; `Scripts/`; `Rewrite/Sources/Misc/` | `Release/Ronghemokuai.sgmodule` | `scripts/build_module.py` | yes | high | Rebuild from previous commit |
 | release.root | release | Root public module | `Release/Ronghemokuai.sgmodule` | `Ronghemokuai.sgmodule` | `scripts/factory_finalize.py` | yes | high | Restore Release copy |
+| release.alias | release | Compatibility module alias | `Release/Ronghemokuai.sgmodule` | `Release/Module.sgmodule` | `scripts/build_release_aliases.py` | yes | low | Regenerate aliases from Release module |
 | release.rules | release | Rule-only output | `Release/Ronghemokuai.sgmodule` | `Release/Rules.conf` | `scripts/build_release_rules.py` | yes | medium | Regenerate from Release module |
 | release.groups | release | Rule group output | `Release/Ronghemokuai.sgmodule` | `Release/RulesGroup.conf` | `scripts/build_release_rules.py` | yes | medium | Regenerate from Release module |
 | release.modules | release | App modules | `Rewrite/Sources/Apps/` | `Release/Modules/` | `scripts/build_release_modules.py` | yes | high | Fallback to fusion extraction or disable app source |

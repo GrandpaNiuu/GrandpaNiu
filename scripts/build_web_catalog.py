@@ -22,6 +22,7 @@ CORE_LINKS = [
     ("GitHub Pages home", "Web/index.html", f"{BASE}/Web/index.html"),
     ("Fusion module", "Ronghemokuai.sgmodule", f"{RAW}/Ronghemokuai.sgmodule"),
     ("Release module", "Release/Ronghemokuai.sgmodule", f"{RAW}/Release/Ronghemokuai.sgmodule"),
+    ("Release module alias", "Release/Module.sgmodule", f"{RAW}/Release/Module.sgmodule"),
     ("Rules", "Release/Rules.conf", f"{RAW}/Release/Rules.conf"),
     ("Rule groups", "Release/RulesGroup.conf", f"{RAW}/Release/RulesGroup.conf"),
     ("Web import page", "import.html", f"{BASE}/import.html"),

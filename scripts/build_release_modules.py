@@ -154,6 +154,8 @@ def load_specs(cfg: configparser.ConfigParser, app_dir: Path) -> tuple[list[Modu
     if app_dir.exists():
         for path in sorted(app_dir.glob("*.conf")):
             slug = path.stem
+            if slug.startswith("_"):
+                continue
             if slug in seen:
                 continue
             keywords = AUTO_KEYWORDS.get(slug, (slug,))
