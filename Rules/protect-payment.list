@@ -1,0 +1,16 @@
+# GrandpaNiu payment protection rules
+# Purpose: keep payment and wallet endpoints ahead of reject rules in the single fusion module.
+# Do not add ad, analytics or promotion domains here.
+
+DOMAIN-SUFFIX,alipay.com,DIRECT
+DOMAIN-SUFFIX,alipayobjects.com,DIRECT
+DOMAIN-SUFFIX,antfin.com,DIRECT
+DOMAIN-SUFFIX,tenpay.com,DIRECT
+DOMAIN-SUFFIX,wechatpay.com,DIRECT
+DOMAIN-SUFFIX,mch.weixin.qq.com,DIRECT
+DOMAIN-SUFFIX,unionpay.com,DIRECT
+DOMAIN-SUFFIX,95516.com,DIRECT
+DOMAIN-SUFFIX,paypal.com,DIRECT
+DOMAIN-SUFFIX,paypalobjects.com,DIRECT
+DOMAIN-SUFFIX,stripe.com,DIRECT
+DOMAIN-SUFFIX,checkout.com,DIRECT
