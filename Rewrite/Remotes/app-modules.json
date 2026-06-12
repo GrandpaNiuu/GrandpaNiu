@@ -1,0 +1,89 @@
+{
+  "trusted_repositories": [
+    "QingRex/LoonKissSurge",
+    "app2smile/rules",
+    "Maasea/sgmodule"
+  ],
+  "modules": [
+    {
+      "id": "tieba",
+      "name": "Tieba",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Official/%E8%B4%B4%E5%90%A7%E5%8E%BB%E5%B9%BF%E5%91%8A.official.sgmodule",
+      "target": "Rewrite/Sources/Apps/tieba.conf",
+      "risk": "medium",
+      "enabled": true
+    },
+    {
+      "id": "ithome",
+      "name": "IT Home",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/IT%E4%B9%8B%E5%AE%B6%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/ithome.conf",
+      "risk": "medium",
+      "enabled": true
+    },
+    {
+      "id": "qqmusic",
+      "name": "QQ Music",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/QQ%E9%9F%B3%E4%B9%90%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/qqmusic.conf",
+      "risk": "medium",
+      "enabled": true
+    },
+    {
+      "id": "reddit",
+      "name": "Reddit",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/Reddit%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/reddit.conf",
+      "risk": "medium",
+      "enabled": true
+    },
+    {
+      "id": "weread",
+      "name": "WeRead",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Official/%E5%BE%AE%E4%BF%A1%E9%98%85%E8%AF%BB%E7%B2%BE%E7%AE%80.official.sgmodule",
+      "target": "Rewrite/Sources/Apps/weread.conf",
+      "risk": "medium",
+      "enabled": true
+    },
+    {
+      "id": "terabox",
+      "name": "TeraBox",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/TeraBox%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/terabox.conf",
+      "risk": "high",
+      "enabled": true
+    },
+    {
+      "id": "xiaoyuzhou",
+      "name": "Xiaoyuzhou",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E5%B0%8F%E5%AE%87%E5%AE%99%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/xiaoyuzhou.conf",
+      "risk": "medium",
+      "enabled": true
+    },
+    {
+      "id": "caiyun-weather",
+      "name": "Caiyun Weather",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E5%BD%A9%E4%BA%91%E5%A4%A9%E6%B0%94%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/caiyun-weather.conf",
+      "risk": "medium",
+      "enabled": true
+    },
+    {
+      "id": "keep",
+      "name": "Keep",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/Keep%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/keep.conf",
+      "risk": "medium",
+      "enabled": true
+    },
+    {
+      "id": "ximalaya",
+      "name": "Ximalaya",
+      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E5%96%9C%E9%A9%AC%E6%8B%89%E9%9B%85%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
+      "target": "Rewrite/Sources/Apps/ximalaya.conf",
+      "risk": "medium",
+      "enabled": true
+    }
+  ]
+}
