@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T14:15:18.676659Z",
+  "generated_at": "2026-06-12T14:15:38.772532Z",
   "algorithm": "sha256",
   "count": 49,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 349336,
-      "sha256": "32f6cae496299718340025829975b3fbe49d67b20fed4f8962d240ab564a028e"
+      "size": 350483,
+      "sha256": "471f48e6e561dbb539d0c98d70524a7c2a6568ec0b14e305182276914525ff43"
     },
     {
       "path": "Release/Modules/amap.sgmodule",
@@ -175,23 +175,23 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 349336,
-      "sha256": "32f6cae496299718340025829975b3fbe49d67b20fed4f8962d240ab564a028e"
+      "size": 350483,
+      "sha256": "471f48e6e561dbb539d0c98d70524a7c2a6568ec0b14e305182276914525ff43"
     },
     {
       "path": "Release/Rules.conf",
-      "size": 36447,
-      "sha256": "79f171543199b86d0ee9793428cc1909bd489471a5784739409012df1e713235"
+      "size": 37594,
+      "sha256": "07bfe69d36c427a1f7e908e1d1d3a4819cc98cebc9df9de2c9ca592dc8718389"
     },
     {
       "path": "Release/RulesGroup.conf",
-      "size": 36526,
-      "sha256": "1e77decda02bfd41df0d87045f82d783a0de6ac8a60e36e7c0abb712e3cf7450"
+      "size": 37673,
+      "sha256": "5e501a714cb6e55754ecdcb81ce921932dc765a13499bc1c217c2cc884750579"
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 349336,
-      "sha256": "32f6cae496299718340025829975b3fbe49d67b20fed4f8962d240ab564a028e"
+      "size": 350483,
+      "sha256": "471f48e6e561dbb539d0c98d70524a7c2a6568ec0b14e305182276914525ff43"
     },
     {
       "path": "Release/Stable/README.md",
@@ -200,18 +200,18 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 349336,
-      "sha256": "32f6cae496299718340025829975b3fbe49d67b20fed4f8962d240ab564a028e"
+      "size": 350483,
+      "sha256": "471f48e6e561dbb539d0c98d70524a7c2a6568ec0b14e305182276914525ff43"
     },
     {
       "path": "Release/Stable/Rules.conf",
-      "size": 36447,
-      "sha256": "79f171543199b86d0ee9793428cc1909bd489471a5784739409012df1e713235"
+      "size": 37594,
+      "sha256": "07bfe69d36c427a1f7e908e1d1d3a4819cc98cebc9df9de2c9ca592dc8718389"
     },
     {
       "path": "Release/Stable/RulesGroup.conf",
-      "size": 36526,
-      "sha256": "1e77decda02bfd41df0d87045f82d783a0de6ac8a60e36e7c0abb712e3cf7450"
+      "size": 37673,
+      "sha256": "5e501a714cb6e55754ecdcb81ce921932dc765a13499bc1c217c2cc884750579"
     },
     {
       "path": "Web/README.md",
