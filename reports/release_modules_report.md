@@ -4,10 +4,10 @@
 - Fusion fallback source: `Release/Ronghemokuai.sgmodule`
 - Output directory: `Release/Modules`
 - Manual modules: 18
-- Auto-discovered modules: 13
-- Auto-discovered generated modules: 13
-- Total module specs: 31
-- Generated modules: 31
+- Auto-discovered modules: 14
+- Auto-discovered generated modules: 14
+- Total module specs: 32
+- Generated modules: 32
 - Skipped empty modules: 0
 
 ## GrandpaNiu Spotify
@@ -192,6 +192,12 @@
 - Discovery: auto
 - Rule: 1
 - Script: 2
+- MITM: 1
+
+## GrandpaNiu WeRead Source
+- Source: `Rewrite/Sources/Apps/weread.conf`
+- Discovery: auto
+- Script: 1
 - MITM: 1
 
 ## GrandpaNiu WPS Source
