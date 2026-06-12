@@ -200,6 +200,13 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/ithome.sgmodule"
     },
     {
+      "name": "GrandpaNiu Keep Source",
+      "file": "Release/Modules/keep.sgmodule",
+      "source": "Rewrite/Sources/Apps/keep.conf",
+      "sections": "Rule:1, Body Rewrite:3, Map Local:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/keep.sgmodule"
+    },
+    {
       "name": "GrandpaNiu Meituan Source",
       "file": "Release/Modules/meituan.sgmodule",
       "source": "Rewrite/Sources/Apps/meituan.conf",

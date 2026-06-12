@@ -1,0 +1,19 @@
+#!name=GrandpaNiu Keep Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/keep.sgmodule
+
+[Rule]
+DOMAIN,kad.gotokeep.com,REJECT,extended-matching,pre-matching
+
+[Body Rewrite]
+http-response-jq ^https:\/\/api\.gotokeep\.com\/op-engine-webapp\/v1\/configs$ 'delpaths([["data","adTimeoutReport"],["data","spotShowReport"],["data","adSupplementIntervalMinutes"],["data","adSupplementSwitch"],["data","splashAdLoadTimeLimit"],["data","courseAdLoadTimeLimit"],["data","feedAdLoadTimeLimit"],["data","aliHCSpotConfig"],["data","gdtSpotConfig"]])'
+http-response-jq ^https:\/\/api\.gotokeep\.com\/twins\/union\/feed\/union_feed_all$ '.data.modules |= map(select(.code == "unionFeedEntry"))'
+http-response-jq ^https:\/\/api\.gotokeep\.com\/config\/v3\/basic\? '.data.bottomBarControl.tabs |= map(select(.tabType | . == "home" or . == "schedule" or . == "dynamic_sports" or . == "personal"))'
+
+[Map Local]
+^https:\/\/api\.gotokeep\.com\/op-engine-webapp\/v1\/ad\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https:\/\/api\.gotokeep\.com\/search\/v6\/default\/keyword\/list\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https:\/\/api\.gotokeep\.com\/guide-webapp\/v1\/popup\/getPopUp\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+[MITM]
+hostname = %APPEND% api.gotokeep.com

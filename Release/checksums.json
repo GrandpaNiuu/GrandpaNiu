@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-12T16:57:23.476637Z",
+  "generated_at": "2026-06-12T16:57:43.053230Z",
   "algorithm": "sha256",
-  "count": 57,
+  "count": 58,
   "files": [
     {
       "path": "Release/Beta/README.md",
@@ -52,6 +52,11 @@
       "path": "Release/Modules/jd.sgmodule",
       "size": 560,
       "sha256": "74bad8613203d73dfedad57f70ac712cc23003a5801717d7f5d7096156a1cd63"
+    },
+    {
+      "path": "Release/Modules/keep.sgmodule",
+      "size": 1473,
+      "sha256": "6530db917762cffbdb4c20afaf10adea38a92c25732fa1e3cb7d13d8428ab6da"
     },
     {
       "path": "Release/Modules/meituan.sgmodule",
@@ -260,8 +265,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 10400,
-      "sha256": "1ed399743f2bbc8614fd354c7eb6ea67cfe42f3af2ddcca46f4515751ebaa7f4"
+      "size": 10636,
+      "sha256": "3ed107a5543dcb9bae825d25d901d4dce8c37433144970d0934874f000a0b929"
     },
     {
       "path": "Web/index.html",
@@ -270,8 +275,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 38013,
-      "sha256": "03a78f17ea6c59a1af4eb0ca42e1a6b9b39dea5f3afb387140f9b5124cac0a19"
+      "size": 38959,
+      "sha256": "ffe77dbf4ec524e57fee7ade1f7b5e7f2b76a56caa60e4742671a4027f91362a"
     },
     {
       "path": "Web/registry.md",
@@ -280,8 +285,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 13573,
-      "sha256": "69ab61e646b60f9be86d9c16e78e0d79015532f0b89e66ccf9555267e5e21cb3"
+      "size": 13899,
+      "sha256": "cf6de5d983303a1ac4fa4ad6e002466abc2880a0b9d95e6cb14944bb9ffb35e6"
     },
     {
       "path": "Web/remotes.md",
