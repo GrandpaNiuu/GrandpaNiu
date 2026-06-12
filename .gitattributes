@@ -1,7 +1,18 @@
-# GitHub Linguist language statistics
-# Treat Shadowrocket / Surge module files as INI-style config instead of ignoring them.
-*.sgmodule linguist-language=INI
-*.module linguist-language=INI
+# Normalize repository text line endings
+* text=auto eol=lf
+
+# Rules, modules, configs, scripts and docs are generated/maintained as LF text.
+*.sgmodule text eol=lf linguist-language=INI
+*.module text eol=lf linguist-language=INI
+*.conf text eol=lf
+*.list text eol=lf
+*.py text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.html text eol=lf
 
 # Do not let the landing page dominate the repository language bar.
 import.html linguist-vendored
