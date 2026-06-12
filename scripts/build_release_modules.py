@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate per-app module files.
 
-Module definitions are read from Rewrite/Generate.conf [release_modules].
+Module definitions are read from the selected generator config [release_modules].
 Each value uses this format:
 
 slug = Display Name | keyword1, keyword2, keyword3
@@ -9,7 +9,11 @@ slug = Display Name | keyword1, keyword2, keyword3
 After configured modules are loaded, Rewrite/Sources/Apps/*.conf is scanned and
 any unregistered source file is auto-discovered as a conservative release
 module. This keeps app source files useful without forcing every low-risk
-addition into Rewrite/Generate.conf by hand.
+addition into the generator config by hand.
+
+This script only writes Release/Modules outputs and its report. Cross-artifact
+follow-up builds such as Android mirrors and Web catalogs are owned by
+Rewrite/Generator/Builder.py so the release pipeline has a single scheduler.
 
 If Rewrite/Sources/Apps/<slug>.conf exists, that app source file is used as the
 module source. Otherwise the builder falls back to extracting matching lines from
@@ -20,7 +24,6 @@ from __future__ import annotations
 
 import argparse
 import configparser
-import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -271,7 +274,7 @@ def make_index(summary: list[ModuleBuild]) -> str:
     lines = [
         "# Release Modules",
         "",
-        "Generated per-app module outputs.",
+        "Generated per-app module outputs. These are diagnostic and convenience slices of the single public fusion module, not separate product versions.",
         "",
         "| Module | File | Source | Sections |",
         "|---|---|---|---|",
@@ -288,6 +291,7 @@ def make_report(summary: list[ModuleBuild], manual_count: int, auto_count: int, 
     lines = [
         "# Release modules report",
         "",
+        "- Public release strategy: single fusion module only",
         f"- Fusion fallback source: `{rel(RELEASE_MODULE)}`",
         f"- Output directory: `{rel(modules_dir)}`",
         f"- Manual modules: {manual_count}",
@@ -311,16 +315,6 @@ def make_report(summary: list[ModuleBuild], manual_count: int, auto_count: int, 
             lines.append(f"- {spec.name} (`{spec.slug}`) from `{source}`")
         lines.append("")
     return "\n".join(lines)
-
-
-def run_followup_builds(config_path: str) -> None:
-    steps = [
-        [sys.executable, str(ROOT / "scripts" / "build_release_android.py"), "--config", config_path],
-        [sys.executable, str(ROOT / "scripts" / "build_web_catalog.py")],
-    ]
-    for step in steps:
-        print("$ " + " ".join([Path(step[0]).name, rel(Path(step[1])), *step[2:]]))
-        subprocess.run(step, cwd=ROOT, check=True)
 
 
 def main() -> None:
@@ -352,7 +346,6 @@ def main() -> None:
 
     write(modules_dir / "README.md", make_index(summary))
     write(REPORT, make_report(summary, manual_count, auto_count, skipped, modules_dir))
-    run_followup_builds(args.config)
     print(f"Built {len(summary)} per-app modules in {modules_dir}; skipped {len(skipped)} empty modules")
 
 
