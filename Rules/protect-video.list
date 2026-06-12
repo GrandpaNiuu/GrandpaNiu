@@ -1,0 +1,9 @@
+# GrandpaNiu video playback protection rules
+# Purpose: keep playback, media CDN and license delivery endpoints ahead of reject rules.
+# Add only domains required for playback stability.
+
+DOMAIN-SUFFIX,bilivideo.com,DIRECT
+DOMAIN-SUFFIX,hdslb.com,DIRECT
+DOMAIN-SUFFIX,akamaized.net,DIRECT
+DOMAIN-SUFFIX,akamaiedge.net,DIRECT
+DOMAIN-SUFFIX,akadns.net,DIRECT
