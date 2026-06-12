@@ -55,7 +55,7 @@ GrandpaNiu 是一个用于 **Shadowrocket、Surge 和 Android 规则客户端** 
 
 简单理解：
 
-> 这是一个把常见 App 广告规则、脚本规则、重写规则和 Android 规则整理到一起的自动化模块仓库。
+> 这是一个把常见 App 广告规则、脚本规则、重写规则和 Android 规则整理到一起的自动化融合模块仓库。
 
 主要用于处理：
 
@@ -66,6 +66,26 @@ GrandpaNiu 是一个用于 **Shadowrocket、Surge 和 Android 规则客户端** 
 * 信息流推荐
 * 追踪请求
 * 部分 App 冗余接口请求
+
+---
+
+## 🧭 当前策略：只维护一个融合模块
+
+GrandpaNiu 的公开入口只保留一个主模块：
+
+```text
+Ronghemokuai.sgmodule
+```
+
+设计原则是：
+
+```text
+多来源规则与脚本 → 候选池 → 审查与去重 → 保护规则优先 → 单一融合模块
+```
+
+也就是说，本仓库不是 Stable / Lite / Full / Aggressive 多版本路线。`Release/Modules/` 下的 App 独立模块只是诊断和便利用途，不作为新的公开版本体系。
+
+融合策略详见：`docs/FUSION_POLICY.md`。
 
 ---
 
@@ -126,7 +146,7 @@ Android 规则主要适合：
 * 弹窗、横幅、活动卡片清理
 * 部分 App 脚本增强
 * YouTube、Spotify、知乎、Bilibili、微博、淘宝、京东、拼多多等常见规则维护
-* 支持部分可编辑参数
+* 单一公开入口，避免用户选择多个版本
 
 ### 🤖 Android 规则
 
@@ -159,49 +179,9 @@ Android 规则主要适合：
 * Lite
 * Full
 
-后续主要维护：
+维护方向不是增加公开版本数量，而是提高唯一融合模块的稳定性：
 
-```text
-Rewrite/Profiles/fusion.conf
-```
-
-最终生成：
-
-```text
-Ronghemokuai.sgmodule
-Release/Ronghemokuai.sgmodule
-```
-
-普通用户只需要导入主融合模块，不建议叠加多个旧模块。
-
----
-
-## ❓ 常见问题
-
-### 1. 为什么广告没有全部消失？
-
-广告规则不是万能的。不同 App 会不断更新接口和广告逻辑，所以只能持续维护，不能保证百分百去除。
-
-### 2. 为什么某个 App 打不开？
-
-可能是规则误杀。建议先关闭模块测试，再逐步排查具体 App 规则。
-
-### 3. 为什么 YouTube 有时候会异常？
-
-YouTube 对视频播放、广告接口、CDN 和脚本处理比较敏感。模块会尽量兼顾广告净化和播放稳定，但不同地区、节点和客户端版本可能效果不同。
-
-### 4. Android 和 iOS 效果一样吗？
-
-不一样。iOS 的 Shadowrocket / Surge 模块可以使用 Rewrite、Script、MITM 等能力，Android 规则通常主要是域名和分流规则，所以效果会弱一些。
-
----
-
-## ⭐ 项目说明
-
-这个仓库适合有一定规则使用经验的用户，也尽量为小白用户保留了直接可用的主模块入口。
-
-普通用户只需要导入主模块。
-
-[fusion-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRonghemokuai.sgmodule
-[android-import]: https://grandpaniuu.github.io/GrandpaNiu/android.html
-[health-report]: reports/repository_health_report.md
+* 候选规则先进入 `Rewrite/Sources/Candidates/`
+* 不适合的规则归档到 `Rewrite/Sources/Rejected/`
+* 登录、支付、视频播放、CDN 等稳定性保护规则优先加载
+* 最终公开输出仍然是 `Ronghemokuai.sgmodule`
