@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-12T16:56:22.024779Z",
+  "generated_at": "2026-06-12T16:56:35.880674Z",
   "algorithm": "sha256",
-  "count": 55,
+  "count": 56,
   "files": [
     {
       "path": "Release/Beta/README.md",
@@ -154,6 +154,11 @@
       "sha256": "1a4db076d2bd2124a0d2819207c422f91eda61eb25c37cec1ee3f6b98f33cdc8"
     },
     {
+      "path": "Release/Modules/xiaoyuzhou.sgmodule",
+      "size": 829,
+      "sha256": "4c1d64aadfa84a60803fce73698bcfcc3bcbc724f614a50dc8abd94c30cf02af"
+    },
+    {
       "path": "Release/Modules/yiche.sgmodule",
       "size": 365,
       "sha256": "65b97763ae0262381a99838450f94dddcc0cf6447a251e9268231d4e83b1d57c"
@@ -250,8 +255,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 9888,
-      "sha256": "7a98393161b31a2439c03ba3be6918457da2befe9f025d55e632f99234752169"
+      "size": 10140,
+      "sha256": "c9624e321245c9e3ece9efa5b064debb0ce1e123b4699c6c95420ca880b4e1b2"
     },
     {
       "path": "Web/index.html",
@@ -260,8 +265,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 36049,
-      "sha256": "b0df719d07a1ea769dc6b8c1b167febe654b2034efcb85216061fdd29731de8e"
+      "size": 37023,
+      "sha256": "53e52337857c376f1e92e71ccc0f803c412bfcf1fb93c66d7bf17cf3fe930289"
     },
     {
       "path": "Web/registry.md",
@@ -270,8 +275,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 12881,
-      "sha256": "b7e07cc33d407af9a285b41ebac237af98ba11221b2571eb3663103f20bba12d"
+      "size": 13223,
+      "sha256": "6023eed2cc1cc61dde190309b8f37a0e60a91d3af6c4f017ade3433505a9e8ed"
     },
     {
       "path": "Web/remotes.md",

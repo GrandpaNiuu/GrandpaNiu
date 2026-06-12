@@ -256,6 +256,13 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/wps.sgmodule"
     },
     {
+      "name": "GrandpaNiu Xiaoyuzhou Source",
+      "file": "Release/Modules/xiaoyuzhou.sgmodule",
+      "source": "Rewrite/Sources/Apps/xiaoyuzhou.conf",
+      "sections": "Body Rewrite:1, Map Local:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xiaoyuzhou.sgmodule"
+    },
+    {
       "name": "GrandpaNiu Youku Source",
       "file": "Release/Modules/youku.sgmodule",
       "source": "Rewrite/Sources/Apps/youku.conf",

@@ -4,10 +4,10 @@
 - Fusion fallback source: `Release/Ronghemokuai.sgmodule`
 - Output directory: `Release/Modules`
 - Manual modules: 18
-- Auto-discovered modules: 15
-- Auto-discovered generated modules: 15
-- Total module specs: 33
-- Generated modules: 33
+- Auto-discovered modules: 16
+- Auto-discovered generated modules: 16
+- Total module specs: 34
+- Generated modules: 34
 - Skipped empty modules: 0
 
 ## GrandpaNiu Spotify
@@ -212,6 +212,13 @@
 - Discovery: auto
 - Rule: 4
 - URL Rewrite: 3
+- MITM: 1
+
+## GrandpaNiu Xiaoyuzhou Source
+- Source: `Rewrite/Sources/Apps/xiaoyuzhou.conf`
+- Discovery: auto
+- Body Rewrite: 1
+- Map Local: 3
 - MITM: 1
 
 ## GrandpaNiu Youku Source
