@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T19:03:38.777380Z",
+  "generated_at": "2026-06-12T19:40:01.727120Z",
   "algorithm": "sha256",
   "count": 242,
   "files": [
@@ -1055,8 +1055,8 @@
     },
     {
       "path": "Release/Modules/youtube.sgmodule",
-      "size": 1099,
-      "sha256": "ce95230bcb0c885b06ea2e45c2098833cab3a583b3a01ba6405103a99fbc12ac"
+      "size": 1017,
+      "sha256": "0af217035edbd2adde5e3b2badc69b388a7eacd2dca8f12e3e86deeaa8b9ce4f"
     },
     {
       "path": "Release/Modules/yue-dan-ba.sgmodule",
@@ -1185,8 +1185,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 56991,
-      "sha256": "e20c39d628f842cab770cd31b2cfc13c848f60da6074446130816998c76e5dc4"
+      "size": 57004,
+      "sha256": "9847348310be216d595f249453c1bc8f5ddae9860ae48c55a2c8e7357cd6a639"
     },
     {
       "path": "Web/index.html",
@@ -1195,8 +1195,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 218177,
-      "sha256": "31ae429969f471969a641308c16692854c02aa519a3b53d839a63c2489e7cbc4"
+      "size": 218190,
+      "sha256": "f69c8afb023da896f4fd3eb8aeeb2f49db06845ce9429a15abb6cf5eb08f8e53"
     },
     {
       "path": "Web/registry.md",
@@ -1205,8 +1205,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 76814,
-      "sha256": "07500ac04b6cde20b6bbc95b770b76bbd7ae3f560d3b56bd952790b477225872"
+      "size": 76827,
+      "sha256": "a8a8f409f92f83e02ddd070cc1b46df8ff22278e4053992ed7199ac7101a81a9"
     },
     {
       "path": "Web/remotes.md",
