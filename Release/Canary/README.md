@@ -1,6 +1,6 @@
 # Canary Channel
 
-Reserved only for high-risk internal checks; not a public module family.
+Reserved channel for high-risk experimental builds.
 
 - Status: `reserved`
 - Artifacts: not generated for this channel yet.
