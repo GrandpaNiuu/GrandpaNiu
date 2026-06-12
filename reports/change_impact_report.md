@@ -1,15 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-06-12 12:00:09 +0800
+- 生成时间：2026-06-12 12:00:32 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `scripts/build_checksums.py`
+- `scripts/build_release_summary.py`
 
 ## 新增文件
 
-- `scripts/build_checksums.py`
+- `scripts/build_release_summary.py`
 
 ## 删除文件
 
