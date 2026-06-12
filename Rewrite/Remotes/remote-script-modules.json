@@ -1,0 +1,42 @@
+{
+  "description": "Modules that update through remote script-path or remote rule-set references instead of full upstream module overwrite.",
+  "modules": [
+    {
+      "id": "qqnews",
+      "target": "Rewrite/Sources/Apps/qqnews.conf",
+      "mode": "remote-script-level",
+      "remote_scripts": [
+        "https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js"
+      ],
+      "remote_rule_sets": [],
+      "script_update_interval": 86400,
+      "full_module_sync": false,
+      "upstream_project": "app2smile/rules"
+    },
+    {
+      "id": "spotify",
+      "target": "Rewrite/Sources/Apps/spotify.conf",
+      "mode": "remote-script-level",
+      "remote_scripts": [
+        "https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js",
+        "https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js"
+      ],
+      "remote_rule_sets": [],
+      "script_update_interval": 86400,
+      "full_module_sync": false,
+      "upstream_project": "app2smile/rules"
+    },
+    {
+      "id": "youtube",
+      "target": "Rewrite/Sources/Apps/youtube.conf",
+      "mode": "remote-script-level",
+      "remote_scripts": [
+        "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js"
+      ],
+      "remote_rule_sets": [],
+      "script_update_interval": 86400,
+      "full_module_sync": false,
+      "upstream_project": "Maasea/sgmodule"
+    }
+  ]
+}
