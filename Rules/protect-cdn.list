@@ -1,0 +1,10 @@
+# GrandpaNiu CDN protection rules
+# Purpose: keep common static asset and image CDN endpoints ahead of reject rules.
+# Do not add known tracking or promotion CDNs here.
+
+DOMAIN-SUFFIX,alicdn.com,DIRECT
+DOMAIN-SUFFIX,jdimg.com,DIRECT
+DOMAIN-SUFFIX,qpic.cn,DIRECT
+DOMAIN-SUFFIX,gtimg.cn,DIRECT
+DOMAIN-SUFFIX,bdimg.com,DIRECT
+DOMAIN-SUFFIX,sinaimg.cn,DIRECT
