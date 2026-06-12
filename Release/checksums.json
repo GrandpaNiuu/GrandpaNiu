@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T16:09:53.971269Z",
+  "generated_at": "2026-06-12T16:16:10.943414Z",
   "algorithm": "sha256",
   "count": 49,
   "files": [
@@ -16,7 +16,7 @@
     {
       "path": "Release/Module.sgmodule",
       "size": 350483,
-      "sha256": "471f48e6e561dbb539d0c98d70524a7c2a6568ec0b14e305182276914525ff43"
+      "sha256": "4adb4b47732d37d3db1bb0c8c57a96265e7dfcfcdc2adffbff553d697b015943"
     },
     {
       "path": "Release/Modules/amap.sgmodule",
@@ -176,7 +176,7 @@
     {
       "path": "Release/Ronghemokuai.sgmodule",
       "size": 350483,
-      "sha256": "471f48e6e561dbb539d0c98d70524a7c2a6568ec0b14e305182276914525ff43"
+      "sha256": "4adb4b47732d37d3db1bb0c8c57a96265e7dfcfcdc2adffbff553d697b015943"
     },
     {
       "path": "Release/Rules.conf",
@@ -191,7 +191,7 @@
     {
       "path": "Release/Stable/Module.sgmodule",
       "size": 350483,
-      "sha256": "471f48e6e561dbb539d0c98d70524a7c2a6568ec0b14e305182276914525ff43"
+      "sha256": "4adb4b47732d37d3db1bb0c8c57a96265e7dfcfcdc2adffbff553d697b015943"
     },
     {
       "path": "Release/Stable/README.md",
@@ -201,7 +201,7 @@
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
       "size": 350483,
-      "sha256": "471f48e6e561dbb539d0c98d70524a7c2a6568ec0b14e305182276914525ff43"
+      "sha256": "4adb4b47732d37d3db1bb0c8c57a96265e7dfcfcdc2adffbff553d697b015943"
     },
     {
       "path": "Release/Stable/Rules.conf",
