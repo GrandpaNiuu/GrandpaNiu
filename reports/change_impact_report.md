@@ -1,15 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-06-13 00:45:06 +0800
+- 生成时间：2026-06-13 00:45:54 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Rewrite/Sources/Candidates/Apps/ximalaya.conf`
+- `Rewrite/Sources/Candidates/Apps/cainiao.conf`
 
 ## 新增文件
 
-- `Rewrite/Sources/Candidates/Apps/ximalaya.conf`
+- `Rewrite/Sources/Candidates/Apps/cainiao.conf`
 
 ## 删除文件
 
@@ -25,7 +25,7 @@
 
 ## 可能影响的 App
 
-- 喜马拉雅
+- 待人工确认
 
 ## 风险判断
 
