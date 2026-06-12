@@ -1,6 +1,6 @@
 # Fusion 模块完整性报告
 
-- 日期：2026-06-12
+- 日期：2026-06-13
 - 结论：Fusion 输出语法结构、重复项、脚本入口、MITM hostname 和远程规则源索引均通过本地静态检查。
 - 说明：跨规则包重复只作为信息记录；最终 `Ronghemokuai.sgmodule` 构建时会按 active line 去重，单独规则包仍保留各自可独立使用的交集。
 
@@ -12,7 +12,7 @@
 | 重复 section | 无 |
 | 重复 active rule / rewrite / script / MITM line | 无 |
 | Script 入口数 | 46 |
-| MITM hostname 数 | 1072 |
+| MITM hostname 数 | 1071 |
 
 ## Section 规模
 

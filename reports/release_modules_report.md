@@ -21,8 +21,7 @@
 ## GrandpaNiu YouTube
 - Source: `Rewrite/Sources/Apps/youtube.conf`
 - Discovery: manual
-- Rule: 2
-- URL Rewrite: 1
+- Rule: 7
 - Script: 1
 - MITM: 1
 

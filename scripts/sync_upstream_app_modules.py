@@ -64,6 +64,7 @@ REQUIRED_RECORD_KEYS = [
 CORE_BACKUP_IDS = {"spotify", "youtube", "zhihu", "wechat", "weibo", "bilibili"}
 HIGH_RISK_IDS = CORE_BACKUP_IDS | {"terabox"}
 TRUSTED_REPOSITORIES = ["QingRex/LoonKissSurge", "app2smile/rules", "Maasea/sgmodule"]
+KELEE_PINNED_REMOTE_SCRIPT_IDS = {"youtube"}
 AD_TAG = "\u53bb\u5e7f\u544a"
 KELEE_EXCLUDED_BASES = {
     "Block_HTTPDNS.lpx",
@@ -303,6 +304,8 @@ def merge_kelee_catalog(records: list[dict[str, Any]], include_kelee: bool) -> l
 
     for item in items:
         module_id = item["id"]
+        if module_id in KELEE_PINNED_REMOTE_SCRIPT_IDS:
+            continue
         existing = by_id.get(module_id)
         if existing is None:
             risk = item["risk"]

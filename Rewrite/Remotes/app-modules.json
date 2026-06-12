@@ -399,7 +399,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "cheng-fen-miao",
@@ -975,7 +975,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "jump",
@@ -1143,7 +1143,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "kwai-videoeditor",
@@ -1935,7 +1935,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "su-zhou-citizen-card",
@@ -2319,7 +2319,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "xiao-hei-he",
@@ -2492,14 +2492,14 @@
     {
       "id": "youtube",
       "name": "YouTube",
-      "source_url": "https://kelee.one/Tool/Loon/Lpx/YouTube_remove_ads.lpx",
+      "source_url": "",
       "target": "Rewrite/Sources/Apps/youtube.conf",
-      "enabled": true,
-      "direct_commit": true,
+      "enabled": false,
+      "direct_commit": false,
       "risk": "high",
       "backup": true,
-      "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "upstream_project": "Maasea/sgmodule",
+      "last_sync_mode": "remote-script-only"
     },
     {
       "id": "yue-dan-ba",

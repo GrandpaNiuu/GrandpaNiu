@@ -1,22 +1,16 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-06-12T18:38:30Z
+- generated: 2026-06-12T18:55:53Z
 - modules: 220
-- enabled: 213
-- direct_commit: 213
-- updated: 5
-- skipped: 215
+- enabled: 212
+- direct_commit: 212
+- updated: 0
+- skipped: 220
 - blocked: 0
 - errors: 0
 
 ## Updated
-| id | upstream | backup | source |
-| --- | --- | --- | --- |
-| cece | 测测去广告 |  | https://kelee.one/Tool/Loon/Lpx/Cece_remove_ads.lpx |
-| jia-xiao-drive | 驾校一点通去广告 |  | https://kelee.one/Tool/Loon/Lpx/JiaXiaoDrive_remove_ads.lpx |
-| kuwo | 酷我音乐去广告 |  | https://kelee.one/Tool/Loon/Lpx/Kuwo_remove_ads.lpx |
-| spotify | Spotify去广告 | backup/upstream-app-modules/spotify/20260613-023457.conf | https://kelee.one/Tool/Loon/Lpx/Spotify_remove_ads.lpx |
-| xiao-can | 小蚕霸王餐去广告 |  | https://kelee.one/Tool/Loon/Lpx/XiaoCan_remove_ads.lpx |
+_None._
 
 ## Skipped
 | id | reason |
@@ -53,6 +47,7 @@
 | caiyun-weather | unchanged |
 | cat-ear-fm | unchanged |
 | cclive | unchanged |
+| cece | unchanged |
 | cheng-fen-miao | unchanged |
 | china-unicom | unchanged |
 | chuzhan | unchanged |
@@ -100,6 +95,7 @@
 | jd | unchanged |
 | jdwaimai | unchanged |
 | jia-kao-bao-dian | unchanged |
+| jia-xiao-drive | unchanged |
 | jump | unchanged |
 | kebida-dushu | unchanged |
 | keep | unchanged |
@@ -113,6 +109,7 @@
 | kuai-kan-comic | unchanged |
 | kuai-shou | unchanged |
 | kuro-bbs | unchanged |
+| kuwo | unchanged |
 | kwai-videoeditor | unchanged |
 | line | unchanged |
 | live-lab | unchanged |
@@ -178,6 +175,7 @@
 | snowball | unchanged |
 | soda-music | unchanged |
 | soul | unchanged |
+| spotify | unchanged |
 | su-zhou-citizen-card | unchanged |
 | taobao | unchanged |
 | taobao-travel | unchanged |
@@ -209,6 +207,7 @@
 | wuta-camera | unchanged |
 | xfuse | unchanged |
 | xia-chu-fang | unchanged |
+| xiao-can | unchanged |
 | xiao-hei-he | unchanged |
 | xiaojukeji-charge | unchanged |
 | xiaomi-speaker | unchanged |
@@ -223,7 +222,7 @@
 | youdao-note | unchanged |
 | youdao-trans | unchanged |
 | youku | unchanged |
-| youtube | unchanged |
+| youtube | disabled |
 | yue-dan-ba | unchanged |
 | yueyou | unchanged |
 | yy-voice | unchanged |

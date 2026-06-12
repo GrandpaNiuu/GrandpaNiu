@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T18:42:16.979772Z",
+  "generated_at": "2026-06-12T19:01:07.565023Z",
   "algorithm": "sha256",
   "count": 242,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 350483,
-      "sha256": "4adb4b47732d37d3db1bb0c8c57a96265e7dfcfcdc2adffbff553d697b015943"
+      "size": 350494,
+      "sha256": "9df7a8cf5510a54ec88767e408930ea642424286e841a7ada9a4f95845d288d8"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -1055,8 +1055,8 @@
     },
     {
       "path": "Release/Modules/youtube.sgmodule",
-      "size": 817,
-      "sha256": "2d0ae0b48abffad02db58d7572430979e018c7d397fa15d5868c756638c37c32"
+      "size": 1099,
+      "sha256": "ce95230bcb0c885b06ea2e45c2098833cab3a583b3a01ba6405103a99fbc12ac"
     },
     {
       "path": "Release/Modules/yue-dan-ba.sgmodule",
@@ -1140,8 +1140,8 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 350483,
-      "sha256": "4adb4b47732d37d3db1bb0c8c57a96265e7dfcfcdc2adffbff553d697b015943"
+      "size": 350494,
+      "sha256": "9df7a8cf5510a54ec88767e408930ea642424286e841a7ada9a4f95845d288d8"
     },
     {
       "path": "Release/Rules.conf",
@@ -1155,8 +1155,8 @@
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 350483,
-      "sha256": "4adb4b47732d37d3db1bb0c8c57a96265e7dfcfcdc2adffbff553d697b015943"
+      "size": 350494,
+      "sha256": "9df7a8cf5510a54ec88767e408930ea642424286e841a7ada9a4f95845d288d8"
     },
     {
       "path": "Release/Stable/README.md",
@@ -1165,8 +1165,8 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 350483,
-      "sha256": "4adb4b47732d37d3db1bb0c8c57a96265e7dfcfcdc2adffbff553d697b015943"
+      "size": 350494,
+      "sha256": "9df7a8cf5510a54ec88767e408930ea642424286e841a7ada9a4f95845d288d8"
     },
     {
       "path": "Release/Stable/Rules.conf",
@@ -1185,8 +1185,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 57006,
-      "sha256": "a91158ea4be0eb05d9784cd3985eb7ab441e8d02d32fdd3d99fed5fdbb362bab"
+      "size": 56991,
+      "sha256": "e20c39d628f842cab770cd31b2cfc13c848f60da6074446130816998c76e5dc4"
     },
     {
       "path": "Web/index.html",
@@ -1195,8 +1195,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 218192,
-      "sha256": "a009f9d062cc84ca4aaa6e2ddc2e3906dbde735d2be20cb6b2ce42836226f770"
+      "size": 218177,
+      "sha256": "31ae429969f471969a641308c16692854c02aa519a3b53d839a63c2489e7cbc4"
     },
     {
       "path": "Web/registry.md",
@@ -1205,8 +1205,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 76829,
-      "sha256": "8339529baebde63dbdd83ab126f73e55a2b2efc65912772bd2e811244f0f180e"
+      "size": 76814,
+      "sha256": "07500ac04b6cde20b6bbc95b770b76bbd7ae3f560d3b56bd952790b477225872"
     },
     {
       "path": "Web/remotes.md",
