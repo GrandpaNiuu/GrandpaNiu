@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Unified entry point for the GrandpaNiu module factory.
 
-The generator reads Rewrite/Generate.conf and then calls the existing scripts/
-implementation. This keeps the repository compatible while making the build
-flow config-driven instead of hard-coded.
+The generator prefers Rewrite/Generator/Generate.conf, then falls back to the
+legacy Rewrite/Generate.conf. Existing scripts remain the implementation layer;
+this file is the visible factory entrypoint.
 """
 
 from __future__ import annotations
@@ -16,7 +16,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 PYTHON = sys.executable
-DEFAULT_CONFIG = ROOT / "Rewrite" / "Generate.conf"
+GENERATOR_CONFIG = ROOT / "Rewrite" / "Generator" / "Generate.conf"
+LEGACY_CONFIG = ROOT / "Rewrite" / "Generate.conf"
+DEFAULT_CONFIG = GENERATOR_CONFIG if GENERATOR_CONFIG.exists() else LEGACY_CONFIG
 
 
 def rel(path: Path) -> str:
@@ -85,6 +87,7 @@ def build_plan(cfg: configparser.ConfigParser, profile: str, release: bool, chec
     release_report_script = get_cfg(cfg, "builder", "release_report_script", "scripts/build_release_variants.py")
     release_rules_script = get_cfg(cfg, "builder", "release_rules_script", "scripts/build_release_rules.py")
     release_modules_script = get_cfg(cfg, "builder", "release_modules_script", "scripts/build_release_modules.py")
+    release_aliases_script = get_cfg(cfg, "builder", "release_aliases_script", "scripts/build_release_aliases.py")
 
     steps: list[list[str]] = [
         command(build_script, "--build", "--profile", profile),
@@ -96,6 +99,7 @@ def build_plan(cfg: configparser.ConfigParser, profile: str, release: bool, chec
             existing_command(release_report_script),
             existing_command(release_rules_script),
             existing_command(release_modules_script, "--config", rel(config_file)),
+            existing_command(release_aliases_script, "--config", rel(config_file)),
         ]
         steps.extend(step for step in release_steps if step is not None)
 
@@ -110,7 +114,7 @@ def build_plan(cfg: configparser.ConfigParser, profile: str, release: bool, chec
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run the GrandpaNiu module factory pipeline.")
-    parser.add_argument("--config", default=rel(DEFAULT_CONFIG), help="Generation config path. Default: Rewrite/Generate.conf")
+    parser.add_argument("--config", default=rel(DEFAULT_CONFIG), help="Generation config path. Default: Rewrite/Generator/Generate.conf")
     parser.add_argument("--profile", default=None, help="Profile name under Rewrite/Profiles. Defaults to [profile] active")
     parser.add_argument("--release", action="store_true", help="Finalize Release output and generate release artifacts")
     parser.add_argument("--check", action="store_true", help="Run validation scripts listed in the config")
