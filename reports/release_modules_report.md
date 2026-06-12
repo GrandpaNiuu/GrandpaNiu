@@ -4,10 +4,10 @@
 - Fusion fallback source: `Release/Ronghemokuai.sgmodule`
 - Output directory: `Release/Modules`
 - Manual modules: 18
-- Auto-discovered modules: 10
-- Auto-discovered generated modules: 10
-- Total module specs: 28
-- Generated modules: 28
+- Auto-discovered modules: 12
+- Auto-discovered generated modules: 12
+- Total module specs: 30
+- Generated modules: 30
 - Skipped empty modules: 0
 
 ## GrandpaNiu Spotify
@@ -149,12 +149,24 @@
 - URL Rewrite: 6
 - MITM: 1
 
+## GrandpaNiu IT Home Source
+- Source: `Rewrite/Sources/Apps/ithome.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- Script: 1
+- MITM: 1
+
 ## GrandpaNiu Meituan Source
 - Source: `Rewrite/Sources/Apps/meituan.conf`
 - Discovery: auto
 - Rule: 11
 - URL Rewrite: 9
 - MITM: 1
+
+## GrandpaNiu QQ Music Source
+- Source: `Rewrite/Sources/Apps/qqmusic.conf`
+- Discovery: auto
+- Rule: 11
 
 ## GrandpaNiu Quark Source
 - Source: `Rewrite/Sources/Apps/quark.conf`

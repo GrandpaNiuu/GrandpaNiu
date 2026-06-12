@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-12T16:53:49.076210Z",
+  "generated_at": "2026-06-12T16:54:07.021780Z",
   "algorithm": "sha256",
-  "count": 50,
+  "count": 52,
   "files": [
     {
       "path": "Release/Beta/README.md",
@@ -39,6 +39,11 @@
       "sha256": "7ea27a43851e72102fb56d2f6c20199960b759dfc9eb437913a645d1a0b9a956"
     },
     {
+      "path": "Release/Modules/ithome.sgmodule",
+      "size": 652,
+      "sha256": "5c125066c0423634b61825ca9324f088eaebb9cadb72666e2769ddddb5468e28"
+    },
+    {
       "path": "Release/Modules/jd.sgmodule",
       "size": 560,
       "sha256": "74bad8613203d73dfedad57f70ac712cc23003a5801717d7f5d7096156a1cd63"
@@ -67,6 +72,11 @@
       "path": "Release/Modules/pinduoduo.sgmodule",
       "size": 955,
       "sha256": "438438d4233c9cd72f6c9cef789b61bf97131659037eff5e15ada33a63bc682e"
+    },
+    {
+      "path": "Release/Modules/qqmusic.sgmodule",
+      "size": 934,
+      "sha256": "54e577e2213522ebbfd316183f56f8143f2e4b62b2a4615714dce282590dab6b"
     },
     {
       "path": "Release/Modules/qqnews.sgmodule",
@@ -225,8 +235,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 8770,
-      "sha256": "a45401cc40dc9fc7d71aa88b54a46e4e132c4dfe12cc528240177548491d6bbb"
+      "size": 9216,
+      "sha256": "db4efadbb6be9d364b7439fee9cbe1d1c7acbf53f9a7eaaf67824650cb76d863"
     },
     {
       "path": "Web/index.html",
@@ -235,8 +245,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 31357,
-      "sha256": "0b567b695d41adc5c449cd5211ed3ff1b8e183ede7d3aa5edc432874b2426bf4"
+      "size": 33233,
+      "sha256": "3838d8f203a7ef5a2660974b48f93bf305e1a17130262057c93d3e0433ba302f"
     },
     {
       "path": "Web/registry.md",
@@ -245,8 +255,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 11313,
-      "sha256": "da7303b710a76b2e3f3cffe2fa4809e7f6fe3df156f9cd57049b2c80f22ddfa3"
+      "size": 11939,
+      "sha256": "909552ed72fcd07acf3fe016dda14e7bc853a57189f675417d73a390c8dba211"
     },
     {
       "path": "Web/remotes.md",

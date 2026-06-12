@@ -1,0 +1,12 @@
+#!name=GrandpaNiu IT Home Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ithome.sgmodule
+
+[URL Rewrite]
+^https?:\/\/dat\.ruanmei\.com\/ithome\/money\/acd\.json$ - reject
+
+[Script]
+ithome_remove_ads = type=http-response,pattern=^https:\/\/napi\.ithome\.com\/api\/(news\/indexv2\/iphone\/\d+|topmenu\/getfeeds\?),requires-body=1,script-path=https://kelee.one/Resource/JavaScript/IThome/IThome_remove_ads.js,argument="[{{{removeAllBanners}}},{{{removePinnedArticles}}}]"
+
+[MITM]
+hostname = %APPEND% napi.ithome.com,api.zuihuimai.com,dat.ruanmei.com
