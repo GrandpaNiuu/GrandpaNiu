@@ -24,6 +24,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Xiaopeng | `xiaopeng.sgmodule` | `Rewrite/Sources/Apps/xiaopeng.conf` | Rule:3, MITM:1 |
 | GrandpaNiu Amap Source | `amap.sgmodule` | `Rewrite/Sources/Apps/amap.conf` | Rule:1, URL Rewrite:6, MITM:1 |
 | GrandpaNiu Baidu Source | `baidu.sgmodule` | `Rewrite/Sources/Apps/baidu.conf` | Rule:4, URL Rewrite:6, MITM:1 |
+| GrandpaNiu Caiyun Weather Source | `caiyun-weather.sgmodule` | `Rewrite/Sources/Apps/caiyun-weather.conf` | Rule:3, Map Local:2, MITM:1 |
 | GrandpaNiu IT Home Source | `ithome.sgmodule` | `Rewrite/Sources/Apps/ithome.conf` | URL Rewrite:1, Script:1, MITM:1 |
 | GrandpaNiu Meituan Source | `meituan.sgmodule` | `Rewrite/Sources/Apps/meituan.conf` | Rule:11, URL Rewrite:9, MITM:1 |
 | GrandpaNiu QQ Music Source | `qqmusic.sgmodule` | `Rewrite/Sources/Apps/qqmusic.conf` | Rule:11 |

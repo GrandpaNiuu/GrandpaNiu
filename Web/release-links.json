@@ -186,6 +186,13 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/baidu.sgmodule"
     },
     {
+      "name": "GrandpaNiu Caiyun Weather Source",
+      "file": "Release/Modules/caiyun-weather.sgmodule",
+      "source": "Rewrite/Sources/Apps/caiyun-weather.conf",
+      "sections": "Rule:3, Map Local:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/caiyun-weather.sgmodule"
+    },
+    {
       "name": "GrandpaNiu IT Home Source",
       "file": "Release/Modules/ithome.sgmodule",
       "source": "Rewrite/Sources/Apps/ithome.conf",

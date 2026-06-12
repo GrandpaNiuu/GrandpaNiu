@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-12T16:56:35.880674Z",
+  "generated_at": "2026-06-12T16:57:04.138612Z",
   "algorithm": "sha256",
-  "count": 56,
+  "count": 57,
   "files": [
     {
       "path": "Release/Beta/README.md",
@@ -32,6 +32,11 @@
       "path": "Release/Modules/bilibili.sgmodule",
       "size": 5941,
       "sha256": "2c8974ae1a6046af4bd34da5f67bb5389bd5b0602c2719441545a66dd2eff276"
+    },
+    {
+      "path": "Release/Modules/caiyun-weather.sgmodule",
+      "size": 807,
+      "sha256": "973ae64d01f72308367540fbf631b3b075a5993a2e99052bb295b7fd10deebd9"
     },
     {
       "path": "Release/Modules/huya.sgmodule",
@@ -255,8 +260,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 10140,
-      "sha256": "c9624e321245c9e3ece9efa5b064debb0ce1e123b4699c6c95420ca880b4e1b2"
+      "size": 10400,
+      "sha256": "1ed399743f2bbc8614fd354c7eb6ea67cfe42f3af2ddcca46f4515751ebaa7f4"
     },
     {
       "path": "Web/index.html",
@@ -265,8 +270,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 37023,
-      "sha256": "53e52337857c376f1e92e71ccc0f803c412bfcf1fb93c66d7bf17cf3fe930289"
+      "size": 38013,
+      "sha256": "03a78f17ea6c59a1af4eb0ca42e1a6b9b39dea5f3afb387140f9b5124cac0a19"
     },
     {
       "path": "Web/registry.md",
@@ -275,8 +280,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 13223,
-      "sha256": "6023eed2cc1cc61dde190309b8f37a0e60a91d3af6c4f017ade3433505a9e8ed"
+      "size": 13573,
+      "sha256": "69ab61e646b60f9be86d9c16e78e0d79015532f0b89e66ccf9555267e5e21cb3"
     },
     {
       "path": "Web/remotes.md",
