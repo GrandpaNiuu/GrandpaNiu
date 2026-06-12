@@ -174,55 +174,6 @@ Release/Ronghemokuai.sgmodule
 
 ---
 
-## 🛠️ 给维护者看的说明
-
-本仓库采用 **source-first** 维护方式。
-
-也就是说，不建议直接修改最终生成文件：
-
-```text
-Ronghemokuai.sgmodule
-Release/Ronghemokuai.sgmodule
-```
-
-正确做法是优先修改源文件：
-
-```text
-Rules/
-Scripts/
-Rewrite/Sources/
-Rewrite/Remotes/
-Rewrite/Profiles/fusion.conf
-```
-
-然后运行构建：
-
-```bash
-python scripts/build_module.py --build --profile fusion
-python scripts/factory_finalize.py --sync-root
-python scripts/build_release_variants.py
-python scripts/validate_repository.py
-```
-
----
-
-## 📁 仓库结构
-
-```text
-GrandpaNiu/
-├── Rules/                 # 规则源文件
-├── Scripts/               # 脚本规则
-├── Rewrite/               # Rewrite、MITM、Profile 配置
-├── Android/               # Android 规则输出
-├── Release/               # Release 构建产物
-├── scripts/               # 自动化构建脚本
-├── reports/               # 构建与健康检查报告
-├── Ronghemokuai.sgmodule  # 主融合模块
-└── README.md              # 项目说明
-```
-
----
-
 ## ❓ 常见问题
 
 ### 1. 为什么广告没有全部消失？
@@ -248,7 +199,6 @@ YouTube 对视频播放、广告接口、CDN 和脚本处理比较敏感。模�
 这个仓库适合有一定规则使用经验的用户，也尽量为小白用户保留了直接可用的主模块入口。
 
 普通用户只需要导入主模块。
-维护者请优先修改源文件，并通过自动化构建生成最终模块。
 
 [fusion-import]: https://grandpaniuu.github.io/GrandpaNiu/redirect.html?url=shadowrocket%3A%2F%2Finstall%3Fmodule%3Dhttps%3A%2F%2Fgrandpaniuu.github.io%2FGrandpaNiu%2FRonghemokuai.sgmodule
 [android-import]: https://grandpaniuu.github.io/GrandpaNiu/android.html
