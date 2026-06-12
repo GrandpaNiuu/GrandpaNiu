@@ -1,6 +1,6 @@
 # Beta Channel
 
-Reserved channel for less conservative builds.
+Reserved only for internal experiments; not a public module family.
 
 - Status: `reserved`
 - Artifacts: not generated for this channel yet.
