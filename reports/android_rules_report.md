@@ -1,6 +1,6 @@
 # Android 规则生成报告
 
-- 最后更新时间：2026-06-13 00:48:48
+- 最后更新时间：2026-06-13 00:53:31
 - App 总数：18
 - 当前 Android App 源头：Android/mihomo/apps/*.yaml
 - iOS 可复用源头：Rules/reject.list -> iOS-Compatible-Reject

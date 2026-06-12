@@ -207,6 +207,13 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/soul.sgmodule"
     },
     {
+      "name": "GrandpaNiu Tieba Source",
+      "file": "Release/Modules/tieba.sgmodule",
+      "source": "Rewrite/Sources/Apps/tieba.conf",
+      "sections": "Rule:1, Script:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/tieba.sgmodule"
+    },
+    {
       "name": "GrandpaNiu WPS Source",
       "file": "Release/Modules/wps.sgmodule",
       "source": "Rewrite/Sources/Apps/wps.conf",
