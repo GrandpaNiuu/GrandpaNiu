@@ -1,0 +1,252 @@
+{
+  "generated_at": "2026-06-12T04:01:39.508151Z",
+  "algorithm": "sha256",
+  "count": 49,
+  "files": [
+    {
+      "path": "Release/Beta/README.md",
+      "size": 134,
+      "sha256": "9b2cb26532a60e5d930a461ba6993616c3d8e3d4c3f20cb6a23cda498b1a1b57"
+    },
+    {
+      "path": "Release/Canary/README.md",
+      "size": 141,
+      "sha256": "c79ee646e4d06a3cef79d82a91c5f09c4fc38b50c13318d00fc543bc6ecf7d8e"
+    },
+    {
+      "path": "Release/Module.sgmodule",
+      "size": 349336,
+      "sha256": "32f6cae496299718340025829975b3fbe49d67b20fed4f8962d240ab564a028e"
+    },
+    {
+      "path": "Release/Modules/amap.sgmodule",
+      "size": 815,
+      "sha256": "f6ba5c12d82fa6d4cc1067967f2528d378bedfd2292e6aaea2eb9284824a9bc6"
+    },
+    {
+      "path": "Release/Modules/baidu.sgmodule",
+      "size": 861,
+      "sha256": "3939ee699aeeb0cc1ad08f5ca14ee204a468d13b6882f325c298b42d081a2b7d"
+    },
+    {
+      "path": "Release/Modules/bilibili.sgmodule",
+      "size": 5941,
+      "sha256": "2c8974ae1a6046af4bd34da5f67bb5389bd5b0602c2719441545a66dd2eff276"
+    },
+    {
+      "path": "Release/Modules/huya.sgmodule",
+      "size": 546,
+      "sha256": "7ea27a43851e72102fb56d2f6c20199960b759dfc9eb437913a645d1a0b9a956"
+    },
+    {
+      "path": "Release/Modules/jd.sgmodule",
+      "size": 560,
+      "sha256": "74bad8613203d73dfedad57f70ac712cc23003a5801717d7f5d7096156a1cd63"
+    },
+    {
+      "path": "Release/Modules/meituan.sgmodule",
+      "size": 1610,
+      "sha256": "c4ec06a78e7ada66d5bfb307f1724da994d64232bddf5b05456fb6bbcb2ccf9f"
+    },
+    {
+      "path": "Release/Modules/mgtv.sgmodule",
+      "size": 802,
+      "sha256": "99b2a82181ac6eeaa4842f52c76ddf936ae6d77692cab666a536966c4facce3e"
+    },
+    {
+      "path": "Release/Modules/netease-music.sgmodule",
+      "size": 958,
+      "sha256": "70d446c1bb27d856672a41e71001ca4ae208a146ca141d790c140b1c7025108f"
+    },
+    {
+      "path": "Release/Modules/pcauto.sgmodule",
+      "size": 608,
+      "sha256": "898021476cfce0b419f6456058c9cc5e3d626c0f44b3758f07a0578af561eb2c"
+    },
+    {
+      "path": "Release/Modules/pinduoduo.sgmodule",
+      "size": 955,
+      "sha256": "438438d4233c9cd72f6c9cef789b61bf97131659037eff5e15ada33a63bc682e"
+    },
+    {
+      "path": "Release/Modules/qqnews.sgmodule",
+      "size": 896,
+      "sha256": "4ebab87456aaa341111624a769983794b16fa92b4ce9fd89b909fa5904402163"
+    },
+    {
+      "path": "Release/Modules/quark.sgmodule",
+      "size": 329,
+      "sha256": "ef447a512fdb7dc9cc9e1e94e71c47185b737efaba42e65b69d3dd6bfb05d8b8"
+    },
+    {
+      "path": "Release/Modules/rednote.sgmodule",
+      "size": 1466,
+      "sha256": "ca539500a3767241cf9c4aa827c948e27b97205c7191d382b84deedafdcbe340"
+    },
+    {
+      "path": "Release/Modules/soul.sgmodule",
+      "size": 595,
+      "sha256": "b588971065d8fcdabdaaa6c448beb2774cefde8d0c8ccba1d5b78010f320e821"
+    },
+    {
+      "path": "Release/Modules/spotify.sgmodule",
+      "size": 1436,
+      "sha256": "75027d94f2a5b5b7d9c8a7899f9fc1d63b9d210c1389f0373fae5535d07a1e8f"
+    },
+    {
+      "path": "Release/Modules/taobao.sgmodule",
+      "size": 773,
+      "sha256": "e0cf600bae007546373726c751cb73e77096f5ac73dd0b62456c0d36fc6ebd4a"
+    },
+    {
+      "path": "Release/Modules/umetrip.sgmodule",
+      "size": 453,
+      "sha256": "f783aa38a3e9740e6f954d63069109eb553805a983ec01db918f1274138c6dd9"
+    },
+    {
+      "path": "Release/Modules/wechat.sgmodule",
+      "size": 2688,
+      "sha256": "61be95ec8d19e999c1757c9e85ec98d26f069ec92d25e5fdd1aca738729ffc8e"
+    },
+    {
+      "path": "Release/Modules/weibo.sgmodule",
+      "size": 2183,
+      "sha256": "53d4a7a41b8e3beb8e5730f6264d98933b690715135d84bda66b9de2a0b3c6e6"
+    },
+    {
+      "path": "Release/Modules/wps.sgmodule",
+      "size": 709,
+      "sha256": "8d12b21579f2119dc030578bc45752cdcdcf9c7a0481cd7c4200e6d1e5e6987f"
+    },
+    {
+      "path": "Release/Modules/xiaopeng.sgmodule",
+      "size": 390,
+      "sha256": "1a4db076d2bd2124a0d2819207c422f91eda61eb25c37cec1ee3f6b98f33cdc8"
+    },
+    {
+      "path": "Release/Modules/yiche.sgmodule",
+      "size": 365,
+      "sha256": "65b97763ae0262381a99838450f94dddcc0cf6447a251e9268231d4e83b1d57c"
+    },
+    {
+      "path": "Release/Modules/youku.sgmodule",
+      "size": 398,
+      "sha256": "0998c0a28d1635ce9743a812cc64575caf33d5dbf1b959446efe12e95b623dc3"
+    },
+    {
+      "path": "Release/Modules/youtube.sgmodule",
+      "size": 855,
+      "sha256": "73a48e7ccc2c6b04b3745d2d103eb790d721e8f862fe48f16773a7e79152386e"
+    },
+    {
+      "path": "Release/Modules/zdm.sgmodule",
+      "size": 850,
+      "sha256": "7bef81eb70abf6ba9d5b0e173ac650a3928707ae70489074ea688ca93ac12527"
+    },
+    {
+      "path": "Release/Modules/zhihu.sgmodule",
+      "size": 4246,
+      "sha256": "7ec2cd758a0fb353b8cd330ee4d107f3081bacd6459d83239a841e0147648eac"
+    },
+    {
+      "path": "Release/Modules/zuoyebang.sgmodule",
+      "size": 615,
+      "sha256": "bbffcdb715a90d4f2fd5eb5f765cdb728092dd2ae1911f3d16b7790a588afd2e"
+    },
+    {
+      "path": "Release/Ronghemokuai-full.sgmodule",
+      "size": 554,
+      "sha256": "c29b95c24cd43894771d23386bdbc39a3f57cf1de3a143f9dee312e67622046d"
+    },
+    {
+      "path": "Release/Ronghemokuai-lite.sgmodule",
+      "size": 554,
+      "sha256": "1733a2dda698c21217e17c59e18551273f76d9d9b77dbf4b70f6d40ba132a531"
+    },
+    {
+      "path": "Release/Ronghemokuai-stable-plus.sgmodule",
+      "size": 568,
+      "sha256": "b2e8f0cf036afb026668a0657c6b459581f2979573d7a6458c185e4bb921ebd6"
+    },
+    {
+      "path": "Release/Ronghemokuai-stable.sgmodule",
+      "size": 191,
+      "sha256": "7b55630c598a068d8bc0463d4ebc773d0e1a6681b531965f2eebd4d1efc207ef"
+    },
+    {
+      "path": "Release/Ronghemokuai.sgmodule",
+      "size": 349336,
+      "sha256": "32f6cae496299718340025829975b3fbe49d67b20fed4f8962d240ab564a028e"
+    },
+    {
+      "path": "Release/Rules.conf",
+      "size": 36447,
+      "sha256": "79f171543199b86d0ee9793428cc1909bd489471a5784739409012df1e713235"
+    },
+    {
+      "path": "Release/RulesGroup.conf",
+      "size": 36526,
+      "sha256": "1e77decda02bfd41df0d87045f82d783a0de6ac8a60e36e7c0abb712e3cf7450"
+    },
+    {
+      "path": "Release/Stable/Module.sgmodule",
+      "size": 349336,
+      "sha256": "32f6cae496299718340025829975b3fbe49d67b20fed4f8962d240ab564a028e"
+    },
+    {
+      "path": "Release/Stable/README.md",
+      "size": 187,
+      "sha256": "05e9e882c55e646ff1dd9744595a34cc448509b827ed0d7d4baf341dbcdfb3fa"
+    },
+    {
+      "path": "Release/Stable/Ronghemokuai.sgmodule",
+      "size": 349336,
+      "sha256": "32f6cae496299718340025829975b3fbe49d67b20fed4f8962d240ab564a028e"
+    },
+    {
+      "path": "Release/Stable/Rules.conf",
+      "size": 36447,
+      "sha256": "79f171543199b86d0ee9793428cc1909bd489471a5784739409012df1e713235"
+    },
+    {
+      "path": "Release/Stable/RulesGroup.conf",
+      "size": 36526,
+      "sha256": "1e77decda02bfd41df0d87045f82d783a0de6ac8a60e36e7c0abb712e3cf7450"
+    },
+    {
+      "path": "Web/README.md",
+      "size": 784,
+      "sha256": "4af5a96df0fbd53b2e416e81599b37e86f75564e98d3bca5627ae9df8a04c1af"
+    },
+    {
+      "path": "Web/catalog.md",
+      "size": 8408,
+      "sha256": "3675d018b102752f2419a093ac217eb10c96cee164508371951f5d11e7e53233"
+    },
+    {
+      "path": "Web/index.html",
+      "size": 5413,
+      "sha256": "a3cddae683d31afeb4c320ac194ad41ddc8072c951091923d684bbb8c6473fda"
+    },
+    {
+      "path": "Web/modules.html",
+      "size": 30424,
+      "sha256": "88047142f0fb557f17e2980f02120bda82c4ca996ba8cfad7482436a4f5f7725"
+    },
+    {
+      "path": "Web/registry.md",
+      "size": 1596,
+      "sha256": "341847127af6dd8c751069c6709ad16faf90bb01c1b05050eb13655fa2291f47"
+    },
+    {
+      "path": "Web/release-links.json",
+      "size": 10809,
+      "sha256": "7ecc0c513359bff9e5356ff06eb9562aa65159f34e6b422a1b5070cc63a2653d"
+    },
+    {
+      "path": "Web/remotes.md",
+      "size": 8149,
+      "sha256": "bd9cf79d12f7040e0def4e2701e73d9423ae1a3118c175660c106562d4bf734c"
+    }
+  ]
+}
