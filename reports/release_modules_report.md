@@ -4,10 +4,10 @@
 - Fusion fallback source: `Release/Ronghemokuai.sgmodule`
 - Output directory: `Release/Modules`
 - Manual modules: 18
-- Auto-discovered modules: 14
-- Auto-discovered generated modules: 14
-- Total module specs: 32
-- Generated modules: 32
+- Auto-discovered modules: 15
+- Auto-discovered generated modules: 15
+- Total module specs: 33
+- Generated modules: 33
 - Skipped empty modules: 0
 
 ## GrandpaNiu Spotify
@@ -185,6 +185,13 @@
 - Discovery: auto
 - Rule: 4
 - URL Rewrite: 2
+- MITM: 1
+
+## GrandpaNiu TeraBox Source
+- Source: `Rewrite/Sources/Apps/terabox.conf`
+- Discovery: auto
+- Rule: 1
+- Map Local: 4
 - MITM: 1
 
 ## GrandpaNiu Tieba Source

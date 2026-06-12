@@ -228,6 +228,13 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/soul.sgmodule"
     },
     {
+      "name": "GrandpaNiu TeraBox Source",
+      "file": "Release/Modules/terabox.sgmodule",
+      "source": "Rewrite/Sources/Apps/terabox.conf",
+      "sections": "Rule:1, Map Local:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/terabox.sgmodule"
+    },
+    {
       "name": "GrandpaNiu Tieba Source",
       "file": "Release/Modules/tieba.sgmodule",
       "source": "Rewrite/Sources/Apps/tieba.conf",

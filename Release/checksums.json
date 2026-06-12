@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-12T16:55:42.026517Z",
+  "generated_at": "2026-06-12T16:56:03.663839Z",
   "algorithm": "sha256",
-  "count": 54,
+  "count": 55,
   "files": [
     {
       "path": "Release/Beta/README.md",
@@ -112,6 +112,11 @@
       "path": "Release/Modules/taobao.sgmodule",
       "size": 773,
       "sha256": "e0cf600bae007546373726c751cb73e77096f5ac73dd0b62456c0d36fc6ebd4a"
+    },
+    {
+      "path": "Release/Modules/terabox.sgmodule",
+      "size": 836,
+      "sha256": "c50b481a4fa6cb77adda0c1046432703a02e255674f91e23a7f91ca902cbd65f"
     },
     {
       "path": "Release/Modules/tieba.sgmodule",
@@ -245,8 +250,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 9656,
-      "sha256": "5d36c00324fe1bd5f04f5ebba125bc40b82f4dd1f3749b83bea1fee7a8300b37"
+      "size": 9888,
+      "sha256": "7a98393161b31a2439c03ba3be6918457da2befe9f025d55e632f99234752169"
     },
     {
       "path": "Web/index.html",
@@ -255,8 +260,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 35101,
-      "sha256": "b8b45688d96871867dab298f2f58b7c71a6ebd6799ac15e0df6e6b8003766272"
+      "size": 36049,
+      "sha256": "b0df719d07a1ea769dc6b8c1b167febe654b2034efcb85216061fdd29731de8e"
     },
     {
       "path": "Web/registry.md",
@@ -265,8 +270,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 12559,
-      "sha256": "2aff5a1e46dff56e7d851747851eba06cbdbe1fdfa4be2ddfe34697e13e19684"
+      "size": 12881,
+      "sha256": "b7e07cc33d407af9a285b41ebac237af98ba11221b2571eb3663103f20bba12d"
     },
     {
       "path": "Web/remotes.md",

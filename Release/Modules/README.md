@@ -30,6 +30,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Quark Source | `quark.sgmodule` | `Rewrite/Sources/Apps/quark.conf` | Rule:2, MITM:1 |
 | GrandpaNiu Reddit Source | `reddit.sgmodule` | `Rewrite/Sources/Apps/reddit.conf` | Body Rewrite:1, MITM:1 |
 | GrandpaNiu Soul Source | `soul.sgmodule` | `Rewrite/Sources/Apps/soul.conf` | Rule:4, URL Rewrite:2, MITM:1 |
+| GrandpaNiu TeraBox Source | `terabox.sgmodule` | `Rewrite/Sources/Apps/terabox.conf` | Rule:1, Map Local:4, MITM:1 |
 | GrandpaNiu Tieba Source | `tieba.sgmodule` | `Rewrite/Sources/Apps/tieba.conf` | Rule:1, Script:2, MITM:1 |
 | GrandpaNiu WeRead Source | `weread.sgmodule` | `Rewrite/Sources/Apps/weread.conf` | Script:1, MITM:1 |
 | GrandpaNiu WPS Source | `wps.sgmodule` | `Rewrite/Sources/Apps/wps.conf` | Rule:4, URL Rewrite:3, MITM:1 |
