@@ -24,9 +24,9 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Xiaopeng | `xiaopeng.sgmodule` | `Rewrite/Sources/Apps/xiaopeng.conf` | Rule:3, MITM:1 |
 | GrandpaNiu Amap Source | `amap.sgmodule` | `Rewrite/Sources/Apps/amap.conf` | Rule:1, URL Rewrite:6, MITM:1 |
 | GrandpaNiu Baidu Source | `baidu.sgmodule` | `Rewrite/Sources/Apps/baidu.conf` | Rule:4, URL Rewrite:6, MITM:1 |
-| GrandpaNiu Caiyun Weather Source | `caiyun-weather.sgmodule` | `Rewrite/Sources/Apps/caiyun-weather.conf` | Rule:3, Map Local:2, MITM:1 |
+| GrandpaNiu Caiyun Weather Source | `caiyun-weather.sgmodule` | `Rewrite/Sources/Apps/caiyun-weather.conf` | Rule:3, Map Local:2, Script:1, MITM:1 |
 | GrandpaNiu IT Home Source | `ithome.sgmodule` | `Rewrite/Sources/Apps/ithome.conf` | URL Rewrite:1, Script:1, MITM:1 |
-| GrandpaNiu Keep Source | `keep.sgmodule` | `Rewrite/Sources/Apps/keep.conf` | Rule:1, Body Rewrite:3, Map Local:3, MITM:1 |
+| GrandpaNiu Keep Source | `keep.sgmodule` | `Rewrite/Sources/Apps/keep.conf` | Rule:1, Body Rewrite:46, Map Local:8, MITM:1 |
 | GrandpaNiu Meituan Source | `meituan.sgmodule` | `Rewrite/Sources/Apps/meituan.conf` | Rule:11, URL Rewrite:9, MITM:1 |
 | GrandpaNiu QQ Music Source | `qqmusic.sgmodule` | `Rewrite/Sources/Apps/qqmusic.conf` | Rule:11 |
 | GrandpaNiu Quark Source | `quark.sgmodule` | `Rewrite/Sources/Apps/quark.conf` | Rule:2, MITM:1 |
@@ -36,8 +36,8 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Tieba Source | `tieba.sgmodule` | `Rewrite/Sources/Apps/tieba.conf` | Rule:1, Script:2, MITM:1 |
 | GrandpaNiu WeRead Source | `weread.sgmodule` | `Rewrite/Sources/Apps/weread.conf` | Script:1, MITM:1 |
 | GrandpaNiu WPS Source | `wps.sgmodule` | `Rewrite/Sources/Apps/wps.conf` | Rule:4, URL Rewrite:3, MITM:1 |
-| GrandpaNiu Xiaoyuzhou Source | `xiaoyuzhou.sgmodule` | `Rewrite/Sources/Apps/xiaoyuzhou.conf` | Body Rewrite:1, Map Local:3, MITM:1 |
-| GrandpaNiu Ximalaya Source | `ximalaya.sgmodule` | `Rewrite/Sources/Apps/ximalaya.conf` | Rule:5, MITM:1 |
+| GrandpaNiu Xiaoyuzhou Source | `xiaoyuzhou.sgmodule` | `Rewrite/Sources/Apps/xiaoyuzhou.conf` | Body Rewrite:1, Map Local:4, MITM:1 |
+| GrandpaNiu Ximalaya Source | `ximalaya.sgmodule` | `Rewrite/Sources/Apps/ximalaya.conf` | Rule:5, Body Rewrite:9, Map Local:15, MITM:1 |
 | GrandpaNiu Youku Source | `youku.sgmodule` | `Rewrite/Sources/Apps/youku.conf` | Rule:4, MITM:1 |
 | GrandpaNiu ZDM Source | `zdm.sgmodule` | `Rewrite/Sources/Apps/zdm.conf` | Rule:1, URL Rewrite:7, MITM:1 |
 | GrandpaNiu Zuoyebang Source | `zuoyebang.sgmodule` | `Rewrite/Sources/Apps/zuoyebang.conf` | Rule:1, URL Rewrite:4, MITM:1 |

@@ -1,0 +1,100 @@
+name: Upstream app module sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 00:30 Beijing time.
+    - cron: "30 16 * * *"
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  PYTHONUTF8: "1"
+  LANG: C.UTF-8
+  LC_ALL: C.UTF-8
+
+concurrency:
+  group: module-maintenance
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Sync upstream app modules
+        id: upstream-sync
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          python3 scripts/sync_upstream_app_modules.py
+
+      - name: Build and validate synced release
+        id: factory-build
+        if: steps.upstream-sync.outcome == 'success'
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          python3 Rewrite/Generator/Builder.py --profile fusion --release --check
+
+      - name: Roll back failed sync
+        if: steps.upstream-sync.outcome != 'success' || steps.factory-build.outcome != 'success'
+        run: |
+          set -euo pipefail
+          git restore Rewrite/Sources/Apps Rewrite/Remotes/app-modules.json Ronghemokuai.sgmodule Release Web reports || true
+          mkdir -p reports
+          {
+            echo "# Upstream App Module Sync Report"
+            echo
+            echo "- status: failed"
+            echo "- generated: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            echo "- sync: ${{ steps.upstream-sync.outcome }}"
+            echo "- build: ${{ steps.factory-build.outcome }}"
+            echo
+            echo "The upstream app sync was rolled back because sync or build validation failed."
+          } > reports/upstream_app_module_sync_report.md
+          exit 1
+
+      - name: Commit synced app module updates
+        if: steps.upstream-sync.outcome == 'success' && steps.factory-build.outcome == 'success'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Rewrite/Sources/Apps Rewrite/Remotes/app-modules.json backup/upstream-app-modules reports Ronghemokuai.sgmodule Release Web
+
+          if git diff --cached --quiet; then
+            echo "No upstream app module changes."
+            exit 0
+          fi
+
+          git commit -m "sync: update upstream app modules"
+
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push failed on attempt ${attempt}; rebasing on origin/main and retrying."
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort || true
+              exit 1
+            fi
+          done
+
+          echo "Push failed after 3 attempts."
+          exit 1

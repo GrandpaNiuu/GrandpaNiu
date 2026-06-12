@@ -189,7 +189,7 @@
       "name": "GrandpaNiu Caiyun Weather Source",
       "file": "Release/Modules/caiyun-weather.sgmodule",
       "source": "Rewrite/Sources/Apps/caiyun-weather.conf",
-      "sections": "Rule:3, Map Local:2, MITM:1",
+      "sections": "Rule:3, Map Local:2, Script:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/caiyun-weather.sgmodule"
     },
     {
@@ -203,7 +203,7 @@
       "name": "GrandpaNiu Keep Source",
       "file": "Release/Modules/keep.sgmodule",
       "source": "Rewrite/Sources/Apps/keep.conf",
-      "sections": "Rule:1, Body Rewrite:3, Map Local:3, MITM:1",
+      "sections": "Rule:1, Body Rewrite:46, Map Local:8, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/keep.sgmodule"
     },
     {
@@ -273,14 +273,14 @@
       "name": "GrandpaNiu Xiaoyuzhou Source",
       "file": "Release/Modules/xiaoyuzhou.sgmodule",
       "source": "Rewrite/Sources/Apps/xiaoyuzhou.conf",
-      "sections": "Body Rewrite:1, Map Local:3, MITM:1",
+      "sections": "Body Rewrite:1, Map Local:4, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xiaoyuzhou.sgmodule"
     },
     {
       "name": "GrandpaNiu Ximalaya Source",
       "file": "Release/Modules/ximalaya.sgmodule",
       "source": "Rewrite/Sources/Apps/ximalaya.conf",
-      "sections": "Rule:5, MITM:1",
+      "sections": "Rule:5, Body Rewrite:9, Map Local:15, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/ximalaya.sgmodule"
     },
     {

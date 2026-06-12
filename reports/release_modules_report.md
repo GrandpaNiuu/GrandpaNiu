@@ -154,6 +154,7 @@
 - Discovery: auto
 - Rule: 3
 - Map Local: 2
+- Script: 1
 - MITM: 1
 
 ## GrandpaNiu IT Home Source
@@ -167,8 +168,8 @@
 - Source: `Rewrite/Sources/Apps/keep.conf`
 - Discovery: auto
 - Rule: 1
-- Body Rewrite: 3
-- Map Local: 3
+- Body Rewrite: 46
+- Map Local: 8
 - MITM: 1
 
 ## GrandpaNiu Meituan Source
@@ -233,13 +234,15 @@
 - Source: `Rewrite/Sources/Apps/xiaoyuzhou.conf`
 - Discovery: auto
 - Body Rewrite: 1
-- Map Local: 3
+- Map Local: 4
 - MITM: 1
 
 ## GrandpaNiu Ximalaya Source
 - Source: `Rewrite/Sources/Apps/ximalaya.conf`
 - Discovery: auto
 - Rule: 5
+- Body Rewrite: 9
+- Map Local: 15
 - MITM: 1
 
 ## GrandpaNiu Youku Source

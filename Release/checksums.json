@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T17:04:01.653696Z",
+  "generated_at": "2026-06-12T17:26:07.485569Z",
   "algorithm": "sha256",
   "count": 59,
   "files": [
@@ -35,8 +35,8 @@
     },
     {
       "path": "Release/Modules/caiyun-weather.sgmodule",
-      "size": 807,
-      "sha256": "973ae64d01f72308367540fbf631b3b075a5993a2e99052bb295b7fd10deebd9"
+      "size": 1155,
+      "sha256": "51018e1094b8a0d2b77bbc54755bf98ac619e62454c27780dec76a18f4e28bbb"
     },
     {
       "path": "Release/Modules/huya.sgmodule",
@@ -45,8 +45,8 @@
     },
     {
       "path": "Release/Modules/ithome.sgmodule",
-      "size": 652,
-      "sha256": "5c125066c0423634b61825ca9324f088eaebb9cadb72666e2769ddddb5468e28"
+      "size": 661,
+      "sha256": "d1cbc70691a2852e685d65461d814ceba842eb6e22782ac59959f3191249d242"
     },
     {
       "path": "Release/Modules/jd.sgmodule",
@@ -55,8 +55,8 @@
     },
     {
       "path": "Release/Modules/keep.sgmodule",
-      "size": 1473,
-      "sha256": "6530db917762cffbdb4c20afaf10adea38a92c25732fa1e3cb7d13d8428ab6da"
+      "size": 7851,
+      "sha256": "2311b9ff4fe043e0f9a72dd2742495f59a73782a14b569d64dfacbeacf0af825"
     },
     {
       "path": "Release/Modules/meituan.sgmodule",
@@ -100,8 +100,8 @@
     },
     {
       "path": "Release/Modules/reddit.sgmodule",
-      "size": 988,
-      "sha256": "88ae74fcaefe3dbf9dc6cba7c40cdf78436f61c481506fc486fa6b2df39385b5"
+      "size": 1029,
+      "sha256": "591c37ab6d6c145823af91a15f501c0701dfd0b1872c137625474acc54280495"
     },
     {
       "path": "Release/Modules/rednote.sgmodule",
@@ -130,8 +130,8 @@
     },
     {
       "path": "Release/Modules/tieba.sgmodule",
-      "size": 1124,
-      "sha256": "a0a17b2bc323beb2d74e37f40e7641fcafa41fb4facba79b2c85e9ddb9f1e82a"
+      "size": 1098,
+      "sha256": "3bb68faaa26e58e8bd37bd444b8aa588888191d63aa97600a16a2dd5d2054b20"
     },
     {
       "path": "Release/Modules/umetrip.sgmodule",
@@ -150,8 +150,8 @@
     },
     {
       "path": "Release/Modules/weread.sgmodule",
-      "size": 542,
-      "sha256": "3ec9aca54bd7b2829ab63365024fc72c3a92afb7f4cd92b435179d257d64f6c4"
+      "size": 534,
+      "sha256": "8bfea93a384ed28c2e92dc68f98e00a9e1ae4375d70ef7abb38bcf564056666f"
     },
     {
       "path": "Release/Modules/wps.sgmodule",
@@ -165,13 +165,13 @@
     },
     {
       "path": "Release/Modules/xiaoyuzhou.sgmodule",
-      "size": 829,
-      "sha256": "4c1d64aadfa84a60803fce73698bcfcc3bcbc724f614a50dc8abd94c30cf02af"
+      "size": 952,
+      "sha256": "3898c13d08be7c89fc765f1fde3df7c911c635dff83d095c3c9581e9c5cdca5b"
     },
     {
       "path": "Release/Modules/ximalaya.sgmodule",
-      "size": 670,
-      "sha256": "746c4415df9a648b5561300e302bc5ff4270c6377b60135c75a74365f6db8514"
+      "size": 4907,
+      "sha256": "4bbdf95213cb07032dc650b18cbbb49f1c857ce3e1cbfedc9f91793c9052b1f3"
     },
     {
       "path": "Release/Modules/yiche.sgmodule",
@@ -270,8 +270,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 10859,
-      "sha256": "4151c6e83646b21b07f4af853803204c921c78cf06a7e638573c242836f5bb93"
+      "size": 10900,
+      "sha256": "8d93ae1179d78e35303945daa21d19d14a28d68ad2005bff4198786b589de356"
     },
     {
       "path": "Web/index.html",
@@ -280,8 +280,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 39900,
-      "sha256": "af8edf8a2161101d8498ec919b53ecb8e20983224e360f393073dbd552878ae6"
+      "size": 39941,
+      "sha256": "8e68badbabb52221f8fab5a989fd5cd926567739e25f062f371a98caa19d1121"
     },
     {
       "path": "Web/registry.md",
@@ -290,8 +290,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 14212,
-      "sha256": "688383142576764bd80ce2f7f946f5d1b1534d8c4aaac29571032d1df5cea2f0"
+      "size": 14253,
+      "sha256": "d3d56abcf802ed33990a1939b3b68ac4870f16647ea37785f166b641ecb61bcb"
     },
     {
       "path": "Web/remotes.md",
