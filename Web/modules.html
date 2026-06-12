@@ -6,29 +6,8 @@
   <meta name="color-scheme" content="dark">
   <title>GrandpaNiu 独立模块目录</title>
   <style>
-    :root {
-      --bg:#15171d;
-      --panel:rgba(255,255,255,.065);
-      --line:rgba(255,255,255,.12);
-      --text:#f7f8fb;
-      --muted:#a5a9b8;
-      --blue:#2388d9;
-      --green:#25a162;
-      --gray:#4b5563;
-      --nav:rgba(31,34,44,.86);
-    }
-    *{box-sizing:border-box}
-    body{margin:0;min-height:100%;padding:max(24px,env(safe-area-inset-top)) 16px calc(100px + env(safe-area-inset-bottom));background:radial-gradient(circle at 18% -8%,rgba(35,136,217,.18),transparent 34%),radial-gradient(circle at 92% 0%,rgba(37,161,98,.12),transparent 30%),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",Arial,sans-serif}
-    .wrap{width:min(100%,900px);margin:0 auto}
-    header{padding:10px 0 22px}.eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:#d7eaff;background:rgba(35,136,217,.12);font-size:13px;font-weight:800}
-    h1{margin:0;font-size:clamp(34px,8.8vw,58px);line-height:1.05;letter-spacing:-.06em;font-weight:900}.lead{margin:15px 0 0;color:var(--muted);font-size:clamp(17px,4.2vw,22px);line-height:1.65;font-weight:520}
-    .notice{margin:16px 0 0;padding:13px 14px;border-radius:14px;border:1px solid rgba(214,164,77,.26);background:rgba(214,164,77,.09);color:#dfbf82;line-height:1.7;font-size:14px;font-weight:750}
-    .section{margin-top:22px}.section-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:#2f9cff;font-size:clamp(23px,6vw,34px);line-height:1.18;letter-spacing:-.04em;font-weight:900}.section-title:before{content:"";width:4px;height:1.15em;border-radius:999px;background:linear-gradient(180deg,#59b0ff,#25a162)}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{border:1px solid var(--line);border-radius:20px;padding:16px;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.045));box-shadow:0 14px 34px rgba(0,0,0,.2)}.card h3{margin:0 0 8px;font-size:20px;line-height:1.25}.card p{margin:0;color:var(--muted);line-height:1.7;font-size:15px}
-    .tags{display:flex;flex-wrap:wrap;gap:6px;margin:11px 0 0}.tag{display:inline-flex;align-items:center;min-height:24px;padding:3px 8px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(255,255,255,.07);color:#d1d5db;font-size:12px;font-weight:750}
-    .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.badge-btn{display:inline-flex;align-items:stretch;height:32px;color:#fff;text-decoration:none;border:0;border-radius:5px;overflow:hidden;font:inherit;font-size:14px;font-weight:800;line-height:32px;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.18);background:transparent;padding:0}.badge-btn .label,.badge-btn .name{display:inline-flex;align-items:center;gap:6px;padding:0 9px;white-space:nowrap}.badge-btn.install .label{background:var(--blue)}.badge-btn.install .name{background:var(--gray)}.badge-btn.file .label{background:var(--green)}.badge-btn.file .name{background:var(--gray)}.badge-btn.gray .label{background:#6b7280}.badge-btn.gray .name{background:#4b5563}
-    footer{margin:26px 0 0;color:#7f8494;font-size:13px;line-height:1.7;text-align:center}.bottom-nav{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 28px),760px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:8px;border:1px solid rgba(255,255,255,.13);border-radius:30px;background:var(--nav);box-shadow:0 18px 48px rgba(0,0,0,.45);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);z-index:10}.bottom-nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:58px;border-radius:22px;color:#e5e7eb;text-decoration:none;font-size:12px;font-weight:750}.bottom-nav a.active{color:#58a6ff;background:rgba(47,156,255,.16)}.nav-icon{font-size:22px;line-height:1}
-    @media(max-width:860px){.grid{grid-template-columns:1fr}}
+    :root{--bg:#15171d;--line:rgba(255,255,255,.12);--text:#f7f8fb;--muted:#a5a9b8;--blue:#2388d9;--green:#25a162;--gray:#4b5563;--nav:rgba(31,34,44,.86)}
+    *{box-sizing:border-box}body{margin:0;min-height:100%;padding:max(24px,env(safe-area-inset-top)) 16px calc(100px + env(safe-area-inset-bottom));background:radial-gradient(circle at 18% -8%,rgba(35,136,217,.18),transparent 34%),radial-gradient(circle at 92% 0%,rgba(37,161,98,.12),transparent 30%),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",Arial,sans-serif}.wrap{width:min(100%,980px);margin:0 auto}header{padding:10px 0 22px}.eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:#d7eaff;background:rgba(35,136,217,.12);font-size:13px;font-weight:800}h1{margin:0;font-size:clamp(34px,8.8vw,58px);line-height:1.05;letter-spacing:-.06em;font-weight:900}.lead{margin:15px 0 0;color:var(--muted);font-size:clamp(17px,4.2vw,22px);line-height:1.65;font-weight:520}.notice{margin:16px 0 0;padding:13px 14px;border-radius:14px;border:1px solid rgba(214,164,77,.26);background:rgba(214,164,77,.09);color:#dfbf82;line-height:1.7;font-size:14px;font-weight:750}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}.card{border:1px solid var(--line);border-radius:20px;padding:16px;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.045));box-shadow:0 14px 34px rgba(0,0,0,.2)}.card h3{margin:0 0 8px;font-size:20px;line-height:1.25}.card p{margin:0;color:var(--muted);line-height:1.7;font-size:14px}code{font-size:12px;color:#cbd5e1;word-break:break-all}.tags{display:flex;flex-wrap:wrap;gap:6px;margin:11px 0 0}.tag{display:inline-flex;align-items:center;min-height:24px;padding:3px 8px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(255,255,255,.07);color:#d1d5db;font-size:12px;font-weight:750}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.badge-btn{display:inline-flex;align-items:stretch;height:32px;color:#fff;text-decoration:none;border:0;border-radius:5px;overflow:hidden;font:inherit;font-size:14px;font-weight:800;line-height:32px;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.18);background:transparent;padding:0}.badge-btn .label,.badge-btn .name{display:inline-flex;align-items:center;gap:6px;padding:0 9px;white-space:nowrap}.badge-btn.install .label{background:var(--blue)}.badge-btn.install .name{background:var(--gray)}.badge-btn.file .label{background:var(--green)}.badge-btn.file .name{background:var(--gray)}.badge-btn.gray .label{background:#6b7280}.badge-btn.gray .name{background:#4b5563}footer{margin:26px 0 0;color:#7f8494;font-size:13px;line-height:1.7;text-align:center}.bottom-nav{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 28px),760px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:8px;border:1px solid rgba(255,255,255,.13);border-radius:30px;background:var(--nav);box-shadow:0 18px 48px rgba(0,0,0,.45);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);z-index:10}.bottom-nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:58px;border-radius:22px;color:#e5e7eb;text-decoration:none;font-size:12px;font-weight:750}.bottom-nav a.active{color:#58a6ff;background:rgba(47,156,255,.16)}.nav-icon{font-size:22px;line-height:1}@media(max-width:860px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -36,74 +15,310 @@
     <header>
       <div class="eyebrow">🐮 GrandpaNiu · Release Modules</div>
       <h1>独立模块目录</h1>
-      <p class="lead">主入口仍然推荐 Fusion。这里提供按 App 拆分的可选模块，适合高级用户单独导入和测试。</p>
+      <p class="lead">当前共 27 个独立模块。主入口仍然推荐 Fusion；这里适合高级用户按 App 单独导入和测试。</p>
       <div class="notice">不要同时导入太多独立模块。普通用户优先使用主融合模块。</div>
     </header>
+    <section class="grid">
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/spotify.sgmodule">
+          <h3>GrandpaNiu Spotify</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/spotify.conf</code></p>
+          <div class="tags"><span class="tag">spotify</span><span class="tag">Rule:9, Header Rewrite:1, Script:2, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/spotify.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/spotify.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
 
-    <section class="section" id="recommended">
-      <h2 class="section-title">推荐模块</h2>
-      <div class="grid">
-        <article class="card" data-slug="youtube" data-name="YouTube"><h3>YouTube</h3><p>视频广告相关规则和脚本，播放稳定性敏感。</p><div class="tags"><span class="tag">高风险</span><span class="tag">视频</span></div><div class="actions"></div></article>
-        <article class="card" data-slug="spotify" data-name="Spotify"><h3>Spotify</h3><p>音乐类净化规则和脚本。</p><div class="tags"><span class="tag">脚本</span><span class="tag">音乐</span></div><div class="actions"></div></article>
-        <article class="card" data-slug="bilibili" data-name="Bilibili"><h3>Bilibili</h3><p>国内视频平台相关规则。</p><div class="tags"><span class="tag">视频</span><span class="tag">国内 App</span></div><div class="actions"></div></article>
-        <article class="card" data-slug="zhihu" data-name="Zhihu"><h3>Zhihu</h3><p>知乎增强和广告净化规则。</p><div class="tags"><span class="tag">内容平台</span><span class="tag">Rewrite</span></div><div class="actions"></div></article>
-      </div>
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/youtube.sgmodule">
+          <h3>GrandpaNiu YouTube</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/youtube.conf</code></p>
+          <div class="tags"><span class="tag">youtube</span><span class="tag">Map Local:1, Script:1, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/youtube.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/youtube.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/zhihu.sgmodule">
+          <h3>GrandpaNiu Zhihu</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/zhihu.conf</code></p>
+          <div class="tags"><span class="tag">zhihu</span><span class="tag">Rule:5, URL Rewrite:24, Body Rewrite:7, Script:2, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/zhihu.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/zhihu.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/bilibili.sgmodule">
+          <h3>GrandpaNiu Bilibili</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/bilibili.conf</code></p>
+          <div class="tags"><span class="tag">bilibili</span><span class="tag">Rule:8, URL Rewrite:12, Body Rewrite:11, Map Local:2, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/bilibili.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/bilibili.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/rednote.sgmodule">
+          <h3>GrandpaNiu RedNote</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/rednote.conf</code></p>
+          <div class="tags"><span class="tag">rednote</span><span class="tag">Rule:3, URL Rewrite:7, Script:1, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/rednote.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/rednote.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/wechat.sgmodule">
+          <h3>GrandpaNiu WeChat</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/wechat.conf</code></p>
+          <div class="tags"><span class="tag">wechat</span><span class="tag">Rule:11, URL Rewrite:15, Map Local:4, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/wechat.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/wechat.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/qqnews.sgmodule">
+          <h3>GrandpaNiu QQ News</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/qqnews.conf</code></p>
+          <div class="tags"><span class="tag">qqnews</span><span class="tag">URL Rewrite:1, Body Rewrite:1, Script:1, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/qqnews.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/qqnews.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/weibo.sgmodule">
+          <h3>GrandpaNiu Weibo</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/weibo.conf</code></p>
+          <div class="tags"><span class="tag">weibo</span><span class="tag">URL Rewrite:6, Body Rewrite:8, Script:1, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/weibo.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/weibo.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/pinduoduo.sgmodule">
+          <h3>GrandpaNiu Pinduoduo</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/pinduoduo.conf</code></p>
+          <div class="tags"><span class="tag">pinduoduo</span><span class="tag">Rule:15, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/pinduoduo.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/pinduoduo.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/jd.sgmodule">
+          <h3>GrandpaNiu JD</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/jd.conf</code></p>
+          <div class="tags"><span class="tag">jd</span><span class="tag">Rule:7, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/jd.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/jd.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/taobao.sgmodule">
+          <h3>GrandpaNiu Taobao</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/taobao.conf</code></p>
+          <div class="tags"><span class="tag">taobao</span><span class="tag">Rule:11, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/taobao.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/taobao.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/netease-music.sgmodule">
+          <h3>GrandpaNiu Netease Music</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/netease-music.conf</code></p>
+          <div class="tags"><span class="tag">netease-music</span><span class="tag">Rule:14, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/netease-music.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/netease-music.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/mgtv.sgmodule">
+          <h3>GrandpaNiu MGTV</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/mgtv.conf</code></p>
+          <div class="tags"><span class="tag">mgtv</span><span class="tag">Rule:12, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/mgtv.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/mgtv.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/huya.sgmodule">
+          <h3>GrandpaNiu Huya</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/huya.conf</code></p>
+          <div class="tags"><span class="tag">huya</span><span class="tag">Rule:6, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/huya.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/huya.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/yiche.sgmodule">
+          <h3>GrandpaNiu Yiche</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/yiche.conf</code></p>
+          <div class="tags"><span class="tag">yiche</span><span class="tag">Rule:3, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/yiche.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/yiche.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/pcauto.sgmodule">
+          <h3>GrandpaNiu PCAuto</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/pcauto.conf</code></p>
+          <div class="tags"><span class="tag">pcauto</span><span class="tag">Rule:7, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/pcauto.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/pcauto.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/umetrip.sgmodule">
+          <h3>GrandpaNiu Umetrip</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/umetrip.conf</code></p>
+          <div class="tags"><span class="tag">umetrip</span><span class="tag">Rule:4, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/umetrip.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/umetrip.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/xiaopeng.sgmodule">
+          <h3>GrandpaNiu Xiaopeng</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/xiaopeng.conf</code></p>
+          <div class="tags"><span class="tag">xiaopeng</span><span class="tag">Rule:3, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/xiaopeng.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/xiaopeng.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/amap.sgmodule">
+          <h3>GrandpaNiu Amap Source</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/amap.conf</code></p>
+          <div class="tags"><span class="tag">amap</span><span class="tag">Rule:1, URL Rewrite:6, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/amap.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/amap.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/baidu.sgmodule">
+          <h3>GrandpaNiu Baidu Source</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/baidu.conf</code></p>
+          <div class="tags"><span class="tag">baidu</span><span class="tag">Rule:4, URL Rewrite:6, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/baidu.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/baidu.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/meituan.sgmodule">
+          <h3>GrandpaNiu Meituan Source</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/meituan.conf</code></p>
+          <div class="tags"><span class="tag">meituan</span><span class="tag">Rule:11, URL Rewrite:9, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/meituan.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/meituan.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/quark.sgmodule">
+          <h3>GrandpaNiu Quark Source</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/quark.conf</code></p>
+          <div class="tags"><span class="tag">quark</span><span class="tag">Rule:2, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/quark.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/quark.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/soul.sgmodule">
+          <h3>GrandpaNiu Soul Source</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/soul.conf</code></p>
+          <div class="tags"><span class="tag">soul</span><span class="tag">Rule:4, URL Rewrite:2, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/soul.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/soul.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/wps.sgmodule">
+          <h3>GrandpaNiu WPS Source</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/wps.conf</code></p>
+          <div class="tags"><span class="tag">wps</span><span class="tag">Rule:4, URL Rewrite:3, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/wps.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/wps.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/youku.sgmodule">
+          <h3>GrandpaNiu Youku Source</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/youku.conf</code></p>
+          <div class="tags"><span class="tag">youku</span><span class="tag">Rule:4, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/youku.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/youku.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/zdm.sgmodule">
+          <h3>GrandpaNiu ZDM Source</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/zdm.conf</code></p>
+          <div class="tags"><span class="tag">zdm</span><span class="tag">Rule:1, URL Rewrite:7, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/zdm.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/zdm.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
+
+        <article class="card" data-url="https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/zuoyebang.sgmodule">
+          <h3>GrandpaNiu Zuoyebang Source</h3>
+          <p>来源：<code>Rewrite/Sources/Apps/zuoyebang.conf</code></p>
+          <div class="tags"><span class="tag">zuoyebang</span><span class="tag">Rule:1, URL Rewrite:4, MITM:1</span></div>
+          <div class="actions">
+            <a class="badge-btn install" href="shadowrocket://install?module=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/zuoyebang.sgmodule"><span class="label">↪ 安装模块</span><span class="name">Module</span></a>
+            <a class="badge-btn file" href="../Release/Modules/zuoyebang.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
+            <button class="badge-btn gray" type="button"><span class="label">复制链接</span><span class="name">URL</span></button>
+          </div>
+        </article>
     </section>
-
-    <section class="section" id="apps">
-      <h2 class="section-title">常用 App</h2>
-      <div class="grid">
-        <article class="card" data-slug="wechat" data-name="WeChat"><h3>WeChat</h3><p>微信相关规则，涉及登录和支付环境时需谨慎。</p><div class="tags"><span class="tag">高风险</span><span class="tag">国内 App</span></div><div class="actions"></div></article>
-        <article class="card" data-slug="weibo" data-name="Weibo"><h3>Weibo</h3><p>微博广告和冗余接口清理。</p><div class="tags"><span class="tag">社交</span><span class="tag">国内 App</span></div><div class="actions"></div></article>
-        <article class="card" data-slug="taobao" data-name="Taobao"><h3>Taobao</h3><p>淘宝、天猫相关广告和追踪规则。</p><div class="tags"><span class="tag">电商</span><span class="tag">国内 App</span></div><div class="actions"></div></article>
-        <article class="card" data-slug="jd" data-name="JD"><h3>JD</h3><p>京东相关广告和接口规则。</p><div class="tags"><span class="tag">电商</span><span class="tag">国内 App</span></div><div class="actions"></div></article>
-        <article class="card" data-slug="pinduoduo" data-name="Pinduoduo"><h3>Pinduoduo</h3><p>拼多多相关广告和图片域名规则。</p><div class="tags"><span class="tag">电商</span><span class="tag">国内 App</span></div><div class="actions"></div></article>
-        <article class="card" data-slug="rednote" data-name="RedNote"><h3>RedNote</h3><p>小红书相关规则。</p><div class="tags"><span class="tag">内容平台</span><span class="tag">国内 App</span></div><div class="actions"></div></article>
-      </div>
-    </section>
-
-    <section class="section" id="more">
-      <h2 class="section-title">更多模块</h2>
-      <div class="grid">
-        <article class="card" data-slug="netease-music" data-name="Netease Music"><h3>Netease Music</h3><p>网易云音乐相关规则。</p><div class="actions"></div></article>
-        <article class="card" data-slug="mgtv" data-name="MGTV"><h3>MGTV</h3><p>芒果 TV 相关规则。</p><div class="actions"></div></article>
-        <article class="card" data-slug="huya" data-name="Huya"><h3>Huya</h3><p>虎牙相关规则。</p><div class="actions"></div></article>
-        <article class="card" data-slug="qqnews" data-name="QQ News"><h3>QQ News</h3><p>腾讯新闻相关规则。</p><div class="actions"></div></article>
-        <article class="card" data-slug="yiche" data-name="Yiche"><h3>Yiche</h3><p>易车相关规则。</p><div class="actions"></div></article>
-        <article class="card" data-slug="pcauto" data-name="PCAuto"><h3>PCAuto</h3><p>太平洋汽车相关规则。</p><div class="actions"></div></article>
-        <article class="card" data-slug="umetrip" data-name="Umetrip"><h3>Umetrip</h3><p>航旅纵横相关规则。</p><div class="actions"></div></article>
-        <article class="card" data-slug="xiaopeng" data-name="Xiaopeng"><h3>Xiaopeng</h3><p>小鹏汽车相关规则。</p><div class="actions"></div></article>
-      </div>
-    </section>
-
-    <footer>如果独立模块异常，请先停用对应模块，再回到主 Fusion 模块。</footer>
+    <footer>本页面由 scripts/build_web_modules.py 从 Release/Modules/README.md 生成。</footer>
   </main>
-
-  <nav class="bottom-nav" aria-label="底部导航">
-    <a class="active" href="#top"><span class="nav-icon">⌂</span><span>顶部</span></a>
-    <a href="#apps"><span class="nav-icon">▰</span><span>常用</span></a>
-    <a href="../import.html"><span class="nav-icon">↪</span><span>主模块</span></a>
-  </nav>
-
-  <script>
-    const base = "https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/";
-    document.querySelectorAll(".card[data-slug]").forEach(function(card) {
-      const slug = card.dataset.slug;
-      const name = card.dataset.name || slug;
-      const url = base + slug + ".sgmodule";
-      const install = "shadowrocket://install?module=" + encodeURIComponent(url);
-      const box = card.querySelector(".actions");
-      box.innerHTML = `
-        <a class="badge-btn install" href="${install}"><span class="label">↪ 安装模块</span><span class="name">${name}</span></a>
-        <a class="badge-btn file" href="../Release/Modules/${slug}.sgmodule"><span class="label">▰ 模块文件</span><span class="name">File</span></a>
-        <button class="badge-btn gray" type="button" data-url="${url}"><span class="label">复制链接</span><span class="name">URL</span></button>
-      `;
-    });
-    document.addEventListener("click", function(event) {
-      const btn = event.target.closest("button[data-url]");
-      if (!btn) return;
-      navigator.clipboard.writeText(btn.dataset.url).then(function(){ alert("已复制"); }).catch(function(){ prompt("复制模块链接", btn.dataset.url); });
-    });
-  </script>
+  <nav class="bottom-nav" aria-label="底部导航"><a class="active" href="#top"><span class="nav-icon">⌂</span><span>顶部</span></a><a href="../import.html"><span class="nav-icon">↪</span><span>主模块</span></a><a href="../android.html"><span class="nav-icon">▱</span><span>Android</span></a></nav>
+  <script>document.addEventListener('click',function(e){const b=e.target.closest('button');if(!b)return;const card=b.closest('[data-url]');if(!card)return;navigator.clipboard.writeText(card.dataset.url).then(function(){alert('已复制')}).catch(function(){prompt('复制模块链接',card.dataset.url)});});</script>
 </body>
 </html>
