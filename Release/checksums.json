@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T18:04:02.078916Z",
+  "generated_at": "2026-06-12T18:04:14.668824Z",
   "algorithm": "sha256",
   "count": 59,
   "files": [
@@ -185,8 +185,8 @@
     },
     {
       "path": "Release/Modules/youtube.sgmodule",
-      "size": 855,
-      "sha256": "73a48e7ccc2c6b04b3745d2d103eb790d721e8f862fe48f16773a7e79152386e"
+      "size": 884,
+      "sha256": "d63d59d47412aa8e9feca283faea61b8457c676776e7448e2a192ffc7a94f22a"
     },
     {
       "path": "Release/Modules/zdm.sgmodule",
