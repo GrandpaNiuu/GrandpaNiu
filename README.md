@@ -1,3 +1,26 @@
+# 🐮 GrandpaNiu
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Shadowrocket-Module-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Surge-sgmodule-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Android-Rules-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Auto%20Build-GitHub%20Actions-black?style=for-the-badge" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/daily-module-update.yml">
+    <img src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/daily-module-update.yml/badge.svg" />
+  </a>
+  <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/module-factory-build.yml">
+    <img src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/module-factory-build.yml/badge.svg" />
+  </a>
+  <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/repository-health.yml">
+    <img src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/repository-health.yml/badge.svg" />
+  </a>
+</p>
+
+---
+
 # ⚠️ 使用限制与风险声明
 
 本仓库内容仅供 **个人学习、研究和实验使用**。
@@ -25,27 +48,6 @@
 遇到问题时，请先关闭模块，或者关闭对应 App 的增强规则进行排查。使用者需要自行承担导入、运行、修改和依赖本仓库内容所产生的风险。
 
 ---
-
-# 🐮 GrandpaNiu
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Shadowrocket-Module-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Surge-sgmodule-orange?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Android-Rules-green?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Auto%20Build-GitHub%20Actions-black?style=for-the-badge" />
-</p>
-
-<p align="center">
-  <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/daily-module-update.yml">
-    <img src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/daily-module-update.yml/badge.svg" />
-  </a>
-  <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/module-factory-build.yml">
-    <img src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/module-factory-build.yml/badge.svg" />
-  </a>
-  <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/repository-health.yml">
-    <img src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/repository-health.yml/badge.svg" />
-  </a>
-</p>
 
 ## 📌 这是什么？
 
