@@ -2,47 +2,40 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GrandpaNiu Module Factory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>GrandpaNiu Web 入口</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; background: #0f172a; color: #e5e7eb; }
-    main { max-width: 1040px; margin: 0 auto; padding: 40px 20px; }
-    h1 { margin: 0 0 8px; font-size: 32px; }
-    p { color: #cbd5e1; line-height: 1.7; }
-    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px; }
-    .badges img { height: 20px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
-    a.card { display: block; padding: 18px; border: 1px solid #334155; border-radius: 14px; color: #e5e7eb; text-decoration: none; background: #111827; }
-    a.card:hover { border-color: #60a5fa; }
-    .title { font-weight: 700; margin-bottom: 8px; }
-    .desc { color: #94a3b8; font-size: 14px; }
-    code { color: #bfdbfe; }
+    :root{--bg:#15171d;--line:rgba(255,255,255,.12);--text:#f7f8fb;--muted:#a5a9b8;--blue:#2388d9;--green:#25a162;--gray:#4b5563}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;padding:max(28px,env(safe-area-inset-top)) 16px calc(42px + env(safe-area-inset-bottom));background:radial-gradient(circle at 18% -8%,rgba(35,136,217,.18),transparent 34%),radial-gradient(circle at 92% 0%,rgba(37,161,98,.12),transparent 30%),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",Arial,sans-serif}.wrap{width:min(100%,900px);margin:0 auto}.eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:#d7eaff;background:rgba(35,136,217,.12);font-size:13px;font-weight:800}h1{margin:0;font-size:clamp(36px,9vw,60px);line-height:1.05;letter-spacing:-.06em;font-weight:900}.lead{margin:15px 0 0;color:var(--muted);font-size:clamp(17px,4.2vw,22px);line-height:1.65}.badges{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}.badges img{height:20px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}.card{display:block;border:1px solid var(--line);border-radius:20px;padding:17px;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.045));box-shadow:0 14px 34px rgba(0,0,0,.2);color:var(--text);text-decoration:none}.card:hover{border-color:#60a5fa}.card h2{margin:0 0 8px;font-size:22px}.card p{margin:0;color:var(--muted);line-height:1.7;font-size:15px}code{color:#cbd5e1}.tag{display:inline-flex;margin-top:12px;min-height:24px;padding:3px 8px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(255,255,255,.07);color:#d1d5db;font-size:12px;font-weight:750}footer{margin:26px 0 0;color:#7f8494;font-size:13px;line-height:1.7;text-align:center}@media(max-width:760px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-<main>
-  <h1>GrandpaNiu Module Factory</h1>
-  <div class="badges">
-    <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/module-factory-build.yml"><img alt="Module Factory Build" src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/module-factory-build.yml/badge.svg"></a>
-    <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/repository-health.yml"><img alt="Repository Health Check" src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/repository-health.yml/badge.svg"></a>
-    <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/scheduled-module-update.yml"><img alt="Scheduled Module Update" src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/scheduled-module-update.yml/badge.svg"></a>
-  </div>
-  <p>统一公开目录入口。Release 文件由 <code>Rewrite/Generator/Builder.py</code> 根据 <code>Rewrite/Generate.conf</code> 生成。</p>
+  <main class="wrap">
+    <div class="eyebrow">🐮 GrandpaNiu · Module Factory</div>
+    <h1>Web 统一入口</h1>
+    <p class="lead">Release 文件由 <code>Rewrite/Generator/Builder.py</code> 根据 <code>Rewrite/Generator/Generate.conf</code> 生成。普通用户优先使用主融合模块，高级用户可进入独立模块目录。</p>
+    <div class="badges">
+      <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/module-factory-build.yml"><img alt="Module Factory Build" src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/module-factory-build.yml/badge.svg"></a>
+      <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/repository-health.yml"><img alt="Repository Health Check" src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/repository-health.yml/badge.svg"></a>
+      <a href="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/scheduled-module-update.yml"><img alt="Scheduled Module Update" src="https://github.com/GrandpaNiuu/GrandpaNiu/actions/workflows/scheduled-module-update.yml/badge.svg"></a>
+    </div>
 
-  <div class="grid">
-    <a class="card" href="../import.html"><div class="title">Shadowrocket 导入页</div><div class="desc">iOS 推荐入口，只导入 Fusion 融合模块。</div></a>
-    <a class="card" href="../Ronghemokuai.sgmodule"><div class="title">融合模块</div><div class="desc">根目录公开导入入口。</div></a>
-    <a class="card" href="../Release/Ronghemokuai.sgmodule"><div class="title">Release 模块</div><div class="desc">Release 目录生成产物。</div></a>
-    <a class="card" href="../Release/Rules.conf"><div class="title">Rules.conf</div><div class="desc">纯规则输出。</div></a>
-    <a class="card" href="../Release/RulesGroup.conf"><div class="title">RulesGroup.conf</div><div class="desc">按策略分组的规则输出。</div></a>
-    <a class="card" href="../Release/Modules/"><div class="title">App Modules</div><div class="desc">按 App 拆分的模块目录。</div></a>
-    <a class="card" href="../Release/Android/"><div class="title">Android Release</div><div class="desc">Android 发布目录。</div></a>
-    <a class="card" href="catalog.md"><div class="title">Release Catalog</div><div class="desc">全部公开发布链接。</div></a>
-    <a class="card" href="release-links.json"><div class="title">Release JSON</div><div class="desc">机器可读发布索引。</div></a>
-    <a class="card" href="remotes.md"><div class="title">Remote Sources</div><div class="desc">上游源治理目录。</div></a>
-    <a class="card" href="registry.md"><div class="title">Registry</div><div class="desc">模块工厂来源索引。</div></a>
-    <a class="card" href="../android.html"><div class="title">Android 导入页</div><div class="desc">兼容旧入口。</div></a>
-  </div>
-</main>
+    <section class="grid">
+      <a class="card" href="../import.html"><h2>主融合模块</h2><p>iOS / Shadowrocket 推荐入口，只导入 Fusion 融合模块。</p><span class="tag">推荐</span></a>
+      <a class="card" href="modules.html"><h2>独立模块目录</h2><p>按 App 拆分的模块页面，适合高级用户单独导入和测试。</p><span class="tag">Modules</span></a>
+      <a class="card" href="../android.html"><h2>Android 导入页</h2><p>Mihomo、sing-box、AdGuard、v2rayNG 等 Android 规则入口。</p><span class="tag">Android</span></a>
+      <a class="card" href="../Ronghemokuai.sgmodule"><h2>根目录模块</h2><p>公开主模块文件，保留旧用户链接兼容。</p><span class="tag">Root</span></a>
+      <a class="card" href="../Release/Ronghemokuai.sgmodule"><h2>Release 主模块</h2><p>Release 目录中的主构建产物。</p><span class="tag">Release</span></a>
+      <a class="card" href="../Release/Module.sgmodule"><h2>Module.sgmodule</h2><p>模块工厂兼容命名，构建时从 Release 主模块同步。</p><span class="tag">Alias</span></a>
+      <a class="card" href="../Release/Rules.conf"><h2>Rules.conf</h2><p>纯规则输出。</p><span class="tag">Rules</span></a>
+      <a class="card" href="../Release/RulesGroup.conf"><h2>RulesGroup.conf</h2><p>按策略分组的规则输出。</p><span class="tag">RulesGroup</span></a>
+      <a class="card" href="catalog.md"><h2>Release Catalog</h2><p>全部公开发布链接。</p><span class="tag">Catalog</span></a>
+      <a class="card" href="release-links.json"><h2>Release JSON</h2><p>机器可读发布索引。</p><span class="tag">JSON</span></a>
+      <a class="card" href="remotes.md"><h2>Remote Sources</h2><p>上游源治理目录。</p><span class="tag">Remotes</span></a>
+      <a class="card" href="registry.md"><h2>Registry</h2><p>模块工厂来源索引。</p><span class="tag">Registry</span></a>
+    </section>
+    <footer>Web/index.html 是统一入口，不替代根目录 import.html / android.html / redirect.html。</footer>
+  </main>
 </body>
 </html>
