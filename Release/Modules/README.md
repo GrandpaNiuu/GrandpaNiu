@@ -1,6 +1,6 @@
 # Release Modules
 
-Generated per-app module outputs.
+Generated per-app module outputs. These are diagnostic and convenience slices of the single public fusion module, not separate product versions.
 
 | Module | File | Source | Sections |
 |---|---|---|---|

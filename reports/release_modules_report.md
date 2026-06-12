@@ -1,5 +1,6 @@
 # Release modules report
 
+- Public release strategy: single fusion module only
 - Fusion fallback source: `Release/Ronghemokuai.sgmodule`
 - Output directory: `Release/Modules`
 - Manual modules: 18
