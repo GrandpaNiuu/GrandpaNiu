@@ -1,21 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-13 04:00:57 +0800
+- 生成时间：2026-06-13 05:16:12 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Release/checksums.json`
-- `Release/checksums.txt`
-- `reports/android_rules_report.md`
-- `reports/build_summary.json`
-- `reports/build_summary.md`
-- `reports/multi_release_report.md`
-- `reports/profile_validation_report.md`
-- `reports/qingrex_miniapp_import_report.md`
-- `reports/remote_rule_syntax_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
+- `Rewrite/Sources/Rule.conf`
 
 ## 新增文件
 
@@ -27,37 +17,37 @@
 
 ## 修改文件
 
-- `Release/checksums.json`
-- `Release/checksums.txt`
-- `reports/android_rules_report.md`
-- `reports/build_summary.json`
-- `reports/build_summary.md`
-- `reports/multi_release_report.md`
-- `reports/profile_validation_report.md`
-- `reports/qingrex_miniapp_import_report.md`
-- `reports/remote_rule_syntax_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
+- `Rewrite/Sources/Rule.conf`
 
 ## 影响的模块层
 
-- Other
-- README/docs
+- Rewrite/Sources
 
 ## 可能影响的 App
 
+- Spotify
 - YouTube
+- 知乎
+- Bilibili
+- 小红书
+- 淘宝
+- 京东
+- 拼多多
+- 美团
+- 大众点评
+- 喜马拉雅
+- 斗鱼
 
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：否
+- 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
-- 是否需要测试 Spotify：按需
+- 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
-- 是否需要测试知乎：按需
-- 是否需要测试登录/支付/验证码：按需
+- 是否需要测试知乎：是
+- 是否需要测试登录/支付/验证码：是
 
 ## 回滚建议
 

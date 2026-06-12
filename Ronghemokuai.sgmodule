@@ -723,10 +723,6 @@ RULE-SET,https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-appAd
 RULE-SET,https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-allAdBlock-shadowrocket.list,REJECT
 RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list,REJECT
 RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list,REJECT
-DOMAIN-SUFFIX,doubleclick.net,PROXY,pre-matching
-DOMAIN-SUFFIX,googleadservices.com,PROXY,pre-matching
-DOMAIN-SUFFIX,googlesyndication.com,PROXY,pre-matching
-DOMAIN-SUFFIX,googletagservices.com,PROXY,pre-matching
 [URL Rewrite]
 ^(^https?:\/\/www\.vgtime\.com\/app\/topic\/\d+\.jhtml\?.*?&close_ad=)false(&page=\d&sign=\w+&timestamp=\d+&font_size=\d$) $1true$2 302
 ^https?:\/\/((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\/music\/common\/upload\/t_splash_info\/ - reject
