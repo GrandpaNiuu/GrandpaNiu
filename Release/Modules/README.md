@@ -37,6 +37,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu WeRead Source | `weread.sgmodule` | `Rewrite/Sources/Apps/weread.conf` | Script:1, MITM:1 |
 | GrandpaNiu WPS Source | `wps.sgmodule` | `Rewrite/Sources/Apps/wps.conf` | Rule:4, URL Rewrite:3, MITM:1 |
 | GrandpaNiu Xiaoyuzhou Source | `xiaoyuzhou.sgmodule` | `Rewrite/Sources/Apps/xiaoyuzhou.conf` | Body Rewrite:1, Map Local:3, MITM:1 |
+| GrandpaNiu Ximalaya Source | `ximalaya.sgmodule` | `Rewrite/Sources/Apps/ximalaya.conf` | Rule:5, MITM:1 |
 | GrandpaNiu Youku Source | `youku.sgmodule` | `Rewrite/Sources/Apps/youku.conf` | Rule:4, MITM:1 |
 | GrandpaNiu ZDM Source | `zdm.sgmodule` | `Rewrite/Sources/Apps/zdm.conf` | Rule:1, URL Rewrite:7, MITM:1 |
 | GrandpaNiu Zuoyebang Source | `zuoyebang.sgmodule` | `Rewrite/Sources/Apps/zuoyebang.conf` | Rule:1, URL Rewrite:4, MITM:1 |
