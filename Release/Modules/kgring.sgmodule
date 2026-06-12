@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 酷狗铃声 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/kgring.sgmodule
+
+[URL Rewrite]
+^http://api\.ring\.kugou\.com/user/notice/recommend$ - reject-dict
+
+[MITM]
+hostname = %APPEND% api.ring.kugou.com

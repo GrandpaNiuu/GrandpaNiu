@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 医考帮 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/yi-kao-bang.sgmodule
+
+[URL Rewrite]
+^https://api\.yikaobang\.com\.cn/index\.php/client/main/ads\? - reject-dict
+^https://api\.yikaobang\.com\.cn/index\.php/client/Main/startPage\? - reject-dict
+
+[MITM]
+hostname = %APPEND% api.yikaobang.com.cn

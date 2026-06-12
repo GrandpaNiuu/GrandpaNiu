@@ -1,0 +1,17 @@
+#!name=GrandpaNiu 华住会 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/hanting-hotels.sgmodule
+
+[URL Rewrite]
+^https://hweb-manager\.huazhu\.com/notice/getAppPopupNotifyAlert$ - reject-dict
+^https://hweb-hotel\.huazhu\.com/home/getHomeLoinBanner$ - reject-dict
+^https://hweb-hotel\.huazhu\.com//home/querySelectHotel$ - reject-dict
+^https://hweb-hotel\.huazhu\.com/home/queryHotelBrand$ - reject-dict
+^https://hweb-manager\.huazhu\.com/hotels/ad/getHotelListNoticeMerge$ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://res-pub\.huazhu\.com/frontconf/homeconfig_45/\w+\.json$ 'if has("content") and (.content | type) == "object" then .content |= with_entries(select(.key == "topBanner" or .key == "topBannerImages")) else . end'
+http-response-jq ^https://res-pub\.huazhu\.com/frontconf/tabbarconfig_45/\w+\.json$ '.content.tabbar |= map(select(.attributes.tabName == "首页" or .attributes.tabName == "服务" or .attributes.tabName == "我的"))'
+
+[MITM]
+hostname = %APPEND% hweb-manager.huazhu.com,hweb-hotel.huazhu.com,res-pub.huazhu.com

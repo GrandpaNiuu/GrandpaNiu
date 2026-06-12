@@ -1,0 +1,18 @@
+#!name=GrandpaNiu 胖乖生活 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/pangguai-life.sgmodule
+
+[URL Rewrite]
+^https://userapi\.qiekj\.com/slot/get$ - reject-dict
+^https://userapi\.qiekj\.com/appTitle/get$ - reject-dict
+^https://userapi\.qiekj\.com/integralRecord/integralDailStatistics$ - reject-dict
+^https://userapi\.qiekj\.com/local-life/category$ - reject-dict
+^https://userapi\.qiekj\.com/integralGoods/queryIntegralGoodsPage$ - reject-dict
+^https://userapi\.qiekj\.com/task/list$ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://userapi\.qiekj\.com/local-life/tab-order$ '.data = []'
+http-response-jq ^https://userapi\.qiekj\.com/integralGoods/queryIntegralGoodsCategoryList$ '.data = []'
+
+[MITM]
+hostname = %APPEND% userapi.qiekj.com

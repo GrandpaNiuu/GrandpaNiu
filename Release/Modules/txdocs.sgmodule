@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 腾讯文档 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/txdocs.sgmodule
+
+[URL Rewrite]
+^https://tianshu\.qq\.com/open/ts_access/GetAds\? - reject-dict
+^https://h5\.qzone\.qq\.com/p/adboss/api/json/ts_access/GetAds$ - reject-dict
+
+[MITM]
+hostname = %APPEND% tianshu.qq.com,h5.qzone.qq.com

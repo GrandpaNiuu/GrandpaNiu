@@ -1,0 +1,10 @@
+#!name=GrandpaNiu Pinterest Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/pinterest.sgmodule
+
+[Body Rewrite]
+http-response-jq ^https://api\.pinterest\.com/v\d/feeds/home/\? '.data |= map(select(.is_promoted == false or .is_promoted == "false"))'
+http-response-jq ^https://api\.pinterest\.com/v\d/pins/\d+/related/modules/\? '.data |= map(select(.is_promoted == false or .is_promoted == "false"))'
+
+[MITM]
+hostname = %APPEND% api.pinterest.com

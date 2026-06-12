@@ -1,0 +1,17 @@
+#!name=GrandpaNiu 脉脉 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/mai-mai.sgmodule
+
+[URL Rewrite]
+^https://(h3\.)?open\.taou\.com/maimai/adshow\? - reject-dict
+^https://(h3\.)?open\.taou\.com/maimai/pay/v5/check_gift\? - reject-dict
+^https://(h3\.)?open\.taou\.com/maimai/go_gossip_darwin/external/v2/query_flow_cards\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://(h3\.)?open\.taou\.com/maimai/feed/v6/detail_recommend_feeds\? 'del(.feeds)'
+
+[Script]
+mai-mai.response.1 = type=http-response,pattern=^https://(h3\.)?open\.taou\.com/maimai/(feed|gossip)/v\d/(focus_feed|gossip_detail_comment|feed_detail_comment?)\?,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/MaiMai/MaiMai_remove_ads.js
+
+[MITM]
+hostname = %APPEND% open.taou.com,h3.open.taou.com

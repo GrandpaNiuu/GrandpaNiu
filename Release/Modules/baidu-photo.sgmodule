@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 一刻相册 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/baidu-photo.sgmodule
+
+[URL Rewrite]
+^https://pan\.baidu\.com/act/api/conf\?.*conf_key=youa_core_config_ios - reject-dict
+^https://pan\.baidu\.com/youai/material/v1/getbynavid\?.*nav_id=1 - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://mbd\.baidu\.com/ccs/v1/start/confsync\? 'del(.data.service.config.advertisement,.data.service.config.youa.pm_config_ad)'
+
+[MITM]
+hostname = %APPEND% pan.baidu.com,mbd.baidu.com

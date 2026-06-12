@@ -1,0 +1,16 @@
+#!name=GrandpaNiu 智联招聘 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/zhi-lian-zhao-pin.sgmodule
+
+[Rule]
+URL-REGEX,"^https:\/\/(ask|cgate)\.zhaopin\.com\/operation\/ad\/",REJECT
+
+[URL Rewrite]
+^https://cgate\.zhaopin\.com/resumeapi/resumeCheck/positionDetailBottomTipCheck$ - reject-dict
+^https://cgate\.zhaopin\.com/bdp/commercial/queryLinkData$ - reject
+
+[Body Rewrite]
+http-response-jq ^https://ask\.zhaopin\.com/plat-zqa-server/home/\d\.\d\.\d/getHomeContents\? 'del(.data.templates[0].data.banner)'
+
+[MITM]
+hostname = %APPEND% ask.zhaopin.com,cgate.zhaopin.com

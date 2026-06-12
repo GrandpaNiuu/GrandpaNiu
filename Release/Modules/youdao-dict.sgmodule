@@ -1,0 +1,18 @@
+#!name=GrandpaNiu 网易有道词典 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/youdao-dict.sgmodule
+
+[Rule]
+ad-sdk-config.youdao.com
+
+[URL Rewrite]
+^https://dict\.youdao\.com/vip/activity/startup/ - reject-dict
+^https://dict\.youdao\.com/vip/activity/retention/configs\? - reject-dict
+^https://dict\.youdao\.com/vip/activity/retention/match\? - reject-dict
+^https://dict\.youdao\.com/vip/user/paid/guide\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://dict\.youdao\.com/homepage/toolbar/get/ 'del(.data.vipTag)'
+
+[MITM]
+hostname = %APPEND% dict.youdao.com

@@ -1,0 +1,15 @@
+#!name=GrandpaNiu 成分喵 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/cheng-fen-miao.sgmodule
+
+[URL Rewrite]
+^https://app\.chengfenmiao\.com/Listing/LiveHots\? - reject-dict
+^https://app\.chengfenmiao\.com/helper/VersionCheck\? - reject-dict
+^https://app\.chengfenmiao\.com/item/closet\? - reject-dict
+^https://app\.chengfenmiao\.com/Helper/HotWords\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://app\.chengfenmiao\.com/helper/setting\? 'del(.detail_buy_sites,.bottom_sites)'
+
+[MITM]
+hostname = %APPEND% app.chengfenmiao.com

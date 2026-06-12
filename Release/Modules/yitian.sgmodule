@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 一甜相机 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/yitian.sgmodule
+
+[URL Rewrite]
+^https://(m2u-api\.getkwai|api-m2u\.kuaishou)\.com/api-server/api/v1/ad/ - reject-dict
+^https://(m2u-api\.getkwai|api-m2u\.kuaishou)\.com/api-server/api/v4/op/actPositions\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://(m2u-api\.getkwai|api-m2u\.kuaishou)\.com/api-server/api/v1/system/configs\? 'del(.data.shouldUseLMAdFirst,.data.incentiveCfgList)'
+
+[MITM]
+hostname = %APPEND% m2u-api.getkwai.com,api-m2u.kuaishou.com

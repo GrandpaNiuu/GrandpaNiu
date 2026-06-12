@@ -1,0 +1,16 @@
+#!name=GrandpaNiu 飞客 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/flyer-tea.sgmodule
+
+[URL Rewrite]
+^https://www\.flyert\.com\.cn/api/mobile/index\.php\?module=advis - reject
+^https://www\.flyert\.com\.cn/api/mobile/index\.php\?module=vip_coupon - reject-dict
+^https://ptf\.flyertrip\.com/static/img/common/ic_plate_mine_button\.png - reject-img
+^https://www\.flyert\.com\.cn/api/mobile/index\.php\?module=getdata - reject-dict
+
+[Script]
+flyer-tea.response.1 = type=http-response,pattern=^https://www\.flyert\.com\.cn/api/mobile/index\.php\?version=5,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/FlyerTea/FlyerTea_remove_ads.js
+flyer-tea.response.2 = type=http-response,pattern=^https://www\.flyert\.com\.cn/api/mobile/index\.php\?module=plugin&id=k_misign:sign,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/FlyerTea/FlyerTea_remove_ads.js
+
+[MITM]
+hostname = %APPEND% www.flyert.com.cn,ptf.flyertrip.com

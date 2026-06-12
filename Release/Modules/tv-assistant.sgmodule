@@ -1,0 +1,16 @@
+#!name=GrandpaNiu 乐播投屏 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/tv-assistant.sgmodule
+
+[URL Rewrite]
+^https://saas\.hpplay\.cn/api/lebo-desk/endpoint/app-resource/app_home_pop_up - reject-dict
+^https://saas\.hpplay\.cn/api/lebo-desk/endpoint/app-resource/app_home_tips - reject-dict
+^https://saas\.hpplay\.cn/api/lebo-desk/endpoint/app-resource/app_index_operate2 - reject-dict
+^https://saas\.hpplay\.cn/api/lebo-rabbit/app-card/list - reject-dict
+^https://saas\.hpplay\.cn/api/lebo-desk/endpoint/app-resource/app-user-banner - reject-dict
+
+[Script]
+tv-assistant.response.1 = type=http-response,pattern=^https://saas\.hpplay\.cn/api/lebo-desk/endpoint/app-resource/app_tab_red_dot\?user-tag=1$,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/TV_Assistant/TV_Assistant_remove_ads.js
+
+[MITM]
+hostname = %APPEND% saas.hpplay.cn

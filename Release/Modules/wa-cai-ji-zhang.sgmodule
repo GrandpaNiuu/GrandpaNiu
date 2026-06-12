@@ -1,0 +1,11 @@
+#!name=GrandpaNiu 挖财记账 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/wa-cai-ji-zhang.sgmodule
+
+[URL Rewrite]
+^https://jz\.wacaijizhang\.com/api/banners/ribbon\? - reject-dict
+^https://jz\.wacaijizhang\.com/api/banners/list\? - reject-dict
+^https://jz\.wacaijizhang\.com/api/resource/universal/fetch$ - reject-dict
+
+[MITM]
+hostname = %APPEND% jz.wacaijizhang.com

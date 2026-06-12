@@ -15,6 +15,7 @@ import re
 import shutil
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 from typing import Any
@@ -24,6 +25,9 @@ DEFAULT_CONFIG = ROOT / "Rewrite" / "Remotes" / "app-modules.json"
 DEFAULT_APPS_DIR = ROOT / "Rewrite" / "Sources" / "Apps"
 DEFAULT_REPORT = ROOT / "reports" / "upstream_app_module_sync_report.md"
 BACKUP_ROOT = ROOT / "backup" / "upstream-app-modules"
+KELEE_CATALOG_URL = "https://hub.kelee.one/list.json"
+KELEE_UPSTREAM_PROJECT = "Kelee PluginHub"
+KELEE_USER_AGENT = "Loon/889 CFNetwork/1496.0.7 Darwin/23.5.0"
 
 ALLOWED_SECTIONS = [
     "General",
@@ -35,6 +39,15 @@ ALLOWED_SECTIONS = [
     "Script",
     "MITM",
 ]
+SOURCE_SECTIONS = ALLOWED_SECTIONS + ["Rewrite"]
+SECTION_ALIASES = {
+    "mitm": "MITM",
+    "rewrite": "Rewrite",
+    "url rewrite": "URL Rewrite",
+    "header rewrite": "Header Rewrite",
+    "body rewrite": "Body Rewrite",
+    "map local": "Map Local",
+}
 DROP_META_KEYS = {"icon", "category", "openurl", "homepage", "author", "loon_version", "tag"}
 REQUIRED_RECORD_KEYS = [
     "id",
@@ -51,6 +64,70 @@ REQUIRED_RECORD_KEYS = [
 CORE_BACKUP_IDS = {"spotify", "youtube", "zhihu", "wechat", "weibo", "bilibili"}
 HIGH_RISK_IDS = CORE_BACKUP_IDS | {"terabox"}
 TRUSTED_REPOSITORIES = ["QingRex/LoonKissSurge", "app2smile/rules", "Maasea/sgmodule"]
+AD_TAG = "\u53bb\u5e7f\u544a"
+KELEE_EXCLUDED_BASES = {
+    "Block_HTTPDNS.lpx",
+    "BlockAdvertisers.lpx",
+    "Google.lpx",
+    "QQ_Redirect.lpx",
+    "QuickSearch.lpx",
+    "Remove_ads_by_keli.lpx",
+}
+KELEE_ID_OVERRIDES = {
+    "Amap_remove_ads.lpx": "amap",
+    "BaiduSearchWebpage_remove_ads.lpx": "baidu",
+    "Bilibili_remove_ads.lpx": "bilibili",
+    "BiliComic_remove_ads.lpx": "bilibili-comic",
+    "ColorfulClouds_remove_ads.lpx": "caiyun-weather",
+    "CosmosPodcast_remove_ads.lpx": "xiaoyuzhou",
+    "Himalaya_remove_ads.lpx": "ximalaya",
+    "IThome_remove_ads.lpx": "ithome",
+    "JD_remove_ads.lpx": "jd",
+    "Keep_remove_ads.lpx": "keep",
+    "MangoTV_remove_ads.lpx": "mgtv",
+    "NeteaseCloudMusic_remove_ads.lpx": "netease-music",
+    "PinDuoDuo_remove_ads.lpx": "pinduoduo",
+    "QQMusic_remove_ads.lpx": "qqmusic",
+    "QuarkBrowser_remove_ads.lpx": "quark",
+    "QuarkScanking_remove_ads.lpx": "quark-scan",
+    "RedPaper_remove_ads.lpx": "rednote",
+    "Reddit_remove_ads.lpx": "reddit",
+    "Soul_remove_ads.lpx": "soul",
+    "Spotify_remove_ads.lpx": "spotify",
+    "Taobao_remove_ads.lpx": "taobao",
+    "TeraBox_remove_ads.lpx": "terabox",
+    "Tieba_remove_ads.lpx": "tieba",
+    "Umetrip_remove_ads.lpx": "umetrip",
+    "Weibo_intl_remove_ads.lpx": "weibo-intl",
+    "Weibo_remove_ads.lpx": "weibo",
+    "Weixin_Official_Accounts_remove_ads.lpx": "wechat-official-accounts",
+    "WexinMiniPrograms_Remove_ads.lpx": "wechat-mini-programs",
+    "WPS_Documents_remove_ads.lpx": "wps",
+    "YouKu_Video_remove_ads.lpx": "youku",
+    "YouTube_remove_ads.lpx": "youtube",
+    "Zhihu_remove_ads.lpx": "zhihu",
+    "smzdm_remove_ads.lpx": "zdm",
+}
+HIGH_RISK_NAME_TOKENS = (
+    "12306",
+    "bank",
+    "pay",
+    "wallet",
+    "\u4fdd\u9669",
+    "\u51fa\u884c",
+    "\u5730\u56fe",
+    "\u9152\u5e97",
+    "\u65c5\u884c",
+    "\u673a\u7968",
+    "\u7968",
+    "\u652f\u4ed8",
+    "\u6536\u94f6",
+    "\u94f6\u884c",
+    "\u90ae\u7bb1",
+    "\u4e91\u76d8",
+    "\u7f51\u76d8",
+    "\u8d2d\u7269",
+)
 
 URL_RE = re.compile(r"https?://[^\s,\"'<>]+")
 SECTION_RE = re.compile(r"^\s*\[([^\]]+)\]\s*$")
@@ -58,7 +135,7 @@ META_RE = re.compile(r"^\s*#!([^=\s]+)\s*=\s*(.*)$")
 COMMENT_FIELD_RE = re.compile(r"^\s*#\s*([A-Za-z0-9_-]+)\s*:\s*(.+?)\s*$")
 SCRIPT_PATH_RE = re.compile(r"script-path=(https?://[^,\s]+)", re.IGNORECASE)
 RULE_SET_RE = re.compile(r"RULE-SET,(https?://[^,\s]+)", re.IGNORECASE)
-RAW_MODULE_HINT_RE = re.compile(r"\.(?:sgmodule|module|conf)(?:$|[?#])", re.IGNORECASE)
+RAW_MODULE_HINT_RE = re.compile(r"\.(?:sgmodule|module|conf|lpx)(?:$|[?#])", re.IGNORECASE)
 SUSPICIOUS_PATTERNS = [
     re.compile(pattern, re.IGNORECASE)
     for pattern in (
@@ -151,6 +228,115 @@ def github_project_from_url(url: str) -> str:
 
 def raw_module_url(url: str) -> bool:
     return bool(url and RAW_MODULE_HINT_RE.search(url))
+
+
+def slug_from_lpx(filename: str) -> str:
+    stem = filename
+    if stem.lower().endswith(".lpx"):
+        stem = stem[:-4]
+    stem = re.sub(r"_?remove_ads$", "", stem, flags=re.IGNORECASE)
+    stem = re.sub(r"([a-z0-9])([A-Z])", r"\1-\2", stem)
+    stem = stem.replace("_", "-").replace(" ", "-")
+    stem = re.sub(r"[^A-Za-z0-9-]+", "-", stem)
+    stem = re.sub(r"-+", "-", stem).strip("-").lower()
+    return stem or "kelee-app"
+
+
+def display_name_from_plugin(name: str, slug: str) -> str:
+    clean = name.replace(AD_TAG, "").strip()
+    return clean or title_from_slug(slug)
+
+
+def risk_from_kelee(name: str, filename: str, slug: str) -> str:
+    haystack = f"{name} {filename} {slug}".lower()
+    if slug in HIGH_RISK_IDS:
+        return "high"
+    if any(token.lower() in haystack for token in HIGH_RISK_NAME_TOKENS):
+        return "high"
+    return "medium"
+
+
+def fetch_kelee_catalog() -> list[dict[str, str]]:
+    request = urllib.request.Request(
+        KELEE_CATALOG_URL,
+        headers={
+            "User-Agent": "Mozilla/5.0",
+            "Accept": "application/json,text/plain,*/*;q=0.8",
+        },
+    )
+    with urllib.request.urlopen(request, timeout=35) as response:
+        data = json.loads(response.read().decode("utf-8-sig", errors="replace"))
+    items: list[dict[str, str]] = []
+    for item in data.get("lists", []):
+        name = str(item.get("name") or "").strip()
+        tags = [str(tag) for tag in item.get("tag", [])]
+        if AD_TAG not in name and not any(AD_TAG in tag for tag in tags):
+            continue
+        url = str(item.get("url") or "").strip()
+        if "plugin=" in url:
+            url = urllib.parse.unquote(url.split("plugin=", 1)[1])
+        filename = Path(urllib.parse.urlparse(url).path).name
+        if not filename.endswith(".lpx") or filename in KELEE_EXCLUDED_BASES:
+            continue
+        slug = KELEE_ID_OVERRIDES.get(filename, slug_from_lpx(filename))
+        items.append(
+            {
+                "id": slug,
+                "name": display_name_from_plugin(name, slug),
+                "source_url": url,
+                "filename": filename,
+                "risk": risk_from_kelee(name, filename, slug),
+            }
+        )
+    return items
+
+
+def merge_kelee_catalog(records: list[dict[str, Any]], include_kelee: bool) -> list[dict[str, Any]]:
+    if not include_kelee:
+        return records
+    by_id = {str(record["id"]): record for record in records}
+    try:
+        items = fetch_kelee_catalog()
+    except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
+        print(f"WARNING: Kelee catalog fetch failed: {exc}", file=sys.stderr)
+        return records
+
+    for item in items:
+        module_id = item["id"]
+        existing = by_id.get(module_id)
+        if existing is None:
+            risk = item["risk"]
+            by_id[module_id] = {
+                "id": module_id,
+                "name": item["name"],
+                "source_url": item["source_url"],
+                "target": f"Rewrite/Sources/Apps/{module_id}.conf",
+                "enabled": True,
+                "direct_commit": True,
+                "risk": risk,
+                "backup": risk == "high" or module_id in CORE_BACKUP_IDS,
+                "upstream_project": KELEE_UPSTREAM_PROJECT,
+                "last_sync_mode": "configured",
+            }
+            continue
+
+        mode = str(existing.get("last_sync_mode") or "")
+        source_url = str(existing.get("source_url") or "")
+        should_fill = (
+            not source_url
+            or mode in {"missing-upstream-source", "remote-script-only", "clue-only", "discovered-disabled"}
+        )
+        if should_fill:
+            existing["name"] = existing.get("name") or item["name"]
+            existing["source_url"] = item["source_url"]
+            existing["enabled"] = True
+            existing["direct_commit"] = True
+            existing["risk"] = "high" if existing.get("risk") == "high" or item["risk"] == "high" else item["risk"]
+            existing["backup"] = bool(existing.get("backup") or existing["risk"] == "high" or module_id in CORE_BACKUP_IDS)
+            existing["upstream_project"] = KELEE_UPSTREAM_PROJECT
+            existing["last_sync_mode"] = "configured"
+
+    return sorted(by_id.values(), key=lambda record: str(record["id"]))
 
 
 def clue_urls(text: str) -> list[str]:
@@ -282,11 +468,13 @@ def discover_modules(config: dict[str, Any], apps_dir: Path) -> list[dict[str, A
 
 
 def fetch_text(url: str) -> str:
+    user_agent = KELEE_USER_AGENT if "kelee.one/" in url else "GrandpaNiu-Upstream-App-Sync/1.0"
     request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "GrandpaNiu-Upstream-App-Sync/1.0",
+            "User-Agent": user_agent,
             "Accept": "text/plain,*/*;q=0.8",
+            "Referer": "https://hub.kelee.one/",
         },
     )
     with urllib.request.urlopen(request, timeout=35) as response:
@@ -304,13 +492,14 @@ def suspicious_reason(text: str) -> str:
 
 def split_module(text: str) -> tuple[list[str], dict[str, list[str]]]:
     meta: list[str] = []
-    sections: dict[str, list[str]] = {name: [] for name in ALLOWED_SECTIONS}
+    sections: dict[str, list[str]] = {name: [] for name in SOURCE_SECTIONS}
     current: str | None = None
     for raw in text.splitlines():
         line = raw.rstrip()
         match = SECTION_RE.match(line)
         if match:
-            name = match.group(1).strip()
+            raw_name = match.group(1).strip()
+            name = SECTION_ALIASES.get(raw_name.lower(), raw_name)
             current = name if name in sections else None
             continue
         if current is None:
@@ -318,6 +507,161 @@ def split_module(text: str) -> tuple[list[str], dict[str, list[str]]]:
         else:
             sections[current].append(line)
     return meta, sections
+
+
+def normalize_pattern(value: str) -> str:
+    return value.strip().replace("\\/", "/")
+
+
+def jq_path(path: str) -> str:
+    path = path.strip().strip(",")
+    if not path:
+        return "."
+    if path.startswith("."):
+        return path
+    return "." + path
+
+
+def convert_json_del(args: str) -> str:
+    paths = [jq_path(item) for item in args.split() if item.strip()]
+    if not paths:
+        return "del(.)"
+    return "del(" + ",".join(paths) + ")"
+
+
+def convert_json_replace(args: str) -> str:
+    parts = args.split(None, 1)
+    if len(parts) != 2:
+        return ""
+    path, value = parts
+    return f"{jq_path(path)} = {value.strip()}"
+
+
+def split_pattern_action(line: str) -> tuple[str, str]:
+    normalized = normalize_pattern(line)
+    parts = normalized.split(None, 1)
+    if len(parts) == 1:
+        return parts[0], ""
+    return parts[0], parts[1].strip()
+
+
+def convert_loon_rewrite_line(line: str) -> tuple[str, str]:
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return "", ""
+    if stripped.startswith(("http-request ", "http-response ")) and "script-path=" not in stripped:
+        parts = stripped.split(None, 1)
+        stripped = parts[1] if len(parts) == 2 else stripped
+    pattern, action = split_pattern_action(stripped)
+    if not action:
+        return "URL Rewrite", f"# unsupported-loon-rewrite: {normalize_pattern(stripped)}"
+
+    simple = action.split()[0]
+    if simple == "header":
+        replacement = action[len("header") :].strip()
+        if replacement:
+            return "URL Rewrite", f"{pattern} {replacement} header"
+    if simple in {"header-replace", "header-replace-regex", "header-del"}:
+        return "Header Rewrite", f"http-request {pattern} {action}"
+    if simple in {"reject", "reject-dict", "reject-200", "reject-img", "reject-array", "reject-drop"}:
+        return "URL Rewrite", f"{pattern} - {simple}"
+    if simple in {"mock-response-body", "mock-response-body-replace"}:
+        body = action[len(simple) :].strip()
+        status = "200"
+        header = ""
+        if "data-type=json" in body and "header=" not in body:
+            header = ' header="content-type: application/json"'
+        return "Map Local", f"{pattern} {body} status-code={status}{header}".strip()
+    if simple == "response-body-json-jq":
+        jq = action[len("response-body-json-jq") :].strip()
+        return "Body Rewrite", f"http-response-jq {pattern} {jq}"
+    if simple == "response-body-json-del":
+        jq = convert_json_del(action[len("response-body-json-del") :].strip())
+        return "Body Rewrite", f"http-response-jq {pattern} '{jq}'"
+    if simple == "response-body-json-replace":
+        jq = convert_json_replace(action[len("response-body-json-replace") :].strip())
+        if jq:
+            return "Body Rewrite", f"http-response-jq {pattern} '{jq}'"
+    return "URL Rewrite", f"# unsupported-loon-rewrite: {normalize_pattern(stripped)}"
+
+
+def option_value(options: str, key: str) -> str:
+    match = re.search(rf"(?:^|,\s*){re.escape(key)}\s*=\s*([^,]+)", options)
+    return match.group(1).strip().strip('"') if match else ""
+
+
+def truthy(value: str) -> bool:
+    return value.lower() in {"1", "true", "yes"}
+
+
+def safe_script_name(raw: str, fallback: str) -> str:
+    name = raw.strip() or fallback
+    name = re.sub(r"\s+", "-", name)
+    name = re.sub(r"[^A-Za-z0-9_.-]+", "-", name)
+    name = re.sub(r"-+", "-", name).strip("-")
+    if not re.search(r"[A-Za-z0-9]", name):
+        name = fallback
+    return name[:80] or fallback
+
+
+def convert_loon_script_line(line: str, module_id: str, index: int) -> str:
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return stripped
+    match = re.match(r"^(http-request|http-response)\s+(\S+)\s+(.+)$", stripped)
+    if not match:
+        return stripped
+    script_type, pattern, options = match.groups()
+    script_path = option_value(options, "script-path")
+    if not script_path:
+        return f"# unsupported-loon-script: {normalize_pattern(stripped)}"
+    tag = option_value(options, "tag")
+    name = safe_script_name(tag, f"{module_id}.{script_type.split('-')[-1]}.{index}")
+    parts = [f"{name} = type={script_type}", f"pattern={normalize_pattern(pattern)}"]
+    if truthy(option_value(options, "requires-body")):
+        parts.append("requires-body=1")
+    if truthy(option_value(options, "binary-body-mode")):
+        parts.append("binary-body-mode=1")
+    max_size = option_value(options, "max-size")
+    if max_size:
+        parts.append(f"max-size={max_size}")
+    parts.append(f"script-path={script_path}")
+    timeout = option_value(options, "timeout")
+    if timeout:
+        parts.append(f"timeout={timeout}")
+    return ",".join(parts)
+
+
+def convert_mitm_lines(lines: list[str]) -> list[str]:
+    hosts: list[str] = []
+    seen: set[str] = set()
+    for raw in lines:
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if "=" in line:
+            _, value = line.split("=", 1)
+        else:
+            value = line
+        value = value.replace("%APPEND%", "")
+        for host in value.split(","):
+            clean = host.strip()
+            if clean and clean not in seen:
+                seen.add(clean)
+                hosts.append(clean)
+    return ["hostname = %APPEND% " + ",".join(hosts)] if hosts else []
+
+
+def convert_rule_lines(lines: list[str]) -> list[str]:
+    out: list[str] = []
+    for raw in lines:
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            out.append(raw.rstrip())
+            continue
+        parts = [part.strip() for part in line.split(",")]
+        out.append(",".join(parts))
+    return out
 
 
 def upstream_name(meta: list[str], fallback: str) -> str:
@@ -372,7 +716,24 @@ def clean_section_lines(lines: list[str]) -> list[str]:
 
 def converted_source(record: dict[str, Any], upstream_text: str) -> tuple[str, str]:
     meta, sections = split_module(upstream_text)
-    body_sections = {name: clean_section_lines(lines) for name, lines in sections.items()}
+    converted_sections: dict[str, list[str]] = {name: [] for name in ALLOWED_SECTIONS}
+    for section, lines in sections.items():
+        if section == "Rewrite":
+            for line in lines:
+                target_section, converted = convert_loon_rewrite_line(line)
+                if target_section and converted:
+                    converted_sections[target_section].append(converted)
+        elif section == "Rule":
+            converted_sections[section].extend(convert_rule_lines(lines))
+        elif section == "MITM":
+            converted_sections[section].extend(convert_mitm_lines(lines))
+        elif section == "Script":
+            for index, line in enumerate(lines, 1):
+                converted_sections[section].append(convert_loon_script_line(line, str(record["id"]), index))
+        elif section in converted_sections:
+            converted_sections[section].extend(lines)
+
+    body_sections = {name: clean_section_lines(lines) for name, lines in converted_sections.items()}
     body_sections = {name: lines for name, lines in body_sections.items() if lines}
     if not body_sections:
         raise ValueError("no supported module sections found")
@@ -525,6 +886,7 @@ def main() -> int:
     parser.add_argument("--apps-dir", default=rel(DEFAULT_APPS_DIR), help="App source directory")
     parser.add_argument("--report", default=rel(DEFAULT_REPORT), help="Markdown report path")
     parser.add_argument("--config-only", action="store_true", help="Only discover and write app-modules.json/report")
+    parser.add_argument("--no-kelee", action="store_true", help="Do not import Kelee PluginHub app ad modules")
     args = parser.parse_args()
 
     config_path = repo_path(args.config)
@@ -534,6 +896,7 @@ def main() -> int:
     try:
         config = read_json(config_path)
         records = discover_modules(config, apps_dir)
+        records = merge_kelee_catalog(records, include_kelee=not args.no_kelee)
         updated, skipped, blocked, errors = sync_records(records, args.config_only)
         write_config(config_path, config, records)
         write_report(report_path, records, updated, skipped, blocked, errors)

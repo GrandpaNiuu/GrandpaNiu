@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 南网在线 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/csg.sgmodule
+
+[URL Rewrite]
+^https://95598\.csg\.cn/mp/ucs/ma/zt/content/queryHotInformations$ - reject-dict
+^https://95598\.csg\.cn/mp/mpaas/rubik/openapi/rubik/mobile/getRubikScene$ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://95598\.csg\.cn/mp/mpaas/mgw\.htm$ 'if .info | contains("RUBIK-TRACEID:") then .scene.page.areas |= map(select(.areaId | test("kingkong_|9grid_|message_|nearmap_|recommend_"))) else . end'
+
+[MITM]
+hostname = %APPEND% 95598.csg.cn

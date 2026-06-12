@@ -3,40 +3,11 @@
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/wechat.sgmodule
 
 [Rule]
-DOMAIN-SUFFIX,weixin.qq.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,wx.qq.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,wechat.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,servicewechat.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,wechatpay.cn,DIRECT,pre-matching
-DOMAIN,dns.weixin.qq.com.cn,DIRECT,pre-matching
-DOMAIN,res.wx.qq.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,weixinbridge.com,DIRECT,pre-matching
-DOMAIN,badjs.weixinbridge.com,REJECT,pre-matching
-DOMAIN,cube.weixinbridge.com,REJECT,pre-matching
-DOMAIN,badjs.weixinbridge.com,REJECT,extended-matching,pre-matching
-
-[URL Rewrite]
-^https?:\/\/api-marketing\.zhinengxiyifang\.cn\/api\/v2\/cloudcode\/wechat\/bid - reject
-^https?:\/\/dl\.wechat\.com\/checkresupdate - reject-dict
-^https?:\/\/e\.weather\.com\.cn\/weChat\/typhoonNull\.json - reject-dict
-^https?:\/\/gw3\.ykccn\.com\/api\/omp\/mt\/enterpriseWeChatConfig\/app\/queryCityConfig - reject-dict
-^https?:\/\/mp\.weixin\.qq\.com\/mp\/(?:ad_|advertisement|getappmsgad|cps_product_info|masonryfeed|relatedarticle|relatedsearchword|searchkeywordreport|geticon|getainfo|jsmonitor) - reject-dict
-^https?:\/\/mp\.weixin\.qq\.com\/wapad\/getaddata\?action=getad - reject-200
-^https?:\/\/mp\.weixin\.qq\.com\/wapad\/reportaddata\?action=exposure_report - reject-200
-^https?:\/\/npay\.meituan\.com\/conch\/walletv\d\/wechat-pop-window - reject-dict
-^https?:\/\/rms\.meituan\.com\/api\/v\d\/rmsmina\/c\/queryWechatAdvertisement - reject-dict
-^https?:\/\/ucmp\.sf-express\.com\/cx-wechat-query\/query\/info-flow\/reconsitution-list - reject
-^https?:\/\/ucmp\.sf-express\.com\/cx-wechat-query\/query\/module-config\/query - reject-dict
-^https?:\/\/wechat\.tf\.cn\/mini-financial\/model\/queryPopup - reject-dict
-^https?:\/\/wx\.bthhotels\.com\/miniapp\/weixin\/v\d\/home\/index_banner - reject-dict
-^https?:\/\/wxs-weixin\.sd\.zhumanggroup\.com\/api\/v2\/ad - reject-dict
-^https:\/\/api-marketing\.zhinengxiyifang\.cn\/api\/v2\/cloudcode\/wechat\/bid - reject
+DOMAIN-SUFFIX,wxs.qq.com,REJECT,extended-matching,pre-matching
 
 [Map Local]
-^https:\/\/wechat-api\.i-xiaoma\.com\.cn\/app\/v1\/bus\/wechat\/content data-type=text data="{}" status-code=200
-^https:\/\/wxs-weixin\.sd\.zhumanggroup\.com\/api\/v2\/ad data-type=text data="{}" status-code=200
-^https:\/\/wx\.bthhotels\.com\/miniapp\/weixin\/v1\/home\/index_banner data-type=text data="{}" status-code=200
-^https:\/\/m\.ctrip\.com\/restapi\/soa2\/12673\/queryWeChatHotEvent data-type=text data="{}" status-code=200
+^https:\/\/mp\.weixin\.qq\.com\/mp\/(cps_product_info|getappmsgad|jsmonitor|masonryfeed|relatedarticle)\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [MITM]
-hostname = %APPEND% wechat-api.i-xiaoma.com.cn,wxs-weixin.sd.zhumanggroup.com,mp.weixin.qq.com,wechat.tf.cn
+hostname = %APPEND% mp.weixin.qq.com

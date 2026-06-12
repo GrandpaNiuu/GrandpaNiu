@@ -1,0 +1,12 @@
+#!name=GrandpaNiu 网易大神 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/net-ease-godlike.sgmodule
+
+[URL Rewrite]
+^https://god\.gameyw\.netease\.com/v\d/ad - reject
+
+[Script]
+net-ease-godlike.response.1 = type=http-response,pattern=^https://app-conf\.ds\.163\.com/v1/app/base/conf/static/start-config\?os=ios,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/NetEaseGodlike/NetEaseGodlike_remove_ads.js,timeout=10
+
+[MITM]
+hostname = %APPEND% god.gameyw.netease.com,app-conf.ds.163.com

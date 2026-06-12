@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 美食杰 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/mei-shi-jie.sgmodule
+
+[Body Rewrite]
+http-response-jq ^https://newapi\.meishi\.cc/indexnew/home_feeds 'if .data.items then .data.items |= map(select(.type | . != "101" and . != "12")) else . end'
+
+[MITM]
+hostname = %APPEND% newapi.meishi.cc

@@ -1,0 +1,24 @@
+#!name=GrandpaNiu 网易新闻 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/netease-news.sgmodule
+
+[Rule]
+DOMAIN,nex.163.com,DIRECT
+DOMAIN,gw.m.163.com,DIRECT
+
+[URL Rewrite]
+^https?://interface\.music\.163\.com/eapi/ad - reject
+^https?://c\.m\.163\.com/nc/gl/ - reject
+^https?://client\.mail\.163\.com/apptrack/confinfo/searchMultiAds - reject
+^https?://g1\.163\.com/madfeedback - reject
+^https?://interface\.music\.163\.com/eapi/ad/ - reject
+^https?://support\.you\.163\.com/xhr/boot/getBootMedia\.json - reject
+^https?://interface3?\.music\.163\.com/eapi/(ad|abtest|sp|hot|store|search/(specialkeyword|defaultkeyword|hot)) - reject
+
+[Script]
+netease-news.response.1 = type=http-response,pattern=^https://nex\.163\.com/q,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/NeteaseNews/NeteaseNews_remove_ads.js
+netease-news.response.3 = type=http-response,pattern=^https://gw\.m\.163\.com/nc/api/v1/feed/dynamic/headline-list\?,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/NeteaseNews/NeteaseNews_remove_ads.js
+netease-news.response.5 = type=http-response,pattern=^https://gw\.m\.163\.com/nc/api/v1/search/hot-word,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/NeteaseNews/NeteaseNews_remove_ads.js
+
+[MITM]
+hostname = %APPEND% nex.163.com,interface.music.163.com,c.m.163.com,client.mail.163.com,g1.163.com,support.you.163.com,interface3?.music.163.com,gw.m.163.com

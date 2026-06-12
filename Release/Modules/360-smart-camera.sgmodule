@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 360摄像机 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/360-smart-camera.sgmodule
+
+[Rule]
+DOMAIN,ad.jia.360.cn,REJECT
+DOMAIN,ad.iot.360.cn,REJECT
+
+[Body Rewrite]
+http-response-jq ^https://jia\.360\.cn/conf/v1\.json 'del(.tab_conf,.ad_conf,.activity)'
+
+[MITM]
+hostname = %APPEND% jia.360.cn

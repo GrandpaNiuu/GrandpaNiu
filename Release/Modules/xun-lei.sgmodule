@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 迅雷 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/xun-lei.sgmodule
+
+[Body Rewrite]
+http-response-jq ^https://conf-m-ssl\.xunlei\.com/external/ 'del(.values.me_config.entrance_list_vertical_enable,.values.me_config.common_service_list,.values.me_config.banner_service_list)'
+http-response-jq ^https://api-shoulei-ssl\.xunlei\.com/flowhub/v1/slots:batchGet$ '.slots |= map(select(.id == "xl_ios_mytab_vipicon" or (.native.assets.title.text.value? and (.native.assets.title.text.value | . == "清理助手" or . == "云盘容量" or . == "远程设备"))))'
+
+[MITM]
+hostname = %APPEND% conf-m-ssl.xunlei.com,api-shoulei-ssl.xunlei.com

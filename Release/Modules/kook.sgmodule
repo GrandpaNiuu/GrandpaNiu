@@ -1,0 +1,15 @@
+#!name=GrandpaNiu KOOK Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/kook.sgmodule
+
+[URL Rewrite]
+^https://www\.kookapp\.cn/api/v3/ad/config$ - reject-dict
+^https://www\.kookapp\.cn/api/v3/promotion/ongoing$ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://(m|www)\.kookapp\.cn/api/v\d/user/settings$ 'del(.ad_banner,.advertise_on_off)'
+http-response-jq ^https://(m|www)\.kookapp\.cn/api/v\d/user/settings$ '.ios_mall_switch = false'
+http-response-jq ^https://www\.kookapp\.cn/api/v3/discover/tab-list\? '.data.items |= map(select(.id == 472 or .id == 473 or .id == 475))'
+
+[MITM]
+hostname = %APPEND% m.kookapp.cn,www.kookapp.cn

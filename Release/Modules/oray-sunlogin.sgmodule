@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 向日葵 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/oray-sunlogin.sgmodule
+
+[URL Rewrite]
+^https://client-api-v2\.oray\.com/materials/SLCC_iOS_DEVICE_FREE\? - reject-dict
+
+[MITM]
+hostname = %APPEND% client-api-v2.oray.com

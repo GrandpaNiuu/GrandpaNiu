@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 微脉圈 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/weimai.sgmodule
+
+[Body Rewrite]
+http-response-jq ^https://confssl\d?\.iweimai\.cn/wm_ios_update\.json\? '.isShowCJAd = 0'
+http-response-jq ^https://confssl\d?\.iweimai\.cn/wm_ios_update\.json\? 'del(.launchAd,.adBanners,.ad)'
+
+[MITM]
+hostname = %APPEND% confssl*.iweimai.cn

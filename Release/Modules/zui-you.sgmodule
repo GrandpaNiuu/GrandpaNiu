@@ -1,0 +1,16 @@
+#!name=GrandpaNiu 最右 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/zui-you.sgmodule
+
+[Rule]
+DOMAIN,adapi.izuiyou.com,REJECT
+URL-REGEX,"^http:\/\/mercury-gateway\.ixiaochuan\.cn\/mercury\/v1\/ad\/",REJECT-DICT
+URL-REGEX,"^http:\/\/file-share\.izuiyou\.com\/octopus\/media\/templates\/search_home_page_(nv|nv_v2)\/search_home_page_nv",REJECT
+
+[URL Rewrite]
+^https?://api\.izuiyou\.com/config/get_banner - reject-dict
+^https?://api\.izuiyou\.com/ad/ - reject
+^https://zyfile\.izuiyou\.com/zyfile/c2/a0/[a-z0-9-]+\.json - reject-dict
+
+[MITM]
+hostname = %APPEND% api.izuiyou.com,zyfile.izuiyou.com

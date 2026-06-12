@@ -1,0 +1,9 @@
+#!name=GrandpaNiu China Unicom Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/china-unicom.sgmodule
+
+[Map Local]
+^https?:\/\/m\.client\.10010\.com\/mobileService\/customer\/accountListData\.htm data-type=text data='{"imgIndex":"0","adv":{"startup_adv":{"advCntList":[],"buttonList":[]}},"respCode":"0000"}' header='Content-Type:application/json'
+
+[MITM]
+hostname = %APPEND% m.client.10010.com

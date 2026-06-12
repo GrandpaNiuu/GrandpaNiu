@@ -1,0 +1,22 @@
+#!name=GrandpaNiu 百度地图 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/baidu-map.sgmodule
+
+[URL Rewrite]
+^https://afd\.baidu\.com/afd/entry\?action=(update|query) - reject-dict
+^https://yongche\.baidu\.com/gomarketing/api/popup/getentrancecordovaurl$ - reject-dict
+^https://yongche\.baidu\.com/goorder/passenger/cobuild/pull\? - reject-dict
+^https://yongche\.baidu\.com/goorder/passenger/operationgirdle$ - reject-dict
+^https://yongche\.baidu\.com/goorder/passenger/baseinfo$ - reject-dict
+^https://ecom\.map\.baidu\.com/ad-ops/afd/popup\? - reject-dict
+^https://maphotel\.baidu\.com/hotel/goextranet/activity/detail\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://newclient\.map\.baidu\.com/feed/govui/rich_content 'del(.data)'
+http-response-jq ^https://newclient\.map\.baidu\.com/client/noticebar/get\? 'del(.content.multi_data)'
+http-response-jq ^https://newclient\.map\.baidu\.com/(client/)?usersystem/mine/page\? '.data = {}'
+http-response-jq ^https://newclient\.map\.baidu\.com/client/phpui2/\?qt=ads&type=user_home_new_service 'del(.ads)'
+http-response-jq ^https://newclient\.map\.baidu\.com/living/nearby/api\? 'del(.Result.cards[1],.Result.cards[4],.Result.cards[5],.Result.cards[9])'
+
+[MITM]
+hostname = %APPEND% afd.baidu.com,newclient.map.baidu.com,yongche.baidu.com,ecom.map.baidu.com

@@ -1,0 +1,14 @@
+#!name=GrandpaNiu 两步路户外助手 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/2bulu.sgmodule
+
+[URL Rewrite]
+^https://helper\.2bulu\.com/search/searchHotKeyList\? - reject-dict
+^https://helper\.2bulu\.com/promote/getAppUserModule\? - reject-dict
+^https://helper\.2bulu\.com/proSpecial/allData\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://helper\.2bulu\.com/getAppEntranceConfig\? '.configData=(.configData|fromjson|del(.adPlatform,.adIntertitialShowType,.adsConfig,.adIntertitialDisplayedLimit,.adSplashShowTypeWhenHotStart,.adIntertitialDayDisplayedMaxCount,.od_adsType,.showMeBaiHeAdView)|tojson)'
+
+[MITM]
+hostname = %APPEND% helper.2bulu.com

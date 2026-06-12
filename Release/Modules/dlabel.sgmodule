@@ -1,0 +1,10 @@
+#!name=GrandpaNiu Dlabel云标签 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/dlabel.sgmodule
+
+[URL Rewrite]
+^https://dlabel\.ctaiot\.com/api/spreadstart/list\.json\? - reject-dict
+^https://dlabel\.ctaiot\.com/api/spread/journey/select\.json\? - reject-dict
+
+[MITM]
+hostname = %APPEND% dlabel.ctaiot.com

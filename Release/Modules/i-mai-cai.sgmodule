@@ -1,0 +1,18 @@
+#!name=GrandpaNiu 小象超市 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/i-mai-cai.sgmodule
+
+[URL Rewrite]
+^https://mall\.meituan\.com/api/c/homepage/splash - reject-dict
+^https://mall\.meituan\.com/api/c/homepage/bubble/operate/info - reject-dict
+^https://mall\.meituan\.com/api/c/jigsaw/code/category-banner-\d+/ - reject-dict
+^https://mall\.meituan\.com/api/c/poi/\d+/order/recommend/v\d - reject-dict
+^https://mall\.meituan\.com/api/c/banner/ - reject-dict
+^https://mall\.meituan\.com/api/c/poi/\d+/personal/recommend - reject-dict
+^https://businessapi\.ksedt\.com/signupindex/jxlist - reject-dict
+
+[Script]
+i-mai-cai.response.1 = type=http-response,pattern=^https://portal-portm\.meituan\.com/horn_ios/mergeRequest,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/iMaiCai/iMaiCai_remove_ads.js
+
+[MITM]
+hostname = %APPEND% portal-portm.meituan.com,mall.meituan.com,businessapi.ksedt.com

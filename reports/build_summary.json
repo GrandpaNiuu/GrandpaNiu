@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T18:05:51.381710Z",
+  "generated_at": "2026-06-12T18:39:05.512041Z",
   "module": "Release/Ronghemokuai.sgmodule",
   "module_exists": true,
   "module_size": 350483,
@@ -12,6 +12,6 @@
     "Script": 46,
     "URL Rewrite": 1644
   },
-  "release_modules": 37,
-  "checksum_files": 59
+  "release_modules": 220,
+  "checksum_files": 242
 }

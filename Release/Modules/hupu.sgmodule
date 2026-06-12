@@ -1,0 +1,22 @@
+#!name=GrandpaNiu 虎扑 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/hupu.sgmodule
+
+[URL Rewrite]
+^https://games\.mobileapi\.hupu\.com/\d/\d\.\d\.\d+/bplapi/reddot/v1/app/getReddot - reject-dict
+^https://bbs\.mobileapi\.hupu\.com/\d/\d\.\d\.\d+/(bbsallapi/tag/v1/heatTag|bbsrankapi/v1/rating/list) - reject-dict
+^https://games\.mobileapi\.hupu\.com/\d/\d\.\d\.\d+/search/v2/(hintkeylist|hotkeylist) - reject-dict
+^https://goblin\.hupu\.com/\d/\d\.\d\.\d+/interfaceAd/getOther/v\d - reject-dict
+^https://goblin\.hupu\.com/\d/\d\.\d\.\d+/interfaceAd/getOther/batch - reject-dict
+^https://fairy\.mobileapi\.hupu\.com/gallery/getmod2 - reject-200
+^https://games\.mobileapi\.hupu\.com/3/8\.0\.86/bplcommentapi/bpl/score_tab/groups - reject-dict
+^https://games\.mobileapi\.hupu\.com/3/8\.0\.86/bplapi/banner/getLocationBanners - reject-dict
+
+[Script]
+hupu.response.1 = type=http-response,pattern=^https://fairy\.mobileapi\.hupu\.com/mang/preview/banners,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/HUPU/HUPU_remove_ads.js
+hupu.response.2 = type=http-response,pattern=^https://bbs\.mobileapi\.hupu\.com/\d/\d\.\d\.\d+/bbsallapi/lego/data,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/HUPU/HUPU_remove_ads.js
+hupu.response.3 = type=http-response,pattern=^https://games\.mobileapi\.hupu\.com/\d/\d\.\d\.\d+/buffer/hotList,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/HUPU/HUPU_remove_ads.js
+hupu.response.4 = type=http-response,pattern=^https://games\.mobileapi\.hupu\.com/\d/\d\.\d\.\d+/bplapi/user/v1/more,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/HUPU/HUPU_remove_ads.js
+
+[MITM]
+hostname = %APPEND% games.mobileapi.hupu.com,fairy.mobileapi.hupu.com,bbs.mobileapi.hupu.com,goblin.hupu.com

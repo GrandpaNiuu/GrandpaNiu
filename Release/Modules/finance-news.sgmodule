@@ -1,0 +1,21 @@
+#!name=GrandpaNiu 华尔街见闻 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/finance-news.sgmodule
+
+[URL Rewrite]
+^https://api-one-wscn\.awtmt\.com/apiv1/advertising/ - reject-dict
+^https://api-one-wscn\.awtmt\.com/apiv1/kvconfig/items/search_keywords_wscnvip$ - reject-dict
+^https://api-one-wscn\.awtmt\.com/apiv1/search/hotsearch\? - reject-dict
+^https://api-one-wscn\.awtmt\.com/apiv1/content/articles/hot\? - reject-dict
+^https://wallstreetcn\.com/app-faas/coupon/user/search/popup$ - reject-dict
+^https://api-one-wscn\.awtmt\.com/apiv1/content/lives/relateddata/ - reject-dict
+^https://api-one-wscn\.awtmt\.com/apiv1/content/articles/relateddata/ - reject-dict
+^https://api-one-wscn\.awtmt\.com/apiv1/content/carousel/information-flow\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://api-one-wscn\.awtmt\.com/apiv1/kvconfig/items/tabbarconfig1$ '.data.items |= [.[] | select(.key == "news" or .key == "live")]'
+http-response-jq ^https://api-one-wscn\.awtmt\.com/apiv1/content/articles/ 'del(.data.recommend_vip_img_uri)'
+http-response-jq ^https://api-one-wscn\.awtmt\.com//apiv1/kvconfig/items/membersrights$ 'del(.data.vip_article)'
+
+[MITM]
+hostname = %APPEND% api-one-wscn.awtmt.com

@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 磁力宅播放器 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/xfuse.sgmodule
+
+[URL Rewrite]
+^https://cili\.xfuse\.fun/s/ - reject
+
+[MITM]
+hostname = %APPEND% cili.xfuse.fun,i.micecube.com,img.mofyi.com

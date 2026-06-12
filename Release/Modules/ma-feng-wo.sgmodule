@@ -1,0 +1,16 @@
+#!name=GrandpaNiu 马蜂窝 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ma-feng-wo.sgmodule
+
+[Rule]
+DOMAIN,advert.mafengwo.cn,REJECT
+
+[URL Rewrite]
+^https://mapi\.mafengwo\.cn/user/growth/get_growth_tip/v1\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://mapi\.mafengwo\.cn/discovery/get_index/v7\? '.data.list |= map(select(.data.business_type != "gdcpm"))'
+http-response-jq ^https://mapi\.mafengwo\.cn/sales/home/get_header/v3\? '.data.list[] |= ( .data |= del(.banners) )'
+
+[MITM]
+hostname = %APPEND% mapi.mafengwo.cn

@@ -1,0 +1,13 @@
+#!name=GrandpaNiu ECOVACS HOME Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ecovacs-home.sgmodule
+
+[URL Rewrite]
+^https://api-app\.dc-cn\.cn\.ecouser\.net/api/ecms/app/ad/ - reject-dict
+^https://gl-cn-api\.ecovacs\.cn/v1/private/ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://gl-cn-api\.ecovacs\.cn/v3/private/ '.data.navigateInfoResponseList |= map(select(.positionType == "Robot" or .positionType == "Mine"))'
+
+[MITM]
+hostname = %APPEND% gl-cn-api.ecovacs.cn,api-app.dc-cn.cn.ecouser.net

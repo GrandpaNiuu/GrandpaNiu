@@ -1,0 +1,21 @@
+#!name=GrandpaNiu 财新 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/caixin-media.sgmodule
+
+[URL Rewrite]
+^https://entities\.caixin\.com/api/(dataplus/promotionHints|public/push/appIndex|public/recommendNews) - reject-dict
+^https://gateway\.caixin\.com/api/app-api/cxAdInfo/selectIndexAdInfo - reject-dict
+^https://mappsv5\.caixin\.com/channelv5/article_ad_ios_info\.json - reject-dict
+^https://gg\.caixin\.com/s\?z=caixin&slot=\d+ - reject-dict
+^https://msgapi\.caixin\.com/msg_api/annmsg/annlist - reject-dict
+
+[Script]
+caixin-media.response.1 = type=http-response,pattern=^https://entities\.caixin\.com/api/dataplus/columns,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+caixin-media.response.3 = type=http-response,pattern=^https://gateway\.caixin\.com/api/app-api/(caixinapp/appinfo|search/getkeyword),requires-body=1,script-path=https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+FM = type=http-response,pattern=^https://gateway\.caixin\.com/api/app-content/fm/index/list\?,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+caixin-media.response.7 = type=http-response,pattern=^https://gg\.caixin\.com/s\?z=caixin&op=\d,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+caixin-media.response.9 = type=http-response,pattern=^https://mappsv5\.caixin\.com/articlev5/\d+/\d+\.json$,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+caixin-media.response.10 = type=http-response,pattern=^https://mapps?v5\.caixin\.com/(channelv5/list|/?index_page_v5/)\w+,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+
+[MITM]
+hostname = %APPEND% e*.caixin.com,g*.caixin.com,m*.caixin.com

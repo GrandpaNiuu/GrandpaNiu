@@ -1,0 +1,26 @@
+#!name=GrandpaNiu 36氪 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/36-kr.sgmodule
+
+[Rule]
+DOMAIN,adx.36kr.com,REJECT
+DOMAIN,ad.jiemian.com,REJECT
+
+[URL Rewrite]
+^https://gateway\.36kr\.com/api/mis/nav/me/recom\? - reject-dict
+^https://gateway\.36kr\.com/api/mis/nav/search/hotword\? - reject-dict
+^https://gateway\.36kr\.com/api/mis/nav/search/topicListV2\? - reject-dict
+^https://gateway\.36kr\.com/api/adx/ - reject-dict
+^https://gateway\.36kr\.com/api/mis/page/article/recom\? - reject-dict
+^https://gateway\.36kr\.com/api/mis/page/newsflash/recom\? - reject-dict
+^https://gateway\.36kr\.com/api/mis/sys/skin/ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://gateway\.36kr\.com/api/mis/sys/config\? 'del(.data.contentConfig,.data.positionConfigList,.data.switchConfig.ios.sunrise_sign,.data.switchConfig.ios.sunrise_sunit_task,.data.switchConfig.ios.sunrise_sunit_mall,.data.switchConfig.ios.sunrise_distribution_icon,.data.secondFloorConfig)'
+http-response-jq ^https://36kr\.com/global/sensors/config/iOS\.conf\? '.configs.disableSDK = true'
+http-response-jq ^https://gateway\.36kr\.com/api/mis/nav\? '.data.navList |= [ .[] | select(.navNick == "home" or .navNick == "newsflash" or .navNick == "me") ]'
+http-response-jq ^https://gateway\.36kr\.com/api/mis/nav/home/subnav/recom\? '.data.bannerList |= map(select(.itemType != 0))'
+http-response-jq ^https://gateway\.36kr\.com/api/mis/nav/home/subnav/flow/ 'del(.data.adItemList)'
+
+[MITM]
+hostname = %APPEND% gateway.36kr.com,36kr.com

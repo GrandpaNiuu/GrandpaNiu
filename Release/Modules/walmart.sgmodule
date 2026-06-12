@@ -1,0 +1,14 @@
+#!name=GrandpaNiu 沃尔玛 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/walmart.sgmodule
+
+[URL Rewrite]
+^https://api-hyper\.walmartmobile\.cn/search/ad/ - reject-dict
+^https://api-hyper\.walmartmobile\.cn/cms-web/frontapi/shadedWords/list\? - reject-dict
+^https://api-hyper\.walmartmobile\.cn/search/frontapi/discovery-words/list$ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://api-hyper\.walmartmobile\.cn/cms-web/frontapi/common/page/get\?.*&type=26$ '.data |= (.moduleList | map(select(.templateCode == "nav-bar-title" or .templateCode == "member-info" or .templateCode == "distribution-center" or .templateCode == "wallet" or .templateCode == "swiper" or .templateCode == "my-order")))'
+
+[MITM]
+hostname = %APPEND% api-hyper.walmartmobile.cn

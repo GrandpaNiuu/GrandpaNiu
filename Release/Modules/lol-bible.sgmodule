@@ -1,0 +1,14 @@
+#!name=GrandpaNiu 掌上英雄联盟 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/lol-bible.sgmodule
+
+[URL Rewrite]
+^https://mlol\.qt\.qq\.com/go/recommend/platstrongshell\? - reject-dict
+^https://mlol\.qt\.qq\.com/go/club/match/get_ai_search_words$ - reject-dict
+^https://mlol\.qt\.qq\.com/go/mlol_news/search/varcache_hotV\d\? - reject-dict
+^https://mlol\.qt\.qq\.com/go/customize_search/article_rank_tab\? - reject-dict
+^https://mlol\.qt\.qq\.com/go/customize_search/article_rank\? - reject-dict
+^https://mlol\.qt\.qq\.com/go/zone/bottomtab_tip\? - reject-dict
+
+[MITM]
+hostname = %APPEND% mlol.qt.qq.com

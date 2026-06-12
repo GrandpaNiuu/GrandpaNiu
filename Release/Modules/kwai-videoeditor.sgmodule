@@ -1,0 +1,16 @@
+#!name=GrandpaNiu 快影 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/kwai-videoeditor.sgmodule
+
+[URL Rewrite]
+^https://api\.kmovie\.gifshow\.com/rest/n/kmovie/app/resource/get\? - reject-dict
+^https://api\.kmovie\.gifshow\.com/rest/n/kmovie/app/banner/common/getBannerByType\? - reject-dict
+^https://api\.kmovie\.gifshow\.com/rest/n/kmovie/app/merchant/ad/ - reject-dict
+^https://api\.kmovie\.gifshow\.com/rest/n/kmovie/app/resource/activity/pendant\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://api\.kmovie\.gifshow\.com/rest/n/kmovie/app/banner/common/getBannerByTypeV2\? 'del(.list[] | select(.bannerChannelName == "活动"))'
+http-response-jq ^https://api\.kmovie\.gifshow\.com/rest/n/kmovie/app/banner/common/getAllBannerPage\? 'del(.data[] | select(.bannerChannelName == "活动"))'
+
+[MITM]
+hostname = %APPEND% api.kmovie.gifshow.com

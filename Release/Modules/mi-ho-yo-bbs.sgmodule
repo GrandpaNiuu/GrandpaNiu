@@ -1,0 +1,16 @@
+#!name=GrandpaNiu 米游社 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/mi-ho-yo-bbs.sgmodule
+
+[URL Rewrite]
+^https://bbs-api(-ab)?\.miyoushe\.com/apihub/api/getAppSplash$ - reject-dict
+^https://bbs-api(-ab)?\.miyoushe\.com/apihub/api/getHotKeywordAndEvent$ - reject-dict
+^https://bbs-api-static\.miyoushe\.com/search/api/search/pre_keyword\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://bbs-api(-ab)?\.miyoushe\.com/apihub/api/getAppStartupData$ 'del(.data.resp_map./teenager/api/info,.data.resp_map["/apihub/api/getAppConfig"].data.get_app_config_response.config.is_show_teenager_mode_btn,.data.resp_map["/apihub/api/getAppConfig"].data.get_app_config_response.config.teenager_popup_freq_type)'
+http-response-jq ^https://bbs-api(-ab)?\.miyoushe\.com/apihub/api/getAppConfig$ '.data.config.teenager_popup_freq_type = 0 data.config.is_show_teenager_mode_btn 0'
+http-response-jq ^https://bbs-api-ab\.miyoushe\.com/teenager/api/info$ '.data.is_enabled = false data.is_teenager false data.is_force false'
+
+[MITM]
+hostname = %APPEND% bbs-api.miyoushe.com,bbs-api-ab.miyoushe.com

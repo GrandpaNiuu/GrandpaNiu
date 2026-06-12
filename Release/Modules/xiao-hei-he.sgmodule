@@ -1,0 +1,12 @@
+#!name=GrandpaNiu 小黑盒 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/xiao-hei-he.sgmodule
+
+[URL Rewrite]
+^https://api\.xiaoheihe\.cn/account/get_ads_info_v2 - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://api\.xiaoheihe\.cn/bbs/app/feeds/news '.result.links |= map(if .content_type == 27 then del(.title, .ad_pm, .img_gif, .idea_id, .ad_report, .label, .source, .intranet_only, .ad_cm, .content_type, .PROTOCOL, .img, .ad_ratio) else . end)'
+
+[MITM]
+hostname = %APPEND% api.xiaoheihe.cn

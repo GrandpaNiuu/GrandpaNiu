@@ -1,0 +1,20 @@
+#!name=GrandpaNiu 盖得排行 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/guide-rank.sgmodule
+
+[URL Rewrite]
+^https://zone\.guiderank-app\.com/guiderank-web/app/common/getWeworkPromotionInfoBySceneType - reject-dict
+^https://zone\.guiderank-app\.com/guiderank-web/app/popUpAdCollection/getActiveCollection\.do - reject-dict
+^https://zone\.guiderank-app\.com/guiderank-web/app/common/getWeworkCategoryPromotionInfo - reject-dict
+^https://zone\.guiderank-app\.com/guiderank-web/app/stockTaking/pageStockTakingForHomePage - reject-dict
+^https://zone\.guiderank-app\.com/guiderank-web/app/specialSale/pageRecommendedItems - reject-dict
+^https://zone\.guiderank-app\.com/guiderank-web/app/manualOperationGoods/pageManualOperationGoods - reject-dict
+^https://zone\.guiderank-app\.com/guiderank-web/app/specialSale/listSpecialSalePageBanner - reject-dict
+^https://zone\.guiderank-app\.com/guiderank-web/app/personal/getPersonPageInfo\.do - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://zone\.guiderank-app\.com/guiderank-web/app/home/getHomePageV 'del(.data.countdownBanner,.data.newEvaluations,.data.freeToPayBannerPhotoUrl,.data.groupBuyingList,.data.multiCountdownBanner,.data.banners,.data.multiPlatformBanner,.data.specialSaleBannerPhotoUrl,.data.guide90Evaluation,.data.insurancePromotions)'
+http-response-jq ^https://zone\.guiderank-app\.com/guiderank-web/app/common/getInitData\.do 'del(.data.SpecialSalePageMidTabConfig)'
+
+[MITM]
+hostname = %APPEND% zone.guiderank-app.com

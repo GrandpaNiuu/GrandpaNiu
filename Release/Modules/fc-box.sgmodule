@@ -1,0 +1,20 @@
+#!name=GrandpaNiu 丰巢 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/fc-box.sgmodule
+
+[URL Rewrite]
+^https://consumer\.fcbox\.com/fcboxactivityweb/api/v\d/clientPage/modulesAggregated\? - reject-dict
+^https://consumer\.fcbox\.com/fcboxactivityweb/api/v\d/clientPage/jinGangFirst\? - reject-dict
+^https://consumer\.fcbox\.com/v2/home/mallInfo$ - reject-dict
+^https://dsp\.fcbox\.com/adSearch/ - reject-dict
+^https://consumer\.fcbox\.com/hs-portal/app/config/page/home/v2\? - reject-dict
+^https://consumer\.fcbox\.com/post/suggestion/query$ - reject-dict
+^https://consumer\.fcbox\.com/fcboxactivityweb/marketingEntrance/retentionPopup$ - reject-dict
+^https://consumer\.fcbox\.com/fcboxactivityweb/api/clientPopup/v\d/queryPopupWithPriority$ - reject-dict
+^https://consumer\.fcbox\.com/fcboxactivityweb/api/guidePopup/popup$ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://consumer\.fcbox\.com/v1/dynamicConfig/findTabbarConfig/mainPage$ 'del(.data.lifeService,.data.mall,.data.wash)'
+
+[MITM]
+hostname = %APPEND% consumer.fcbox.com,dsp.fcbox.com

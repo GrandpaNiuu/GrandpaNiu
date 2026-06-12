@@ -1,0 +1,14 @@
+#!name=GrandpaNiu 行者户外 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/on-the-way.sgmodule
+
+[URL Rewrite]
+^https://www\.imxingzhe\.com/api/v1/pop/window/\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://www\.imxingzhe\.com/api/v4/account/get_user_info\? 'del(.banner)'
+http-response-jq ^https://www\.imxingzhe\.com/api/v4/discovery/ios/\? 'del(.banners,.ad)'
+http-response-jq ^https://www\.imxingzhe\.com/api/v4/discovery/ios/\? '.display_areas |= map(select(.name == "赛事" or .name == "行者帮" or .name == "头条" or .name == "排行榜" or .name == "约伴"))'
+
+[MITM]
+hostname = %APPEND% www.imxingzhe.com

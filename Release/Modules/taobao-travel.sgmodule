@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 飞猪旅行 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/taobao-travel.sgmodule
+
+[URL Rewrite]
+^https://acs\.m\.taobao\.com/gw/mtop\.fliggy\.crm\.screen\.allresource/ - reject-dict
+^https://acs\.m\.taobao\.com/gw/mtop\.fliggy\.crm\.screen\.predict/ - reject-dict
+^https://acs\.m\.taobao\.com/gw/mtop\.fliggy\.tripzoo\.new\.couponlist/ - reject-dict
+^https://acs\.m\.taobao\.com/gw/mtop\.trip\.my\.recommendcard/ - reject-dict
+^https://acs\.m\.taobao\.com/gw/mtop\.fliggy\.recommend\.common\.guess\.tab\.feeds/ - reject-dict
+
+[MITM]
+hostname = %APPEND% acs.m.taobao.com

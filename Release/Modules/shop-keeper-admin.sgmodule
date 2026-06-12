@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 小店掌柜 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/shop-keeper-admin.sgmodule
+
+[URL Rewrite]
+^https://mch\.juhesaas\.com/api/advertisement/ - reject-dict
+
+[MITM]
+hostname = %APPEND% mch.juhesaas.com

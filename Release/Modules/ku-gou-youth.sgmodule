@@ -1,0 +1,20 @@
+#!name=GrandpaNiu 酷狗概念版 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ku-gou-youth.sgmodule
+
+[URL Rewrite]
+^https://gateway\.kugou\.com/ads\.service/ - reject-dict
+^https://gateway\.kugou\.com/youth/v1/start_img/last\? - reject-dict
+^https://gateway\.kugou\.com/ads\.gateway/ - reject-dict
+^http://mobilelog\.kugou\.com/adtrackconfig\.json$ - reject-dict
+^https://gateway\.kugou\.com/youth/v1/experiment/get_params\? - reject-dict
+^https://gateway\.kugou\.com/youth/api/user/v1/init\? - reject-dict
+^https://gateway\.kugou\.com/youth/v2/activity/task_list\? - reject-dict
+^https://gateway\.kugou\.com/youth/v1/channel/tab_list\? - reject-dict
+^https://gateway\.kugou\.com/goddess/v1/content/biz_list\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://gateway\.kugou\.com/youth/v1/yueku/tab\? '.data.responses |= map(select(.module == "new_song_publish" or .module == "song_rank"))'
+
+[MITM]
+hostname = %APPEND% gateway.kugou.com

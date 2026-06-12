@@ -1,0 +1,15 @@
+#!name=GrandpaNiu 中国人保 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/picc-insurance.sgmodule
+
+[URL Rewrite]
+^https://zgrb\.epicc\.com\.cn/G-HAPP/h/headlines/queryHeadlines - reject
+^https://zgrb\.epicc\.com\.cn/G-HAPP/a/update/startupPage/v1 - reject-dict
+^https://zgrb\.epicc\.com\.cn/G-HAPP/a/config/guessYouLike/v3 - reject-dict
+
+[Script]
+picc-insurance.response.1 = type=http-response,pattern=^https://zgrb\.epicc\.com\.cn/G-HAPP/a/config/homeInit/v3,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/PICC_Insurance/PICC_Insurance_remove_ads.js
+picc-insurance.response.3 = type=http-response,pattern=^https://zgrb\.epicc\.com\.cn/G-HAPP/mpageconfig/myPageConfigList/v3,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/PICC_Insurance/PICC_Insurance_remove_ads.js
+
+[MITM]
+hostname = %APPEND% zgrb.epicc.com.cn

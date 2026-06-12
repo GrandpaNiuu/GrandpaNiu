@@ -1,0 +1,19 @@
+#!name=GrandpaNiu 快对 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/kuai-dui-zuo-ye.sgmodule
+
+[Rule]
+DOMAIN,adx.zuoyebang.com,REJECT
+
+[URL Rewrite]
+^https://www\.kuaiduizuoye\.com/init/ad/ - reject-dict
+^https://www\.kuaiduizuoye\.com/activity/init/checkappconfig$ - reject-dict
+^https://www\.kuaiduizuoye\.com/kdapi/conf/appbannersv3$ - reject-dict
+^https://www\.kuaiduizuoye\.com/kdapi/conf/initbanner$ - reject-dict
+^https://apivip\.kuaiduizuoye\.com/viponline/scancode/mycard$ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://www\.kuaiduizuoye\.com/codesearch/aid/home$ 'del(.data.homeBannerList)'
+
+[MITM]
+hostname = %APPEND% www.kuaiduizuoye.com,apivip.kuaiduizuoye.com

@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 阅友 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/yueyou.sgmodule
+
+[Rule]
+DOMAIN,ads.reader.yueyouxs.com,REJECT
+
+[Body Rewrite]
+http-response-jq ^https://goway\.reader\.yueyouxs\.com/assemble/app/basic/getAppInfo\? 'del(.data.isShowDLPopup,.data.isShowGame,.data.touTiaoShowDlPopup,.data.offLineDownload.WatchVideoBtnDesc,.data.readVipFirstCfg,.data.readVipNormalCfg,.data.notifyAd,.data.hotStartSplashTime,.data.hotStartReqSwitch,.data.isShowBFTab,.data.popReqDelayTime,.data.benefitCfg,.data.chestTask,.data.hotStartAd,.data.activeTagList,.data.secondOrderCfg,.data.secondOrderList,.data.blockedWordsCfg,.data.aaReportListCfg,.data.pddAdSwitch,.data.isShowShelfAuthPopup,.data.firstPopUpAmount)'
+http-response-jq ^https://goway\.reader\.yueyouxs\.com/assemble/app/basic/getAppInfo\? '.data.isAdClosed = true'
+
+[MITM]
+hostname = %APPEND% goway.reader.yueyouxs.com

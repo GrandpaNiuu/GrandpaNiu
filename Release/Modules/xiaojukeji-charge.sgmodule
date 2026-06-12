@@ -1,0 +1,17 @@
+#!name=GrandpaNiu 小桔充电 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/xiaojukeji-charge.sgmodule
+
+[URL Rewrite]
+^https://energy\.xiaojukeji\.com/energy/hummer/api/resource/display($|\?) - reject-dict
+^https://energy\.xiaojukeji\.com/lego/api/orderSprint/stair/info($|\?) - reject-dict
+^https://energy\.xiaojukeji\.com/station-api/search/preWords$ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://energy\.xiaojukeji\.com/am/marketing/api/member/facade/charge/personal/center\? 'del(.data)'
+
+[Map Local]
+^https://am\.didistatic\.com/static/am/cf-terminal/epower/epower-thanos-app/\d+\.\d+\.\d+/pages/people/index\.js$ data-type=text data-path="https://kelee.one/Resource/JavaScript/XiaojukejiCharge/XiaojukejiCharge_remove_ads.js" status-code=200 status-code=200
+
+[MITM]
+hostname = %APPEND% energy.xiaojukeji.com,am.didistatic.com

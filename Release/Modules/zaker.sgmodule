@@ -1,0 +1,16 @@
+#!name=GrandpaNiu ZAKER Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/zaker.sgmodule
+
+[URL Rewrite]
+^https://iphone\.myzaker\.com/zaker/cover\.php\? - reject-dict
+^https://iphone\.myzaker\.com/zaker/block_top_ad\.php\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://iphone\.myzaker\.com/zaker/article_mongo_sec\.php\? 'del(.data.ad_url)'
+http-response-jq ^https://ggs\.myzaker\.com/zk_article_ad\.php\? 'del(.data.article_bottom,.data.recommend_ad)'
+http-response-jq ^https://iphone\.myzaker\.com/zaker/follow_promote\.php\? '.data.list |= map(select(.type != "web"))'
+http-response-jq ^https://iphone\.myzaker\.com/zaker/car_tab/index\.php\? '.data.gallery |= map(select(.type != "web"))'
+
+[MITM]
+hostname = %APPEND% iphone.myzaker.com,ggs.myzaker.com

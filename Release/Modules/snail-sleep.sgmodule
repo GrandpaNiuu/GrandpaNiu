@@ -1,0 +1,6 @@
+#!name=GrandpaNiu 蜗牛睡眠 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/snail-sleep.sgmodule
+
+[Rule]
+DOMAIN,ad.snailsleep.net,REJECT

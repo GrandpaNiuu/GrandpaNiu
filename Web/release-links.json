@@ -49,42 +49,42 @@
       "name": "GrandpaNiu Spotify",
       "file": "Release/Modules/spotify.sgmodule",
       "source": "Rewrite/Sources/Apps/spotify.conf",
-      "sections": "Rule:9, Header Rewrite:1, Script:2, MITM:1",
+      "sections": "Rule:1, URL Rewrite:2, Script:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/spotify.sgmodule"
     },
     {
       "name": "GrandpaNiu YouTube",
       "file": "Release/Modules/youtube.sgmodule",
       "source": "Rewrite/Sources/Apps/youtube.conf",
-      "sections": "Map Local:1, Script:1, MITM:1",
+      "sections": "Rule:2, URL Rewrite:1, Script:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/youtube.sgmodule"
     },
     {
       "name": "GrandpaNiu Zhihu",
       "file": "Release/Modules/zhihu.sgmodule",
       "source": "Rewrite/Sources/Apps/zhihu.conf",
-      "sections": "Rule:5, URL Rewrite:24, Body Rewrite:7, Script:2, MITM:1",
+      "sections": "Rule:10, URL Rewrite:3, Body Rewrite:5, Map Local:22, Script:10, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/zhihu.sgmodule"
     },
     {
       "name": "GrandpaNiu Bilibili",
       "file": "Release/Modules/bilibili.sgmodule",
       "source": "Rewrite/Sources/Apps/bilibili.conf",
-      "sections": "Rule:8, URL Rewrite:12, Body Rewrite:11, Map Local:2, MITM:1",
+      "sections": "Rule:4, Header Rewrite:1, Body Rewrite:3, Map Local:3, Script:4, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/bilibili.sgmodule"
     },
     {
       "name": "GrandpaNiu RedNote",
       "file": "Release/Modules/rednote.sgmodule",
       "source": "Rewrite/Sources/Apps/rednote.conf",
-      "sections": "Rule:3, URL Rewrite:7, Script:1, MITM:1",
+      "sections": "Rule:1, Body Rewrite:5, Map Local:5, Script:12, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/rednote.sgmodule"
     },
     {
       "name": "GrandpaNiu WeChat",
       "file": "Release/Modules/wechat.sgmodule",
       "source": "Rewrite/Sources/Apps/wechat.conf",
-      "sections": "Rule:11, URL Rewrite:15, Map Local:4, MITM:1",
+      "sections": "Rule:1, Map Local:2, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/wechat.sgmodule"
     },
     {
@@ -98,42 +98,42 @@
       "name": "GrandpaNiu Weibo",
       "file": "Release/Modules/weibo.sgmodule",
       "source": "Rewrite/Sources/Apps/weibo.conf",
-      "sections": "URL Rewrite:6, Body Rewrite:8, Script:1, MITM:1",
+      "sections": "Rule:3, Map Local:18, Script:19, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/weibo.sgmodule"
     },
     {
       "name": "GrandpaNiu Pinduoduo",
       "file": "Release/Modules/pinduoduo.sgmodule",
       "source": "Rewrite/Sources/Apps/pinduoduo.conf",
-      "sections": "Rule:15, MITM:1",
+      "sections": "Rule:17, Body Rewrite:16, Map Local:19, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/pinduoduo.sgmodule"
     },
     {
       "name": "GrandpaNiu JD",
       "file": "Release/Modules/jd.sgmodule",
       "source": "Rewrite/Sources/Apps/jd.conf",
-      "sections": "Rule:7, MITM:1",
+      "sections": "Rule:1, Body Rewrite:3, Map Local:1, Script:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/jd.sgmodule"
     },
     {
       "name": "GrandpaNiu Taobao",
       "file": "Release/Modules/taobao.sgmodule",
       "source": "Rewrite/Sources/Apps/taobao.conf",
-      "sections": "Rule:11, MITM:1",
+      "sections": "Rule:6, Map Local:11, Script:2, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/taobao.sgmodule"
     },
     {
       "name": "GrandpaNiu Netease Music",
       "file": "Release/Modules/netease-music.sgmodule",
       "source": "Rewrite/Sources/Apps/netease-music.conf",
-      "sections": "Rule:14, MITM:1",
+      "sections": "Rule:5, Map Local:6, Script:7, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/netease-music.sgmodule"
     },
     {
       "name": "GrandpaNiu MGTV",
       "file": "Release/Modules/mgtv.sgmodule",
       "source": "Rewrite/Sources/Apps/mgtv.conf",
-      "sections": "Rule:12, MITM:1",
+      "sections": "Rule:13, Body Rewrite:23, Map Local:7, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/mgtv.sgmodule"
     },
     {
@@ -161,7 +161,7 @@
       "name": "GrandpaNiu Umetrip",
       "file": "Release/Modules/umetrip.sgmodule",
       "source": "Rewrite/Sources/Apps/umetrip.conf",
-      "sections": "Rule:4, MITM:1",
+      "sections": "Rule:1, Script:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/umetrip.sgmodule"
     },
     {
@@ -172,18 +172,200 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xiaopeng.sgmodule"
     },
     {
+      "name": "GrandpaNiu 123云盘 Source",
+      "file": "Release/Modules/123-net-work-disk.sgmodule",
+      "source": "Rewrite/Sources/Apps/123-net-work-disk.conf",
+      "sections": "URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/123-net-work-disk.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 12306 Source",
+      "file": "Release/Modules/12306.sgmodule",
+      "source": "Rewrite/Sources/Apps/12306.conf",
+      "sections": "Rule:1, Body Rewrite:1, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/12306.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 123Pan Source",
+      "file": "Release/Modules/123pan.sgmodule",
+      "source": "Rewrite/Sources/Apps/123pan.conf",
+      "sections": "Map Local:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/123pan.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 两步路户外助手 Source",
+      "file": "Release/Modules/2bulu.sgmodule",
+      "source": "Rewrite/Sources/Apps/2bulu.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/2bulu.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 36氪 Source",
+      "file": "Release/Modules/36-kr.sgmodule",
+      "source": "Rewrite/Sources/Apps/36-kr.conf",
+      "sections": "Rule:2, URL Rewrite:7, Body Rewrite:5, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/36-kr.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 360摄像机 Source",
+      "file": "Release/Modules/360-smart-camera.sgmodule",
+      "source": "Rewrite/Sources/Apps/360-smart-camera.conf",
+      "sections": "Rule:2, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/360-smart-camera.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 前程无忧 Source",
+      "file": "Release/Modules/51-job.sgmodule",
+      "source": "Rewrite/Sources/Apps/51-job.conf",
+      "sections": "URL Rewrite:8, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/51-job.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 555电影 Source",
+      "file": "Release/Modules/555-dy.sgmodule",
+      "source": "Rewrite/Sources/Apps/555-dy.conf",
+      "sections": "Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/555-dy.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 健康160 Source",
+      "file": "Release/Modules/91160.sgmodule",
+      "source": "Rewrite/Sources/Apps/91160.conf",
+      "sections": "URL Rewrite:8, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/91160.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 爱企查 Source",
+      "file": "Release/Modules/aiinquiry.sgmodule",
+      "source": "Rewrite/Sources/Apps/aiinquiry.conf",
+      "sections": "URL Rewrite:11, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/aiinquiry.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 阿里云盘 Source",
+      "file": "Release/Modules/ali-yun-drive.sgmodule",
+      "source": "Rewrite/Sources/Apps/ali-yun-drive.conf",
+      "sections": "Rule:1, URL Rewrite:2, Script:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/ali-yun-drive.sgmodule"
+    },
+    {
       "name": "GrandpaNiu Amap Source",
       "file": "Release/Modules/amap.sgmodule",
       "source": "Rewrite/Sources/Apps/amap.conf",
-      "sections": "Rule:1, URL Rewrite:6, MITM:1",
+      "sections": "Rule:3, Body Rewrite:5, Map Local:15, Script:14, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/amap.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 汽车之家 Source",
+      "file": "Release/Modules/auto-home.sgmodule",
+      "source": "Rewrite/Sources/Apps/auto-home.conf",
+      "sections": "URL Rewrite:19, Script:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/auto-home.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 宝宝树孕育 Source",
+      "file": "Release/Modules/baby-tree.sgmodule",
+      "source": "Rewrite/Sources/Apps/baby-tree.conf",
+      "sections": "Rule:5, Script:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/baby-tree.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 百度输入法 Source",
+      "file": "Release/Modules/baidu-input-method.sgmodule",
+      "source": "Rewrite/Sources/Apps/baidu-input-method.conf",
+      "sections": "URL Rewrite:6, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/baidu-input-method.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 百度地图 Source",
+      "file": "Release/Modules/baidu-map.sgmodule",
+      "source": "Rewrite/Sources/Apps/baidu-map.conf",
+      "sections": "URL Rewrite:7, Body Rewrite:5, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/baidu-map.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 百度网盘 Source",
+      "file": "Release/Modules/baidu-net-disk.sgmodule",
+      "source": "Rewrite/Sources/Apps/baidu-net-disk.conf",
+      "sections": "URL Rewrite:7, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/baidu-net-disk.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 一刻相册 Source",
+      "file": "Release/Modules/baidu-photo.sgmodule",
+      "source": "Rewrite/Sources/Apps/baidu-photo.conf",
+      "sections": "URL Rewrite:2, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/baidu-photo.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Baidu Wenku Source",
+      "file": "Release/Modules/baidu-wenku.sgmodule",
+      "source": "Rewrite/Sources/Apps/baidu-wenku.conf",
+      "sections": "Body Rewrite:6, Map Local:8, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/baidu-wenku.sgmodule"
     },
     {
       "name": "GrandpaNiu Baidu Source",
       "file": "Release/Modules/baidu.sgmodule",
       "source": "Rewrite/Sources/Apps/baidu.conf",
-      "sections": "Rule:4, URL Rewrite:6, MITM:1",
+      "sections": "Script:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/baidu.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu BaiduPan Source",
+      "file": "Release/Modules/baidupan.sgmodule",
+      "source": "Rewrite/Sources/Apps/baidupan.conf",
+      "sections": "Body Rewrite:1, Map Local:7, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/baidupan.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 贝壳找房 Source",
+      "file": "Release/Modules/beike.sgmodule",
+      "source": "Rewrite/Sources/Apps/beike.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:5, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/beike.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 哔哩哔哩漫画 Source",
+      "file": "Release/Modules/bilibili-comic.sgmodule",
+      "source": "Rewrite/Sources/Apps/bilibili-comic.conf",
+      "sections": "URL Rewrite:10, Script:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/bilibili-comic.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 比特球云盘 Source",
+      "file": "Release/Modules/bitqiu-pan.sgmodule",
+      "source": "Rewrite/Sources/Apps/bitqiu-pan.conf",
+      "sections": "URL Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/bitqiu-pan.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 波点音乐 Source",
+      "file": "Release/Modules/bodian-music.sgmodule",
+      "source": "Rewrite/Sources/Apps/bodian-music.conf",
+      "sections": "URL Rewrite:11, Body Rewrite:9, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/bodian-music.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 薄荷健康 Source",
+      "file": "Release/Modules/boo-hee.sgmodule",
+      "source": "Rewrite/Sources/Apps/boo-hee.conf",
+      "sections": "URL Rewrite:6, Body Rewrite:3, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/boo-hee.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Cainiao Source",
+      "file": "Release/Modules/cainiao.sgmodule",
+      "source": "Rewrite/Sources/Apps/cainiao.conf",
+      "sections": "URL Rewrite:4, Body Rewrite:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/cainiao.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 财新 Source",
+      "file": "Release/Modules/caixin-media.sgmodule",
+      "source": "Rewrite/Sources/Apps/caixin-media.conf",
+      "sections": "URL Rewrite:5, Script:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/caixin-media.sgmodule"
     },
     {
       "name": "GrandpaNiu Caiyun Weather Source",
@@ -193,11 +375,361 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/caiyun-weather.sgmodule"
     },
     {
+      "name": "GrandpaNiu 猫耳FM Source",
+      "file": "Release/Modules/cat-ear-fm.sgmodule",
+      "source": "Rewrite/Sources/Apps/cat-ear-fm.conf",
+      "sections": "URL Rewrite:5, Body Rewrite:8, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/cat-ear-fm.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu CC直播 Source",
+      "file": "Release/Modules/cclive.sgmodule",
+      "source": "Rewrite/Sources/Apps/cclive.conf",
+      "sections": "URL Rewrite:4, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/cclive.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 测测 Source",
+      "file": "Release/Modules/cece.sgmodule",
+      "source": "Rewrite/Sources/Apps/cece.conf",
+      "sections": "URL Rewrite:12, Body Rewrite:6, Map Local:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/cece.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 成分喵 Source",
+      "file": "Release/Modules/cheng-fen-miao.sgmodule",
+      "source": "Rewrite/Sources/Apps/cheng-fen-miao.conf",
+      "sections": "URL Rewrite:4, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/cheng-fen-miao.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu China Unicom Source",
+      "file": "Release/Modules/china-unicom.sgmodule",
+      "source": "Rewrite/Sources/Apps/china-unicom.conf",
+      "sections": "Map Local:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/china-unicom.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 触站 Source",
+      "file": "Release/Modules/chuzhan.sgmodule",
+      "source": "Rewrite/Sources/Apps/chuzhan.conf",
+      "sections": "URL Rewrite:4, Body Rewrite:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/chuzhan.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 酷安 Source",
+      "file": "Release/Modules/cool-apk.sgmodule",
+      "source": "Rewrite/Sources/Apps/cool-apk.conf",
+      "sections": "URL Rewrite:1, Body Rewrite:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/cool-apk.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 南网在线 Source",
+      "file": "Release/Modules/csg.sgmodule",
+      "source": "Rewrite/Sources/Apps/csg.conf",
+      "sections": "URL Rewrite:2, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/csg.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 推栏 Source",
+      "file": "Release/Modules/daily.sgmodule",
+      "source": "Rewrite/Sources/Apps/daily.conf",
+      "sections": "Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/daily.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 大麦 Source",
+      "file": "Release/Modules/damai.sgmodule",
+      "source": "Rewrite/Sources/Apps/damai.conf",
+      "sections": "URL Rewrite:2, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/damai.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 得物 Source",
+      "file": "Release/Modules/dewu.sgmodule",
+      "source": "Rewrite/Sources/Apps/dewu.conf",
+      "sections": "URL Rewrite:7, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/dewu.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 滴滴出行 Source",
+      "file": "Release/Modules/di-di.sgmodule",
+      "source": "Rewrite/Sources/Apps/di-di.conf",
+      "sections": "Rule:4, URL Rewrite:6, Body Rewrite:11, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/di-di.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 滴答出行 Source",
+      "file": "Release/Modules/dida-pinche-taxi.sgmodule",
+      "source": "Rewrite/Sources/Apps/dida-pinche-taxi.conf",
+      "sections": "URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/dida-pinche-taxi.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Didi Source",
+      "file": "Release/Modules/didi.sgmodule",
+      "source": "Rewrite/Sources/Apps/didi.conf",
+      "sections": "Rule:4, Body Rewrite:18, Map Local:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/didi.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 数字心动 Source",
+      "file": "Release/Modules/digital-heartbeat.sgmodule",
+      "source": "Rewrite/Sources/Apps/digital-heartbeat.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/digital-heartbeat.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 叮咚买菜 Source",
+      "file": "Release/Modules/dingdong-maicai.sgmodule",
+      "source": "Rewrite/Sources/Apps/dingdong-maicai.conf",
+      "sections": "Rule:3, URL Rewrite:12, Body Rewrite:7, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/dingdong-maicai.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Dlabel云标签 Source",
+      "file": "Release/Modules/dlabel.sgmodule",
+      "source": "Rewrite/Sources/Apps/dlabel.conf",
+      "sections": "URL Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/dlabel.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 豆瓣 Source",
+      "file": "Release/Modules/dou-ban.sgmodule",
+      "source": "Rewrite/Sources/Apps/dou-ban.conf",
+      "sections": "URL Rewrite:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/dou-ban.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 豆瓣阅读 Source",
+      "file": "Release/Modules/douban-read.sgmodule",
+      "source": "Rewrite/Sources/Apps/douban-read.conf",
+      "sections": "URL Rewrite:5, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/douban-read.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 斗鱼 Source",
+      "file": "Release/Modules/douyu.sgmodule",
+      "source": "Rewrite/Sources/Apps/douyu.conf",
+      "sections": "Rule:5, URL Rewrite:1, Body Rewrite:2, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/douyu.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 番茄小说 Source",
+      "file": "Release/Modules/dragon-read.sgmodule",
+      "source": "Rewrite/Sources/Apps/dragon-read.conf",
+      "sections": "Rule:34",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/dragon-read.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu DREAME Source",
+      "file": "Release/Modules/dreame.sgmodule",
+      "source": "Rewrite/Sources/Apps/dreame.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:1, Map Local:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/dreame.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 配音秀 Source",
+      "file": "Release/Modules/dubbing-show.sgmodule",
+      "source": "Rewrite/Sources/Apps/dubbing-show.conf",
+      "sections": "Body Rewrite:4, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/dubbing-show.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 堆糖 Source",
+      "file": "Release/Modules/dui-tang.sgmodule",
+      "source": "Rewrite/Sources/Apps/dui-tang.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/dui-tang.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu ECOVACS HOME Source",
+      "file": "Release/Modules/ecovacs-home.sgmodule",
+      "source": "Rewrite/Sources/Apps/ecovacs-home.conf",
+      "sections": "URL Rewrite:2, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/ecovacs-home.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 中华万年历 Source",
+      "file": "Release/Modules/etouch-ecalendar.sgmodule",
+      "source": "Rewrite/Sources/Apps/etouch-ecalendar.conf",
+      "sections": "Rule:1, URL Rewrite:5, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/etouch-ecalendar.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 丰巢 Source",
+      "file": "Release/Modules/fc-box.sgmodule",
+      "source": "Rewrite/Sources/Apps/fc-box.conf",
+      "sections": "URL Rewrite:9, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/fc-box.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 粉笔 Source",
+      "file": "Release/Modules/fen-bi.sgmodule",
+      "source": "Rewrite/Sources/Apps/fen-bi.conf",
+      "sections": "URL Rewrite:10, Body Rewrite:2, Map Local:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/fen-bi.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 摩天轮 Source",
+      "file": "Release/Modules/ferris-wheel.sgmodule",
+      "source": "Rewrite/Sources/Apps/ferris-wheel.conf",
+      "sections": "URL Rewrite:5, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/ferris-wheel.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 华尔街见闻 Source",
+      "file": "Release/Modules/finance-news.sgmodule",
+      "source": "Rewrite/Sources/Apps/finance-news.conf",
+      "sections": "URL Rewrite:8, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/finance-news.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 闲鱼 Source",
+      "file": "Release/Modules/flea-market.sgmodule",
+      "source": "Rewrite/Sources/Apps/flea-market.conf",
+      "sections": "URL Rewrite:7, Body Rewrite:17, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/flea-market.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 飞客 Source",
+      "file": "Release/Modules/flyer-tea.sgmodule",
+      "source": "Rewrite/Sources/Apps/flyer-tea.conf",
+      "sections": "URL Rewrite:4, Script:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/flyer-tea.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Foodie Source",
+      "file": "Release/Modules/foodie.sgmodule",
+      "source": "Rewrite/Sources/Apps/foodie.conf",
+      "sections": "Rule:3",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/foodie.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 稿定设计 Source",
+      "file": "Release/Modules/gao-ding.sgmodule",
+      "source": "Rewrite/Sources/Apps/gao-ding.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/gao-ding.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Goofish Source",
+      "file": "Release/Modules/goofish.sgmodule",
+      "source": "Rewrite/Sources/Apps/goofish.conf",
+      "sections": "Body Rewrite:17, Map Local:7, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/goofish.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 盖得排行 Source",
+      "file": "Release/Modules/guide-rank.sgmodule",
+      "source": "Rewrite/Sources/Apps/guide-rank.conf",
+      "sections": "URL Rewrite:8, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/guide-rank.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 华住会 Source",
+      "file": "Release/Modules/hanting-hotels.sgmodule",
+      "source": "Rewrite/Sources/Apps/hanting-hotels.conf",
+      "sections": "URL Rewrite:5, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/hanting-hotels.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 小睡眠 Source",
+      "file": "Release/Modules/heartide-brain-wave.sgmodule",
+      "source": "Rewrite/Sources/Apps/heartide-brain-wave.conf",
+      "sections": "URL Rewrite:12, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/heartide-brain-wave.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 香港抖音 Source",
+      "file": "Release/Modules/hkdou-yin.sgmodule",
+      "source": "Rewrite/Sources/Apps/hkdou-yin.conf",
+      "sections": "Rule:6, URL Rewrite:3, Body Rewrite:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/hkdou-yin.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 虎扑 Source",
+      "file": "Release/Modules/hupu.sgmodule",
+      "source": "Rewrite/Sources/Apps/hupu.conf",
+      "sections": "URL Rewrite:8, Script:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/hupu.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 虎嗅 Source",
+      "file": "Release/Modules/huxiu.sgmodule",
+      "source": "Rewrite/Sources/Apps/huxiu.conf",
+      "sections": "Rule:1, URL Rewrite:5, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/huxiu.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 小象超市 Source",
+      "file": "Release/Modules/i-mai-cai.sgmodule",
+      "source": "Rewrite/Sources/Apps/i-mai-cai.conf",
+      "sections": "URL Rewrite:7, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/i-mai-cai.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 爱奇艺 Source",
+      "file": "Release/Modules/i-qi-yi-video.sgmodule",
+      "source": "Rewrite/Sources/Apps/i-qi-yi-video.conf",
+      "sections": "Rule:6, URL Rewrite:5, Body Rewrite:17, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/i-qi-yi-video.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 得间小说 Source",
+      "file": "Release/Modules/i-reader-dejian.sgmodule",
+      "source": "Rewrite/Sources/Apps/i-reader-dejian.conf",
+      "sections": "Rule:2, URL Rewrite:4, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/i-reader-dejian.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 掌阅 Source",
+      "file": "Release/Modules/i-reader.sgmodule",
+      "source": "Rewrite/Sources/Apps/i-reader.conf",
+      "sections": "Rule:1, URL Rewrite:6, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/i-reader.sgmodule"
+    },
+    {
       "name": "GrandpaNiu IT Home Source",
       "file": "Release/Modules/ithome.sgmodule",
       "source": "Rewrite/Sources/Apps/ithome.conf",
       "sections": "URL Rewrite:1, Script:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/ithome.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 京东外卖 Source",
+      "file": "Release/Modules/jdwaimai.sgmodule",
+      "source": "Rewrite/Sources/Apps/jdwaimai.conf",
+      "sections": "URL Rewrite:2, Body Rewrite:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/jdwaimai.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 驾考宝典 Source",
+      "file": "Release/Modules/jia-kao-bao-dian.sgmodule",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "sections": "URL Rewrite:11, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/jia-kao-bao-dian.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 驾校一点通 Source",
+      "file": "Release/Modules/jia-xiao-drive.sgmodule",
+      "source": "Rewrite/Sources/Apps/jia-xiao-drive.conf",
+      "sections": "URL Rewrite:5, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/jia-xiao-drive.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Jump Source",
+      "file": "Release/Modules/jump.sgmodule",
+      "source": "Rewrite/Sources/Apps/jump.conf",
+      "sections": "Rule:7, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/jump.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 帆书 Source",
+      "file": "Release/Modules/kebida-dushu.sgmodule",
+      "source": "Rewrite/Sources/Apps/kebida-dushu.conf",
+      "sections": "URL Rewrite:9, Script:9, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/kebida-dushu.sgmodule"
     },
     {
       "name": "GrandpaNiu Keep Source",
@@ -207,11 +739,333 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/keep.sgmodule"
     },
     {
+      "name": "GrandpaNiu 酷狗铃声 Source",
+      "file": "Release/Modules/kgring.sgmodule",
+      "source": "Rewrite/Sources/Apps/kgring.conf",
+      "sections": "URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/kgring.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 随手记 Source",
+      "file": "Release/Modules/kingdee-my-money.sgmodule",
+      "source": "Rewrite/Sources/Apps/kingdee-my-money.conf",
+      "sections": "URL Rewrite:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/kingdee-my-money.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu KOOK Source",
+      "file": "Release/Modules/kook.sgmodule",
+      "source": "Rewrite/Sources/Apps/kook.conf",
+      "sections": "URL Rewrite:2, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/kook.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 酷狗概念版 Source",
+      "file": "Release/Modules/ku-gou-youth.sgmodule",
+      "source": "Rewrite/Sources/Apps/ku-gou-youth.conf",
+      "sections": "URL Rewrite:9, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/ku-gou-youth.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 酷狗音乐 Source",
+      "file": "Release/Modules/ku-gou.sgmodule",
+      "source": "Rewrite/Sources/Apps/ku-gou.conf",
+      "sections": "Rule:9, URL Rewrite:15, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/ku-gou.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 快递100 Source",
+      "file": "Release/Modules/kuai-di100.sgmodule",
+      "source": "Rewrite/Sources/Apps/kuai-di100.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/kuai-di100.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 快对 Source",
+      "file": "Release/Modules/kuai-dui-zuo-ye.sgmodule",
+      "source": "Rewrite/Sources/Apps/kuai-dui-zuo-ye.conf",
+      "sections": "Rule:1, URL Rewrite:5, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/kuai-dui-zuo-ye.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 快看漫画 Source",
+      "file": "Release/Modules/kuai-kan-comic.sgmodule",
+      "source": "Rewrite/Sources/Apps/kuai-kan-comic.conf",
+      "sections": "Rule:3, URL Rewrite:18, Script:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/kuai-kan-comic.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 快手 Source",
+      "file": "Release/Modules/kuai-shou.sgmodule",
+      "source": "Rewrite/Sources/Apps/kuai-shou.conf",
+      "sections": "URL Rewrite:4, Body Rewrite:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/kuai-shou.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 库街区 Source",
+      "file": "Release/Modules/kuro-bbs.sgmodule",
+      "source": "Rewrite/Sources/Apps/kuro-bbs.conf",
+      "sections": "URL Rewrite:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/kuro-bbs.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 酷我音乐 Source",
+      "file": "Release/Modules/kuwo.sgmodule",
+      "source": "Rewrite/Sources/Apps/kuwo.conf",
+      "sections": "Rule:10, URL Rewrite:3, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/kuwo.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 快影 Source",
+      "file": "Release/Modules/kwai-videoeditor.sgmodule",
+      "source": "Rewrite/Sources/Apps/kwai-videoeditor.conf",
+      "sections": "URL Rewrite:4, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/kwai-videoeditor.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Line Source",
+      "file": "Release/Modules/line.sgmodule",
+      "source": "Rewrite/Sources/Apps/line.conf",
+      "sections": "Rule:20, URL Rewrite:14, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/line.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 纷玩岛 Source",
+      "file": "Release/Modules/live-lab.sgmodule",
+      "source": "Rewrite/Sources/Apps/live-lab.conf",
+      "sections": "URL Rewrite:4, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/live-lab.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 掌上英雄联盟 Source",
+      "file": "Release/Modules/lol-bible.sgmodule",
+      "source": "Rewrite/Sources/Apps/lol-bible.conf",
+      "sections": "URL Rewrite:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/lol-bible.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 瑞幸咖啡 Source",
+      "file": "Release/Modules/luckin-coffee.sgmodule",
+      "source": "Rewrite/Sources/Apps/luckin-coffee.conf",
+      "sections": "URL Rewrite:8, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/luckin-coffee.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 马蜂窝 Source",
+      "file": "Release/Modules/ma-feng-wo.sgmodule",
+      "source": "Rewrite/Sources/Apps/ma-feng-wo.conf",
+      "sections": "Rule:1, URL Rewrite:1, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/ma-feng-wo.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 脉脉 Source",
+      "file": "Release/Modules/mai-mai.sgmodule",
+      "source": "Rewrite/Sources/Apps/mai-mai.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:1, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/mai-mai.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 网易邮箱大师 Source",
+      "file": "Release/Modules/mail-master.sgmodule",
+      "source": "Rewrite/Sources/Apps/mail-master.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/mail-master.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 美柚 Source",
+      "file": "Release/Modules/meet-you.sgmodule",
+      "source": "Rewrite/Sources/Apps/meet-you.conf",
+      "sections": "Rule:2, URL Rewrite:1, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/meet-you.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 美食杰 Source",
+      "file": "Release/Modules/mei-shi-jie.sgmodule",
+      "source": "Rewrite/Sources/Apps/mei-shi-jie.conf",
+      "sections": "Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/mei-shi-jie.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 美图秀秀 Source",
+      "file": "Release/Modules/mei-tu.sgmodule",
+      "source": "Rewrite/Sources/Apps/mei-tu.conf",
+      "sections": "Rule:1, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/mei-tu.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 美颜相机 Source",
+      "file": "Release/Modules/meitu-myxj.sgmodule",
+      "source": "Rewrite/Sources/Apps/meitu-myxj.conf",
+      "sections": "Rule:1, URL Rewrite:2, Body Rewrite:2, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/meitu-myxj.sgmodule"
+    },
+    {
       "name": "GrandpaNiu Meituan Source",
       "file": "Release/Modules/meituan.sgmodule",
       "source": "Rewrite/Sources/Apps/meituan.conf",
       "sections": "Rule:11, URL Rewrite:9, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/meituan.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 美丽修行 Source",
+      "file": "Release/Modules/meizhixiuxing.sgmodule",
+      "source": "Rewrite/Sources/Apps/meizhixiuxing.conf",
+      "sections": "URL Rewrite:4, Body Rewrite:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/meizhixiuxing.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 米游社 Source",
+      "file": "Release/Modules/mi-ho-yo-bbs.sgmodule",
+      "source": "Rewrite/Sources/Apps/mi-ho-yo-bbs.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/mi-ho-yo-bbs.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 小喵看书 Source",
+      "file": "Release/Modules/miao-read.sgmodule",
+      "source": "Rewrite/Sources/Apps/miao-read.conf",
+      "sections": "URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/miao-read.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 漫客栈 Source",
+      "file": "Release/Modules/mkz.sgmodule",
+      "source": "Rewrite/Sources/Apps/mkz.conf",
+      "sections": "URL Rewrite:4, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/mkz.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 中国移动云盘 Source",
+      "file": "Release/Modules/mobile-clouds.sgmodule",
+      "source": "Rewrite/Sources/Apps/mobile-clouds.conf",
+      "sections": "Script:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/mobile-clouds.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 萌娘百科 Source",
+      "file": "Release/Modules/moe-girl-wiki.sgmodule",
+      "source": "Rewrite/Sources/Apps/moe-girl-wiki.conf",
+      "sections": "URL Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/moe-girl-wiki.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Moji Weather Source",
+      "file": "Release/Modules/moji-weather.sgmodule",
+      "source": "Rewrite/Sources/Apps/moji-weather.conf",
+      "sections": "URL Rewrite:1, Body Rewrite:1, Map Local:5, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/moji-weather.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 盒马 Source",
+      "file": "Release/Modules/mr-hema.sgmodule",
+      "source": "Rewrite/Sources/Apps/mr-hema.conf",
+      "sections": "URL Rewrite:7, Body Rewrite:5, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/mr-hema.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 云鲸智能 Source",
+      "file": "Release/Modules/narwel-robots.sgmodule",
+      "source": "Rewrite/Sources/Apps/narwel-robots.conf",
+      "sections": "URL Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/narwel-robots.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 网易大神 Source",
+      "file": "Release/Modules/net-ease-godlike.sgmodule",
+      "source": "Rewrite/Sources/Apps/net-ease-godlike.conf",
+      "sections": "URL Rewrite:1, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/net-ease-godlike.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Netease Mail Source",
+      "file": "Release/Modules/netease-mail.sgmodule",
+      "source": "Rewrite/Sources/Apps/netease-mail.conf",
+      "sections": "Body Rewrite:4, Map Local:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/netease-mail.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 网易新闻 Source",
+      "file": "Release/Modules/netease-news.sgmodule",
+      "source": "Rewrite/Sources/Apps/netease-news.conf",
+      "sections": "Rule:2, URL Rewrite:7, Script:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/netease-news.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 行者户外 Source",
+      "file": "Release/Modules/on-the-way.sgmodule",
+      "source": "Rewrite/Sources/Apps/on-the-way.conf",
+      "sections": "URL Rewrite:1, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/on-the-way.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 向日葵 Source",
+      "file": "Release/Modules/oray-sunlogin.sgmodule",
+      "source": "Rewrite/Sources/Apps/oray-sunlogin.conf",
+      "sections": "URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/oray-sunlogin.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 胖乖生活 Source",
+      "file": "Release/Modules/pangguai-life.sgmodule",
+      "source": "Rewrite/Sources/Apps/pangguai-life.conf",
+      "sections": "URL Rewrite:6, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/pangguai-life.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 完美世界电竞 Source",
+      "file": "Release/Modules/perfect-world-esport.sgmodule",
+      "source": "Rewrite/Sources/Apps/perfect-world-esport.conf",
+      "sections": "URL Rewrite:1, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/perfect-world-esport.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 皮皮虾 Source",
+      "file": "Release/Modules/pi-pi-xia.sgmodule",
+      "source": "Rewrite/Sources/Apps/pi-pi-xia.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/pi-pi-xia.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 中国人保 Source",
+      "file": "Release/Modules/picc-insurance.sgmodule",
+      "source": "Rewrite/Sources/Apps/picc-insurance.conf",
+      "sections": "URL Rewrite:3, Script:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/picc-insurance.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Pinterest Source",
+      "file": "Release/Modules/pinterest.sgmodule",
+      "source": "Rewrite/Sources/Apps/pinterest.conf",
+      "sections": "Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/pinterest.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 朴朴超市 Source",
+      "file": "Release/Modules/pu-pu-mall.sgmodule",
+      "source": "Rewrite/Sources/Apps/pu-pu-mall.conf",
+      "sections": "URL Rewrite:2, Script:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/pu-pu-mall.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 起点读书 Source",
+      "file": "Release/Modules/qi-dian.sgmodule",
+      "source": "Rewrite/Sources/Apps/qi-dian.conf",
+      "sections": "URL Rewrite:13, Body Rewrite:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/qi-dian.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 启信宝 Source",
+      "file": "Release/Modules/qi-xin-bao.sgmodule",
+      "source": "Rewrite/Sources/Apps/qi-xin-bao.conf",
+      "sections": "URL Rewrite:10, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/qi-xin-bao.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 全民K歌 Source",
+      "file": "Release/Modules/qqksong.sgmodule",
+      "source": "Rewrite/Sources/Apps/qqksong.conf",
+      "sections": "Rule:34, URL Rewrite:5, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/qqksong.sgmodule"
     },
     {
       "name": "GrandpaNiu QQ Music Source",
@@ -221,11 +1075,32 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/qqmusic.sgmodule"
     },
     {
+      "name": "GrandpaNiu 蜻蜓FM Source",
+      "file": "Release/Modules/qting-fm.sgmodule",
+      "source": "Rewrite/Sources/Apps/qting-fm.conf",
+      "sections": "Rule:2, URL Rewrite:11, Body Rewrite:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/qting-fm.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 夸克扫描王 Source",
+      "file": "Release/Modules/quark-scan.sgmodule",
+      "source": "Rewrite/Sources/Apps/quark-scan.conf",
+      "sections": "URL Rewrite:1, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/quark-scan.sgmodule"
+    },
+    {
       "name": "GrandpaNiu Quark Source",
       "file": "Release/Modules/quark.sgmodule",
       "source": "Rewrite/Sources/Apps/quark.conf",
-      "sections": "Rule:2, MITM:1",
+      "sections": "Body Rewrite:703, Map Local:2, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/quark.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Railway 12306 Source",
+      "file": "Release/Modules/railway12306.sgmodule",
+      "source": "Rewrite/Sources/Apps/railway12306.conf",
+      "sections": "Rule:1, Script:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/railway12306.sgmodule"
     },
     {
       "name": "GrandpaNiu Reddit Source",
@@ -235,11 +1110,158 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/reddit.sgmodule"
     },
     {
+      "name": "GrandpaNiu ReelShort Source",
+      "file": "Release/Modules/reel-short.sgmodule",
+      "source": "Rewrite/Sources/Apps/reel-short.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/reel-short.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 风鸟 Source",
+      "file": "Release/Modules/risk-bird.sgmodule",
+      "source": "Rewrite/Sources/Apps/risk-bird.conf",
+      "sections": "URL Rewrite:2, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/risk-bird.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 萝卜快跑 Source",
+      "file": "Release/Modules/robo-taxi.sgmodule",
+      "source": "Rewrite/Sources/Apps/robo-taxi.conf",
+      "sections": "URL Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/robo-taxi.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Roborock Source",
+      "file": "Release/Modules/roborock.sgmodule",
+      "source": "Rewrite/Sources/Apps/roborock.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/roborock.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu RQrun Source",
+      "file": "Release/Modules/rqrun.sgmodule",
+      "source": "Rewrite/Sources/Apps/rqrun.conf",
+      "sections": "URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/rqrun.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 360智慧生活 Source",
+      "file": "Release/Modules/safety-home.sgmodule",
+      "source": "Rewrite/Sources/Apps/safety-home.conf",
+      "sections": "Rule:1, URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/safety-home.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 剑网三无界 Source",
+      "file": "Release/Modules/seasun-jx3.sgmodule",
+      "source": "Rewrite/Sources/Apps/seasun-jx3.conf",
+      "sections": "URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/seasun-jx3.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 七猫小说 Source",
+      "file": "Release/Modules/seven-cat.sgmodule",
+      "source": "Rewrite/Sources/Apps/seven-cat.conf",
+      "sections": "Rule:3, URL Rewrite:13, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/seven-cat.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 顺丰速运 Source",
+      "file": "Release/Modules/sf-express.sgmodule",
+      "source": "Rewrite/Sources/Apps/sf-express.conf",
+      "sections": "URL Rewrite:2, Body Rewrite:1, Map Local:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/sf-express.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 小店掌柜 Source",
+      "file": "Release/Modules/shop-keeper-admin.sgmodule",
+      "source": "Rewrite/Sources/Apps/shop-keeper-admin.conf",
+      "sections": "URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/shop-keeper-admin.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 收银通商户端 Source",
+      "file": "Release/Modules/shou-yin-tong-merchant.sgmodule",
+      "source": "Rewrite/Sources/Apps/shou-yin-tong-merchant.conf",
+      "sections": "URL Rewrite:5, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/shou-yin-tong-merchant.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 书旗小说 Source",
+      "file": "Release/Modules/shu-qi-center-reader.sgmodule",
+      "source": "Rewrite/Sources/Apps/shu-qi-center-reader.conf",
+      "sections": "Rule:1, URL Rewrite:4, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/shu-qi-center-reader.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 蜗牛睡眠 Source",
+      "file": "Release/Modules/snail-sleep.sgmodule",
+      "source": "Rewrite/Sources/Apps/snail-sleep.conf",
+      "sections": "Rule:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/snail-sleep.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu B612咔叽 Source",
+      "file": "Release/Modules/snow-camera.sgmodule",
+      "source": "Rewrite/Sources/Apps/snow-camera.conf",
+      "sections": "Rule:3",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/snow-camera.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 雪球 Source",
+      "file": "Release/Modules/snowball.sgmodule",
+      "source": "Rewrite/Sources/Apps/snowball.conf",
+      "sections": "URL Rewrite:13, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/snowball.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 汽水音乐 Source",
+      "file": "Release/Modules/soda-music.sgmodule",
+      "source": "Rewrite/Sources/Apps/soda-music.conf",
+      "sections": "URL Rewrite:10, Body Rewrite:7, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/soda-music.sgmodule"
+    },
+    {
       "name": "GrandpaNiu Soul Source",
       "file": "Release/Modules/soul.sgmodule",
       "source": "Rewrite/Sources/Apps/soul.conf",
-      "sections": "Rule:4, URL Rewrite:2, MITM:1",
+      "sections": "Rule:14, Body Rewrite:1, Map Local:2, Script:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/soul.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 智慧苏州 Source",
+      "file": "Release/Modules/su-zhou-citizen-card.sgmodule",
+      "source": "Rewrite/Sources/Apps/su-zhou-citizen-card.conf",
+      "sections": "Map Local:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/su-zhou-citizen-card.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 飞猪旅行 Source",
+      "file": "Release/Modules/taobao-travel.sgmodule",
+      "source": "Rewrite/Sources/Apps/taobao-travel.conf",
+      "sections": "URL Rewrite:5, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/taobao-travel.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 淘票票 Source",
+      "file": "Release/Modules/taopiaopiao.sgmodule",
+      "source": "Rewrite/Sources/Apps/taopiaopiao.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/taopiaopiao.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 他趣 Source",
+      "file": "Release/Modules/taqu.sgmodule",
+      "source": "Rewrite/Sources/Apps/taqu.conf",
+      "sections": "URL Rewrite:9, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/taqu.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 腾讯视频 Source",
+      "file": "Release/Modules/tencent-video.sgmodule",
+      "source": "Rewrite/Sources/Apps/tencent-video.conf",
+      "sections": "Rule:16, URL Rewrite:1, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/tencent-video.sgmodule"
     },
     {
       "name": "GrandpaNiu TeraBox Source",
@@ -256,6 +1278,104 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/tieba.sgmodule"
     },
     {
+      "name": "GrandpaNiu 图怪兽 Source",
+      "file": "Release/Modules/tu-guai-shou.sgmodule",
+      "source": "Rewrite/Sources/Apps/tu-guai-shou.conf",
+      "sections": "URL Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/tu-guai-shou.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu TubeMax Source",
+      "file": "Release/Modules/tube-max.sgmodule",
+      "source": "Rewrite/Sources/Apps/tube-max.conf",
+      "sections": "Rule:9, URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/tube-max.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Tumblr Source",
+      "file": "Release/Modules/tumblr.sgmodule",
+      "source": "Rewrite/Sources/Apps/tumblr.conf",
+      "sections": "Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/tumblr.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 乐播投屏 Source",
+      "file": "Release/Modules/tv-assistant.sgmodule",
+      "source": "Rewrite/Sources/Apps/tv-assistant.conf",
+      "sections": "URL Rewrite:5, Script:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/tv-assistant.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 腾讯文档 Source",
+      "file": "Release/Modules/txdocs.sgmodule",
+      "source": "Rewrite/Sources/Apps/txdocs.conf",
+      "sections": "URL Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/txdocs.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Uki Source",
+      "file": "Release/Modules/uki.sgmodule",
+      "source": "Rewrite/Sources/Apps/uki.conf",
+      "sections": "URL Rewrite:6, Script:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/uki.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 掌上无畏契约 Source",
+      "file": "Release/Modules/valorant-bible.sgmodule",
+      "source": "Rewrite/Sources/Apps/valorant-bible.conf",
+      "sections": "URL Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/valorant-bible.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 萤石云视频 Source",
+      "file": "Release/Modules/video-go.sgmodule",
+      "source": "Rewrite/Sources/Apps/video-go.conf",
+      "sections": "URL Rewrite:6, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/video-go.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 挖财记账 Source",
+      "file": "Release/Modules/wa-cai-ji-zhang.sgmodule",
+      "source": "Rewrite/Sources/Apps/wa-cai-ji-zhang.conf",
+      "sections": "URL Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/wa-cai-ji-zhang.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 沃尔玛 Source",
+      "file": "Release/Modules/walmart.sgmodule",
+      "source": "Rewrite/Sources/Apps/walmart.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/walmart.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 微信小程序 Source",
+      "file": "Release/Modules/wechat-mini-programs.sgmodule",
+      "source": "Rewrite/Sources/Apps/wechat-mini-programs.conf",
+      "sections": "Rule:6, URL Rewrite:112, Body Rewrite:6, Script:12, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/wechat-mini-programs.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 微信公众号 Source",
+      "file": "Release/Modules/wechat-official-accounts.sgmodule",
+      "source": "Rewrite/Sources/Apps/wechat-official-accounts.conf",
+      "sections": "Rule:1, URL Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/wechat-official-accounts.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 微博轻享版 Source",
+      "file": "Release/Modules/weibo-intl.sgmodule",
+      "source": "Rewrite/Sources/Apps/weibo-intl.conf",
+      "sections": "URL Rewrite:4, Body Rewrite:10, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/weibo-intl.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 微脉圈 Source",
+      "file": "Release/Modules/weimai.sgmodule",
+      "source": "Rewrite/Sources/Apps/weimai.conf",
+      "sections": "Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/weimai.sgmodule"
+    },
+    {
       "name": "GrandpaNiu WeRead Source",
       "file": "Release/Modules/weread.sgmodule",
       "source": "Rewrite/Sources/Apps/weread.conf",
@@ -263,11 +1383,67 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/weread.sgmodule"
     },
     {
+      "name": "GrandpaNiu 威锋 Source",
+      "file": "Release/Modules/wpforum.sgmodule",
+      "source": "Rewrite/Sources/Apps/wpforum.conf",
+      "sections": "URL Rewrite:1, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/wpforum.sgmodule"
+    },
+    {
       "name": "GrandpaNiu WPS Source",
       "file": "Release/Modules/wps.sgmodule",
       "source": "Rewrite/Sources/Apps/wps.conf",
-      "sections": "Rule:4, URL Rewrite:3, MITM:1",
+      "sections": "URL Rewrite:3, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/wps.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 无他相机 Source",
+      "file": "Release/Modules/wuta-camera.sgmodule",
+      "source": "Rewrite/Sources/Apps/wuta-camera.conf",
+      "sections": "Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/wuta-camera.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 磁力宅播放器 Source",
+      "file": "Release/Modules/xfuse.sgmodule",
+      "source": "Rewrite/Sources/Apps/xfuse.conf",
+      "sections": "URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xfuse.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 下厨房 Source",
+      "file": "Release/Modules/xia-chu-fang.sgmodule",
+      "source": "Rewrite/Sources/Apps/xia-chu-fang.conf",
+      "sections": "URL Rewrite:4, Body Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xia-chu-fang.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 小蚕霸王餐 Source",
+      "file": "Release/Modules/xiao-can.sgmodule",
+      "source": "Rewrite/Sources/Apps/xiao-can.conf",
+      "sections": "URL Rewrite:3, Header Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xiao-can.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 小黑盒 Source",
+      "file": "Release/Modules/xiao-hei-he.sgmodule",
+      "source": "Rewrite/Sources/Apps/xiao-hei-he.conf",
+      "sections": "URL Rewrite:1, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xiao-hei-he.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 小桔充电 Source",
+      "file": "Release/Modules/xiaojukeji-charge.sgmodule",
+      "source": "Rewrite/Sources/Apps/xiaojukeji-charge.conf",
+      "sections": "URL Rewrite:3, Body Rewrite:1, Map Local:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xiaojukeji-charge.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 小米音箱 Source",
+      "file": "Release/Modules/xiaomi-speaker.sgmodule",
+      "source": "Rewrite/Sources/Apps/xiaomi-speaker.conf",
+      "sections": "URL Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xiaomi-speaker.sgmodule"
     },
     {
       "name": "GrandpaNiu Xiaoyuzhou Source",
@@ -284,18 +1460,123 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/ximalaya.sgmodule"
     },
     {
+      "name": "GrandpaNiu 迅雷 Source",
+      "file": "Release/Modules/xun-lei.sgmodule",
+      "source": "Rewrite/Sources/Apps/xun-lei.conf",
+      "sections": "Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xun-lei.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 医考帮 Source",
+      "file": "Release/Modules/yi-kao-bang.sgmodule",
+      "source": "Rewrite/Sources/Apps/yi-kao-bang.conf",
+      "sections": "URL Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/yi-kao-bang.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 一甜相机 Source",
+      "file": "Release/Modules/yitian.sgmodule",
+      "source": "Rewrite/Sources/Apps/yitian.conf",
+      "sections": "URL Rewrite:2, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/yitian.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 网易有道词典 Source",
+      "file": "Release/Modules/youdao-dict.sgmodule",
+      "source": "Rewrite/Sources/Apps/youdao-dict.conf",
+      "sections": "Rule:1, URL Rewrite:4, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/youdao-dict.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 有道云笔记 Source",
+      "file": "Release/Modules/youdao-note.sgmodule",
+      "source": "Rewrite/Sources/Apps/youdao-note.conf",
+      "sections": "URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/youdao-note.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 有道翻译官 Source",
+      "file": "Release/Modules/youdao-trans.sgmodule",
+      "source": "Rewrite/Sources/Apps/youdao-trans.conf",
+      "sections": "URL Rewrite:7, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/youdao-trans.sgmodule"
+    },
+    {
       "name": "GrandpaNiu Youku Source",
       "file": "Release/Modules/youku.sgmodule",
       "source": "Rewrite/Sources/Apps/youku.conf",
-      "sections": "Rule:4, MITM:1",
+      "sections": "Rule:22, Body Rewrite:5, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/youku.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 省钱快报 Source",
+      "file": "Release/Modules/yue-dan-ba.sgmodule",
+      "source": "Rewrite/Sources/Apps/yue-dan-ba.conf",
+      "sections": "URL Rewrite:4, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/yue-dan-ba.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 阅友 Source",
+      "file": "Release/Modules/yueyou.sgmodule",
+      "source": "Rewrite/Sources/Apps/yueyou.conf",
+      "sections": "Rule:1, Body Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/yueyou.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu YY Source",
+      "file": "Release/Modules/yy-voice.sgmodule",
+      "source": "Rewrite/Sources/Apps/yy-voice.conf",
+      "sections": "Rule:3, URL Rewrite:3, Body Rewrite:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/yy-voice.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu YY语音 Source",
+      "file": "Release/Modules/yyvoice-tool.sgmodule",
+      "source": "Rewrite/Sources/Apps/yyvoice-tool.conf",
+      "sections": "URL Rewrite:4, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/yyvoice-tool.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu ZAKER Source",
+      "file": "Release/Modules/zaker.sgmodule",
+      "source": "Rewrite/Sources/Apps/zaker.conf",
+      "sections": "URL Rewrite:2, Body Rewrite:4, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/zaker.sgmodule"
     },
     {
       "name": "GrandpaNiu ZDM Source",
       "file": "Release/Modules/zdm.sgmodule",
       "source": "Rewrite/Sources/Apps/zdm.conf",
-      "sections": "Rule:1, URL Rewrite:7, MITM:1",
+      "sections": "Rule:1, URL Rewrite:1, Body Rewrite:27, Map Local:6, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/zdm.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 智联招聘 Source",
+      "file": "Release/Modules/zhi-lian-zhao-pin.sgmodule",
+      "source": "Rewrite/Sources/Apps/zhi-lian-zhao-pin.conf",
+      "sections": "Rule:1, URL Rewrite:2, Body Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/zhi-lian-zhao-pin.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 转转 Source",
+      "file": "Release/Modules/zhuan-zhuan.sgmodule",
+      "source": "Rewrite/Sources/Apps/zhuan-zhuan.conf",
+      "sections": "URL Rewrite:7, Body Rewrite:6, Map Local:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/zhuan-zhuan.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 纵横小说 Source",
+      "file": "Release/Modules/zong-heng.sgmodule",
+      "source": "Rewrite/Sources/Apps/zong-heng.conf",
+      "sections": "URL Rewrite:2, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/zong-heng.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu 最右 Source",
+      "file": "Release/Modules/zui-you.sgmodule",
+      "source": "Rewrite/Sources/Apps/zui-you.conf",
+      "sections": "Rule:3, URL Rewrite:3, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/zui-you.sgmodule"
     },
     {
       "name": "GrandpaNiu Zuoyebang Source",

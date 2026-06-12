@@ -1,0 +1,16 @@
+#!name=GrandpaNiu 美柚 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/meet-you.sgmodule
+
+[Rule]
+DOMAIN,ad.seeyouyima.com,REJECT
+DOMAIN,axxd.xmseeyouyima.com,REJECT
+
+[URL Rewrite]
+^https://circle\.(xm)?seeyouyima\.com/v\d/article_recommend\? - reject
+
+[Body Rewrite]
+http-response-jq ^https://common\.seeyouyima\.com/v2/conf_list$ 'del(.data.confList.Minor_mode_card)'
+
+[MITM]
+hostname = %APPEND% circle.seeyouyima.com,circle.xmseeyouyima.com,common.seeyouyima.com

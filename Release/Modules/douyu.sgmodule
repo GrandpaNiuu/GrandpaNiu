@@ -1,0 +1,23 @@
+#!name=GrandpaNiu 斗鱼 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/douyu.sgmodule
+
+[Rule]
+URL-REGEX,"^http:\/\/linkmicschedule\.douyucdn\.cn\/im_schedule\/im_gate_list",REJECT
+AND,((DEST-PORT,18000),(PROTOCOL,STUN)),REJECT
+DOMAIN,stun1.douyucdn.cn,REJECT
+DOMAIN,stun1.qvb.qcloud.com,REJECT
+^(http:\/\/)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/(hlsh5p1\.douyucdn2\.cn)(.*) 307 $1$5$6
+
+[URL Rewrite]
+^https://rtbapi\.douyucdn\.cn/japi/sign/app/getinfo - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://apiv2\.douyucdn\.cn/japi/entrance/roomRes/nc/m/list 'del(.data.pendant_a,.data.entrance_d)'
+http-response-jq ^https://venus\.douyucdn\.cn/venus/config/static/update.+keyCodeSet=flow_config '.greatGodGameSitterSwitch = 0 followMoreAnchorEntrance 0 sdklivebanner 0 homeActFloatSwitch 0 bringGoodsSwitch 0 qqGameSwitch 0'
+
+[Script]
+douyu.response.1 = type=http-response,pattern=^https://apiv2\.douyucdn\.cn/mgapi/livenc/home/getRecV3,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/Douyu/Douyu_remove_ads.js
+
+[MITM]
+hostname = %APPEND% rtbapi.douyucdn.cn,apiv2.douyucdn.cn,venus.douyucdn.cn

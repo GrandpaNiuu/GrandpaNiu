@@ -1,0 +1,19 @@
+#!name=GrandpaNiu 虎嗅 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/huxiu.sgmodule
+
+[Rule]
+DOMAIN,api-ad-product.huxiu.com,REJECT
+
+[URL Rewrite]
+^https://api-ms-config\.huxiu\.com/v1/adConfig$ - reject-dict
+^https://api-web-feed\.huxiu\.com/v1/index/recommendContentsNew$ - reject-dict
+^https://api-search\.huxiu\.com/api/searchIndex$ - reject-dict
+^https://api-article\.huxiu\.com/v2/article/getTextArticleRelated$ - reject-dict
+^https://api-web-moment\.huxiu\.com/v3/moment/getDetailRecdArticle$ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://api-ms-feed\.huxiu\.com/v1/media/recommend$ 'del(.data.live)'
+
+[MITM]
+hostname = %APPEND% api-ms-config.huxiu.com,api-web-feed.huxiu.com,api-search.huxiu.com,api-article.huxiu.com,api-web-moment.huxiu.com,api-ms-feed.huxiu.com

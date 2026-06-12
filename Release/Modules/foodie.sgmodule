@@ -1,0 +1,8 @@
+#!name=GrandpaNiu Foodie Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/foodie.sgmodule
+
+[Rule]
+DOMAIN,api-ad.kajicam.com,REJECT
+DOMAIN,zjres-ad.kajicam.com,REJECT
+DOMAIN,popup-api.b612kaji.com,REJECT

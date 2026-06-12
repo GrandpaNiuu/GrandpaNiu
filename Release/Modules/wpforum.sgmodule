@@ -1,0 +1,12 @@
+#!name=GrandpaNiu 威锋 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/wpforum.sgmodule
+
+[URL Rewrite]
+^https://api\.wfdata\.club/v2/yesfeng/yesList\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://api\.wfdata\.club/v2/yesfeng/slideshow\? '.data |= map(select(.protocolId == 1))'
+
+[MITM]
+hostname = %APPEND% api.wfdata.club

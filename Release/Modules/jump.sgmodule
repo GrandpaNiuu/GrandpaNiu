@@ -1,0 +1,19 @@
+#!name=GrandpaNiu Jump Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/jump.sgmodule
+
+[Rule]
+DOMAIN,zlsdk.1rtb.net,REJECT
+DOMAIN,jp.ad.gameley.com,REJECT
+DOMAIN,toblog.ctobsnssdk.com,REJECT
+DOMAIN,s3plus.meituan.net,REJECT
+DOMAIN,images.pinduoduo.com,REJECT
+DOMAIN,qh-material.taobao.com,REJECT
+DOMAIN-SUFFIX,admobile.top,REJECT
+
+[Body Rewrite]
+http-response-jq ^https:?//switch.jumpvg.com/jump/getlaunchad/v2$ 'del(.data.adList)|.data.launchAd.showType=0'
+http-response-jq ^https:?//switch.jumpvg.com/jump/recommend/ad_conf$ '.data=[]'
+
+[MITM]
+hostname = %APPEND% switch.jumpvg.com

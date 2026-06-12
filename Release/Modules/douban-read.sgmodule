@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 豆瓣阅读 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/douban-read.sgmodule
+
+[URL Rewrite]
+^https://read\.douban\.com/api/v2/ads/ - reject-dict
+^https://read\.douban\.com/api/v2/popup$ - reject-dict
+^https://read\.douban\.com/api/v2/search/hot_words$ - reject-dict
+^https://read\.douban\.com/api/v2/search/hot_charts$ - reject-dict
+^https://read\.douban\.com/api/v2/search/rec_urls$ - reject-dict
+
+[MITM]
+hostname = %APPEND% read.douban.com

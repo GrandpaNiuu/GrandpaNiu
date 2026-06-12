@@ -1,0 +1,21 @@
+#!name=GrandpaNiu 掌阅 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/i-reader.sgmodule
+
+[Rule]
+DOMAIN,saad.ms.zhangyue.net,REJECT
+
+[URL Rewrite]
+^https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyapi/bookstore/ad/ - reject-dict
+^https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/bookstore/ad/ - reject-dict
+^https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zybk/api/pop/index\? - reject-dict
+^https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyapi/bookstore/user/mytab\? - reject-dict
+^https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyboot/activity/mytab\? - reject-dict
+https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyam/app/app\.php\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zybook4/iphone/u/p/api\.php\? 'del(.Splash)'
+http-response-jq ^https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/bookstore/read/visual/channel/list\? '.body.list |= map(select(.id | contains("ad_") | not))'
+
+[MITM]
+hostname = %APPEND% webboot.zhangyue.com,ih2.ireader.com

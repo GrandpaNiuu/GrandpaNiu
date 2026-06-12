@@ -1,0 +1,15 @@
+#!name=GrandpaNiu 配音秀 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/dubbing-show.sgmodule
+
+[Body Rewrite]
+http-response-jq ^https://iosapi\.peiyinxiu\.com/Api/live/LiveList 'del(.data.banners)'
+http-response-jq ^https://iosapi\.peiyinxiu\.com/api/live/FollowList 'del(.obj.data)'
+http-response-jq ^https://iosapi\.peiyinxiu\.com/Api/Friend/GetRecommendUsers 'del(.obj.data)'
+http-response-jq ^https://iosapi\.peiyinxiu\.com/api/Union/HomeData 'del(.obj.data)'
+
+[Script]
+dubbing-show.response.1 = type=http-response,pattern=^https://iosapi\.peiyinxiu\.com/Api/Film/GetConfigValue,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/DubbingShow/DubbingShow_remove_ads.js
+
+[MITM]
+hostname = %APPEND% iosapi.peiyinxiu.com

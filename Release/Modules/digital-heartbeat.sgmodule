@@ -1,0 +1,17 @@
+#!name=GrandpaNiu 数字心动 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/digital-heartbeat.sgmodule
+
+[URL Rewrite]
+^https://api-changzheng\.chinaath\.com/changzheng-basic-center-api/api/appConfigBanner/listBannerRelease\? - reject-dict
+^https://api-changzheng\.chinaath\.com/changzheng-content-center-api/api/global/search/hotSearch/list$ - reject-dict
+^https://api-changzheng\.chinaath\.com/changzheng-basic-center-api/api/advertisement/ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://api-changzheng\.chinaath\.com/changzheng-common-proxy-api/api/advertising/proxy/getOpenScreenAdvertising$ '.data.advertisingList = []'
+http-response-jq ^https://api-changzheng\.chinaath\.com/changzheng-race-proxy-api/api/home/page/getBrand$ '.data |= map(select(.advertisementName == "路跑赛事" or .advertisementName == "线上赛" or .advertisementName == "越野赛事"))'
+http-response-jq ^https://api-changzheng\.chinaath\.com/changzheng-race-proxy-api/api/home/page/get$ 'del(.data.topHotSearchList,.data.bannerListTwo,.data.textAdvertisementList)'
+http-response-jq ^https://api-changzheng\.chinaath\.com/changzheng-race-proxy-api/api/home/page/get$ '.data.recommendList |= map(select(.raceAdList | not or length == 0))'
+
+[MITM]
+hostname = %APPEND% api-changzheng.chinaath.com

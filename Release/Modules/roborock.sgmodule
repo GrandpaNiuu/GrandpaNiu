@@ -1,0 +1,14 @@
+#!name=GrandpaNiu Roborock Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/roborock.sgmodule
+
+[URL Rewrite]
+^https://cniot\.roborock\.com/api/v1/activity/banner/list$ - reject-dict
+^https://cniot\.roborock\.com/api/v1/activity/latest$ - reject-dict
+^https://cniot\.roborock\.com/api/v1/app/theme/device/icon\? - reject
+
+[Body Rewrite]
+http-response-jq ^https://api\.roborock\.com/v2/h5\.page\.item\.info\?id=4115$ '.data |= map(select(.title == "常用功能"))'
+
+[MITM]
+hostname = %APPEND% cniot.roborock.com,api.roborock.com

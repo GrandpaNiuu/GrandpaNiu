@@ -1,0 +1,11 @@
+#!name=GrandpaNiu 小米音箱 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/xiaomi-speaker.sgmodule
+
+[URL Rewrite]
+^https://marketing-aibox\.v\.mitvos\.com/advertise/ - reject-dict
+^https://marketing-aibox\.v\.mitvos\.com/payGuide/halfScreenMulti/(home|cache)\? - reject-dict
+^https://marketing-aibox\.v\.mitvos\.com/payGuide/tabPage\? - reject-dict
+
+[MITM]
+hostname = %APPEND% marketing-aibox.v.mitvos.com

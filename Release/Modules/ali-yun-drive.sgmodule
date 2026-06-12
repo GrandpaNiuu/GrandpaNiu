@@ -1,0 +1,17 @@
+#!name=GrandpaNiu 阿里云盘 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ali-yun-drive.sgmodule
+
+[Rule]
+IP-CIDR,203.107.1.1/24,REJECT,no-resolve
+
+[URL Rewrite]
+^https://member\.alipan\.com/v2/activity/sign_in_luckyBottle - reject-dict
+^https://api\.alipan\.com/adrive/v1/file/getTopFolders - reject-dict
+
+[Script]
+ali-yun-drive.response.1 = type=http-response,pattern=^https://(biz)?api\.alipan\.com/apps/v\d/users?/home/(news|widgets),requires-body=1,script-path=https://kelee.one/Resource/JavaScript/AliYunDrive/AliYunDrive_remove_ads.js
+ali-yun-drive.response.2 = type=http-response,pattern=^https://member\.alipan\.com/v1/users/onboard_list,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/AliYunDrive/AliYunDrive_remove_ads.js
+
+[MITM]
+hostname = %APPEND% api.alipan.com,member.alipan.com,bizapi.alipan.com

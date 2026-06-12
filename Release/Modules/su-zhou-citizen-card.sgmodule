@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 智慧苏州 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/su-zhou-citizen-card.sgmodule
+
+[Map Local]
+^https?://newapp2\.szsmk\.com/app/config/queryMainAd mock-response-body data-type=json data="{"message":"操作成功","main_ad_list":[],"code":"000000"}" status-code=200 header="content-type: application/json"
+^https?://newapp2\.szsmk\.com/app/config/(queryCarousel|queryRecommendation)/ data-type=json data="{"code":"000000","message":"操作成功","list":[]}" status-code=200 header="content-type: application/json"
+
+[MITM]
+hostname = %APPEND% newapp2.szsmk.com

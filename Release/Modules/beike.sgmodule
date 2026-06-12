@@ -1,0 +1,18 @@
+#!name=GrandpaNiu 贝壳找房 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/beike.sgmodule
+
+[URL Rewrite]
+^https://apps\.api\.ke\.com/config/config/bootpage\? - reject-dict
+^https://apps\.api\.ke\.com/platform/shellapp/userCenter/feed\? - reject-dict
+^https://apps\.api\.ke\.com/config/config/getactivityconfig\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://apps\.api\.ke\.com/platform/shellapp/homepage/initData/mini\? 'del(.data.bootpage,.data.bottom_bar_activity)'
+http-response-jq ^https://apps\.api\.ke\.com/platform/shellapp/userCenter/info\? 'del(.data.islandModule)'
+http-response-jq ^https://apps\.api\.ke\.com/platform/shellapp/userCenter/info\? 'del(.data.mainIcons.list[] | select(.indexKey == "coupon"))'
+http-response-jq ^https://apps\.api\.ke\.com/platform/shellapp/myhome/pagedetail\? '.data.moduleList |= map(select(.tab != "myHomeDecorV4"))'
+http-response-jq ^https://apps\.api\.ke\.com/platform/shellapp/homepage/feed\? '.data.list |= map(select(.cardType == "houseContainer" or .cardType == "houseV2" or .cardType == "houseV3" or .cardType == "rentHouseDiscount" or .cardType == "decorationCase"))'
+
+[MITM]
+hostname = %APPEND% apps.api.ke.com

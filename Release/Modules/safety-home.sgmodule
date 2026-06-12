@@ -1,0 +1,12 @@
+#!name=GrandpaNiu 360智慧生活 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/safety-home.sgmodule
+
+[Rule]
+DOMAIN,ad.iot.360.cn,REJECT
+
+[URL Rewrite]
+^https://app\.home\.360\.cn/v1/config/custom_config - reject-dict
+
+[MITM]
+hostname = %APPEND% app.home.360.cn

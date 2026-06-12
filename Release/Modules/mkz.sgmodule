@@ -1,0 +1,15 @@
+#!name=GrandpaNiu 漫客栈 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/mkz.sgmodule
+
+[URL Rewrite]
+^https://base\.mkzcdn\.com/advert/app/read/v\d - reject-dict
+^https://base\.mkzcdn\.com/advert/app/story/read/v\d - reject-dict
+^https://base\.mkzcdn\.com/advert/app/task/motivate/v\d - reject-dict
+^https://base\.mkzcdn\.com/advert/app/user/slide\d/v\d/ - reject-dict
+
+[Script]
+mkz.response.1 = type=http-response,pattern=^https://base\.mkzcdn\.com/app/config/,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/MKZ/MKZ_remove_ads.js
+
+[MITM]
+hostname = %APPEND% base.mkzcdn.com

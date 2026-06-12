@@ -1,0 +1,20 @@
+#!name=GrandpaNiu 美颜相机 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/meitu-myxj.sgmodule
+
+[Rule]
+DOMAIN,adui.tg.meitu.com,REJECT
+
+[URL Rewrite]
+^https://api\.meiyan\.com/operation/home_banner\.json\? - reject-dict
+^https://api\.meiyan\.com/vip/permission_update_popup\.json\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://api\.meiyan\.com/operation/get_config\.json\? 'del(.response.time_limit,.response.bubble,.response.person_center)'
+http-response-jq ^https://api\.meiyan\.com/operation/get_config\.json\? '.response.function_pop.meiyan_style.is_pop = false response.onoff.vip_half_window_exit_remain_popup.open 0 response.onoff.vip_home_exit_remain_popup 0'
+
+[Script]
+meitu-myxj.response.1 = type=http-response,pattern=^https://api\.meiyan\.com/operation/home\.json\?,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/MeituMYXJ/MeituMYXJ_remove_ads.js
+
+[MITM]
+hostname = %APPEND% api.meiyan.com

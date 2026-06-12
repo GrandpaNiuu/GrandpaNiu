@@ -1,0 +1,11 @@
+#!name=GrandpaNiu 图怪兽 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/tu-guai-shou.sgmodule
+
+[URL Rewrite]
+^https://api\.818ps\.com/v4/advertisement/ - reject-dict
+^https://api\.818ps\.com/v4/popup/ - reject-dict
+^https://api\.818ps\.com/v4/festival/newYear/pop\? - reject-dict
+
+[MITM]
+hostname = %APPEND% api.818ps.com

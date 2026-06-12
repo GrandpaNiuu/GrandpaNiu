@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 微信公众号 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/wechat-official-accounts.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,wxs.qq.com,REJECT
+
+[URL Rewrite]
+^https://mp\.weixin\.qq\.com/mp/(cps_product_info|getappmsgad|jsmonitor|masonryfeed|relatedarticle)\? - reject-dict
+^https://mp\.weixin\.qq\.com/mp/relatedsearchword - reject-dict
+
+[MITM]
+hostname = %APPEND% mp.weixin.qq.com

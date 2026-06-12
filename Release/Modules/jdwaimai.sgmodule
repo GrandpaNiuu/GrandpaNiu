@@ -1,0 +1,16 @@
+#!name=GrandpaNiu 京东外卖 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/jdwaimai.sgmodule
+
+[URL Rewrite]
+^https://color\.jddj\.com/client\.action\?functionId=uniformRecommend - reject-dict
+^https://color\.jddj\.com/client\.action\?functionId=search_recommendRanking$ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://color\.jddj\.com/client\.action\?functionId=hours_home$ 'del(.result.config.searchFloor.data[].searchWords) | .result.data |= map(if .tnConfigVO?.businessCode == "nearby_HourlyGo_Operation_Tags" then empty else . end)'
+http-response-jq ^https://color\.jddj\.com/client\.action\?functionId=wmHome$ '(.floors |= map(del(.data.tnData.newsInfo?))) | .floors |= (map(select(.mId != "newWalletIdFloor" and .mId != "recommendfloor"))) | .floors |= (map(.data |= (if .tnData? then del(.tnData.cardList, .tnData.cardListStatic, .tnData.walletList) else . end)))'
+http-response-jq ^https://api\.m\.jd\.com/client\.action$ 'del(.data.searchDTO.searchWords,.data.wishlistDTO.bubbleTip)'
+http-response-jq ^https://api\.m\.jd\.com/client\.action$ '.data.tabList |= (map(select(.code == "recommendation" or .code == "find_food")) | map(if .code == "recommendation" then .dpHomeFeedTabResultDTOList = .dpHomeFeedTabResultDTOList[0:2] else . end | .dpHomeBannerResultDTOList = []))'
+
+[MITM]
+hostname = %APPEND% color.jddj.com,api.m.jd.com

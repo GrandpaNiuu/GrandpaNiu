@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 有道云笔记 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/youdao-note.sgmodule
+
+[URL Rewrite]
+^https://silk\.lx\.netease\.com/api/open/advertOpen/ - reject-dict
+
+[MITM]
+hostname = %APPEND% silk.lx.netease.com

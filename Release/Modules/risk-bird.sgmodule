@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 风鸟 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/risk-bird.sgmodule
+
+[URL Rewrite]
+^https://m\.riskbird\.com/prod-qbb-api/user/getBannerList - reject-dict
+^https://m\.riskbird\.com/prod-qbb-api/searchHotEnt - reject-dict
+
+[Script]
+risk-bird.response.1 = type=http-response,pattern=^https://m\.riskbird\.com/prod-qbb-api/query/person/personRecommend,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/RiskBird/RiskBird_remove_ads.js
+
+[MITM]
+hostname = %APPEND% m.riskbird.com

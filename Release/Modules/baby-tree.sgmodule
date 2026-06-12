@@ -1,0 +1,18 @@
+#!name=GrandpaNiu 宝宝树孕育 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/baby-tree.sgmodule
+
+[Rule]
+URL-REGEX,"^http:\/\/go\.babytree\.com\/go_pregnancy\/api\/(index_activity\/get_app_index_activity|sign\/sign_h_5)\?",REJECT-DICT
+URL-REGEX,"^http:\/\/go\.babytree\.com\/go_search\/api\/mobile_search_new\/get_multi_search_default_keywords\?",REJECT-DICT
+URL-REGEX,"^http:\/\/m\.meitun\.com\/newapi\/router\/topic\/hometptf\/feedRecommend",REJECT-DICT
+URL-REGEX,"^http:\/\/pic08\.babytreeimg\.com\/knowledge\/2022\/0923\/\w+",REJECT
+URL-REGEX,"^http:\/\/plough\.babytree\.com\/plough\.do",REJECT-DICT
+
+[Script]
+baby-tree.response.1 = type=http-response,pattern=^http://api\.babytree\.com/bafconfigcenter_intf/config/get\?,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/BabyTree/BabyTree_remove_ads.js
+baby-tree.response.2 = type=http-response,pattern=^http://go\.babytree\.com/go_pregnancy/api/(app_index/get_app_tab|cms_column/get_column_list|feeds/get_index_feeds_list|user/get_user_info)\?,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/BabyTree/BabyTree_remove_ads.js
+baby-tree.response.3 = type=http-response,pattern=^http://go\.babytree\.com/go_search/api/mobile_search_new/search_index,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/BabyTree/BabyTree_remove_ads.js
+
+[MITM]
+hostname = %APPEND% api.babytree.com,go.babytree.com

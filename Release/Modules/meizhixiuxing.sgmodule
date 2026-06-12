@@ -1,0 +1,18 @@
+#!name=GrandpaNiu 美丽修行 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/meizhixiuxing.sgmodule
+
+[URL Rewrite]
+^https://api\.bevol\.com/appmain/app/home/launch$ - reject-dict
+^https://api\.bevol\.com/appmain/app/home/popup$ - reject-dict
+^https://api\.bevol\.com/personal/page$ - reject-dict
+^https://api\.bevol\.com/seach/foundAndTopSearch$ - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://api\.bevol\.com/appmain/app/home/page$ 'del(.result.versionPopUp,.result.isShowSearchLabel,.result.isShowSearchFeedBack,.result.centerBannerAdvert,.result.programmaticAdvertising,.result.mattsData,.result.questionnaireMap,.result.appPullDownAdvert)'
+http-response-jq ^https://api\.bevol\.com/appmain/app/home/feed$ 'del(.result.banners)'
+http-response-jq ^https://api\.bevol\.com/appmain/app/home/feed$ '. | .result.returnList |= (map(select(.tname == "userPart"))) | .result.returnList |= map(select(. | has("adId") | not))'
+http-response-jq ^https://api\.bevol\.com/trialbox/shop/app/homePage$ 'del(.result.firstPersonActivity,.result.mainActivity,.result.brandZone,.result.imageAD2,.result.couponPopupInfo)'
+
+[MITM]
+hostname = %APPEND% api.bevol.com

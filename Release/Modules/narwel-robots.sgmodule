@@ -1,0 +1,11 @@
+#!name=GrandpaNiu 云鲸智能 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/narwel-robots.sgmodule
+
+[URL Rewrite]
+^https://cn-app\.narwaltech\.com/operate/appPosition/listSplash\? - reject-dict
+^https://cn-app\.narwaltech\.com/operate/cactivity/listByResourceIds\?resourceIds=(user_center_banner|index_banner) - reject-dict
+^https://store\.narwal\.com/mall/customPage/getByPageKeyword\? - reject-dict
+
+[MITM]
+hostname = %APPEND% cn-app.narwaltech.com,store.narwal.com

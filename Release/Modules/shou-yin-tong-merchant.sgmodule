@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 收银通商户端 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/shou-yin-tong-merchant.sgmodule
+
+[URL Rewrite]
+^https://syt\.leshuazf\.com/merchant/merchant/showOpenScreenAd$ - reject-dict
+^https://m\.fqfin\.cn/cls/leshuapay/preCredit\.json$ - reject-dict
+^https://syt\.leshuazf\.com/merchant/messageCenter/stationLetterList$ - reject-dict
+^https://syt\.leshuazf\.com/merchant/merchant/getBannerConfig$ - reject-dict
+^https://syt\.leshuazf\.com/merchant/popup/getPopupInfo$ - reject-dict
+
+[MITM]
+hostname = %APPEND% syt.leshuazf.com,m.fqfin.cn

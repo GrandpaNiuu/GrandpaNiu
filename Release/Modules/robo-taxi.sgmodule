@@ -1,0 +1,11 @@
+#!name=GrandpaNiu 萝卜快跑 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/robo-taxi.sgmodule
+
+[URL Rewrite]
+^https://idgdata\.baidu\.com/mc/app/api/listterminal\? - reject-dict
+^https://idgdata\.baidu\.com/operation/api/announce/screen/image_manage\? - reject-dict
+^https://idgdata\.baidu\.com/idgactivity/api/newuser/info\? - reject-dict
+
+[MITM]
+hostname = %APPEND% idgdata.baidu.com

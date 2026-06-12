@@ -3,22 +3,14 @@
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/spotify.sgmodule
 
 [Rule]
-DOMAIN-SUFFIX,spotify.com,DIRECT
-DOMAIN-SUFFIX,scdn.co,DIRECT
-DOMAIN-SUFFIX,spotifycdn.com,DIRECT
-DOMAIN-SUFFIX,pscdn.co,DIRECT
-DOMAIN,spclient.wg.spotify.com,DIRECT
-DOMAIN-SUFFIX,spclient.spotify.com,DIRECT
-DOMAIN,ads-img-qc.xhscdn.com,REJECT,pre-matching
-DOMAIN,ads-video-al.xhscdn.com,REJECT,pre-matching
-DOMAIN,ads-video-qc.xhscdn.com,REJECT,pre-matching
+AND,((DOMAIN-SUFFIX,spotify.com),(PROTOCOL,QUIC)),REJECT
 
-[Header Rewrite]
-http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$ header-del if-none-match
+[URL Rewrite]
+^https://(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?/pendragon/ - reject-dict
+^https://(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?/artistview/v1/artist/(.*)&platform=iphone https://spclient.wg.spotify.com/artistview/v1/artist/$1&platform=ipad header
 
 [Script]
-spotify-json = type=http-request,pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/,requires-body=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js,script-update-interval=86400
-spotify-proto = type=http-response,pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js,script-update-interval=86400
+Protobuf = type=http-response,pattern=^https://(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?/(?:bootstrap|user-customization-service),requires-body=1,binary-body-mode=1,script-path=https://kelee.one/Resource/JavaScript/Spotify/Spotify_remove_ads.js,timeout=5
 
 [MITM]
-hostname = %APPEND% spclient.wg.spotify.com,*.spclient.spotify.com
+hostname = %APPEND% *-spclient.spotify.com,spclient.wg.spotify.com

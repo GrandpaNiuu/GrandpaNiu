@@ -1,0 +1,20 @@
+#!name=GrandpaNiu 小睡眠 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/heartide-brain-wave.sgmodule
+
+[URL Rewrite]
+^https://api\.psy-1\.com/cosleep/startup\? - reject-dict
+^https://api\.psy-1\.com/cosleep/ad/ - reject-dict
+^https://api\.psy-1\.com/cosleep/user/identity/ad\? - reject-dict
+^https://api\.psy-1\.com/cosleep/discover/ad$ - reject-dict
+^https://api\.psy-1\.com/cosleep/home/activity\? - reject-dict
+^https://api\.psy-1\.com/cosleep/newborn/ad/ - reject-dict
+^https://api\.psy-1\.com/cosleep/my/ad\? - reject-dict
+^https://api\.psy-1\.com/cosleep/search/config\? - reject-dict
+^https://api\.psy-1\.com/cosleep/newborn/search/ranks\? - reject-dict
+^https://api\.psy-1\.com/cosleep/search/inputs\? - reject-dict
+^https://api\.psy-1\.com/cosleep/newborn/sleeps/guides/banner\? - reject-dict
+^https://api\.psy-1\.com/cosleep/newborn/search/ranks/items\? - reject-dict
+
+[MITM]
+hostname = %APPEND% api.psy-1.com

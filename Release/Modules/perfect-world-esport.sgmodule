@@ -1,0 +1,12 @@
+#!name=GrandpaNiu 完美世界电竞 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/perfect-world-esport.sgmodule
+
+[URL Rewrite]
+^https://appactivity\.wmpvp\.com/hotsearch/all\? - reject-dict
+
+[Body Rewrite]
+http-response-jq ^https://api\.wmpvp\.com/api/v1/config/promote$ 'del(.data.ad)'
+
+[MITM]
+hostname = %APPEND% api.wmpvp.com,appactivity.wmpvp.com

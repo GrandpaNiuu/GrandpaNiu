@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 小喵看书 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/miao-read.sgmodule
+
+[URL Rewrite]
+^https://api\.miaomiaoyd\.com/book/config/getAdsSettings$ - reject
+
+[MITM]
+hostname = %APPEND% api.miaomiaoyd.com

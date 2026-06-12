@@ -1,0 +1,17 @@
+#!name=GrandpaNiu 百度输入法 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/baidu-input-method.sgmodule
+
+[URL Rewrite]
+^https?://mime\.baidu\.com/v5/start_screen_ads/list - reject-dict
+^https?://mime\.baidu\.com/sapi/v1/lccorpus/(applist|pannellist) - reject-dict
+^https?://mime\.baidu\.com/sapi/v1/(circle/joinedlist|lccorpus/usercorpussync|aihelpactivity/aihelpresource) - reject-dict
+^https?://mime\.baidu\.com/commer/pocket_api/enterprise_list - reject-dict
+^https?://mbd\.baidu\.com/ccs/v1/start/confsync\?appname=baidu_input - reject-dict
+^https://mime\.baidu\.com/v5/(fb/st\?logtype|(notiv3|cellloc_noti|noti_cloudswitch_noti)/info) - reject-dict
+
+[Script]
+baidu-input-method.response.1 = type=http-response,pattern=^https?://mime\.baidu\.com/(imrobot/v1/pub/relation/get_robot_list|v5/custom_page/(layout|getdata)),requires-body=1,script-path=https://kelee.one/Resource/JavaScript/Baidu_input_method/Baidu_input_method_remove_ads.js
+
+[MITM]
+hostname = %APPEND% imeres.baidu.com,mbd.baidu.com,mime.baidu.com

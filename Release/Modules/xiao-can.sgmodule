@@ -1,0 +1,14 @@
+#!name=GrandpaNiu 小蚕霸王餐 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/xiao-can.sgmodule
+
+[URL Rewrite]
+^https://web2\.realtech-inc\.com/oss/xc-app-assets/configs/common/theme\.json - reject-dict
+^https://sdk\.1rtb\.net/sdk/req_ad\? - reject-dict
+^https://gw\.xiaocantech\.com/g/pa - reject-dict
+
+[Header Rewrite]
+http-request ^https://gw\.xiaocantech\.com/rpc header-replace-regex methodname .*(GetBannerList|IsShowOrderAwardPopup|UserLifeShopList|BrandBannerList|GetPromotionGlobalCfg) null
+
+[MITM]
+hostname = %APPEND% gw.xiaocantech.com,web2.realtech-inc.com,sdk.1rtb.net

@@ -1,0 +1,14 @@
+#!name=GrandpaNiu 萤石云视频 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/video-go.sgmodule
+
+[URL Rewrite]
+^https://api\.ys7\.com/api/ads - reject
+^https://i\.ys7\.com/api/user/tabList - reject-dict
+^https://api\.ys7\.com/v3/config/service/entrance/bannerInfo - reject-dict
+^https://api\.ys7\.com/v3/intelligent-app/apps/linkage - reject-dict
+^https://api\.ys7\.com/v3/configurations/gray/info\?grayTypes=185 - reject-dict
+^https://api\.ys7\.com/v3/videoclips/square/video/query - reject-dict
+
+[MITM]
+hostname = %APPEND% api.ys7.com,i.ys7.com

@@ -1,0 +1,11 @@
+#!name=GrandpaNiu 比特球云盘 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/bitqiu-pan.sgmodule
+
+[URL Rewrite]
+^https://pan-api\.bitqiu\.com/activity/getPromoteGuide$ - reject-dict
+^http://pan-api\.bitqiu\.com/activity/getUrlList$ - reject-dict
+^https://pan-api\.bitqiu\.com/activity/guides$ - reject-dict
+
+[MITM]
+hostname = %APPEND% pan-api.bitqiu.com

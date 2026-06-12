@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 555电影 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/555-dy.sgmodule
+
+[Body Rewrite]
+http-response-jq ^https://(app-v1\.ecoliving168\.com|852b95d36\.xwlpk\.cn)/api/v1/movie/index_recommend\? '.data[].list |= map(select(.type != 3)) | .data |= map(select(.layout != "advert_self"))'
+
+[MITM]
+hostname = %APPEND% app-v1.ecoliving168.com,852b95d36.xwlpk.cn
