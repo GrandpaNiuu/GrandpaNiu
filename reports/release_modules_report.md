@@ -3,11 +3,11 @@
 - Fusion fallback source: `Release/Ronghemokuai.sgmodule`
 - Output directory: `Release/Modules`
 - Manual modules: 18
-- Auto-discovered modules: 9
+- Auto-discovered modules: 10
 - Auto-discovered generated modules: 9
-- Total module specs: 27
+- Total module specs: 28
 - Generated modules: 27
-- Skipped empty modules: 0
+- Skipped empty modules: 1
 
 ## GrandpaNiu Spotify
 - Source: `Rewrite/Sources/Apps/spotify.conf`
@@ -194,3 +194,6 @@
 - Rule: 1
 - URL Rewrite: 4
 - MITM: 1
+
+## Skipped empty modules
+- GrandpaNiu _template (`_TEMPLATE`) from `Rewrite/Sources/Apps/_TEMPLATE.conf`
