@@ -88,7 +88,10 @@ def build_plan(cfg: configparser.ConfigParser, profile: str, release: bool, chec
     release_rules_script = get_cfg(cfg, "builder", "release_rules_script", "scripts/build_release_rules.py")
     release_modules_script = get_cfg(cfg, "builder", "release_modules_script", "scripts/build_release_modules.py")
     release_aliases_script = get_cfg(cfg, "builder", "release_aliases_script", "scripts/build_release_aliases.py")
+    release_channels_script = get_cfg(cfg, "builder", "release_channels_script", "scripts/build_channels.py")
     web_modules_script = get_cfg(cfg, "builder", "web_modules_script", "scripts/build_web_modules.py")
+    release_checksums_script = get_cfg(cfg, "builder", "release_checksums_script", "scripts/build_checksums.py")
+    release_summary_script = get_cfg(cfg, "builder", "release_summary_script", "scripts/build_release_summary.py")
 
     steps: list[list[str]] = [
         command(build_script, "--build", "--profile", profile),
@@ -101,7 +104,10 @@ def build_plan(cfg: configparser.ConfigParser, profile: str, release: bool, chec
             existing_command(release_rules_script),
             existing_command(release_modules_script, "--config", rel(config_file)),
             existing_command(release_aliases_script, "--config", rel(config_file)),
+            existing_command(release_channels_script, "--config", rel(config_file)),
             existing_command(web_modules_script),
+            existing_command(release_checksums_script),
+            existing_command(release_summary_script),
         ]
         steps.extend(step for step in release_steps if step is not None)
 
