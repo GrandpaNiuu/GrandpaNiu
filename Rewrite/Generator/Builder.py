@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Unified entry point for the GrandpaNiu module factory.
 
-The generator prefers Rewrite/Generator/Generate.conf, then falls back to the
-legacy Rewrite/Generate.conf. Existing scripts remain the implementation layer;
-this file is the visible factory entrypoint.
+The generator prefers the complete Rewrite/Generator/Generate.conf plan, then
+falls back to the legacy Rewrite/Generate.conf mirror. Existing scripts remain
+the implementation layer; this file is the stable factory entrypoint.
 """
 
 from __future__ import annotations
@@ -89,7 +89,9 @@ def build_plan(cfg: configparser.ConfigParser, profile: str, release: bool, chec
     release_modules_script = get_cfg(cfg, "builder", "release_modules_script", "scripts/build_release_modules.py")
     release_aliases_script = get_cfg(cfg, "builder", "release_aliases_script", "scripts/build_release_aliases.py")
     release_channels_script = get_cfg(cfg, "builder", "release_channels_script", "scripts/build_channels.py")
+    release_android_script = get_cfg(cfg, "builder", "release_android_script", "scripts/build_release_android.py")
     web_modules_script = get_cfg(cfg, "builder", "web_modules_script", "scripts/build_web_modules.py")
+    web_catalog_script = get_cfg(cfg, "builder", "web_catalog_script", "scripts/build_web_catalog.py")
     release_checksums_script = get_cfg(cfg, "builder", "release_checksums_script", "scripts/build_checksums.py")
     release_summary_script = get_cfg(cfg, "builder", "release_summary_script", "scripts/build_release_summary.py")
 
@@ -105,7 +107,9 @@ def build_plan(cfg: configparser.ConfigParser, profile: str, release: bool, chec
             existing_command(release_modules_script, "--config", rel(config_file)),
             existing_command(release_aliases_script, "--config", rel(config_file)),
             existing_command(release_channels_script, "--config", rel(config_file)),
+            existing_command(release_android_script, "--config", rel(config_file)),
             existing_command(web_modules_script),
+            existing_command(web_catalog_script),
             existing_command(release_checksums_script),
             existing_command(release_summary_script),
         ]
