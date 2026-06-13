@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-13T01:24:09.653126Z",
+  "generated_at": "2026-06-13T03:50:12.596147Z",
   "algorithm": "sha256",
-  "count": 242,
+  "count": 243,
   "files": [
     {
       "path": "Release/Beta/README.md",
@@ -862,6 +862,11 @@
       "path": "Release/Modules/tieba.sgmodule",
       "size": 1098,
       "sha256": "3bb68faaa26e58e8bd37bd444b8aa588888191d63aa97600a16a2dd5d2054b20"
+    },
+    {
+      "path": "Release/Modules/toutiao.sgmodule",
+      "size": 890,
+      "sha256": "ae72bf0eb8c97d25035ae64eff72b7f804073b6d9b43646db9c5ae342c56f903"
     },
     {
       "path": "Release/Modules/tu-guai-shou.sgmodule",
