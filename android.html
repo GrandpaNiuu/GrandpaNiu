@@ -427,6 +427,16 @@
           <code class="link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Android-Full.yaml</code>
         </article>
       </div>
+      <div class="danger">
+        <strong>安卓 Clash Meta / Clash Mi 使用注意：</strong>
+        <ul>
+          <li>使用 Clash Meta / Clash Mi 导入安卓配置后，需要关闭「分应用代理」。</li>
+          <li>如果开启「分应用代理」，部分 App 可能不会经过代理规则。</li>
+          <li>可能导致模块不生效、去广告无效、YouTube / Bilibili / 今日头条等模块异常、规则没有命中。</li>
+          <li>建议关闭分应用代理，让 Clash 接管全部应用流量。</li>
+          <li>修改后请重启 Clash Meta / Clash Mi，并重新打开需要测试的 App。</li>
+        </ul>
+      </div>
     </section>
 
     <section class="section" id="apps">
@@ -543,7 +553,18 @@ rules:
     const IOS_COMPAT_SINGBOX_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/apps/iOS-Compatible-Reject.json";
     const IOS_COMPAT_ADGUARD_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/apps/iOS-Compatible-Reject.txt";
     const IOS_COMPAT_V2RAYNG_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/apps/iOS-Compatible-Reject-routing.json";
-    const MIHOMO_PROVIDER_SNIPPET = `rule-providers:\n  grandpaniu_ads:\n    type: http\n    behavior: classical\n    format: yaml\n    url: "${ADS_RULESET_LINK}"\n    path: ./ruleset/GrandpaNiu-Ads.yaml\n    interval: 86400\n\nrules:\n  - RULE-SET,grandpaniu_ads,REJECT\n  - MATCH,🚀 节点选择`;
+    const MIHOMO_PROVIDER_SNIPPET = `rule-providers:
+  grandpaniu_ads:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "${ADS_RULESET_LINK}"
+    path: ./ruleset/GrandpaNiu-Ads.yaml
+    interval: 86400
+
+rules:
+  - RULE-SET,grandpaniu_ads,REJECT
+  - MATCH,🚀 节点选择`;
 
     function copyText(text) {
       navigator.clipboard.writeText(text).then(function() {
