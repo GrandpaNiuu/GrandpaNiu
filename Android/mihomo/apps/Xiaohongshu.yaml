@@ -1,7 +1,7 @@
 payload:
-  - DOMAIN,ads-img-qc.xhscdn.com
-  - DOMAIN,ads-video-al.xhscdn.com
-  - DOMAIN,ads-video-qc.xhscdn.com
+  # Generated Android rules for Xiaohongshu.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,apm-native.xiaohongshu.com
   - DOMAIN,t-ads.xiaohongshu.com
   - DOMAIN-KEYWORD,xhs-ad

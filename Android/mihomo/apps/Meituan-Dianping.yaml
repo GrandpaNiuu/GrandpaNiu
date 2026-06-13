@@ -1,4 +1,7 @@
 payload:
+  # Generated Android rules for Meituan-Dianping.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,ad.e.waimai.sankuai.com
   - DOMAIN,dpmtpush.dianping.com
   - DOMAIN,dynamicf.sankuai.com

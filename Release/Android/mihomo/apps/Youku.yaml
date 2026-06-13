@@ -1,4 +1,7 @@
 payload:
+  # Generated Android rules for Youku.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,adx-core.youku.com
   - DOMAIN,adx-open-service.youku.com
   - DOMAIN,cad.youku.com

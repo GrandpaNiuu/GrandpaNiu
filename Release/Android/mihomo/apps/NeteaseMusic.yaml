@@ -1,4 +1,7 @@
 payload:
+  # Generated Android rules for NeteaseMusic.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,admusicpic.music.126.net
   - DOMAIN,iad.g.163.com
   - DOMAIN,iadmat.nosdn.127.net

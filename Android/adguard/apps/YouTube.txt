@@ -1,3 +1,6 @@
+! Generated Android rules for YouTube.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||ads.youtube.com^
 ||adservice.google.com^
 ||googleads.g.doubleclick.net^

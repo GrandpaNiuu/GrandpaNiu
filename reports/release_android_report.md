@@ -5,7 +5,7 @@
 
 | Format | Files |
 |---|---:|
-| mihomo | 23 |
-| sing-box | 20 |
-| adguard | 20 |
-| v2rayng | 20 |
+| mihomo | 24 |
+| sing-box | 21 |
+| adguard | 21 |
+| v2rayng | 21 |

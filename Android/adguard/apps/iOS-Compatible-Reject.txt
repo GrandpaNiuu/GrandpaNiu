@@ -1,3 +1,6 @@
+! Generated Android rules for iOS-Compatible-Reject.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||ad-analysis.pconline.com.cn^
 ||ad-cdn.qingting.fm^
 ||ad-stat.ksosoft.com^
@@ -19,13 +22,9 @@
 ||afdconf.baidu.com^
 ||amap-aos-info-nogw.amap.com^
 ||api-ad-product.huxiu.com^
-||api.biliapi.com^
-||api.biliapi.net^
 ||apm-native.xiaohongshu.com^
 ||apm.gotokeep.com^
 ||apmplus.volces.com^
-||app.biliapi.com^
-||app.biliapi.net^
 ||appcloud.zhihu.com^
 ||appcloud2.in.zhihu.com^
 ||appgo.189.cn^
@@ -34,9 +33,6 @@
 ||atrace.chelaile.net.cn^
 ||axxd.xmseeyouyima.com^
 ||badjs.weixinbridge.com^
-||cd-1.pddpic.com^
-||cdl-1.pddpic.com^
-||cdl-p2.pddpic.com^
 ||cdn.adapi.fotoable.com^
 ||collect.xiaopeng.com^
 ||counter.kingsoft.com^
@@ -69,7 +65,6 @@
 ||httpdns.yunxindns.com^
 ||httpdnsmultiapi.meituan.com^
 ||httpdnsmultiapivip.meituan.com^
-||hudong.alicdn.com^
 ||huyafile.msstatic.com^
 ||iad0ssl.pcauto.com.cn^
 ||iad0ssl.pconline.com.cn^
@@ -77,8 +72,6 @@
 ||iadmatapk.nosdn.127.net^
 ||iadmusicmat.music.126.net^
 ||iadmusicmatvideo.music.126.net^
-||iisp-oidea.mbs.boc.cn^
-||iisp.mbs.boc.cn^
 ||imgad0.pcauto.com.cn^
 ||imgad0.pconline.com.cn^
 ||ipv4.music.163.com^
@@ -102,10 +95,7 @@
 ||minfo.wps.cn^
 ||mob.bz.mgtv.com^
 ||mqtt.zhihu.com^
-||msmp.abchina.com.cn^
 ||music.httpdns.c.163.com^
-||nbsdk-baichuan.alicdn.com^
-||ossgw.alicdn.com^
 ||popup.dushu365.com^
 ||pp-cdnfile2pcdn.msstatic.com^
 ||r.dianping.com^
@@ -148,7 +138,6 @@
 ||wgo.mmstat.com^
 ||ws.ksmobile.net^
 ||xg.pinduoduo.com^
-||yl.zh.cmbchina.com^
 ||ymg-api.terabox.com^
 ||yuyin-httpdns.gslb.yy.com^
 ||zxid-m.mobileservice.cn^
@@ -173,7 +162,6 @@
 ||adjust.com^
 ||admaster.com.cn^
 ||adnet.sohu.com^
-||adv.ccb.com^
 ||adview.cn^
 ||adweb.wsa.xmcdn.com^
 ||adweb.xmcdn.com^
@@ -183,7 +171,6 @@
 ||adx.hupu.com^
 ||adxs.xmcdn.com^
 ||afp.zol-img.com.cn^
-||api-ad-product.huxiu.com^
 ||api.dsp.yhd.com^
 ||api.union.vip.com^
 ||apilog.qbb6.com^
@@ -207,7 +194,6 @@
 ||gdt.qq.com^
 ||gemini.yahoo.com^
 ||go.sohu.com^
-||httpdns.bilivideo.com^
 ||httpdns.meituan.com^
 ||hui.sohu.com^
 ||imp.zol.com.cn^

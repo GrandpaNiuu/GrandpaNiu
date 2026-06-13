@@ -1,4 +1,7 @@
 payload:
+  # Generated Android rules for MangoTV.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,credits.bz.mgtv.com
   - DOMAIN,credits2.bz.mgtv.com
   - DOMAIN,credits3.bz.mgtv.com

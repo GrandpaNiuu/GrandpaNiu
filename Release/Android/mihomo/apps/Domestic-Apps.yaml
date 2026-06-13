@@ -1,4 +1,7 @@
 payload:
+  # Generated Android rules for Domestic-Apps.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,access.if.iqiyi.com
   - DOMAIN,acs4baichuan.m.taobao.com
   - DOMAIN,ad-cdn.qingting.fm
@@ -20,10 +23,7 @@ payload:
   - DOMAIN,adlaunch.moji.com
   - DOMAIN,adlaunch.qingting.fm
   - DOMAIN,admusicpic.music.126.net
-  - DOMAIN,ads-img-qc.xhscdn.com
   - DOMAIN,ads-partner.cdn.bcebos.com
-  - DOMAIN,ads-video-al.xhscdn.com
-  - DOMAIN,ads-video-qc.xhscdn.com
   - DOMAIN,ads.mojicdn.com
   - DOMAIN,ads.reader.yueyouxs.com
   - DOMAIN,ads.service.kugou.com
@@ -48,12 +48,8 @@ payload:
   - DOMAIN,appcloud2.in.zhihu.com
   - DOMAIN,applog.uc.cn
   - DOMAIN,cad.youku.com
-  - DOMAIN,cd-1.pddpic.com
-  - DOMAIN,cdl-1.pddpic.com
-  - DOMAIN,cdl-p2.pddpic.com
   - DOMAIN,cdn-ad.wtzw.com
   - DOMAIN,cdn-new-ad.wtzw.com
-  - DOMAIN,cm.bilibili.com
   - DOMAIN,counter.kingsoft.com
   - DOMAIN,counter.ksosoft.com
   - DOMAIN,crash2.zhihu.com
@@ -62,7 +58,6 @@ payload:
   - DOMAIN,credits3.bz.mgtv.com
   - DOMAIN,cupid.iqiyi.com
   - DOMAIN,cupid.ptqy.gitv.tv
-  - DOMAIN,data.bilibili.com
   - DOMAIN,dflow.bz.mgtv.com
   - DOMAIN,dpmtpush.dianping.com
   - DOMAIN,dynamicf.sankuai.com
@@ -91,13 +86,11 @@ payload:
   - DOMAIN,mc.atm.youku.com
   - DOMAIN,meta.pinduoduo.com
   - DOMAIN,minfo.wps.cn
-  - DOMAIN,miniapp.bilibili.com
   - DOMAIN,mob.bz.mgtv.com
   - DOMAIN,mobad.ijinshan.com
   - DOMAIN,mobads.baidu.com
   - DOMAIN,mon.snssdk.com
   - DOMAIN,mqtt.zhihu.com
-  - DOMAIN,nbsdk-baichuan.alicdn.com
   - DOMAIN,open.e.kuaishou.com
   - DOMAIN,openjmacs.m.taobao.com
   - DOMAIN,pangolin-sdk-toutiao.com
@@ -152,7 +145,6 @@ payload:
   - DOMAIN-SUFFIX,adkwai.com
   - DOMAIN-SUFFIX,ads.union.jd.com
   - DOMAIN-SUFFIX,adukwai.com
-  - DOMAIN-SUFFIX,cm.bilibili.com
   - DOMAIN-SUFFIX,jzt.jd.com
   - DOMAIN-SUFFIX,l.qq.com
   - DOMAIN-SUFFIX,pangolin-sdk-toutiao.com

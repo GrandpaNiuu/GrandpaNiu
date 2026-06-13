@@ -1,4 +1,7 @@
 payload:
+  # Generated Android rules for iOS-Compatible-Reject.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,ad-analysis.pconline.com.cn
   - DOMAIN,ad-cdn.qingting.fm
   - DOMAIN,ad-stat.ksosoft.com
@@ -20,13 +23,9 @@ payload:
   - DOMAIN,afdconf.baidu.com
   - DOMAIN,amap-aos-info-nogw.amap.com
   - DOMAIN,api-ad-product.huxiu.com
-  - DOMAIN,api.biliapi.com
-  - DOMAIN,api.biliapi.net
   - DOMAIN,apm-native.xiaohongshu.com
   - DOMAIN,apm.gotokeep.com
   - DOMAIN,apmplus.volces.com
-  - DOMAIN,app.biliapi.com
-  - DOMAIN,app.biliapi.net
   - DOMAIN,appcloud.zhihu.com
   - DOMAIN,appcloud2.in.zhihu.com
   - DOMAIN,appgo.189.cn
@@ -35,9 +34,6 @@ payload:
   - DOMAIN,atrace.chelaile.net.cn
   - DOMAIN,axxd.xmseeyouyima.com
   - DOMAIN,badjs.weixinbridge.com
-  - DOMAIN,cd-1.pddpic.com
-  - DOMAIN,cdl-1.pddpic.com
-  - DOMAIN,cdl-p2.pddpic.com
   - DOMAIN,cdn.adapi.fotoable.com
   - DOMAIN,collect.xiaopeng.com
   - DOMAIN,counter.kingsoft.com
@@ -70,7 +66,6 @@ payload:
   - DOMAIN,httpdns.yunxindns.com
   - DOMAIN,httpdnsmultiapi.meituan.com
   - DOMAIN,httpdnsmultiapivip.meituan.com
-  - DOMAIN,hudong.alicdn.com
   - DOMAIN,huyafile.msstatic.com
   - DOMAIN,iad0ssl.pcauto.com.cn
   - DOMAIN,iad0ssl.pconline.com.cn
@@ -78,8 +73,6 @@ payload:
   - DOMAIN,iadmatapk.nosdn.127.net
   - DOMAIN,iadmusicmat.music.126.net
   - DOMAIN,iadmusicmatvideo.music.126.net
-  - DOMAIN,iisp-oidea.mbs.boc.cn
-  - DOMAIN,iisp.mbs.boc.cn
   - DOMAIN,imgad0.pcauto.com.cn
   - DOMAIN,imgad0.pconline.com.cn
   - DOMAIN,ipv4.music.163.com
@@ -103,10 +96,7 @@ payload:
   - DOMAIN,minfo.wps.cn
   - DOMAIN,mob.bz.mgtv.com
   - DOMAIN,mqtt.zhihu.com
-  - DOMAIN,msmp.abchina.com.cn
   - DOMAIN,music.httpdns.c.163.com
-  - DOMAIN,nbsdk-baichuan.alicdn.com
-  - DOMAIN,ossgw.alicdn.com
   - DOMAIN,popup.dushu365.com
   - DOMAIN,pp-cdnfile2pcdn.msstatic.com
   - DOMAIN,r.dianping.com
@@ -149,7 +139,6 @@ payload:
   - DOMAIN,wgo.mmstat.com
   - DOMAIN,ws.ksmobile.net
   - DOMAIN,xg.pinduoduo.com
-  - DOMAIN,yl.zh.cmbchina.com
   - DOMAIN,ymg-api.terabox.com
   - DOMAIN,yuyin-httpdns.gslb.yy.com
   - DOMAIN,zxid-m.mobileservice.cn
@@ -174,7 +163,6 @@ payload:
   - DOMAIN-SUFFIX,adjust.com
   - DOMAIN-SUFFIX,admaster.com.cn
   - DOMAIN-SUFFIX,adnet.sohu.com
-  - DOMAIN-SUFFIX,adv.ccb.com
   - DOMAIN-SUFFIX,adview.cn
   - DOMAIN-SUFFIX,adweb.wsa.xmcdn.com
   - DOMAIN-SUFFIX,adweb.xmcdn.com
@@ -208,7 +196,6 @@ payload:
   - DOMAIN-SUFFIX,gdt.qq.com
   - DOMAIN-SUFFIX,gemini.yahoo.com
   - DOMAIN-SUFFIX,go.sohu.com
-  - DOMAIN-SUFFIX,httpdns.bilivideo.com
   - DOMAIN-SUFFIX,httpdns.meituan.com
   - DOMAIN-SUFFIX,hui.sohu.com
   - DOMAIN-SUFFIX,imp.zol.com.cn

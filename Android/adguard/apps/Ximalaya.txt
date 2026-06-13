@@ -1,3 +1,6 @@
+! Generated Android rules for Ximalaya.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||ad.ximalaya.com^
 ||adbehavior.ximalaya.com^
 ||adse.ximalaya.com^

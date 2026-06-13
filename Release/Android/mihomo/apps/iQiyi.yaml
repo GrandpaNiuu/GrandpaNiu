@@ -1,4 +1,7 @@
 payload:
+  # Generated Android rules for iQiyi.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,access.if.iqiyi.com
   - DOMAIN,api.iqiyi.com
   - DOMAIN,cupid.iqiyi.com

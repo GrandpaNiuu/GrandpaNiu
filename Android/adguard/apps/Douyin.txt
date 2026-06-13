@@ -1,3 +1,6 @@
+! Generated Android rules for Douyin.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||ad.toutiao.com^
 ||ad.zijieapi.com^
 ||log.snssdk.com^
@@ -7,6 +10,5 @@
 ||temai.snssdk.com^
 /pangolin/
 /pglstatp/
-||pangolin-sdk-toutiao.com^
 ||pglstatp-toutiao.com^
 ||zjcdn.com^

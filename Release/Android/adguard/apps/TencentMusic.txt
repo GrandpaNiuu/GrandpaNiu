@@ -1,3 +1,6 @@
+! Generated Android rules for TencentMusic.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||ad.tencentmusic.com^
 ||adcdn.tencentmusic.com^
 ||adcdn6.tencentmusic.com^

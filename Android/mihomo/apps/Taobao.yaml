@@ -1,11 +1,13 @@
 payload:
+  # Generated Android rules for Taobao.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,acs4baichuan.m.taobao.com
   - DOMAIN,adash.m.taobao.com
   - DOMAIN,adashbc.m.taobao.com
   - DOMAIN,adashx.m.taobao.com
   - DOMAIN,h-adashx.ut.taobao.com
   - DOMAIN,market.m.taobao.com
-  - DOMAIN,nbsdk-baichuan.alicdn.com
   - DOMAIN,openjmacs.m.taobao.com
   - DOMAIN,retcode.taobao.com
   - DOMAIN,tns.simba.taobao.com

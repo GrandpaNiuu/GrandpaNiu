@@ -1,3 +1,6 @@
+! Generated Android rules for MangoTV.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||credits.bz.mgtv.com^
 ||credits2.bz.mgtv.com^
 ||credits3.bz.mgtv.com^

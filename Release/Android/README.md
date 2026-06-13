@@ -6,10 +6,10 @@ Generated Android rule outputs mirrored from `Android/`.
 
 | Format | Directory | Files |
 |---|---|---:|
-| mihomo | `Release/Android/mihomo` | 23 |
-| sing-box | `Release/Android/sing-box` | 20 |
-| adguard | `Release/Android/adguard` | 20 |
-| v2rayng | `Release/Android/v2rayng` | 20 |
+| mihomo | `Release/Android/mihomo` | 24 |
+| sing-box | `Release/Android/sing-box` | 21 |
+| adguard | `Release/Android/adguard` | 21 |
+| v2rayng | `Release/Android/v2rayng` | 21 |
 
 ## Source of truth
 

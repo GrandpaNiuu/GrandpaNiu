@@ -1,6 +1,5 @@
 payload:
-  - DOMAIN,cm.bilibili.com
-  - DOMAIN,data.bilibili.com
-  - DOMAIN,miniapp.bilibili.com
+  # Generated Android rules for Bilibili.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN-KEYWORD,bili-ad
-  - DOMAIN-SUFFIX,cm.bilibili.com

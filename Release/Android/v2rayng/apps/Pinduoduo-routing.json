@@ -5,9 +5,6 @@
         "type": "field",
         "outboundTag": "block",
         "domain": [
-          "full:cd-1.pddpic.com",
-          "full:cdl-1.pddpic.com",
-          "full:cdl-p2.pddpic.com",
           "full:meta.pinduoduo.com",
           "full:ta-a.pinduoduo.com",
           "full:ta.pinduoduo.com",

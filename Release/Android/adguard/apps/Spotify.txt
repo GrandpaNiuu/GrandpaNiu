@@ -1,13 +1,6 @@
-||adeventtracker.spotify.com^
-||ads-fa.spotify.com^
-||adstudio.spotify.com^
-||analytics.spotify.com^
-||audio-ads.spotify.com^
-||gew1-spclient.spotify.com^
-||gew4-spclient.spotify.com^
-||heads-ak.spotify.com^
-||log.spotify.com^
-||spclient.wg.spotify.com^
+! Generated Android rules for Spotify.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||spotify-ads.spotifycdn.com^
 /spotify-ad/
 /spotify-ads/

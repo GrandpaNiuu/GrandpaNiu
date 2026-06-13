@@ -1,6 +1,6 @@
-||ads-img-qc.xhscdn.com^
-||ads-video-al.xhscdn.com^
-||ads-video-qc.xhscdn.com^
+! Generated Android rules for Xiaohongshu.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||apm-native.xiaohongshu.com^
 ||t-ads.xiaohongshu.com^
 /xhs-ad/

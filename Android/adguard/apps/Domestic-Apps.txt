@@ -1,3 +1,6 @@
+! Generated Android rules for Domestic-Apps.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||access.if.iqiyi.com^
 ||acs4baichuan.m.taobao.com^
 ||ad-cdn.qingting.fm^
@@ -19,10 +22,7 @@
 ||adlaunch.moji.com^
 ||adlaunch.qingting.fm^
 ||admusicpic.music.126.net^
-||ads-img-qc.xhscdn.com^
 ||ads-partner.cdn.bcebos.com^
-||ads-video-al.xhscdn.com^
-||ads-video-qc.xhscdn.com^
 ||ads.mojicdn.com^
 ||ads.reader.yueyouxs.com^
 ||ads.service.kugou.com^
@@ -47,12 +47,8 @@
 ||appcloud2.in.zhihu.com^
 ||applog.uc.cn^
 ||cad.youku.com^
-||cd-1.pddpic.com^
-||cdl-1.pddpic.com^
-||cdl-p2.pddpic.com^
 ||cdn-ad.wtzw.com^
 ||cdn-new-ad.wtzw.com^
-||cm.bilibili.com^
 ||counter.kingsoft.com^
 ||counter.ksosoft.com^
 ||crash2.zhihu.com^
@@ -61,7 +57,6 @@
 ||credits3.bz.mgtv.com^
 ||cupid.iqiyi.com^
 ||cupid.ptqy.gitv.tv^
-||data.bilibili.com^
 ||dflow.bz.mgtv.com^
 ||dpmtpush.dianping.com^
 ||dynamicf.sankuai.com^
@@ -90,13 +85,11 @@
 ||mc.atm.youku.com^
 ||meta.pinduoduo.com^
 ||minfo.wps.cn^
-||miniapp.bilibili.com^
 ||mob.bz.mgtv.com^
 ||mobad.ijinshan.com^
 ||mobads.baidu.com^
 ||mon.snssdk.com^
 ||mqtt.zhihu.com^
-||nbsdk-baichuan.alicdn.com^
 ||open.e.kuaishou.com^
 ||openjmacs.m.taobao.com^
 ||pangolin-sdk-toutiao.com^
@@ -151,10 +144,7 @@
 ||adkwai.com^
 ||ads.union.jd.com^
 ||adukwai.com^
-||cm.bilibili.com^
 ||jzt.jd.com^
 ||l.qq.com^
-||pangolin-sdk-toutiao.com^
 ||pglstatp-toutiao.com^
-||sax.sina.com.cn^
 ||zhihu-web-analytics.zhihu.com^

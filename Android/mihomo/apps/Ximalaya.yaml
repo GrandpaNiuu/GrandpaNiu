@@ -1,4 +1,7 @@
 payload:
+  # Generated Android rules for Ximalaya.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,ad.ximalaya.com
   - DOMAIN,adbehavior.ximalaya.com
   - DOMAIN,adse.ximalaya.com

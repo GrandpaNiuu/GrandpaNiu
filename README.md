@@ -188,3 +188,8 @@ Android 规则主要适合：
 * 登录、支付、视频播放、CDN 等稳定性保护规则优先加载
 * 最终公开输出仍然是 `Ronghemokuai.sgmodule`
 * `Release/Module.sgmodule` 仅作为 Release 目录兼容别名，不是新的公开版本线
+
+
+### Android iOS 兼容增强层
+
+Android 构建现在会从 iOS/Fusion 源文件中提取可安全迁移的 `[Rule]` REJECT 域名、关键词和 IP 规则，自动合并到 Android 主规则集，并生成 `iOS-App-Compatible-Reject` 兼容输出。脚本、MITM、Rewrite、登录、支付、银行、验证码、视频播放、图片/CDN 保护链路不会迁移到 Android 拦截规则中。

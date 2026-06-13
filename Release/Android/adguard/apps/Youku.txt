@@ -1,3 +1,6 @@
+! Generated Android rules for Youku.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||adx-core.youku.com^
 ||adx-open-service.youku.com^
 ||cad.youku.com^

@@ -1,4 +1,7 @@
 payload:
+  # Generated Android rules for YouTube.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,ads.youtube.com
   - DOMAIN,adservice.google.com
   - DOMAIN,googleads.g.doubleclick.net

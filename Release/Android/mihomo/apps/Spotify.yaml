@@ -1,14 +1,7 @@
 payload:
-  - DOMAIN,adeventtracker.spotify.com
-  - DOMAIN,ads-fa.spotify.com
-  - DOMAIN,adstudio.spotify.com
-  - DOMAIN,analytics.spotify.com
-  - DOMAIN,audio-ads.spotify.com
-  - DOMAIN,gew1-spclient.spotify.com
-  - DOMAIN,gew4-spclient.spotify.com
-  - DOMAIN,heads-ak.spotify.com
-  - DOMAIN,log.spotify.com
-  - DOMAIN,spclient.wg.spotify.com
+  # Generated Android rules for Spotify.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,spotify-ads.spotifycdn.com
   - DOMAIN-KEYWORD,spotify-ad
   - DOMAIN-KEYWORD,spotify-ads

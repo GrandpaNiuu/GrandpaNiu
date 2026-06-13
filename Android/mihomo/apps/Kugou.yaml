@@ -1,4 +1,7 @@
 payload:
+  # Generated Android rules for Kugou.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,ads.service.kugou.com
   - DOMAIN,adservice.kugou.com
   - DOMAIN,adserviceretry.kugou.com

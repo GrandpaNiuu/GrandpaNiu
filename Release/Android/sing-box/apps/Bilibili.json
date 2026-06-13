@@ -2,14 +2,6 @@
   "version": 1,
   "rules": [
     {
-      "domain": [
-        "cm.bilibili.com",
-        "data.bilibili.com",
-        "miniapp.bilibili.com"
-      ],
-      "domain_suffix": [
-        "cm.bilibili.com"
-      ],
       "domain_keyword": [
         "bili-ad"
       ]

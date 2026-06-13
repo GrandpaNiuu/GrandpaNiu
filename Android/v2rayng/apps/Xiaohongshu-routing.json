@@ -5,9 +5,6 @@
         "type": "field",
         "outboundTag": "block",
         "domain": [
-          "full:ads-img-qc.xhscdn.com",
-          "full:ads-video-al.xhscdn.com",
-          "full:ads-video-qc.xhscdn.com",
           "full:apm-native.xiaohongshu.com",
           "full:t-ads.xiaohongshu.com",
           "keyword:xhs-ad",

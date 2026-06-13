@@ -1,5 +1,4 @@
-||cm.bilibili.com^
-||data.bilibili.com^
-||miniapp.bilibili.com^
+! Generated Android rules for Bilibili.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 /bili-ad/
-||cm.bilibili.com^

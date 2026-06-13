@@ -1,6 +1,6 @@
-||cd-1.pddpic.com^
-||cdl-1.pddpic.com^
-||cdl-p2.pddpic.com^
+! Generated Android rules for Pinduoduo.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||meta.pinduoduo.com^
 ||ta-a.pinduoduo.com^
 ||ta.pinduoduo.com^

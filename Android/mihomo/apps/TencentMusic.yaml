@@ -1,4 +1,7 @@
 payload:
+  # Generated Android rules for TencentMusic.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,ad.tencentmusic.com
   - DOMAIN,adcdn.tencentmusic.com
   - DOMAIN,adcdn6.tencentmusic.com

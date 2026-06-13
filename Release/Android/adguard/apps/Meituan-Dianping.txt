@@ -1,3 +1,6 @@
+! Generated Android rules for Meituan-Dianping.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||ad.e.waimai.sankuai.com^
 ||dpmtpush.dianping.com^
 ||dynamicf.sankuai.com^

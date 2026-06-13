@@ -1,3 +1,6 @@
+! Generated Android rules for Kugou.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||ads.service.kugou.com^
 ||adservice.kugou.com^
 ||adserviceretry.kugou.com^

@@ -1,28 +1,95 @@
-# Android 规则生成报告
+# Android rules build report
 
-- 最后更新时间：2026-06-13 13:03:03
-- App 总数：18
-- 当前 Android App 源头：Android/mihomo/apps/*.yaml
-- iOS 可复用源头：Rules/reject.list -> iOS-Compatible-Reject
-- 输出：Mihomo / sing-box / AdGuard / v2rayNG
+- generated: 2026-06-13 21:57:22 Asia/Shanghai
+- app rule files: 19
+- main Android rules: 487
+- source: Android/mihomo/apps/*.yaml
+- iOS common source: Rules/reject.list -> iOS-Compatible-Reject
+- iOS app source: Rewrite/Sources/Apps/*.conf [Rule] REJECT -> iOS-App-Compatible-Reject
+- exported formats: Mihomo / sing-box / AdGuard / v2rayNG
+- safety: Script, MITM, Rewrite, DIRECT/PROXY and protected media/payment/login rules are not migrated.
 
-| App | 规则数 | 四格式输出 |
+| App | Rules | Outputs |
 |---|---:|---|
-| Bilibili | 5 | 是 |
-| Domestic-Apps | 160 | 是 |
-| Douyin | 12 | 是 |
-| iOS-Compatible-Reject | 266 | 是 |
-| iQiyi | 4 | 是 |
-| Kugou | 4 | 是 |
-| MangoTV | 12 | 是 |
-| Meituan-Dianping | 11 | 是 |
-| NeteaseMusic | 5 | 是 |
-| Pinduoduo | 12 | 是 |
-| Spotify | 14 | 是 |
-| Taobao | 13 | 是 |
-| TencentMusic | 5 | 是 |
-| Weibo | 6 | 是 |
-| Xiaohongshu | 7 | 是 |
-| Ximalaya | 6 | 是 |
-| Youku | 8 | 是 |
-| YouTube | 15 | 是 |
+| Bilibili | 1 | yes |
+| Domestic-Apps | 149 | yes |
+| Douyin | 12 | yes |
+| iOS-App-Compatible-Reject | 249 | yes |
+| iOS-Compatible-Reject | 250 | yes |
+| iQiyi | 4 | yes |
+| Kugou | 4 | yes |
+| MangoTV | 12 | yes |
+| Meituan-Dianping | 11 | yes |
+| NeteaseMusic | 5 | yes |
+| Pinduoduo | 9 | yes |
+| Spotify | 4 | yes |
+| Taobao | 12 | yes |
+| TencentMusic | 5 | yes |
+| Weibo | 6 | yes |
+| Xiaohongshu | 4 | yes |
+| Ximalaya | 6 | yes |
+| Youku | 8 | yes |
+| YouTube | 15 | yes |
+
+## iOS app source coverage
+
+| Source app | Migrated reject rules |
+|---|---:|
+| 36-kr | 2 |
+| 360-smart-camera | 2 |
+| ali-yun-drive | 1 |
+| amap | 3 |
+| caiyun-weather | 3 |
+| di-di | 1 |
+| didi | 1 |
+| dingdong-maicai | 3 |
+| douyu | 2 |
+| dragon-read | 34 |
+| etouch-ecalendar | 1 |
+| foodie | 3 |
+| huxiu | 1 |
+| huya | 4 |
+| i-qi-yi-video | 5 |
+| i-reader | 1 |
+| i-reader-dejian | 2 |
+| jump | 7 |
+| keep | 1 |
+| ku-gou | 8 |
+| kuai-dui-zuo-ye | 1 |
+| kuai-kan-comic | 3 |
+| kuwo | 1 |
+| ma-feng-wo | 1 |
+| meet-you | 2 |
+| mei-tu | 1 |
+| meitu-myxj | 1 |
+| meituan | 11 |
+| mgtv | 13 |
+| pcauto | 5 |
+| pinduoduo | 10 |
+| qqksong | 32 |
+| qqmusic | 11 |
+| qting-fm | 2 |
+| safety-home | 1 |
+| seven-cat | 3 |
+| shu-qi-center-reader | 1 |
+| snail-sleep | 1 |
+| snow-camera | 3 |
+| soul | 11 |
+| taobao | 4 |
+| tencent-video | 12 |
+| terabox | 1 |
+| tube-max | 8 |
+| wechat | 1 |
+| wechat-mini-programs | 6 |
+| wechat-official-accounts | 1 |
+| weibo | 2 |
+| xiaopeng | 2 |
+| ximalaya | 5 |
+| yiche | 2 |
+| youku | 18 |
+| yueyou | 1 |
+| yy-voice | 3 |
+| zdm | 1 |
+| zhihu | 10 |
+| zui-you | 1 |
+| zuoyebang | 1 |

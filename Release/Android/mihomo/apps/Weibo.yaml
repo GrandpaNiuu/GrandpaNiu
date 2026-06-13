@@ -1,4 +1,7 @@
 payload:
+  # Generated Android rules for Weibo.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
   - DOMAIN,sax.sina.com.cn
   - DOMAIN,saxn.sina.com.cn
   - DOMAIN,saxs.sina.com.cn

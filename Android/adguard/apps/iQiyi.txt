@@ -1,3 +1,6 @@
+! Generated Android rules for iQiyi.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
 ||access.if.iqiyi.com^
 ||api.iqiyi.com^
 ||cupid.iqiyi.com^
