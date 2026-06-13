@@ -1,10 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-13 23:06:46 +0800
+- 生成时间：2026-06-13 23:07:37 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
+- `.github/workflows/daily-module-update.yml`
 - `Android/branches.json`
 - `Release/Android/branches.json`
 - `Release/checksums.json`
@@ -33,6 +34,7 @@
 
 ## 修改文件
 
+- `.github/workflows/daily-module-update.yml`
 - `Android/branches.json`
 - `Release/Android/branches.json`
 - `Release/checksums.json`
@@ -55,6 +57,7 @@
 
 - Other
 - README/docs
+- Workflows
 
 ## 可能影响的 App
 
