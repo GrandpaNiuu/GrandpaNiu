@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T21:46:51.965753Z",
+  "generated_at": "2026-06-13T21:49:03.848399Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -135,8 +135,8 @@
     },
     {
       "path": "Release/Modules/bilibili.sgmodule",
-      "size": 4588,
-      "sha256": "0fb5480c68c0f2ea389c244bd72d2c8a7e461b307281dfe1b2a2b3de24eb2c5e"
+      "size": 3999,
+      "sha256": "0b544c2f8bb27d387a2398b6a4643dc31bcfd4623ecb6bc17deed3882f038357"
     },
     {
       "path": "Release/Modules/bitqiu-pan.sgmodule",
@@ -1140,8 +1140,8 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 709245,
-      "sha256": "84587f1a4e8cef851c56da77ed01c019d03c98ad078e178ed97b5b83eb40a3ba"
+      "size": 708608,
+      "sha256": "367e2d5a0ffcc78b43cb8cc4d02c59854fe02487ac383bd16828dd1e67262fb7"
     },
     {
       "path": "Release/Rules.conf",
