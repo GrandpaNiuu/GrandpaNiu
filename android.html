@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark">
-  <title>GrandpaNiu Android 导入页</title>
+  <title>GrandpaNiu Android 单一导入页</title>
   <style>
     :root {
       --bg: #15171d;
@@ -15,12 +15,10 @@
       --muted: #a5a9b8;
       --muted-2: #7f8494;
       --blue: #2388d9;
-      --blue-2: #4b5563;
       --green: #25a162;
-      --green-2: #4b5563;
       --orange: #d6a44d;
       --danger: #e17878;
-      --nav: rgba(31, 34, 44, 0.86);
+      --nav: rgba(31,34,44,.9);
     }
 
     * { box-sizing: border-box; }
@@ -36,23 +34,22 @@
     }
 
     body {
-      padding: max(24px, env(safe-area-inset-top)) 16px calc(110px + env(safe-area-inset-bottom));
+      padding: max(26px, env(safe-area-inset-top)) 16px calc(100px + env(safe-area-inset-bottom));
       background:
-        radial-gradient(circle at 18% -8%, rgba(35, 136, 217, .18), transparent 34%),
-        radial-gradient(circle at 92% 0%, rgba(37, 161, 98, .12), transparent 30%),
+        radial-gradient(circle at 18% -8%, rgba(35,136,217,.18), transparent 34%),
+        radial-gradient(circle at 92% 0%, rgba(37,161,98,.12), transparent 30%),
         #15171d;
     }
 
-    a, button { -webkit-tap-highlight-color: transparent; }
+    a,
+    button { -webkit-tap-highlight-color: transparent; }
 
     .wrap {
       width: min(100%, 880px);
       margin: 0 auto;
     }
 
-    header {
-      padding: 12px 0 22px;
-    }
+    header { padding: 12px 0 22px; }
 
     .eyebrow {
       display: inline-flex;
@@ -63,7 +60,7 @@
       border: 1px solid var(--line);
       border-radius: 999px;
       color: #d7eaff;
-      background: rgba(35, 136, 217, .12);
+      background: rgba(35,136,217,.12);
       font-size: 13px;
       font-weight: 800;
     }
@@ -72,7 +69,7 @@
       margin: 0;
       font-size: clamp(34px, 8.8vw, 58px);
       line-height: 1.05;
-      letter-spacing: -.06em;
+      letter-spacing: 0;
       font-weight: 900;
     }
 
@@ -84,31 +81,7 @@
       font-weight: 520;
     }
 
-    .notice,
-    .danger {
-      margin: 16px 0 0;
-      padding: 13px 14px;
-      border-radius: 14px;
-      line-height: 1.7;
-      font-size: 14px;
-      font-weight: 750;
-    }
-
-    .notice {
-      border: 1px solid rgba(214, 164, 77, .26);
-      background: rgba(214, 164, 77, .09);
-      color: #dfbf82;
-    }
-
-    .danger {
-      border: 1px solid rgba(225, 120, 120, .26);
-      background: rgba(225, 120, 120, .09);
-      color: #f0a4a4;
-    }
-
-    .section {
-      margin-top: 22px;
-    }
+    .section { margin-top: 22px; }
 
     .section-title {
       display: flex;
@@ -118,7 +91,7 @@
       color: #2f9cff;
       font-size: clamp(23px, 6vw, 34px);
       line-height: 1.18;
-      letter-spacing: -.04em;
+      letter-spacing: 0;
       font-weight: 900;
     }
 
@@ -130,42 +103,54 @@
       background: linear-gradient(180deg, #59b0ff, #25a162);
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
     .card {
       border: 1px solid var(--line);
-      border-radius: 20px;
+      border-radius: 18px;
       padding: 16px;
       background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.045));
       box-shadow: 0 14px 34px rgba(0,0,0,.20);
     }
 
     .card.primary {
-      border-color: rgba(47, 156, 255, .30);
+      border-color: rgba(47,156,255,.30);
       background: linear-gradient(180deg, rgba(47,156,255,.13), rgba(255,255,255,.045));
     }
 
-    .card.warning {
-      border-color: rgba(214, 164, 77, .28);
-      background: linear-gradient(180deg, rgba(214,164,77,.10), rgba(255,255,255,.045));
-    }
-
+    .card h2,
     .card h3 {
       margin: 0 0 8px;
-      font-size: 20px;
-      line-height: 1.25;
-      letter-spacing: -.025em;
+      font-size: 21px;
+      line-height: 1.28;
+      letter-spacing: 0;
     }
 
     .card p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.75;
       font-size: 15px;
+    }
+
+    .notice,
+    .danger {
+      margin: 14px 0 0;
+      padding: 13px 14px;
+      border-radius: 14px;
+      line-height: 1.7;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .notice {
+      border: 1px solid rgba(214,164,77,.26);
+      background: rgba(214,164,77,.09);
+      color: #dfbf82;
+    }
+
+    .danger {
+      border: 1px solid rgba(225,120,120,.26);
+      background: rgba(225,120,120,.09);
+      color: #f0a4a4;
     }
 
     .tags {
@@ -218,51 +203,19 @@
     .badge-btn .name {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
       padding: 0 9px;
       white-space: nowrap;
     }
 
-    .badge-btn.install .label { background: var(--blue); }
-    .badge-btn.install .name { background: var(--blue-2); }
     .badge-btn.file .label { background: var(--green); }
-    .badge-btn.file .name { background: var(--green-2); }
+    .badge-btn.file .name { background: #4b5563; }
+    .badge-btn.blue .label { background: var(--blue); }
+    .badge-btn.blue .name { background: #4b5563; }
     .badge-btn.gray .label { background: #6b7280; }
     .badge-btn.gray .name { background: #4b5563; }
-    .badge-btn.orange .label { background: #c48929; }
-    .badge-btn.orange .name { background: #6b5a3d; }
 
-    .badge-btn:active { filter: brightness(.9); }
-
-    .choice {
-      display: grid;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .choice-row {
-      display: grid;
-      grid-template-columns: 96px 1fr;
-      gap: 10px;
-      align-items: start;
-      padding: 10px;
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 14px;
-      background: rgba(255,255,255,.04);
-    }
-
-    .choice-row b {
-      color: #e5e7eb;
-      font-size: 14px;
-    }
-
-    .choice-row span {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    code, pre {
+    code,
+    pre {
       font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
     }
 
@@ -278,6 +231,17 @@
       white-space: normal;
       font-size: 12px;
       line-height: 1.55;
+    }
+
+    pre {
+      margin: 0;
+      padding: 14px;
+      border-radius: 12px;
+      background: #0d1117;
+      color: #e6edf3;
+      overflow-x: auto;
+      line-height: 1.6;
+      font-size: 12px;
     }
 
     details {
@@ -297,14 +261,12 @@
     }
 
     summary::-webkit-details-marker { display: none; }
-
     summary::after {
       content: "展开";
       float: right;
       color: var(--muted-2);
       font-size: 13px;
     }
-
     details[open] summary::after { content: "收起"; }
 
     .details-body {
@@ -312,15 +274,29 @@
       padding: 15px 16px;
     }
 
-    pre {
+    .advanced-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .mini {
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .mini h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .mini p {
       margin: 0;
-      padding: 14px;
-      border-radius: 12px;
-      background: #0d1117;
-      color: #e6edf3;
-      overflow-x: auto;
-      line-height: 1.6;
-      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 13px;
     }
 
     footer {
@@ -336,27 +312,24 @@
       left: 50%;
       bottom: max(14px, env(safe-area-inset-bottom));
       transform: translateX(-50%);
-      width: min(calc(100% - 28px), 760px);
+      width: min(calc(100% - 28px), 560px);
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 4px;
-      padding: 8px;
-      border: 1px solid rgba(255,255,255,.13);
-      border-radius: 30px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 7px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 26px;
       background: var(--nav);
-      box-shadow: 0 18px 48px rgba(0,0,0,.45);
       backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 16px 44px rgba(0,0,0,.32);
       z-index: 10;
     }
 
     .bottom-nav a {
+      min-height: 44px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 3px;
-      min-height: 58px;
       border-radius: 22px;
       color: #e5e7eb;
       text-decoration: none;
@@ -366,161 +339,106 @@
 
     .bottom-nav a.active {
       color: #58a6ff;
-      background: rgba(47, 156, 255, .16);
+      background: rgba(47,156,255,.16);
     }
 
-    .nav-icon { font-size: 22px; line-height: 1; }
-
-    @media (max-width: 860px) {
-      .cards { grid-template-columns: 1fr; }
-      .choice-row { grid-template-columns: 86px 1fr; }
+    @media (max-width: 760px) {
+      .advanced-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <main class="wrap" id="top">
     <header>
-      <div class="eyebrow">🤖 GrandpaNiu · Android Rules</div>
-      <h1>Android 导入页</h1>
-      <p class="lead">先按客户端选择入口。Android 端主要是域名、关键词、IP、DNS 和 routing 规则，不包含 iOS 的 Script / MITM / Rewrite 能力。</p>
-      <div class="notice">不确定怎么选：已有节点用 Mihomo 规则集版；没有节点才用完整配置版；只想增强某个 App，就进 App 可选增强规则。</div>
+      <div class="eyebrow">GrandpaNiu · Android Rules</div>
+      <h1>Android 单一入口</h1>
+      <p class="lead">普通用户只导入下面这一个主规则集。它已经聚合 Android 原生规则、iOS 通用兼容层和 iOS App 兼容增强层，尽量像 iOS Fusion 一样保持一个公开入口。</p>
+      <div class="notice">Android 客户端格式不统一，所以仓库底层仍会生成多种兼容文件；但公开导入页只主推一个入口，其他文件仅保留给高级用户排查。</div>
     </header>
 
-    <section class="section" id="choose">
-      <h2 class="section-title">先选入口</h2>
-      <div class="card primary">
-        <div class="choice">
-          <div class="choice-row"><b>已有节点</b><span>选 <strong>Mihomo 规则集版</strong>，不会覆盖原节点和策略组。</span></div>
-          <div class="choice-row"><b>没有节点</b><span>选 <strong>完整配置版</strong>，作为完整 Clash / Mihomo 配置导入。</span></div>
-          <div class="choice-row"><b>单 App</b><span>选 <strong>App 可选增强规则</strong>，只添加需要的 App 文件。</span></div>
-          <div class="choice-row"><b>AdGuard</b><span>选 <strong>DNS 规则版</strong>，只能做域名级拦截。</span></div>
-          <div class="choice-row"><b>sing-box</b><span>选 <strong>sing-box rule-set</strong>，需要在自己的配置中引用。</span></div>
-          <div class="choice-row"><b>v2rayNG</b><span>选 <strong>routing 片段版</strong>，需要手动合并。</span></div>
+    <section class="section" id="main-entry">
+      <h2 class="section-title">唯一推荐入口</h2>
+      <article class="card primary">
+        <h2>GrandpaNiu Android 主规则集</h2>
+        <p>适合 Mihomo、Clash Meta、FlClash 等支持 rule-provider 的客户端。这个入口不会覆盖你的节点订阅和策略组，只把净化规则作为远程规则集加入现有配置。</p>
+        <div class="tags">
+          <span class="tag">推荐</span>
+          <span class="tag">单一入口</span>
+          <span class="tag">已聚合 iOS 兼容层</span>
+          <span class="tag">不会覆盖节点</span>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="mihomo">
-      <h2 class="section-title">Mihomo / Clash Meta</h2>
-      <div class="cards">
-        <article class="card primary">
-          <h3>已有节点：规则集版</h3>
-          <p>适合已经有节点订阅的用户。把 GrandpaNiu 作为远程 rule-provider 加入原配置，不覆盖原节点。</p>
-          <div class="tags"><span class="tag">推荐</span><span class="tag">已有节点</span><span class="tag">rule-provider</span></div>
-          <div class="actions">
-            <button class="badge-btn file" type="button" onclick="copyText(ADS_RULESET_LINK)"><span class="label">▰ 规则文件</span><span class="name">Mihomo</span></button>
-            <button class="badge-btn gray" type="button" onclick="copyText(MIHOMO_PROVIDER_SNIPPET)"><span class="label">复制片段</span><span class="name">YAML</span></button>
-            <a class="badge-btn gray" href="Android/mihomo/README-With-Proxy.md"><span class="label">查看教程</span><span class="name">Guide</span></a>
-          </div>
-          <code class="link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Ads.yaml</code>
-        </article>
-
-        <article class="card warning">
-          <h3>无节点：完整配置版</h3>
-          <p>适合没有现成节点配置、只想做基础广告拦截的用户。已有节点订阅用户不要导入这个版本。</p>
-          <div class="tags"><span class="tag">无节点</span><span class="tag">完整配置</span><span class="tag">可能覆盖原配置</span></div>
-          <div class="danger">已有节点订阅用户不要导入，否则可能覆盖原节点、策略组和规则。</div>
-          <div class="actions">
-            <a class="badge-btn install" href="clash://install-config?url=https%3A%2F%2Fraw.githubusercontent.com%2FGrandpaNiuu%2FGrandpaNiu%2Fmain%2FAndroid%2Fmihomo%2FGrandpaNiu-Android-Full.yaml"><span class="label">↪ 一键导入</span><span class="name">Clash</span></a>
-            <button class="badge-btn file" type="button" onclick="copyText(FULL_CONFIG_LINK)"><span class="label">▰ 配置文件</span><span class="name">Full</span></button>
-          </div>
-          <code class="link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Android-Full.yaml</code>
-        </article>
-      </div>
-      <div class="danger">
-        <strong>安卓 Clash Meta / Clash Mi 使用注意：</strong>
-        <ul>
-          <li>使用 Clash Meta / Clash Mi 导入安卓配置后，需要关闭「分应用代理」。</li>
-          <li>如果开启「分应用代理」，部分 App 可能不会经过代理规则。</li>
-          <li>可能导致模块不生效、去广告无效、YouTube / Bilibili / 今日头条等模块异常、规则没有命中。</li>
-          <li>建议关闭分应用代理，让 Clash 接管全部应用流量。</li>
-          <li>修改后请重启 Clash Meta / Clash Mi，并重新打开需要测试的 App。</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" id="apps">
-      <h2 class="section-title">App 增强规则</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>App 可选增强规则</h3>
-          <p>用于手动加强 YouTube、Spotify、国内常见 App 等覆盖。按需添加，不建议一次性全开。</p>
-          <div class="tags"><span class="tag">可选</span><span class="tag">单 App</span><span class="tag">组合包</span></div>
-          <div class="actions">
-            <a class="badge-btn file" href="Android/apps.md"><span class="label">▰ 规则索引</span><span class="name">Apps</span></a>
-          </div>
-          <div class="notice">不要同时启用 Domestic-Apps 组合包和大量单 App 文件。异常时先关闭对应 App 增强规则。</div>
-        </article>
-
-        <article class="card warning">
-          <h3>iOS 可复用规则包</h3>
-          <p>从 iOS reject 规则提取 Android 可识别规则，覆盖更强，也更容易误伤。</p>
-          <div class="tags"><span class="tag">增强包</span><span class="tag">更强覆盖</span><span class="tag">更易误伤</span></div>
-          <div class="actions">
-            <button class="badge-btn file" type="button" onclick="copyText(IOS_COMPAT_MIHOMO_LINK)"><span class="label">▰ Mihomo</span><span class="name">增强包</span></button>
-            <button class="badge-btn gray" type="button" onclick="copyText(IOS_COMPAT_SINGBOX_LINK)"><span class="label">sing-box</span><span class="name">JSON</span></button>
-            <button class="badge-btn gray" type="button" onclick="copyText(IOS_COMPAT_ADGUARD_LINK)"><span class="label">AdGuard</span><span class="name">TXT</span></button>
-            <button class="badge-btn gray" type="button" onclick="copyText(IOS_COMPAT_V2RAYNG_LINK)"><span class="label">v2rayNG</span><span class="name">routing</span></button>
-          </div>
-          <div class="danger">出现图片不加载、播放异常、登录异常时，先关闭这个增强包。</div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="other">
-      <h2 class="section-title">其他客户端</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>sing-box rule-set</h3>
-          <p>这是 rule-set 文件，不是完整 sing-box 配置。需要在自己的配置里引用。</p>
-          <div class="tags"><span class="tag">sing-box</span><span class="tag">SFA</span><span class="tag">高级用户</span></div>
-          <div class="actions">
-            <button class="badge-btn file" type="button" onclick="copyText(SINGBOX_LINK)"><span class="label">▰ 规则文件</span><span class="name">JSON</span></button>
-          </div>
-          <code class="link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/GrandpaNiu-Ads.json</code>
-        </article>
-
-        <article class="card">
-          <h3>AdGuard DNS 规则</h3>
-          <p>适合 AdGuard Android、AdGuard DNS 或 AdGuard Home，只能做域名级拦截。</p>
-          <div class="tags"><span class="tag">AdGuard</span><span class="tag">DNS</span><span class="tag">轻量</span></div>
-          <div class="actions">
-            <button class="badge-btn file" type="button" onclick="copyText(ADGUARD_LINK)"><span class="label">▰ DNS规则</span><span class="name">TXT</span></button>
-          </div>
-          <code class="link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/GrandpaNiu-DNS.txt</code>
-        </article>
-
-        <article class="card">
-          <h3>v2rayNG routing 片段</h3>
-          <p>适合会手动改 V2Ray / Xray 配置的用户。它不是节点订阅，也不是完整配置。</p>
-          <div class="tags"><span class="tag">v2rayNG</span><span class="tag">V2Ray</span><span class="tag">手动合并</span></div>
-          <div class="actions">
-            <button class="badge-btn file" type="button" onclick="copyText(V2RAYNG_ROUTING_LINK)"><span class="label">▰ routing</span><span class="name">JSON</span></button>
-            <a class="badge-btn gray" href="Android/v2rayng/README.md"><span class="label">查看教程</span><span class="name">Guide</span></a>
-          </div>
-          <code class="link">https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/GrandpaNiu-v2rayng-routing.json</code>
-        </article>
-      </div>
+        <div class="actions">
+          <button class="badge-btn file" type="button" onclick="copyText(ADS_RULESET_LINK)"><span class="label">复制主入口</span><span class="name">Mihomo</span></button>
+          <button class="badge-btn blue" type="button" onclick="copyText(MIHOMO_PROVIDER_SNIPPET)"><span class="label">复制配置片段</span><span class="name">YAML</span></button>
+        </div>
+        <code class="link">https://grandpaniuu.github.io/GrandpaNiu/Android/mihomo/GrandpaNiu-Ads.yaml</code>
+        <div class="danger">不要再额外重复导入 iOS-Compatible-Reject 或 iOS-App-Compatible-Reject。它们已经进入主规则集，重复启用只会增加排查难度。</div>
+      </article>
     </section>
 
     <section class="section" id="guide">
-      <h2 class="section-title">合并示例</h2>
-      <details>
-        <summary>已有节点用户 Mihomo rule-provider 示例</summary>
+      <h2 class="section-title">接入方式</h2>
+      <details open>
+        <summary>Mihomo / Clash Meta / FlClash 配置片段</summary>
         <div class="details-body">
           <pre><code>rule-providers:
   grandpaniu_ads:
     type: http
     behavior: classical
     format: yaml
-    url: "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Ads.yaml"
+    url: "https://grandpaniuu.github.io/GrandpaNiu/Android/mihomo/GrandpaNiu-Ads.yaml"
     path: ./ruleset/GrandpaNiu-Ads.yaml
     interval: 86400
 
 rules:
   - RULE-SET,grandpaniu_ads,REJECT
-  - MATCH,🚀 节点选择</code></pre>
-          <div class="notice">规则必须放在 MATCH、GEOIP、普通代理分流规则之前。iOS 可复用规则包如果额外加入，也要放在 MATCH 之前。</div>
+  - MATCH,节点选择</code></pre>
+          <div class="notice">规则必须放在 MATCH、GEOIP 和普通代理分流规则之前。Android Clash Meta / Clash Mi 如果开启了“分应用代理”，部分 App 可能不会经过规则，请优先关闭分应用代理后测试。</div>
+        </div>
+      </details>
+    </section>
+
+    <section class="section" id="advanced">
+      <h2 class="section-title">高级兼容区</h2>
+      <details>
+        <summary>仅排查或特殊客户端使用，不作为公开主入口</summary>
+        <div class="details-body">
+          <div class="advanced-grid">
+            <div class="mini">
+              <h3>完整配置版</h3>
+              <p>没有现成节点配置时才考虑使用，可能覆盖原配置。</p>
+              <div class="actions"><button class="badge-btn gray" type="button" onclick="copyText(FULL_CONFIG_LINK)"><span class="label">复制</span><span class="name">Full</span></button></div>
+            </div>
+            <div class="mini">
+              <h3>App 规则索引</h3>
+              <p>查看单 App 文件和组合包，不建议普通用户全开。</p>
+              <div class="actions"><a class="badge-btn gray" href="Android/apps.md"><span class="label">打开</span><span class="name">Apps</span></a></div>
+            </div>
+            <div class="mini">
+              <h3>sing-box</h3>
+              <p>rule-set JSON，需要手动放入自己的 sing-box 配置。</p>
+              <div class="actions"><button class="badge-btn gray" type="button" onclick="copyText(SINGBOX_LINK)"><span class="label">复制</span><span class="name">JSON</span></button></div>
+            </div>
+            <div class="mini">
+              <h3>AdGuard</h3>
+              <p>DNS 过滤文本，只能做域名级拦截。</p>
+              <div class="actions"><button class="badge-btn gray" type="button" onclick="copyText(ADGUARD_LINK)"><span class="label">复制</span><span class="name">TXT</span></button></div>
+            </div>
+            <div class="mini">
+              <h3>v2rayNG</h3>
+              <p>routing 片段，不是完整节点订阅，需要手动合并。</p>
+              <div class="actions"><button class="badge-btn gray" type="button" onclick="copyText(V2RAYNG_ROUTING_LINK)"><span class="label">复制</span><span class="name">routing</span></button></div>
+            </div>
+            <div class="mini">
+              <h3>iOS 兼容层</h3>
+              <p>主入口已包含。这里只用于单独排查规则来源。</p>
+              <div class="actions">
+                <button class="badge-btn gray" type="button" onclick="copyText(IOS_COMPAT_MIHOMO_LINK)"><span class="label">通用</span><span class="name">iOS</span></button>
+                <button class="badge-btn gray" type="button" onclick="copyText(IOS_APP_COMPAT_MIHOMO_LINK)"><span class="label">App</span><span class="name">iOS</span></button>
+              </div>
+            </div>
+          </div>
+          <div class="danger">高级区文件不要和主入口重复启用。遇到图片不加载、登录异常、白屏、播放异常时，先停用额外兼容文件，只保留主入口排查。</div>
         </div>
       </details>
     </section>
@@ -528,31 +446,29 @@ rules:
     <section class="section" id="note">
       <h2 class="section-title">边界说明</h2>
       <div class="card">
-        <p>Android 版只迁移域名、关键词、IP 规则和部分可迁移拦截逻辑，不包含 iOS / Surge / Shadowrocket 的 Script、MITM、Rewrite、Header Rewrite、Body Rewrite 能力。</p>
-        <div class="danger">risky/ 目录只用于排查。它可能影响 App 启动、图片加载、播放、定位或接口连接，不建议长期启用。</div>
+        <p>Android 版只迁移域名、关键词、IP、DNS 和 routing 规则，不包含 iOS / Surge / Shadowrocket 的 Script、MITM、URL Rewrite、Header Rewrite、Body Rewrite 能力。登录、支付、银行、验证码、视频播放、图片 CDN 保护链路不会被迁移成 Android 拦截规则。</p>
+        <div class="notice">如果你只想“像 iOS 一样一个入口”，就只使用本页的主规则集。其他文件存在是为了兼容不同 Android 客户端和维护排查，不是给普通用户逐个导入的版本线。</div>
       </div>
     </section>
 
-    <footer>一键导入失败时，请复制对应链接，在客户端中选择「从 URL 导入」或按教程手动合并。</footer>
+    <footer>导入失败时，请复制主入口链接，在客户端中选择“从 URL 导入规则集”或按配置片段手动合并。</footer>
   </main>
 
   <nav class="bottom-nav" aria-label="底部导航">
-    <a class="active" href="#top"><span class="nav-icon">⌂</span><span>顶部</span></a>
-    <a href="#mihomo"><span class="nav-icon">▰</span><span>Mihomo</span></a>
-    <a href="#apps"><span class="nav-icon">▱</span><span>App</span></a>
-    <a href="#other"><span class="nav-icon">☷</span><span>其他</span></a>
+    <a class="active" href="#top">顶部</a>
+    <a href="#main-entry">主入口</a>
+    <a href="#advanced">高级</a>
   </nav>
 
   <script>
-    const FULL_CONFIG_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Android-Full.yaml";
-    const ADS_RULESET_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/GrandpaNiu-Ads.yaml";
-    const SINGBOX_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/GrandpaNiu-Ads.json";
-    const ADGUARD_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/GrandpaNiu-DNS.txt";
-    const V2RAYNG_ROUTING_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/GrandpaNiu-v2rayng-routing.json";
-    const IOS_COMPAT_MIHOMO_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/mihomo/apps/iOS-Compatible-Reject.yaml";
-    const IOS_COMPAT_SINGBOX_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/sing-box/apps/iOS-Compatible-Reject.json";
-    const IOS_COMPAT_ADGUARD_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/adguard/apps/iOS-Compatible-Reject.txt";
-    const IOS_COMPAT_V2RAYNG_LINK = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Android/v2rayng/apps/iOS-Compatible-Reject-routing.json";
+    const BASE = "https://grandpaniuu.github.io/GrandpaNiu";
+    const ADS_RULESET_LINK = `${BASE}/Android/mihomo/GrandpaNiu-Ads.yaml`;
+    const FULL_CONFIG_LINK = `${BASE}/Android/mihomo/GrandpaNiu-Android-Full.yaml`;
+    const SINGBOX_LINK = `${BASE}/Android/sing-box/GrandpaNiu-Ads.json`;
+    const ADGUARD_LINK = `${BASE}/Android/adguard/GrandpaNiu-DNS.txt`;
+    const V2RAYNG_ROUTING_LINK = `${BASE}/Android/v2rayng/GrandpaNiu-v2rayng-routing.json`;
+    const IOS_COMPAT_MIHOMO_LINK = `${BASE}/Android/mihomo/apps/iOS-Compatible-Reject.yaml`;
+    const IOS_APP_COMPAT_MIHOMO_LINK = `${BASE}/Android/mihomo/apps/iOS-App-Compatible-Reject.yaml`;
     const MIHOMO_PROVIDER_SNIPPET = `rule-providers:
   grandpaniu_ads:
     type: http
@@ -564,7 +480,7 @@ rules:
 
 rules:
   - RULE-SET,grandpaniu_ads,REJECT
-  - MATCH,🚀 节点选择`;
+  - MATCH,节点选择`;
 
     function copyText(text) {
       navigator.clipboard.writeText(text).then(function() {
