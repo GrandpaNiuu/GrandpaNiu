@@ -1,5 +1,5 @@
 #!name=GrandpaNiu Bilibili
-#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!desc=Stable Shadowrocket-safe Bilibili cleanup; splash Map Local retained; gRPC MITM disabled to avoid app network errors
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/bilibili.sgmodule
 
 [Rule]
@@ -19,13 +19,10 @@ http-response-jq ^https:\/\/api\.live\.bilibili\.com\/xlive\/(?:app-interface\/v
 ^https:\/\/api\.bilibili\.com\/pgc\/activity\/deliver\/material\/receive\? header="content-type: application/json|bili-status-code: 0" data-type=text data="{"code":0,"data":{"closeType":"close_win","container":[],"showTime":""},"message":"success"}"
 ^https:\/\/api\.live\.bilibili\.com\/xlive\/e-commerce-interface\/v1\/ecommerce-user\/get_shopping_info\? header="content-type: application/json" data-type=text data="{}"
 ^https:\/\/line3-h5-mobile-api\.biligame\.com\/game\/live\/large_card_material\? header="content-type: application/json" data-type=text data="{"code":0,"message":"success"}"
-^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v1\.Teenagers\/ModeStatus$ header="content-type: application/grpc|grpc-status: 0" data-type=base64 data="AAAAABMKEQgCEgl0ZWVuYWdlcnMgAioA"
-^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v1\.Search\/DefaultWords$ header="content-type: application/grpc|grpc-status: 0" data-type=base64 data="AAAAACEaHeaQnOe0ouinhumikeOAgeeVquWJp+aIlnVw5Li7KAE="
-^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.(?:view\.v1\.View\/TFInfo|viewunite\.v1\.View\/(?:PlayPause|ViewEndPage))$ header="content-type: application/grpc|grpc-status: 0" data-type=base64 data="AAAAAAA="
 
 [Script]
 bilibili.live = type=http-response,pattern=^https:\/\/api\.live\.bilibili\.com\/xlive\/(?:app-interface\/v2\/index\/feed|app-room\/v1\/index\/getInfoBy(?:Room|User))\?,requires-body=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.json.js
 bilibili.json = type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/(?:resource\/show\/tab\/v2|v2\/(?:splash\/(?:list|show|event\/list2)|feed\/index(?:\/story)?|account\/(?:mine(?:\/ipad)?|myinfo)))\?,argument="{"showCreatorHub":0,"showUperCenter":0}",requires-body=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.json.js
 
 [MITM]
-hostname = %APPEND% grpc.biliapi.net,app.bilibili.com,api.bilibili.com,api.live.bilibili.com,line3-h5-mobile-api.biligame.com
+hostname = %APPEND% app.bilibili.com,api.bilibili.com,api.live.bilibili.com,line3-h5-mobile-api.biligame.com
