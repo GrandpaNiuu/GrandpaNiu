@@ -1,6 +1,6 @@
 # 变更影响报告
 
-- 生成时间：2026-06-14 06:06:06 +0800
+- 生成时间：2026-06-14 06:06:30 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
@@ -14,17 +14,22 @@
 - `reports/android_rules_report.md`
 - `reports/app_status_matrix.md`
 - `reports/automated_quality_evidence.md`
+- `reports/build_summary.json`
+- `reports/build_summary.md`
 - `reports/candidate_security_score_report.md`
 - `reports/change_impact_report.md`
 - `reports/domestic_app_connectivity_audit.md`
 - `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
+- `reports/qingrex_miniapp_import_report.md`
 - `reports/reject_risk_report.md`
 - `reports/release_modules_report.md`
 - `reports/remote_rule_syntax_report.md`
 - `reports/report_freshness_report.md`
 - `reports/repository_health_report.md`
+- `reports/script_consolidation_rollback_report.md`
+- `reports/script_dedupe_report.md`
 - `reports/script_inventory_report.md`
 - `reports/workflow_health_report.md`
 
@@ -47,17 +52,22 @@
 - `reports/android_rules_report.md`
 - `reports/app_status_matrix.md`
 - `reports/automated_quality_evidence.md`
+- `reports/build_summary.json`
+- `reports/build_summary.md`
 - `reports/candidate_security_score_report.md`
 - `reports/change_impact_report.md`
 - `reports/domestic_app_connectivity_audit.md`
 - `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
+- `reports/qingrex_miniapp_import_report.md`
 - `reports/reject_risk_report.md`
 - `reports/release_modules_report.md`
 - `reports/remote_rule_syntax_report.md`
 - `reports/report_freshness_report.md`
 - `reports/repository_health_report.md`
+- `reports/script_consolidation_rollback_report.md`
+- `reports/script_dedupe_report.md`
 - `reports/script_inventory_report.md`
 - `reports/workflow_health_report.md`
 
