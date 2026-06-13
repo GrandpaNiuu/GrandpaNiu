@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T01:14:56.455246Z",
+  "generated_at": "2026-06-13T01:15:20.091131Z",
   "algorithm": "sha256",
   "count": 242,
   "files": [
@@ -1095,8 +1095,8 @@
     },
     {
       "path": "Release/Modules/zhihu.sgmodule",
-      "size": 7251,
-      "sha256": "74cc97a0b45d7694a1e9b2f19cc776a0204bdfaafae2bf1fb69c55df2e8d69c3"
+      "size": 7274,
+      "sha256": "581e4f03afd3bd57b82448b8729b46f97e079f03fb627aff5666378e83e8058a"
     },
     {
       "path": "Release/Modules/zhuan-zhuan.sgmodule",
