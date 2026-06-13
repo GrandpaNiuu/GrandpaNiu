@@ -54,6 +54,7 @@ def main() -> None:
         [sys.executable, "scripts/validate_generator_config.py"],
         [sys.executable, "scripts/validate_manifest.py"],
         [sys.executable, "scripts/validate_remote_rule_syntax.py"],
+        [sys.executable, "tools/generate_automated_quality_evidence.py"],
         [sys.executable, "scripts/validate_governance_extensions.py"],
         [sys.executable, "scripts/validate_profiles.py"],
         [sys.executable, "scripts/validate_module_integrity.py"],

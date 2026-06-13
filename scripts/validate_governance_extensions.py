@@ -60,10 +60,9 @@ IMPORT_TEMPLATE_REQUIRED_TOKENS = [
 ]
 
 WORKFLOW_REQUIRED_TOKENS = [
-    "scripts/validate_remote_rule_syntax.py",
-    "scripts/validate_governance_extensions.py",
-    "python3 scripts/convert_quanx_rules.py",
-    "python3 scripts/quality_gate.py",
+    "scripts/quality_gate.py",
+    "automated_quality_evidence.md",
+    "fusion-build-marker: scripts/build_module.py --build --profile fusion",
 ]
 
 

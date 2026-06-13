@@ -26,7 +26,7 @@ ACTIVE_PREFIXES = (
     ".github/",
     "docs/",
     "scripts/",
-    "tests/",
+    "tools/",
 )
 ACTIVE_FILES = {
     "README.md",
@@ -96,7 +96,7 @@ class AutomatedQualityGateTests(unittest.TestCase):
             path.read_text(encoding="utf-8") for path in (ROOT / ".github" / "workflows").glob("*.yml")
         )
         self.assertNotIn("manual_test_log", workflow_text)
-        self.assertIn("generate_automated_quality_evidence.py", workflow_text)
+        self.assertIn("automated_quality_evidence.md", workflow_text)
         self.assertIn("scripts/quality_gate.py", workflow_text)
 
 
