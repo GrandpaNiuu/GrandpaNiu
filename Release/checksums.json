@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T22:06:26.503517Z",
+  "generated_at": "2026-06-13T22:07:02.542413Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 708608,
-      "sha256": "367e2d5a0ffcc78b43cb8cc4d02c59854fe02487ac383bd16828dd1e67262fb7"
+      "size": 708443,
+      "sha256": "14f5339afc88af3cda969424e7afaac55d7a4ffbbd14cc202e528cbf0ece1481"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -1180,8 +1180,8 @@
     },
     {
       "path": "Web/README.md",
-      "size": 784,
-      "sha256": "4af5a96df0fbd53b2e416e81599b37e86f75564e98d3bca5627ae9df8a04c1af"
+      "size": 807,
+      "sha256": "32e92306ca91d5389f2d462f55195df71df86b6122a6ca0d77b1780e3440c4d1"
     },
     {
       "path": "Web/catalog.md",
