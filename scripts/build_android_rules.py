@@ -27,6 +27,8 @@ V2RAYNG_DIR = V2RAYNG_ROOT / "apps"
 IOS_REJECT = ROOT / "Rules" / "reject.list"
 IOS_APP_SOURCES = ROOT / "Rewrite" / "Sources" / "Apps"
 REPORT = ROOT / "reports" / "android_rules_report.md"
+BRANCH_MANIFEST = ROOT / "Android" / "branches.json"
+PUBLIC_BASE = "https://grandpaniuu.github.io/GrandpaNiu"
 
 SUPPORTED_TYPES = {"DOMAIN", "DOMAIN-SUFFIX", "DOMAIN-KEYWORD", "IP-CIDR", "IP-CIDR6"}
 IOS_REJECT_NAME = "iOS-Compatible-Reject"
@@ -312,6 +314,70 @@ def write_main_outputs(rules: list[dict[str, str]], app_count: int) -> None:
     write_if_changed(V2RAYNG_ROOT / "GrandpaNiu-v2rayng-routing.json", render_v2rayng(rules))
 
 
+def active_adguard_rule_count(rules: list[dict[str, str]]) -> int:
+    rendered = render_adguard(rules)
+    return len([line for line in rendered.splitlines() if line.strip() and not line.startswith("!")])
+
+
+def write_branch_manifest(rules: list[dict[str, str]], app_count: int, generated: str) -> None:
+    main_count = len(rules)
+    adguard_count = active_adguard_rule_count(rules)
+    manifest = {
+        "generated": f"{generated} Asia/Shanghai",
+        "source_of_truth": "Android/mihomo/apps/*.yaml + safe iOS/Fusion compatible REJECT rules",
+        "sync_policy": (
+            "Mihomo, sing-box and v2rayNG are generated from the same canonical Android rule set. "
+            "AdGuard is generated from the same source as the DNS-compatible projection."
+        ),
+        "app_source_files": app_count,
+        "canonical_rule_count": main_count,
+        "branches": [
+            {
+                "id": "mihomo",
+                "name": "Mihomo / Clash Meta / FlClash",
+                "target": "Android/mihomo/GrandpaNiu-Ads.yaml",
+                "release_target": "Release/Android/mihomo/GrandpaNiu-Ads.yaml",
+                "public_url": f"{PUBLIC_BASE}/Android/mihomo/GrandpaNiu-Ads.yaml",
+                "sync_with": "mihomo",
+                "projection": "full",
+                "rule_count": main_count,
+            },
+            {
+                "id": "sing-box",
+                "name": "sing-box",
+                "target": "Android/sing-box/GrandpaNiu-Ads.json",
+                "release_target": "Release/Android/sing-box/GrandpaNiu-Ads.json",
+                "public_url": f"{PUBLIC_BASE}/Android/sing-box/GrandpaNiu-Ads.json",
+                "sync_with": "mihomo",
+                "projection": "full",
+                "rule_count": main_count,
+            },
+            {
+                "id": "adguard",
+                "name": "AdGuard DNS / AdGuard Home",
+                "target": "Android/adguard/GrandpaNiu-DNS.txt",
+                "release_target": "Release/Android/adguard/GrandpaNiu-DNS.txt",
+                "public_url": f"{PUBLIC_BASE}/Android/adguard/GrandpaNiu-DNS.txt",
+                "sync_with": "mihomo",
+                "projection": "dns-domain",
+                "rule_count": adguard_count,
+                "source_rule_count": main_count,
+            },
+            {
+                "id": "v2rayng",
+                "name": "v2rayNG / V2Ray / Xray routing",
+                "target": "Android/v2rayng/GrandpaNiu-v2rayng-routing.json",
+                "release_target": "Release/Android/v2rayng/GrandpaNiu-v2rayng-routing.json",
+                "public_url": f"{PUBLIC_BASE}/Android/v2rayng/GrandpaNiu-v2rayng-routing.json",
+                "sync_with": "mihomo",
+                "projection": "full",
+                "rule_count": main_count,
+            },
+        ],
+    }
+    write_if_changed(BRANCH_MANIFEST, json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
+
+
 def generate_report(stats: list[dict[str, str | int]], ios_app_counts: dict[str, int], main_count: int) -> None:
     now = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S")
     lines = [
@@ -324,6 +390,7 @@ def generate_report(stats: list[dict[str, str | int]], ios_app_counts: dict[str,
         f"- iOS common source: Rules/reject.list -> {IOS_REJECT_NAME}",
         f"- iOS app source: Rewrite/Sources/Apps/*.conf [Rule] REJECT -> {IOS_APP_COMPAT_NAME}",
         "- exported formats: Mihomo / sing-box / AdGuard / v2rayNG",
+        "- sync branches: sing-box, AdGuard and v2rayNG are generated from the Mihomo source layer during the same build.",
         "- safety: Script, MITM, Rewrite, DIRECT/PROXY and protected media/payment/login rules are not migrated.",
         "",
         "| App | Rules | Outputs |",
@@ -383,6 +450,8 @@ def main() -> None:
     if not main_rules:
         raise SystemExit("no Android rules generated")
     write_main_outputs(main_rules, len(stats))
+    generated = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S")
+    write_branch_manifest(main_rules, len(stats), generated)
     generate_report(stats, ios_app_counts, len(main_rules))
     print(f"Android rule formats generated: {len(stats)} app file(s), {len(main_rules)} main rule(s).")
 

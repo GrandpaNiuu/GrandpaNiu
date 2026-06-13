@@ -317,7 +317,7 @@
     <header>
       <div class="eyebrow">GrandpaNiu · Android Rules</div>
       <h1>Android 单一入口</h1>
-      <p class="lead">所有 Android 规则层已经合并到各客户端主输出里。普通用户优先使用 Mihomo 主规则集；sing-box、AdGuard、v2rayNG 只保留同一套合并规则的格式版本。</p>
+      <p class="lead">所有 Android 规则层已经合并到各客户端主输出里。普通用户优先使用 Mihomo 主规则集；sing-box、AdGuard、v2rayNG 作为同源同步规则分支保留，并跟随 Mihomo 同步构建。</p>
       <div class="notice">不要再单独叠加 iOS 兼容层、单 App 包或零散增强包。主输出已经合并这些安全可迁移规则，重复导入只会增加误伤和排查难度。</div>
     </header>
 
@@ -337,7 +337,7 @@
           <button class="badge-btn blue" type="button" onclick="copyText(MIHOMO_PROVIDER_SNIPPET)"><span class="label">复制配置片段</span><span class="name">YAML</span></button>
         </div>
         <code class="link">https://grandpaniuu.github.io/GrandpaNiu/Android/mihomo/GrandpaNiu-Ads.yaml</code>
-        <div class="danger">这是 Android 的唯一推荐入口。sing-box、AdGuard、v2rayNG 是同一套合并规则的其他格式，不是需要重复叠加的增强包。</div>
+        <div class="danger">这是 Android 的唯一推荐入口。sing-box、AdGuard、v2rayNG 是同一套合并规则的同步分支，不是需要重复叠加的增强包。</div>
       </article>
     </section>
 
@@ -374,11 +374,11 @@ rules:
     </section>
 
     <section class="section" id="advanced">
-      <h2 class="section-title">保留格式版本</h2>
+      <h2 class="section-title">同步规则分支</h2>
       <details>
-        <summary>sing-box / AdGuard / v2rayNG 合并版</summary>
+        <summary>sing-box / AdGuard / v2rayNG 同步分支</summary>
         <div class="details-body">
-          <div class="notice">下面三个文件和 Mihomo 主入口是同一套合并规则的不同格式。只在对应客户端里使用一个，不要跨格式重复启用。</div>
+          <div class="notice">下面三个文件和 Mihomo 主入口来自同一套规则源，并由同一次构建生成。只在对应客户端里使用一个，不要跨格式重复启用。</div>
           <div class="advanced-grid">
             <div class="mini">
               <h3>sing-box</h3>
@@ -396,7 +396,7 @@ rules:
               <div class="actions"><button class="badge-btn gray" type="button" onclick="copyText(V2RAYNG_ROUTING_LINK)"><span class="label">复制</span><span class="name">routing</span></button></div>
             </div>
           </div>
-          <div class="danger">这里保留的是客户端格式版本，不是额外增强层。遇到图片不加载、登录异常、白屏、播放异常时，只保留当前客户端对应的一个合并版排查。</div>
+          <div class="danger">这里保留的是同步规则分支，不是额外增强层。遇到图片不加载、登录异常、白屏、播放异常时，只保留当前客户端对应的一个合并版排查。</div>
         </div>
       </details>
     </section>
@@ -405,7 +405,7 @@ rules:
       <h2 class="section-title">边界说明</h2>
       <div class="card">
         <p>Android 版只迁移域名、关键词、IP、DNS 和 routing 规则，不包含 iOS / Surge / Shadowrocket 的 Script、MITM、URL Rewrite、Header Rewrite、Body Rewrite 能力。登录、支付、银行、验证码、视频播放、图片 CDN 保护链路不会被迁移成 Android 拦截规则。</p>
-        <div class="notice">如果你只想“像 iOS 一样一个入口”，就只使用本页的 Mihomo 主规则集。sing-box、AdGuard、v2rayNG 只是保留格式版本，不是新的规则分支。</div>
+        <div class="notice">如果你只想“像 iOS 一样一个入口”，就只使用本页的 Mihomo 主规则集。sing-box、AdGuard、v2rayNG 是跟 Mihomo 同步生成的规则分支，用于对应安卓客户端。</div>
       </div>
     </section>
 

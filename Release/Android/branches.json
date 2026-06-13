@@ -1,0 +1,50 @@
+{
+  "generated": "2026-06-13 22:33:22 Asia/Shanghai",
+  "source_of_truth": "Android/mihomo/apps/*.yaml + safe iOS/Fusion compatible REJECT rules",
+  "sync_policy": "Mihomo, sing-box and v2rayNG are generated from the same canonical Android rule set. AdGuard is generated from the same source as the DNS-compatible projection.",
+  "app_source_files": 19,
+  "canonical_rule_count": 487,
+  "branches": [
+    {
+      "id": "mihomo",
+      "name": "Mihomo / Clash Meta / FlClash",
+      "target": "Android/mihomo/GrandpaNiu-Ads.yaml",
+      "release_target": "Release/Android/mihomo/GrandpaNiu-Ads.yaml",
+      "public_url": "https://grandpaniuu.github.io/GrandpaNiu/Android/mihomo/GrandpaNiu-Ads.yaml",
+      "sync_with": "mihomo",
+      "projection": "full",
+      "rule_count": 487
+    },
+    {
+      "id": "sing-box",
+      "name": "sing-box",
+      "target": "Android/sing-box/GrandpaNiu-Ads.json",
+      "release_target": "Release/Android/sing-box/GrandpaNiu-Ads.json",
+      "public_url": "https://grandpaniuu.github.io/GrandpaNiu/Android/sing-box/GrandpaNiu-Ads.json",
+      "sync_with": "mihomo",
+      "projection": "full",
+      "rule_count": 487
+    },
+    {
+      "id": "adguard",
+      "name": "AdGuard DNS / AdGuard Home",
+      "target": "Android/adguard/GrandpaNiu-DNS.txt",
+      "release_target": "Release/Android/adguard/GrandpaNiu-DNS.txt",
+      "public_url": "https://grandpaniuu.github.io/GrandpaNiu/Android/adguard/GrandpaNiu-DNS.txt",
+      "sync_with": "mihomo",
+      "projection": "dns-domain",
+      "rule_count": 455,
+      "source_rule_count": 487
+    },
+    {
+      "id": "v2rayng",
+      "name": "v2rayNG / V2Ray / Xray routing",
+      "target": "Android/v2rayng/GrandpaNiu-v2rayng-routing.json",
+      "release_target": "Release/Android/v2rayng/GrandpaNiu-v2rayng-routing.json",
+      "public_url": "https://grandpaniuu.github.io/GrandpaNiu/Android/v2rayng/GrandpaNiu-v2rayng-routing.json",
+      "sync_with": "mihomo",
+      "projection": "full",
+      "rule_count": 487
+    }
+  ]
+}

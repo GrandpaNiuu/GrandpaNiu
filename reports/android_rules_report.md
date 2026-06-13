@@ -1,12 +1,13 @@
 # Android rules build report
 
-- generated: 2026-06-13 21:59:20 Asia/Shanghai
+- generated: 2026-06-13 22:33:22 Asia/Shanghai
 - app rule files: 19
 - main Android rules: 487
 - source: Android/mihomo/apps/*.yaml
 - iOS common source: Rules/reject.list -> iOS-Compatible-Reject
 - iOS app source: Rewrite/Sources/Apps/*.conf [Rule] REJECT -> iOS-App-Compatible-Reject
 - exported formats: Mihomo / sing-box / AdGuard / v2rayNG
+- sync branches: sing-box, AdGuard and v2rayNG are generated from the Mihomo source layer during the same build.
 - safety: Script, MITM, Rewrite, DIRECT/PROXY and protected media/payment/login rules are not migrated.
 
 | App | Rules | Outputs |

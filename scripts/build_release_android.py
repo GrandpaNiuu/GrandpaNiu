@@ -18,6 +18,7 @@ DEFAULT_CONFIG = ROOT / "Rewrite" / "Generate.conf"
 ANDROID_ROOT = ROOT / "Android"
 REPORT = ROOT / "reports" / "release_android_report.md"
 PUBLISH_DIRS = ["mihomo", "sing-box", "adguard", "v2rayng"]
+PUBLISH_FILES = ["branches.json"]
 
 
 def repo_path(value: str | Path) -> Path:
@@ -70,6 +71,12 @@ def build_readme(out_dir: Path, copied: dict[str, list[Path]]) -> str:
         lines.append(f"| {name} | `{rel(out_dir / name)}` | {len(files)} |")
     lines.extend([
         "",
+        "## Synced rule branches",
+        "",
+        "- `mihomo`, `sing-box`, `adguard`, and `v2rayng` are generated from the same Android source layer.",
+        "- `branches.json` records the synchronized public targets and rule counts.",
+        "- AdGuard is the DNS-compatible projection of the same source because AdGuard text filters cannot represent every IP/routing rule.",
+        "",
         "## Source of truth",
         "",
         "- Editable Android sources remain under `Android/`.",
@@ -92,6 +99,14 @@ def build_report(out_dir: Path, copied: dict[str, list[Path]]) -> str:
     ]
     for name in PUBLISH_DIRS:
         lines.append(f"| {name} | {len(copied.get(name, []))} |")
+    lines.extend([
+        "",
+        "## Branch sync",
+        "",
+        "- Branch manifest: `Release/Android/branches.json`",
+        "- Mihomo, sing-box and v2rayNG are full projections of the canonical Android rules.",
+        "- AdGuard is the DNS-compatible projection of the same source.",
+    ])
     lines.append("")
     return "\n".join(lines)
 
@@ -113,6 +128,10 @@ def main() -> None:
     copied: dict[str, list[Path]] = {}
     for name in PUBLISH_DIRS:
         copied[name] = copy_tree(ANDROID_ROOT / name, out_dir / name)
+    for name in PUBLISH_FILES:
+        src = ANDROID_ROOT / name
+        if src.exists():
+            shutil.copy2(src, out_dir / name)
 
     write(out_dir / "README.md", build_readme(out_dir, copied))
     write(REPORT, build_report(out_dir, copied))
