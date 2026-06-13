@@ -363,7 +363,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "cat-ear-fm",
@@ -843,7 +843,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "huxiu",
@@ -927,7 +927,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "jd",
@@ -1923,7 +1923,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "spotify",
@@ -2492,7 +2492,7 @@
     {
       "id": "youtube",
       "name": "YouTube",
-      "source_url": "",
+      "source_url": "https://raw.githubusercontent.com/Maasea/sgmodule/master/YouTube.Enhance.sgmodule",
       "target": "Rewrite/Sources/Apps/youtube.conf",
       "enabled": false,
       "direct_commit": false,
@@ -2595,7 +2595,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "zhuan-zhuan",

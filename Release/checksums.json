@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T17:16:33.471120Z",
+  "generated_at": "2026-06-13T17:51:09.909261Z",
   "algorithm": "sha256",
   "count": 242,
   "files": [
@@ -815,8 +815,8 @@
     },
     {
       "path": "Release/Modules/soul.sgmodule",
-      "size": 2712,
-      "sha256": "6b6340938123ac7d7326166ef5d4e23b1f91fa4ea0948610597f4eb3dc10eab3"
+      "size": 1948,
+      "sha256": "8c7cb9ee0960576ab82f1339960b9cc570eb06de0157d7a5b6f66877dae7b77f"
     },
     {
       "path": "Release/Modules/spotify.sgmodule",
@@ -1095,8 +1095,8 @@
     },
     {
       "path": "Release/Modules/zhihu.sgmodule",
-      "size": 7274,
-      "sha256": "581e4f03afd3bd57b82448b8729b46f97e079f03fb627aff5666378e83e8058a"
+      "size": 7251,
+      "sha256": "74cc97a0b45d7694a1e9b2f19cc776a0204bdfaafae2bf1fb69c55df2e8d69c3"
     },
     {
       "path": "Release/Modules/zhuan-zhuan.sgmodule",
@@ -1185,8 +1185,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 56994,
-      "sha256": "33a21b72331bc1b6a1d7b83f3ae3c83f96a7eadf030feef48b22ec270bb47e0d"
+      "size": 57004,
+      "sha256": "9847348310be216d595f249453c1bc8f5ddae9860ae48c55a2c8e7357cd6a639"
     },
     {
       "path": "Web/index.html",
@@ -1195,8 +1195,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 218180,
-      "sha256": "d307f2bc6f579c8105b12fea1bd0363376ddd66d1c69f18f8cf6fb0ce878406b"
+      "size": 218190,
+      "sha256": "f69c8afb023da896f4fd3eb8aeeb2f49db06845ce9429a15abb6cf5eb08f8e53"
     },
     {
       "path": "Web/registry.md",
@@ -1205,8 +1205,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 76817,
-      "sha256": "64950a3e11718a24cf486612b3d6279e6582c1d04bb168bbc30e9750994e8d9e"
+      "size": 76827,
+      "sha256": "a8a8f409f92f83e02ddd070cc1b46df8ff22278e4053992ed7199ac7101a81a9"
     },
     {
       "path": "Web/remotes.md",

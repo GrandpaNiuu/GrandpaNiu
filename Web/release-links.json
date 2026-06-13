@@ -1225,7 +1225,7 @@
       "name": "GrandpaNiu Soul Source",
       "file": "Release/Modules/soul.sgmodule",
       "source": "Rewrite/Sources/Apps/soul.conf",
-      "sections": "Rule:14, Body Rewrite:2, Map Local:2, MITM:1",
+      "sections": "Rule:14, Body Rewrite:1, Map Local:2, Script:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/soul.sgmodule"
     },
     {

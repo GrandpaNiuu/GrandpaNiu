@@ -20,11 +20,13 @@ IP-CIDR,121.196.197.147/32,REJECT,no-resolve,pre-matching
 
 [Body Rewrite]
 http-response-jq ^https:\/\/(?:api-\w+|gateway-mobile-gray|post)\.soulapp\.cn\/(?:furion\/position\/content|hot\/soul\/rank|mobile\/app\/version\/queryIos|official\/scene\/module|teenager\/config|v2\/post\/gift\/list|v\d\/post\/homepage\/guide\/card) 'delpaths([["data"]])'
-http-response-jq ^https:\/\/(?:api-\w+|chat-live|post)\.soulapp\.cn\/(?:chat\/limitInfo|chatroom\/chatClassifyRoomList|homepage\/diamond\/position\/info|v2\/post\/recSquare\/subTabs|v6\/planet\/config) 'def t: ["异世界回响", "狼人魅影", "梦想海岛王", "幻想星球", "爆弹喵", "星球实验室", "兴趣群组", "群聊派对"]; if .data?.limit then .data.limit = false elif (.data?.roomList | type) == "array" then .data.roomList = [] elif (.data | type) == "array" and ((.data[0]?.code // null) != null) then .data |= map(select((.code? | IN("GIFT_WALL", "PET_PLANET", "SHOP")) | not)) elif (.data | type) == "array" and ((.data[0]?.tabType // null) != null) then .data |= map(select(.tabType? | IN(2, 6, 7))) elif .data then (.data.gameInfo.gameCards? |= (if type == "array" then map(select((.title? | IN(t[])) | not)) else . end) | .data.coreCards? |= (if type == "array" then map(select((.title? | IN(t[])) | not) | if .style == 2 then .style = 1 else . end | .secondCards? |= (if type == "array" then map(select((.title? | IN(t[])) | not)) else . end)) else . end)) else . end'
 
 [Map Local]
 ^https:\/\/ssp\.soulapp\.cn\/api\/q data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https:\/\/chat-live\.soulapp\.cn\/live\/planet\/recListV2 data-type=text data=" " status-code=200
+
+[Script]
+移除Soul广告 = type=http-response, pattern=^https:\/\/(?:api-\w+|chat-live|post)\.soulapp\.cn\/(?:chat\/limitInfo|chatroom\/chatClassifyRoomList|homepage\/diamond\/position\/info|v2\/post\/recSquare\/subTabs|v6\/planet\/config), script-path=https://kelee.one/Resource/JavaScript/Soul/Soul_remove_ads.js, requires-body=true
 
 [MITM]
 hostname = %APPEND% api*.soulapp.cn,gateway-mobile-gray.soulapp.cn,post.soulapp.cn,ssp.soulapp.cn
