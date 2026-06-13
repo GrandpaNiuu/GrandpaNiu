@@ -41,8 +41,8 @@
 - Discovery: manual
 - Rule: 28
 - Body Rewrite: 7
-- Map Local: 5
-- Script: 2
+- Map Local: 8
+- Script: 5
 - MITM: 1
 
 ## GrandpaNiu RedNote

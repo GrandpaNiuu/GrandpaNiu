@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-14 07:39:25 +0800
+- Generated at: 2026-06-14 07:46:43 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -8,7 +8,7 @@
 - automated quality evidence: passed
 - node --check Scripts/app-cleaner.js: passed
 - Script entries: 46
-- MITM hostnames: 1189
+- MITM hostnames: 1190
 
 ## Section Counts
 
@@ -16,8 +16,8 @@
 - [URL Rewrite]: 2492
 - [Header Rewrite]: 1
 - [Body Rewrite]: 1651
-- [Map Local]: 350
-- [Script]: 203
+- [Map Local]: 353
+- [Script]: 206
 - [MITM]: 1
 
 ## Blocking Issues
