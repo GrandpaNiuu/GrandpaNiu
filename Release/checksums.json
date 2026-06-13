@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T22:27:14.471748Z",
+  "generated_at": "2026-06-13T22:35:12.214030Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -1180,8 +1180,8 @@
     },
     {
       "path": "Web/README.md",
-      "size": 807,
-      "sha256": "32e92306ca91d5389f2d462f55195df71df86b6122a6ca0d77b1780e3440c4d1"
+      "size": 784,
+      "sha256": "4af5a96df0fbd53b2e416e81599b37e86f75564e98d3bca5627ae9df8a04c1af"
     },
     {
       "path": "Web/catalog.md",
