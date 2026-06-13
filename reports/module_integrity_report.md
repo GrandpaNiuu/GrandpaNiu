@@ -18,10 +18,10 @@
 
 | Section | Active line 数 |
 |---|---:|
-| `Rule` | 1099 |
+| `Rule` | 1105 |
 | `URL Rewrite` | 2492 |
 | `Header Rewrite` | 1 |
-| `Body Rewrite` | 1650 |
+| `Body Rewrite` | 1651 |
 | `Map Local` | 350 |
 | `Script` | 203 |
 | `MITM` | 1 |

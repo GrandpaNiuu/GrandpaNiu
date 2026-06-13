@@ -62,6 +62,7 @@ payload:
   - DOMAIN,cad.youku.com
   - DOMAIN,cdn-ad.wtzw.com
   - DOMAIN,cdn-new-ad.wtzw.com
+  - DOMAIN,cm.bilibili.net
   - DOMAIN,collect.xiaopeng.com
   - DOMAIN,crash2.zhihu.com
   - DOMAIN,credits.bz.mgtv.com
@@ -198,6 +199,8 @@ payload:
   - DOMAIN,zlsdk.1rtb.net
   - DOMAIN,zxid-m.mobileservice.cn
   - DOMAIN-KEYWORD,bili-ad
+  - DOMAIN-KEYWORD,biliad
+  - DOMAIN-KEYWORD,biligame-ad
   - DOMAIN-KEYWORD,report.meituan
   - DOMAIN-KEYWORD,trace.qq.com
   - DOMAIN-SUFFIX,ad.e.waimai.sankuai.com

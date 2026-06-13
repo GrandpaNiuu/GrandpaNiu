@@ -131,6 +131,7 @@ payload:
   - DOMAIN,cdn-ad.wtzw.com
   - DOMAIN,cdn-new-ad.wtzw.com
   - DOMAIN,cdn.adapi.fotoable.com
+  - DOMAIN,cm.bilibili.net
   - DOMAIN,cmad.video.51togic.com
   - DOMAIN,collect.xiaopeng.com
   - DOMAIN,counter.kingsoft.com
@@ -368,6 +369,8 @@ payload:
   - DOMAIN-KEYWORD,adwo
   - DOMAIN-KEYWORD,apimg.qunliao.info
   - DOMAIN-KEYWORD,bili-ad
+  - DOMAIN-KEYWORD,biliad
+  - DOMAIN-KEYWORD,biligame-ad
   - DOMAIN-KEYWORD,bj.imp.voiceads.cn
   - DOMAIN-KEYWORD,c-hzgt2.getui.com
   - DOMAIN-KEYWORD,cm-10-134.getui.com

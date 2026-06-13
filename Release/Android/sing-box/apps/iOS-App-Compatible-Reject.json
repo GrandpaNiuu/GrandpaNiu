@@ -63,6 +63,7 @@
         "cad.youku.com",
         "cdn-ad.wtzw.com",
         "cdn-new-ad.wtzw.com",
+        "cm.bilibili.net",
         "collect.xiaopeng.com",
         "crash2.zhihu.com",
         "credits.bz.mgtv.com",
@@ -222,6 +223,8 @@
       ],
       "domain_keyword": [
         "bili-ad",
+        "biliad",
+        "biligame-ad",
         "report.meituan",
         "trace.qq.com"
       ],

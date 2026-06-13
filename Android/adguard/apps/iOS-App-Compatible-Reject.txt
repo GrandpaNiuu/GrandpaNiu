@@ -61,6 +61,7 @@
 ||cad.youku.com^
 ||cdn-ad.wtzw.com^
 ||cdn-new-ad.wtzw.com^
+||cm.bilibili.net^
 ||collect.xiaopeng.com^
 ||crash2.zhihu.com^
 ||credits.bz.mgtv.com^
@@ -197,6 +198,8 @@
 ||zlsdk.1rtb.net^
 ||zxid-m.mobileservice.cn^
 /bili-ad/
+/biliad/
+/biligame-ad/
 /report.meituan/
 /trace.qq.com/
 ||ad.e.waimai.sankuai.com^
