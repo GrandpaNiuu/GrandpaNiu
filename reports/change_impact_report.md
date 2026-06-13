@@ -1,13 +1,24 @@
 # 变更影响报告
 
-- 生成时间：2026-06-14 04:21:16 +0800
+- 生成时间：2026-06-14 04:25:15 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
 - `Android/branches.json`
 - `Release/Android/branches.json`
+- `Release/Module.sgmodule`
+- `Release/Ronghemokuai.sgmodule`
+- `Release/Rules.conf`
+- `Release/RulesGroup.conf`
+- `Release/Stable/Module.sgmodule`
+- `Release/Stable/Ronghemokuai.sgmodule`
+- `Release/Stable/Rules.conf`
+- `Release/Stable/RulesGroup.conf`
 - `Release/checksums.json`
+- `Release/checksums.txt`
+- `Ronghemokuai.sgmodule`
+- `Scripts/youtube.conf`
 - `reports/android_rules_report.md`
 - `reports/app_status_matrix.md`
 - `reports/automated_quality_evidence.md`
@@ -16,17 +27,20 @@
 - `reports/candidate_security_score_report.md`
 - `reports/change_impact_report.md`
 - `reports/domestic_app_connectivity_audit.md`
+- `reports/module_factory_diff_report.md`
+- `reports/module_factory_report.md`
+- `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
-- `reports/qingrex_miniapp_import_report.md`
 - `reports/reject_risk_report.md`
+- `reports/release_rules_report.md`
 - `reports/remote_rule_syntax_report.md`
 - `reports/report_freshness_report.md`
 - `reports/repository_health_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
 - `reports/script_inventory_report.md`
 - `reports/workflow_health_report.md`
+- `scripts/build_module.py`
+- `scripts/validate_repository.py`
 
 ## 新增文件
 
@@ -40,7 +54,18 @@
 
 - `Android/branches.json`
 - `Release/Android/branches.json`
+- `Release/Module.sgmodule`
+- `Release/Ronghemokuai.sgmodule`
+- `Release/Rules.conf`
+- `Release/RulesGroup.conf`
+- `Release/Stable/Module.sgmodule`
+- `Release/Stable/Ronghemokuai.sgmodule`
+- `Release/Stable/Rules.conf`
+- `Release/Stable/RulesGroup.conf`
 - `Release/checksums.json`
+- `Release/checksums.txt`
+- `Ronghemokuai.sgmodule`
+- `Scripts/youtube.conf`
 - `reports/android_rules_report.md`
 - `reports/app_status_matrix.md`
 - `reports/automated_quality_evidence.md`
@@ -49,40 +74,65 @@
 - `reports/candidate_security_score_report.md`
 - `reports/change_impact_report.md`
 - `reports/domestic_app_connectivity_audit.md`
+- `reports/module_factory_diff_report.md`
+- `reports/module_factory_report.md`
+- `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
-- `reports/qingrex_miniapp_import_report.md`
 - `reports/reject_risk_report.md`
+- `reports/release_rules_report.md`
 - `reports/remote_rule_syntax_report.md`
 - `reports/report_freshness_report.md`
 - `reports/repository_health_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
 - `reports/script_inventory_report.md`
 - `reports/workflow_health_report.md`
+- `scripts/build_module.py`
+- `scripts/validate_repository.py`
 
 ## 影响的模块层
 
 - Other
 - README/docs
+- Scripts
+- Scripts/maintenance
 
 ## 可能影响的 App
 
 - Spotify
 - YouTube
+- 知乎
+- Bilibili
+- 微博
+- 百度贴吧
+- 小红书
+- 酷安
+- 淘宝
+- 闲鱼
+- 京东
+- 拼多多
+- 美团
+- 大众点评
+- 饿了么
+- 滴滴
 - 12306
+- 高德地图
+- 百度地图
+- 网易云音乐
+- 喜马拉雅
+- 小宇宙
+- 斗鱼
 - Reddit
 
 ## 风险判断
 
-- 是否涉及脚本：否
+- 是否涉及脚本：是
 - 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：是
-- 是否涉及远程规则源：否
+- 是否涉及远程规则源：是
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
-- 是否需要测试知乎：按需
-- 是否需要测试登录/支付/验证码：按需
+- 是否需要测试知乎：是
+- 是否需要测试登录/支付/验证码：是
 
 ## 回滚建议
 
