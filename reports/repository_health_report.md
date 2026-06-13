@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-14 03:04:39 +0800
+- Generated at: 2026-06-14 04:21:26 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -8,16 +8,16 @@
 - automated quality evidence: passed
 - node --check Scripts/app-cleaner.js: passed
 - Script entries: 46
-- MITM hostnames: 1071
+- MITM hostnames: 1190
 
 ## Section Counts
 
-- [Rule]: 819
-- [URL Rewrite]: 1644
+- [Rule]: 1095
+- [URL Rewrite]: 2492
 - [Header Rewrite]: 1
-- [Body Rewrite]: 455
-- [Map Local]: 148
-- [Script]: 46
+- [Body Rewrite]: 1647
+- [Map Local]: 348
+- [Script]: 201
 - [MITM]: 1
 
 ## Blocking Issues
@@ -62,7 +62,7 @@ Repository validation passed.
 ## automated quality evidence Output
 
 ```text
-Automated quality evidence written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/automated_quality_evidence.md
+Automated quality evidence written to C:\Users\q3j1h\Documents\Codex\2026-06-02\GrandpaNiu-upstream-app-sync\reports\automated_quality_evidence.md
 ```
 
 ## node --check Output

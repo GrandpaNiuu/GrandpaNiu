@@ -20,6 +20,7 @@ REPORT = ROOT / "reports" / "module_factory_report.md"
 DIFF_REPORT = ROOT / "reports" / "module_factory_diff_report.md"
 SOURCES = ROOT / "Rewrite" / "Sources"
 MISC_SOURCES = SOURCES / "Misc"
+APP_SOURCES = SOURCES / "Apps"
 PROFILES = ROOT / "Rewrite" / "Profiles"
 REMOTES_JSON = ROOT / "Rewrite" / "Remotes" / "sources.json"
 
@@ -41,6 +42,36 @@ REWRITE_PROFILE_SECTIONS = {
     "Body Rewrite": "body_rewrite",
     "Map Local": "map_local",
 }
+RULE_PREFIXES = {
+    "AND",
+    "DOMAIN",
+    "DOMAIN-KEYWORD",
+    "DOMAIN-SET",
+    "DOMAIN-SUFFIX",
+    "IP-CIDR",
+    "IP-CIDR6",
+    "RULE-SET",
+    "URL-REGEX",
+}
+REWRITE_ACTIONS = (
+    "reject",
+    "reject-200",
+    "reject-array",
+    "reject-dict",
+    "reject-img",
+    "reject-ttl",
+    "echo-response",
+    "script-path=",
+    "header-del ",
+    "header-replace ",
+    "302 ",
+    " 302",
+    "307 ",
+    " 307",
+    "308 ",
+    " 308",
+    " header",
+)
 REQUIRED_SECTIONS = set(SECTION_ORDER)
 CORE_TOKENS = ("spotify-json", "spotify-proto", "youtube.response", "zhihu-enhance")
 EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
@@ -54,6 +85,32 @@ KNOWN_DOMAIN_SET_URLS = {
     "https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt",
 }
 MISC_PROTECT_RULE_FILES = ("cdn-direct.conf", "finance-protect.conf", "video-protect.conf")
+UNRESOLVED_ARGUMENT_RE = re.compile(r"\{\{\{[^}]+\}\}\}")
+PROTECTED_REJECT_TOKENS = (
+    "api.biliapi.com",
+    "api.biliapi.net",
+    "app.biliapi.com",
+    "app.biliapi.net",
+    "ipv4.music.163.com",
+    "ipv6.music.163.com",
+    "httpdns.music.163.com",
+    "wechatpay",
+    "alipay",
+    "abchina.com.cn",
+    "boc.cn",
+    "icbc",
+    "ccb.com",
+    "cmbchina",
+    "bankcomm",
+    "psbc",
+    "cd-1.pddpic.com",
+    "cdl-1.pddpic.com",
+    "cdl-p2.pddpic.com",
+    "ossgw.alicdn.com",
+    "hudong.alicdn.com",
+    "baichuan-sdk.alicdn.com",
+    "nbsdk-baichuan.alicdn.com",
+)
 
 
 def stop(message: str) -> None:
@@ -178,6 +235,12 @@ def misc_mitm_blocks() -> list[tuple[Path, str]]:
     return blocks
 
 
+def app_paths() -> list[Path]:
+    if not APP_SOURCES.exists():
+        return []
+    return sorted(path for path in APP_SOURCES.glob("*.conf") if not path.name.startswith("_"))
+
+
 def iter_profile_paths(profile: configparser.ConfigParser, section: str) -> Iterable[Path]:
     if not profile.has_section(section):
         return []
@@ -197,6 +260,111 @@ def normalize_known_remote_line(line: str) -> str:
     return line
 
 
+def is_unsafe_protected_reject(line: str) -> bool:
+    stripped = line.strip()
+    upper = stripped.upper()
+    if "REJECT" not in upper:
+        return False
+    if stripped.startswith("AND,") and "PROTOCOL,UDP" in upper and (
+        "googlevideo.com" in stripped.lower() or "youtubei.googleapis.com" in stripped.lower()
+    ):
+        return False
+    lowered = stripped.lower()
+    return any(token in lowered for token in PROTECTED_REJECT_TOKENS)
+
+
+def should_skip_generated_line(line: str) -> bool:
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return False
+    if UNRESOLVED_ARGUMENT_RE.search(stripped):
+        return True
+    return is_unsafe_protected_reject(stripped)
+
+
+def slug_script_block(path: Path, body: str) -> str:
+    slug = re.sub(r"[^A-Za-z0-9]+", "-", path.stem).strip("-").lower() or "app"
+    lines: list[str] = []
+    index = 0
+    for raw in body.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or should_skip_generated_line(line):
+            continue
+        if "=" not in line:
+            continue
+        index += 1
+        _, rhs = line.split("=", 1)
+        lines.append(f"app.{slug}.{index} = {rhs.strip()}")
+    return "\n".join(lines).strip() + ("\n" if lines else "")
+
+
+def valid_rule_block(body: str) -> str:
+    lines: list[str] = []
+    for raw in body.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            lines.append(raw)
+            continue
+        prefix = line.split(",", 1)[0]
+        if prefix not in RULE_PREFIXES:
+            continue
+        lines.append(raw)
+    return "\n".join(lines).strip() + ("\n" if lines else "")
+
+
+def valid_rewrite_block(section: str, body: str) -> str:
+    lines: list[str] = []
+    for raw in body.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            lines.append(raw)
+            continue
+        if section == "Header Rewrite":
+            if " header-del " not in line and " header-replace " not in line:
+                continue
+        elif section == "Body Rewrite":
+            if not line.startswith(("http-request ", "http-response ", "http-response-jq ")):
+                continue
+            if len(line.split()) < 3:
+                continue
+        elif section == "Map Local":
+            if " data-type=" not in line:
+                continue
+            if " data=" not in line and "data-type=tiny-gif" not in line:
+                continue
+        elif section == "URL Rewrite":
+            if not any(action in line for action in REWRITE_ACTIONS):
+                continue
+        lines.append(raw)
+    return "\n".join(lines).strip() + ("\n" if lines else "")
+
+
+def app_section_blocks(section: str) -> list[str]:
+    blocks: list[str] = []
+    for path in app_paths():
+        body = split_source_fragment(read_text(path, required=False)).get(section, "")
+        if not body.strip():
+            continue
+        if section == "Script":
+            body = slug_script_block(path, body)
+        elif section == "Rule":
+            body = valid_rule_block(body)
+        elif section in REWRITE_PROFILE_SECTIONS:
+            body = valid_rewrite_block(section, body)
+        if body.strip():
+            blocks.append(body)
+    return blocks
+
+
+def app_mitm_blocks() -> list[tuple[Path, str]]:
+    blocks: list[tuple[Path, str]] = []
+    for path in app_paths():
+        body = split_source_fragment(read_text(path, required=False)).get("MITM", "")
+        if body.strip():
+            blocks.append((path, body))
+    return blocks
+
+
 def active_key(line: str) -> str:
     return normalize_known_remote_line(line).strip()
 
@@ -208,6 +376,8 @@ def merge_lines(blocks: Iterable[str]) -> str:
     for block in blocks:
         for line in block.splitlines():
             line = normalize_known_remote_line(line.rstrip())
+            if should_skip_generated_line(line):
+                continue
             key = active_key(line)
             if key and key in seen:
                 continue
@@ -282,6 +452,7 @@ def build_rules(profile: configparser.ConfigParser) -> str:
     blocks.extend(misc_section_blocks("Rule", preferred=MISC_PROTECT_RULE_FILES))
     if as_bool(profile, "include", "rules", True):
         blocks.extend(load_optional_files(iter_profile_paths(profile, "rules")))
+    blocks.extend(app_section_blocks("Rule"))
     blocks.extend(misc_section_blocks("Rule", exclude=MISC_PROTECT_RULE_FILES))
     if as_bool(profile, "include", "remotes", True):
         blocks.append(remote_rule_lines())
@@ -294,6 +465,7 @@ def build_scripts(profile: configparser.ConfigParser) -> str:
     blocks: list[str] = []
     if as_bool(profile, "include", "scripts", True):
         blocks.extend(load_optional_files(iter_profile_paths(profile, "scripts")))
+    blocks.extend(app_section_blocks("Script"))
     blocks.extend(misc_section_blocks("Script"))
     if as_bool(profile, "include", "source_script_compat", True):
         blocks.append(read_text(source_file("Script"), required=False))
@@ -306,6 +478,7 @@ def build_rewrite_section(profile: configparser.ConfigParser, section: str) -> s
     if profile_section:
         blocks.extend(load_optional_files(iter_profile_paths(profile, profile_section)))
     blocks.extend(misc_section_blocks(section))
+    blocks.extend(app_section_blocks(section))
     return merge_lines(blocks)
 
 
@@ -340,6 +513,12 @@ def build_mitm(profile: configparser.ConfigParser) -> str:
                 seen.add(host)
                 hosts.append(host)
     for path, block in misc_mitm_blocks():
+        comments.append(f"# source: {path.relative_to(ROOT).as_posix()}")
+        for host in parse_mitm_hosts(block):
+            if host not in seen:
+                seen.add(host)
+                hosts.append(host)
+    for path, block in app_mitm_blocks():
         comments.append(f"# source: {path.relative_to(ROOT).as_posix()}")
         for host in parse_mitm_hosts(block):
             if host not in seen:
@@ -406,6 +585,8 @@ def duplicates(values: list[str]) -> list[str]:
 def validate(text: str) -> None:
     if EXPECTED_UPDATE_URL not in text:
         stop("update-url is missing or incorrect")
+    if UNRESOLVED_ARGUMENT_RE.search(text):
+        stop("generated module contains unresolved argument placeholders")
     for section in REQUIRED_SECTIONS:
         if f"[{section}]" not in text:
             stop(f"required section missing: [{section}]")

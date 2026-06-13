@@ -87,6 +87,32 @@ BLOCKED_URL_TOKENS = ("ghproxy", "mirror", "tinyurl", "bit.ly", "t.co/", "shortu
 SCRIPT_NAME_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=")
 HOSTNAME_RE = re.compile(r"^\s*hostname\s*=\s*(.+)$")
 MD_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+UNRESOLVED_ARGUMENT_RE = re.compile(r"\{\{\{[^}]+\}\}\}")
+PROTECTED_REJECT_TOKENS = (
+    "api.biliapi.com",
+    "api.biliapi.net",
+    "app.biliapi.com",
+    "app.biliapi.net",
+    "ipv4.music.163.com",
+    "ipv6.music.163.com",
+    "httpdns.music.163.com",
+    "wechatpay",
+    "alipay",
+    "abchina.com.cn",
+    "boc.cn",
+    "icbc",
+    "ccb.com",
+    "cmbchina",
+    "bankcomm",
+    "psbc",
+    "cd-1.pddpic.com",
+    "cdl-1.pddpic.com",
+    "cdl-p2.pddpic.com",
+    "ossgw.alicdn.com",
+    "hudong.alicdn.com",
+    "baichuan-sdk.alicdn.com",
+    "nbsdk-baichuan.alicdn.com",
+)
 TEXT_FILE_SUFFIXES = {
     ".conf",
     ".sgmodule",
@@ -179,6 +205,19 @@ def validate_root_release() -> None:
     for marker in REQUIRED_MARKERS:
         if marker not in root_text:
             fail(f"required marker missing from root module: {marker}")
+    if UNRESOLVED_ARGUMENT_RE.search(root_text):
+        fail("root module contains unresolved argument placeholders")
+    for line in active_lines(root_text):
+        upper = line.upper()
+        lowered = line.lower()
+        if "REJECT" not in upper:
+            continue
+        if line.startswith("AND,") and "PROTOCOL,UDP" in upper and (
+            "googlevideo.com" in lowered or "youtubei.googleapis.com" in lowered
+        ):
+            continue
+        if any(token in lowered for token in PROTECTED_REJECT_TOKENS):
+            fail(f"root module rejects protected core endpoint: {line}")
 
 
 def validate_single_release_report() -> None:
