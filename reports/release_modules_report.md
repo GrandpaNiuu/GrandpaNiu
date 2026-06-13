@@ -4,10 +4,10 @@
 - Fusion fallback source: `Release/Ronghemokuai.sgmodule`
 - Output directory: `Release/Modules`
 - Manual modules: 18
-- Auto-discovered modules: 203
-- Auto-discovered generated modules: 203
-- Total module specs: 221
-- Generated modules: 221
+- Auto-discovered modules: 202
+- Auto-discovered generated modules: 202
+- Total module specs: 220
+- Generated modules: 220
 - Skipped empty modules: 0
 
 ## GrandpaNiu Spotify
@@ -1249,11 +1249,6 @@
 - Rule: 1
 - Script: 2
 - MITM: 1
-
-## GrandpaNiu 今日头条 Safe Mode Source
-- Source: `Rewrite/Sources/Apps/toutiao.conf`
-- Discovery: auto
-- Rule: 7
 
 ## GrandpaNiu 图怪兽 Source
 - Source: `Rewrite/Sources/Apps/tu-guai-shou.conf`

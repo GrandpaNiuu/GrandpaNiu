@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T03:56:23.137235Z",
+  "generated_at": "2026-06-13T03:56:39.718226Z",
   "algorithm": "sha256",
   "count": 243,
   "files": [
@@ -1190,8 +1190,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 57220,
-      "sha256": "d336d6d3de23167cbe57fc9d74f284b8f80529007cf8958f3b068c97dba28c10"
+      "size": 56994,
+      "sha256": "33a21b72331bc1b6a1d7b83f3ae3c83f96a7eadf030feef48b22ec270bb47e0d"
     },
     {
       "path": "Web/index.html",
@@ -1200,8 +1200,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 219122,
-      "sha256": "8777958ea39794f8426474742f8d0637c415358b965d26b87e3ef4621a0213f0"
+      "size": 218180,
+      "sha256": "d307f2bc6f579c8105b12fea1bd0363376ddd66d1c69f18f8cf6fb0ce878406b"
     },
     {
       "path": "Web/registry.md",
@@ -1210,8 +1210,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 77133,
-      "sha256": "0af15543205e4b051020bcd1d9d7edd8576226d0d0191e601245752de3164bfc"
+      "size": 76817,
+      "sha256": "64950a3e11718a24cf486612b3d6279e6582c1d04bb168bbc30e9750994e8d9e"
     },
     {
       "path": "Web/remotes.md",
