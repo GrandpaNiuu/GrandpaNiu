@@ -1,12 +1,6 @@
 #!name=GrandpaNiu Bilibili
-#!desc=Generated per-app module from GrandpaNiu app source or fusion output; fusion-safe defaults applied
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output; fusion-safe defaults applied; core API rejects removed
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/bilibili.sgmodule
-
-[Rule]
-DOMAIN,api.biliapi.com,REJECT,pre-matching
-DOMAIN,app.biliapi.com,REJECT,pre-matching
-DOMAIN,api.biliapi.net,REJECT,pre-matching
-DOMAIN,app.biliapi.net,REJECT,pre-matching
 
 [Body Rewrite]
 http-response-jq ^https:\/\/api\.bilibili\.com\/pgc\/view\/v2\/app\/season\? 'del(.data.payment)'
