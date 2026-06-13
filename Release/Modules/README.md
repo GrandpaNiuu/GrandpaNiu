@@ -7,7 +7,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Spotify | `spotify.sgmodule` | `Rewrite/Sources/Apps/spotify.conf` | Rule:1, URL Rewrite:2, Script:1, MITM:1 |
 | GrandpaNiu YouTube | `youtube.sgmodule` | `Rewrite/Sources/Apps/youtube.conf` | Rule:2, Map Local:1, Script:1, MITM:1 |
 | GrandpaNiu Zhihu | `zhihu.sgmodule` | `Rewrite/Sources/Apps/zhihu.conf` | Rule:10, URL Rewrite:3, Body Rewrite:5, Map Local:22, Script:10, MITM:1 |
-| GrandpaNiu Bilibili | `bilibili.sgmodule` | `Rewrite/Sources/Apps/bilibili.conf` | Body Rewrite:3, Map Local:3, Script:3, MITM:1 |
+| GrandpaNiu Bilibili | `bilibili.sgmodule` | `Rewrite/Sources/Apps/bilibili.conf` | Rule:2, Body Rewrite:3, Map Local:3, Script:3, MITM:1 |
 | GrandpaNiu RedNote | `rednote.sgmodule` | `Rewrite/Sources/Apps/rednote.conf` | Rule:1, Body Rewrite:5, Map Local:5, Script:12, MITM:1 |
 | GrandpaNiu WeChat | `wechat.sgmodule` | `Rewrite/Sources/Apps/wechat.conf` | Rule:1, Map Local:2, MITM:1 |
 | GrandpaNiu QQ News | `qqnews.sgmodule` | `Rewrite/Sources/Apps/qqnews.conf` | URL Rewrite:1, Body Rewrite:1, Script:1, MITM:1 |

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T21:17:48.647836Z",
+  "generated_at": "2026-06-13T21:22:06.701369Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -135,8 +135,8 @@
     },
     {
       "path": "Release/Modules/bilibili.sgmodule",
-      "size": 3709,
-      "sha256": "76d83e4e72a0b1caec73ec0a68d16b5a808aeb0db9b62721c848691bc9b9e38d"
+      "size": 3861,
+      "sha256": "b97c1a717cab406a69e97acf89cd3eb37aa8ddc983ffbd401d23aa3cc49caa63"
     },
     {
       "path": "Release/Modules/bitqiu-pan.sgmodule",
@@ -1185,8 +1185,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 57379,
-      "sha256": "4b912ff8a053b21e0abcb967d43cfbc6287206166a98ba6819162d2c35827b7f"
+      "size": 57387,
+      "sha256": "320ddf4db6a9081bb16047c29015c318899afeb36f19ae31d83f1bf10fb9d5b5"
     },
     {
       "path": "Web/index.html",
@@ -1195,8 +1195,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 218164,
-      "sha256": "d9521e762093ff809973e1d0ccc8fd4226aa817316bb05cca34516312269d806"
+      "size": 218172,
+      "sha256": "59161417ad57970f16c9bee296df22e567066a50d408ddef374f0b1673578ca3"
     },
     {
       "path": "Web/registry.md",
@@ -1205,8 +1205,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 77260,
-      "sha256": "b3e6315d02987060256867f34dd4fbfc4c1edc05b4703ab4fa13b406cb25d44f"
+      "size": 77268,
+      "sha256": "44f595e4f85be5c3c0ef4040351c9858ae80800bce06e444f5e2d046550b6ca0"
     },
     {
       "path": "Web/remotes.md",

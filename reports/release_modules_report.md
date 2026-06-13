@@ -39,6 +39,7 @@
 ## GrandpaNiu Bilibili
 - Source: `Rewrite/Sources/Apps/bilibili.conf`
 - Discovery: manual
+- Rule: 2
 - Body Rewrite: 3
 - Map Local: 3
 - Script: 3

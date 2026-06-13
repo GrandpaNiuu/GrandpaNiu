@@ -195,6 +195,7 @@ payload:
   - DOMAIN,zlink.ugsdk.cn
   - DOMAIN,zlsdk.1rtb.net
   - DOMAIN,zxid-m.mobileservice.cn
+  - DOMAIN-KEYWORD,bili-ad
   - DOMAIN-KEYWORD,report.meituan
   - DOMAIN-KEYWORD,trace.qq.com
   - DOMAIN-SUFFIX,ad.e.waimai.sankuai.com

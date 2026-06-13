@@ -194,6 +194,7 @@
 ||zlink.ugsdk.cn^
 ||zlsdk.1rtb.net^
 ||zxid-m.mobileservice.cn^
+/bili-ad/
 /report.meituan/
 /trace.qq.com/
 ||ad.e.waimai.sankuai.com^
