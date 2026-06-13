@@ -1278,6 +1278,13 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/tieba.sgmodule"
     },
     {
+      "name": "GrandpaNiu 今日头条 Safe Mode Source",
+      "file": "Release/Modules/toutiao.sgmodule",
+      "source": "Rewrite/Sources/Apps/toutiao.conf",
+      "sections": "Rule:7",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/toutiao.sgmodule"
+    },
+    {
       "name": "GrandpaNiu 图怪兽 Source",
       "file": "Release/Modules/tu-guai-shou.sgmodule",
       "source": "Rewrite/Sources/Apps/tu-guai-shou.conf",

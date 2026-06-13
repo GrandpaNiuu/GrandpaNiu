@@ -180,6 +180,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 腾讯视频 Source | `tencent-video.sgmodule` | `Rewrite/Sources/Apps/tencent-video.conf` | Rule:16, URL Rewrite:1, Script:1, MITM:1 |
 | GrandpaNiu TeraBox Source | `terabox.sgmodule` | `Rewrite/Sources/Apps/terabox.conf` | Rule:1, Map Local:4, MITM:1 |
 | GrandpaNiu Tieba Source | `tieba.sgmodule` | `Rewrite/Sources/Apps/tieba.conf` | Rule:1, Script:2, MITM:1 |
+| GrandpaNiu 今日头条 Safe Mode Source | `toutiao.sgmodule` | `Rewrite/Sources/Apps/toutiao.conf` | Rule:7 |
 | GrandpaNiu 图怪兽 Source | `tu-guai-shou.sgmodule` | `Rewrite/Sources/Apps/tu-guai-shou.conf` | URL Rewrite:3, MITM:1 |
 | GrandpaNiu TubeMax Source | `tube-max.sgmodule` | `Rewrite/Sources/Apps/tube-max.conf` | Rule:9, URL Rewrite:1, MITM:1 |
 | GrandpaNiu Tumblr Source | `tumblr.sgmodule` | `Rewrite/Sources/Apps/tumblr.conf` | Body Rewrite:1, MITM:1 |

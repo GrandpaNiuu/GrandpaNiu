@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T03:50:12.596147Z",
+  "generated_at": "2026-06-13T03:50:35.516407Z",
   "algorithm": "sha256",
   "count": 243,
   "files": [
@@ -865,8 +865,8 @@
     },
     {
       "path": "Release/Modules/toutiao.sgmodule",
-      "size": 890,
-      "sha256": "ae72bf0eb8c97d25035ae64eff72b7f804073b6d9b43646db9c5ae342c56f903"
+      "size": 442,
+      "sha256": "759a6d343993056c71690c03826e442fa46f82c0bf6a7966d0abf3b5ce825e13"
     },
     {
       "path": "Release/Modules/tu-guai-shou.sgmodule",
@@ -1190,8 +1190,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 56994,
-      "sha256": "33a21b72331bc1b6a1d7b83f3ae3c83f96a7eadf030feef48b22ec270bb47e0d"
+      "size": 57220,
+      "sha256": "d336d6d3de23167cbe57fc9d74f284b8f80529007cf8958f3b068c97dba28c10"
     },
     {
       "path": "Web/index.html",
@@ -1200,8 +1200,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 218180,
-      "sha256": "d307f2bc6f579c8105b12fea1bd0363376ddd66d1c69f18f8cf6fb0ce878406b"
+      "size": 219122,
+      "sha256": "8777958ea39794f8426474742f8d0637c415358b965d26b87e3ef4621a0213f0"
     },
     {
       "path": "Web/registry.md",
@@ -1210,8 +1210,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 76817,
-      "sha256": "64950a3e11718a24cf486612b3d6279e6582c1d04bb168bbc30e9750994e8d9e"
+      "size": 77133,
+      "sha256": "0af15543205e4b051020bcd1d9d7edd8576226d0d0191e601245752de3164bfc"
     },
     {
       "path": "Web/remotes.md",
