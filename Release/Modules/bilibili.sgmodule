@@ -1,5 +1,5 @@
 #!name=GrandpaNiu Bilibili
-#!desc=Stable Shadowrocket-safe Bilibili cleanup; splash Map Local retained; gRPC MITM disabled to avoid app network errors
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/bilibili.sgmodule
 
 [Rule]
