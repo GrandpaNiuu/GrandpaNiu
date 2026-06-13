@@ -818,8 +818,29 @@ URL-REGEX,"^http:\/\/m\.meitun\.com\/newapi\/router\/topic\/hometptf\/feedRecomm
 URL-REGEX,"^http:\/\/pic08\.babytreeimg\.com\/knowledge\/2022\/0923\/\w+",REJECT
 URL-REGEX,"^http:\/\/plough\.babytree\.com\/plough\.do",REJECT-DICT
 DOMAIN,cm.bilibili.com,REJECT,pre-matching
+DOMAIN,cm.bilibili.net,REJECT,pre-matching
+DOMAIN,ad.bilibili.com,REJECT,pre-matching
+DOMAIN,ad-game.bilibili.com,REJECT,pre-matching
 DOMAIN,impression.biligame.com,REJECT,pre-matching
 DOMAIN,adsrv.kurogames.com,REJECT,pre-matching
+DOMAIN,mall.bilibili.com,REJECT,pre-matching
+DOMAIN-SUFFIX,mall.bilibili.com,REJECT,pre-matching
+DOMAIN-SUFFIX,ad.bilibili.com,REJECT,pre-matching
+DOMAIN-KEYWORD,biliad,REJECT,pre-matching
+DOMAIN-KEYWORD,biligame-ad,REJECT,pre-matching
+DOMAIN,at.pinduoduo.com,REJECT,pre-matching
+DOMAIN,abtk.pinduoduo.com,REJECT,pre-matching
+DOMAIN-SUFFIX,pddpic.com,REJECT,pre-matching
+DOMAIN-SUFFIX,636949.xyz,REJECT,pre-matching
+DOMAIN-SUFFIX,ivenq.life,REJECT,pre-matching
+DOMAIN,amdc.m.taobao.com,REJECT,pre-matching
+DOMAIN,accscdn.m.taobao.com,REJECT,pre-matching
+DOMAIN,acs4baichuan.m.taobao.com,REJECT,pre-matching
+DOMAIN,tunion-api.m.taobao.com,REJECT,pre-matching
+DOMAIN-SUFFIX,alimama.com,REJECT,pre-matching
+DOMAIN-SUFFIX,tanx.com,REJECT,pre-matching
+DOMAIN-SUFFIX,mmstat.com,REJECT,pre-matching
+DOMAIN-SUFFIX,ut.taobao.com,REJECT,pre-matching
 AND,((DOMAIN-SUFFIX,chat.bilibili.com),(OR,((DOMAIN-KEYWORD,stun),(DOMAIN-KEYWORD,tracker)))),REJECT,pre-matching
 DOMAIN,abyss.cyapi.cn,REJECT,extended-matching,pre-matching
 DOMAIN,ad.cyapi.cn,REJECT,extended-matching,pre-matching
@@ -4096,12 +4117,13 @@ http-response-jq ^https://apps\.api\.ke\.com/platform/shellapp/userCenter/info\?
 http-response-jq ^https://apps\.api\.ke\.com/platform/shellapp/userCenter/info\? 'del(.data.mainIcons.list[] | select(.indexKey == "coupon"))'
 http-response-jq ^https://apps\.api\.ke\.com/platform/shellapp/myhome/pagedetail\? '.data.moduleList |= map(select(.tab != "myHomeDecorV4"))'
 http-response-jq ^https://apps\.api\.ke\.com/platform/shellapp/homepage/feed\? '.data.list |= map(select(.cardType == "houseContainer" or .cardType == "houseV2" or .cardType == "houseV3" or .cardType == "rentHouseDiscount" or .cardType == "decorationCase"))'
-http-response-jq ^https:\/\/api\.bilibili\.com\/x\/pd-proxy\/tracker\? '.data[][]?="stun.chat.bilibili.com:3478"'
-http-response-jq ^https:\/\/api\.bilibili\.com\/pgc\/view\/v2\/app\/season\? 'del(.data.payment)'
-http-response-jq ^https:\/\/api\.bilibili\.com\/pgc\/page\/channel\? '.data.modules |= map(select(.type != "TIP") | if .type == "BANNER" then .module_data.items |= map(select(.url | startswith("https://www.bilibili.com/blackboard/era/") | not)) else . end)'
-http-response-jq ^https:\/\/api\.bilibili\.com\/pgc\/page\/(?:bangumi|cinema\/tab)\? '.result.modules |= if . then map(if (.style | startswith("tip")) or (.module_id | IN(241, 1283, 1441, 1284)) then .items = [] elif .style | startswith("banner") then .items |= if . then map(select(.link | contains("play"))) else [] end elif .style | startswith("function") then .items |= if . then map(select(.blink | startswith("bilibili"))) else [] end end) end'
-http-response-jq ^https:\/\/api\.live\.bilibili\.com\/xlive\/(?:app-interface\/v2\/index\/feed|app-room\/v1\/index\/getInfoBy(?:Room|User))\? '.data |= (del(.play_together_info, .play_together_info_v2, .activity_banner_info) | if .function_card then .function_card[] = null end | if .new_tab_info.outer_list then .new_tab_info.outer_list |= map(select(.biz_id != 33)) end | if .card_list then .card_list |= map(select(.card_type != "banner_v2")) end | reduce ([["show_reserve_status"], false], [["reserve_info", "show_reserve_status"], false], [["shopping_info", "is_show"], 0]) as [$path, $value] (.; if getpath($path) then setpath($path; $value) end))'
-http-response-jq ^https:\/\/app\.bilibili\.com\/x\/v2\/view\? '.data |= (del(.cm,.cms,.ad_info,.ad_dislike,.special_cell,.activity_url,.banner,.banners) | if .relates then .relates |= map(select(((.card_goto? // "") | test("ad|cm") | not) and ((.goto? // "") | test("ad|cm") | not) and (.ad_cb? == null) and (((.uri? // "") | contains("cm.bilibili.com")) | not))) else . end)'
+http-response-jq ^https://api.bilibili.com/x/pd-proxy/tracker? '.data[][]?="stun.chat.bilibili.com:3478"'
+http-response-jq ^https://api.bilibili.com/pgc/view/v2/app/season? 'del(.data.payment)'
+http-response-jq ^https://api.bilibili.com/pgc/page/channel? '.data.modules |= map(select(.type != "TIP") | if .type == "BANNER" then .module_data.items |= map(select(.url | startswith("https://www.bilibili.com/blackboard/era/") | not)) else . end)'
+http-response-jq ^https://api.bilibili.com/pgc/page/(?:bangumi|cinema/tab)? '.result.modules |= if . then map(if (.style | startswith("tip")) or (.module_id | IN(241, 1283, 1441, 1284)) then .items = [] elif .style | startswith("banner") then .items |= if . then map(select(.link | contains("play"))) else [] end elif .style | startswith("function") then .items |= if . then map(select(.blink | startswith("bilibili"))) else [] end end) end'
+http-response-jq ^https://api.live.bilibili.com/xlive/(?:app-interface/v2/index/feed|app-room/v1/index/getInfoBy(?:Room|User))? '.data |= (del(.play_together_info, .play_together_info_v2, .activity_banner_info) | if .function_card then .function_card[] = null end | if .new_tab_info.outer_list then .new_tab_info.outer_list |= map(select(.biz_id != 33)) end | if .card_list then .card_list |= map(select(.card_type != "banner_v2")) end | reduce ([["show_reserve_status"], false], [["reserve_info", "show_reserve_status"], false], [["shopping_info", "is_show"], 0]) as [$path, $value] (.; if getpath($path) then setpath($path; $value) end))'
+http-response-jq ^https://(?:app|api).bilibili.com/x/v2/view(?:/unite)?? '.data |= (del(.cm,.cms,.ad_info,.ad_dislike,.special_cell,.activity_url,.banner,.banners,.cm_config,.relate_cm,.ad_reply,.ad_resource,.ad_tag,.ad_args,.commercial_info,.commerce,.ecommerce,.shopping_info,.shopping_card,.goods_info,.goods_card,.recommend_ad,.operation_card,.activity_banner_info,.middle_ad,.bottom_ad,.pop_ad) | if .relates then .relates |= map(select(((.card_goto? // "") | test("ad|cm|banner|mall|shop|goods") | not) and ((.goto? // "") | test("ad|cm|banner|mall|shop|goods") | not) and (.ad_cb? == null) and (.cm_mark? == null) and (((.uri? // "") | test("cm\.bilibili|ad\.bilibili|mall\.bilibili|bilicm|ad_|shopping|ecommerce|taobao|tmall|pinduoduo|pdd")) | not))) else . end | if .cms then .cms = [] else . end)'
+http-response-jq ^https://(?:app|api).bilibili.com/x/v2/feed/index(?:/story)?? '.data.items |= if . then map(select(((.card_goto? // "") | test("ad|cm|banner|mall|shop|goods") | not) and ((.goto? // "") | test("ad|cm|banner|mall|shop|goods") | not) and (.ad_info? == null) and (.ad_cb? == null) and (.cm_mark? == null))) else [] end'
 http-response-jq ^https://bd-api\.kuwo\.cn/api/service/conf/all\? 'del(.data.groupSign.adStartAppDialog,.data.groupSign.adGuideTest,.data.groupSign.playTips,.data.groupSign.adExitChange,.data.conf.adGuidePopCount,.data.conf.adDownListOpen)'
 http-response-jq ^https://bd-api\.kuwo\.cn/api/service/conf/all\? '.data.conf.flowControlConfig.uploadEnable = false data.conf.flowControlConfig.p2pEnable false'
 http-response-jq ^https://ab-bodian\.kuwo\.cn/abtest/ui/info\? 'del(.data.mapTestInfo.CommentADPosition,.data.mapTestInfo.DiscoverADPosition,.data.mapTestInfo.DownloadAd,.data.mapTestInfo.FreeModVoiceReminder,.data.mapTestInfo.GamesTrans,.data.mapTestInfo.bodianmvdialog,.data.mapTestInfo.MvTryShowAds,.data.mapTestInfo.insert)'
@@ -5432,11 +5454,11 @@ http-response-jq ^https://app\.zhuanzhuan\.com/zz/transfer/getmyprofilev3$ 'del(
 ^https:\/\/pan\.baidu\.com\/rest\/\d\.\d\/pcs\/adv\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https:\/\/pan\.baidu\.com\/api\/plugin\/get\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https:\/\/pan\.baidu\.com\/recommend\/query\/list\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https:\/\/ap[ip]\.bilibili\.com\/x\/v2\/splash\/ header="content-type: application/json; charset=utf-8|bili-status-code: 0" data-type=text data="{"code":0,"message":"0","ttl":1,"data":{"list":[],"show":[],"event_list":[],"max_time":0,"min_interval":31536000}}"
-^https:\/\/ap[ip]\.bilibili\.com\/x\/(?:resource\/(?:top\/activity|patch\/tab(?:\/v2)?)|v2\/search\/square|vip\/ads\/materials)\? header="content-type: application/json; charset=utf-8|bili-status-code: -404" data-type=text data="{"code":-404,"message":"-404","ttl":1,"data":null}"
-^https:\/\/api\.bilibili\.com\/pgc\/activity\/deliver\/material\/receive\? header="content-type: application/json|bili-status-code: 0" data-type=text data="{"code":0,"data":{"closeType":"close_win","container":[],"showTime":""},"message":"success"}"
-^https:\/\/api\.live\.bilibili\.com\/xlive\/e-commerce-interface\/v1\/ecommerce-user\/get_shopping_info\? header="content-type: application/json" data-type=text data="{}"
-^https:\/\/line3-h5-mobile-api\.biligame\.com\/game\/live\/large_card_material\? header="content-type: application/json" data-type=text data="{"code":0,"message":"success"}"
+^https://(?:app|api).bilibili.com/x/v2/splash/ header="content-type: application/json; charset=utf-8|bili-status-code: 0" data-type=text data="{"code":0,"message":"0","ttl":1,"data":{"list":[],"show":[],"event_list":[],"max_time":0,"min_interval":31536000}}"
+^https://(?:app|api).bilibili.com/x/(?:resource/(?:top/activity|patch/tab(?:/v2)?)|v2/search/square|vip/ads/materials|v2/ad/index)? header="content-type: application/json; charset=utf-8|bili-status-code: -404" data-type=text data="{"code":-404,"message":"-404","ttl":1,"data":null}"
+^https://api.bilibili.com/pgc/activity/deliver/material/receive? header="content-type: application/json|bili-status-code: 0" data-type=text data="{"code":0,"data":{"closeType":"close_win","container":[],"showTime":""},"message":"success"}"
+^https://api.live.bilibili.com/xlive/e-commerce-interface/v1/ecommerce-user/get_shopping_info? header="content-type: application/json" data-type=text data="{}"
+^https://line3-h5-mobile-api.biligame.com/game/live/large_card_material? header="content-type: application/json" data-type=text data="{"code":0,"message":"success"}"
 ^https:\/\/biz\.cyapi\.cn\/(p\/v1\/entries|p\/v1\/trial_card\/info|v2\/product) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https:\/\/starplucker\.cyapi\.cn\/v3\/(config\/cypage\/\w+\/conditions|notification\/message_center|operation\/homefeatures) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https://api\.cece\.com/live/user/coupon_tab\? data-type=json data="{"code":0,"msg":""}" status-code=200 status-code=200 header="content-type: application/json"
@@ -5680,8 +5702,8 @@ app.baidu-input-method.1 = type=http-response,pattern=^https?://mime\.baidu\.com
 app.baidu.1 = type=http-response, pattern="^https?:\/\/(www|m)\.baidu\.com\/?($|\?from=\w{8,9})", script-path=https://kelee.one/Resource/JavaScript/BaiduSearch/BaiduSearchHomePage_remove_ads.js, requires-body=true
 app.bilibili-comic.1 = type=http-response,pattern=^https://manga\.bilibili\.com/twirp/comic\.v\d\.Comic/GetClassPageAllTabs,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/BiliComic/BiliComic_remove_ads.js
 app.bilibili-comic.2 = type=http-response,pattern=^https://manga\.bilibili\.com/twirp/user\.v\d\.User/UCenterConf,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/BiliComic/BiliComic_remove_ads.js
-app.bilibili.1 = type=http-response,pattern=^https:\/\/api\.live\.bilibili\.com\/xlive\/(?:app-interface\/v2\/index\/feed|app-room\/v1\/index\/getInfoBy(?:Room|User))\?,requires-body=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.json.js
-app.bilibili.2 = type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/(?:resource\/show\/tab\/v2|v2\/(?:splash\/(?:list|show|event\/list2)|feed\/index(?:\/story)?|account\/(?:mine(?:\/ipad)?|myinfo)))\?,argument="{"showCreatorHub":0,"showUperCenter":0}",requires-body=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.json.js
+app.bilibili.1 = type=http-response,pattern=^https://api.live.bilibili.com/xlive/(?:app-interface/v2/index/feed|app-room/v1/index/getInfoBy(?:Room|User))?,requires-body=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.json.js
+app.bilibili.2 = type=http-response,pattern=^https://app.bilibili.com/x/(?:resource/show/tab/v2|v2/(?:splash/(?:list|show|event/list2)|feed/index(?:/story)?|account/(?:mine(?:/ipad)?|myinfo)))?,argument="{"showCreatorHub":0,"showUperCenter":0}",requires-body=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.json.js
 app.boo-hee.1 = type=http-response,pattern=^https://api\.boohee\.com/meta-interface/v1/index/plaza-flow\?,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/BooHee/BooHee_remove_ads.js
 app.caixin-media.1 = type=http-response,pattern=^https://entities\.caixin\.com/api/dataplus/columns,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
 app.caixin-media.2 = type=http-response,pattern=^https://gateway\.caixin\.com/api/app-api/(caixinapp/appinfo|search/getkeyword),requires-body=1,script-path=https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
