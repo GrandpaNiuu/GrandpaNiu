@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T21:08:22.798333Z",
+  "generated_at": "2026-06-13T21:17:26.198460Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -135,8 +135,8 @@
     },
     {
       "path": "Release/Modules/bilibili.sgmodule",
-      "size": 4551,
-      "sha256": "62071f2b3382185c7617d0beed89684628231d49e29809aa9eb84386363ef3e2"
+      "size": 3765,
+      "sha256": "c932be67234b18f3788afe983b0d4c560654d9ed1760604d425613effd754c75"
     },
     {
       "path": "Release/Modules/bitqiu-pan.sgmodule",
