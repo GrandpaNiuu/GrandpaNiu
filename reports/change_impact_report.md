@@ -1,6 +1,6 @@
 # 变更影响报告
 
-- 生成时间：2026-06-13 08:10:34 +0800
+- 生成时间：2026-06-13 08:21:44 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
@@ -8,6 +8,14 @@
 - `.github/workflows/daily-module-update.yml`
 - `.github/workflows/module-factory-build.yml`
 - `.github/workflows/repository-health.yml`
+- `Release/Module.sgmodule`
+- `Release/Ronghemokuai.sgmodule`
+- `Release/Stable/Module.sgmodule`
+- `Release/Stable/Ronghemokuai.sgmodule`
+- `Release/checksums.json`
+- `Release/checksums.txt`
+- `Ronghemokuai.sgmodule`
+- `Scripts/youtube.conf`
 - `docs/ARCHITECTURE.md`
 - `docs/AUTOMATION_POLICY.md`
 - `docs/CODEX_EXECUTION_STANDARD.md`
@@ -23,6 +31,22 @@
 - `docs/SCRIPT_CONSOLIDATION_PLAN.md`
 - `docs/SCRIPT_REVIEW.md`
 - `docs/TESTING.md`
+- `reports/android_rules_report.md`
+- `reports/app_coverage_matrix.md`
+- `reports/app_status_matrix.md`
+- `reports/automated_quality_evidence.md`
+- `reports/candidate_security_score_report.md`
+- `reports/change_impact_report.md`
+- `reports/domestic_app_connectivity_audit.md`
+- `reports/module_integrity_report.md`
+- `reports/multi_release_report.md`
+- `reports/profile_validation_report.md`
+- `reports/reject_risk_report.md`
+- `reports/remote_rule_syntax_report.md`
+- `reports/report_freshness_report.md`
+- `reports/repository_health_report.md`
+- `reports/script_inventory_report.md`
+- `reports/workflow_health_report.md`
 - `scripts/audit_compat_sources.py`
 - `scripts/check_report_freshness.py`
 - `scripts/collect_upstreams.py`
@@ -41,6 +65,7 @@
 
 ## 新增文件
 
+- `reports/automated_quality_evidence.md`
 - `tests/test_automated_quality_gate.py`
 - `tools/generate_automated_quality_evidence.py`
 
@@ -53,6 +78,14 @@
 - `.github/workflows/daily-module-update.yml`
 - `.github/workflows/module-factory-build.yml`
 - `.github/workflows/repository-health.yml`
+- `Release/Module.sgmodule`
+- `Release/Ronghemokuai.sgmodule`
+- `Release/Stable/Module.sgmodule`
+- `Release/Stable/Ronghemokuai.sgmodule`
+- `Release/checksums.json`
+- `Release/checksums.txt`
+- `Ronghemokuai.sgmodule`
+- `Scripts/youtube.conf`
 - `docs/ARCHITECTURE.md`
 - `docs/AUTOMATION_POLICY.md`
 - `docs/CODEX_EXECUTION_STANDARD.md`
@@ -68,6 +101,21 @@
 - `docs/SCRIPT_CONSOLIDATION_PLAN.md`
 - `docs/SCRIPT_REVIEW.md`
 - `docs/TESTING.md`
+- `reports/android_rules_report.md`
+- `reports/app_coverage_matrix.md`
+- `reports/app_status_matrix.md`
+- `reports/candidate_security_score_report.md`
+- `reports/change_impact_report.md`
+- `reports/domestic_app_connectivity_audit.md`
+- `reports/module_integrity_report.md`
+- `reports/multi_release_report.md`
+- `reports/profile_validation_report.md`
+- `reports/reject_risk_report.md`
+- `reports/remote_rule_syntax_report.md`
+- `reports/report_freshness_report.md`
+- `reports/repository_health_report.md`
+- `reports/script_inventory_report.md`
+- `reports/workflow_health_report.md`
 - `scripts/audit_compat_sources.py`
 - `scripts/check_report_freshness.py`
 - `scripts/collect_upstreams.py`
@@ -86,6 +134,7 @@
 
 - Other
 - README/docs
+- Scripts
 - Scripts/maintenance
 - Workflows
 
@@ -95,7 +144,12 @@
 - YouTube
 - 知乎
 - Bilibili
+- 微博
+- 百度贴吧
+- 美团
+- 滴滴
 - 12306
+- Reddit
 
 ## 风险判断
 
@@ -106,7 +160,7 @@
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
 - 是否需要测试知乎：是
-- 是否需要测试登录/支付/验证码：按需
+- 是否需要测试登录/支付/验证码：是
 
 ## 回滚建议
 
