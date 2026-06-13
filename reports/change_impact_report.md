@@ -1,11 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-13 09:22:57 +0800
+- 生成时间：2026-06-13 09:23:24 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Rewrite/Sources/Apps/caiyun-weather.conf`
+- `Rewrite/Sources/Apps/hupu.conf`
 
 ## 新增文件
 
@@ -17,7 +17,7 @@
 
 ## 修改文件
 
-- `Rewrite/Sources/Apps/caiyun-weather.conf`
+- `Rewrite/Sources/Apps/hupu.conf`
 
 ## 影响的模块层
 
