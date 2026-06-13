@@ -1,0 +1,11 @@
+payload:
+  # Generated Android rules for iOS-Rewrite-Compatible-Reject.
+  # Source: Android app layer and safe iOS-compatible REJECT rules.
+
+  - DOMAIN,ad.line-scdn.net
+  - DOMAIN,ad.maoyan.com
+  - DOMAIN,ad.xiaotucc.com
+  - DOMAIN,adproxy.autohome.com.cn
+  - DOMAIN,ads.ishansong.com
+  - DOMAIN,cupid.51jobapp.com
+  - DOMAIN,rtbapi.douyucdn.cn

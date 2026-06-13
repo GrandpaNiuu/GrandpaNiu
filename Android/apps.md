@@ -15,6 +15,8 @@ Android 版现在由 `scripts/build_android_rules.py` 自动生成四类输出�
 | App 增强 | `Android/*/apps/` | 按 App 或组合包输出，便于单独引用 | 已聚合进主规则，也可单独引用 |
 | iOS 通用兼容 | `iOS-Compatible-Reject` | 从 `Rules/reject.list` 提取 Android 可表达规则 | 是 |
 | iOS App 兼容 | `iOS-App-Compatible-Reject` | 从 `Rewrite/Sources/Apps/*.conf` 的 `[Rule]` REJECT 规则提取 | 是 |
+| iOS Rewrite 广告 host 兼容 | `iOS-Rewrite-Compatible-Reject` | 从 iOS `[URL Rewrite]` reject 行中提取明确广告/统计/弹窗 host | 是 |
+| Android 广告 SDK 兼容 | `Android-Ad-SDK-Compatible-Reject` | 从 `Rules/aggressive-ads.list` 中抽取安全广告 SDK / 广告网络域名 | 是 |
 | 高风险测试 | `Android/*/risky/` | HTTPDNS、宽泛 CDN、宽泛关键词等排查规则 | 否 |
 
 ## iOS 转 Android 的边界
@@ -23,14 +25,14 @@ Android 规则只能稳定承载域名、关键词和 IP 类拦截能力。构�
 
 - `[Script]`
 - `[MITM]`
-- `[URL Rewrite]`
+- 路径级 `[URL Rewrite]` 逻辑本身
 - `[Header Rewrite]`
 - `[Body Rewrite]`
 - `[Map Local]`
 - `DIRECT` / `PROXY` / 播放保护类规则
 - 登录、支付、银行、验证码、媒体播放、图片 CDN 等保护域
 
-这意味着 Android 会继承 iOS/Fusion 里能安全转成规则集的部分，但不会承诺具备 iOS 模块级脚本净化能力。
+这意味着 Android 会继承 iOS/Fusion 里能安全转成规则集的部分，包括明确广告域名、广告 SDK 和少量 URL Rewrite 广告 host；但不会承诺具备 iOS 模块级脚本净化能力。
 
 ## 推荐入口
 
@@ -69,6 +71,8 @@ rules:
 
 | 名称 | Mihomo / FlClash | sing-box | AdGuard | v2rayNG |
 |---|---|---|---|---|
+| Android 广告 SDK 兼容层 | `Android/mihomo/apps/Android-Ad-SDK-Compatible-Reject.yaml` | `Android/sing-box/apps/Android-Ad-SDK-Compatible-Reject.json` | `Android/adguard/apps/Android-Ad-SDK-Compatible-Reject.txt` | `Android/v2rayng/apps/Android-Ad-SDK-Compatible-Reject-routing.json` |
+| iOS Rewrite 广告 host 兼容层 | `Android/mihomo/apps/iOS-Rewrite-Compatible-Reject.yaml` | `Android/sing-box/apps/iOS-Rewrite-Compatible-Reject.json` | `Android/adguard/apps/iOS-Rewrite-Compatible-Reject.txt` | `Android/v2rayng/apps/iOS-Rewrite-Compatible-Reject-routing.json` |
 | iOS App 兼容层 | `Android/mihomo/apps/iOS-App-Compatible-Reject.yaml` | `Android/sing-box/apps/iOS-App-Compatible-Reject.json` | `Android/adguard/apps/iOS-App-Compatible-Reject.txt` | `Android/v2rayng/apps/iOS-App-Compatible-Reject-routing.json` |
 | iOS 通用兼容层 | `Android/mihomo/apps/iOS-Compatible-Reject.yaml` | `Android/sing-box/apps/iOS-Compatible-Reject.json` | `Android/adguard/apps/iOS-Compatible-Reject.txt` | `Android/v2rayng/apps/iOS-Compatible-Reject-routing.json` |
 | 国内 App 组合包 | `Android/mihomo/apps/Domestic-Apps.yaml` | `Android/sing-box/apps/Domestic-Apps.json` | `Android/adguard/apps/Domestic-Apps.txt` | `Android/v2rayng/apps/Domestic-Apps-routing.json` |

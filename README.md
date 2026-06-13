@@ -213,4 +213,11 @@ https://grandpaniuu.github.io/GrandpaNiu/Windows/v2rayN/GrandpaNiu-v2rayN-custom
 
 ### Android iOS 兼容增强层
 
-Android 构建现在会从 iOS/Fusion 源文件中提取可安全迁移的 `[Rule]` REJECT 域名、关键词和 IP 规则，自动合并到 Android 主规则集，并生成 `iOS-App-Compatible-Reject` 兼容输出。脚本、MITM、Rewrite、登录、支付、银行、验证码、视频播放、图片/CDN 保护链路不会迁移到 Android 拦截规则中。
+Android 构建现在会从 iOS/Fusion 源文件中提取可安全迁移的 `[Rule]` REJECT 域名、关键词和 IP 规则，自动合并到 Android 主规则集，并生成 `iOS-App-Compatible-Reject` 兼容输出。
+
+同时新增两层更稳的 Android 去广告增强：
+
+* `iOS-Rewrite-Compatible-Reject`：只从 iOS `[URL Rewrite]` 的 reject 行里提取“域名本身就是广告/统计/弹窗/营销”的 host，不迁移路径级核心 API。
+* `Android-Ad-SDK-Compatible-Reject`：从 `Rules/aggressive-ads.list` 中抽取明确广告 SDK / 广告网络域名，跳过宽泛关键词、URL 正则、登录、支付、银行、视频播放和 CDN 保护链路。
+
+脚本、MITM、Body Rewrite、Header Rewrite、Map Local、登录、支付、银行、验证码、视频播放、图片/CDN 保护链路不会直接迁移到 Android 拦截规则中。

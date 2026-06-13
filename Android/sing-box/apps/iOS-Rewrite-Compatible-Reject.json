@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain": [
+        "ad.line-scdn.net",
+        "ad.maoyan.com",
+        "ad.xiaotucc.com",
+        "adproxy.autohome.com.cn",
+        "ads.ishansong.com",
+        "cupid.51jobapp.com",
+        "rtbapi.douyucdn.cn"
+      ]
+    }
+  ]
+}

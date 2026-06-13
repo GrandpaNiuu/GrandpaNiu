@@ -1,6 +1,6 @@
 ! GrandpaNiu Android main rules.
 ! Generated from Android/mihomo/apps plus safe iOS/Fusion compatible REJECT rules.
-! App source files included: 20.
+! App source files included: 22.
 ! Script, MITM, Rewrite and media-chain rules are not migrated to Android.
 
 ||aaid.uyunad.com^
@@ -14,6 +14,7 @@
 ||ad-h5-station-cdn.soulapp.cn^
 ||ad-r.soulapp.cn^
 ||ad-stat.ksosoft.com^
+||ad.12306.cn^
 ||ad.21cn.com^
 ||ad.api.moji.com^
 ||ad.chelaile.net.cn^
@@ -23,6 +24,7 @@
 ||ad.jia.360.cn^
 ||ad.jiemian.com^
 ||ad.k.21cn.com^
+||ad.line-scdn.net^
 ||ad.maoyan.com^
 ||ad.mcloud.139.com^
 ||ad.partner.gifshow.com^
@@ -36,6 +38,7 @@
 ||ad.v3mh.com^
 ||ad.video.51togic.com^
 ||ad.xiangji.qq.com^
+||ad.xiaotucc.com^
 ||ad.ximalaya.com^
 ||ad.zijieapi.com^
 ||adapi.izuiyou.com^
@@ -59,6 +62,7 @@
 ||ads-partner.cdn.bcebos.com^
 ||ads.auctions.yahoo.com^
 ||ads.finance.yahoo.com^
+||ads.ishansong.com^
 ||ads.mojicdn.com^
 ||ads.pubmatic.com^
 ||ads.reader.yueyouxs.com^
@@ -134,6 +138,7 @@
 ||credits2.bz.mgtv.com^
 ||credits3.bz.mgtv.com^
 ||csc-apm.sgcc.com.cn^
+||cupid.51jobapp.com^
 ||cupid.iqiyi.com^
 ||cupid.ptqy.gitv.tv^
 ||da.bridgeturbo.com^
@@ -264,6 +269,7 @@
 ||rmonitor.qq.com^
 ||rprain.bz.mgtv.com^
 ||rprain.log.mgtv.com^
+||rtbapi.douyucdn.cn^
 ||rtlog3-applog.fqnovel.com^
 ||rtlog5-applog.fqnovel.com^
 ||rttrack.ddxq.mobi^
@@ -392,9 +398,11 @@
 ||ad.10010.com^
 ||ad.csdn.net^
 ||ad.hpplay.cn^
+||ad.intl.xiaomi.com^
 ||ad.mail.sohu.com^
 ||ad.qq.com^
 ||ad.sohu.com^
+||ad.xiaomi.com^
 ||ad.xmcdn.com^
 ||adbehavior.wsa.xmcdn.com^
 ||adbehavior.xmcdn.com^
@@ -402,10 +410,12 @@
 ||adeng.hpplay.cn^
 ||adfilter.imtt.qq.com^
 ||adjust.com^
+||adjust.net.in^
 ||adkwai.com^
 ||admaster.com.cn^
 ||admobile.top^
 ||adnet.sohu.com^
+||adnxs.com^
 ||adping.qq.com^
 ||adpm.app.qq.com^
 ||ads.linkedin.com^
@@ -414,6 +424,7 @@
 ||ads.ximalaya.com^
 ||ads.xmcdn.com^
 ||adsafeprotected.com^
+||adsame.com^
 ||adsclick.qq.com^
 ||adse.wsa.xmcdn.com^
 ||adse.xmcdn.com^
@@ -426,6 +437,7 @@
 ||adslvfile.qq.com^
 ||adslvseed.qq.com^
 ||adsmind.apdcdn.tc.qq.com^
+||adsmogo.com^
 ||adsmoloco.com^
 ||adsolution.imtt.qq.com^
 ||adspecs.yahoo.com^
@@ -436,8 +448,10 @@
 ||adukwai.com^
 ||advertising.yahoo.com^
 ||adview.cn^
+||adview.com^
 ||adweb.wsa.xmcdn.com^
 ||adweb.xmcdn.com^
+||adwo.com^
 ||adwx.wsa.xmcdn.com^
 ||adwx.xmcdn.com^
 ||adx-api.hupu.com^
@@ -445,6 +459,10 @@
 ||adxs.ximalaya.com^
 ||adxs.xmcdn.com^
 ||afp.zol-img.com.cn^
+||alimama.com^
+||allyes.com^
+||anythinktech.com^
+||api.ad.xiaomi.com^
 ||api.dsp.yhd.com^
 ||apilog.qbb6.com^
 ||app-measurement.com^
@@ -452,10 +470,13 @@
 ||applovin.com^
 ||applvn.com^
 ||apppv.zol.com.cn^
+||appsflyer.com^
 ||aty.sohu.com^
 ||beacon.sina.com.cn^
 ||biz.weibo.com^
+||bugly.qq.com^
 ||c.gdt.qq.com^
+||cnzz.com^
 ||corp.sohu.com^
 ||counter.csdn.net^
 ||cpc.sohu.com^
@@ -464,6 +485,7 @@
 ||da.mgtv.com^
 ||dc.csdn.net^
 ||dc2.csdn.net^
+||domob.cn^
 ||doubleclick-cn.net^
 ||doubleclick.net^
 ||dynamic.zol.com.cn^
@@ -474,14 +496,18 @@
 ||go.sohu.com^
 ||googleadservices.com^
 ||googlesyndication.com^
+||gtags.net^
 ||hui.sohu.com^
 ||iad.apple.com^
 ||ii.gdt.qq.com^
 ||imp.zol.com.cn^
+||inmobi.cn^
+||irs01.com^
 ||iyes.youku.com^
 ||js.zol.com.cn^
 ||jzt.jd.com^
 ||l.qq.com^
+||log.avlyun.com^
 ||log.moji.com^
 ||lx.meituan.net^
 ||m.gdt.qq.com^
@@ -493,9 +519,14 @@
 ||meituan.xn^
 ||meituan.yoga^
 ||meituangov.cn^
+||miaozhen.com^
 ||mistat.xiaomi.com^
+||mmstat.com^
+||moatads.com^
+||mob.com^
 ||ms.vipstatic.com^
 ||mstat.zol.com.cn^
+||openx.net^
 ||pangle.io^
 ||pglstatp-toutiao.com^
 ||pic.zol-img.com.cn^
@@ -507,19 +538,32 @@
 ||pvnapp.zol.com.cn^
 ||pvsite.zol.com.cn^
 ||pvtest.zol.com.cn^
+||quantserve.com^
 ||scorecardresearch.com^
 ||shuzilm.cn^
+||sigmob.cn^
+||sigmob.com^
 ||spotifycdn.com^
 ||suvset.sohu.com^
+||taboola.com^
+||talkingdata.com^
+||tanx.com^
 ||tappx.com^
 ||track.mm.taou.com^
 ||track.sohu.com^
 ||tracker.yhd.com^
 ||ugdtimg.com^
+||umeng.com^
+||umengcloud.com^
+||umtrack.com^
+||unityads.unity3d.com^
 ||v.smtcdns.com^
 ||v1d.szbdyd.com^
 ||voiceads.cn^
+||vungle.com^
 ||wappv.zol.com.cn^
+||wrating.com^
 ||ydjs.zol.com.cn^
+||youmi.net^
 ||zhihu-web-analytics.zhihu.com^
 ||zjcdn.com^

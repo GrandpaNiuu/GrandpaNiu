@@ -16,6 +16,8 @@ REQUIRED_SOURCE_FILES = [
     ANDROID / "mihomo" / "GrandpaNiu-Android-Full.yaml",
     ANDROID / "mihomo" / "apps" / "iOS-Compatible-Reject.yaml",
     ANDROID / "mihomo" / "apps" / "iOS-App-Compatible-Reject.yaml",
+    ANDROID / "mihomo" / "apps" / "iOS-Rewrite-Compatible-Reject.yaml",
+    ANDROID / "mihomo" / "apps" / "Android-Ad-SDK-Compatible-Reject.yaml",
     ANDROID / "mihomo" / "apps" / "Repo-Compatible-Reject.yaml",
     ANDROID / "sing-box" / "GrandpaNiu-Ads.json",
     ANDROID / "adguard" / "GrandpaNiu-DNS.txt",
@@ -160,6 +162,8 @@ def main() -> None:
 
     main_count = validate_mihomo(ANDROID / "mihomo" / "GrandpaNiu-Ads.yaml")
     validate_mihomo(ANDROID / "mihomo" / "apps" / "iOS-App-Compatible-Reject.yaml")
+    validate_mihomo(ANDROID / "mihomo" / "apps" / "iOS-Rewrite-Compatible-Reject.yaml")
+    validate_mihomo(ANDROID / "mihomo" / "apps" / "Android-Ad-SDK-Compatible-Reject.yaml")
     validate_mihomo(ANDROID / "mihomo" / "apps" / "Repo-Compatible-Reject.yaml")
     for path in (ANDROID / "sing-box").rglob("*.json"):
         validate_json(path)

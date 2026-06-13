@@ -1,0 +1,10 @@
+! Generated Android rules for iOS-Rewrite-Compatible-Reject.
+! Source: Android app layer and safe iOS-compatible REJECT rules.
+
+||ad.line-scdn.net^
+||ad.maoyan.com^
+||ad.xiaotucc.com^
+||adproxy.autohome.com.cn^
+||ads.ishansong.com^
+||cupid.51jobapp.com^
+||rtbapi.douyucdn.cn^

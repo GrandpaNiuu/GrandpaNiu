@@ -1,11 +1,13 @@
 # Android rules build report
 
-- generated: 2026-06-14 04:25:36 Asia/Shanghai
-- app rule files: 20
-- main Android rules: 568
+- generated: 2026-06-14 04:42:05 Asia/Shanghai
+- app rule files: 22
+- main Android rules: 612
 - source: Android/mihomo/apps/*.yaml
 - iOS common source: Rules/reject.list -> iOS-Compatible-Reject
 - iOS app source: Rewrite/Sources/Apps/*.conf [Rule] REJECT -> iOS-App-Compatible-Reject
+- iOS rewrite source: Rewrite/Sources URL Rewrite reject hostnames -> iOS-Rewrite-Compatible-Reject
+- Android ad SDK source: Rules/aggressive-ads.list safe ad-network subset -> Android-Ad-SDK-Compatible-Reject (57)
 - repo rule source: Rules/app-clean.list + Rules/web-ads.list + Rules/qingrex-miniapp-app-ad.list + Rules/wechat-ad.list -> Repo-Compatible-Reject
 - exported formats: Mihomo / sing-box / AdGuard / v2rayNG
 - sync branches: sing-box, AdGuard and v2rayNG are generated from the Mihomo source layer during the same build.
@@ -13,11 +15,13 @@
 
 | App | Rules | Outputs |
 |---|---:|---|
+| Android-Ad-SDK-Compatible-Reject | 57 | yes |
 | Bilibili | 1 | yes |
 | Domestic-Apps | 146 | yes |
 | Douyin | 12 | yes |
 | iOS-App-Compatible-Reject | 230 | yes |
 | iOS-Compatible-Reject | 230 | yes |
+| iOS-Rewrite-Compatible-Reject | 7 | yes |
 | iQiyi | 2 | yes |
 | Kugou | 4 | yes |
 | MangoTV | 11 | yes |
@@ -94,6 +98,16 @@
 | zhihu | 10 |
 | zui-you | 1 |
 | zuoyebang | 1 |
+
+## iOS URL Rewrite source coverage
+
+| Source file | Migrated reject host rules |
+|---|---:|
+| Rewrite/Sources/Apps/51-job.conf | 1 |
+| Rewrite/Sources/Apps/auto-home.conf | 1 |
+| Rewrite/Sources/Apps/douyu.conf | 1 |
+| Rewrite/Sources/Apps/line.conf | 1 |
+| Rewrite/Sources/Apps/wechat-mini-programs.conf | 3 |
 
 ## Repository rule source coverage
 

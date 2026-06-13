@@ -1,0 +1,19 @@
+{
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "block",
+        "domain": [
+          "full:ad.line-scdn.net",
+          "full:ad.maoyan.com",
+          "full:ad.xiaotucc.com",
+          "full:adproxy.autohome.com.cn",
+          "full:ads.ishansong.com",
+          "full:cupid.51jobapp.com",
+          "full:rtbapi.douyucdn.cn"
+        ]
+      }
+    ]
+  }
+}
