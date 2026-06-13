@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T21:49:31.236599Z",
+  "generated_at": "2026-06-13T21:53:14.901310Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 708608,
-      "sha256": "367e2d5a0ffcc78b43cb8cc4d02c59854fe02487ac383bd16828dd1e67262fb7"
+      "size": 708443,
+      "sha256": "14f5339afc88af3cda969424e7afaac55d7a4ffbbd14cc202e528cbf0ece1481"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -135,8 +135,8 @@
     },
     {
       "path": "Release/Modules/bilibili.sgmodule",
-      "size": 3951,
-      "sha256": "4d015b4ed38c7bcc4661c7d4364709e98f599c45361ab4ca2318b51ef19dc694"
+      "size": 3889,
+      "sha256": "bff206cdfc3b0095f375295983994c450753b32538fe181acb7c30215c2e3082"
     },
     {
       "path": "Release/Modules/bitqiu-pan.sgmodule",
@@ -1140,23 +1140,23 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 708608,
-      "sha256": "367e2d5a0ffcc78b43cb8cc4d02c59854fe02487ac383bd16828dd1e67262fb7"
+      "size": 708443,
+      "sha256": "14f5339afc88af3cda969424e7afaac55d7a4ffbbd14cc202e528cbf0ece1481"
     },
     {
       "path": "Release/Rules.conf",
-      "size": 57480,
-      "sha256": "08cedb895d59851e20c95fec71ab36539ac3ece9649b4aab9a829f0e2c56a141"
+      "size": 57366,
+      "sha256": "72f6fd6a9a6007e006d706a403da19c4d856e10877249bf6f4d0d4b479b34d72"
     },
     {
       "path": "Release/RulesGroup.conf",
-      "size": 57559,
-      "sha256": "90cb2847b5cb1704ab6eb0d77cfa550e813689c5933db174988a551f9cf5f3c7"
+      "size": 57445,
+      "sha256": "b84465a7ceaf52a2494dfbd4b7769b8e7e53dcbf3cbc5d01685289c3bec5551c"
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 708608,
-      "sha256": "367e2d5a0ffcc78b43cb8cc4d02c59854fe02487ac383bd16828dd1e67262fb7"
+      "size": 706967,
+      "sha256": "bbfd7ffc20fbf480e6abcd934a1fedeecb6698eb913d3fac42c26730887533df"
     },
     {
       "path": "Release/Stable/README.md",
@@ -1165,28 +1165,28 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 708608,
-      "sha256": "367e2d5a0ffcc78b43cb8cc4d02c59854fe02487ac383bd16828dd1e67262fb7"
+      "size": 706967,
+      "sha256": "bbfd7ffc20fbf480e6abcd934a1fedeecb6698eb913d3fac42c26730887533df"
     },
     {
       "path": "Release/Stable/Rules.conf",
-      "size": 57480,
-      "sha256": "08cedb895d59851e20c95fec71ab36539ac3ece9649b4aab9a829f0e2c56a141"
+      "size": 57366,
+      "sha256": "72f6fd6a9a6007e006d706a403da19c4d856e10877249bf6f4d0d4b479b34d72"
     },
     {
       "path": "Release/Stable/RulesGroup.conf",
-      "size": 57559,
-      "sha256": "90cb2847b5cb1704ab6eb0d77cfa550e813689c5933db174988a551f9cf5f3c7"
+      "size": 57445,
+      "sha256": "b84465a7ceaf52a2494dfbd4b7769b8e7e53dcbf3cbc5d01685289c3bec5551c"
     },
     {
       "path": "Web/README.md",
-      "size": 784,
-      "sha256": "4af5a96df0fbd53b2e416e81599b37e86f75564e98d3bca5627ae9df8a04c1af"
+      "size": 807,
+      "sha256": "32e92306ca91d5389f2d462f55195df71df86b6122a6ca0d77b1780e3440c4d1"
     },
     {
       "path": "Web/catalog.md",
-      "size": 57387,
-      "sha256": "f23bd2bba68a074f700e2c66b7263d72530bcc2322e17640912fce87f4f104e5"
+      "size": 57405,
+      "sha256": "0359806f816f84609cd98ed5dc47f3a5b3c51e191c54b24f8e553e623bee8260"
     },
     {
       "path": "Web/index.html",
@@ -1195,8 +1195,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 218172,
-      "sha256": "196e98b71f1ef922a73ce0633ee883da798bb4c60ed847aae18fade801d2449e"
+      "size": 218190,
+      "sha256": "f69c8afb023da896f4fd3eb8aeeb2f49db06845ce9429a15abb6cf5eb08f8e53"
     },
     {
       "path": "Web/registry.md",
@@ -1205,8 +1205,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 77268,
-      "sha256": "7d1c1b2887861b3fd1fa85f6d619abaf7aecaee781d1d1b3ab017070cb9b7803"
+      "size": 77286,
+      "sha256": "017a974a42982219d3b33ef8b654ac2a22927ecad7967e5c2ddf31b164f116bd"
     },
     {
       "path": "Web/remotes.md",
