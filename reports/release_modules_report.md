@@ -40,9 +40,9 @@
 - Source: `Rewrite/Sources/Apps/bilibili.conf`
 - Discovery: manual
 - Rule: 2
-- Body Rewrite: 3
-- Map Local: 3
-- Script: 1
+- Body Rewrite: 5
+- Map Local: 8
+- Script: 2
 - MITM: 1
 
 ## GrandpaNiu RedNote
