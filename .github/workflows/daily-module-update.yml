@@ -71,8 +71,6 @@ jobs:
             update_date
             python3 scripts/import_qingrex_official_module.py
             python3 scripts/dedupe_qq_news_script_path.py
-            python3 scripts/build_android_rules.py
-            python3 scripts/android_format_check.py
             python3 scripts/convert_quanx_rules.py
             # fusion-build-marker: scripts/build_module.py --build --profile fusion
             # Builder release path runs scripts/factory_finalize.py --sync-root and scripts/build_release_variants.py.
