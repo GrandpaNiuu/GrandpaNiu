@@ -4,6 +4,7 @@
     {
       "domain": [
         "abtest3-misc.zijieapi.com",
+        "abtk.pinduoduo.com",
         "abyss.cyapi.cn",
         "ad-analysis.pconline.com.cn",
         "ad-h5-cdn.soulapp.cn",
@@ -58,6 +59,7 @@
         "appcloud.zhihu.com",
         "appcloud2.in.zhihu.com",
         "apps-booster.xiaopeng.com",
+        "at.pinduoduo.com",
         "axxd.xmseeyouyima.com",
         "c2.gdt.qq.com",
         "cad.youku.com",
@@ -201,6 +203,7 @@
         "zxid-m.mobileservice.cn"
       ],
       "domain_suffix": [
+        "636949.xyz",
         "ad.e.waimai.sankuai.com",
         "adcanvas.com",
         "adjust.com",
@@ -213,6 +216,7 @@
         "biz.weibo.com",
         "da.mgtv.com",
         "gdt.qq.com",
+        "ivenq.life",
         "iyes.youku.com",
         "l.qq.com",
         "mads.meituan.com",

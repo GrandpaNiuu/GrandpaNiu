@@ -3,6 +3,7 @@ payload:
   # Source: Android app layer and safe iOS-compatible REJECT rules.
 
   - DOMAIN,abtest3-misc.zijieapi.com
+  - DOMAIN,abtk.pinduoduo.com
   - DOMAIN,abyss.cyapi.cn
   - DOMAIN,ad-analysis.pconline.com.cn
   - DOMAIN,ad-h5-cdn.soulapp.cn
@@ -57,6 +58,7 @@ payload:
   - DOMAIN,appcloud.zhihu.com
   - DOMAIN,appcloud2.in.zhihu.com
   - DOMAIN,apps-booster.xiaopeng.com
+  - DOMAIN,at.pinduoduo.com
   - DOMAIN,axxd.xmseeyouyima.com
   - DOMAIN,c2.gdt.qq.com
   - DOMAIN,cad.youku.com
@@ -203,6 +205,7 @@ payload:
   - DOMAIN-KEYWORD,biligame-ad
   - DOMAIN-KEYWORD,report.meituan
   - DOMAIN-KEYWORD,trace.qq.com
+  - DOMAIN-SUFFIX,636949.xyz
   - DOMAIN-SUFFIX,ad.e.waimai.sankuai.com
   - DOMAIN-SUFFIX,adcanvas.com
   - DOMAIN-SUFFIX,adjust.com
@@ -215,6 +218,7 @@ payload:
   - DOMAIN-SUFFIX,biz.weibo.com
   - DOMAIN-SUFFIX,da.mgtv.com
   - DOMAIN-SUFFIX,gdt.qq.com
+  - DOMAIN-SUFFIX,ivenq.life
   - DOMAIN-SUFFIX,iyes.youku.com
   - DOMAIN-SUFFIX,l.qq.com
   - DOMAIN-SUFFIX,mads.meituan.com
