@@ -34,7 +34,7 @@
     }
 
     body {
-      padding: max(26px, env(safe-area-inset-top)) 16px calc(100px + env(safe-area-inset-bottom));
+      padding: max(26px, env(safe-area-inset-top)) 16px calc(42px + env(safe-area-inset-bottom));
       background:
         radial-gradient(circle at 18% -8%, rgba(35,136,217,.18), transparent 34%),
         radial-gradient(circle at 92% 0%, rgba(37,161,98,.12), transparent 30%),
@@ -307,41 +307,6 @@
       text-align: center;
     }
 
-    .bottom-nav {
-      position: fixed;
-      left: 50%;
-      bottom: max(14px, env(safe-area-inset-bottom));
-      transform: translateX(-50%);
-      width: min(calc(100% - 28px), 560px);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      padding: 7px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 26px;
-      background: var(--nav);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 16px 44px rgba(0,0,0,.32);
-      z-index: 10;
-    }
-
-    .bottom-nav a {
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 22px;
-      color: #e5e7eb;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 750;
-    }
-
-    .bottom-nav a.active {
-      color: #58a6ff;
-      background: rgba(47,156,255,.16);
-    }
-
     @media (max-width: 760px) {
       .advanced-grid { grid-template-columns: 1fr; }
     }
@@ -446,13 +411,6 @@ rules:
 
     <footer>导入失败时，请复制主入口链接，在客户端中选择“从 URL 导入规则集”或按配置片段手动合并。</footer>
   </main>
-
-  <nav class="bottom-nav" aria-label="底部导航">
-    <a class="active" href="#top">顶部</a>
-    <a href="#main-entry">主入口</a>
-    <a href="#advanced">格式</a>
-  </nav>
-
   <script>
     const BASE = "https://grandpaniuu.github.io/GrandpaNiu";
     const ADS_RULESET_LINK = `${BASE}/Android/mihomo/GrandpaNiu-Ads.yaml`;
