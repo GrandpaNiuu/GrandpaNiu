@@ -90,6 +90,7 @@ def build_plan(cfg: configparser.ConfigParser, profile: str, release: bool, chec
     release_aliases_script = get_cfg(cfg, "builder", "release_aliases_script", "scripts/build_release_aliases.py")
     release_channels_script = get_cfg(cfg, "builder", "release_channels_script", "scripts/build_channels.py")
     android_rules_script = get_cfg(cfg, "builder", "android_rules_script", "scripts/build_android_rules.py")
+    windows_v2rayn_script = get_cfg(cfg, "builder", "windows_v2rayn_script", "scripts/build_windows_v2rayn.py")
     release_android_script = get_cfg(cfg, "builder", "release_android_script", "scripts/build_release_android.py")
     web_modules_script = get_cfg(cfg, "builder", "web_modules_script", "scripts/build_web_modules.py")
     web_catalog_script = get_cfg(cfg, "builder", "web_catalog_script", "scripts/build_web_catalog.py")
@@ -109,6 +110,7 @@ def build_plan(cfg: configparser.ConfigParser, profile: str, release: bool, chec
             existing_command(release_aliases_script, "--config", rel(config_file)),
             existing_command(release_channels_script, "--config", rel(config_file)),
             existing_command(android_rules_script),
+            existing_command(windows_v2rayn_script),
             existing_command(release_android_script, "--config", rel(config_file)),
             existing_command(web_modules_script),
             existing_command(web_catalog_script),

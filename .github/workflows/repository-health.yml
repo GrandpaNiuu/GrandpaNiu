@@ -20,6 +20,7 @@ on:
       - "Rewrite/**"
       - "Rules/**"
       - "Scripts/**"
+      - "Windows/**"
       - ".github/workflows/repository-health.yml"
 
 permissions:

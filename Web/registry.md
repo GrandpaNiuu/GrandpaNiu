@@ -12,6 +12,7 @@ Rewrite/Remotes/
 Rules/
 Scripts/
 Android/
+Windows/
   -> Rewrite/Generate.conf
   -> Rewrite/Generator/Builder.py
   -> Release/
@@ -28,6 +29,7 @@ Android/
 | `Release/RulesGroup.conf` | `Release/Ronghemokuai.sgmodule` | `scripts/build_release_rules.py` |
 | `Release/Modules/` | `Rewrite/Sources/Apps/` plus auto-discovery | `scripts/build_release_modules.py` |
 | `Release/Android/` | `Android/` | `scripts/build_release_android.py` |
+| `Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json` | `Android/v2rayng/GrandpaNiu-v2rayng-routing.json` | `scripts/build_windows_v2rayn.py` |
 | `Web/catalog.md` | `Release/Modules/README.md` | `scripts/build_web_catalog.py` |
 | `Web/release-links.json` | `Release/Modules/README.md` | `scripts/build_web_catalog.py` |
 | `Web/remotes.md` | `Rewrite/Remotes/sources.json` | `scripts/build_web_catalog.py` |

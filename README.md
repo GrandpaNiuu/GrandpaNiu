@@ -136,6 +136,27 @@ Android 规则主要适合：
 
 注意：Android 规则不能完全等同于 iOS 模块，因为 Android 通常不支持 Shadowrocket / Surge 那种 Script、MITM、Rewrite 能力。
 
+### 🪟 Windows / v2rayN
+
+v2rayN 使用专用的自定义路由 JSON 数组格式：
+
+```text
+https://grandpaniuu.github.io/GrandpaNiu/Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json
+```
+
+导入方法：
+
+快捷路径：路由设置 → 自定义规则 → 从 URL 或剪贴板导入
+
+1. 打开 v2rayN。
+2. 进入「路由设置」。
+3. 打开「自定义规则」。
+4. 选择「从 URL 导入」，粘贴上面的链接。
+5. 如果当前版本没有 URL 导入，就先打开链接复制 JSON 内容，再选择「从剪贴板导入」。
+6. 保存路由设置，并让当前配置重新应用。
+
+规则顺序是：GrandpaNiu 广告拦截 → 国内/私有地址直连 → 其他全部代理。
+
 ---
 
 ## 🚀 核心功能

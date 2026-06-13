@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-13T17:51:09.909261Z",
+  "generated_at": "2026-06-13T19:02:05.454358Z",
   "algorithm": "sha256",
-  "count": 242,
+  "count": 244,
   "files": [
     {
       "path": "Release/Beta/README.md",
@@ -1185,13 +1185,13 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 57004,
-      "sha256": "9847348310be216d595f249453c1bc8f5ddae9860ae48c55a2c8e7357cd6a639"
+      "size": 57405,
+      "sha256": "0359806f816f84609cd98ed5dc47f3a5b3c51e191c54b24f8e553e623bee8260"
     },
     {
       "path": "Web/index.html",
-      "size": 5413,
-      "sha256": "a3cddae683d31afeb4c320ac194ad41ddc8072c951091923d684bbb8c6473fda"
+      "size": 5622,
+      "sha256": "061eacfd487d6437020a763d0fdd88b7d85210d8200debd673c8754539dfc45b"
     },
     {
       "path": "Web/modules.html",
@@ -1200,18 +1200,28 @@
     },
     {
       "path": "Web/registry.md",
-      "size": 1596,
-      "sha256": "341847127af6dd8c751069c6709ad16faf90bb01c1b05050eb13655fa2291f47"
+      "size": 1752,
+      "sha256": "68f50ca6151ff4e6becf915e2592cc494ecf6b7e70188df9ec62d6e71090fc44"
     },
     {
       "path": "Web/release-links.json",
-      "size": 76827,
-      "sha256": "a8a8f409f92f83e02ddd070cc1b46df8ff22278e4053992ed7199ac7101a81a9"
+      "size": 77286,
+      "sha256": "017a974a42982219d3b33ef8b654ac2a22927ecad7967e5c2ddf31b164f116bd"
     },
     {
       "path": "Web/remotes.md",
       "size": 8149,
       "sha256": "bd9cf79d12f7040e0def4e2701e73d9423ae1a3118c175660c106562d4bf734c"
+    },
+    {
+      "path": "Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json",
+      "size": 19709,
+      "sha256": "04d4860c025863c2372f6a686b1c326999e7c95dea63f8beecfc858f26af76cf"
+    },
+    {
+      "path": "Windows/v2rayN/README.md",
+      "size": 1197,
+      "sha256": "f861f453c3052a2c8a12975ac56f959451a5b1b6e7af5781cdfc4254e9534b2a"
     }
   ]
 }

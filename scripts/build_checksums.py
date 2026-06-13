@@ -21,6 +21,8 @@ INCLUDE_PATTERNS = [
     "Web/*.html",
     "Web/*.md",
     "Web/*.json",
+    "Windows/**/*.json",
+    "Windows/**/*.md",
 ]
 EXCLUDE_NAMES = {"checksums.json", "checksums.txt"}
 

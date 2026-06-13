@@ -94,6 +94,7 @@ Manual app specs are listed in `Rewrite/Generate.conf` `[release_modules]`. Addi
 | build.modules | build | App module builder | `scripts/build_release_modules.py` | `Release/Modules/`; `Release/Android/`; `Web/` catalogs | `Rewrite/Generator/Builder.py` | yes | high | Revert module builder change |
 | build.rules | build | Rule output builder | `scripts/build_release_rules.py` | `Release/Rules.conf`; `Release/RulesGroup.conf` | `Rewrite/Generator/Builder.py` | yes | medium | Regenerate from fusion module |
 | build.android | build | Android publisher | `scripts/build_release_android.py` | `Release/Android/` | module builder follow-up | yes | medium | Regenerate from `Android/` |
+| build.windows_v2rayn | build | Windows v2rayN routing builder | `scripts/build_windows_v2rayn.py` | `Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json` | `Rewrite/Generator/Builder.py` | yes | medium | Regenerate from Android v2rayNG route |
 | build.web | build | Web catalog builder | `scripts/build_web_catalog.py` | `Web/catalog.md`; `Web/release-links.json`; `Web/remotes.md` | module builder follow-up | yes | low | Regenerate Web catalog |
 
 ## Automation layer
@@ -118,6 +119,7 @@ Manual app specs are listed in `Rewrite/Generate.conf` `[release_modules]`. Addi
 | release.groups | release | Rule group output | `Release/Ronghemokuai.sgmodule` | `Release/RulesGroup.conf` | `scripts/build_release_rules.py` | yes | medium | Regenerate from Release module |
 | release.modules | release | App modules | `Rewrite/Sources/Apps/` | `Release/Modules/` | `scripts/build_release_modules.py` | yes | high | Fallback to fusion extraction or disable app source |
 | release.android | release | Android output | `Android/` | `Release/Android/` | `scripts/build_release_android.py` | yes | medium | Rebuild Android output |
+| release.windows_v2rayn | release | Windows v2rayN custom routing | `Android/v2rayng/GrandpaNiu-v2rayng-routing.json` | `Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json` | `scripts/build_windows_v2rayn.py` | yes | medium | Regenerate from Android v2rayNG route |
 | web.index | web | Landing page | `Web/index.html` | GitHub Pages Web entry | manual source | yes | low | Revert page change |
 | web.catalog | web | Catalog | `Release/Modules/README.md`; `Rewrite/Remotes/sources.json` | `Web/catalog.md`; `Web/release-links.json`; `Web/remotes.md` | `scripts/build_web_catalog.py` | yes | low | Regenerate catalog |
 | legacy.variants | legacy | Compatibility placeholders | old full/lite/stable entries | `Release/Ronghemokuai-full.sgmodule`; `Release/Ronghemokuai-lite.sgmodule`; `Release/Ronghemokuai-stable-plus.sgmodule`; `Release/Ronghemokuai-stable.sgmodule` | manual compatibility layer | deprecated | low | Keep placeholders and do not publish in Web catalog |

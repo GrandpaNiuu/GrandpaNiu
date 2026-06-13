@@ -60,6 +60,7 @@ REQUIRED_FILES = (
     "scripts/build_module.py",
     "scripts/build_release_variants.py",
     "scripts/factory_finalize.py",
+    "scripts/build_windows_v2rayn.py",
     "scripts/validate_profiles.py",
     "scripts/validate_module_integrity.py",
     "scripts/validate_repository.py",
@@ -67,6 +68,8 @@ REQUIRED_FILES = (
     "reports/multi_release_report.md",
     "reports/module_integrity_report.md",
     "reports/automated_quality_evidence.md",
+    "Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json",
+    "Windows/v2rayN/README.md",
 )
 
 REQUIRED_WORKFLOWS = (
@@ -360,6 +363,39 @@ def validate_workflows() -> None:
         fail("workflow-failure-issue must close stale automation issues after successful runs")
 
 
+def validate_windows_v2rayn() -> None:
+    path = ROOT / "Windows" / "v2rayN" / "GrandpaNiu-v2rayN-custom-routing.json"
+    try:
+        rules = json.loads(read_text(path))
+    except json.JSONDecodeError as exc:
+        fail(f"invalid v2rayN JSON: {exc}")
+    if not isinstance(rules, list) or not rules:
+        fail("v2rayN custom routing must be a non-empty JSON array")
+    ad_rules = [rule for rule in rules if isinstance(rule, dict) and rule.get("outboundTag") == "block"]
+    if not ad_rules:
+        fail("v2rayN custom routing must contain block ad rules")
+    for rule in ad_rules:
+        for key in ("type", "outboundTag", "enabled", "remarks"):
+            if key not in rule:
+                fail(f"v2rayN ad rule missing {key}")
+        if rule.get("enabled") is not True:
+            fail("v2rayN ad rule must set enabled=true")
+        if rule.get("remarks") != "GrandpaNiu 广告拦截":
+            fail("v2rayN ad rule remarks must be GrandpaNiu 广告拦截")
+
+    required_tail = [
+        {"domain": ["geosite:private"], "outboundTag": "direct", "remarks": "国内直连"},
+        {"domain": ["geosite:cn"], "outboundTag": "direct", "remarks": "国内直连"},
+        {"ip": ["geoip:private"], "outboundTag": "direct", "remarks": "国内直连"},
+        {"ip": ["geoip:cn"], "outboundTag": "direct", "remarks": "国内直连"},
+        {"port": "0-65535", "outboundTag": "proxy", "remarks": "其他全部代理"},
+    ]
+    if len(rules) < len(required_tail) or rules[-len(required_tail):] != [
+        {**item, "type": "field", "enabled": True} for item in required_tail
+    ]:
+        fail("v2rayN custom routing missing direct/proxy tail rules")
+
+
 def validate_no_tool_traces() -> None:
     for relative in (".claude", "CLAUDE.md"):
         if (ROOT / relative).exists():
@@ -378,6 +414,7 @@ def main() -> None:
     validate_fusion_profile()
     validate_readme_links()
     validate_workflows()
+    validate_windows_v2rayn()
     validate_no_tool_traces()
     print("Repository validation passed.")
 

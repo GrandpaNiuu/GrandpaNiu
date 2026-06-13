@@ -36,6 +36,11 @@ ANDROID_LINKS = [
     ("v2rayNG", "Release/Android/v2rayng/"),
 ]
 
+WINDOWS_LINKS = [
+    ("v2rayN custom routing", "Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json"),
+    ("v2rayN README", "Windows/v2rayN/README.md"),
+]
+
 
 def read(path: Path) -> str:
     return path.read_text(encoding="utf-8", errors="replace") if path.exists() else ""
@@ -100,6 +105,7 @@ def build_json(modules: list[dict[str, str]], remotes: dict[str, list[dict[str, 
         "core": [{"name": name, "path": path, "url": url} for name, path, url in CORE_LINKS],
         "modules": modules,
         "android": [{"name": name, "path": path, "url": f"{RAW}/{path}"} for name, path in ANDROID_LINKS],
+        "windows": [{"name": name, "path": path, "url": f"{RAW}/{path}"} for name, path in WINDOWS_LINKS],
         "remotes": remote_summary(remotes),
     }
     return json.dumps(payload, ensure_ascii=False, indent=2)
@@ -129,6 +135,9 @@ def build_md(modules: list[dict[str, str]]) -> str:
         lines.append(f"| {item['name']} | `{item['file']}` | `{item['source']}` | {item['sections']} | {item['raw_url']} |")
     lines.extend(["", "## Android release directories", "", "| Format | Path | URL |", "|---|---|---|"])
     for name, path in ANDROID_LINKS:
+        lines.append(f"| {name} | `{path}` | {RAW}/{path} |")
+    lines.extend(["", "## Windows release files", "", "| Format | Path | URL |", "|---|---|---|"])
+    for name, path in WINDOWS_LINKS:
         lines.append(f"| {name} | `{path}` | {RAW}/{path} |")
     lines.extend(["", "## Remote governance", "", "See `Web/remotes.md` and `Rewrite/Remotes/Catalog.md`.", ""])
     return "\n".join(lines)

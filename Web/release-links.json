@@ -1608,6 +1608,18 @@
       "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Android/v2rayng/"
     }
   ],
+  "windows": [
+    {
+      "name": "v2rayN custom routing",
+      "path": "Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json",
+      "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json"
+    },
+    {
+      "name": "v2rayN README",
+      "path": "Windows/v2rayN/README.md",
+      "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Windows/v2rayN/README.md"
+    }
+  ],
   "remotes": {
     "rule_sets": 16,
     "enabled_rule_sets": 14,
