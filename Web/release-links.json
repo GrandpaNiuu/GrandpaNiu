@@ -112,7 +112,7 @@
       "name": "GrandpaNiu JD",
       "file": "Release/Modules/jd.sgmodule",
       "source": "Rewrite/Sources/Apps/jd.conf",
-      "sections": "Rule:1, Body Rewrite:3, Map Local:1, Script:1, MITM:1",
+      "sections": "Rule:1, Body Rewrite:5, Map Local:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/jd.sgmodule"
     },
     {
@@ -903,7 +903,7 @@
       "name": "GrandpaNiu Meituan Source",
       "file": "Release/Modules/meituan.sgmodule",
       "source": "Rewrite/Sources/Apps/meituan.conf",
-      "sections": "Rule:11, URL Rewrite:9, MITM:1",
+      "sections": "Rule:11, URL Rewrite:7, Body Rewrite:7, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/meituan.sgmodule"
     },
     {

@@ -5,14 +5,14 @@
 - 默认公开入口：单一融合版
 - 是否从 root 反拆：否
 - 构建阶段 Root/Release 是否一致：是
-- Release 行数：3026
+- Release 行数：3028
 - Release MITM hostname 数量：1071
 
 ## 源文件统计
 - Rule: 124 行
-- URL Rewrite: 1598 行
+- URL Rewrite: 1594 行
 - Header Rewrite: 5 行
-- Body Rewrite: 456 行
+- Body Rewrite: 466 行
 - Map Local: 14 行
 - Script: 140 行
 - MITM: 2 行

@@ -1737,7 +1737,6 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https?:\/\/m\.client\.10010\.com\/mobileService\/customer\/getclientconfig\.htm - reject-dict
 ^https?:\/\/m\.client\.10010\.com\/uniAdmsInterface\/(getHomePageAd|getWelcomeAd) - reject-img
 ^https?:\/\/m\.dianping\.com\/an\/gear\/dpmapp\/api\/readLionConfig\/config - reject-dict
-^https?:\/\/m\.dianping\.com\/mapi\/mgw\/growth\/queryhaima - reject-dict
 ^https?:\/\/m\.dianping\.com\/wxmapi\/shop\/friendslike - reject-dict
 ^https?:\/\/m\.fqfin\.cn\/cls\/leshuapay\/preCredit\.json$ - reject-dict
 ^https?:\/\/m\.ibuscloud\.com\/v\d\/app\/getStartPage - reject
@@ -1787,10 +1786,7 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https?:\/\/mapi\.appvipshop\.com\/vips-mobile\/rest\/iosAdInfo\/report - reject
 ^https?:\/\/mapi\.appvipshop\.com\/vips-mobile\/rest\/layout\/productList\/eventData\/v - reject-200
 ^https?:\/\/mapi\.dangdang\.com\/index\.php\?action=init - reject
-^https?:\/\/mapi\.dianping\.com\/adshopping - reject
 ^https?:\/\/mapi\.dianping\.com\/mapi\/intelliindex - reject-dict
-^https?:\/\/mapi\.dianping\.com\/mapi\/mgw\/growth\/clipboardquery - reject-dict
-^https?:\/\/mapi\.dianping\.com\/mapi\/operating\/(?:indexopsmodules|loadsplashconfig) - reject
 ^https?:\/\/mapi\.dianping\.com\/wdrpreload\/userprediction - reject
 ^https?:\/\/mapi\.mafengwo\.cn\/user\/growth\/get_growth_tip\/v1\? - reject-dict
 ^https?:\/\/mapi\.sfbest\.com\/brokerservice-server\/cms\/getPositionById.* - reject
@@ -2815,6 +2811,12 @@ http-response-jq ^https?:\/\/www\.gaoding\.com\/api\/v\d\/oc\/exhibitions\/templ
 http-response-jq ^https?:\/\/www\.kuaiduizuoye\.com\/codesearch\/aid\/home$ 'delpaths([["data","homeBannerList"]])'
 http-response-jq ^https?:\/\/wx(app)?\.api\.ke\.com\/pt\/pt-xcx-php\/index\/v\d\/home '.data.modules |= map(select(.type != "popup" and .type != "icon"))'
 http-response-jq ^https?:\/\/wx\.mygolbs\.com\/WxBusServer\/ApiData\.do 'with_entries(if ((.key | ascii_downcase | test("ad(_ab)?(_.*)?$")) and (.value | type=="number")) then .value = 0 else . end)'
+http-response-jq ^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(deliverLayer|getTabHomeInfo|personinfoBusiness|start|welcomeHome) 'walk(if type == "object" then del(.advert?, .adverts?, .advertise?, .advertisement?, .advertisements?, .advertInfos?, .advertList?, .adList?, .ads?, .banner?, .banners?, .popup?, .popups?, .popupWindow?, .floatLayer?, .floatLayers?, .marketing?, .expoData?) else . end)'
+http-response-jq ^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(start|welcomeHome) 'delpaths([["data","splashAd"],["data","splash"],["data","startAd"],["data","popup"],["result","splashAd"],["result","startAd"]])'
+http-response-jq ^https?:\/\/mapi\.dianping\.com\/adshopping 'delpaths([["data"],["result"],["ads"],["adList"]])'
+http-response-jq ^https?:\/\/mapi\.dianping\.com\/mapi\/operating\/(indexopsmodules|loadsplashconfig) 'if has("data") then .data = (if (.data|type) == "array" then [] elif (.data|type) == "object" then {} else null end) else . end'
+http-response-jq ^https?:\/\/m\.dianping\.com\/mapi\/mgw\/growth\/queryhaima 'delpaths([["data"],["result"],["moduleList"],["modules"]])'
+http-response-jq ^https?:\/\/mapi\.dianping\.com\/mapi\/mgw\/growth\/clipboardquery 'delpaths([["data"],["result"],["moduleList"],["modules"]])'
 http-response-jq ^https?:\/\/xiaoshuo\.wtzw\.com\/api\/v\d\/user\/my-center\? 'delpaths([["data","func_area",1],["data","func_area",2]])'
 http-response-jq ^https?:\/\/yuyin-api\.baizhanlive\.com\/postsquare\/college\/page\/tabsV3\? '.data.tabList |= map(select(.code == "post" or .code == "teamup" or .code == "college" or .code == "aiSecretRoom"))'
 http-response-jq ^https?:\/\/yyapp-idx\.yy\.com\/mobyy\/nav\/index\/idx\? '.data[].modules |= map(select(.name != "新版本滚动条" and .name != "通栏轮播" and .name != "新静默位"))'

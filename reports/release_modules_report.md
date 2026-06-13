@@ -90,9 +90,8 @@
 - Source: `Rewrite/Sources/Apps/jd.conf`
 - Discovery: manual
 - Rule: 1
-- Body Rewrite: 3
+- Body Rewrite: 5
 - Map Local: 1
-- Script: 1
 - MITM: 1
 
 ## GrandpaNiu Taobao
@@ -888,7 +887,8 @@
 - Source: `Rewrite/Sources/Apps/meituan.conf`
 - Discovery: auto
 - Rule: 11
-- URL Rewrite: 9
+- URL Rewrite: 7
+- Body Rewrite: 7
 - MITM: 1
 
 ## GrandpaNiu 美丽修行 Source

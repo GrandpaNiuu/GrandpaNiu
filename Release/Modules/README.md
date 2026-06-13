@@ -13,7 +13,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu QQ News | `qqnews.sgmodule` | `Rewrite/Sources/Apps/qqnews.conf` | URL Rewrite:1, Body Rewrite:1, Script:1, MITM:1 |
 | GrandpaNiu Weibo | `weibo.sgmodule` | `Rewrite/Sources/Apps/weibo.conf` | Rule:3, Map Local:18, Script:19, MITM:1 |
 | GrandpaNiu Pinduoduo | `pinduoduo.sgmodule` | `Rewrite/Sources/Apps/pinduoduo.conf` | Rule:17, Body Rewrite:16, Map Local:19, MITM:1 |
-| GrandpaNiu JD | `jd.sgmodule` | `Rewrite/Sources/Apps/jd.conf` | Rule:1, Body Rewrite:3, Map Local:1, Script:1, MITM:1 |
+| GrandpaNiu JD | `jd.sgmodule` | `Rewrite/Sources/Apps/jd.conf` | Rule:1, Body Rewrite:5, Map Local:1, MITM:1 |
 | GrandpaNiu Taobao | `taobao.sgmodule` | `Rewrite/Sources/Apps/taobao.conf` | Rule:6, Map Local:11, Script:2, MITM:1 |
 | GrandpaNiu Netease Music | `netease-music.sgmodule` | `Rewrite/Sources/Apps/netease-music.conf` | Rule:5, Map Local:6, Script:7, MITM:1 |
 | GrandpaNiu MGTV | `mgtv.sgmodule` | `Rewrite/Sources/Apps/mgtv.conf` | Rule:13, Body Rewrite:23, Map Local:7, MITM:1 |
@@ -126,7 +126,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 美食杰 Source | `mei-shi-jie.sgmodule` | `Rewrite/Sources/Apps/mei-shi-jie.conf` | Body Rewrite:1, MITM:1 |
 | GrandpaNiu 美图秀秀 Source | `mei-tu.sgmodule` | `Rewrite/Sources/Apps/mei-tu.conf` | Rule:1, Body Rewrite:1, MITM:1 |
 | GrandpaNiu 美颜相机 Source | `meitu-myxj.sgmodule` | `Rewrite/Sources/Apps/meitu-myxj.conf` | Rule:1, URL Rewrite:2, Body Rewrite:2, Script:1, MITM:1 |
-| GrandpaNiu Meituan Source | `meituan.sgmodule` | `Rewrite/Sources/Apps/meituan.conf` | Rule:11, URL Rewrite:9, MITM:1 |
+| GrandpaNiu Meituan Source | `meituan.sgmodule` | `Rewrite/Sources/Apps/meituan.conf` | Rule:11, URL Rewrite:7, Body Rewrite:7, MITM:1 |
 | GrandpaNiu 美丽修行 Source | `meizhixiuxing.sgmodule` | `Rewrite/Sources/Apps/meizhixiuxing.conf` | URL Rewrite:4, Body Rewrite:4, MITM:1 |
 | GrandpaNiu 米游社 Source | `mi-ho-yo-bbs.sgmodule` | `Rewrite/Sources/Apps/mi-ho-yo-bbs.conf` | URL Rewrite:3, Body Rewrite:3, MITM:1 |
 | GrandpaNiu 小喵看书 Source | `miao-read.sgmodule` | `Rewrite/Sources/Apps/miao-read.conf` | URL Rewrite:1, MITM:1 |

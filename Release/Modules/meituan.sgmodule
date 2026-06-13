@@ -20,11 +20,18 @@ DOMAIN-KEYWORD,report.meituan,REJECT,pre-matching
 ^https?:\/\/apimobile\.meituan\.com\/group\/v\d\/recommend\/unity\/recommends - reject
 ^https?:\/\/cdb\.meituan\.com\/marketing\/source\/getPageSlotList - reject-dict
 ^https?:\/\/mall\.meituan\.com\/api\/c\/homepage\/splash - reject-dict
-^https?:\/\/mapi\.dianping\.com\/adshopping - reject
-^https?:\/\/mapi\.dianping\.com\/mapi\/operating\/(?:indexopsmodules|loadsplashconfig) - reject
 ^https?:\/\/rms\.meituan\.com\/api\/v\d\/rmsmina\/c\/queryWechatAdvertisement - reject-dict
 ^https?:\/\/web\.meituan\.com\/newUser\/returnMoney\/popWindow - reject-dict
 ^https?:\/\/wmapi\.meituan\.com\/api\/v\d+\/(?:loadInfo|openscreen|startpicture) - reject
+
+[Body Rewrite]
+http-response-jq ^https?:\/\/rms\.meituan\.com\/api\/v\d\/rmsmina\/c\/queryPortalInfo '.data.modules |= map(select(.data.advType != true and .name != "float-window"))'
+http-response-jq ^https?:\/\/web\.meituan\.com\/api\/miniprogram\/index\/aggregate '.data? |= del(.oneCentBuy?)'
+http-response-jq ^https?:\/\/web\.meituan\.com\/api\/miniprogram\/tabbar\/all\/query '.data? |= map(select(.name? | IN("首页","神券","我的")))'
+http-response-jq ^https?:\/\/mapi\.dianping\.com\/adshopping 'delpaths([["data"],["result"],["ads"],["adList"]])'
+http-response-jq ^https?:\/\/mapi\.dianping\.com\/mapi\/operating\/(indexopsmodules|loadsplashconfig) 'if has("data") then .data = (if (.data|type) == "array" then [] elif (.data|type) == "object" then {} else null end) else . end'
+http-response-jq ^https?:\/\/m\.dianping\.com\/mapi\/mgw\/growth\/queryhaima 'delpaths([["data"],["result"],["moduleList"],["modules"]])'
+http-response-jq ^https?:\/\/mapi\.dianping\.com\/mapi\/mgw\/growth\/clipboardquery 'delpaths([["data"],["result"],["moduleList"],["modules"]])'
 
 [MITM]
 hostname = %APPEND% apimobile.meituan.com,cdb.meituan.com,mall.meituan.com,*.dianping.com,rms.meituan.com,web.meituan.com,wmapi.meituan.com
