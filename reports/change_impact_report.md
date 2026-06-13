@@ -1,32 +1,14 @@
 # 变更影响报告
 
-- 生成时间：2026-06-13 23:08:05 +0800
+- 生成时间：2026-06-14 01:16:36 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Android/branches.json`
-- `Release/Android/branches.json`
-- `Release/checksums.json`
-- `reports/android_rules_report.md`
-- `reports/app_status_matrix.md`
-- `reports/automated_quality_evidence.md`
-- `reports/build_summary.json`
-- `reports/build_summary.md`
-- `reports/candidate_security_score_report.md`
-- `reports/change_impact_report.md`
-- `reports/domestic_app_connectivity_audit.md`
+- `reports/daily_audit_report.md`
+- `reports/module_factory_report.md`
 - `reports/multi_release_report.md`
-- `reports/profile_validation_report.md`
-- `reports/qingrex_miniapp_import_report.md`
-- `reports/reject_risk_report.md`
 - `reports/remote_rule_syntax_report.md`
-- `reports/report_freshness_report.md`
-- `reports/repository_health_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
-- `reports/script_inventory_report.md`
-- `reports/workflow_health_report.md`
 
 ## 新增文件
 
@@ -38,43 +20,23 @@
 
 ## 修改文件
 
-- `Android/branches.json`
-- `Release/Android/branches.json`
-- `Release/checksums.json`
-- `reports/android_rules_report.md`
-- `reports/app_status_matrix.md`
-- `reports/automated_quality_evidence.md`
-- `reports/build_summary.json`
-- `reports/build_summary.md`
-- `reports/candidate_security_score_report.md`
-- `reports/change_impact_report.md`
-- `reports/domestic_app_connectivity_audit.md`
+- `reports/daily_audit_report.md`
+- `reports/module_factory_report.md`
 - `reports/multi_release_report.md`
-- `reports/profile_validation_report.md`
-- `reports/qingrex_miniapp_import_report.md`
-- `reports/reject_risk_report.md`
 - `reports/remote_rule_syntax_report.md`
-- `reports/report_freshness_report.md`
-- `reports/repository_health_report.md`
-- `reports/script_consolidation_rollback_report.md`
-- `reports/script_dedupe_report.md`
-- `reports/script_inventory_report.md`
-- `reports/workflow_health_report.md`
 
 ## 影响的模块层
 
-- Other
 - README/docs
 
 ## 可能影响的 App
 
-- 12306
-- Reddit
+- 待人工确认
 
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：是
+- 是否涉及 MITM：否
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：是
 - 是否需要测试 Spotify：按需
