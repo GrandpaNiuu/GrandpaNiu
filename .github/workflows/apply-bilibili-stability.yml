@@ -1,0 +1,164 @@
+name: Apply Bilibili stability patch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/apply-bilibili-stability.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply Bilibili stability patch
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          CORE_REJECTS = {
+              "DOMAIN,api.biliapi.com,REJECT,pre-matching",
+              "DOMAIN,app.biliapi.com,REJECT,pre-matching",
+              "DOMAIN,api.biliapi.net,REJECT,pre-matching",
+              "DOMAIN,app.biliapi.net,REJECT,pre-matching",
+          }
+
+          def read(path: str) -> str:
+              return Path(path).read_text(encoding="utf-8", errors="replace")
+
+          def write(path: str, text: str) -> None:
+              Path(path).parent.mkdir(parents=True, exist_ok=True)
+              Path(path).write_text(text.rstrip() + "\n", encoding="utf-8", newline="\n")
+
+          def strip_core_rejects(path: str) -> None:
+              text = read(path)
+              lines = [line for line in text.splitlines() if line.strip() not in CORE_REJECTS]
+              write(path, "\n".join(lines))
+
+          for target in (
+              "Rewrite/Sources/Apps/bilibili.conf",
+              "Rewrite/Sources/Rule.conf",
+              "Release/Modules/bilibili.sgmodule",
+              "Release/Ronghemokuai.sgmodule",
+          ):
+              strip_core_rejects(target)
+
+          script_path = "scripts/sync_upstream_app_modules.py"
+          script = read(script_path)
+
+          const_marker = "]\n\n\nclass SyncError(RuntimeError):"
+          const_block = "]\n\n\nBILIBILI_CORE_API_REJECTS = {\n    \"DOMAIN,api.biliapi.com,REJECT,pre-matching\",\n    \"DOMAIN,app.biliapi.com,REJECT,pre-matching\",\n    \"DOMAIN,api.biliapi.net,REJECT,pre-matching\",\n    \"DOMAIN,app.biliapi.net,REJECT,pre-matching\",\n}\nBILIBILI_RETAINED_TOKENS = (\n    \"[Body Rewrite]\",\n    \"[Map Local]\",\n    \"[Script]\",\n    \"[MITM]\",\n    \"bilibili.airborne.js\",\n    \"bilibili.json.js\",\n    \"bilibili.protobuf.js\",\n    \"http-response-jq\",\n    \"grpc.biliapi.net\",\n    \"app.bilibili.com\",\n    \"api.bilibili.com\",\n    \"api.live.bilibili.com\",\n)\n\n\nclass SyncError(RuntimeError):"
+          if "BILIBILI_CORE_API_REJECTS" not in script:
+              if const_marker not in script:
+                  raise SystemExit("sync script marker not found: constants")
+              script = script.replace(const_marker, const_block, 1)
+
+          helper_marker = "\n\ndef converted_source(record: dict[str, Any], upstream_text: str) -> tuple[str, str]:"
+          helper_block = r'''
+
+def strip_bilibili_core_api_rejects(text: str) -> str:
+    lines = [line for line in text.splitlines() if line.strip() not in BILIBILI_CORE_API_REJECTS]
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def validate_bilibili_stability_patch(text: str) -> None:
+    for rule in BILIBILI_CORE_API_REJECTS:
+        if rule in text:
+            raise ValueError(f"Bilibili core API REJECT still present: {rule}")
+    missing = [token for token in BILIBILI_RETAINED_TOKENS if token not in text]
+    if missing:
+        raise ValueError("Bilibili aggressive rewrite/script/map-local token missing: " + ", ".join(missing))
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if "header-replace authorization" in line and "{{{替换鉴权字段}}}" not in line:
+            raise ValueError("Bilibili authorization header-replace would be enabled by default")
+
+
+def bilibili_postprocess(text: str) -> tuple[str, dict[str, str]]:
+    patched = strip_bilibili_core_api_rejects(text)
+    validate_bilibili_stability_patch(patched)
+    return patched, {
+        "id": "bilibili",
+        "status": "bilibili upstream synced",
+        "details": "core API REJECT stripped; aggressive rewrite/script/map-local retained",
+    }
+'''
+          if "def bilibili_postprocess" not in script:
+              if helper_marker not in script:
+                  raise SystemExit("sync script marker not found: helper")
+              script = script.replace(helper_marker, helper_block + helper_marker, 1)
+
+          old = "def sync_records(records: list[dict[str, Any]], config_only: bool) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:"
+          new = "def sync_records(records: list[dict[str, Any]], config_only: bool) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:"
+          script = script.replace(old, new, 1)
+
+          old = "    errors: list[dict[str, str]] = []\n    timestamp = dt.datetime.now().strftime(\"%Y%m%d-%H%M%S\")"
+          new = "    errors: list[dict[str, str]] = []\n    postprocessed: list[dict[str, str]] = []\n    timestamp = dt.datetime.now().strftime(\"%Y%m%d-%H%M%S\")"
+          if "postprocessed: list[dict[str, str]] = []" not in script:
+              script = script.replace(old, new, 1)
+
+          old = "        previous = read_text(target)"
+          new = "        if module_id == \"bilibili\":\n            try:\n                converted, postprocess_status = bilibili_postprocess(converted)\n            except ValueError as exc:\n                record[\"last_sync_mode\"] = \"bilibili-postprocess-failed\"\n                errors.append({\"id\": module_id, \"reason\": str(exc)})\n                continue\n            postprocessed.append(postprocess_status)\n        previous = read_text(target)"
+          if "postprocess_status = bilibili_postprocess(converted)" not in script:
+              script = script.replace(old, new, 1)
+
+          script = script.replace("    return updated, skipped, blocked, errors", "    return updated, skipped, blocked, errors, postprocessed", 1)
+
+          old = "    errors: list[dict[str, str]],\n) -> None:"
+          new = "    errors: list[dict[str, str]],\n    postprocessed: list[dict[str, str]],\n) -> None:"
+          script = script.replace(old, new, 1)
+
+          old = "        \"## Errors\",\n        *table(errors, [\"id\", \"reason\"]),"
+          new = "        \"## Post-process\",\n        *table(postprocessed, [\"id\", \"status\", \"details\"]),\n        \"\",\n        \"## Errors\",\n        *table(errors, [\"id\", \"reason\"]),"
+          if "## Post-process" not in script:
+              script = script.replace(old, new, 1)
+
+          script = script.replace("        updated, skipped, blocked, errors = sync_records(records, args.config_only)", "        updated, skipped, blocked, errors, postprocessed = sync_records(records, args.config_only)", 1)
+          script = script.replace("        write_report(report_path, records, updated, skipped, blocked, errors)", "        write_report(report_path, records, updated, skipped, blocked, errors, postprocessed)", 1)
+
+          write(script_path, script)
+
+          report = """# Bilibili Stability Post-process Report
+
+- bilibili upstream synced
+- core API REJECT stripped
+- aggressive rewrite/script/map-local retained
+- authorization header-replace remains argument-gated and default-off
+- no stable/experimental/upstream split introduced
+"""
+          write("reports/bilibili_stability_postprocess_report.md", report)
+          PY
+
+      - name: Validate Bilibili patch
+        run: |
+          python -m py_compile scripts/sync_upstream_app_modules.py
+          ! grep -nE 'DOMAIN,(api|app)\.biliapi\.(com|net),REJECT,pre-matching' Rewrite/Sources/Apps/bilibili.conf Release/Modules/bilibili.sgmodule Release/Ronghemokuai.sgmodule
+          grep -nE 'bilibili\.airborne\.js|bilibili\.json\.js|bilibili\.protobuf\.js|http-response-jq|Map Local|grpc\.biliapi\.net|app\.bilibili\.com|api\.bilibili\.com|api\.live\.bilibili\.com' Rewrite/Sources/Apps/bilibili.conf Release/Modules/bilibili.sgmodule Release/Ronghemokuai.sgmodule
+          grep -n 'bilibili upstream synced' reports/bilibili_stability_postprocess_report.md
+          grep -n 'core API REJECT stripped' reports/bilibili_stability_postprocess_report.md
+          grep -n 'aggressive rewrite/script/map-local retained' reports/bilibili_stability_postprocess_report.md
+
+      - name: Commit patch and remove temporary workflow
+        run: |
+          rm .github/workflows/apply-bilibili-stability.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Rewrite/Sources/Apps/bilibili.conf Rewrite/Sources/Rule.conf scripts/sync_upstream_app_modules.py Release/Modules/bilibili.sgmodule Release/Ronghemokuai.sgmodule reports/bilibili_stability_postprocess_report.md .github/workflows/apply-bilibili-stability.yml
+          git diff --cached --stat
+          git diff --cached -- Rewrite/Sources/Apps/bilibili.conf
+          git diff --cached -- scripts/sync_upstream_app_modules.py
+          git diff --cached -- Release/Modules/bilibili.sgmodule
+          git diff --cached -- Release/Ronghemokuai.sgmodule
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "fix: stabilize bilibili main module"
+            git push
+          fi
