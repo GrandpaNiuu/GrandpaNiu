@@ -1,6 +1,6 @@
 # 变更影响报告
 
-- 生成时间：2026-06-13 22:39:44 +0800
+- 生成时间：2026-06-13 22:40:11 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
@@ -22,8 +22,6 @@
 - `reports/repository_health_report.md`
 - `reports/script_inventory_report.md`
 - `reports/workflow_health_report.md`
-- `scripts/generate_change_impact_report.py`
-- `scripts/quality_gate.py`
 
 ## 新增文件
 
@@ -52,14 +50,11 @@
 - `reports/repository_health_report.md`
 - `reports/script_inventory_report.md`
 - `reports/workflow_health_report.md`
-- `scripts/generate_change_impact_report.py`
-- `scripts/quality_gate.py`
 
 ## 影响的模块层
 
 - Other
 - README/docs
-- Scripts/maintenance
 
 ## 可能影响的 App
 
@@ -71,10 +66,10 @@
 
 ## 风险判断
 
-- 是否涉及脚本：是
+- 是否涉及脚本：否
 - 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：是
-- 是否涉及远程规则源：否
+- 是否涉及远程规则源：是
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
 - 是否需要测试知乎：按需
