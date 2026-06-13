@@ -5,6 +5,8 @@ payload:
   - DOMAIN,abtest3-misc.zijieapi.com
   - DOMAIN,abtk.pinduoduo.com
   - DOMAIN,abyss.cyapi.cn
+  - DOMAIN,accscdn.m.taobao.com
+  - DOMAIN,acs4baichuan.m.taobao.com
   - DOMAIN,ad-analysis.pconline.com.cn
   - DOMAIN,ad-h5-cdn.soulapp.cn
   - DOMAIN,ad-h5-station-cdn.soulapp.cn
@@ -20,6 +22,7 @@ payload:
   - DOMAIN,ad.tencentmusic.com
   - DOMAIN,ad.v3mh.com
   - DOMAIN,adapi.izuiyou.com
+  - DOMAIN,adash.m.taobao.com
   - DOMAIN,adashx.m.taobao.com
   - DOMAIN,adbehavior.wsa.ximalaya.com
   - DOMAIN,adbehavior.ximalaya.com
@@ -51,6 +54,7 @@ payload:
   - DOMAIN,adx.yiche.com
   - DOMAIN,adx.zuoyebang.com
   - DOMAIN,amap-aos-info-nogw.amap.com
+  - DOMAIN,amdc.m.taobao.com
   - DOMAIN,api-ad-product.huxiu.com
   - DOMAIN,api-ad.kajicam.com
   - DOMAIN,apm-a.pinduoduo.com
@@ -180,6 +184,7 @@ payload:
   - DOMAIN,tpstelemetry.tencent.com
   - DOMAIN,trackercollect.ddxq.mobi
   - DOMAIN,tte.meituan.com
+  - DOMAIN,tunion-api.m.taobao.com
   - DOMAIN,ut.taobao.com
   - DOMAIN,v.gdt.qq.com
   - DOMAIN,v2.gdt.qq.com
@@ -211,6 +216,7 @@ payload:
   - DOMAIN-SUFFIX,adjust.com
   - DOMAIN-SUFFIX,admobile.top
   - DOMAIN-SUFFIX,adsmoloco.com
+  - DOMAIN-SUFFIX,alimama.com
   - DOMAIN-SUFFIX,app-measurement.com
   - DOMAIN-SUFFIX,appier.net
   - DOMAIN-SUFFIX,applovin.com
@@ -222,8 +228,11 @@ payload:
   - DOMAIN-SUFFIX,iyes.youku.com
   - DOMAIN-SUFFIX,l.qq.com
   - DOMAIN-SUFFIX,mads.meituan.com
+  - DOMAIN-SUFFIX,mmstat.com
   - DOMAIN-SUFFIX,pangle.io
+  - DOMAIN-SUFFIX,tanx.com
   - DOMAIN-SUFFIX,ugdtimg.com
+  - DOMAIN-SUFFIX,ut.taobao.com
   - DOMAIN-SUFFIX,v.smtcdns.com
   - DOMAIN-SUFFIX,wmlog.meituan.com
   - IP-CIDR,103.41.167.237/32

@@ -8,6 +8,7 @@ payload:
   - DOMAIN,abtest3-misc.zijieapi.com
   - DOMAIN,abtk.pinduoduo.com
   - DOMAIN,abyss.cyapi.cn
+  - DOMAIN,accscdn.m.taobao.com
   - DOMAIN,acdn.adnxs.com
   - DOMAIN,acs4baichuan.m.taobao.com
   - DOMAIN,ad-analysis.pconline.com.cn
@@ -108,6 +109,7 @@ payload:
   - DOMAIN,afd.baidu.com
   - DOMAIN,afdconf.baidu.com
   - DOMAIN,amap-aos-info-nogw.amap.com
+  - DOMAIN,amdc.m.taobao.com
   - DOMAIN,analytics.umetrip.com
   - DOMAIN,api-ad-product.huxiu.com
   - DOMAIN,api-ad.kajicam.com
@@ -329,6 +331,7 @@ payload:
   - DOMAIN,tracking.intl.miui.com
   - DOMAIN,tracklog.58.com
   - DOMAIN,tte.meituan.com
+  - DOMAIN,tunion-api.m.taobao.com
   - DOMAIN,u1.img.mobile.sina.cn
   - DOMAIN,ucdc.upaas.quark.cn
   - DOMAIN,umengacs.m.taobao.com
@@ -584,6 +587,7 @@ payload:
   - DOMAIN-SUFFIX,umengcloud.com
   - DOMAIN-SUFFIX,umtrack.com
   - DOMAIN-SUFFIX,unityads.unity3d.com
+  - DOMAIN-SUFFIX,ut.taobao.com
   - DOMAIN-SUFFIX,v.gdt.qq.com
   - DOMAIN-SUFFIX,v.smtcdns.com
   - DOMAIN-SUFFIX,v1d.szbdyd.com
