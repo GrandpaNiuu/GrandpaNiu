@@ -1,0 +1,17 @@
+#!name=GrandpaNiu 今日头条 Safe Mode
+#!desc=今日头条/Toutiao 安全模式：稳定优先，仅保留明确广告与日志域名拦截；禁用 MITM、URL Rewrite、Body Rewrite、JQ、JS。
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/toutiao.sgmodule
+
+[Rule]
+# Toutiao / ByteDance safe ad/log domain rejects only.
+# Do not add broad DOMAIN-SUFFIX rules for snssdk.com, toutiao.com, bytedance.com, byteimg.com, or pglstatp-toutiao.com here.
+DOMAIN,pangolin.snssdk.com,REJECT
+DOMAIN,pangolin-sdk-toutiao.com,REJECT
+DOMAIN,pglstatp-toutiao.com,REJECT
+DOMAIN,ads.toutiao.com,REJECT
+DOMAIN,ad.byted.org,REJECT
+DOMAIN,log.snssdk.com,REJECT
+DOMAIN,mon.snssdk.com,REJECT
+
+# Safe mode intentionally has no [URL Rewrite], [Body Rewrite], [Script], or [MITM] section.
+# Keep passport/security/device/feed/article/account endpoints untouched to avoid startup crashes.
