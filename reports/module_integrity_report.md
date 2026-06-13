@@ -22,7 +22,7 @@
 | `URL Rewrite` | 2492 |
 | `Header Rewrite` | 1 |
 | `Body Rewrite` | 1649 |
-| `Map Local` | 352 |
+| `Map Local` | 353 |
 | `Script` | 203 |
 | `MITM` | 1 |
 

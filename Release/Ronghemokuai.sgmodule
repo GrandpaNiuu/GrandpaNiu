@@ -5428,6 +5428,7 @@ http-response-jq ^https://app\.zhuanzhuan\.com/zz/transfer/getmyprofilev3$ 'del(
 ^https:\/\/pan\.baidu\.com\/rest\/\d\.\d\/pcs\/adv\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https:\/\/pan\.baidu\.com\/api\/plugin\/get\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https:\/\/pan\.baidu\.com\/recommend\/query\/list\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https:\/\/ap[ip]\.bilibili\.com\/x\/v2\/splash\/(?:list|show|event\/list2)\? header="content-type: application/json; charset=utf-8|bili-status-code: 0" data-type=text data="{"code":0,"message":"0","ttl":1,"data":{"list":[],"show":[],"event_list":[],"max_time":0,"min_interval":31536000}}"
 ^https:\/\/ap[ip]\.bilibili\.com\/x\/(?:resource\/(?:top\/activity|patch\/tab(?:\/v2)?)|v2\/search\/square|vip\/ads\/materials)\? header="content-type: application/json; charset=utf-8|bili-status-code: -404" data-type=text data="{"code":-404,"message":"-404","ttl":1,"data":null}"
 ^https:\/\/api\.bilibili\.com\/pgc\/activity\/deliver\/material\/receive\? header="content-type: application/json|bili-status-code: 0" data-type=text data="{"code":0,"data":{"closeType":"close_win","container":[],"showTime":""},"message":"success"}"
 ^https:\/\/api\.live\.bilibili\.com\/xlive\/e-commerce-interface\/v1\/ecommerce-user\/get_shopping_info\? header="content-type: application/json" data-type=text data="{}"
