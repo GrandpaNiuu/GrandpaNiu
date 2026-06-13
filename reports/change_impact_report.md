@@ -1,11 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-13 09:22:29 +0800
+- 生成时间：2026-06-13 09:22:57 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Rewrite/Sources/Apps/soul.conf`
+- `Rewrite/Sources/Apps/caiyun-weather.conf`
 
 ## 新增文件
 
@@ -17,7 +17,7 @@
 
 ## 修改文件
 
-- `Rewrite/Sources/Apps/soul.conf`
+- `Rewrite/Sources/Apps/caiyun-weather.conf`
 
 ## 影响的模块层
 
@@ -31,7 +31,7 @@
 
 - 是否涉及脚本：否
 - 是否涉及 MITM：是
-- 是否涉及 Body Rewrite：是
+- 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
 - 是否需要测试 Spotify：按需
 - 是否需要测试 YouTube：按需
