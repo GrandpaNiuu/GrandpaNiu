@@ -58,8 +58,15 @@ TRACKED_PATTERNS = [
 
 
 def run_git(args: list[str]) -> tuple[bool, str]:
-    proc = subprocess.run(["git", *args], cwd=ROOT, text=True, capture_output=True)
-    text = (proc.stdout + proc.stderr).strip()
+    proc = subprocess.run(
+        ["git", *args],
+        cwd=ROOT,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        capture_output=True,
+    )
+    text = ((proc.stdout or "") + (proc.stderr or "")).strip()
     return proc.returncode == 0, text
 
 

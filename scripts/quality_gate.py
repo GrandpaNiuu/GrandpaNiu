@@ -45,6 +45,7 @@ def main() -> None:
         [node, "--check", "Scripts/app-cleaner.js"],
         [sys.executable, "-m", "unittest", "discover", "-s", "tests"],
         [sys.executable, "scripts/build_android_rules.py"],
+        [sys.executable, "scripts/build_release_android.py"],
         [sys.executable, "scripts/android_format_check.py"],
         [sys.executable, "scripts/convert_quanx_rules.py"],
         [sys.executable, "scripts/build_module.py", "--build", "--profile", "fusion"],
