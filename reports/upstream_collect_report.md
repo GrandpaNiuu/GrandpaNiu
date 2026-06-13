@@ -1,6 +1,6 @@
 # 候选源收集报告
 
-- 日期：2026-06-13
+- 日期：2026-06-14
 - 候选总数：13
 - 新增远程规则源：0
 - 新增本地规则组：0
@@ -36,5 +36,5 @@
 - app2smile Tieba script: candidate disabled
 - Maasea YouTube Enhance reference: candidate disabled
 
-## 是否需要人工测试
-- 本次没有新增源，人工测试可按需执行。
+## 是否需要自动化验证
+- 本次没有新增源，自动化验证可按需执行。
