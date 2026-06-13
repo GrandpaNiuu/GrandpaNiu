@@ -1198,9 +1198,8 @@
 - Source: `Rewrite/Sources/Apps/soul.conf`
 - Discovery: auto
 - Rule: 14
-- Body Rewrite: 1
+- Body Rewrite: 2
 - Map Local: 2
-- Script: 1
 - MITM: 1
 
 ## GrandpaNiu 智慧苏州 Source

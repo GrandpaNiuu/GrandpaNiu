@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T01:23:46.058495Z",
+  "generated_at": "2026-06-13T01:24:09.653126Z",
   "algorithm": "sha256",
   "count": 242,
   "files": [
@@ -815,8 +815,8 @@
     },
     {
       "path": "Release/Modules/soul.sgmodule",
-      "size": 1948,
-      "sha256": "8c7cb9ee0960576ab82f1339960b9cc570eb06de0157d7a5b6f66877dae7b77f"
+      "size": 2712,
+      "sha256": "6b6340938123ac7d7326166ef5d4e23b1f91fa4ea0948610597f4eb3dc10eab3"
     },
     {
       "path": "Release/Modules/spotify.sgmodule",
@@ -1185,8 +1185,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 57004,
-      "sha256": "9847348310be216d595f249453c1bc8f5ddae9860ae48c55a2c8e7357cd6a639"
+      "size": 56994,
+      "sha256": "33a21b72331bc1b6a1d7b83f3ae3c83f96a7eadf030feef48b22ec270bb47e0d"
     },
     {
       "path": "Web/index.html",
@@ -1195,8 +1195,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 218190,
-      "sha256": "f69c8afb023da896f4fd3eb8aeeb2f49db06845ce9429a15abb6cf5eb08f8e53"
+      "size": 218180,
+      "sha256": "d307f2bc6f579c8105b12fea1bd0363376ddd66d1c69f18f8cf6fb0ce878406b"
     },
     {
       "path": "Web/registry.md",
@@ -1205,8 +1205,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 76827,
-      "sha256": "a8a8f409f92f83e02ddd070cc1b46df8ff22278e4053992ed7199ac7101a81a9"
+      "size": 76817,
+      "sha256": "64950a3e11718a24cf486612b3d6279e6582c1d04bb168bbc30e9750994e8d9e"
     },
     {
       "path": "Web/remotes.md",

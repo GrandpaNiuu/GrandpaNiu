@@ -172,7 +172,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu B612咔叽 Source | `snow-camera.sgmodule` | `Rewrite/Sources/Apps/snow-camera.conf` | Rule:3 |
 | GrandpaNiu 雪球 Source | `snowball.sgmodule` | `Rewrite/Sources/Apps/snowball.conf` | URL Rewrite:13, Body Rewrite:1, MITM:1 |
 | GrandpaNiu 汽水音乐 Source | `soda-music.sgmodule` | `Rewrite/Sources/Apps/soda-music.conf` | URL Rewrite:10, Body Rewrite:7, Script:1, MITM:1 |
-| GrandpaNiu Soul Source | `soul.sgmodule` | `Rewrite/Sources/Apps/soul.conf` | Rule:14, Body Rewrite:1, Map Local:2, Script:1, MITM:1 |
+| GrandpaNiu Soul Source | `soul.sgmodule` | `Rewrite/Sources/Apps/soul.conf` | Rule:14, Body Rewrite:2, Map Local:2, MITM:1 |
 | GrandpaNiu 智慧苏州 Source | `su-zhou-citizen-card.sgmodule` | `Rewrite/Sources/Apps/su-zhou-citizen-card.conf` | Map Local:2, MITM:1 |
 | GrandpaNiu 飞猪旅行 Source | `taobao-travel.sgmodule` | `Rewrite/Sources/Apps/taobao-travel.conf` | URL Rewrite:5, MITM:1 |
 | GrandpaNiu 淘票票 Source | `taopiaopiao.sgmodule` | `Rewrite/Sources/Apps/taopiaopiao.conf` | URL Rewrite:3, Body Rewrite:3, MITM:1 |
