@@ -9,6 +9,7 @@ This directory stores shared, non-app-specific source fragments for the fusion m
 | File | Purpose | Default behavior |
 |---|---|---|
 | `generic-ads.conf` | Common advertising domains and keywords | REJECT |
+| `android-compatible-ads.conf` | Low-risk Android branch ad/tracking gaps merged back into Fusion | REJECT |
 | `httpdns.conf` | HTTPDNS safety layer | DIRECT |
 | `analytics.conf` | Low-risk ad analytics and crash-reporting endpoints | REJECT |
 | `cdn-direct.conf` | Image, video, and static CDN protection | DIRECT |

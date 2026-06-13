@@ -12,4 +12,3 @@
 ||rc-topic-api.bz.mgtv.com^
 ||rprain.bz.mgtv.com^
 ||rprain.log.mgtv.com^
-||vip.bz.mgtv.com^

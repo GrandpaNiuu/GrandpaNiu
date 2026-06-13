@@ -3,8 +3,6 @@
   "rules": [
     {
       "domain": [
-        "access.if.iqiyi.com",
-        "api.iqiyi.com",
         "cupid.iqiyi.com",
         "cupid.ptqy.gitv.tv"
       ]

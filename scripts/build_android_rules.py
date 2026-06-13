@@ -26,6 +26,12 @@ V2RAYNG_ROOT = ROOT / "Android" / "v2rayng"
 V2RAYNG_DIR = V2RAYNG_ROOT / "apps"
 IOS_REJECT = ROOT / "Rules" / "reject.list"
 IOS_APP_SOURCES = ROOT / "Rewrite" / "Sources" / "Apps"
+ANDROID_EXTRA_RULE_FILES = (
+    ROOT / "Rules" / "app-clean.list",
+    ROOT / "Rules" / "web-ads.list",
+    ROOT / "Rules" / "qingrex-miniapp-app-ad.list",
+    ROOT / "Rules" / "wechat-ad.list",
+)
 REPORT = ROOT / "reports" / "android_rules_report.md"
 BRANCH_MANIFEST = ROOT / "Android" / "branches.json"
 PUBLIC_BASE = "https://grandpaniuu.github.io/GrandpaNiu"
@@ -33,6 +39,7 @@ PUBLIC_BASE = "https://grandpaniuu.github.io/GrandpaNiu"
 SUPPORTED_TYPES = {"DOMAIN", "DOMAIN-SUFFIX", "DOMAIN-KEYWORD", "IP-CIDR", "IP-CIDR6"}
 IOS_REJECT_NAME = "iOS-Compatible-Reject"
 IOS_APP_COMPAT_NAME = "iOS-App-Compatible-Reject"
+ANDROID_REPO_COMPAT_NAME = "Repo-Compatible-Reject"
 MAIN_ADS_NAME = "GrandpaNiu-Ads"
 
 SECTION_RE = re.compile(r"^\s*\[([^\]]+)\]\s*$")
@@ -49,6 +56,11 @@ REJECT_POLICIES = {
 # Keep media, login, payment and broad CDN paths out of Android REJECT outputs.
 PROTECTED_VALUE_TOKENS = (
     "alipay",
+    "ysepay",
+    "unionpay",
+    "shouqianba",
+    "95516",
+    "cup.com.cn",
     "wechatpay",
     "tenpay",
     "bank",
@@ -57,6 +69,8 @@ PROTECTED_VALUE_TOKENS = (
     "abchina",
     "boc",
     "cmbchina",
+    "cmbc",
+    "cpic.com.cn",
     "bankcomm",
     "psbc",
     "login",
@@ -64,20 +78,28 @@ PROTECTED_VALUE_TOKENS = (
     "auth",
     "captcha",
     "verify",
+    "vip.",
     "googlevideo",
     "youtubei",
+    "video.qq.com",
     "biliapi.com",
     "biliapi.net",
     "grpc.biliapi.net",
     "api.bilibili.com",
     "app.bilibili.com",
     "api.live.bilibili.com",
+    "api.iqiyi.com",
+    "access.if.iqiyi.com",
     "bilivideo",
     "hdslb",
     "biliimg",
     "bilibili.com",
     "spotify.com",
     "scdn.co",
+    "danmu",
+    "acs.youku.com",
+    "youku-acs",
+    "amdc.m.youku.com",
     "alicdn.com",
     "tbcdn.cn",
     "jdimg.com",
@@ -85,6 +107,19 @@ PROTECTED_VALUE_TOKENS = (
     "pddpic.com",
     "gtimg.cn",
     "qpic.cn",
+    "httpdns",
+    "hdns",
+    "dnspod",
+    "weixin.qq.com",
+    "wx.qq.com",
+    "wxs.qq.com",
+    "weixinbridge",
+    "servicewechat.com",
+    "wechat",
+    "tpns.qq.com",
+    "lc.map.baidu.com",
+    "api.zuihuimai.com",
+    "ehaier.com",
 )
 
 
@@ -217,6 +252,34 @@ def parse_ios_app_compatible_rules() -> tuple[list[dict[str, str]], dict[str, in
     return dedupe_sort(rules), source_counts
 
 
+def parse_repo_rule_file(path: Path) -> list[dict[str, str]]:
+    rules: list[dict[str, str]] = []
+    if not path.exists():
+        return rules
+    for raw_line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        line = raw_line.strip()
+        if not active(line) or "," not in line:
+            continue
+        parts = [part.strip() for part in line.split(",")]
+        if len(parts) < 3 or not reject_policy(parts):
+            continue
+        rule = normalize_rule(parts[0], parts[1])
+        if rule and not protected_value(rule["value"]):
+            rules.append(rule)
+    return dedupe_sort(rules)
+
+
+def parse_repo_compatible_rules() -> tuple[list[dict[str, str]], dict[str, int]]:
+    rules: list[dict[str, str]] = []
+    source_counts: dict[str, int] = {}
+    for path in ANDROID_EXTRA_RULE_FILES:
+        local_rules = parse_repo_rule_file(path)
+        if local_rules:
+            source_counts[path.name] = len(local_rules)
+            rules.extend(local_rules)
+    return dedupe_sort(rules), source_counts
+
+
 def render_mihomo(rules: list[dict[str, str]], header: list[str] | None = None) -> str:
     lines = ["payload:"]
     if header:
@@ -324,7 +387,7 @@ def write_branch_manifest(rules: list[dict[str, str]], app_count: int, generated
     adguard_count = active_adguard_rule_count(rules)
     manifest = {
         "generated": f"{generated} Asia/Shanghai",
-        "source_of_truth": "Android/mihomo/apps/*.yaml + safe iOS/Fusion compatible REJECT rules",
+        "source_of_truth": "Android/mihomo/apps/*.yaml + safe iOS/Fusion/repo compatible REJECT rules",
         "sync_policy": (
             "Mihomo, sing-box and v2rayNG are generated from the same canonical Android rule set. "
             "AdGuard is generated from the same source as the DNS-compatible projection."
@@ -378,7 +441,12 @@ def write_branch_manifest(rules: list[dict[str, str]], app_count: int, generated
     write_if_changed(BRANCH_MANIFEST, json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
 
 
-def generate_report(stats: list[dict[str, str | int]], ios_app_counts: dict[str, int], main_count: int) -> None:
+def generate_report(
+    stats: list[dict[str, str | int]],
+    ios_app_counts: dict[str, int],
+    repo_counts: dict[str, int],
+    main_count: int,
+) -> None:
     now = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S")
     lines = [
         "# Android rules build report",
@@ -389,6 +457,7 @@ def generate_report(stats: list[dict[str, str | int]], ios_app_counts: dict[str,
         f"- source: Android/mihomo/apps/*.yaml",
         f"- iOS common source: Rules/reject.list -> {IOS_REJECT_NAME}",
         f"- iOS app source: Rewrite/Sources/Apps/*.conf [Rule] REJECT -> {IOS_APP_COMPAT_NAME}",
+        f"- repo rule source: Rules/app-clean.list + Rules/web-ads.list + Rules/qingrex-miniapp-app-ad.list + Rules/wechat-ad.list -> {ANDROID_REPO_COMPAT_NAME}",
         "- exported formats: Mihomo / sing-box / AdGuard / v2rayNG",
         "- sync branches: sing-box, AdGuard and v2rayNG are generated from the Mihomo source layer during the same build.",
         "- safety: Script, MITM, Rewrite, DIRECT/PROXY and protected media/payment/login rules are not migrated.",
@@ -408,6 +477,18 @@ def generate_report(stats: list[dict[str, str | int]], ios_app_counts: dict[str,
     if ios_app_counts:
         for slug, count in sorted(ios_app_counts.items()):
             lines.append(f"| {slug} | {count} |")
+    else:
+        lines.append("| none | 0 |")
+    lines.extend([
+        "",
+        "## Repository rule source coverage",
+        "",
+        "| Source file | Migrated reject rules |",
+        "|---|---:|",
+    ])
+    if repo_counts:
+        for source, count in sorted(repo_counts.items()):
+            lines.append(f"| {source} | {count} |")
     else:
         lines.append("| none | 0 |")
     REPORT.parent.mkdir(parents=True, exist_ok=True)
@@ -435,6 +516,19 @@ def main() -> None:
             ),
         )
 
+    repo_compatible, repo_counts = parse_repo_compatible_rules()
+    if repo_compatible:
+        write_if_changed(
+            MIHOMO_DIR / f"{ANDROID_REPO_COMPAT_NAME}.yaml",
+            render_mihomo(
+                repo_compatible,
+                [
+                    "Generated from safe repository rule sources for Android.",
+                    "Aggressive, DIRECT, Script, MITM, Rewrite and protected media/payment/login rules are excluded.",
+                ],
+            ),
+        )
+
     stats: list[dict[str, str | int]] = []
     all_rules: list[dict[str, str]] = []
     for source in sorted(MIHOMO_DIR.glob("*.yaml"), key=lambda path: path.name.lower()):
@@ -452,7 +546,7 @@ def main() -> None:
     write_main_outputs(main_rules, len(stats))
     generated = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S")
     write_branch_manifest(main_rules, len(stats), generated)
-    generate_report(stats, ios_app_counts, len(main_rules))
+    generate_report(stats, ios_app_counts, repo_counts, len(main_rules))
     print(f"Android rule formats generated: {len(stats)} app file(s), {len(main_rules)} main rule(s).")
 
 

@@ -3,7 +3,6 @@
 
 ||abtest3-misc.zijieapi.com^
 ||abyss.cyapi.cn^
-||access.if.iqiyi.com^
 ||ad-analysis.pconline.com.cn^
 ||ad-h5-cdn.soulapp.cn^
 ||ad-h5-station-cdn.soulapp.cn^
@@ -27,7 +26,6 @@
 ||adclick.tencentmusic.com^
 ||adexpo.tencentmusic.com^
 ||adlaunch.qtfm.cn^
-||ads-shopping.shouqianba.com^
 ||ads.reader.yueyouxs.com^
 ||ads.service.kugou.com^
 ||ads3-normal.zijieapi.com^
@@ -50,10 +48,8 @@
 ||adx.yiche.com^
 ||adx.zuoyebang.com^
 ||amap-aos-info-nogw.amap.com^
-||amdc.m.youku.com^
 ||api-ad-product.huxiu.com^
 ||api-ad.kajicam.com^
-||api.iqiyi.com^
 ||apm-a.pinduoduo.com^
 ||apm.pinduoduo.com^
 ||appcloud.zhihu.com^
@@ -72,7 +68,6 @@
 ||ddfs-public.ddimg.mobi^
 ||dflow.bz.mgtv.com^
 ||dpmtpush.dianping.com^
-||dr-danmu.youku.com^
 ||dsp-ad.yy.com^
 ||dynamicf.sankuai.com^
 ||e.jparking.cn^
@@ -85,7 +80,6 @@
 ||gather.colorfulclouds.net^
 ||gecko3.zijieapi.com^
 ||gecko5.zijieapi.com^
-||group-ssl-danmu-ori.youku.com^
 ||gwp.xiaojukeji.com^
 ||h-adashx.ut.taobao.com^
 ||huatuocode.huatuo.qq.com^
@@ -97,8 +91,6 @@
 ||images.pinduoduo.com^
 ||imgad0.pcauto.com.cn^
 ||imgad0.pconline.com.cn^
-||info4.video.qq.com^
-||info6.video.qq.com^
 ||ios.bugly.qq.com^
 ||ios.video.mpush.qq.com^
 ||ipv4.kkmh.com^
@@ -142,7 +134,6 @@
 ||pgdt.ugdtimg.com^
 ||popup-api.b612kaji.com^
 ||pp-cdnfile2pcdn.msstatic.com^
-||pre-acs.youku.com^
 ||qh-material.taobao.com^
 ||qzs.gdtimg.com^
 ||qzs.qq.com^
@@ -159,7 +150,6 @@
 ||saad.ms.zhangyue.net^
 ||sdk.ad.sfys365.com^
 ||sdk.e.qq.com^
-||sdkconfig.video.qq.com^
 ||security.snssdk.com^
 ||smad.ms.zhangyue.net^
 ||soul-ad.soulapp.cn^
@@ -181,7 +171,6 @@
 ||tmeadcomm.y.qq.com^
 ||tmeadquic.y.qq.com^
 ||toblog.ctobsnssdk.com^
-||tpns.qq.com^
 ||tpstelemetry.tencent.com^
 ||trackercollect.ddxq.mobi^
 ||tte.meituan.com^
@@ -192,19 +181,13 @@
 ||vali-ugc.cp31.ott.cibntv.net^
 ||vas.snssdk.com^
 ||vcs.zijieapi.com^
-||vip.bz.mgtv.com^
-||vv6.video.qq.com^
 ||webcast-open.douyin.com^
 ||win.gdt.qq.com^
 ||wup.imtt.qq.com^
-||wxsmsdy.video.qq.com^
-||wxsnsdy.wxs.qq.com^
-||wxsnsdythumb.wxs.qq.com^
 ||xg.pinduoduo.com^
 ||yk-ssp.ad.youku.com^
 ||ykad-data.youku.com^
 ||ymg-api.terabox.com^
-||youku-acs.m.taobao.com^
 ||youku-crm-product.youku.com^
 ||ysad.yy.com^
 ||zjres-ad.kajicam.com^
@@ -213,7 +196,6 @@
 ||zxid-m.mobileservice.cn^
 /report.meituan/
 /trace.qq.com/
-/trace.video.qq.com/
 ||ad.e.waimai.sankuai.com^
 ||adcanvas.com^
 ||adjust.com^
@@ -233,4 +215,3 @@
 ||ugdtimg.com^
 ||v.smtcdns.com^
 ||wmlog.meituan.com^
-||wxs.qq.com^

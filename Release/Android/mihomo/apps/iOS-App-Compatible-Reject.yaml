@@ -4,7 +4,6 @@ payload:
 
   - DOMAIN,abtest3-misc.zijieapi.com
   - DOMAIN,abyss.cyapi.cn
-  - DOMAIN,access.if.iqiyi.com
   - DOMAIN,ad-analysis.pconline.com.cn
   - DOMAIN,ad-h5-cdn.soulapp.cn
   - DOMAIN,ad-h5-station-cdn.soulapp.cn
@@ -28,7 +27,6 @@ payload:
   - DOMAIN,adclick.tencentmusic.com
   - DOMAIN,adexpo.tencentmusic.com
   - DOMAIN,adlaunch.qtfm.cn
-  - DOMAIN,ads-shopping.shouqianba.com
   - DOMAIN,ads.reader.yueyouxs.com
   - DOMAIN,ads.service.kugou.com
   - DOMAIN,ads3-normal.zijieapi.com
@@ -51,10 +49,8 @@ payload:
   - DOMAIN,adx.yiche.com
   - DOMAIN,adx.zuoyebang.com
   - DOMAIN,amap-aos-info-nogw.amap.com
-  - DOMAIN,amdc.m.youku.com
   - DOMAIN,api-ad-product.huxiu.com
   - DOMAIN,api-ad.kajicam.com
-  - DOMAIN,api.iqiyi.com
   - DOMAIN,apm-a.pinduoduo.com
   - DOMAIN,apm.pinduoduo.com
   - DOMAIN,appcloud.zhihu.com
@@ -73,7 +69,6 @@ payload:
   - DOMAIN,ddfs-public.ddimg.mobi
   - DOMAIN,dflow.bz.mgtv.com
   - DOMAIN,dpmtpush.dianping.com
-  - DOMAIN,dr-danmu.youku.com
   - DOMAIN,dsp-ad.yy.com
   - DOMAIN,dynamicf.sankuai.com
   - DOMAIN,e.jparking.cn
@@ -86,7 +81,6 @@ payload:
   - DOMAIN,gather.colorfulclouds.net
   - DOMAIN,gecko3.zijieapi.com
   - DOMAIN,gecko5.zijieapi.com
-  - DOMAIN,group-ssl-danmu-ori.youku.com
   - DOMAIN,gwp.xiaojukeji.com
   - DOMAIN,h-adashx.ut.taobao.com
   - DOMAIN,huatuocode.huatuo.qq.com
@@ -98,8 +92,6 @@ payload:
   - DOMAIN,images.pinduoduo.com
   - DOMAIN,imgad0.pcauto.com.cn
   - DOMAIN,imgad0.pconline.com.cn
-  - DOMAIN,info4.video.qq.com
-  - DOMAIN,info6.video.qq.com
   - DOMAIN,ios.bugly.qq.com
   - DOMAIN,ios.video.mpush.qq.com
   - DOMAIN,ipv4.kkmh.com
@@ -143,7 +135,6 @@ payload:
   - DOMAIN,pgdt.ugdtimg.com
   - DOMAIN,popup-api.b612kaji.com
   - DOMAIN,pp-cdnfile2pcdn.msstatic.com
-  - DOMAIN,pre-acs.youku.com
   - DOMAIN,qh-material.taobao.com
   - DOMAIN,qzs.gdtimg.com
   - DOMAIN,qzs.qq.com
@@ -160,7 +151,6 @@ payload:
   - DOMAIN,saad.ms.zhangyue.net
   - DOMAIN,sdk.ad.sfys365.com
   - DOMAIN,sdk.e.qq.com
-  - DOMAIN,sdkconfig.video.qq.com
   - DOMAIN,security.snssdk.com
   - DOMAIN,smad.ms.zhangyue.net
   - DOMAIN,soul-ad.soulapp.cn
@@ -182,7 +172,6 @@ payload:
   - DOMAIN,tmeadcomm.y.qq.com
   - DOMAIN,tmeadquic.y.qq.com
   - DOMAIN,toblog.ctobsnssdk.com
-  - DOMAIN,tpns.qq.com
   - DOMAIN,tpstelemetry.tencent.com
   - DOMAIN,trackercollect.ddxq.mobi
   - DOMAIN,tte.meituan.com
@@ -193,19 +182,13 @@ payload:
   - DOMAIN,vali-ugc.cp31.ott.cibntv.net
   - DOMAIN,vas.snssdk.com
   - DOMAIN,vcs.zijieapi.com
-  - DOMAIN,vip.bz.mgtv.com
-  - DOMAIN,vv6.video.qq.com
   - DOMAIN,webcast-open.douyin.com
   - DOMAIN,win.gdt.qq.com
   - DOMAIN,wup.imtt.qq.com
-  - DOMAIN,wxsmsdy.video.qq.com
-  - DOMAIN,wxsnsdy.wxs.qq.com
-  - DOMAIN,wxsnsdythumb.wxs.qq.com
   - DOMAIN,xg.pinduoduo.com
   - DOMAIN,yk-ssp.ad.youku.com
   - DOMAIN,ykad-data.youku.com
   - DOMAIN,ymg-api.terabox.com
-  - DOMAIN,youku-acs.m.taobao.com
   - DOMAIN,youku-crm-product.youku.com
   - DOMAIN,ysad.yy.com
   - DOMAIN,zjres-ad.kajicam.com
@@ -214,7 +197,6 @@ payload:
   - DOMAIN,zxid-m.mobileservice.cn
   - DOMAIN-KEYWORD,report.meituan
   - DOMAIN-KEYWORD,trace.qq.com
-  - DOMAIN-KEYWORD,trace.video.qq.com
   - DOMAIN-SUFFIX,ad.e.waimai.sankuai.com
   - DOMAIN-SUFFIX,adcanvas.com
   - DOMAIN-SUFFIX,adjust.com
@@ -234,7 +216,6 @@ payload:
   - DOMAIN-SUFFIX,ugdtimg.com
   - DOMAIN-SUFFIX,v.smtcdns.com
   - DOMAIN-SUFFIX,wmlog.meituan.com
-  - DOMAIN-SUFFIX,wxs.qq.com
   - IP-CIDR,103.41.167.237/32
   - IP-CIDR,103.44.59.54/32
   - IP-CIDR,111.206.98.63/32

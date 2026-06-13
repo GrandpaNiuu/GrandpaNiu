@@ -2,7 +2,6 @@ payload:
   # Generated Android rules for Domestic-Apps.
   # Source: Android app layer and safe iOS-compatible REJECT rules.
 
-  - DOMAIN,access.if.iqiyi.com
   - DOMAIN,acs4baichuan.m.taobao.com
   - DOMAIN,ad-cdn.qingting.fm
   - DOMAIN,ad.api.moji.com
@@ -77,7 +76,6 @@ payload:
   - DOMAIN,img.auction-ads.wpscdn.cn
   - DOMAIN,layer.bz.mgtv.com
   - DOMAIN,layout.meituan.net
-  - DOMAIN,lc.map.baidu.com
   - DOMAIN,live-monitor-broker.sankuai.com
   - DOMAIN,log.snssdk.com
   - DOMAIN,lx0.meituan.com
@@ -124,7 +122,6 @@ payload:
   - DOMAIN,ucdc.upaas.quark.cn
   - DOMAIN,umengacs.m.taobao.com
   - DOMAIN,ut.taobao.com
-  - DOMAIN,vip.bz.mgtv.com
   - DOMAIN,wgo.mmstat.com
   - DOMAIN,wmlog.meituan.com
   - DOMAIN,xg.pinduoduo.com

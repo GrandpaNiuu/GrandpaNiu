@@ -1,11 +1,12 @@
 # Android rules build report
 
-- generated: 2026-06-13 22:40:06 Asia/Shanghai
-- app rule files: 19
-- main Android rules: 487
+- generated: 2026-06-13 23:01:19 Asia/Shanghai
+- app rule files: 20
+- main Android rules: 568
 - source: Android/mihomo/apps/*.yaml
 - iOS common source: Rules/reject.list -> iOS-Compatible-Reject
 - iOS app source: Rewrite/Sources/Apps/*.conf [Rule] REJECT -> iOS-App-Compatible-Reject
+- repo rule source: Rules/app-clean.list + Rules/web-ads.list + Rules/qingrex-miniapp-app-ad.list + Rules/wechat-ad.list -> Repo-Compatible-Reject
 - exported formats: Mihomo / sing-box / AdGuard / v2rayNG
 - sync branches: sing-box, AdGuard and v2rayNG are generated from the Mihomo source layer during the same build.
 - safety: Script, MITM, Rewrite, DIRECT/PROXY and protected media/payment/login rules are not migrated.
@@ -13,16 +14,17 @@
 | App | Rules | Outputs |
 |---|---:|---|
 | Bilibili | 1 | yes |
-| Domestic-Apps | 149 | yes |
+| Domestic-Apps | 146 | yes |
 | Douyin | 12 | yes |
-| iOS-App-Compatible-Reject | 249 | yes |
-| iOS-Compatible-Reject | 250 | yes |
-| iQiyi | 4 | yes |
+| iOS-App-Compatible-Reject | 230 | yes |
+| iOS-Compatible-Reject | 230 | yes |
+| iQiyi | 2 | yes |
 | Kugou | 4 | yes |
-| MangoTV | 12 | yes |
+| MangoTV | 11 | yes |
 | Meituan-Dianping | 11 | yes |
 | NeteaseMusic | 5 | yes |
 | Pinduoduo | 9 | yes |
+| Repo-Compatible-Reject | 221 | yes |
 | Spotify | 4 | yes |
 | Taobao | 12 | yes |
 | TencentMusic | 5 | yes |
@@ -50,7 +52,7 @@
 | foodie | 3 |
 | huxiu | 1 |
 | huya | 4 |
-| i-qi-yi-video | 5 |
+| i-qi-yi-video | 3 |
 | i-reader | 1 |
 | i-reader-dejian | 2 |
 | jump | 7 |
@@ -64,10 +66,10 @@
 | mei-tu | 1 |
 | meitu-myxj | 1 |
 | meituan | 11 |
-| mgtv | 13 |
+| mgtv | 12 |
 | pcauto | 5 |
 | pinduoduo | 10 |
-| qqksong | 32 |
+| qqksong | 27 |
 | qqmusic | 11 |
 | qting-fm | 2 |
 | safety-home | 1 |
@@ -77,20 +79,27 @@
 | snow-camera | 3 |
 | soul | 11 |
 | taobao | 4 |
-| tencent-video | 12 |
+| tencent-video | 7 |
 | terabox | 1 |
 | tube-max | 8 |
-| wechat | 1 |
-| wechat-mini-programs | 6 |
-| wechat-official-accounts | 1 |
+| wechat-mini-programs | 2 |
 | weibo | 2 |
 | xiaopeng | 2 |
 | ximalaya | 5 |
 | yiche | 2 |
-| youku | 18 |
+| youku | 13 |
 | yueyou | 1 |
 | yy-voice | 3 |
 | zdm | 1 |
 | zhihu | 10 |
 | zui-you | 1 |
 | zuoyebang | 1 |
+
+## Repository rule source coverage
+
+| Source file | Migrated reject rules |
+|---|---:|
+| app-clean.list | 54 |
+| qingrex-miniapp-app-ad.list | 59 |
+| web-ads.list | 92 |
+| wechat-ad.list | 25 |

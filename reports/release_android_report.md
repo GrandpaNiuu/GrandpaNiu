@@ -5,10 +5,10 @@
 
 | Format | Files |
 |---|---:|
-| mihomo | 24 |
-| sing-box | 21 |
-| adguard | 21 |
-| v2rayng | 21 |
+| mihomo | 25 |
+| sing-box | 22 |
+| adguard | 22 |
+| v2rayng | 22 |
 
 ## Branch sync
 

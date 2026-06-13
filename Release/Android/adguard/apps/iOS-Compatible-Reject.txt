@@ -32,7 +32,6 @@
 ||appupdates.189.cn^
 ||atrace.chelaile.net.cn^
 ||axxd.xmseeyouyima.com^
-||badjs.weixinbridge.com^
 ||cdn.adapi.fotoable.com^
 ||collect.xiaopeng.com^
 ||counter.kingsoft.com^
@@ -42,7 +41,6 @@
 ||credits2.bz.mgtv.com^
 ||credits3.bz.mgtv.com^
 ||csc-apm.sgcc.com.cn^
-||cube.weixinbridge.com^
 ||da.bridgeturbo.com^
 ||ddfs-public.ddimg.mobi^
 ||dflow.bz.mgtv.com^
@@ -57,14 +55,6 @@
 ||gwp.xiaojukeji.com^
 ||hc-ssp.sm.cn^
 ||hlx.meituan.com^
-||httpdns-sdk.n.netease.com^
-||httpdns.baidubce.com^
-||httpdns.calorietech.com^
-||httpdns.music.163.com^
-||httpdns.n.netease.com^
-||httpdns.yunxindns.com^
-||httpdnsmultiapi.meituan.com^
-||httpdnsmultiapivip.meituan.com^
 ||huyafile.msstatic.com^
 ||iad0ssl.pcauto.com.cn^
 ||iad0ssl.pconline.com.cn^
@@ -79,11 +69,9 @@
 ||ivy.pchouse.com.cn^
 ||layer.bz.mgtv.com^
 ||layout.meituan.net^
-||lc.map.baidu.com^
 ||live-monitor-broker.sankuai.com^
 ||livewebbs2.msstatic.com^
 ||livewebbs2pcdn.msstatic.com^
-||lofter.httpdns.c.163.com^
 ||log.17gwx.com^
 ||log.ycapp.yiche.com^
 ||logs.chelaile.net.cn^
@@ -95,7 +83,6 @@
 ||minfo.wps.cn^
 ||mob.bz.mgtv.com^
 ||mqtt.zhihu.com^
-||music.httpdns.c.163.com^
 ||popup.dushu365.com^
 ||pp-cdnfile2pcdn.msstatic.com^
 ||r.dianping.com^
@@ -133,13 +120,11 @@
 ||vali-g1.cp31.ott.cibntv.net^
 ||vali-ugc.cp31.ott.cibntv.net^
 ||video.market.xiaomi.com^
-||vip.bz.mgtv.com^
 ||vstlog.17usoft.com^
 ||wgo.mmstat.com^
 ||ws.ksmobile.net^
 ||xg.pinduoduo.com^
 ||ymg-api.terabox.com^
-||yuyin-httpdns.gslb.yy.com^
 ||zxid-m.mobileservice.cn^
 /admarvel/
 /adwo/
@@ -147,7 +132,6 @@
 /c-hzgt2.getui.com/
 /cm-10-134.getui.com/
 /cm-10-35.getui.com/
-/dnspod.meituan.httpdns/
 /madmini/
 /medicine.lanjiyin.com.cn/
 /ossp.voicecloud.cn/
@@ -172,7 +156,6 @@
 ||adxs.xmcdn.com^
 ||afp.zol-img.com.cn^
 ||api.dsp.yhd.com^
-||api.union.vip.com^
 ||apilog.qbb6.com^
 ||app-measurement.com^
 ||appier.net^
@@ -190,11 +173,9 @@
 ||dc.csdn.net^
 ||dc2.csdn.net^
 ||dynamic.zol.com.cn^
-||ehaier.com^
 ||gdt.qq.com^
 ||gemini.yahoo.com^
 ||go.sohu.com^
-||httpdns.meituan.com^
 ||hui.sohu.com^
 ||imp.zol.com.cn^
 ||js.zol.com.cn^
@@ -206,7 +187,6 @@
 ||mistat.xiaomi.com^
 ||ms.vipstatic.com^
 ||mstat.zol.com.cn^
-||n-st.vip.com^
 ||pangle.io^
 ||pic.zol-img.com.cn^
 ||pv.zol.com.cn^

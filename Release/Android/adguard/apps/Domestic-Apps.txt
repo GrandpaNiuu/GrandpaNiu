@@ -1,7 +1,6 @@
 ! Generated Android rules for Domestic-Apps.
 ! Source: Android app layer and safe iOS-compatible REJECT rules.
 
-||access.if.iqiyi.com^
 ||acs4baichuan.m.taobao.com^
 ||ad-cdn.qingting.fm^
 ||ad.api.moji.com^
@@ -76,7 +75,6 @@
 ||img.auction-ads.wpscdn.cn^
 ||layer.bz.mgtv.com^
 ||layout.meituan.net^
-||lc.map.baidu.com^
 ||live-monitor-broker.sankuai.com^
 ||log.snssdk.com^
 ||lx0.meituan.com^
@@ -123,7 +121,6 @@
 ||ucdc.upaas.quark.cn^
 ||umengacs.m.taobao.com^
 ||ut.taobao.com^
-||vip.bz.mgtv.com^
 ||wgo.mmstat.com^
 ||wmlog.meituan.com^
 ||xg.pinduoduo.com^
