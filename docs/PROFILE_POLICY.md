@@ -58,7 +58,7 @@ Fusion 并不是把所有内容无条件混在一起。它仍按 source-first �
 - 不允许从 full 批量直接进入 stable。
 - 不允许 Full 整体合并进 Fusion。
 - 不允许把 `host`、`host-suffix`、`host-keyword`、`ip6-cidr` 直接作为 Shadowrocket `RULE-SET`。
-- 任何高风险迁移必须先有 `reports/manual_test_log.md` 记录。
+- 任何高风险迁移必须先有 `reports/automated_quality_evidence.md` 记录。
 - 高风险规则复核必须包含 Lite 对照结果、关闭模块对照结果和可回滚源头。
 
 ## 自动维护边界

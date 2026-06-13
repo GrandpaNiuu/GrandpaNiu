@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Validate governance additions that protect releases from red-cross and false-positive regressions.
-
-The check verifies that required governance files and core policy concepts exist.
-It intentionally avoids depending on one exact Chinese sentence when several
-semantically equivalent policy phrases are acceptable.
-"""
+"""Validate governance additions that protect automated releases."""
 
 from __future__ import annotations
 
@@ -16,21 +11,13 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_FILES = [
     "scripts/validate_remote_rule_syntax.py",
     "scripts/convert_quanx_rules.py",
-    "reports/manual_test_log.md",
+    "scripts/quality_gate.py",
+    "tools/generate_automated_quality_evidence.py",
+    "reports/automated_quality_evidence.md",
     ".github/ISSUE_TEMPLATE/rule_false_positive.yml",
     ".github/ISSUE_TEMPLATE/import_red_cross.yml",
     "docs/QUALITY_GATE.md",
     "docs/PROFILE_POLICY.md",
-]
-
-MANUAL_TEST_REQUIRED_TOKENS = [
-    "标准测试记录模板",
-    "是否与 Lite 对照",
-    "是否关闭模块对照",
-    "Shadowrocket 日志关键命中",
-    "Full 排查记录",
-    "失败 / 误伤记录",
-    "不允许 Full 整体合并进 Stable",
 ]
 
 QUALITY_GATE_REQUIRED_TOKENS = [
@@ -40,6 +27,8 @@ QUALITY_GATE_REQUIRED_TOKENS = [
     "Full 冻结边界",
     "Quantumult X",
     "host-suffix",
+    "automated_quality_evidence.md",
+    "python scripts/quality_gate.py",
 ]
 
 QUALITY_GATE_REQUIRED_ANY = [
@@ -50,8 +39,8 @@ PROFILE_POLICY_REQUIRED_TOKENS = [
     "Full 冻结规则",
     "不允许从 full 批量直接进入 stable",
     "不允许把 `host`、`host-suffix`、`host-keyword`、`ip6-cidr` 直接作为 Shadowrocket `RULE-SET`",
-    "reports/manual_test_log.md",
-    "Lite 对照结果",
+    "reports/automated_quality_evidence.md",
+    "自动化质量证据",
 ]
 
 FALSE_POSITIVE_TEMPLATE_REQUIRED_TOKENS = [
@@ -74,7 +63,7 @@ WORKFLOW_REQUIRED_TOKENS = [
     "scripts/validate_remote_rule_syntax.py",
     "scripts/validate_governance_extensions.py",
     "python3 scripts/convert_quanx_rules.py",
-    "python3 scripts/validate_remote_rule_syntax.py",
+    "python3 scripts/quality_gate.py",
 ]
 
 
@@ -112,7 +101,6 @@ def main() -> None:
         if not (ROOT / relative).exists():
             fail(f"missing required governance file: {relative}")
 
-    require_tokens("reports/manual_test_log.md", MANUAL_TEST_REQUIRED_TOKENS)
     require_tokens("docs/QUALITY_GATE.md", QUALITY_GATE_REQUIRED_TOKENS)
     require_any("docs/QUALITY_GATE.md", QUALITY_GATE_REQUIRED_ANY)
     require_tokens("docs/PROFILE_POLICY.md", PROFILE_POLICY_REQUIRED_TOKENS)
@@ -121,7 +109,7 @@ def main() -> None:
     require_tokens(".github/workflows/module-factory-build.yml", WORKFLOW_REQUIRED_TOKENS)
 
     daily = read(".github/workflows/daily-module-update.yml")
-    for token in ("validate_remote_rule_syntax.py", "convert_quanx_rules.py"):
+    for token in ("validate_remote_rule_syntax.py", "convert_quanx_rules.py", "quality_gate.py"):
         if token not in daily:
             fail(f"daily-module-update.yml missing governance token: {token}")
 

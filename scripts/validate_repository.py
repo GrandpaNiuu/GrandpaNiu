@@ -63,8 +63,10 @@ REQUIRED_FILES = (
     "scripts/validate_profiles.py",
     "scripts/validate_module_integrity.py",
     "scripts/validate_repository.py",
+    "tools/generate_automated_quality_evidence.py",
     "reports/multi_release_report.md",
     "reports/module_integrity_report.md",
+    "reports/automated_quality_evidence.md",
 )
 
 REQUIRED_WORKFLOWS = (
@@ -82,6 +84,23 @@ BLOCKED_URL_TOKENS = ("ghproxy", "mirror", "tinyurl", "bit.ly", "t.co/", "shortu
 SCRIPT_NAME_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=")
 HOSTNAME_RE = re.compile(r"^\s*hostname\s*=\s*(.+)$")
 MD_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+TEXT_FILE_SUFFIXES = {
+    ".conf",
+    ".sgmodule",
+    ".module",
+    ".list",
+    ".py",
+    ".js",
+    ".json",
+    ".md",
+    ".yml",
+    ".yaml",
+    ".html",
+    ".txt",
+    ".editorconfig",
+    ".gitattributes",
+    ".gitignore",
+}
 
 
 def fail(message: str) -> None:
@@ -261,6 +280,19 @@ def validate_files() -> None:
             fail(f"required file missing: {relative}")
 
 
+def validate_no_utf8_bom() -> None:
+    offenders: list[str] = []
+    for path in ROOT.rglob("*"):
+        if not path.is_file() or ".git" in path.parts or "__pycache__" in path.parts:
+            continue
+        if path.suffix.lower() not in TEXT_FILE_SUFFIXES and path.name not in {"LICENSE", "README.md", "CONTRIBUTING.md"}:
+            continue
+        if b"\xef\xbb\xbf" in path.read_bytes():
+            offenders.append(path.relative_to(ROOT).as_posix())
+    if offenders:
+        fail("UTF-8 BOM found in tracked text candidates: " + ", ".join(sorted(offenders)[:20]))
+
+
 def validate_readme_links() -> None:
     text = read_text(README)
     for match in MD_LINK_RE.finditer(text):
@@ -336,6 +368,7 @@ def validate_no_tool_traces() -> None:
 
 def main() -> None:
     validate_files()
+    validate_no_utf8_bom()
     validate_root_release()
     validate_module_integrity(write_report=True)
     validate_single_release_report()

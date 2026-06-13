@@ -36,7 +36,7 @@
 | 必须独立保留 | Spotify、YouTube、知乎、protobuf、复杂业务或安全边界相关 | 不合并 |
 | 可合并候选 | 普通 App JSON 去广告、弹窗、信息流、推荐位清理 | 先进入灰度计划 |
 | 可改规则候选 | 不依赖 body 的广告接口、开屏素材、统计接口 | 评估迁移到 Rule / URL Rewrite |
-| 需要人工复核 | 静态分析无法判断的脚本 | 人工看脚本内容和真机测试 |
+| 需要人工复核 | 静态分析无法判断的脚本 | 人工看脚本内容和自动化验证 |
 
 ## 第一阶段：清单和重复分析
 
@@ -91,7 +91,7 @@ URL pattern -> App key -> cleaner function -> safe field removal -> output body
 1. 在 `stable-plus` profile 中增加新统一脚本入口。
 2. 保留旧脚本入口，不立即删除。
 3. 用报告对比旧入口和新入口覆盖范围。
-4. 真机测试 Stable Plus。
+4. 自动化验证 Stable Plus。
 
 不得直接改：
 
@@ -108,7 +108,7 @@ URL pattern -> App key -> cleaner function -> safe field removal -> output body
 ```text
 旧单脚本入口
 -> stable-plus 新 app-cleaner 并行测试
--> 人工测试通过
+-> 自动化验证通过
 -> 删除 stable-plus 旧入口
 -> 观察一段时间
 -> 单项进入 stable

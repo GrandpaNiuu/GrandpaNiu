@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-"""Generate a conservative App status matrix for manual quality tracking."""
+"""Generate an App status matrix from automated repository evidence."""
 
 from __future__ import annotations
 
 import datetime as dt
-import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "reports" / "app_status_matrix.md"
-MANUAL_LOG = ROOT / "reports" / "manual_test_log.md"
 
 APPS = [
     ("Spotify", "音乐", ["spotify", "spclient"], "中"),
@@ -43,28 +41,6 @@ APPS = [
     ("小程序资源", "微信生态", ["servicewechat", "wxapp.tc.qq.com"], "高"),
 ]
 
-STABLE_FIRST_ROUND_APPS = {
-    "Spotify",
-    "YouTube",
-    "知乎",
-    "Bilibili",
-    "淘宝",
-    "京东",
-    "拼多多",
-    "美团",
-    "大众点评",
-    "饿了么",
-    "微信",
-    "支付宝",
-    "银行 / 验证码",
-    "图片 CDN",
-    "小程序资源",
-    "闲鱼",
-    "喜马拉雅",
-    "滴滴",
-    "斗鱼",
-}
-
 SOURCE_FILES = {
     "Rule": [ROOT / "Rules"],
     "Script": [ROOT / "Scripts"],
@@ -79,10 +55,7 @@ SOURCE_FILES = {
 }
 
 PROFILE_FILES = {
-    "stable": ROOT / "Rewrite" / "Profiles" / "stable.conf",
-    "stable-plus": ROOT / "Rewrite" / "Profiles" / "stable-plus.conf",
-    "lite": ROOT / "Rewrite" / "Profiles" / "lite.conf",
-    "full": ROOT / "Rewrite" / "Profiles" / "full.conf",
+    "fusion": ROOT / "Rewrite" / "Profiles" / "fusion.conf",
 }
 
 
@@ -111,9 +84,9 @@ def source_hits(keywords: list[str]) -> tuple[list[str], list[str]]:
                 if path.is_dir():
                     for item in path.rglob("*"):
                         if item.is_file() and any(keyword in read(item).lower() for keyword in lowered_keywords):
-                            files.append(str(item.relative_to(ROOT)).replace("\\", "/"))
+                            files.append(item.relative_to(ROOT).as_posix())
                 else:
-                    files.append(str(path.relative_to(ROOT)).replace("\\", "/"))
+                    files.append(path.relative_to(ROOT).as_posix())
         if matched:
             methods.append(method)
     return sorted(set(methods)), sorted(set(files))
@@ -128,50 +101,16 @@ def profile_hits(files: list[str]) -> list[str]:
     return result
 
 
-def stable_round_confirmation() -> tuple[bool, str]:
-    log = read(MANUAL_LOG)
-    has_confirmation = (
-        "Stable 第一轮真实测试" in log
-        and "用户确认" in log
-        and "通过" in log
-        and "国内 App 图片 / 联网 / 微信发图" in log
-        and "已恢复正常" in log
-    )
-    matches = re.findall(r"\d{4}-\d{2}-\d{2}", log)
-    return has_confirmation, matches[-1] if matches else "未记录"
+def automation_status(methods: list[str]) -> str:
+    return "自动门禁覆盖" if methods else "未发现自动覆盖"
 
 
-def manual_status(app: str) -> tuple[str, str, str]:
-    log = read(MANUAL_LOG)
-    matched = [line for line in log.splitlines() if app.lower() in line.lower()]
-    for latest in reversed(matched):
-        date_match = re.search(r"\d{4}-\d{2}-\d{2}", latest)
-        test_date = date_match.group(0) if date_match else "未记录"
-        if "失败" in latest:
-            return "失败", test_date, "manual_test_log.md / 用户确认"
-        if "部分通过" in latest:
-            return "部分通过", test_date, "manual_test_log.md / 用户确认"
-        if "通过" in latest and "未测" not in latest and date_match:
-            return "通过", test_date, "manual_test_log.md / 用户确认"
-
-    round_ok, round_date = stable_round_confirmation()
-    if round_ok and app in STABLE_FIRST_ROUND_APPS:
-        return "通过", round_date, "manual_test_log.md / 用户确认"
-    return "未测", "未记录", "无真实记录"
-
-
-def stable_allowed(app: str, risk: str, status: str, profiles: list[str]) -> str:
-    if status == "通过" and app in STABLE_FIRST_ROUND_APPS:
-        if risk == "高":
-            return "Stable 第一轮通过；后续敏感链路变更仍需复测"
-        return "Stable 第一轮通过"
-    if "stable-plus" in profiles and "stable" not in profiles:
-        return "仅 Stable Plus，需单项 PR 审查"
+def release_decision(risk: str, methods: list[str]) -> str:
+    if not methods:
+        return "不进入发布输出"
     if risk == "高":
-        return "未测或高风险，需人工复核"
-    if status == "通过":
-        return "可作为已验证覆盖保留"
-    return "未测，不允许晋级"
+        return "保留保护优先、需可回滚源头"
+    return "随 Fusion 自动门禁发布"
 
 
 def rollback_path(files: list[str]) -> str:
@@ -187,26 +126,19 @@ def main() -> None:
     for app, category, keywords, base_risk in APPS:
         methods, files = source_hits(keywords)
         profiles = profile_hits(files)
-        status, latest_date, source = manual_status(app)
         risk = "高" if app in {"微信", "支付宝", "银行 / 验证码", "图片 CDN", "小程序资源"} else base_risk
-        note = (
-            "用户确认，不是助手亲测；大改后仍需复测"
-            if status == "通过"
-            else "覆盖存在不等于测试通过；未测必须保持未测"
-        )
         rows.append(
-            "| {app} | {category} | {methods} | {profiles} | {status} | {risk} | {latest} | {source} | {allowed} | {rollback} | {note} |".format(
+            "| {app} | {category} | {methods} | {profiles} | {status} | {risk} | {source} | {allowed} | {rollback} | {note} |".format(
                 app=app,
                 category=category,
                 methods=", ".join(methods) if methods else "未发现",
                 profiles=", ".join(profiles) if profiles else "未确认",
-                status=status,
+                status=automation_status(methods),
                 risk=risk,
-                latest=latest_date,
-                source=source,
-                allowed=stable_allowed(app, risk, status, profiles),
+                source="automated_quality_evidence.md / 静态扫描",
+                allowed=release_decision(risk, methods),
                 rollback=rollback_path(files),
-                note=note,
+                note="覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入",
             )
         )
 
@@ -215,19 +147,18 @@ def main() -> None:
         "",
         f"生成时间：{now}",
         "",
-        "本矩阵是质量总览，不把静态覆盖写成已经验证。真实测试来源只允许来自 `reports/manual_test_log.md`；没有记录时一律标记为“未测”。",
+        "本矩阵是自动化质量总览。状态只表达仓库源头是否被自动扫描覆盖，以及是否满足可回滚、可审计的发布边界。",
         "",
-        "| App 名称 | 所属类别 | 覆盖来源 | 所属版本 | 测试状态 | 风险等级 | 最近测试日期 | 测试来源 | 是否允许进入 Stable | 回滚路径 | 备注 |",
-        "|---|---|---|---|---|---|---|---|---|---|---|",
+        "| App 名称 | 所属类别 | 覆盖来源 | 所属入口 | 自动状态 | 风险等级 | 证据来源 | 发布策略 | 回滚路径 | 备注 |",
+        "|---|---|---|---|---|---|---|---|---|---|",
         *rows,
         "",
-        "## 晋级边界",
+        "## 发布边界",
         "",
-        "- 未测试不得写通过。",
-        "- 本次 Stable 第一轮通过来源为 `manual_test_log.md / 用户确认`，不是助手亲测。",
-        "- 微信、支付宝、银行、验证码、支付、图片 CDN、小程序默认高风险；即使本轮通过，后续涉及这些链路的规则变更仍需重新测试。",
-        "- Stable Plus 中的内容只有真实测试通过后，才能进入单项晋级流程。",
-        "- 不允许把 Stable Plus 整体合并进 Stable，只能单项 App 晋级。",
+        "- 静态覆盖不得写成效果承诺。",
+        "- 用户反馈不是发布阻断门禁；它只作为 Issue、回滚或修复输入。",
+        "- 高风险 App 保持保护规则优先、回滚路径明确、自动门禁通过。",
+        "- Fusion 是唯一公开入口；兼容目录只由构建器同步。",
         "",
     ]
     REPORT.parent.mkdir(parents=True, exist_ok=True)

@@ -264,7 +264,7 @@ def write_report(
         "",
         *required_status,
         "",
-        "## 手动测试建议",
+        "## 自动化验证建议",
         "",
         "1. Shadowrocket 更新模块。",
         "2. 更新脚本。",

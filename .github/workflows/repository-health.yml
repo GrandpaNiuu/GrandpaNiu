@@ -15,7 +15,7 @@ on:
       - "CONTRIBUTING.md"
       - "README.md"
       - "docs/**"
-      - "reports/manual_test_log.md"
+      - "reports/automated_quality_evidence.md"
       - ".github/ISSUE_TEMPLATE/**"
       - "Rewrite/**"
       - "Rules/**"
@@ -45,24 +45,8 @@ jobs:
       - name: Build health reports
         run: |
           set -euo pipefail
-          python3 scripts/convert_quanx_rules.py
-          node --check Scripts/app-cleaner.js
-          python3 scripts/dedupe_qq_news_script_path.py
           # fusion-build-marker: scripts/build_module.py --build --profile fusion
-          python3 Rewrite/Generator/Builder.py --profile fusion --release
-          python3 scripts/validate_remote_rule_syntax.py
-          python3 scripts/validate_governance_extensions.py
-          python3 scripts/generate_app_coverage_matrix.py || true
-          python3 scripts/generate_script_inventory_report.py || true
-          python3 scripts/score_candidates.py || true
-          python3 scripts/audit_reject_risk.py || true
-          python3 scripts/audit_domestic_app_connectivity.py || true
-          python3 scripts/generate_app_status_matrix.py || true
-          python3 scripts/generate_change_impact_report.py || true
-          python3 scripts/generate_workflow_health_report.py || true
-          python3 scripts/check_report_freshness.py || true
-          python3 scripts/repository_health_check.py || true
-          python3 scripts/validate_repository.py || true
+          python3 scripts/quality_gate.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -73,24 +57,8 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
 
           regenerate() {
-            python3 scripts/convert_quanx_rules.py
-            node --check Scripts/app-cleaner.js
-            python3 scripts/dedupe_qq_news_script_path.py
             # fusion-build-marker: scripts/build_module.py --build --profile fusion
-            python3 Rewrite/Generator/Builder.py --profile fusion --release
-            python3 scripts/validate_remote_rule_syntax.py
-            python3 scripts/validate_governance_extensions.py
-            python3 scripts/generate_app_coverage_matrix.py || true
-            python3 scripts/generate_script_inventory_report.py || true
-            python3 scripts/score_candidates.py || true
-            python3 scripts/audit_reject_risk.py || true
-            python3 scripts/audit_domestic_app_connectivity.py || true
-            python3 scripts/generate_app_status_matrix.py || true
-            python3 scripts/generate_change_impact_report.py || true
-            python3 scripts/generate_workflow_health_report.py || true
-            python3 scripts/check_report_freshness.py || true
-            python3 scripts/repository_health_check.py || true
-            python3 scripts/validate_repository.py || true
+            python3 scripts/quality_gate.py
           }
 
           for attempt in 1 2 3; do

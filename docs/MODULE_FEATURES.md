@@ -109,4 +109,4 @@ python3 scripts/validate_repository.py
 
 ## 说明
 
-覆盖存在不等于真机完整通过。没有 `reports/manual_test_log.md` 或 Issue 反馈记录时，只能写“已纳入覆盖”或“待复测”，不能写“已验证通过”。
+覆盖存在不等于真机完整通过。没有 `reports/automated_quality_evidence.md` 或 Issue 反馈记录时，只能写“已纳入覆盖”或“待复测”，不能写“已验证通过”。

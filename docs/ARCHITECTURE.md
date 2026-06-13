@@ -123,5 +123,5 @@ python scripts/validate_generator_config.py
 ## 7. 仍然需要人工维护的部分
 
 - 新规则是否误伤登录、支付、视频播放，仍需要真实设备测试。
-- `reports/manual_test_log.md` 需要记录人工测试结果。
+- `reports/automated_quality_evidence.md` 需要记录自动化验证结果。
 - 新接入上游源时，必须补充来源、风险、回滚说明。

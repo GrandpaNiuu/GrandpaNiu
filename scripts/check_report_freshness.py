@@ -15,14 +15,21 @@ CHECKS = [
         "report": "reports/profile_validation_report.md",
         "inputs": ["Rewrite/Profiles", "Rules", "Scripts", "scripts/build_module.py", "scripts/validate_profiles.py"],
         "blocking": True,
-        "reason": "Profile、规则、脚本或构建逻辑变更后必须重新验证四版本构建。",
+        "reason": "Profile、规则、脚本或构建逻辑变更后必须重新验证 Fusion 构建。",
     },
     {
         "report": "reports/repository_health_report.md",
-        "inputs": ["README.md", "SECURITY.md", "docs", "scripts", "Rewrite", "Rules", "Scripts", ".github/workflows"],
+        "inputs": ["README.md", "SECURITY.md", "docs", "scripts", "tools", "tests", "Rewrite", "Rules", "Scripts", ".github/workflows"],
         "blocking": True,
         "self_refresh": True,
         "reason": "仓库治理、工作流或模块源头变更后必须刷新健康报告。",
+    },
+    {
+        "report": "reports/automated_quality_evidence.md",
+        "inputs": ["scripts", "tools", "tests", "Rewrite", "Rules", "Scripts", ".github/workflows"],
+        "blocking": True,
+        "self_refresh": True,
+        "reason": "自动化证据报告必须反映当前构建、校验和质量门禁。",
     },
     {
         "report": "reports/candidate_security_score_report.md",
@@ -44,16 +51,9 @@ CHECKS = [
     },
     {
         "report": "reports/app_status_matrix.md",
-        "inputs": ["Rules", "Scripts", "Rewrite/Sources", "Rewrite/Profiles", "reports/manual_test_log.md", "scripts/generate_app_status_matrix.py"],
+        "inputs": ["Rules", "Scripts", "Rewrite/Sources", "Rewrite/Profiles", "scripts/generate_app_status_matrix.py"],
         "blocking": True,
-        "reason": "覆盖源头或人工测试记录变更后必须刷新 App 状态矩阵。",
-    },
-    {
-        "report": "reports/manual_test_log.md",
-        "inputs": ["Ronghemokuai.sgmodule", "Release", "Scripts", "Rewrite/Sources"],
-        "blocking": False,
-        "manual": True,
-        "reason": "人工测试记录落后时只进入 manual-review，不自动写成通过。",
+        "reason": "覆盖源头或状态矩阵生成逻辑变更后必须刷新 App 状态矩阵。",
     },
     {
         "report": "reports/app_cleaner_active_report.md",
@@ -88,19 +88,11 @@ def evaluate(check: dict) -> dict[str, object]:
     input_time = max((latest_mtime(ROOT / str(item)) for item in check["inputs"]), default=0.0)
     exists = report.exists()
     stale = not exists or report_time < input_time
-    if not exists:
-        status = "missing"
-    elif stale and check.get("manual"):
-        status = "manual-review"
-    elif stale:
-        status = "stale"
-    else:
-        status = "fresh"
+    status = "missing" if not exists else "stale" if stale else "fresh"
     return {
         "report": str(check["report"]),
         "status": status,
         "blocking": bool(check.get("blocking", False)),
-        "manual": bool(check.get("manual", False)),
         "self_refresh": bool(check.get("self_refresh", False)),
         "report_time": fmt(report_time),
         "input_time": fmt(input_time),
@@ -115,7 +107,6 @@ def main() -> None:
 
     rows = [evaluate(check) for check in CHECKS]
     blocking_stale = [row for row in rows if row["blocking"] and row["status"] in {"missing", "stale"} and not row["self_refresh"]]
-    manual_rows = [row for row in rows if row["status"] == "manual-review"]
     now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
 
     lines = [
@@ -123,7 +114,7 @@ def main() -> None:
         "",
         f"生成时间：{now}",
         "",
-        "本报告检查治理报告是否落后于对应源文件。关键报告 stale 时应视为阻断项；`manual_test_log.md` 只作为 manual-review，不自动失败。",
+        "本报告检查治理报告是否落后于对应源文件。关键报告 stale 时应视为阻断项；自刷新报告会在质量门禁末尾再生成一次。",
         "",
         "## 总览",
         "",
@@ -131,7 +122,6 @@ def main() -> None:
         f"- fresh：{len([row for row in rows if row['status'] == 'fresh'])}",
         f"- stale / missing：{len([row for row in rows if row['status'] in {'stale', 'missing'}])}",
         f"- blocking stale / missing：{len(blocking_stale)}",
-        f"- manual-review：{len(manual_rows)}",
         "",
         "## 明细",
         "",
@@ -141,7 +131,7 @@ def main() -> None:
     for row in rows:
         block_label = "是" if row["blocking"] else "否"
         if row["self_refresh"] and row["status"] == "stale":
-            block_label = "自刷新报告，Repository Health 运行后复查"
+            block_label = "自刷新报告，质量门禁末尾复查"
         lines.append(f"| `{row['report']}` | {row['status']} | {block_label} | {row['report_time']} | {row['input_time']} | {row['reason']} |")
     lines += [
         "",
@@ -150,8 +140,7 @@ def main() -> None:
         "- `fresh`：报告不早于输入文件。",
         "- `stale`：报告落后于输入文件，应重新运行对应生成脚本。",
         "- `missing`：报告缺失，应补齐。",
-        "- `manual-review`：人工测试记录落后于模块变更，应确认仍为未测或更新真实测试结果。",
-        "- `repository_health_report.md` 属于自刷新报告，健康检查运行后应再次刷新本报告。",
+        "- `repository_health_report.md` 与 `automated_quality_evidence.md` 属于自刷新报告，质量门禁运行后应再次刷新。",
         "",
     ]
     REPORT.parent.mkdir(parents=True, exist_ok=True)

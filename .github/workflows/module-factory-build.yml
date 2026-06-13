@@ -8,7 +8,7 @@ on:
     paths:
       - "scripts/**"
       - "docs/**"
-      - "reports/manual_test_log.md"
+      - "reports/automated_quality_evidence.md"
       - "Rewrite/**"
       - "Rules/**"
       - "Scripts/**"
@@ -51,29 +51,11 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Validate scripts
+      - name: Run full automated quality gate
         run: |
           set -euo pipefail
-          python3 -m py_compile scripts/*.py Rewrite/Generator/Builder.py
-          python3 scripts/validate_generator_config.py
-          node --check Scripts/app-cleaner.js
-
-      - name: Build factory outputs
-        run: |
-          set -euo pipefail
-          python3 scripts/import_qingrex_official_module.py
-          python3 scripts/dedupe_qq_news_script_path.py
-          python3 scripts/build_android_rules.py
-          python3 scripts/android_format_check.py
-          python3 scripts/convert_quanx_rules.py
           # fusion-build-marker: scripts/build_module.py --build --profile fusion
-          python3 Rewrite/Generator/Builder.py --profile fusion --release
-          python3 scripts/validate_generator_config.py
-          python3 scripts/validate_manifest.py
-          python3 scripts/validate_remote_rule_syntax.py
-          python3 scripts/validate_governance_extensions.py
-          python3 scripts/validate_profiles.py
-          python3 scripts/validate_repository.py
+          python3 scripts/quality_gate.py
 
       - name: Commit generated files
         run: |
@@ -82,19 +64,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           regenerate() {
-            python3 scripts/import_qingrex_official_module.py
-            python3 scripts/dedupe_qq_news_script_path.py
-            python3 scripts/build_android_rules.py
-            python3 scripts/android_format_check.py
-            python3 scripts/convert_quanx_rules.py
             # fusion-build-marker: scripts/build_module.py --build --profile fusion
-            python3 Rewrite/Generator/Builder.py --profile fusion --release
-            python3 scripts/validate_generator_config.py
-            python3 scripts/validate_manifest.py
-            python3 scripts/validate_remote_rule_syntax.py
-            python3 scripts/validate_governance_extensions.py
-            python3 scripts/validate_profiles.py
-            python3 scripts/validate_repository.py
+            python3 scripts/quality_gate.py
           }
 
           for attempt in 1 2 3; do

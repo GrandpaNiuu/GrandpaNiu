@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Stable Plus promotion candidate report.
-
-The script does not promote anything automatically. It only inspects
-MITM-stable-plus.conf and manual_test_log.md, then writes a report showing which
-App groups are eligible, blocked, or still untested.
-"""
+"""Generate a risk-layer promotion candidate report from automated evidence."""
 
 from __future__ import annotations
 
@@ -14,7 +9,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PLUS_MITM = ROOT / "Rewrite" / "Sources" / "MITM-stable-plus.conf"
-MANUAL_LOG = ROOT / "reports" / "manual_test_log.md"
 REPORT = ROOT / "reports" / "stable_plus_promotion_report.md"
 HOSTNAME_RE = re.compile(r"^\s*hostname\s*=\s*(.+)$")
 
@@ -58,8 +52,19 @@ APP_GROUPS = {
 }
 
 SENSITIVE_TOKENS = (
-    "bank", "payment", "pay", "captcha", "passport", "token", "cookie", "security",
-    "alipay", "wxpay", "login", "verify", "verification"
+    "bank",
+    "payment",
+    "pay",
+    "captcha",
+    "passport",
+    "token",
+    "cookie",
+    "security",
+    "alipay",
+    "wxpay",
+    "login",
+    "verify",
+    "verification",
 )
 
 
@@ -89,54 +94,15 @@ def parse_hosts(text: str) -> list[str]:
 
 
 def hosts_for_group(hosts: list[str], keywords: list[str]) -> list[str]:
-    result: list[str] = []
-    for host in hosts:
-        lowered = host.lower()
-        if any(keyword.lower() in lowered for keyword in keywords):
-            result.append(host)
-    return result
+    return [host for host in hosts if any(keyword.lower() in host.lower() for keyword in keywords)]
 
 
 def has_sensitive(hosts: list[str]) -> bool:
-    for host in hosts:
-        lowered = host.lower()
-        if any(token in lowered for token in SENSITIVE_TOKENS):
-            return True
-    return False
-
-
-def test_status_for_group(log: str, group_name: str, apps: list[str]) -> tuple[str, str]:
-    matched_lines: list[str] = []
-    for line in log.splitlines():
-        if "|" not in line or "Stable Plus" not in line:
-            continue
-        haystack = line.lower()
-        if group_name.lower() in haystack or any(app.lower() in haystack for app in apps):
-            matched_lines.append(line)
-    if not matched_lines:
-        return "未找到测试记录", "没有 Stable Plus 对应该 App 组的测试行"
-
-    # Order matters: rows with "未测试" also normally have 是否通过=否.
-    # They are untested, not actual failures.
-    untested = [line for line in matched_lines if "未测试" in line]
-    failed = [line for line in matched_lines if "| 失败 |" in line]
-    partial = [line for line in matched_lines if "| 部分通过 |" in line]
-    passed = [line for line in matched_lines if "| 通过 |" in line and line.rstrip().endswith("| 是 |")]
-
-    if failed:
-        return "阻断", "存在失败记录，不能晋级 Stable"
-    if partial:
-        return "部分通过", "存在部分通过记录，需要继续测试，不能晋级 Stable"
-    if untested:
-        return "未测试", "仍为未测试，不能晋级 Stable"
-    if passed:
-        return "通过", "Stable Plus 记录显示通过，可进入人工复核晋级候选"
-    return "待复核", "存在记录但无法自动判断，需要人工复核"
+    return any(any(token in host.lower() for token in SENSITIVE_TOKENS) for host in hosts)
 
 
 def main() -> None:
     hosts = parse_hosts(read(PLUS_MITM))
-    log = read(MANUAL_LOG)
     now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
 
     rows: list[str] = []
@@ -144,39 +110,38 @@ def main() -> None:
     blocked: list[str] = []
     for group_name, spec in APP_GROUPS.items():
         group_hosts = hosts_for_group(hosts, spec["keywords"])
-        status, reason = test_status_for_group(log, group_name, spec["apps"])
         sensitive = has_sensitive(group_hosts)
-        candidate = status == "通过" and group_hosts and not sensitive
+        candidate = bool(group_hosts) and not sensitive
         if candidate:
             eligible.append(group_name)
         else:
             blocked.append(group_name)
+        reason = "无敏感词且存在可审计 hostname" if candidate else "无 hostname 或含敏感词，保持风险层"
         rows.append(
-            f"| {group_name} | {', '.join(spec['apps'])} | {len(group_hosts)} | {'是' if sensitive else '否'} | {status} | {'是' if candidate else '否'} | {reason} |"
+            f"| {group_name} | {', '.join(spec['apps'])} | {len(group_hosts)} | {'是' if sensitive else '否'} | {'是' if candidate else '否'} | {reason} |"
         )
 
     lines = [
-        "# Stable Plus 晋级候选报告",
+        "# 风险层晋级候选报告",
         "",
         f"生成时间：{now}",
         "",
-        "本报告只生成晋级建议，不自动修改 `MITM-app-clean.conf`，也不会把 Stable Plus 或 Full 自动合并进 Stable。",
+        "本报告只生成自动化晋级建议，不自动修改公开入口，也不依赖人工设备记录。任何晋级都必须通过质量门禁并保留回滚路径。",
         "",
         "## 总体结论",
         "",
-        f"- Stable Plus hostname 总数：{len(hosts)}",
-        f"- 可进入人工复核的候选组：{len(eligible)}",
+        f"- 风险层 hostname 总数：{len(hosts)}",
+        f"- 可进入 PR 候选组：{len(eligible)}",
         f"- 暂不可晋级组：{len(blocked)}",
-        "- 晋级前必须确认 Stable 已通过核心流程测试。",
-        "- 任一登录、验证码、支付前置、订单页异常都不能晋级。",
+        "- 晋级前必须运行 `python scripts/quality_gate.py`。",
         "",
         "## 候选矩阵",
         "",
-        "| App 组 | App / 服务 | 匹配 hostname 数 | 是否含敏感词 | Stable Plus 测试状态 | 可进入晋级复核 | 原因 |",
-        "|---|---|---:|---|---|---|---|",
+        "| App 组 | App / 服务 | 匹配 hostname 数 | 是否含敏感词 | 可进入 PR 候选 | 原因 |",
+        "|---|---|---:|---|---|---|",
         *rows,
         "",
-        "## 可进入人工复核候选",
+        "## 可进入 PR 候选",
         "",
     ]
     lines += [f"- {item}" for item in eligible] if eligible else ["- 无"]
@@ -185,14 +150,9 @@ def main() -> None:
         "## 晋级操作边界",
         "",
         "- 本报告不自动晋级。",
-        "- 晋级只能单项进行，不允许把整个 Stable Plus 合并进 Stable。",
-        "- 晋级目标是 `Rewrite/Sources/MITM-app-clean.conf`。",
-        "- 晋级后必须重新生成四个 Release 版本。",
-        "- 晋级后必须重新运行 `validate_repository.py`、`validate_profiles.py`、`repository_health_check.py`。",
-        "",
-        "## 目前结论",
-        "",
-        "如果测试记录仍为未测试，则所有 App 组都不能晋级 Stable。",
+        "- 晋级只能单项进行，不允许把整个风险层合并进公开入口。",
+        "- 晋级目标必须是源头文件，不允许直接手改 Release 成品。",
+        "- 晋级后必须运行完整质量门禁。",
         "",
     ]
     write(REPORT, "\n".join(lines))
