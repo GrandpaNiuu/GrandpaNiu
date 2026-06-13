@@ -38,6 +38,7 @@
 ||adserviceretry.kugou.com^
 ||adsmind.gdtimg.com^
 ||adsmind.ugdtimg.com^
+||adsrv.kurogames.com^
 ||adstats.tencentmusic.com^
 ||adui.tg.meitu.com^
 ||advert.mafengwo.cn^
@@ -91,6 +92,7 @@
 ||images.pinduoduo.com^
 ||imgad0.pcauto.com.cn^
 ||imgad0.pconline.com.cn^
+||impression.biligame.com^
 ||ios.bugly.qq.com^
 ||ios.video.mpush.qq.com^
 ||ipv4.kkmh.com^

@@ -85,6 +85,7 @@ payload:
   - DOMAIN,adsmind.gdtimg.com
   - DOMAIN,adsmind.ugdtimg.com
   - DOMAIN,adsp.xunlei.com
+  - DOMAIN,adsrv.kurogames.com
   - DOMAIN,adstats.tencentmusic.com
   - DOMAIN,adui.tg.meitu.com
   - DOMAIN,adv-adlog.variflight.com
@@ -187,6 +188,7 @@ payload:
   - DOMAIN,img.auction-ads.wpscdn.cn
   - DOMAIN,imgad0.pcauto.com.cn
   - DOMAIN,imgad0.pconline.com.cn
+  - DOMAIN,impression.biligame.com
   - DOMAIN,ios.bugly.qq.com
   - DOMAIN,ios.video.mpush.qq.com
   - DOMAIN,ipv4.kkmh.com

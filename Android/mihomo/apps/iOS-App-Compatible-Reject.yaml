@@ -39,6 +39,7 @@ payload:
   - DOMAIN,adserviceretry.kugou.com
   - DOMAIN,adsmind.gdtimg.com
   - DOMAIN,adsmind.ugdtimg.com
+  - DOMAIN,adsrv.kurogames.com
   - DOMAIN,adstats.tencentmusic.com
   - DOMAIN,adui.tg.meitu.com
   - DOMAIN,advert.mafengwo.cn
@@ -92,6 +93,7 @@ payload:
   - DOMAIN,images.pinduoduo.com
   - DOMAIN,imgad0.pcauto.com.cn
   - DOMAIN,imgad0.pconline.com.cn
+  - DOMAIN,impression.biligame.com
   - DOMAIN,ios.bugly.qq.com
   - DOMAIN,ios.video.mpush.qq.com
   - DOMAIN,ipv4.kkmh.com
