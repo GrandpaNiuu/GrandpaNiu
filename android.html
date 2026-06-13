@@ -352,15 +352,15 @@
     <header>
       <div class="eyebrow">GrandpaNiu · Android Rules</div>
       <h1>Android 单一入口</h1>
-      <p class="lead">普通用户只导入下面这一个主规则集。它已经聚合 Android 原生规则、iOS 通用兼容层和 iOS App 兼容增强层，尽量像 iOS Fusion 一样保持一个公开入口。</p>
-      <div class="notice">Android 客户端格式不统一，所以仓库底层仍会生成多种兼容文件；但公开导入页只主推一个入口，其他文件仅保留给高级用户排查。</div>
+      <p class="lead">所有 Android 规则层已经合并到各客户端主输出里。普通用户优先使用 Mihomo 主规则集；sing-box、AdGuard、v2rayNG 只保留同一套合并规则的格式版本。</p>
+      <div class="notice">不要再单独叠加 iOS 兼容层、单 App 包或零散增强包。主输出已经合并这些安全可迁移规则，重复导入只会增加误伤和排查难度。</div>
     </header>
 
     <section class="section" id="main-entry">
       <h2 class="section-title">唯一推荐入口</h2>
       <article class="card primary">
         <h2>GrandpaNiu Android 主规则集</h2>
-        <p>适合 Mihomo、Clash Meta、FlClash 等支持 rule-provider 的客户端。这个入口不会覆盖你的节点订阅和策略组，只把净化规则作为远程规则集加入现有配置。</p>
+        <p>适合 Mihomo、Clash Meta、FlClash 等支持 rule-provider 的客户端。这个入口已经合并 Android 原生规则、iOS 通用兼容层和 iOS App 兼容增强层，不需要再导入其他增强包。</p>
         <div class="tags">
           <span class="tag">推荐</span>
           <span class="tag">单一入口</span>
@@ -372,7 +372,7 @@
           <button class="badge-btn blue" type="button" onclick="copyText(MIHOMO_PROVIDER_SNIPPET)"><span class="label">复制配置片段</span><span class="name">YAML</span></button>
         </div>
         <code class="link">https://grandpaniuu.github.io/GrandpaNiu/Android/mihomo/GrandpaNiu-Ads.yaml</code>
-        <div class="danger">不要再额外重复导入 iOS-Compatible-Reject 或 iOS-App-Compatible-Reject。它们已经进入主规则集，重复启用只会增加排查难度。</div>
+        <div class="danger">这是 Android 的唯一推荐入口。sing-box、AdGuard、v2rayNG 是同一套合并规则的其他格式，不是需要重复叠加的增强包。</div>
       </article>
     </section>
 
@@ -393,52 +393,45 @@
 rules:
   - RULE-SET,grandpaniu_ads,REJECT
   - MATCH,节点选择</code></pre>
-          <div class="notice">规则必须放在 MATCH、GEOIP 和普通代理分流规则之前。Android Clash Meta / Clash Mi 如果开启了“分应用代理”，部分 App 可能不会经过规则，请优先关闭分应用代理后测试。</div>
+          <div class="notice">规则必须放在 MATCH、GEOIP 和普通代理分流规则之前。主规则集已经是合并输出，不需要再额外导入单 App 包或 iOS 兼容层。</div>
+          <div class="danger">
+            <strong>安卓 Clash Meta / Clash Mi 使用注意：</strong>
+            <ul>
+              <li>使用 Clash Meta / Clash Mi 导入安卓配置后，需要关闭「分应用代理」</li>
+              <li>如果开启「分应用代理」，部分 App 可能不会经过代理规则</li>
+              <li>可能导致模块不生效、去广告无效、YouTube / Bilibili / 今日头条等模块异常、规则没有命中</li>
+              <li>建议关闭分应用代理，让 Clash 接管全部应用流量</li>
+              <li>修改后请重启 Clash Meta / Clash Mi，并重新打开需要测试的 App</li>
+            </ul>
+          </div>
         </div>
       </details>
     </section>
 
     <section class="section" id="advanced">
-      <h2 class="section-title">高级兼容区</h2>
+      <h2 class="section-title">保留格式版本</h2>
       <details>
-        <summary>仅排查或特殊客户端使用，不作为公开主入口</summary>
+        <summary>sing-box / AdGuard / v2rayNG 合并版</summary>
         <div class="details-body">
+          <div class="notice">下面三个文件和 Mihomo 主入口是同一套合并规则的不同格式。只在对应客户端里使用一个，不要跨格式重复启用。</div>
           <div class="advanced-grid">
             <div class="mini">
-              <h3>完整配置版</h3>
-              <p>没有现成节点配置时才考虑使用，可能覆盖原配置。</p>
-              <div class="actions"><button class="badge-btn gray" type="button" onclick="copyText(FULL_CONFIG_LINK)"><span class="label">复制</span><span class="name">Full</span></button></div>
-            </div>
-            <div class="mini">
-              <h3>App 规则索引</h3>
-              <p>查看单 App 文件和组合包，不建议普通用户全开。</p>
-              <div class="actions"><a class="badge-btn gray" href="Android/apps.md"><span class="label">打开</span><span class="name">Apps</span></a></div>
-            </div>
-            <div class="mini">
               <h3>sing-box</h3>
-              <p>rule-set JSON，需要手动放入自己的 sing-box 配置。</p>
+              <p>合并后的 rule-set JSON，需要手动放入自己的 sing-box 配置。</p>
               <div class="actions"><button class="badge-btn gray" type="button" onclick="copyText(SINGBOX_LINK)"><span class="label">复制</span><span class="name">JSON</span></button></div>
             </div>
             <div class="mini">
               <h3>AdGuard</h3>
-              <p>DNS 过滤文本，只能做域名级拦截。</p>
+              <p>合并后的 DNS 过滤文本，只能做域名级拦截。</p>
               <div class="actions"><button class="badge-btn gray" type="button" onclick="copyText(ADGUARD_LINK)"><span class="label">复制</span><span class="name">TXT</span></button></div>
             </div>
             <div class="mini">
               <h3>v2rayNG</h3>
-              <p>routing 片段，不是完整节点订阅，需要手动合并。</p>
+              <p>合并后的 routing 片段，不是完整节点订阅，需要手动合并。</p>
               <div class="actions"><button class="badge-btn gray" type="button" onclick="copyText(V2RAYNG_ROUTING_LINK)"><span class="label">复制</span><span class="name">routing</span></button></div>
             </div>
-            <div class="mini">
-              <h3>iOS 兼容层</h3>
-              <p>主入口已包含。这里只用于单独排查规则来源。</p>
-              <div class="actions">
-                <button class="badge-btn gray" type="button" onclick="copyText(IOS_COMPAT_MIHOMO_LINK)"><span class="label">通用</span><span class="name">iOS</span></button>
-                <button class="badge-btn gray" type="button" onclick="copyText(IOS_APP_COMPAT_MIHOMO_LINK)"><span class="label">App</span><span class="name">iOS</span></button>
-              </div>
-            </div>
           </div>
-          <div class="danger">高级区文件不要和主入口重复启用。遇到图片不加载、登录异常、白屏、播放异常时，先停用额外兼容文件，只保留主入口排查。</div>
+          <div class="danger">这里保留的是客户端格式版本，不是额外增强层。遇到图片不加载、登录异常、白屏、播放异常时，只保留当前客户端对应的一个合并版排查。</div>
         </div>
       </details>
     </section>
@@ -447,7 +440,7 @@ rules:
       <h2 class="section-title">边界说明</h2>
       <div class="card">
         <p>Android 版只迁移域名、关键词、IP、DNS 和 routing 规则，不包含 iOS / Surge / Shadowrocket 的 Script、MITM、URL Rewrite、Header Rewrite、Body Rewrite 能力。登录、支付、银行、验证码、视频播放、图片 CDN 保护链路不会被迁移成 Android 拦截规则。</p>
-        <div class="notice">如果你只想“像 iOS 一样一个入口”，就只使用本页的主规则集。其他文件存在是为了兼容不同 Android 客户端和维护排查，不是给普通用户逐个导入的版本线。</div>
+        <div class="notice">如果你只想“像 iOS 一样一个入口”，就只使用本页的 Mihomo 主规则集。sing-box、AdGuard、v2rayNG 只是保留格式版本，不是新的规则分支。</div>
       </div>
     </section>
 
@@ -457,18 +450,15 @@ rules:
   <nav class="bottom-nav" aria-label="底部导航">
     <a class="active" href="#top">顶部</a>
     <a href="#main-entry">主入口</a>
-    <a href="#advanced">高级</a>
+    <a href="#advanced">格式</a>
   </nav>
 
   <script>
     const BASE = "https://grandpaniuu.github.io/GrandpaNiu";
     const ADS_RULESET_LINK = `${BASE}/Android/mihomo/GrandpaNiu-Ads.yaml`;
-    const FULL_CONFIG_LINK = `${BASE}/Android/mihomo/GrandpaNiu-Android-Full.yaml`;
     const SINGBOX_LINK = `${BASE}/Android/sing-box/GrandpaNiu-Ads.json`;
     const ADGUARD_LINK = `${BASE}/Android/adguard/GrandpaNiu-DNS.txt`;
     const V2RAYNG_ROUTING_LINK = `${BASE}/Android/v2rayng/GrandpaNiu-v2rayng-routing.json`;
-    const IOS_COMPAT_MIHOMO_LINK = `${BASE}/Android/mihomo/apps/iOS-Compatible-Reject.yaml`;
-    const IOS_APP_COMPAT_MIHOMO_LINK = `${BASE}/Android/mihomo/apps/iOS-App-Compatible-Reject.yaml`;
     const MIHOMO_PROVIDER_SNIPPET = `rule-providers:
   grandpaniu_ads:
     type: http
