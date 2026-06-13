@@ -80,6 +80,7 @@ jobs:
             python3 scripts/validate_remote_rule_syntax.py
             python3 scripts/validate_governance_extensions.py
             python3 scripts/validate_repository.py
+            python3 scripts/quality_gate.py
           }
 
           for attempt in 1 2 3; do

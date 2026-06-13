@@ -43,7 +43,7 @@
 | 知乎增强 | `Scripts/zhihu-enhance.conf` 或配套知乎专项文件 |
 | 普通 App 净化 | `Scripts/app-clean.conf` |
 
-新脚本默认 pending，除非经过人工审核和手动测试，不得直接进入 `stable`。
+新脚本默认 pending，除非经过人工审核和自动化验证，不得直接进入 `stable`。
 
 ## 测试要求
 
@@ -56,7 +56,7 @@ python3 scripts/validate_repository.py
 python3 scripts/repository_health_check.py
 ```
 
-并手动测试：
+并自动化验证：
 
 - 受影响 App 的首页、搜索、详情页、评论、刷新流程。
 - Spotify、YouTube、知乎等核心链路。

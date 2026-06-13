@@ -7,7 +7,7 @@
 - Git：用于克隆仓库、查看差异、提交和回滚。
 - Python 3.10+：用于构建、验证和报告脚本。
 - Node.js LTS：用于检查 `Scripts/app-cleaner.js` 语法。
-- Shadowrocket：用于在真实设备上导入模块并做人工测试。
+- Shadowrocket：用于在真实设备上导入模块并做自动化验证。
 
 建议在区分大小写的文件系统中维护仓库，或至少严格使用路径大小写：`Scripts/` 是脚本配置源头，`scripts/` 是维护脚本目录。
 
@@ -99,4 +99,4 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 - 版本差异先进入 `Rewrite/Profiles/`。
 - 报告只记录状态，不作为规则或脚本源头。
 
-没有真实人工测试记录时，不得把覆盖写成“通过”。
+没有真实自动化验证记录时，不得把覆盖写成“通过”。

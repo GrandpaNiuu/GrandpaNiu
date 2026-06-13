@@ -143,7 +143,7 @@ def category_for(name: str, value: str, attrs: dict[str, str]) -> tuple[str, str
         return "可合并候选", "普通 App JSON 清理脚本，可评估合并到统一 app-cleaner"
     if any(token in haystack for token in RULE_CANDIDATE_TOKENS) and requires_body != "1":
         return "可改规则候选", "疑似广告/统计/开屏接口，可评估规则化"
-    return "需要人工复核", "无法静态判断，需结合脚本内容和真机测试"
+    return "需要人工复核", "无法静态判断，需结合脚本内容和自动化验证"
 
 
 def parse_script_entries() -> list[dict[str, str]]:
@@ -217,7 +217,7 @@ def main() -> None:
         "",
         f"生成时间：{now}",
         "",
-        "本报告只做静态分析，不删除、不合并、不禁用任何脚本。减少脚本前必须先完成真机测试和回滚准备。",
+        "本报告只做静态分析，不删除、不合并、不禁用任何脚本。减少脚本前必须先完成自动化验证和回滚准备。",
         "",
         "## 总体统计",
         "",

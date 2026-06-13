@@ -41,6 +41,8 @@ REQUIRED_FILES = [
     "scripts/factory_finalize.py",
     "scripts/validate_repository.py",
     "scripts/validate_profiles.py",
+    "tools/generate_automated_quality_evidence.py",
+    "reports/automated_quality_evidence.md",
 ]
 
 REQUIRED_WORKFLOWS = [
@@ -184,6 +186,7 @@ def main() -> None:
     fusion_text = read(ROOT / "Rewrite" / "Profiles" / "fusion.conf")
 
     validator_ok, validator_output = run_command([sys.executable, "scripts/validate_repository.py"])
+    evidence_ok, evidence_output = run_command([sys.executable, "tools/generate_automated_quality_evidence.py"])
     node_bin = node_executable()
     if node_bin:
         js_ok, js_output = run_command([node_bin, "--check", "Scripts/app-cleaner.js"])
@@ -216,6 +219,8 @@ def main() -> None:
         blockers.append("Fusion profile is not finalized")
     if not validator_ok:
         blockers.append("validate_repository.py failed")
+    if not evidence_ok:
+        blockers.append("automated quality evidence generation failed")
     if not js_ok:
         blockers.append("node --check Scripts/app-cleaner.js failed")
 
@@ -229,6 +234,7 @@ def main() -> None:
         f"- Root and Release identical: {'yes' if root_text == release_text else 'no'}",
         f"- Fusion profile finalized: {'yes' if 'name = fusion' in fusion_text and 'single_public_entry = true' in fusion_text else 'no'}",
         f"- validate_repository.py: {'passed' if validator_ok else 'failed'}",
+        f"- automated quality evidence: {'passed' if evidence_ok else 'failed'}",
         f"- node --check Scripts/app-cleaner.js: {'passed' if js_ok else 'failed'}",
         f"- Script entries: {len(names)}",
         f"- MITM hostnames: {len(hosts)}",
@@ -250,6 +256,12 @@ def main() -> None:
         "",
         "```text",
         validator_output,
+        "```",
+        "",
+        "## automated quality evidence Output",
+        "",
+        "```text",
+        evidence_output,
         "```",
         "",
         "## node --check Output",

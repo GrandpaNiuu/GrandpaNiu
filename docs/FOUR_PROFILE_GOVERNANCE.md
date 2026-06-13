@@ -36,7 +36,7 @@ Root 与 Release 必须保持一致。四个 Release 版本必须都能构建。
 ```text
 Stable Plus 单项测试
 -> 人工确认常用流程正常
--> 记录到 reports/manual_test_log.md
+-> 记录到 reports/automated_quality_evidence.md
 -> 刷新 reports/app_status_matrix.md
 -> 生成晋级审查材料
 -> 单项进入 Stable

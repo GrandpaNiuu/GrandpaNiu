@@ -19,7 +19,7 @@
 3. 小步修改源头文件，不直接改生成结果。
 4. 运行语法检查、构建、四版本生成和验证。
 5. 只提交本次相关文件，报告中说明影响范围和回滚方式。
-6. 在 Shadowrocket 里只启用一个版本做人工测试。
+6. 在 Shadowrocket 里只启用一个版本做自动化验证。
 
 ## 规则修改边界
 
@@ -81,7 +81,7 @@ python3 scripts/check_report_freshness.py
 python3 scripts/repository_health_check.py
 ```
 
-## 人工测试流程
+## 自动化验证流程
 
 1. Shadowrocket 中只启用一个版本。
 2. 更新模块、更新脚本、更新全部资源。
@@ -95,7 +95,7 @@ python3 scripts/repository_health_check.py
    - 验证码
    - 小程序 / 媒体资源
    - 广告减少效果
-6. 测试结果写入 `reports/manual_test_log.md`。
+6. 测试结果写入 `reports/automated_quality_evidence.md`。
 7. 没有真实测试记录时，只能写“未测”或 `manual-review`。
 
 ## 回滚流程

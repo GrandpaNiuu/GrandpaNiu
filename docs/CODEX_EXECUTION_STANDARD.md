@@ -17,7 +17,7 @@
 | 级别 | 任务类型 | 允许修改 | 禁止修改 | 验收重点 |
 |---|---|---|---|---|
 | P0 | 构建失败、验证失败、报告阻断、Root/Release 不一致 | 构建脚本、验证脚本、报告生成脚本、对应源头文件 | 扩大 Stable MITM、批量删除 REJECT、启用未知脚本 | `validate_repository.py` 通过，blocking stale 为 0 |
-| P1 | 治理文档、报告闭环、workflow 状态、人工测试计划 | `docs/`、`reports/`、报告生成脚本、README 入口 | 修改广告规则语义、扩大 hostname、伪造人工测试 | 文档一致，报告可追溯 |
+| P1 | 治理文档、报告闭环、workflow 状态、自动化验证计划 | `docs/`、`reports/`、报告生成脚本、README 入口 | 修改广告规则语义、扩大 hostname、伪造自动化验证 | 文档一致，报告可追溯 |
 | P2 | 单项 App 修复、Stable Plus 测试、候选源评估 | 单个 App 对应源头、Stable Plus 或 pending 配置、审计报告 | 整体合并 Stable Plus/Full，批量迁移 MITM | 单项可回滚，有测试计划 |
 | P3 | 脚本瘦身、低风险规则优化、性能优化 | 单个低风险 JSON cleaner、单条规则、单个候选源 | request-body/protobuf/binary-body 脚本硬合并 | `node --check` 通过，回滚路径明确 |
 
@@ -53,7 +53,7 @@
 - 把 Full 或 Stable Plus 整体合并进 Stable。
 - 启用未知、混淆、request-body、Cookie、Token、会员权益脚本。
 - 手改 `Ronghemokuai.sgmodule` 但不改源头。
-- 没有真实测试却把 `manual_test_log.md` 或 `app_status_matrix.md` 写成通过。
+- 没有真实测试却把 `automated_quality_evidence.md` 或 `app_status_matrix.md` 写成通过。
 - 在一个 PR 中同时处理多个无关风险单元。
 
 ## Stable 准入标准

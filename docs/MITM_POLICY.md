@@ -19,7 +19,7 @@ core 层变更后必须测试 Spotify、YouTube、知乎。
 
 App 净化层用于常见 App 的广告净化，包括信息流、开屏、弹窗、横幅和活动卡片。
 
-这类 hostname 必须有明确 App、明确接口用途和手动测试计划。
+这类 hostname 必须有明确 App、明确接口用途和自动化验证计划。
 
 ### extended
 

@@ -1,6 +1,6 @@
 # 质量门禁标准
 
-本文件定义 GrandpaNiu 仓库的阻断检查、提醒检查和上线标准。
+本文件定义 GrandpaNiu 仓库的阻断检查、提醒检查和上线标准。发布判断统一依赖自动化质量证据，不依赖人工设备记录。
 
 ## 质量门禁目标
 
@@ -28,19 +28,18 @@
 5. 缺少 `youtube.response`。
 6. 缺少 `zhihu-enhance`。
 7. `update-url` 不正确。
-8. `Scripts/spotify.conf` 混入普通 App 脚本。
-9. `Scripts/youtube.conf` 混入普通 App 脚本。
-10. `Rules/spotify-direct.list` 出现 `REJECT`。
-11. 存在重复脚本名。
-12. 存在重复 MITM hostname。
-13. `sources.json` 或 `candidates.json` JSON 格式错误。
-14. 启用的远程源使用短链、代理、镜像或非 HTTPS。
-15. README 本地链接失效。
-16. 出现 `.claude`、`CLAUDE.md` 等工具痕迹文件。
-17. `RULE-SET` 远程内容下载失败、下载到 HTML/404、空文件或混入不兼容规则语法。
-18. `DOMAIN-SET` 远程内容不是纯域名集合，或混入带逗号规则行。
-19. 发现 Quantumult X 的 `host`、`host-suffix`、`host-keyword`、`ip6-cidr` 被直接作为 Shadowrocket `RULE-SET` 引用。
-20. 未经单项测试和人工审查，将 Full 或 Stable Plus 内容批量晋级 Stable。
+8. `Scripts/spotify.conf` 或 `Scripts/youtube.conf` 混入不相关 App 脚本。
+9. 存在重复脚本名或重复 MITM hostname。
+10. `sources.json` 或 `candidates.json` JSON 格式错误。
+11. 启用的远程源使用短链、代理、镜像或非 HTTPS。
+12. README 本地链接失效。
+13. 出现 `.claude`、`CLAUDE.md` 等工具痕迹文件。
+14. `RULE-SET` 远程内容下载失败、下载到 HTML/404、空文件或混入不兼容规则语法。
+15. `DOMAIN-SET` 远程内容不是纯域名集合，或混入带逗号规则行。
+16. 发现 Quantumult X 的 `host`、`host-suffix`、`host-keyword`、`ip6-cidr` 被直接作为 Shadowrocket `RULE-SET` 引用。
+17. 未经单项 PR 审查和自动化质量门禁，将 Full 或风险层内容批量晋级公开入口。
+18. 任一跟踪文本文件包含 UTF-8 BOM。
+19. 缺少或未刷新 `reports/automated_quality_evidence.md`。
 
 ## 提醒项
 
@@ -51,47 +50,33 @@
 3. `Script` 行数快速增加。
 4. `MITM hostname` 数量快速增加。
 5. 知乎、YouTube、Bilibili 等高频接口新增 Body Rewrite。
-6. Shadowrocket 电池占比超过 10%。
-7. 用户反馈登录、支付、验证码异常。
-8. `lite.conf` 长期未测试。
-9. `reports/manual_test_log.md` 长期没有新增真实测试记录。
+6. 用户反馈登录、支付、验证码异常。
+7. `reports/automated_quality_evidence.md` 长期未刷新。
 
 ## 必跑命令
 
-修改源头文件后至少运行：
+修改源头文件后运行统一质量门禁：
 
-```text
-python3 -m py_compile scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/audit_repair_invalid_sources.py scripts/collect_upstreams.py scripts/validate_repository.py scripts/validate_remote_rule_syntax.py scripts/validate_governance_extensions.py scripts/repository_health_check.py
-python3 scripts/convert_quanx_rules.py
-python3 scripts/build_module.py --build --profile fusion
-python3 scripts/factory_finalize.py --sync-root
-python3 scripts/build_release_variants.py
-python3 scripts/validate_remote_rule_syntax.py
-python3 scripts/validate_governance_extensions.py
-python3 scripts/validate_repository.py
-python3 scripts/repository_health_check.py
+```bash
+python scripts/quality_gate.py
 ```
 
-## 发布前人工测试
-
-每次大改后测试：
+质量门禁内部会运行核心命令，包括：
 
 ```text
-Shadowrocket 更新模块
-Shadowrocket 更新脚本
-Shadowrocket 更新全部资源
-Stable 与 Lite 对照测试
-Spotify 连续播放 10 首歌
-YouTube 首页 / 搜索 / 播放 / Shorts
-知乎首页 / 回答页 / 搜索页
-Bilibili 首页 / 搜索 / 播放页
-淘宝 / 京东 / 拼多多基础浏览、商品图、搜索、订单前置
-微信发图 / 收图 / 朋友圈 / 公众号图片 / 小程序 / 支付前置页
-支付宝 / 银行 App 登录、验证码、支付前置流程
-高德 / 百度地图搜索、定位、路线规划
+python -m py_compile scripts/*.py Rewrite/Generator/Builder.py tools/*.py
+node --check Scripts/app-cleaner.js
+python -m unittest discover -s tests
+python scripts/convert_quanx_rules.py
+python scripts/build_module.py --build --profile fusion
+python scripts/factory_finalize.py --sync-root
+python scripts/build_release_variants.py
+python scripts/validate_remote_rule_syntax.py
+python scripts/validate_governance_extensions.py
+python scripts/validate_repository.py
+python scripts/repository_health_check.py
+python tools/generate_automated_quality_evidence.py
 ```
-
-测试结果必须进入 `reports/manual_test_log.md`。没有真实测试记录时，不得在报告中写“通过”。
 
 ## 远程规则语法门禁
 
@@ -101,7 +86,7 @@ Bilibili 首页 / 搜索 / 播放页
 
 - 根目录模块。
 - Release 主模块。
-- Stable / Stable Plus / Lite / Full 四个独立发布文件。
+- 兼容 Release 文件。
 - `Rules/aggressive-ad-sources.list`。
 - `Rules/original-remote-rule-sets.list`。
 - `Rewrite/Remotes/sources.json` 中启用的远程规则。
@@ -111,23 +96,24 @@ Bilibili 首页 / 搜索 / 播放页
 - 上游是 QuanX 格式时，必须先用 `scripts/convert_quanx_rules.py` 转换到 `Rules/converted/` 后再引用。
 - 不允许把 QuanX 原始 `host` / `host-suffix` / `host-keyword` 直接放入 Shadowrocket `RULE-SET`。
 - 仓库自己的 Pages / raw 链接由校验器优先映射到本地文件，避免 workflow 读到旧缓存。
-- 出现失败时，优先修源头，不要只手动修改 Release 成品。
+- 出现失败时，优先修源头，不要只修改 Release 成品。
 
 ## Full 冻结边界
 
 Full 是排查版，不是候选发布池。
 
 - Full 不允许作为默认发布。
-- Full 不允许整体合并进 Stable。
-- Full 中任何规则、脚本、MITM 要进入 Stable，必须按单项 App / 单类规则 / 单组 hostname 提交晋级。
-- 晋级必须带：影响范围、测试记录、回滚路径、误伤风险说明。
-- 未经测试的 Full 内容只能保持排查用途。
+- Full 不允许整体合并进 Stable 或 Fusion。
+- Full 中任何规则、脚本、MITM 要进入公开入口，必须按单项 App / 单类规则 / 单组 hostname 提交晋级。
+- 晋级必须带：影响范围、自动化质量证据、回滚路径、误伤风险说明。
+- 未经质量门禁的 Full 内容只能保持排查用途。
 
 ## 自动化对应关系
 
 | 检查 | 文件 / 工作流 |
 |---|---|
 | 构建主模块 | `.github/workflows/module-factory-build.yml` |
+| 统一质量门禁 | `scripts/quality_gate.py` |
 | QuanX 规则转换 | `scripts/convert_quanx_rules.py` |
 | 远程规则语法阻断校验 | `scripts/validate_remote_rule_syntax.py` |
 | 治理扩展阻断校验 | `scripts/validate_governance_extensions.py` |
@@ -137,7 +123,7 @@ Full 是排查版，不是候选发布池。
 | 仓库健康检查 | `.github/workflows/repository-health.yml` |
 | 阻断校验 | `scripts/validate_repository.py` |
 | 健康报告 | `scripts/repository_health_check.py` |
-| 真机测试记录 | `reports/manual_test_log.md` |
+| 自动化验证记录 | `reports/automated_quality_evidence.md` |
 | 远程规则语法报告 | `reports/remote_rule_syntax_report.md` |
 
 ## 处理原则

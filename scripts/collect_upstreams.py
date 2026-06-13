@@ -497,11 +497,11 @@ def make_report(results: list[CandidateResult], before_equal: bool, after_equal:
     else:
         lines.append("- 无")
     lines.append("")
-    lines.append("## 是否需要人工测试")
+    lines.append("## 是否需要自动化验证")
     if added:
         lines.append("- 是。请更新模块并测试受影响 App，同时检查 Spotify、YouTube 和知乎核心流程。")
     else:
-        lines.append("- 本次没有新增源，人工测试可按需执行。")
+        lines.append("- 本次没有新增源，自动化验证可按需执行。")
     lines.append("")
     return "\n".join(lines)
 
