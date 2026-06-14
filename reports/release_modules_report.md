@@ -39,10 +39,10 @@
 ## GrandpaNiu Bilibili
 - Source: `Rewrite/Sources/Apps/bilibili.conf`
 - Discovery: manual
-- Rule: 13
-- Body Rewrite: 12
+- Rule: 15
+- Body Rewrite: 11
 - Map Local: 8
-- Script: 6
+- Script: 5
 - MITM: 1
 
 ## GrandpaNiu RedNote

@@ -725,6 +725,10 @@ def validate(text: str) -> None:
         hosts = mitm_hostnames(text)
         if not hosts:
             stop("[MITM] hostname is missing")
+        if "-grpc.biliapi.net" in hosts:
+            stop("MITM must not exclude grpc.biliapi.net; Bilibili protobuf cleanup requires it")
+        if "grpc.biliapi.net" not in hosts:
+            stop("MITM must include grpc.biliapi.net for Bilibili protobuf cleanup")
         mitm_dupes = duplicates(hosts)
         if mitm_dupes:
             stop("duplicate MITM hostnames: " + ", ".join(mitm_dupes[:20]))

@@ -169,6 +169,10 @@ BILIBILI_SCRIPT_LINES = {
 }
 BILIBILI_EXTRA_RULE_LINES = [
     "DOMAIN,bsbsb.top,DIRECT,pre-matching",
+    r'URL-REGEX,"^http:\/\/upos-sz-static\.bilivideo\.com\/ssaxcode\/\w{2}\/\w{2}\/\w{32}-1-SPLASH",REJECT-TINYGIF,extended-matching',
+    r'URL-REGEX,"^http:\/\/[\d\.]+:8000\/v1\/resource\/\w{32}-1-SPLASH",REJECT-TINYGIF,extended-matching',
+    "DOMAIN-KEYWORD,api.biliapi,REJECT,pre-matching,extended-matching",
+    "DOMAIN-KEYWORD,app.biliapi,REJECT,pre-matching,extended-matching",
     "DOMAIN,cm.bilibili.com,REJECT,pre-matching",
     "DOMAIN,cm.bilibili.net,REJECT,pre-matching",
     "DOMAIN,ad.bilibili.com,REJECT,pre-matching",
@@ -842,7 +846,10 @@ def postprocess_bilibili_source(text: str) -> str:
             continue
         elif stripped.startswith("bilibili.skin"):
             continue
-        elif "pgc\\/view\\/v2\\/app\\/season" in stripped and "data.payment" in stripped:
+        elif (
+            ("pgc\\/view\\/v2\\/app\\/season" in stripped or "pgc/view/v2/app/season" in stripped)
+            and ("payment" in stripped or ("pay" in stripped and "ment" in stripped))
+        ):
             continue
         elif " data-type=text data=\"{" in stripped:
             continue

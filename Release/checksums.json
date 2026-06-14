@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-14T06:33:39.865092Z",
+  "generated_at": "2026-06-14T13:24:04.638321Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 686841,
-      "sha256": "a8751176cb458a56f742f0c972a98fae273d4051e81b2c9e4b7c3a2c68028d71"
+      "size": 686684,
+      "sha256": "2fdc256d82228ff4374d75f07c1fb61f48ee43351e119fe15411d0a17f4b1610"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -135,8 +135,8 @@
     },
     {
       "path": "Release/Modules/bilibili.sgmodule",
-      "size": 10832,
-      "sha256": "9b680b4dcbc46147d235f7d34b2b460d14bc9d8d09aae08c8e4c67d3f2868175"
+      "size": 10694,
+      "sha256": "95306be831007bf88a7f2d0c0e3c975c392f94d4fb089ec58cf8b300d7d3f30c"
     },
     {
       "path": "Release/Modules/bitqiu-pan.sgmodule",
@@ -1140,23 +1140,23 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 686841,
-      "sha256": "a8751176cb458a56f742f0c972a98fae273d4051e81b2c9e4b7c3a2c68028d71"
+      "size": 686684,
+      "sha256": "2fdc256d82228ff4374d75f07c1fb61f48ee43351e119fe15411d0a17f4b1610"
     },
     {
       "path": "Release/Rules.conf",
-      "size": 48500,
-      "sha256": "2bfb775c75f3aab9065e04768336a669f5324a4eaee35d7f3e126fa45fd4d6c9"
+      "size": 48726,
+      "sha256": "7c6699ed48aff4cd4ca3709ef66af7377d629450c76231e603df17111961dc0f"
     },
     {
       "path": "Release/RulesGroup.conf",
-      "size": 48579,
-      "sha256": "2d187b3274ca324368582519d505b747fbaf17f735ba4a0db284a2ea4ca798ab"
+      "size": 48805,
+      "sha256": "5f29c810d1b2cb5aed03956f755a7a106eb1b04e5142409c33c89a0b23c6b2c5"
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 686841,
-      "sha256": "a8751176cb458a56f742f0c972a98fae273d4051e81b2c9e4b7c3a2c68028d71"
+      "size": 686684,
+      "sha256": "2fdc256d82228ff4374d75f07c1fb61f48ee43351e119fe15411d0a17f4b1610"
     },
     {
       "path": "Release/Stable/README.md",
@@ -1165,18 +1165,18 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 686841,
-      "sha256": "a8751176cb458a56f742f0c972a98fae273d4051e81b2c9e4b7c3a2c68028d71"
+      "size": 686684,
+      "sha256": "2fdc256d82228ff4374d75f07c1fb61f48ee43351e119fe15411d0a17f4b1610"
     },
     {
       "path": "Release/Stable/Rules.conf",
-      "size": 48500,
-      "sha256": "2bfb775c75f3aab9065e04768336a669f5324a4eaee35d7f3e126fa45fd4d6c9"
+      "size": 48726,
+      "sha256": "7c6699ed48aff4cd4ca3709ef66af7377d629450c76231e603df17111961dc0f"
     },
     {
       "path": "Release/Stable/RulesGroup.conf",
-      "size": 48579,
-      "sha256": "2d187b3274ca324368582519d505b747fbaf17f735ba4a0db284a2ea4ca798ab"
+      "size": 48805,
+      "sha256": "5f29c810d1b2cb5aed03956f755a7a106eb1b04e5142409c33c89a0b23c6b2c5"
     },
     {
       "path": "Web/README.md",
@@ -1186,7 +1186,7 @@
     {
       "path": "Web/catalog.md",
       "size": 57405,
-      "sha256": "1aa076cbe0a898c4f37bf011384e6733ba9e15a93c0597d78a9b70122aaafbef"
+      "sha256": "834c738257e77c40127c043c495f367b4b644ae5458449ed9ab4f5cc87d1da71"
     },
     {
       "path": "Web/index.html",
@@ -1196,7 +1196,7 @@
     {
       "path": "Web/modules.html",
       "size": 218190,
-      "sha256": "f625d81850245f76656328976711e76d924e6c9c2859a9cb458f20df0149e203"
+      "sha256": "aa05744f609548320488c39ac07f73824bca769263d040882367e52fc17d3538"
     },
     {
       "path": "Web/registry.md",
@@ -1206,7 +1206,7 @@
     {
       "path": "Web/release-links.json",
       "size": 77286,
-      "sha256": "faceb04b1839a3db857dc994902e9f147720b3ac5b24422f1fe002d6ef82ab37"
+      "sha256": "c45dc2a01403eb73a8854089cddcee6f5a4e9eb54419c8e52d8e15d186cd032f"
     },
     {
       "path": "Web/remotes.md",

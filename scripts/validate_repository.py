@@ -308,6 +308,10 @@ def validate_mitm() -> None:
     for host in ("spclient.wg.spotify.com", "*.spclient.spotify.com"):
         if host not in hosts:
             fail(f"root module missing Spotify MITM hostname: {host}")
+    if "-grpc.biliapi.net" in hosts or "-grpc.biliapi.net" in text:
+        fail("root module must not exclude grpc.biliapi.net; Bilibili protobuf cleanup requires MITM")
+    if "grpc.biliapi.net" not in hosts:
+        fail("root module missing Bilibili gRPC MITM hostname: grpc.biliapi.net")
     dupes = sorted({host for host in hosts if hosts.count(host) > 1})
     if dupes:
         fail("duplicate MITM hostnames: " + ", ".join(dupes[:20]))
