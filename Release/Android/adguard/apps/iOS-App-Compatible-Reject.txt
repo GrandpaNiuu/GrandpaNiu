@@ -196,6 +196,8 @@
 ||zlink.ugsdk.cn^
 ||zlsdk.1rtb.net^
 ||zxid-m.mobileservice.cn^
+/api.biliapi/
+/app.biliapi/
 /bili-ad/
 /biliad/
 /biligame-ad/

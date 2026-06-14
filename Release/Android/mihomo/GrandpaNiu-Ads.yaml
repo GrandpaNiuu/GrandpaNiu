@@ -354,6 +354,8 @@ payload:
   - DOMAIN-KEYWORD,adsmogo
   - DOMAIN-KEYWORD,adsrvmedia
   - DOMAIN-KEYWORD,adtrack
+  - DOMAIN-KEYWORD,api.biliapi
+  - DOMAIN-KEYWORD,app.biliapi
   - DOMAIN-KEYWORD,bili-ad
   - DOMAIN-KEYWORD,biliad
   - DOMAIN-KEYWORD,biligame-ad

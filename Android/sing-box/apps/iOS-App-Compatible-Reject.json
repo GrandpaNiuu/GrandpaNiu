@@ -221,6 +221,8 @@
         "wmlog.meituan.com"
       ],
       "domain_keyword": [
+        "api.biliapi",
+        "app.biliapi",
         "bili-ad",
         "biliad",
         "biligame-ad",

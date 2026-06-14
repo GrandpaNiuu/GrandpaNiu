@@ -197,6 +197,8 @@ payload:
   - DOMAIN,zlink.ugsdk.cn
   - DOMAIN,zlsdk.1rtb.net
   - DOMAIN,zxid-m.mobileservice.cn
+  - DOMAIN-KEYWORD,api.biliapi
+  - DOMAIN-KEYWORD,app.biliapi
   - DOMAIN-KEYWORD,bili-ad
   - DOMAIN-KEYWORD,biliad
   - DOMAIN-KEYWORD,biligame-ad

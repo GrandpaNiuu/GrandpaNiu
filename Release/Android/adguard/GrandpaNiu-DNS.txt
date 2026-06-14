@@ -353,6 +353,8 @@
 /adsmogo/
 /adsrvmedia/
 /adtrack/
+/api.biliapi/
+/app.biliapi/
 /bili-ad/
 /biliad/
 /biligame-ad/
