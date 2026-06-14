@@ -6,9 +6,7 @@ payload:
 
   - DOMAIN,aaid.uyunad.com
   - DOMAIN,abtest3-misc.zijieapi.com
-  - DOMAIN,abtk.pinduoduo.com
   - DOMAIN,abyss.cyapi.cn
-  - DOMAIN,accscdn.m.taobao.com
   - DOMAIN,acdn.adnxs.com
   - DOMAIN,acs4baichuan.m.taobao.com
   - DOMAIN,ad-analysis.pconline.com.cn
@@ -87,7 +85,6 @@ payload:
   - DOMAIN,adsmind.gdtimg.com
   - DOMAIN,adsmind.ugdtimg.com
   - DOMAIN,adsp.xunlei.com
-  - DOMAIN,adsrv.kurogames.com
   - DOMAIN,adstats.tencentmusic.com
   - DOMAIN,adui.tg.meitu.com
   - DOMAIN,adv-adlog.variflight.com
@@ -109,7 +106,6 @@ payload:
   - DOMAIN,afd.baidu.com
   - DOMAIN,afdconf.baidu.com
   - DOMAIN,amap-aos-info-nogw.amap.com
-  - DOMAIN,amdc.m.taobao.com
   - DOMAIN,analytics.umetrip.com
   - DOMAIN,api-ad-product.huxiu.com
   - DOMAIN,api-ad.kajicam.com
@@ -126,7 +122,6 @@ payload:
   - DOMAIN,applog.uc.cn
   - DOMAIN,apps-booster.xiaopeng.com
   - DOMAIN,appupdates.189.cn
-  - DOMAIN,at.pinduoduo.com
   - DOMAIN,atrace.chelaile.net.cn
   - DOMAIN,axxd.xmseeyouyima.com
   - DOMAIN,business.msstatic.com
@@ -331,7 +326,6 @@ payload:
   - DOMAIN,tracking.intl.miui.com
   - DOMAIN,tracklog.58.com
   - DOMAIN,tte.meituan.com
-  - DOMAIN,tunion-api.m.taobao.com
   - DOMAIN,u1.img.mobile.sina.cn
   - DOMAIN,ucdc.upaas.quark.cn
   - DOMAIN,umengacs.m.taobao.com
@@ -405,7 +399,6 @@ payload:
   - DOMAIN-KEYWORD,xiaohongshu-ad
   - DOMAIN-KEYWORD,zhihu-ad
   - DOMAIN-SUFFIX,3rd.t.sohu.com
-  - DOMAIN-SUFFIX,636949.xyz
   - DOMAIN-SUFFIX,888.tv.sohu.com
   - DOMAIN-SUFFIX,ad.10010.com
   - DOMAIN-SUFFIX,ad.csdn.net
@@ -529,7 +522,6 @@ payload:
   - DOMAIN-SUFFIX,imp.zol.com.cn
   - DOMAIN-SUFFIX,inmobi.cn
   - DOMAIN-SUFFIX,irs01.com
-  - DOMAIN-SUFFIX,ivenq.life
   - DOMAIN-SUFFIX,iyes.youku.com
   - DOMAIN-SUFFIX,js.zol.com.cn
   - DOMAIN-SUFFIX,jzt.jd.com
@@ -587,7 +579,6 @@ payload:
   - DOMAIN-SUFFIX,umengcloud.com
   - DOMAIN-SUFFIX,umtrack.com
   - DOMAIN-SUFFIX,unityads.unity3d.com
-  - DOMAIN-SUFFIX,ut.taobao.com
   - DOMAIN-SUFFIX,v.gdt.qq.com
   - DOMAIN-SUFFIX,v.smtcdns.com
   - DOMAIN-SUFFIX,v1d.szbdyd.com

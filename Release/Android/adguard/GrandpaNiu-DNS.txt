@@ -5,9 +5,7 @@
 
 ||aaid.uyunad.com^
 ||abtest3-misc.zijieapi.com^
-||abtk.pinduoduo.com^
 ||abyss.cyapi.cn^
-||accscdn.m.taobao.com^
 ||acdn.adnxs.com^
 ||acs4baichuan.m.taobao.com^
 ||ad-analysis.pconline.com.cn^
@@ -86,7 +84,6 @@
 ||adsmind.gdtimg.com^
 ||adsmind.ugdtimg.com^
 ||adsp.xunlei.com^
-||adsrv.kurogames.com^
 ||adstats.tencentmusic.com^
 ||adui.tg.meitu.com^
 ||adv-adlog.variflight.com^
@@ -108,7 +105,6 @@
 ||afd.baidu.com^
 ||afdconf.baidu.com^
 ||amap-aos-info-nogw.amap.com^
-||amdc.m.taobao.com^
 ||analytics.umetrip.com^
 ||api-ad-product.huxiu.com^
 ||api-ad.kajicam.com^
@@ -125,7 +121,6 @@
 ||applog.uc.cn^
 ||apps-booster.xiaopeng.com^
 ||appupdates.189.cn^
-||at.pinduoduo.com^
 ||atrace.chelaile.net.cn^
 ||axxd.xmseeyouyima.com^
 ||business.msstatic.com^
@@ -330,7 +325,6 @@
 ||tracking.intl.miui.com^
 ||tracklog.58.com^
 ||tte.meituan.com^
-||tunion-api.m.taobao.com^
 ||u1.img.mobile.sina.cn^
 ||ucdc.upaas.quark.cn^
 ||umengacs.m.taobao.com^
@@ -404,7 +398,6 @@
 /xiaohongshu-ad/
 /zhihu-ad/
 ||3rd.t.sohu.com^
-||636949.xyz^
 ||888.tv.sohu.com^
 ||ad.10010.com^
 ||ad.csdn.net^
@@ -514,7 +507,6 @@
 ||imp.zol.com.cn^
 ||inmobi.cn^
 ||irs01.com^
-||ivenq.life^
 ||iyes.youku.com^
 ||js.zol.com.cn^
 ||jzt.jd.com^

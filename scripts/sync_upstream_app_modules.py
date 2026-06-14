@@ -150,6 +150,48 @@ SUSPICIOUS_PATTERNS = [
         r"(支付|登录|验证码|银行).{0,12}(绕过|破解|解锁)",
     )
 ]
+BILIBILI_SPARKLE_SOURCE_URL = "https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule"
+BILIBILI_ARGUMENT_LINES = [
+    "#!arguments=displayUpList:auto,purifyComment:1,optimizeRequest:1,sponsorBlock:bilibili.airborne,showCreatorHub:0,logLevel:error",
+    "#!arguments-desc=Bilibili defaults keep splash/feed/comment ad cleanup enabled while avoiding account, payment and VIP rewrites.",
+]
+BILIBILI_UNSAFE_RULE_PREFIXES = (
+    "DOMAIN,api.biliapi.com,REJECT",
+    "DOMAIN,app.biliapi.com,REJECT",
+    "DOMAIN,api.biliapi.net,REJECT",
+    "DOMAIN,app.biliapi.net,REJECT",
+)
+BILIBILI_SCRIPT_LINES = {
+    "airborne": r'bilibili.airborne = type=http-request,pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.community\.service\.dm\.v1\.DM\/DmSegMobile$,argument="{"logLevel":"error"}",requires-body=1,binary-body-mode=1,max-size=-1,engine=webview,timeout=10,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.request.js',
+    "request": r'bilibili.request = type=http-request,pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(?:app\.viewunite\.v1\.View\/View|main\.community\.reply\.v1\.Reply\/MainList)$,argument="{"purifyComment":true,"logLevel":"error"}",requires-body=1,binary-body-mode=1,max-size=-1,engine=webview,timeout=10,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.request.js',
+    "json": r'bilibili.json = type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/(?:resource\/show\/tab\/v2|v2\/(?:splash\/(?:list|show|event\/list2)|feed\/index(?:\/story)?))\?,argument="{"showCreatorHub":false}",requires-body=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.json.js',
+    "protobuf": r'bilibili.protobuf = type=http-response,pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(?:app\.(?:show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|view(?:unite)?\.v1\.View\/(?:View|RelatesFeed))|polymer\.app\.search\.v1\.Search\/SearchAll|community\.service\.dm\.v1\.DM\/DmView|main\.community\.reply\.v1\.Reply\/MainList)$,argument="{"displayUpList":"auto","purifyComment":true,"sponsorBlock":"bilibili.airborne","logLevel":"error"}",requires-body=1,binary-body-mode=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.response.js',
+}
+BILIBILI_EXTRA_RULE_LINES = [
+    "DOMAIN,bsbsb.top,DIRECT,pre-matching",
+    "DOMAIN,cm.bilibili.com,REJECT,pre-matching",
+    "DOMAIN,cm.bilibili.net,REJECT,pre-matching",
+    "DOMAIN,ad.bilibili.com,REJECT,pre-matching",
+    "DOMAIN,ad-game.bilibili.com,REJECT,pre-matching",
+    "DOMAIN,impression.biligame.com,REJECT,pre-matching",
+    "DOMAIN-SUFFIX,ad.bilibili.com,REJECT,pre-matching",
+    "DOMAIN-KEYWORD,bili-ad,REJECT,pre-matching",
+    "DOMAIN-KEYWORD,biliad,REJECT,pre-matching",
+    "DOMAIN-KEYWORD,biligame-ad,REJECT,pre-matching",
+    "AND,((DOMAIN-SUFFIX,chat.bilibili.com),(OR,((DOMAIN-KEYWORD,stun),(DOMAIN-KEYWORD,tracker)))),REJECT,pre-matching",
+]
+BILIBILI_EXTRA_MAP_LOCAL_LINES = [
+    r'^https://(?:app|api).bilibili.com/x/v2/splash/ header="content-type: application/json; charset=utf-8|bili-status-code: 0" data-type=text data="{"code":0,"message":"0","ttl":1,"data":{"list":[],"show":[],"event_list":[],"max_time":0,"min_interval":31536000}}"',
+    r'^https://(?:app|api).bilibili.com/x/(?:resource/(?:top/activity|patch/tab(?:/v2)?)|v2/search/square|vip/ads/materials|v2/ad/index)? header="content-type: application/json; charset=utf-8|bili-status-code: -404" data-type=text data="{"code":-404,"message":"-404","ttl":1,"data":null}"',
+]
+BILIBILI_EXTRA_BODY_REWRITE_LINES = [
+    r"""http-response-jq ^https://api.bilibili.com/x/pd-proxy/tracker? '.data[][]?="stun.chat.bilibili.com:3478"'""",
+    r"""http-response-jq ^https://api.bilibili.com/pgc/page/channel? '.data.modules |= map(select(.type != "TIP") | if .type == "BANNER" then .module_data.items |= map(select(.url | startswith("https://www.bilibili.com/blackboard/era/") | not)) else . end)'""",
+    r"""http-response-jq ^https://api.bilibili.com/pgc/page/(?:bangumi|cinema/tab)? '.result.modules |= if . then map(if (.style | startswith("tip")) or (.module_id | IN(241, 1283, 1441, 1284)) then .items = [] elif .style | startswith("banner") then .items |= if . then map(select(.link | contains("play"))) else [] end elif .style | startswith("function") then .items |= if . then map(select(.blink | startswith("bilibili"))) else [] end end) end'""",
+    r"""http-response-jq ^https://api.live.bilibili.com/xlive/(?:app-interface/v2/index/feed|app-room/v1/index/getInfoBy(?:Room|User))? '.data |= (del(.play_together_info, .play_together_info_v2, .activity_banner_info) | if .function_card then .function_card[] = null end | if .new_tab_info.outer_list then .new_tab_info.outer_list |= map(select(.biz_id != 33)) end | if .card_list then .card_list |= map(select(.card_type != "banner_v2")) end | reduce ([["show_reserve_status"], false], [["reserve_info", "show_reserve_status"], false], [["shopping_info", "is_show"], 0]) as [$path, $value] (.; if getpath($path) then setpath($path; $value) end))'""",
+    r"""http-response-jq ^https://(?:app|api).bilibili.com/x/v2/view(?:/unite)?? '.data |= (del(.cm,.cms,.ad_info,.ad_dislike,.special_cell,.activity_url,.banner,.banners,.cm_config,.relate_cm,.ad_reply,.ad_resource,.ad_tag,.ad_args,.commercial_info,.commerce,.ecommerce,.shopping_info,.shopping_card,.goods_info,.goods_card,.recommend_ad,.operation_card,.activity_banner_info,.middle_ad,.bottom_ad,.pop_ad) | if .relates then .relates |= map(select(((.card_goto? // "") | test("ad|cm|banner|mall|shop|goods") | not) and ((.goto? // "") | test("ad|cm|banner|mall|shop|goods") | not) and (.ad_cb? == null) and (.cm_mark? == null) and (((.uri? // "") | test("cm\.bilibili|ad\.bilibili|mall\.bilibili|bilicm|ad_|shopping|ecommerce|taobao|tmall|pinduoduo|pdd")) | not))) else . end | if .cms then .cms = [] else . end)'""",
+    r"""http-response-jq ^https://(?:app|api).bilibili.com/x/v2/feed/index(?:/story)?? '.data.items |= if . then map(select(((.card_goto? // "") | test("ad|cm|banner|mall|shop|goods") | not) and ((.goto? // "") | test("ad|cm|banner|mall|shop|goods") | not) and (.ad_info? == null) and (.ad_cb? == null) and (.cm_mark? == null))) else [] end'""",
+]
 
 
 class SyncError(RuntimeError):
@@ -763,6 +805,102 @@ def converted_source(record: dict[str, Any], upstream_text: str) -> tuple[str, s
     return "\n".join(lines).rstrip() + "\n", upstream
 
 
+def postprocess_bilibili_source(text: str) -> str:
+    """Keep the latest Sparkle Bilibili cleanup active without risky account rewrites."""
+    lines: list[str] = []
+    inserted_arguments = False
+    for raw in text.splitlines():
+        line = raw.rstrip()
+        stripped = line.strip()
+        if stripped.startswith("# source-url:"):
+            line = f"# source-url: {BILIBILI_SPARKLE_SOURCE_URL}"
+            stripped = line.strip()
+        elif stripped.startswith("# upstream-name:"):
+            line = "# upstream-name: Bilibili enhanced (kokoryh/Sparkle)"
+            stripped = line.strip()
+        elif stripped.startswith("#!arguments"):
+            continue
+        elif stripped.startswith("DOMAIN,bsbsb.top,"):
+            line = "DOMAIN,bsbsb.top,DIRECT,pre-matching"
+            stripped = line.strip()
+        elif any(stripped.startswith(prefix) for prefix in BILIBILI_UNSAFE_RULE_PREFIXES):
+            continue
+        elif stripped.startswith("bilibili.skin"):
+            continue
+        elif "pgc\\/view\\/v2\\/app\\/season" in stripped and "data.payment" in stripped:
+            continue
+        elif "bilibili.protobuf.request.js" in stripped and r"DM\/DmSegMobile" in stripped:
+            line = BILIBILI_SCRIPT_LINES["airborne"]
+            stripped = line.strip()
+        elif "bilibili.protobuf.request.js" in stripped and r"Reply\/MainList" in stripped:
+            line = BILIBILI_SCRIPT_LINES["request"]
+            stripped = line.strip()
+        elif stripped.startswith("bilibili.json ="):
+            line = BILIBILI_SCRIPT_LINES["json"]
+            stripped = line.strip()
+        elif stripped.startswith("bilibili.protobuf ="):
+            line = BILIBILI_SCRIPT_LINES["protobuf"]
+            stripped = line.strip()
+        elif "bilibili.protobuf.js" in stripped:
+            line = line.replace("bilibili.protobuf.js", "bilibili.protobuf.response.js")
+            stripped = line.strip()
+
+        if "{{{" in stripped or "account\\/" in stripped or "myinfo" in stripped:
+            continue
+        lines.append(line)
+        if stripped.startswith("# risk:") and not inserted_arguments:
+            lines.extend(BILIBILI_ARGUMENT_LINES)
+            inserted_arguments = True
+    return apply_bilibili_overlay("\n".join(lines).rstrip() + "\n")
+
+
+def bilibili_line_key(line: str) -> str:
+    key = line.strip().replace("\\/", "/").replace("\\.", ".")
+    key = re.sub(r"\s+", " ", key)
+    return key
+
+
+def merge_bilibili_section(additions: list[str], existing: list[str]) -> list[str]:
+    out: list[str] = []
+    seen: set[str] = set()
+    for raw in [*additions, *existing]:
+        line = raw.rstrip()
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        key = bilibili_line_key(stripped)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(line)
+    return out
+
+
+def apply_bilibili_overlay(text: str) -> str:
+    meta, sections = split_module(text)
+    sections["Rule"] = merge_bilibili_section(BILIBILI_EXTRA_RULE_LINES, sections.get("Rule", []))
+    sections["Map Local"] = merge_bilibili_section(BILIBILI_EXTRA_MAP_LOCAL_LINES, sections.get("Map Local", []))
+    sections["Body Rewrite"] = merge_bilibili_section(
+        BILIBILI_EXTRA_BODY_REWRITE_LINES,
+        sections.get("Body Rewrite", []),
+    )
+    lines = [line.rstrip() for line in meta if line.strip()]
+    for section in ALLOWED_SECTIONS:
+        section_lines = clean_section_lines(sections.get(section, []))
+        if not section_lines:
+            continue
+        lines.append("")
+        lines.append(f"[{section}]")
+        lines.extend(section_lines)
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def postprocess_converted_source(record: dict[str, Any], text: str) -> str:
+    if str(record.get("id")) == "bilibili":
+        return postprocess_bilibili_source(text)
+    return text
+
+
 def backup_target(target: Path, module_id: str, timestamp: str) -> str:
     if not target.exists():
         return ""
@@ -814,6 +952,7 @@ def sync_records(records: list[dict[str, Any]], config_only: bool) -> tuple[list
             continue
         try:
             converted, upstream = converted_source(record, upstream_text)
+            converted = postprocess_converted_source(record, converted)
         except ValueError as exc:
             record["last_sync_mode"] = "convert-failed"
             errors.append({"id": module_id, "reason": str(exc)})

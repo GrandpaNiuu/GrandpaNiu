@@ -30,6 +30,8 @@ REQUIRED_MARKERS = (
     "spotify-proto",
     "youtube.response",
     "zhihu-enhance",
+    "bilibili.protobuf.request.js",
+    "bilibili.protobuf.response.js",
     EXPECTED_UPDATE_URL,
 )
 
@@ -112,6 +114,12 @@ PROTECTED_REJECT_TOKENS = (
     "hudong.alicdn.com",
     "baichuan-sdk.alicdn.com",
     "nbsdk-baichuan.alicdn.com",
+)
+BILIBILI_DISALLOWED_BODY_REWRITE_TOKENS = (
+    "data.payment",
+    "/x/v2/account/mine",
+    "vip_section",
+    "modular_vip_section",
 )
 TEXT_FILE_SUFFIXES = {
     ".conf",
@@ -210,6 +218,11 @@ def validate_root_release() -> None:
     for line in active_lines(root_text):
         upper = line.upper()
         lowered = line.lower()
+        normalized = lowered.replace("\\/", "/")
+        if "bilibili" in normalized:
+            for token in BILIBILI_DISALLOWED_BODY_REWRITE_TOKENS:
+                if token in normalized:
+                    fail(f"root module contains disallowed Bilibili account/payment rewrite token: {token}")
         if "REJECT" not in upper:
             continue
         if line.startswith("AND,") and "PROTOCOL,UDP" in upper and (

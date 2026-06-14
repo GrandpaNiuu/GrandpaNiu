@@ -272,14 +272,14 @@
     {
       "id": "bilibili",
       "name": "Bilibili",
-      "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Official/bilibili%E5%8E%BB%E5%B9%BF%E5%91%8A.official.sgmodule",
+      "source_url": "https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule",
       "target": "Rewrite/Sources/Apps/bilibili.conf",
       "enabled": true,
       "direct_commit": true,
       "risk": "high",
       "backup": true,
-      "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "unchanged"
+      "upstream_project": "kokoryh/Sparkle",
+      "last_sync_mode": "postprocessed"
     },
     {
       "id": "bilibili-comic",
