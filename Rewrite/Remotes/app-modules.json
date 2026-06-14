@@ -271,7 +271,7 @@
     },
     {
       "id": "bilibili",
-      "name": "Bilibili",
+      "name": "Bilibili Strong",
       "source_url": "https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule",
       "target": "Rewrite/Sources/Apps/bilibili.conf",
       "enabled": true,
@@ -279,7 +279,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "kokoryh/Sparkle",
-      "last_sync_mode": "postprocessed"
+      "last_sync_mode": "updated"
     },
     {
       "id": "bilibili-comic",
@@ -363,7 +363,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "cat-ear-fm",
@@ -843,7 +843,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "huxiu",
@@ -927,7 +927,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "jd",
@@ -1923,7 +1923,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "spotify",
@@ -2595,7 +2595,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "zhuan-zhuan",

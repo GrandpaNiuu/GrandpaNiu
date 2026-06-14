@@ -1,22 +1,18 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-06-13T17:51:09Z
+- generated: 2026-06-14T17:54:51Z
 - modules: 220
 - enabled: 212
 - direct_commit: 212
-- updated: 5
-- skipped: 215
+- updated: 1
+- skipped: 219
 - blocked: 0
 - errors: 0
 
 ## Updated
 | id | upstream | backup | source |
 | --- | --- | --- | --- |
-| caiyun-weather | 彩云天气去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E5%BD%A9%E4%BA%91%E5%A4%A9%E6%B0%94%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| hupu | 虎扑去广告 |  | https://kelee.one/Tool/Loon/Lpx/HUPU_remove_ads.lpx |
-| ithome | IT之家去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/IT%E4%B9%8B%E5%AE%B6%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| soul | Soul去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/Soul%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| zhihu | 知乎去广告 | backup/upstream-app-modules/zhihu/20260613-175043.conf | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E7%9F%A5%E4%B9%8E%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
+| bilibili | Bilibili增强 | backup/upstream-app-modules/bilibili/20260614-175435.conf | https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule |
 
 ## Skipped
 | id | reason |
@@ -43,13 +39,13 @@
 | baidu-wenku | unchanged |
 | baidupan | unchanged |
 | beike | unchanged |
-| bilibili | unchanged |
 | bilibili-comic | unchanged |
 | bitqiu-pan | unchanged |
 | bodian-music | unchanged |
 | boo-hee | unchanged |
 | cainiao | unchanged |
 | caixin-media | unchanged |
+| caiyun-weather | unchanged |
 | cat-ear-fm | unchanged |
 | cclive | unchanged |
 | cece | unchanged |
@@ -89,12 +85,14 @@
 | hanting-hotels | unchanged |
 | heartide-brain-wave | unchanged |
 | hkdou-yin | unchanged |
+| hupu | unchanged |
 | huxiu | unchanged |
 | huya | disabled |
 | i-mai-cai | unchanged |
 | i-qi-yi-video | unchanged |
 | i-reader | unchanged |
 | i-reader-dejian | unchanged |
+| ithome | unchanged |
 | jd | unchanged |
 | jdwaimai | unchanged |
 | jia-kao-bao-dian | unchanged |
@@ -177,6 +175,7 @@
 | snow-camera | unchanged |
 | snowball | unchanged |
 | soda-music | unchanged |
+| soul | unchanged |
 | spotify | unchanged |
 | su-zhou-citizen-card | unchanged |
 | taobao | unchanged |
@@ -232,6 +231,7 @@
 | zaker | unchanged |
 | zdm | unchanged |
 | zhi-lian-zhao-pin | unchanged |
+| zhihu | unchanged |
 | zhuan-zhuan | unchanged |
 | zong-heng | unchanged |
 | zui-you | unchanged |
