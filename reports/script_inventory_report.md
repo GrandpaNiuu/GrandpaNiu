@@ -1,26 +1,27 @@
 # 脚本清单与瘦身分析报告
 
-生成时间：2026-06-14 23:50:00 +0800
+生成时间：2026-06-14 23:50:22 +0800
 
 本报告只做静态分析，不删除、不合并、不禁用任何脚本。减少脚本前必须先完成自动化验证和回滚准备。
 
 ## 总体统计
 
-- 脚本入口总数：26
+- 脚本入口总数：38
 - 识别到的 App / 服务方向数量：15
 - 重复脚本名：0
 - 多入口共用同一 script-path：0
 
 ## 分类统计
 
-- 必须独立保留：6
+- 必须独立保留：7
 - 可合并候选：7
-- 可改规则候选：2
-- 需要人工复核：11
+- 可改规则候选：5
+- 需要人工复核：19
 
 ## 来源统计
 
 - zirawell R-Store：15
+- raw.perzikkop.com：12
 - app2smile：5
 - fmz200 wool_scripts：3
 - local：2
@@ -29,6 +30,7 @@
 ## 文件分布
 
 - `Scripts/app-clean.conf`：20
+- `Scripts/qingrex-miniapp-app-ad.conf`：12
 - `Scripts/spotify.conf`：2
 - `Scripts/app-cleaner-active.conf`：1
 - `Scripts/app2smile-qqnews-stable-plus.conf`：1
@@ -53,6 +55,9 @@
 
 - `cmp_allad_027_airchina`：未识别 / 通用，不依赖响应 body，后续可人工评估是否改为 Rule / URL Rewrite
 - `cmp_allad_074_adunion`：淘宝，不依赖响应 body，后续可人工评估是否改为 Rule / URL Rewrite
+- `全家微会员去广告`：未识别 / 通用，疑似广告/统计/开屏接口，可评估规则化
+- `茶颜悦色去广告`：未识别 / 通用，疑似广告/统计/开屏接口，可评估规则化
+- `一点点+去广告`：未识别 / 通用，疑似广告/统计/开屏接口，可评估规则化
 
 ## 全量脚本清单
 
@@ -80,6 +85,18 @@
 | `cmp_block_095_rrtv_json` | Scripts/app-clean.conf:21 | 未识别 / 通用 | http-response | 1 | fmz200 wool_scripts | 需要人工复核 | 脚本逻辑较大或涉及深层结构，不能仅凭入口判断为低风险 | `^https?:\/\/api\.rr\.tv\/ad\/getAll` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/rrtv_json.js` |
 | `app-cleaner-active-json-clean` | Scripts/app-cleaner-active.conf:10 | VGTime / 快看漫画 / 闲鱼 | http-response | 1 | local | 需要人工复核 | 无法静态判断，需结合脚本内容和自动化验证 | `^https?:\/\/.*(news\.ssp\.qq\.com\|r\.inews\.qq\.com\|vgtime\.com\|17gwx\.com\|gw\.m\.163\.com` | `https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/app-cleaner.js` |
 | `app2smile_qqnews_json` | Scripts/app2smile-qqnews-stable-plus.conf:5 | QQ 新闻 | http-response | 1 | app2smile | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https:\/\/(news\.ssp\.qq\.com\/app\|r\.inews\.qq\.com\/(get(QQNewsUnreadList\|TagFeedList)\|` | `https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js` |
+| `企迈点单系统去广告` | Scripts/qingrex-miniapp-app-ad.conf:8 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 需要人工复核 | 无法静态判断，需结合脚本内容和自动化验证 | `^https:\/\/webapi\.qmai\.cn\/web\/catering\/design\/homePage-Config` | `https://raw.perzikkop.com/Scripts/MiniPrograms/kff.js` |
+| `EMS中国邮政物流速递去广告` | Scripts/qingrex-miniapp-app-ad.conf:11 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 需要人工复核 | 无法静态判断，需结合脚本内容和自动化验证 | `^https:\/\/ump\.ems\.com\.cn\/new-generation-extend\/redis\/pageInfoByChannel` | `https://raw.perzikkop.com/Scripts/MiniPrograms/ems.js` |
+| `小兔充充去广告` | Scripts/qingrex-miniapp-app-ad.conf:14 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 需要人工复核 | 无法静态判断，需结合脚本内容和自动化验证 | `^https:\/\/mapi\.xiaotucc\.com\/(mall\/main\|main_page\/index\/getActivity)` | `https://raw.perzikkop.com/Scripts/MiniPrograms/xiaotucc.js` |
+| `全家微会员去广告` | Scripts/qingrex-miniapp-app-ad.conf:17 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 可改规则候选 | 疑似广告/统计/开屏接口，可评估规则化 | `^https:\/\/minifm\.maxxipoint\.com\/banner\/list` | `https://raw.perzikkop.com/Scripts/MiniPrograms/FamilyMart.js` |
+| `罗森点点去广告` | Scripts/qingrex-miniapp-app-ad.conf:20 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 需要人工复核 | 无法静态判断，需结合脚本内容和自动化验证 | `^https:\/\/lawsonapi\.yorentown\.com\/area\/sh-lawson\/app\/v1\/home` | `https://raw.perzikkop.com/Scripts/MiniPrograms/lawson.js` |
+| `茶颜悦色去广告` | Scripts/qingrex-miniapp-app-ad.conf:23 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 可改规则候选 | 疑似广告/统计/开屏接口，可评估规则化 | `^https:\/\/miniapp\.sexytea2013\.com\/cms\/slot\/queryByCodes\?codes=INDEX_TOP_BANNER` | `https://raw.perzikkop.com/Scripts/MiniPrograms/chayanyuese_remove_ads.js` |
+| `COCO点单去广告` | Scripts/qingrex-miniapp-app-ad.conf:26 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 需要人工复核 | 无法静态判断，需结合脚本内容和自动化验证 | `^https:\/\/coco-com\.e\.verystar\.net\/v1\/home\/info` | `https://raw.perzikkop.com/Scripts/MiniPrograms/coco.js` |
+| `滴滴青桔去广告` | Scripts/qingrex-miniapp-app-ad.conf:29 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 需要人工复核 | 无法静态判断，需结合脚本内容和自动化验证 | `^https:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.homeConfig` | `https://raw.perzikkop.com/Scripts/MiniPrograms/qingju.js` |
+| `一点点+去广告` | Scripts/qingrex-miniapp-app-ad.conf:32 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 可改规则候选 | 疑似广告/统计/开屏接口，可评估规则化 | `^https:\/\/cappapi\.alittle-tea\.com\/open\?method=catering\.set\.ad` | `https://raw.perzikkop.com/Scripts/MiniPrograms/alittle-tea.js` |
+| `M Stand去广告` | Scripts/qingrex-miniapp-app-ad.conf:35 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 需要人工复核 | 无法静态判断，需结合脚本内容和自动化验证 | `^https:\/\/api\.prod\.dj\.mstand\.cn\/scrm\/mini\/app\/index\/info` | `https://raw.perzikkop.com/Scripts/MiniPrograms/M_Stand.js` |
+| `T3出行去广告` | Scripts/qingrex-miniapp-app-ad.conf:38 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 必须独立保留 | 涉及安全边界、账户状态或权益风险，不能合并进通用清理 | `^https:\/\/passenger\.t3go\.cn\/(solution\-\|common\-)?(passenger\-)?(activity\-\|app\-)?api` | `https://raw.perzikkop.com/Scripts/MiniPrograms/T3.js` |
+| `古茗去广告` | Scripts/qingrex-miniapp-app-ad.conf:41 | 未识别 / 通用 | http-response | true | raw.perzikkop.com | 需要人工复核 | 无法静态判断，需结合脚本内容和自动化验证 | `^https:\/\/newton\.gumingnc\.com\/newton-buyer\/newton\/buyer\/(ump\|touch\|external\/front)` | `https://raw.perzikkop.com/Scripts/MiniPrograms/ming.js` |
 | `spotify-json` | Scripts/spotify.conf:2 | Spotify | http-request | 0 | app2smile | 必须独立保留 | request-body 类处理风险较高，不能并入 response JSON cleaner | `^https:\/\/(spclient\.wg\.spotify\.com\|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\` | `https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js` |
 | `spotify-proto` | Scripts/spotify.conf:3 | Spotify | http-response | 1 | app2smile | 必须独立保留 | 二进制 body / protobuf 类处理，不能简单合并 | `^https:\/\/(spclient\.wg\.spotify\.com\|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/` | `https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js` |
 | `youtube.response` | Scripts/youtube.conf:1 | YouTube | http-response | 1 | Maasea | 必须独立保留 | 二进制 body / protobuf 类处理，不能简单合并 | `^https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse\|next\|player\|search\|reel\/reel` | `https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js` |
