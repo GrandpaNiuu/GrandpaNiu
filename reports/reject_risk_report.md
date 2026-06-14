@@ -1,19 +1,19 @@
 # REJECT 风险审计报告
 
-生成时间：2026-06-14 13:10:48 +0800
+生成时间：2026-06-14 13:11:11 +0800
 
 本报告只做分类审计，不会自动删除、注释或替换任何规则。高风险项需要先确认 Shadowrocket 日志和真实 App 行为，再做 source-first 修复。
 
 ## 总览
 
-- 活跃 REJECT 规则数：302
-- 明确广告域：72
-- 图片 / CDN 风险：9
-- HTTPDNS 风险：14
-- 微信 / 支付 / 银行风险：4
-- 国内核心 API 风险：27
-- 不确定规则：184
-- 需要人工复核总数：238
+- 活跃 REJECT 规则数：113
+- 明确广告域：31
+- 图片 / CDN 风险：7
+- HTTPDNS 风险：10
+- 微信 / 支付 / 银行风险：2
+- 国内核心 API 风险：12
+- 不确定规则：55
+- 需要人工复核总数：86
 
 ## 重点风险域检查
 
@@ -34,9 +34,9 @@
 | `jdimg.com` | 已精确保护或覆盖 | 0 | 默认 DIRECT 或人工复核，不建议 REJECT |
 | `biliimg.com` | 已精确保护或覆盖 | 0 | 默认 DIRECT 或人工复核，不建议 REJECT |
 | `hdslb.com` | 已精确保护或覆盖 | 0 | 默认 DIRECT 或人工复核，不建议 REJECT |
-| `meituan.net` | 已精确保护或覆盖 | 3 | 默认 DIRECT 或人工复核，不建议 REJECT |
+| `meituan.net` | 已精确保护或覆盖 | 1 | 默认 DIRECT 或人工复核，不建议 REJECT |
 | `dpfile.com` | 已精确保护或覆盖 | 0 | 默认 DIRECT 或人工复核，不建议 REJECT |
-| `httpdns` | 未发现 | 14 | 人工复核，不建议 pre-matching REJECT |
+| `httpdns` | 未发现 | 10 | 人工复核，不建议 pre-matching REJECT |
 | `dns.weixin` | 已精确保护或覆盖 | 0 | 人工复核，不建议 pre-matching REJECT |
 
 ## 明确广告域：可保留 REJECT
@@ -72,47 +72,6 @@
 - `DOMAIN,pp-cdnfile2pcdn.msstatic.com,REJECT,pre-matching`
 - `DOMAIN,rprain.log.mgtv.com,REJECT,pre-matching`
 - `DOMAIN,splash.yy.com,REJECT,pre-matching`
-- `DOMAIN,stat.youpin.mi.com,REJECT,pre-matching`
-- `DOMAIN,vstlog.17usoft.com,REJECT,pre-matching`
-- `DOMAIN,wgo.mmstat.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adcanvas.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adeng.hpplay.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adjust.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adnet.sohu.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adx-api.hupu.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adx.hupu.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,apilog.qbb6.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,beacon.sina.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,gdt.qq.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,medal.blog.csdn.net,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,mistat.xiaomi.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,ms.vipstatic.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,mstat.zol.com.cn,REJECT,pre-matching`
-- `URL-REGEX,^https?:\/\/mercury-gateway\.ixiaochuan\.cn\/mercury\/v1\/ad\/,REJECT-TINYGIF`
-- `URL-REGEX,^https?:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/album\/adBar\/,REJECT-TINYGIF`
-- `URL-REGEX,^https?:\/\/web-mmap-pay\.line-apps\.com\/tw\/liff\/campaign\/v1\/aggregate\/ad\/banner\/,REJECT-TINYGIF`
-- `URL-REGEX,^https?:\/\/w\.line\.me\/adp\/api\/ad\/v\d\/,REJECT-DROP`
-- `DOMAIN,adapi.izuiyou.com,REJECT,pre-matching`
-- `DOMAIN,adcdn.tencentmusic.com,REJECT,pre-matching`
-- `DOMAIN,adcdn6.tencentmusic.com,REJECT,pre-matching`
-- `DOMAIN,adexpo.tencentmusic.com,REJECT,pre-matching`
-- `DOMAIN,adproxy.autohome.com.cn,REJECT,pre-matching`
-- `DOMAIN,api-ad-product.huxiu.com,REJECT,pre-matching`
-- `DOMAIN,cdn.adapi.fotoable.com,REJECT,pre-matching`
-- `DOMAIN,ssp-adx.myzaker.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adbehavior.xmcdn.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adweb.xmcdn.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adwx.xmcdn.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adweb.wsa.xmcdn.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adwx.wsa.xmcdn.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adbehavior.wsa.xmcdn.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,admaster.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adview.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adxs.xmcdn.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,api-ad-product.huxiu.com,REJECT,pre-matching`
-- `DOMAIN-KEYWORD,admarvel,REJECT,pre-matching`
-- `DOMAIN-KEYWORD,adwo,REJECT,pre-matching`
-- `DOMAIN-KEYWORD,madmini,REJECT,pre-matching`
 
 ## 图片 / CDN：默认 DIRECT 或人工复核，不建议 REJECT
 
@@ -123,8 +82,6 @@
 - `DOMAIN,layout.meituan.net,REJECT,pre-matching`
 - `DOMAIN,nbsdk-baichuan.alicdn.com,REJECT,pre-matching`
 - `DOMAIN,ossgw.alicdn.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,d.meituan.net,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,lx.meituan.net,REJECT,pre-matching`
 
 ## HTTPDNS：人工复核，不建议 pre-matching REJECT
 
@@ -138,26 +95,16 @@
 - `DOMAIN,httpdnsmultiapivip.meituan.com,REJECT,pre-matching`
 - `DOMAIN,lofter.httpdns.c.163.com,REJECT,pre-matching`
 - `DOMAIN,music.httpdns.c.163.com,REJECT,pre-matching`
-- `DOMAIN,yuyin-httpdns.gslb.yy.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,httpdns.bilivideo.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,httpdns.meituan.com,REJECT,pre-matching`
-- `DOMAIN-KEYWORD,dnspod.meituan.httpdns,REJECT,pre-matching`
 
 ## 微信 / 支付 / 银行：默认保护，不直接 REJECT
 
 - `DOMAIN,iisp-oidea.mbs.boc.cn,REJECT,pre-matching`
 - `DOMAIN,iisp.mbs.boc.cn,REJECT,pre-matching`
-- `DOMAIN,yl.zh.cmbchina.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adv.ccb.com,REJECT,pre-matching`
 
 ## 国内核心 API：不建议 REJECT
 
 - `DOMAIN,afdconf.baidu.com,REJECT,pre-matching`
 - `DOMAIN,amap-aos-info-nogw.amap.com,REJECT,pre-matching`
-- `DOMAIN,api.biliapi.com,REJECT,pre-matching`
-- `DOMAIN,api.biliapi.net,REJECT,pre-matching`
-- `DOMAIN,app.biliapi.com,REJECT,pre-matching`
-- `DOMAIN,app.biliapi.net,REJECT,pre-matching`
 - `DOMAIN,dpmtpush.dianping.com,REJECT,pre-matching`
 - `DOMAIN,free-aos-cdn-image.amap.com,REJECT,pre-matching`
 - `DOMAIN,hlx.meituan.com,REJECT,pre-matching`
@@ -168,17 +115,6 @@
 - `DOMAIN,lc.map.baidu.com,REJECT,pre-matching`
 - `DOMAIN,lx0.meituan.com,REJECT,pre-matching`
 - `DOMAIN,r.dianping.com,REJECT,pre-matching`
-- `DOMAIN,tte.meituan.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,d.meituan.net,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,httpdns.meituan.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,lx.meituan.net,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,meituan.xn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,meituan.yoga,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,meituangov.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,wmlog.meituan.com,REJECT,pre-matching`
-- `DOMAIN-KEYWORD,dnspod.meituan.httpdns,REJECT,pre-matching`
-- `DOMAIN-KEYWORD,report.meituan,REJECT,pre-matching`
-- `AND,((PROTOCOL,QUIC),(DOMAIN,api.pinduoduo.com)),REJECT-NO-DROP`
 
 ## 不确定规则：pending / manual-review
 
@@ -237,72 +173,6 @@
 - `DOMAIN,sensors.umetrip.com.cn,REJECT,pre-matching`
 - `DOMAIN,smartop-sdkapi-ipv6.jiguang.cn,REJECT,pre-matching`
 - `DOMAIN,smartop-sdkapi.jiguang.cn,REJECT,pre-matching`
-- `DOMAIN,stun1.douyucdn.cn,REJECT,pre-matching`
-- `DOMAIN,stun1.qvb.qcloud.com,REJECT,pre-matching`
-- `DOMAIN,sugar.zhihu.com,REJECT,pre-matching`
-- `DOMAIN,ta-a.pinduoduo.com,REJECT,pre-matching`
-- `DOMAIN,ta.pinduoduo.com,REJECT,pre-matching`
-- `DOMAIN,th-a.pinduoduo.com,REJECT,pre-matching`
-- `DOMAIN,th-b.pinduoduo.com,REJECT,pre-matching`
-- `DOMAIN,th.pinduoduo.com,REJECT,pre-matching`
-- `DOMAIN,titan.babytree.com,REJECT,pre-matching`
-- `DOMAIN,titan.pinduoduo.com,REJECT,pre-matching`
-- `DOMAIN,titan01.babytree.com,REJECT,pre-matching`
-- `DOMAIN,u1.img.mobile.sina.cn,REJECT,pre-matching`
-- `DOMAIN,ucdc.upaas.quark.cn,REJECT,pre-matching`
-- `DOMAIN,union.chinalifeonline.com.cn,REJECT,pre-matching`
-- `DOMAIN,ups.ksmobile.net,REJECT,pre-matching`
-- `DOMAIN,vali-g1.cp31.ott.cibntv.net,REJECT,pre-matching`
-- `DOMAIN,vali-ugc.cp31.ott.cibntv.net,REJECT,pre-matching`
-- `DOMAIN,vip.bz.mgtv.com,REJECT,pre-matching`
-- `DOMAIN,ws.ksmobile.net,REJECT,pre-matching`
-- `DOMAIN,xg.pinduoduo.com,REJECT,pre-matching`
-- `DOMAIN,ymg-api.terabox.com,REJECT,pre-matching`
-- `DOMAIN,zxid-m.mobileservice.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,3rd.t.sohu.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,888.tv.sohu.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,afp.zol-img.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,api.dsp.yhd.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,api.union.vip.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,app-measurement.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,appier.net,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,applovin.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,applvn.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,apppv.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,aty.sohu.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,corp.sohu.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,counter.csdn.net,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,cpc.sohu.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,cpro.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,da.mgtv.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,dc.csdn.net,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,dc2.csdn.net,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,dynamic.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,ehaier.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,gemini.yahoo.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,go.sohu.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,hui.sohu.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,imp.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,js.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,n-st.vip.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,pangle.io,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,pic.zol-img.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,pv.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,pvc.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,pvm.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,pvmsite.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,pvnapp.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,pvsite.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,pvtest.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,suvset.sohu.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,tappx.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,v.smtcdns.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,v1d.szbdyd.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,wappv.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,ydjs.zol.com.cn,REJECT,pre-matching`
-- `DOMAIN-KEYWORD,apimg.qunliao.info,REJECT,pre-matching`
-- `DOMAIN-KEYWORD,c-hzgt2.getui.com,REJECT,pre-matching`
-- 其余 64 条已省略
 
 ## 处理边界
 

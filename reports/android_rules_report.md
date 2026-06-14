@@ -1,8 +1,8 @@
 # Android rules build report
 
-- generated: 2026-06-14 13:10:43 Asia/Shanghai
+- generated: 2026-06-14 13:11:06 Asia/Shanghai
 - app rule files: 22
-- main Android rules: 616
+- main Android rules: 536
 - source: Android/mihomo/apps/*.yaml
 - iOS common source: Rules/reject.list -> iOS-Compatible-Reject
 - iOS app source: Rewrite/Sources/Apps/*.conf [Rule] REJECT -> iOS-App-Compatible-Reject
@@ -20,7 +20,7 @@
 | Domestic-Apps | 146 | yes |
 | Douyin | 12 | yes |
 | iOS-App-Compatible-Reject | 235 | yes |
-| iOS-Compatible-Reject | 230 | yes |
+| iOS-Compatible-Reject | 91 | yes |
 | iOS-Rewrite-Compatible-Reject | 7 | yes |
 | iQiyi | 2 | yes |
 | Kugou | 4 | yes |

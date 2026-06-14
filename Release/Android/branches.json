@@ -1,9 +1,9 @@
 {
-  "generated": "2026-06-14 13:10:43 Asia/Shanghai",
+  "generated": "2026-06-14 13:11:06 Asia/Shanghai",
   "source_of_truth": "Android/mihomo/apps/*.yaml + safe iOS/Fusion/repo compatible REJECT rules",
   "sync_policy": "Mihomo, sing-box and v2rayNG are generated from the same canonical Android rule set. AdGuard is generated from the same source as the DNS-compatible projection.",
   "app_source_files": 22,
-  "canonical_rule_count": 616,
+  "canonical_rule_count": 536,
   "branches": [
     {
       "id": "mihomo",
@@ -13,7 +13,7 @@
       "public_url": "https://grandpaniuu.github.io/GrandpaNiu/Android/mihomo/GrandpaNiu-Ads.yaml",
       "sync_with": "mihomo",
       "projection": "full",
-      "rule_count": 616
+      "rule_count": 536
     },
     {
       "id": "sing-box",
@@ -23,7 +23,7 @@
       "public_url": "https://grandpaniuu.github.io/GrandpaNiu/Android/sing-box/GrandpaNiu-Ads.json",
       "sync_with": "mihomo",
       "projection": "full",
-      "rule_count": 616
+      "rule_count": 536
     },
     {
       "id": "adguard",
@@ -33,8 +33,8 @@
       "public_url": "https://grandpaniuu.github.io/GrandpaNiu/Android/adguard/GrandpaNiu-DNS.txt",
       "sync_with": "mihomo",
       "projection": "dns-domain",
-      "rule_count": 568,
-      "source_rule_count": 616
+      "rule_count": 496,
+      "source_rule_count": 536
     },
     {
       "id": "v2rayng",
@@ -44,7 +44,7 @@
       "public_url": "https://grandpaniuu.github.io/GrandpaNiu/Android/v2rayng/GrandpaNiu-v2rayng-routing.json",
       "sync_with": "mihomo",
       "projection": "full",
-      "rule_count": 616
+      "rule_count": 536
     }
   ]
 }

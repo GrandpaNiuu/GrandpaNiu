@@ -1,6 +1,6 @@
 # 国内 App 联网与加载误伤风险排查报告
 
-生成时间：2026-06-14 13:10:48 +0800
+生成时间：2026-06-14 13:11:11 +0800
 
 本报告用于排查国内 App 图片加载失败、页面加载不完整、微信不能发图片等问题。报告只分析，不自动修改规则。
 
@@ -60,19 +60,11 @@
 - `DOMAIN,httpdnsmultiapivip.meituan.com,REJECT,pre-matching`
 - `DOMAIN,lofter.httpdns.c.163.com,REJECT,pre-matching`
 - `DOMAIN,music.httpdns.c.163.com,REJECT,pre-matching`
-- `DOMAIN,yuyin-httpdns.gslb.yy.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,httpdns.bilivideo.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,httpdns.meituan.com,REJECT,pre-matching`
-- `DOMAIN-KEYWORD,dnspod.meituan.httpdns,REJECT,pre-matching`
 
 ### domestic-core-api
 
 - `DOMAIN,afdconf.baidu.com,REJECT,pre-matching`
 - `DOMAIN,amap-aos-info-nogw.amap.com,REJECT,pre-matching`
-- `DOMAIN,api.biliapi.com,REJECT,pre-matching`
-- `DOMAIN,api.biliapi.net,REJECT,pre-matching`
-- `DOMAIN,app.biliapi.com,REJECT,pre-matching`
-- `DOMAIN,app.biliapi.net,REJECT,pre-matching`
 - `DOMAIN,dpmtpush.dianping.com,REJECT,pre-matching`
 - `DOMAIN,free-aos-cdn-image.amap.com,REJECT,pre-matching`
 - `DOMAIN,hlx.meituan.com,REJECT,pre-matching`
@@ -83,27 +75,12 @@
 - `DOMAIN,lc.map.baidu.com,REJECT,pre-matching`
 - `DOMAIN,lx0.meituan.com,REJECT,pre-matching`
 - `DOMAIN,r.dianping.com,REJECT,pre-matching`
-- `DOMAIN,tte.meituan.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,d.meituan.net,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,httpdns.meituan.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,lx.meituan.net,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,meituan.xn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,meituan.yoga,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,meituangov.cn,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,wmlog.meituan.com,REJECT,pre-matching`
-- `DOMAIN-KEYWORD,dnspod.meituan.httpdns,REJECT,pre-matching`
-- `DOMAIN-KEYWORD,report.meituan,REJECT,pre-matching`
-- `AND,((PROTOCOL,QUIC),(DOMAIN,api.pinduoduo.com)),REJECT-NO-DROP`
 
 ### bank-payment
 
 - `DOMAIN,iisp-oidea.mbs.boc.cn,REJECT,pre-matching`
 - `DOMAIN,iisp.mbs.boc.cn,REJECT,pre-matching`
 - `DOMAIN,msmp.abchina.com.cn,REJECT,pre-matching`
-- `DOMAIN,yl.zh.cmbchina.com,REJECT,pre-matching`
-- `DOMAIN-SUFFIX,adv.ccb.com,REJECT,pre-matching`
-- `URL-REGEX,^https?:\/\/vip\d\.kuwo\.cn\/vip\/v\d\/sysinfo\?op=getRePayAndDoPayBox,REJECT-TINYGIF`
-- `URL-REGEX,^https?:\/\/web-mmap-pay\.line-apps\.com\/tw\/liff\/campaign\/v1\/aggregate\/ad\/banner\/,REJECT-TINYGIF`
 
 ## app-cleaner active 宽匹配风险
 

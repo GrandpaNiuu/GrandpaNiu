@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-14T05:10:44.423006Z",
+  "generated_at": "2026-06-14T05:11:07.665245Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -1140,8 +1140,8 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 696094,
-      "sha256": "84beae5d8f782744debd0ca52fbeb64cc073de6ec35db7439eaa50ee1d45c9ed"
+      "size": 686578,
+      "sha256": "2dba403d4757fc56369eab7939fdf09e066aa30c060b06111e633c2b22e57258"
     },
     {
       "path": "Release/Rules.conf",
@@ -1215,8 +1215,8 @@
     },
     {
       "path": "Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json",
-      "size": 21089,
-      "sha256": "7650b1a228ba5ed85a5e5374f92612fbf0a3ded60a8dd5bae36dddc79d34f88d"
+      "size": 18515,
+      "sha256": "6ad1f2bde0505749e8e1d3b49180cc32435cf2b3c5b4ed4f60c52715cfe85ffb"
     },
     {
       "path": "Windows/v2rayN/README.md",
