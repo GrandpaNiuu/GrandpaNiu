@@ -220,6 +220,8 @@ def validate_root_release() -> None:
         lowered = line.lower()
         normalized = lowered.replace("\\/", "/")
         if "bilibili" in normalized:
+            if 'data="{' in normalized:
+                fail("root module contains raw JSON Bilibili map-local data; use base64 data instead")
             for token in BILIBILI_DISALLOWED_BODY_REWRITE_TOKENS:
                 if token in normalized:
                     fail(f"root module contains disallowed Bilibili account/payment rewrite token: {token}")

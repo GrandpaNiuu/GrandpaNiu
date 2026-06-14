@@ -181,8 +181,14 @@ BILIBILI_EXTRA_RULE_LINES = [
     "AND,((DOMAIN-SUFFIX,chat.bilibili.com),(OR,((DOMAIN-KEYWORD,stun),(DOMAIN-KEYWORD,tracker)))),REJECT,pre-matching",
 ]
 BILIBILI_EXTRA_MAP_LOCAL_LINES = [
-    r'^https://(?:app|api).bilibili.com/x/v2/splash/ header="content-type: application/json; charset=utf-8|bili-status-code: 0" data-type=text data="{"code":0,"message":"0","ttl":1,"data":{"list":[],"show":[],"event_list":[],"max_time":0,"min_interval":31536000}}"',
-    r'^https://(?:app|api).bilibili.com/x/(?:resource/(?:top/activity|patch/tab(?:/v2)?)|v2/search/square|vip/ads/materials|v2/ad/index)? header="content-type: application/json; charset=utf-8|bili-status-code: -404" data-type=text data="{"code":-404,"message":"-404","ttl":1,"data":null}"',
+    r'^https?:\/\/(?:app|api)\.bilibili\.com\/x\/v2\/splash\/ data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoiMCIsInR0bCI6MSwiZGF0YSI6eyJsaXN0IjpbXSwic2hvdyI6W10sImV2ZW50X2xpc3QiOltdLCJtYXhfdGltZSI6MCwibWluX2ludGVydmFsIjozMTUzNjAwMH19" header="content-type: application/json; charset=utf-8|bili-status-code: 0"',
+    r'^https?:\/\/(?:app|api)\.bilibili\.com\/x\/(?:resource\/(?:top\/activity|patch\/tab(?:\/v2)?)|v2\/search\/square|vip\/ads\/materials|v2\/ad\/index)\? data-type=base64 data="eyJjb2RlIjotNDA0LCJtZXNzYWdlIjoiLTQwNCIsInR0bCI6MSwiZGF0YSI6bnVsbH0=" header="content-type: application/json; charset=utf-8|bili-status-code: -404"',
+    r'^https?:\/\/api\.bilibili\.com\/pgc\/activity\/deliver\/material\/receive\? data-type=base64 data="eyJjb2RlIjowLCJkYXRhIjp7ImNsb3NlVHlwZSI6ImNsb3NlX3dpbiIsImNvbnRhaW5lciI6W10sInNob3dUaW1lIjoiIn0sIm1lc3NhZ2UiOiJzdWNjZXNzIn0=" header="content-type: application/json|bili-status-code: 0"',
+    r'^https?:\/\/api\.live\.bilibili\.com\/xlive\/e-commerce-interface\/v1\/ecommerce-user\/get_shopping_info\? data-type=base64 data="e30=" header="content-type: application/json"',
+    r'^https?:\/\/line3-h5-mobile-api\.biligame\.com\/game\/live\/large_card_material\? data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyJ9" header="content-type: application/json"',
+    r'^https?:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v\d+\.Teenagers\/ModeStatus$ data-type=base64 data="AAAAABMKEQgCEgl0ZWVuYWdlcnMgAioA" header="content-type: application/grpc|grpc-status: 0"',
+    r'^https?:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v\d+\.Search\/DefaultWords$ data-type=base64 data="AAAAACEaHeaQnOe0ouinhumikeOAgeeVquWJp+aIlnVw5Li7KAE=" header="content-type: application/grpc|grpc-status: 0"',
+    r'^https?:\/\/grpc\.biliapi\.net\/bilibili\.app\.(?:view\.v\d+\.View\/TFInfo|viewunite\.v\d+\.View\/(?:PlayPause|ViewEndPage))$ data-type=base64 data="AAAAAAA=" header="content-type: application/grpc|grpc-status: 0"',
 ]
 BILIBILI_EXTRA_BODY_REWRITE_LINES = [
     r"""http-response-jq ^https://api.bilibili.com/x/pd-proxy/tracker? '.data[][]?="stun.chat.bilibili.com:3478"'""",
@@ -828,6 +834,10 @@ def postprocess_bilibili_source(text: str) -> str:
         elif stripped.startswith("bilibili.skin"):
             continue
         elif "pgc\\/view\\/v2\\/app\\/season" in stripped and "data.payment" in stripped:
+            continue
+        elif " data-type=text data=\"{" in stripped:
+            continue
+        elif "grpc\\.biliapi\\.net" in stripped and " data-type=base64 " in stripped:
             continue
         elif "bilibili.protobuf.request.js" in stripped and r"DM\/DmSegMobile" in stripped:
             line = BILIBILI_SCRIPT_LINES["airborne"]

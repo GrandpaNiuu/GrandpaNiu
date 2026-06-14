@@ -24,14 +24,14 @@ http-response-jq ^https://(?:app|api).bilibili.com/x/v2/view(?:/unite)?? '.data 
 http-response-jq ^https://(?:app|api).bilibili.com/x/v2/feed/index(?:/story)?? '.data.items |= if . then map(select(((.card_goto? // "") | test("ad|cm|banner|mall|shop|goods") | not) and ((.goto? // "") | test("ad|cm|banner|mall|shop|goods") | not) and (.ad_info? == null) and (.ad_cb? == null) and (.cm_mark? == null))) else [] end'
 
 [Map Local]
-^https://(?:app|api).bilibili.com/x/v2/splash/ header="content-type: application/json; charset=utf-8|bili-status-code: 0" data-type=text data="{"code":0,"message":"0","ttl":1,"data":{"list":[],"show":[],"event_list":[],"max_time":0,"min_interval":31536000}}"
-^https://(?:app|api).bilibili.com/x/(?:resource/(?:top/activity|patch/tab(?:/v2)?)|v2/search/square|vip/ads/materials|v2/ad/index)? header="content-type: application/json; charset=utf-8|bili-status-code: -404" data-type=text data="{"code":-404,"message":"-404","ttl":1,"data":null}"
-^https:\/\/api\.bilibili\.com\/pgc\/activity\/deliver\/material\/receive\? header="content-type: application/json" data-type=text data="{"code":0,"data":{"closeType":"close_win","container":[],"showTime":""},"message":"success"}"
-^https:\/\/api\.live\.bilibili\.com\/xlive\/e-commerce-interface\/v1\/ecommerce-user\/get_shopping_info\? header="content-type: application/json" data-type=text data="{}"
-^https:\/\/line3-h5-mobile-api\.biligame\.com\/game\/live\/large_card_material\? header="content-type: application/json" data-type=text data="{"code":0,"message":"success"}"
-^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v1\.Teenagers\/ModeStatus$ header="content-type: application/grpc|grpc-status: 0" data-type=base64 data="AAAAABMKEQgCEgl0ZWVuYWdlcnMgAioA"
-^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v1\.Search\/DefaultWords$ header="content-type: application/grpc|grpc-status: 0" data-type=base64 data="AAAAACEaHeaQnOe0ouinhumikeOAgeeVquWJp+aIlnVw5Li7KAE="
-^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.(?:view\.v1\.View\/TFInfo|viewunite\.v1\.View\/(?:PlayPause|ViewEndPage))$ header="content-type: application/grpc|grpc-status: 0" data-type=base64 data="AAAAAAA="
+^https?:\/\/(?:app|api)\.bilibili\.com\/x\/v2\/splash\/ data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoiMCIsInR0bCI6MSwiZGF0YSI6eyJsaXN0IjpbXSwic2hvdyI6W10sImV2ZW50X2xpc3QiOltdLCJtYXhfdGltZSI6MCwibWluX2ludGVydmFsIjozMTUzNjAwMH19" header="content-type: application/json; charset=utf-8|bili-status-code: 0"
+^https?:\/\/(?:app|api)\.bilibili\.com\/x\/(?:resource\/(?:top\/activity|patch\/tab(?:\/v2)?)|v2\/search\/square|vip\/ads\/materials|v2\/ad\/index)\? data-type=base64 data="eyJjb2RlIjotNDA0LCJtZXNzYWdlIjoiLTQwNCIsInR0bCI6MSwiZGF0YSI6bnVsbH0=" header="content-type: application/json; charset=utf-8|bili-status-code: -404"
+^https?:\/\/api\.bilibili\.com\/pgc\/activity\/deliver\/material\/receive\? data-type=base64 data="eyJjb2RlIjowLCJkYXRhIjp7ImNsb3NlVHlwZSI6ImNsb3NlX3dpbiIsImNvbnRhaW5lciI6W10sInNob3dUaW1lIjoiIn0sIm1lc3NhZ2UiOiJzdWNjZXNzIn0=" header="content-type: application/json|bili-status-code: 0"
+^https?:\/\/api\.live\.bilibili\.com\/xlive\/e-commerce-interface\/v1\/ecommerce-user\/get_shopping_info\? data-type=base64 data="e30=" header="content-type: application/json"
+^https?:\/\/line3-h5-mobile-api\.biligame\.com\/game\/live\/large_card_material\? data-type=base64 data="eyJjb2RlIjowLCJtZXNzYWdlIjoic3VjY2VzcyJ9" header="content-type: application/json"
+^https?:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v\d+\.Teenagers\/ModeStatus$ data-type=base64 data="AAAAABMKEQgCEgl0ZWVuYWdlcnMgAioA" header="content-type: application/grpc|grpc-status: 0"
+^https?:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v\d+\.Search\/DefaultWords$ data-type=base64 data="AAAAACEaHeaQnOe0ouinhumikeOAgeeVquWJp+aIlnVw5Li7KAE=" header="content-type: application/grpc|grpc-status: 0"
+^https?:\/\/grpc\.biliapi\.net\/bilibili\.app\.(?:view\.v\d+\.View\/TFInfo|viewunite\.v\d+\.View\/(?:PlayPause|ViewEndPage))$ data-type=base64 data="AAAAAAA=" header="content-type: application/grpc|grpc-status: 0"
 
 [Script]
 bilibili.airborne = type=http-request,pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.community\.service\.dm\.v1\.DM\/DmSegMobile$,argument="{"logLevel":"error"}",requires-body=1,binary-body-mode=1,max-size=-1,engine=webview,timeout=10,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.request.js
