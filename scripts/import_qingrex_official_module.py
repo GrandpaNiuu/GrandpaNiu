@@ -79,6 +79,23 @@ HEADERS = {
     ),
 }
 
+SCRIPT_COMPATIBILITY_SHIM = (
+    "# QingRex mini-program script layer\n"
+    "#\n"
+    "# This file is intentionally kept as an inactive compatibility shim.\n"
+    "# The same mini-program response endpoints are already maintained by:\n"
+    "#   Rewrite/Sources/Apps/wechat-mini-programs.conf\n"
+    "#\n"
+    "# Keeping both layers active made Shadowrocket display duplicate per-endpoint\n"
+    "# script URLs while matching the same home-page ad APIs. URL rewrite, body\n"
+    "# rewrite, map-local, MITM, and rule layers from the QingRex source remain\n"
+    "# enabled through Rewrite/Profiles/fusion.conf.\n"
+    "#\n"
+    "# Rollback path:\n"
+    "#   Restore the historical raw.perzikkop.com MiniPrograms script entries from\n"
+    "#   git history if the app-scoped wechat-mini-programs source ever regresses.\n"
+)
+
 EXCLUDED_BLOCK_TITLES = {"安全浏览限制解除"}
 EXCLUDED_EXACT_RULE_PREFIXES = {
     "DOMAIN,dns.weixin.qq.com.cn,REJECT",
@@ -192,7 +209,7 @@ def write_report(written: dict[str, str], status: str, excluded: list[str]) -> N
         "- Mini-program URL reject rules for popups, splash ads, banners and recommendation placements.",
         "- Map Local mock responses for empty ad/config payloads.",
         "- jq Body Rewrite cleanup for selected ad payload fields.",
-        "- Response-body script cleaners for selected mini-program endpoints.",
+        "- QingRex response-body script entries stay inactive because the same endpoints are covered by Rewrite/Sources/Apps/wechat-mini-programs.conf.",
         "- MITM hostname coverage required by these rewrite/map-local/script rules.",
         "",
         "## Excluded from Stable import",
@@ -231,9 +248,12 @@ def main() -> None:
     written: dict[str, str] = {}
     excluded_all: list[str] = []
     for section, target in TARGETS.items():
-        body, excluded = section_body(section, parsed.get(section, []))
-        excluded_all.extend(excluded)
-        content = HEADERS[section] + body
+        if section == "Script":
+            content = SCRIPT_COMPATIBILITY_SHIM
+        else:
+            body, excluded = section_body(section, parsed.get(section, []))
+            excluded_all.extend(excluded)
+            content = HEADERS[section] + body
         write_text(target, content)
         written[section] = content
     write_report(written, status, excluded_all)
