@@ -7,7 +7,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Spotify | `spotify.sgmodule` | `Rewrite/Sources/Apps/spotify.conf` | Rule:1, URL Rewrite:2, Script:1, MITM:1 |
 | GrandpaNiu YouTube | `youtube.sgmodule` | `Rewrite/Sources/Apps/youtube.conf` | Rule:2, Map Local:1, Script:1, MITM:1 |
 | GrandpaNiu Zhihu | `zhihu.sgmodule` | `Rewrite/Sources/Apps/zhihu.conf` | Rule:10, URL Rewrite:3, Body Rewrite:5, Map Local:22, Script:10, MITM:1 |
-| GrandpaNiu Bilibili | `bilibili.sgmodule` | `Rewrite/Sources/Apps/bilibili.conf` | Rule:11, Body Rewrite:6, Map Local:8, Script:5, MITM:1 |
+| GrandpaNiu Bilibili | `bilibili.sgmodule` | `Rewrite/Sources/Apps/bilibili.conf` | Rule:11, Body Rewrite:11, Map Local:8, Script:5, MITM:1 |
 | GrandpaNiu RedNote | `rednote.sgmodule` | `Rewrite/Sources/Apps/rednote.conf` | Rule:1, Body Rewrite:5, Map Local:5, Script:12, MITM:1 |
 | GrandpaNiu WeChat | `wechat.sgmodule` | `Rewrite/Sources/Apps/wechat.conf` | Rule:1, Map Local:2, MITM:1 |
 | GrandpaNiu QQ News | `qqnews.sgmodule` | `Rewrite/Sources/Apps/qqnews.conf` | URL Rewrite:1, Body Rewrite:1, Script:1, MITM:1 |
@@ -44,7 +44,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Baidu Source | `baidu.sgmodule` | `Rewrite/Sources/Apps/baidu.conf` | Script:1, MITM:1 |
 | GrandpaNiu BaiduPan Source | `baidupan.sgmodule` | `Rewrite/Sources/Apps/baidupan.conf` | Body Rewrite:1, Map Local:7, MITM:1 |
 | GrandpaNiu 贝壳找房 Source | `beike.sgmodule` | `Rewrite/Sources/Apps/beike.conf` | URL Rewrite:3, Body Rewrite:5, MITM:1 |
-| GrandpaNiu 哔哩哔哩漫画 Source | `bilibili-comic.sgmodule` | `Rewrite/Sources/Apps/bilibili-comic.conf` | URL Rewrite:10, Script:2, MITM:1 |
+| GrandpaNiu 哔哩哔哩漫画 Source | `bilibili-comic.sgmodule` | `Rewrite/Sources/Apps/bilibili-comic.conf` | URL Rewrite:10, Body Rewrite:2, Script:2, MITM:1 |
 | GrandpaNiu 比特球云盘 Source | `bitqiu-pan.sgmodule` | `Rewrite/Sources/Apps/bitqiu-pan.conf` | URL Rewrite:3, MITM:1 |
 | GrandpaNiu 波点音乐 Source | `bodian-music.sgmodule` | `Rewrite/Sources/Apps/bodian-music.conf` | URL Rewrite:11, Body Rewrite:9, MITM:1 |
 | GrandpaNiu 薄荷健康 Source | `boo-hee.sgmodule` | `Rewrite/Sources/Apps/boo-hee.conf` | URL Rewrite:6, Body Rewrite:3, Script:1, MITM:1 |

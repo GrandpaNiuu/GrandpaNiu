@@ -14,6 +14,10 @@
 ^https://manga\.bilibili\.com/twirp/comic\.v\d\.Comic/AppInit - reject-dict
 ^https://manga\.bilibili\.com/twirp/comic\.v\d\.Comic/ListFlash - reject-dict
 
+[Body Rewrite]
+http-response-jq ^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/GetClassPageAllTabs 'if .data then (.data.home_type? |= map(select(.name | in({"新人":1, "新作":1}) | not))) | (.data.home_feed? |= map(select(.name == "商城" | not))) else . end'
+http-response-jq ^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/UCenterConf 'if .data.confs then .data.confs |= map(select(.title | in({"漫画商城":1, "超漫俱乐部":1, "看漫免流量":1}) | not)) else . end'
+
 [Script]
 bilibili-comic.response.1 = type=http-response,pattern=^https://manga\.bilibili\.com/twirp/comic\.v\d\.Comic/GetClassPageAllTabs,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/BiliComic/BiliComic_remove_ads.js
 bilibili-comic.response.2 = type=http-response,pattern=^https://manga\.bilibili\.com/twirp/user\.v\d\.User/UCenterConf,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/BiliComic/BiliComic_remove_ads.js

@@ -40,7 +40,7 @@
 - Source: `Rewrite/Sources/Apps/bilibili.conf`
 - Discovery: manual
 - Rule: 11
-- Body Rewrite: 6
+- Body Rewrite: 11
 - Map Local: 8
 - Script: 5
 - MITM: 1
@@ -307,6 +307,7 @@
 - Source: `Rewrite/Sources/Apps/bilibili-comic.conf`
 - Discovery: auto
 - URL Rewrite: 10
+- Body Rewrite: 2
 - Script: 2
 - MITM: 1
 

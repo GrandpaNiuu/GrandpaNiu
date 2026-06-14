@@ -78,6 +78,9 @@ EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ron
 SECTION_RE = re.compile(r"^\[([^\]]+)\]\s*$")
 SCRIPT_NAME_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=")
 HOSTNAME_RE = re.compile(r"^\s*hostname\s*=\s*(.+)$")
+SCRIPT_FIELD_SPLIT_RE = re.compile(
+    r",\s*(?=(?:type|pattern|argument|requires-body|max-size|binary-body-mode|script-path|timeout|engine|script-update-interval)\s*=)"
+)
 REMOTE_REQUIRED_FIELDS = {"name", "type", "url", "policy", "enabled", "protected", "purpose"}
 DISALLOWED_REMOTE_TOKENS = ("ghproxy", "mirror", "tinyurl", "bit.ly", "t.co/", "shorturl")
 KNOWN_DOMAIN_SET_URLS = {
@@ -111,6 +114,9 @@ PROTECTED_REJECT_TOKENS = (
     "baichuan-sdk.alicdn.com",
     "nbsdk-baichuan.alicdn.com",
 )
+SCRIPT_MERGE_MAX_ITEMS = 24
+SCRIPT_MERGE_MAX_PATTERN_LEN = 6000
+SCRIPT_MERGE_ESSENTIAL_PREFIXES = CORE_TOKENS + ("bilibili.", "zhihu-enhance")
 
 
 def stop(message: str) -> None:
@@ -393,6 +399,118 @@ def merge_lines(blocks: Iterable[str]) -> str:
     return "\n".join(merged).strip() + "\n"
 
 
+def split_script_fields(value: str) -> list[str]:
+    return [part.strip() for part in SCRIPT_FIELD_SPLIT_RE.split(value.strip()) if part.strip()]
+
+
+def parse_script_entry(line: str) -> dict[str, str] | None:
+    if "script-path=" not in line or "pattern=" not in line:
+        return None
+    match = SCRIPT_NAME_RE.match(line.strip())
+    if not match:
+        return None
+    name = match.group(1).strip()
+    if name.startswith(SCRIPT_MERGE_ESSENTIAL_PREFIXES):
+        return None
+    _, value = line.split("=", 1)
+    fields: dict[str, str] = {"__name__": name}
+    for field in split_script_fields(value):
+        if "=" not in field:
+            return None
+        key, field_value = field.split("=", 1)
+        fields[key.strip()] = field_value.strip()
+    if "argument" in fields or "pattern" not in fields or "script-path" not in fields or "type" not in fields:
+        return None
+    return fields
+
+
+def script_entry_signature(entry: dict[str, str]) -> tuple[tuple[str, str], ...]:
+    return tuple(sorted((key, value) for key, value in entry.items() if key not in {"__name__", "pattern"}))
+
+
+def merged_script_line(name: str, template: dict[str, str], patterns: list[str]) -> str:
+    values = dict(template)
+    values["pattern"] = "(?:" + "|".join(patterns) + ")"
+    ordered = [
+        "type",
+        "pattern",
+        "requires-body",
+        "max-size",
+        "binary-body-mode",
+        "engine",
+        "timeout",
+        "script-path",
+        "script-update-interval",
+    ]
+    for key in template:
+        if key.startswith("__") or key in ordered or key == "pattern":
+            continue
+        ordered.append(key)
+    fields = [f"{key}={values[key]}" for key in ordered if key in values]
+    return f"{name} = " + ",".join(fields)
+
+
+def consolidate_script_entries(body: str) -> str:
+    """Fuse repeated Script entries that only differ by pattern.
+
+    This reduces Shadowrocket's visible script list without changing the
+    underlying script URL or execution parameters. Entries with arguments or
+    binary bodies are intentionally left alone because they are usually app-core
+    protobuf handlers.
+    """
+    lines: list[str] = []
+    seen_rhs: set[str] = set()
+    for raw in body.splitlines():
+        stripped = raw.strip()
+        if "script-path=" in stripped and "=" in stripped:
+            _, rhs = stripped.split("=", 1)
+            rhs_key = re.sub(r"\s+", "", rhs)
+            if rhs_key in seen_rhs:
+                continue
+            seen_rhs.add(rhs_key)
+        lines.append(raw)
+    parsed: dict[int, dict[str, str]] = {}
+    groups: dict[tuple[tuple[str, str], ...], list[int]] = {}
+    for index, line in enumerate(lines):
+        entry = parse_script_entry(line.strip())
+        if entry is None:
+            continue
+        parsed[index] = entry
+        groups.setdefault(script_entry_signature(entry), []).append(index)
+
+    merge_heads: dict[int, list[int]] = {}
+    for indices in groups.values():
+        if len(indices) < 2 or len(indices) > SCRIPT_MERGE_MAX_ITEMS:
+            continue
+        patterns = [parsed[index]["pattern"] for index in indices]
+        if len("(?:" + "|".join(patterns) + ")") > SCRIPT_MERGE_MAX_PATTERN_LEN:
+            continue
+        merge_heads[indices[0]] = indices
+
+    consumed: set[int] = set()
+    out: list[str] = []
+    existing_names = {entry["__name__"] for entry in parsed.values()}
+    for index, line in enumerate(lines):
+        if index in consumed:
+            continue
+        if index in merge_heads:
+            indices = merge_heads[index]
+            first = parsed[index]
+            base_name = f"{first['__name__']}_merged"
+            name = base_name
+            suffix = 2
+            while name in existing_names:
+                name = f"{base_name}{suffix}"
+                suffix += 1
+            existing_names.add(name)
+            patterns = [parsed[item]["pattern"] for item in indices]
+            out.append(merged_script_line(name, first, patterns))
+            consumed.update(indices)
+            continue
+        out.append(line)
+    return "\n".join(line.rstrip() for line in out if line.strip()).strip() + "\n"
+
+
 def is_preserved_metadata(line: str) -> bool:
     stripped = line.lstrip()
     return stripped.startswith("#!") or stripped.startswith("# update-date:")
@@ -469,7 +587,7 @@ def build_scripts(profile: configparser.ConfigParser) -> str:
     blocks.extend(misc_section_blocks("Script"))
     if as_bool(profile, "include", "source_script_compat", True):
         blocks.append(read_text(source_file("Script"), required=False))
-    return merge_lines(blocks)
+    return consolidate_script_entries(merge_lines(blocks))
 
 
 def build_rewrite_section(profile: configparser.ConfigParser, section: str) -> str:
