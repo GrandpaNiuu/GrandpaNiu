@@ -68,6 +68,7 @@ payload:
   - DOMAIN,ads.pubmatic.com
   - DOMAIN,ads.reader.yueyouxs.com
   - DOMAIN,ads.service.kugou.com
+  - DOMAIN,ads.union.jd.com
   - DOMAIN,ads.youtube.com
   - DOMAIN,ads.zhinengxiyifang.cn
   - DOMAIN,ads3-normal.zijieapi.com
@@ -148,6 +149,7 @@ payload:
   - DOMAIN,dflow.bz.mgtv.com
   - DOMAIN,dpmtpush.dianping.com
   - DOMAIN,dsp-ad.yy.com
+  - DOMAIN,dsp-x.jd.com
   - DOMAIN,dwtracking.jk.cn
   - DOMAIN,dyads.stg.ixigua.com
   - DOMAIN,dynamicf.sankuai.com
@@ -184,6 +186,7 @@ payload:
   - DOMAIN,iadmusicmatvideo.music.126.net
   - DOMAIN,id.hadron.ad.gt
   - DOMAIN,images.pinduoduo.com
+  - DOMAIN,img-x.jd.com
   - DOMAIN,img.auction-ads.wpscdn.cn
   - DOMAIN,imgad0.pcauto.com.cn
   - DOMAIN,imgad0.pconline.com.cn
@@ -198,7 +201,10 @@ payload:
   - DOMAIN,is.snssdk.com
   - DOMAIN,ivy.pchouse.com.cn
   - DOMAIN,jp.ad.gameley.com
+  - DOMAIN,jzt.jd.com
   - DOMAIN,kad.gotokeep.com
+  - DOMAIN,kepler.jd.com
+  - DOMAIN,keplerapi.jd.com
   - DOMAIN,layer.bz.mgtv.com
   - DOMAIN,layout.meituan.net
   - DOMAIN,lf-normal-gr-sourcecdn.bytegecko.com
@@ -299,6 +305,7 @@ payload:
   - DOMAIN,stun1.qvb.qcloud.com
   - DOMAIN,sugar.zhihu.com
   - DOMAIN,t-ads.xiaohongshu.com
+  - DOMAIN,t-dsp.pinduoduo.com
   - DOMAIN,t.gdt.qq.com
   - DOMAIN,ta-a.pinduoduo.com
   - DOMAIN,ta.pinduoduo.com
@@ -365,6 +372,7 @@ payload:
   - DOMAIN-KEYWORD,googlesyndication
   - DOMAIN-KEYWORD,iflyad.bj.openstorage.cn
   - DOMAIN-KEYWORD,jd-ad
+  - DOMAIN-KEYWORD,jingdong-ad
   - DOMAIN-KEYWORD,kuaishou-ad
   - DOMAIN-KEYWORD,kwai-ad
   - DOMAIN-KEYWORD,m.panda.voiceads.cn

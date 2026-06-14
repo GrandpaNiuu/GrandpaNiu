@@ -29,6 +29,7 @@ payload:
   - DOMAIN,adlaunch.qtfm.cn
   - DOMAIN,ads.reader.yueyouxs.com
   - DOMAIN,ads.service.kugou.com
+  - DOMAIN,ads.union.jd.com
   - DOMAIN,ads3-normal.zijieapi.com
   - DOMAIN,ads5-normal.zijieapi.com
   - DOMAIN,adse.wsa.ximalaya.com
@@ -71,6 +72,7 @@ payload:
   - DOMAIN,dflow.bz.mgtv.com
   - DOMAIN,dpmtpush.dianping.com
   - DOMAIN,dsp-ad.yy.com
+  - DOMAIN,dsp-x.jd.com
   - DOMAIN,dynamicf.sankuai.com
   - DOMAIN,e.jparking.cn
   - DOMAIN,effect.snssdk.com
@@ -91,6 +93,7 @@ payload:
   - DOMAIN,iad0ssl.pcauto.com.cn
   - DOMAIN,iad0ssl.pconline.com.cn
   - DOMAIN,images.pinduoduo.com
+  - DOMAIN,img-x.jd.com
   - DOMAIN,imgad0.pcauto.com.cn
   - DOMAIN,imgad0.pconline.com.cn
   - DOMAIN,impression.biligame.com
@@ -101,7 +104,10 @@ payload:
   - DOMAIN,is-lq.snssdk.com
   - DOMAIN,is.snssdk.com
   - DOMAIN,jp.ad.gameley.com
+  - DOMAIN,jzt.jd.com
   - DOMAIN,kad.gotokeep.com
+  - DOMAIN,kepler.jd.com
+  - DOMAIN,keplerapi.jd.com
   - DOMAIN,layer.bz.mgtv.com
   - DOMAIN,layout.meituan.net
   - DOMAIN,lf-normal-gr-sourcecdn.bytegecko.com
@@ -161,6 +167,7 @@ payload:
   - DOMAIN,stun1.douyucdn.cn
   - DOMAIN,stun1.qvb.qcloud.com
   - DOMAIN,sugar.zhihu.com
+  - DOMAIN,t-dsp.pinduoduo.com
   - DOMAIN,t.gdt.qq.com
   - DOMAIN,ta-a.pinduoduo.com
   - DOMAIN,ta.pinduoduo.com
@@ -202,6 +209,9 @@ payload:
   - DOMAIN-KEYWORD,bili-ad
   - DOMAIN-KEYWORD,biliad
   - DOMAIN-KEYWORD,biligame-ad
+  - DOMAIN-KEYWORD,jd-ad
+  - DOMAIN-KEYWORD,jingdong-ad
+  - DOMAIN-KEYWORD,pdd-ad
   - DOMAIN-KEYWORD,report.meituan
   - DOMAIN-KEYWORD,trace.qq.com
   - DOMAIN-SUFFIX,ad.e.waimai.sankuai.com

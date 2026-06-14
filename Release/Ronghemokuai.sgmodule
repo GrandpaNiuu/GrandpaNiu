@@ -7,12 +7,15 @@
 #!arguments-desc=- 屏蔽参数：[true, false]\n- 翻译参数：[语言代码, off]\n\n1. 语言代码遵循 Google Translate Languages Codes，填入 off 时关闭翻译。\n2. 开启调试模式用于输出更多日志。
 # update-date: 2026-06-14
 [Rule]
+AND,((DOMAIN-SUFFIX,pddpic.com,extended-matching),(USER-AGENT,"*bili*")),REJECT,pre-matching
+AND,((DOMAIN-SUFFIX,pddcdn.com,extended-matching),(USER-AGENT,"*bili*")),REJECT,pre-matching
+AND,((DOMAIN-SUFFIX,jdimg.com,extended-matching),(USER-AGENT,"*bili*")),REJECT,pre-matching
+AND,((DOMAIN-SUFFIX,360buyimg.com,extended-matching),(USER-AGENT,"*bili*")),REJECT,pre-matching
+URL-REGEX,"^https?:\/\/m\.360buyimg\.com\/(?:mobilecms|babel)\/.*",REJECT-IMG,extended-matching
 DOMAIN-SUFFIX,alicdn.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,aliyuncs.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,jdimg.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,360buyimg.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,pddpic.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,pddcdn.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,bdimg.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,hdslb.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,biliimg.com,DIRECT,pre-matching
@@ -641,6 +644,19 @@ URL-REGEX,"^http:\/\/m\.meitun\.com\/newapi\/router\/topic\/hometptf\/feedRecomm
 URL-REGEX,"^http:\/\/pic08\.babytreeimg\.com\/knowledge\/2022\/0923\/\w+",REJECT
 URL-REGEX,"^http:\/\/plough\.babytree\.com\/plough\.do",REJECT-DICT
 DOMAIN,bsbsb.top,DIRECT,pre-matching
+DOMAIN,t-dsp.pinduoduo.com,REJECT,pre-matching
+DOMAIN,video-dsp.pddpic.com,REJECT,pre-matching
+DOMAIN,promotion.pddpic.com,REJECT,pre-matching
+DOMAIN,promotion-1.pddpic.com,REJECT,pre-matching
+DOMAIN,promotion-2.pddpic.com,REJECT,pre-matching
+DOMAIN,promotion-3.pddpic.com,REJECT,pre-matching
+DOMAIN,ads.union.jd.com,REJECT,pre-matching
+DOMAIN,dsp-x.jd.com,REJECT,pre-matching
+DOMAIN,img-x.jd.com,REJECT,pre-matching
+DOMAIN,jzt.jd.com,REJECT,pre-matching
+DOMAIN,kepler.jd.com,REJECT,pre-matching
+DOMAIN,keplerapi.jd.com,REJECT,pre-matching
+DOMAIN-KEYWORD,jingdong-ad,REJECT,pre-matching
 URL-REGEX,"^http:\/\/upos-sz-static\.bilivideo\.com\/ssaxcode\/\w{2}\/\w{2}\/\w{32}-1-SPLASH",REJECT-TINYGIF,extended-matching
 URL-REGEX,"^http:\/\/[\d\.]+:8000\/v1\/resource\/\w{32}-1-SPLASH",REJECT-TINYGIF,extended-matching
 DOMAIN-KEYWORD,api.biliapi,REJECT,pre-matching,extended-matching
@@ -3938,6 +3954,12 @@ http-response-jq ^https://(?:app|api).bilibili.com/x/v2/view(?:/unite)?\? '.data
 http-response-jq ^https://app.bilibili.com/x/v2/feed/index/story\? 'if .data.items then .data.items |= map(select((.ad_info == null) and (.card_goto | IN("vertical_ad_av", "vertical_ad_live", "vertical_ad_picture") | not)) | del(.story_cart_icon, .free_flow_toast, .image_infos, .course_info, .game_info)) end'
 http-response-jq ^https://app.bilibili.com/x/v2/feed/index\? 'if .data.items then .data.items |= map(select((.banner_item == null) and (.ad_info == null) and (.card_goto == "av") and (.card_type | IN("small_cover_v2", "large_cover_single_v9", "large_cover_v1")))) end'
 http-response-jq ^https://(?:app|api).bilibili.com/x/v2/feed/index(?:/story)?\? '.data.items |= if . then map(select(((.card_goto? // "") | test("ad|cm|banner|mall|shop|goods|vertical_ad") | not) and ((.goto? // "") | test("ad|cm|banner|mall|shop|goods") | not) and (.banner_item? == null) and (.ad_info? == null) and (.ad_cb? == null) and (.cm_mark? == null))) else [] end'
+http-response-jq ^https://(?:app|api).bilibili.com/x/v2/feed/index(?:/story)?\? 'if .data.items then .data.items |= map(select((tostring | test("pinduoduo|yangkeduo|pddpic|pddcdn|t-dsp"; "i") | not))) else . end'
+http-response-jq ^https://(?:app|api).bilibili.com/x/v2/view(?:/unite)?\? 'if .data.relates then .data.relates |= map(select((tostring | test("pinduoduo|yangkeduo|pddpic|pddcdn|t-dsp"; "i") | not))) else . end'
+http-response-jq ^https://api.bilibili.com/x/v2/reply/(?:main|reply)\? 'del(.data.cm,.data.cms,.data.ad,.data.ads,.data.upper.ad) | if .data.replies then .data.replies |= map(select((tostring | test("pinduoduo|yangkeduo|pddpic|pddcdn|t-dsp"; "i") | not))) else . end'
+http-response-jq ^https://(?:app|api).bilibili.com/x/v2/feed/index(?:/story)?\? 'if .data.items then .data.items |= map(select((tostring | test("jd|jingdong|360buyimg|jdimg|jdpay|union\\.jd|m\\.jd\\.com|kepler"; "i") | not))) else . end'
+http-response-jq ^https://(?:app|api).bilibili.com/x/v2/view(?:/unite)?\? 'if .data.relates then .data.relates |= map(select((tostring | test("jd|jingdong|360buyimg|jdimg|jdpay|union\\.jd|m\\.jd\\.com|kepler"; "i") | not))) else . end'
+http-response-jq ^https://api.bilibili.com/x/v2/reply/(?:main|reply)\? 'del(.data.cm,.data.cms,.data.ad,.data.ads,.data.upper.ad) | if .data.replies then .data.replies |= map(select((tostring | test("jd|jingdong|360buyimg|jdimg|jdpay|union\\.jd|m\\.jd\\.com|kepler"; "i") | not))) else . end'
 http-response-jq ^https://bd-api\.kuwo\.cn/api/service/conf/all\? 'del(.data.groupSign.adStartAppDialog,.data.groupSign.adGuideTest,.data.groupSign.playTips,.data.groupSign.adExitChange,.data.conf.adGuidePopCount,.data.conf.adDownListOpen)'
 http-response-jq ^https://bd-api\.kuwo\.cn/api/service/conf/all\? '.data.conf.flowControlConfig.uploadEnable = false data.conf.flowControlConfig.p2pEnable false'
 http-response-jq ^https://ab-bodian\.kuwo\.cn/abtest/ui/info\? 'del(.data.mapTestInfo.CommentADPosition,.data.mapTestInfo.DiscoverADPosition,.data.mapTestInfo.DownloadAd,.data.mapTestInfo.FreeModVoiceReminder,.data.mapTestInfo.GamesTrans,.data.mapTestInfo.bodianmvdialog,.data.mapTestInfo.MvTryShowAds,.data.mapTestInfo.insert)'

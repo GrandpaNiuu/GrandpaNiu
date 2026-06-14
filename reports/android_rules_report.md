@@ -1,8 +1,8 @@
 # Android rules build report
 
-- generated: 2026-06-14 21:27:12 Asia/Shanghai
+- generated: 2026-06-14 21:47:13 Asia/Shanghai
 - app rule files: 22
-- main Android rules: 538
+- main Android rules: 546
 - source: Android/mihomo/apps/*.yaml
 - iOS common source: Rules/reject.list -> iOS-Compatible-Reject
 - iOS app source: Rewrite/Sources/Apps/*.conf [Rule] REJECT -> iOS-App-Compatible-Reject
@@ -19,7 +19,7 @@
 | Bilibili | 1 | yes |
 | Domestic-Apps | 146 | yes |
 | Douyin | 12 | yes |
-| iOS-App-Compatible-Reject | 237 | yes |
+| iOS-App-Compatible-Reject | 247 | yes |
 | iOS-Compatible-Reject | 91 | yes |
 | iOS-Rewrite-Compatible-Reject | 7 | yes |
 | iQiyi | 2 | yes |
@@ -46,7 +46,7 @@
 | 360-smart-camera | 2 |
 | ali-yun-drive | 1 |
 | amap | 3 |
-| bilibili | 7 |
+| bilibili | 17 |
 | caiyun-weather | 3 |
 | di-di | 1 |
 | didi | 1 |
