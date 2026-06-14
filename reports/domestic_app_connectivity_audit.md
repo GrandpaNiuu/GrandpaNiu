@@ -1,6 +1,6 @@
 # 国内 App 联网与加载误伤风险排查报告
 
-生成时间：2026-06-14 21:27:16 +0800
+生成时间：2026-06-14 21:48:53 +0800
 
 本报告用于排查国内 App 图片加载失败、页面加载不完整、微信不能发图片等问题。报告只分析，不自动修改规则。
 
@@ -21,7 +21,7 @@
 | wechat-media | `gtimg.cn` | 是 |
 | wechat-media | `qlogo.cn` | 是 |
 | image-cdn | `alicdn.com` | 是 |
-| image-cdn | `pddpic.com` | 是 |
+| image-cdn | `pddpic.com` | 否 |
 | image-cdn | `360buyimg.com` | 是 |
 | image-cdn | `jdimg.com` | 是 |
 | image-cdn | `biliimg.com` | 是 |

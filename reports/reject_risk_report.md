@@ -1,6 +1,6 @@
 # REJECT 风险审计报告
 
-生成时间：2026-06-14 21:27:16 +0800
+生成时间：2026-06-14 21:48:52 +0800
 
 本报告只做分类审计，不会自动删除、注释或替换任何规则。高风险项需要先确认 Shadowrocket 日志和真实 App 行为，再做 source-first 修复。
 
@@ -29,7 +29,7 @@
 | `wxapp.tc.qq.com` | 已精确保护或覆盖 | 0 | 人工复核 |
 | `wechatpay.cn` | 已精确保护或覆盖 | 0 | 默认保护，不直接 REJECT |
 | `alicdn.com` | 已精确保护或覆盖 | 3 | 默认 DIRECT 或人工复核，不建议 REJECT |
-| `pddpic.com` | 已精确保护或覆盖 | 3 | 默认 DIRECT 或人工复核，不建议 REJECT |
+| `pddpic.com` | 未发现 | 3 | 默认 DIRECT 或人工复核，不建议 REJECT |
 | `360buyimg.com` | 已精确保护或覆盖 | 0 | 默认 DIRECT 或人工复核，不建议 REJECT |
 | `jdimg.com` | 已精确保护或覆盖 | 0 | 默认 DIRECT 或人工复核，不建议 REJECT |
 | `biliimg.com` | 已精确保护或覆盖 | 0 | 默认 DIRECT 或人工复核，不建议 REJECT |
