@@ -42,7 +42,7 @@
 - Rule: 11
 - Body Rewrite: 11
 - Map Local: 8
-- Script: 5
+- Script: 6
 - MITM: 1
 
 ## GrandpaNiu RedNote
