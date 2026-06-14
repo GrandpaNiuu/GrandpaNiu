@@ -9,7 +9,7 @@
 - Release MITM hostname 数量：1190
 
 ## 源文件统计
-- Rule: 124 行
+- Rule: 120 行
 - URL Rewrite: 1598 行
 - Header Rewrite: 5 行
 - Body Rewrite: 445 行
