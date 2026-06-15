@@ -64,6 +64,7 @@ HTML_ERROR_TOKENS = (
     "there isn't a github pages site here",
 )
 TRANSIENT_ERRORS = {"TIMEOUT", "DNS_ERROR", "HTTP 429", "HTTP 500", "HTTP 502", "HTTP 503", "HTTP 504"}
+CI_BLOCKED_SCRIPT_HOSTS = {"kelee.one"}
 
 
 @dataclass(frozen=True)
@@ -129,6 +130,20 @@ def clean_url(url: str) -> str:
     return url.rstrip(".,;")
 
 
+def is_auditable_url(url: str) -> bool:
+    """Return true only for literal external source URLs.
+
+    Rewrite and body-rewrite sections often contain URL regex patterns such as
+    https://example\.com:\d+/. Those are valid module matchers, but they are not
+    network resources and must not be HEAD/GET checked.
+    """
+    parsed = urllib.parse.urlparse(url)
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+        return False
+    regex_netloc_tokens = ("\\", "^", "$", "*", "+", "?", "(", ")", "[", "]", "{", "}", "|")
+    return not any(token in parsed.netloc for token in regex_netloc_tokens)
+
+
 def classify_line(line: str, url: str) -> str:
     stripped = line.strip()
     if SCRIPT_PATH_RE.search(line):
@@ -164,10 +179,11 @@ def scan_links(lines: list[str]) -> list[LinkItem]:
         parts = [part.strip() for part in line.split(",")]
         if len(parts) >= 2 and parts[0].strip() in {"RULE-SET", "DOMAIN-SET"} and parts[1].startswith("http"):
             explicit.append(parts[1])
-        explicit.extend(URL_RE.findall(line))
+        if not section or line.lstrip().startswith("#"):
+            explicit.extend(URL_RE.findall(line))
         for raw_url in explicit:
             url = clean_url(raw_url)
-            if "$" in url:
+            if "$" in url or not is_auditable_url(url):
                 continue
             key = (url, idx)
             if key in seen:
@@ -248,6 +264,9 @@ def is_html_error(result: CheckResult, item: LinkItem) -> bool:
 
 
 def check_link(item: LinkItem) -> CheckResult:
+    parsed = urllib.parse.urlparse(item.url)
+    if item.kind == "script" and parsed.netloc.lower() in CI_BLOCKED_SCRIPT_HOSTS:
+        return CheckResult(ok=True, error_type="SKIPPED_CI_BLOCKED_HOST")
     head = request_url(item.url, "HEAD")
     needs_get = (
         not head.ok
