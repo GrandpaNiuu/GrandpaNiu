@@ -5,6 +5,11 @@ on:
   schedule:
     # 16:00 UTC = 00:00 Beijing time.
     - cron: "0 16 * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/scheduled-module-update.yml"
 
 permissions:
   contents: write
