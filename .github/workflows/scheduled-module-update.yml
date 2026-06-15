@@ -3,7 +3,8 @@ name: Scheduled Module Factory Update
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 2 * * *"
+    # 16:00 UTC = 00:00 Beijing time.
+    - cron: "0 16 * * *"
   push:
     # Verify this scheduled workflow when its definition changes.
     branches:
@@ -49,6 +50,7 @@ jobs:
       - name: Build scheduled factory outputs
         run: |
           set -euo pipefail
+          python3 scripts/refresh_module_date.py
           python3 Rewrite/Generator/Builder.py --profile fusion --release
           python3 scripts/validate_remote_rule_syntax.py
           python3 scripts/validate_governance_extensions.py
@@ -62,6 +64,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           regenerate() {
+            python3 scripts/refresh_module_date.py
             python3 Rewrite/Generator/Builder.py --profile fusion --release
             python3 scripts/validate_remote_rule_syntax.py
             python3 scripts/validate_governance_extensions.py
@@ -69,7 +72,7 @@ jobs:
             python3 scripts/validate_repository.py
           }
 
-          git add Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
+          git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
           if git diff --cached --quiet; then
             echo "No scheduled module factory changes to commit."
             exit 0
@@ -84,7 +87,7 @@ jobs:
             git fetch origin main
             if git rebase origin/main; then
               regenerate
-              git add Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
+              git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
               if ! git diff --cached --quiet; then
                 git commit --amend --no-edit
               fi

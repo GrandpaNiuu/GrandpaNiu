@@ -59,6 +59,7 @@ REQUIRED_FILES = (
     "Scripts/youtube.conf",
     "Scripts/zhihu-enhance.conf",
     "Scripts/zhihu-enhance.js",
+    "scripts/refresh_module_date.py",
     "scripts/build_module.py",
     "scripts/build_release_variants.py",
     "scripts/factory_finalize.py",
@@ -80,6 +81,8 @@ REQUIRED_WORKFLOWS = (
     ".github/workflows/daily-audit-and-repair.yml",
     ".github/workflows/daily-invalid-source-repair.yml",
     ".github/workflows/upstream-collect.yml",
+    ".github/workflows/scheduled-module-update.yml",
+    ".github/workflows/upstream-app-module-sync.yml",
     ".github/workflows/repository-health.yml",
 )
 
@@ -194,6 +197,7 @@ def parse_hosts(text: str) -> list[str]:
 def workflow_has_fusion_build(text: str) -> bool:
     """Accept shell commands and Python subprocess list syntax."""
     normalized = re.sub(r"\s+", " ", text)
+    has_builder = "build_module.py" in text or "Rewrite/Generator/Builder.py" in text
     patterns = (
         "--profile fusion",
         "--profile=fusion",
@@ -202,7 +206,7 @@ def workflow_has_fusion_build(text: str) -> bool:
         '"--profile","fusion"',
         "'--profile','fusion'",
     )
-    return "build_module.py" in text and any(pattern in normalized for pattern in patterns)
+    return has_builder and any(pattern in normalized for pattern in patterns)
 
 
 def validate_root_release() -> None:
@@ -393,10 +397,21 @@ def validate_workflows() -> None:
         ".github/workflows/daily-audit-and-repair.yml",
         ".github/workflows/daily-invalid-source-repair.yml",
         ".github/workflows/upstream-collect.yml",
+        ".github/workflows/scheduled-module-update.yml",
     ):
         text = read_text(ROOT / relative)
         if 'cron: "0 16 * * *"' not in text and "cron: '0 16 * * *'" not in text:
             fail(f"{relative} must run daily at Beijing 00:00")
+
+    scheduled = read_text(ROOT / ".github" / "workflows" / "scheduled-module-update.yml")
+    if "scripts/refresh_module_date.py" not in scheduled:
+        fail("scheduled-module-update workflow must refresh Beijing module date before building")
+
+    upstream_app = read_text(ROOT / ".github" / "workflows" / "upstream-app-module-sync.yml")
+    if 'cron: "30 16 * * *"' not in upstream_app and "cron: '30 16 * * *'" not in upstream_app:
+        fail("upstream-app-module-sync workflow must run daily at Beijing 00:30")
+    if "Rewrite/Sources/Meta.conf" not in upstream_app:
+        fail("upstream-app-module-sync workflow must commit refreshed Meta.conf")
 
     invalid_source = read_text(ROOT / ".github" / "workflows" / "daily-invalid-source-repair.yml")
     for token in ("collect_upstreams.py", "audit_repair_invalid_sources.py", "validate_remote_rule_syntax.py"):

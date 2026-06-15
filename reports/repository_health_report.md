@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-15 01:21:57 +0800
+- Generated at: 2026-06-16 02:24:10 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -62,7 +62,7 @@ Repository validation passed.
 ## automated quality evidence Output
 
 ```text
-Automated quality evidence written to /home/runner/work/GrandpaNiu/GrandpaNiu/reports/automated_quality_evidence.md
+Automated quality evidence written to C:\Users\q3j1h\Documents\Codex\2026-06-02\GrandpaNiu-upstream-app-sync\reports\automated_quality_evidence.md
 ```
 
 ## node --check Output

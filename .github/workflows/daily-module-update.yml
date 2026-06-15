@@ -42,34 +42,8 @@ jobs:
           git config user.name "module-factory"
           git config user.email "actions@users.noreply.github.com"
 
-          update_date() {
-            python3 <<'PY'
-          from pathlib import Path
-          from datetime import datetime, timezone, timedelta
-          import re
-
-          today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
-          meta = Path("Rewrite/Sources/Meta.conf")
-          text = meta.read_text(encoding="utf-8")
-          text = re.sub(r"^#!desc=.*$", f"#!desc={today} / fusion", text, flags=re.M)
-          text = re.sub(r"^# update-date:.*$", f"# update-date: {today}", text, flags=re.M)
-          meta.write_text(text, encoding="utf-8", newline="\n")
-
-          report = Path("reports/daily_update_report.md")
-          report.parent.mkdir(parents=True, exist_ok=True)
-          report.write_text("\n".join([
-              "# Daily module update report",
-              "",
-              f"- Date: {today}",
-              "- Profile: fusion",
-              "- Entry: Ronghemokuai.sgmodule",
-              "",
-          ]), encoding="utf-8", newline="\n")
-          PY
-          }
-
           regenerate() {
-            update_date
+            python3 scripts/refresh_module_date.py
             python3 scripts/import_qingrex_official_module.py
             python3 scripts/dedupe_qq_news_script_path.py
             python3 scripts/convert_quanx_rules.py

@@ -13,6 +13,8 @@ import sys
 from pathlib import Path
 from typing import Iterable
 
+from refresh_module_date import refresh_module_date, today_beijing
+
 ROOT = Path(__file__).resolve().parents[1]
 MODULE = ROOT / "Ronghemokuai.sgmodule"
 RELEASE = ROOT / "Release" / "Ronghemokuai.sgmodule"
@@ -829,6 +831,7 @@ def main() -> None:
         extract_sources()
         extracted = True
     if args.build:
+        refresh_module_date(today_beijing())
         release_text = build_from_sources(args.profile)
         validate(release_text)
         write_text(RELEASE, release_text)
