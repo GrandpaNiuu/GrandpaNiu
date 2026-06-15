@@ -16,3 +16,20 @@
 
 # Do not let the landing page dominate the repository language bar.
 import.html linguist-vendored
+
+# Keep GitHub language statistics focused on the maintained factory code.
+# These paths are generated release artifacts, distribution pages, reports, or
+# deployed rule/script payloads rather than the repository's implementation
+# language. This does not affect checkout, builds, or published files.
+Ronghemokuai.sgmodule linguist-generated=true
+Release/** linguist-generated=true
+reports/** linguist-generated=true
+Web/** linguist-generated=true
+Android/** linguist-generated=true
+Windows/** linguist-generated=true
+backup/** linguist-vendored=true
+Rules/converted/** linguist-generated=true
+Rewrite/Remotes/Catalog.md linguist-generated=true
+*.html linguist-generated=true
+Scripts/*.js linguist-generated=true
+scripts/*.sh linguist-generated=true
