@@ -5,14 +5,6 @@ on:
     # 16:00 UTC = 00:00 Beijing time.
     - cron: "0 16 * * *"
   workflow_dispatch:
-  push:
-    # Verify collector changes immediately so stale automation-failure issues can close after success.
-    branches:
-      - main
-    paths:
-      - ".github/workflows/upstream-collect.yml"
-      - "scripts/collect_upstreams.py"
-      - "Rewrite/Remotes/**"
 
 permissions:
   contents: write

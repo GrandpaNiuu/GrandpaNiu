@@ -4,24 +4,6 @@ on:
   schedule:
     - cron: "0 16 * * 0"
   workflow_dispatch:
-  push:
-    # Verify health workflow changes immediately without waiting for the weekly schedule.
-    branches:
-      - main
-    paths:
-      - "scripts/**"
-      - "SECURITY.md"
-      - "LICENSE"
-      - "CONTRIBUTING.md"
-      - "README.md"
-      - "docs/**"
-      - "reports/automated_quality_evidence.md"
-      - ".github/ISSUE_TEMPLATE/**"
-      - "Rewrite/**"
-      - "Rules/**"
-      - "Scripts/**"
-      - "Windows/**"
-      - ".github/workflows/repository-health.yml"
 
 permissions:
   contents: write
