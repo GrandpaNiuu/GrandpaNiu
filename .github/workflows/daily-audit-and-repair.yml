@@ -5,6 +5,12 @@ on:
     # 16:00 UTC = 00:00 Beijing time.
     - cron: "0 16 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/daily-audit-and-repair.yml"
+      - "scripts/audit_and_repair_module.py"
 
 permissions:
   contents: write
@@ -25,7 +31,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.x"
+          python-version: "3.11"
 
       - name: Run daily audit and safe repair
         run: python3 scripts/audit_and_repair_module.py
