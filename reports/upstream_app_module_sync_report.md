@@ -1,18 +1,16 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-06-14T17:54:51Z
+- generated: 2026-06-15T20:00:53Z
 - modules: 220
 - enabled: 212
 - direct_commit: 212
-- updated: 1
-- skipped: 219
+- updated: 0
+- skipped: 220
 - blocked: 0
 - errors: 0
 
 ## Updated
-| id | upstream | backup | source |
-| --- | --- | --- | --- |
-| bilibili | Bilibili增强 | backup/upstream-app-modules/bilibili/20260614-175435.conf | https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule |
+_None._
 
 ## Skipped
 | id | reason |
@@ -39,6 +37,7 @@
 | baidu-wenku | unchanged |
 | baidupan | unchanged |
 | beike | unchanged |
+| bilibili | unchanged |
 | bilibili-comic | unchanged |
 | bitqiu-pan | unchanged |
 | bodian-music | unchanged |
