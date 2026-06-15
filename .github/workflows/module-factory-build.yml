@@ -15,7 +15,7 @@ on:
       - "Android/**"
       - "Windows/**"
       - "Web/**"
-      - ".github/workflows/module-factory-build.yml"
+      - ".github/workflows/**"
 
 permissions:
   contents: write
