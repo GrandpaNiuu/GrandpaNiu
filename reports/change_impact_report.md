@@ -1,11 +1,17 @@
 # 变更影响报告
 
-- 生成时间：2026-06-16 04:18:15 +0800
+- 生成时间：2026-06-16 04:25:51 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
+- `Release/Android/branches.json`
+- `Release/checksums.json`
+- `reports/android_rules_report.md`
+- `reports/build_summary.json`
+- `reports/build_summary.md`
 - `reports/multi_release_report.md`
+- `reports/profile_validation_report.md`
 - `reports/remote_rule_syntax_report.md`
 
 ## 新增文件
@@ -18,11 +24,18 @@
 
 ## 修改文件
 
+- `Release/Android/branches.json`
+- `Release/checksums.json`
+- `reports/android_rules_report.md`
+- `reports/build_summary.json`
+- `reports/build_summary.md`
 - `reports/multi_release_report.md`
+- `reports/profile_validation_report.md`
 - `reports/remote_rule_syntax_report.md`
 
 ## 影响的模块层
 
+- Other
 - README/docs
 
 ## 可能影响的 App
