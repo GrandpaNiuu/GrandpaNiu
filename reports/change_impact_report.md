@@ -1,34 +1,19 @@
 # 变更影响报告
 
-- 生成时间：2026-06-16 02:27:47 +0800
+- 生成时间：2026-06-16 02:28:20 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `.github/workflows/daily-module-update.yml`
-- `.github/workflows/scheduled-module-update.yml`
-- `.github/workflows/upstream-app-module-sync.yml`
 - `Android/branches.json`
 - `Release/Android/branches.json`
-- `Release/Module.sgmodule`
-- `Release/Ronghemokuai.sgmodule`
-- `Release/Stable/Module.sgmodule`
-- `Release/Stable/Ronghemokuai.sgmodule`
 - `Release/checksums.json`
-- `Release/checksums.txt`
-- `Rewrite/Sources/Meta.conf`
-- `Ronghemokuai.sgmodule`
 - `reports/android_rules_report.md`
-- `reports/app_coverage_matrix.md`
 - `reports/app_status_matrix.md`
 - `reports/automated_quality_evidence.md`
-- `reports/build_summary.json`
-- `reports/build_summary.md`
 - `reports/candidate_security_score_report.md`
 - `reports/change_impact_report.md`
-- `reports/daily_update_report.md`
 - `reports/domestic_app_connectivity_audit.md`
-- `reports/module_factory_report.md`
 - `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
@@ -38,14 +23,10 @@
 - `reports/repository_health_report.md`
 - `reports/script_inventory_report.md`
 - `reports/workflow_health_report.md`
-- `scripts/build_module.py`
-- `scripts/quality_gate.py`
-- `scripts/refresh_module_date.py`
-- `scripts/validate_repository.py`
 
 ## 新增文件
 
-- `scripts/refresh_module_date.py`
+- 无
 
 ## 删除文件
 
@@ -53,30 +34,15 @@
 
 ## 修改文件
 
-- `.github/workflows/daily-module-update.yml`
-- `.github/workflows/scheduled-module-update.yml`
-- `.github/workflows/upstream-app-module-sync.yml`
 - `Android/branches.json`
 - `Release/Android/branches.json`
-- `Release/Module.sgmodule`
-- `Release/Ronghemokuai.sgmodule`
-- `Release/Stable/Module.sgmodule`
-- `Release/Stable/Ronghemokuai.sgmodule`
 - `Release/checksums.json`
-- `Release/checksums.txt`
-- `Rewrite/Sources/Meta.conf`
-- `Ronghemokuai.sgmodule`
 - `reports/android_rules_report.md`
-- `reports/app_coverage_matrix.md`
 - `reports/app_status_matrix.md`
 - `reports/automated_quality_evidence.md`
-- `reports/build_summary.json`
-- `reports/build_summary.md`
 - `reports/candidate_security_score_report.md`
 - `reports/change_impact_report.md`
-- `reports/daily_update_report.md`
 - `reports/domestic_app_connectivity_audit.md`
-- `reports/module_factory_report.md`
 - `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
@@ -86,37 +52,30 @@
 - `reports/repository_health_report.md`
 - `reports/script_inventory_report.md`
 - `reports/workflow_health_report.md`
-- `scripts/build_module.py`
-- `scripts/quality_gate.py`
-- `scripts/validate_repository.py`
 
 ## 影响的模块层
 
 - Other
 - README/docs
-- Rewrite/Sources
-- Scripts/maintenance
-- Workflows
 
 ## 可能影响的 App
 
 - Spotify
 - YouTube
-- 知乎
 - 百度贴吧
 - 12306
 - Reddit
 
 ## 风险判断
 
-- 是否涉及脚本：是
+- 是否涉及脚本：否
 - 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：是
 - 是否涉及远程规则源：是
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
-- 是否需要测试知乎：是
-- 是否需要测试登录/支付/验证码：是
+- 是否需要测试知乎：按需
+- 是否需要测试登录/支付/验证码：按需
 
 ## 回滚建议
 
