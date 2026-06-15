@@ -1,11 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-16 03:36:45 +0800
+- 生成时间：2026-06-16 03:38:33 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `reports/module_integrity_report.md`
+- `reports/invalid_sources_history.json`
 - `reports/multi_release_report.md`
 - `reports/remote_rule_syntax_report.md`
 
@@ -19,7 +19,7 @@
 
 ## 修改文件
 
-- `reports/module_integrity_report.md`
+- `reports/invalid_sources_history.json`
 - `reports/multi_release_report.md`
 - `reports/remote_rule_syntax_report.md`
 
@@ -29,12 +29,12 @@
 
 ## 可能影响的 App
 
-- 百度贴吧
+- 待人工确认
 
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：是
+- 是否涉及 MITM：否
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：是
 - 是否需要测试 Spotify：按需
