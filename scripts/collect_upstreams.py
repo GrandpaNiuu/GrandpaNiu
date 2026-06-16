@@ -92,13 +92,13 @@ RULE_FEATURES = (
 )
 SCRIPT_FEATURES = ("$done", "$request", "$response", "function ", "const ", "let ", "var ", "JSON.parse")
 PROTECTED_PATTERNS = (
-    "spotify-json",
-    "spotify-proto",
+    "spotify-upstream",
+    "Spotify_remove_ads.js",
     "youtube.response",
     "spclient.wg.spotify.com",
     "*.spclient.spotify.com",
-    "app2smile/rules/master/js/spotify-json.js",
-    "app2smile/rules/master/js/spotify-proto.js",
+    "kelee.one/Tool/Loon/Lpx/Spotify_remove_ads.lpx",
+    "kelee.one/Resource/JavaScript/Spotify/Spotify_remove_ads.js",
     "Maasea/sgmodule",
 )
 

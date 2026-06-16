@@ -102,8 +102,7 @@ REMOVED_NAMES = {
     "cmp_block_090_ad": "Maimai JSON cleaner",
 }
 PROTECTED_NAMES = {
-    "spotify-json",
-    "spotify-proto",
+    "spotify-upstream",
     "youtube.response",
     "zhihu-enhance",
     "cmp_block_084_json",

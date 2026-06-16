@@ -9,12 +9,12 @@
 1. Shadowrocket 是否已更新模块和脚本。
 2. 是否只启用了 `Ronghemokuai.sgmodule`，没有同时启用其他 Spotify 模块。
 3. `[Rule]` 最前面是否仍有 Spotify 白名单。
-4. `[Header Rewrite]` 是否仍有 `header-del if-none-match`。
-5. `[Script]` 是否仍有 `spotify-json` 和 `spotify-proto`。
+4. `[Header Rewrite]` 是否仍残留旧 app2smile 的 `header-del if-none-match`。
+5. `[Script]` 是否只有一套 Spotify protobuf 处理链，且包含 `spotify-upstream` / `Spotify_remove_ads.js`。
 6. `[MITM]` 是否包含 `spclient.wg.spotify.com` 和 `*spclient.spotify.com`。
 7. 最近新增的远程规则是否误拦 Spotify 播放链路。
 
-不要直接删除 `spotify-json` 或 `spotify-proto`。
+不要同时启用额外 Spotify 模块，避免同一 protobuf 接口被两套脚本重复处理。
 
 ## YouTube 转圈 / 播放异常
 

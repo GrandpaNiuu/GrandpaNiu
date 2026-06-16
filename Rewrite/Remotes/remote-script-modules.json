@@ -18,13 +18,12 @@
       "target": "Rewrite/Sources/Apps/spotify.conf",
       "mode": "remote-script-level",
       "remote_scripts": [
-        "https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js",
-        "https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js"
+        "https://kelee.one/Resource/JavaScript/Spotify/Spotify_remove_ads.js"
       ],
       "remote_rule_sets": [],
       "script_update_interval": 86400,
       "full_module_sync": false,
-      "upstream_project": "app2smile/rules"
+      "upstream_project": "Kelee PluginHub"
     },
     {
       "id": "youtube",

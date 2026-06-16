@@ -28,7 +28,7 @@
 
 | App / 服务 | 覆盖方式 | 当前定位 |
 |---|---|---|
-| Spotify | DIRECT、Header Rewrite、`spotify-json`、`spotify-proto`、MITM | 重点专项，保留播放和账号安全边界 |
+| Spotify | DIRECT、Kelee `Spotify_remove_ads.js`、MITM | 重点专项，保留播放和账号安全边界，并通过 app-modules.json 跟随上游 |
 | YouTube | DIRECT、`youtube.response`、Map Local、MITM | 重点专项，偏向广告与响应清理 |
 | 知乎 | `zhihu-enhance`、Body Rewrite、URL Rewrite、MITM | 重点专项，清理信息流、回答页和商业字段 |
 | Bilibili | Rule、URL Rewrite、Body Rewrite、Map Local、MITM | 局部净化，不做会员、登录、支付绕过 |

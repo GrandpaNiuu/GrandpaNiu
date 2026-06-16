@@ -283,7 +283,7 @@ def main() -> None:
         updated = inject_section_block(updated, section, selected[section])
     updated = update_date(updated)
 
-    for marker in ["[Rule]", "[Script]", "[MITM]", "spotify-json", "spotify-proto", "youtube.response"]:
+    for marker in ["[Rule]", "[Script]", "[MITM]", "spotify-upstream", "Spotify_remove_ads.js", "youtube.response"]:
         if marker not in updated:
             raise RuntimeError(f"关键项缺失，停止提交：{marker}")
 
@@ -336,8 +336,8 @@ def main() -> None:
         "- [Rule]：存在",
         "- [Script]：存在",
         "- [MITM]：存在",
-        "- spotify-json：存在",
-        "- spotify-proto：存在",
+        "- spotify-upstream：存在",
+        "- Spotify_remove_ads.js：存在",
         "- youtube.response：存在",
         "",
         "## 后续测试",

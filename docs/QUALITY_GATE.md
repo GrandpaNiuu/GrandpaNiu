@@ -24,7 +24,7 @@
 1. `Ronghemokuai.sgmodule` 与 `Release/Ronghemokuai.sgmodule` 不一致。
 2. 主模块缺少 `[Rule]`、`[Script]`、`[MITM]`。
 3. 主模块缺少 `[URL Rewrite]`、`[Header Rewrite]`、`[Body Rewrite]`、`[Map Local]`。
-4. 缺少 `spotify-json` 或 `spotify-proto`。
+4. 缺少 `spotify-upstream` 或 `Spotify_remove_ads.js`。
 5. 缺少 `youtube.response`。
 6. 缺少 `zhihu-enhance`。
 7. `update-url` 不正确。

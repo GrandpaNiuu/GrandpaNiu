@@ -147,11 +147,11 @@
   ],
   "reference_modules": [
     {
-      "name": "app2smile Spotify module",
-      "url": "https://raw.githubusercontent.com/app2smile/rules/master/module/spotify.module",
+      "name": "Kelee Spotify module",
+      "url": "https://kelee.one/Tool/Loon/Lpx/Spotify_remove_ads.lpx",
       "enabled": false,
       "protected": true,
-      "purpose": "reference only; do not insert full module text into rule section"
+      "purpose": "reference/source for Spotify app module; synced through Rewrite/Remotes/app-modules.json"
     },
     {
       "name": "app2smile Qidian module",

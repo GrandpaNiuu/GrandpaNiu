@@ -46,8 +46,8 @@ Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
 - `[Map Local]`
 - `[Script]`
 - `[MITM]`
-- `spotify-json`
-- `spotify-proto`
+- `spotify-upstream`
+- `Spotify_remove_ads.js`
 - `youtube.response`
 - `zhihu-enhance`
 - `#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule`

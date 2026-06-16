@@ -1,16 +1,16 @@
-# Profile 验证报告
+# Profile Validation Report
 
-生成时间：2026-06-17 03:54:32 +0800
+Generated: 2026-06-17 04:10:35 +0800
 
-说明：本脚本只验证单一融合 profile：`fusion`。仓库不再把 stable / stable-plus / lite / full 作为用户入口。
+This script validates the single public Fusion profile only.
 
-| Profile | 构建结果 | 必要标记 | 脚本数 | MITM 数量 | 适用场景 | 是否可发布 |
+| Profile | Build | Required markers | Scripts | MITM | Usage | Publishable |
 |---|---|---|---:|---:|---|---|
-| fusion | 是 | 通过 | 86 | 1189 | 单一融合正式版 | 是 |
+| fusion | yes | passed | 84 | 1189 | single Fusion release | yes |
 
-## 规则
+## Rules
 
-- fusion 是唯一正式构建 profile。
-- 默认 workflow 必须使用 fusion。
-- 不再生成四个用户版本。
-- 必要标记用于确认模块结构和核心脚本入口存在。
+- fusion is the only public build profile.
+- Default workflows must build with fusion.
+- Legacy stable/stable-plus/lite/full files are not public entry points.
+- Required markers confirm module structure and core script entries.

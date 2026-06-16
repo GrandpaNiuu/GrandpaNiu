@@ -34,7 +34,7 @@ Target: Web distribution
 
 | Name | Enabled | Protected | Purpose | URL |
 |---|---:|---:|---|---|
-| app2smile Spotify module | False | True | reference only; do not insert full module text into rule section | https://raw.githubusercontent.com/app2smile/rules/master/module/spotify.module |
+| Kelee Spotify module | False | True | reference/source for Spotify app module; synced through Rewrite/Remotes/app-modules.json | https://kelee.one/Tool/Loon/Lpx/Spotify_remove_ads.lpx |
 | app2smile Qidian module | False | True | reference only; extract source-first into Stable Plus after manual review | https://raw.githubusercontent.com/app2smile/rules/master/module/qidian.sgmodule |
 | app2smile Bilibili module | False | True | reference only; extract source-first into Stable Plus after manual review | https://raw.githubusercontent.com/app2smile/rules/master/module/bilibili.sgmodule |
 | app2smile Tieba module | False | True | reference only; extract source-first into Stable Plus after manual review | https://raw.githubusercontent.com/app2smile/rules/master/module/tieba.sgmodule |
