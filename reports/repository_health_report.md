@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-17 00:05:15 +0800
+- Generated at: 2026-06-17 00:05:47 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -70,9 +70,3 @@ Automated quality evidence written to /home/runner/work/GrandpaNiu/GrandpaNiu/re
 ```text
 no output
 ```
-
-## Maintenance Boundaries
-
-- Source-first maintenance: edit `Rules/`, `Scripts/`, `Rewrite/Sources/`, `Rewrite/Remotes/`, and `Rewrite/Profiles/fusion.conf` first.
-- Fusion is the only public iOS entry; legacy Stable/Lite/Full files are compatibility placeholders only.
-- `Release/` and generated `Web/` catalogs must be rebuilt, not manually patched as source files.
