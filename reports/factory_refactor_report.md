@@ -1,10 +1,10 @@
-# Factory Refactor Report
+# Build Refactor Report
 
 Date: 2026-05-29
 
 ## Refactor Summary
 
-The repository has been refactored from a transitional root-module extraction flow to a source-driven module factory.
+The repository has been refactored from a transitional root-module extraction flow to a source-driven module build flow.
 
 Daily source of truth:
 
@@ -14,20 +14,20 @@ Daily source of truth:
 - `Rewrite/Remotes/sources.json`
 - `Rewrite/Profiles/stable.conf`
 
-Generated outputs:
+Build outputs:
 
 - `Release/Ronghemokuai.sgmodule`
 - `Ronghemokuai.sgmodule`
 
 ## Reworked Sections
 
-- `[Rule]`: generated from `Rules/`, enabled remotes in `Rewrite/Remotes/sources.json`, and compatibility rules in `Rewrite/Sources/Rule.conf`.
-- `[URL Rewrite]`: generated from `Rewrite/Sources/URL-Rewrite.conf`.
-- `[Header Rewrite]`: generated from `Rewrite/Sources/Header-Rewrite.conf`.
-- `[Body Rewrite]`: generated from `Rewrite/Sources/Body-Rewrite.conf`.
-- `[Map Local]`: generated from `Rewrite/Sources/Map-Local.conf`.
-- `[Script]`: generated from `Scripts/` and compatibility scripts in `Rewrite/Sources/Script.conf`.
-- `[MITM]`: generated from `Rewrite/Sources/MITM.conf`.
+- `[Rule]`: built from `Rules/`, enabled remotes in `Rewrite/Remotes/sources.json`, and compatibility rules in `Rewrite/Sources/Rule.conf`.
+- `[URL Rewrite]`: built from `Rewrite/Sources/URL-Rewrite.conf`.
+- `[Header Rewrite]`: built from `Rewrite/Sources/Header-Rewrite.conf`.
+- `[Body Rewrite]`: built from `Rewrite/Sources/Body-Rewrite.conf`.
+- `[Map Local]`: built from `Rewrite/Sources/Map-Local.conf`.
+- `[Script]`: built from `Scripts/` and compatibility scripts in `Rewrite/Sources/Script.conf`.
+- `[MITM]`: built from `Rewrite/Sources/MITM.conf`.
 
 ## Rule Migration
 
@@ -48,7 +48,7 @@ Generated outputs:
 ## Removed Duplicates
 
 - `scripts/build_module.py` now de-duplicates repeated active and comment/source-marker lines during assembly.
-- Repeated factory runs no longer accumulate duplicate comments or remote markers.
+- Repeated build runs no longer accumulate duplicate comments or remote markers.
 - Script names are validated as unique during build.
 
 ## Removed Invalid Items
@@ -88,7 +88,7 @@ Rollback method:
 - `Scripts/youtube.conf` contains no ordinary App scripts: yes
 - `Rules/spotify-direct.list` contains no REJECT rules: yes
 - `README.md` maintenance links point to existing files: yes
-- `docs/FACTORY_FLOW.md` is the current source-driven factory reference: yes
+- `docs/BUILD_FLOW.md` is the current source-driven build reference: yes
 
 ## Manual Test Items
 
