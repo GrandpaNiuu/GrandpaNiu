@@ -37,8 +37,8 @@ DOMAIN-SUFFIX,bankcomm.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,psbc.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,jdpay.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,npay.meituan.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,spotify.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,spotifycdn.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,spotify.com,PROXY,pre-matching
+DOMAIN-SUFFIX,spotifycdn.com,PROXY,pre-matching
 DOMAIN-SUFFIX,scdn.co,DIRECT,pre-matching
 DOMAIN-SUFFIX,mgtv.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,youku.com,DIRECT,pre-matching
