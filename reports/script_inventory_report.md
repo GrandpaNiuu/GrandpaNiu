@@ -1,19 +1,19 @@
 # 脚本清单与瘦身分析报告
 
-生成时间：2026-06-17 03:33:33 +0800
+生成时间：2026-06-17 04:12:53 +0800
 
 本报告只做静态分析，不删除、不合并、不禁用任何脚本。减少脚本前必须先完成自动化验证和回滚准备。
 
 ## 总体统计
 
-- 脚本入口总数：26
+- 脚本入口总数：25
 - 识别到的 App / 服务方向数量：15
 - 重复脚本名：0
 - 多入口共用同一 script-path：0
 
 ## 分类统计
 
-- 必须独立保留：6
+- 必须独立保留：5
 - 可合并候选：7
 - 可改规则候选：2
 - 需要人工复核：11
@@ -21,17 +21,18 @@
 ## 来源统计
 
 - zirawell R-Store：15
-- app2smile：5
+- app2smile：3
 - fmz200 wool_scripts：3
 - local：2
+- kelee.one：1
 - Maasea：1
 
 ## 文件分布
 
 - `Scripts/app-clean.conf`：20
-- `Scripts/spotify.conf`：2
 - `Scripts/app-cleaner-active.conf`：1
 - `Scripts/app2smile-qqnews-stable-plus.conf`：1
+- `Scripts/spotify.conf`：1
 - `Scripts/youtube.conf`：1
 - `Scripts/zhihu-enhance.conf`：1
 
@@ -80,7 +81,6 @@
 | `cmp_block_095_rrtv_json` | Scripts/app-clean.conf:21 | 未识别 / 通用 | http-response | 1 | fmz200 wool_scripts | 需要人工复核 | 脚本逻辑较大或涉及深层结构，不能仅凭入口判断为低风险 | `^https?:\/\/api\.rr\.tv\/ad\/getAll` | `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/rrtv_json.js` |
 | `app-cleaner-active-json-clean` | Scripts/app-cleaner-active.conf:10 | VGTime / 快看漫画 / 闲鱼 | http-response | 1 | local | 需要人工复核 | 无法静态判断，需结合脚本内容和自动化验证 | `^https?:\/\/.*(news\.ssp\.qq\.com\|r\.inews\.qq\.com\|vgtime\.com\|17gwx\.com\|gw\.m\.163\.com` | `https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/app-cleaner.js` |
 | `app2smile_qqnews_json` | Scripts/app2smile-qqnews-stable-plus.conf:5 | QQ 新闻 | http-response | 1 | app2smile | 可合并候选 | 普通 App JSON 清理脚本，可评估合并到统一 app-cleaner | `^https:\/\/(news\.ssp\.qq\.com\/app\|r\.inews\.qq\.com\/(get(QQNewsUnreadList\|TagFeedList)\|` | `https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js` |
-| `spotify-json` | Scripts/spotify.conf:2 | Spotify | http-request | 0 | app2smile | 必须独立保留 | request-body 类处理风险较高，不能并入 response JSON cleaner | `^https:\/\/(spclient\.wg\.spotify\.com\|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\` | `https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js` |
-| `spotify-proto` | Scripts/spotify.conf:3 | Spotify | http-response | 1 | app2smile | 必须独立保留 | 二进制 body / protobuf 类处理，不能简单合并 | `^https:\/\/(spclient\.wg\.spotify\.com\|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/` | `https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js` |
+| `spotify-upstream` | Scripts/spotify.conf:2 | Spotify | http-response | 1 | kelee.one | 必须独立保留 | 二进制 body / protobuf 类处理，不能简单合并 | `^https://(?:\w+-spclient\|spclient\.wg)\.spotify\.com(?::443)?/(?:bootstrap\|user-customizat` | `https://kelee.one/Resource/JavaScript/Spotify/Spotify_remove_ads.js` |
 | `youtube.response` | Scripts/youtube.conf:1 | YouTube | http-response | 1 | Maasea | 必须独立保留 | 二进制 body / protobuf 类处理，不能简单合并 | `^https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse\|next\|player\|search\|reel\/reel` | `https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js` |
 | `zhihu-enhance` | Scripts/zhihu-enhance.conf:4 | 知乎 | http-response | 1 | local | 需要人工复核 | 脚本逻辑较大或涉及深层结构，不能仅凭入口判断为低风险 | `^https?:\/\/api\.zhihu\.com\/(topstory\|moments\|feed\|notifications\|v\d+\/questions\/\d+\/(f` | `https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/zhihu-enhance.js` |
