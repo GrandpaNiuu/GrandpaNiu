@@ -19,8 +19,8 @@ REQUIRED_SECTIONS = [
 
 ESSENTIAL_SCRIPT_PREFIXES = (
     "youtube.response",
-    "spotify-upstream",
-    "Spotify_remove_ads.js",
+    "spotify-json",
+    "spotify-proto",
 )
 
 SAFE_MERGE_MAX_PATTERN_LEN = 1800
@@ -228,7 +228,7 @@ def write_report(
     today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z")
 
     required_status = []
-    for marker in ["[Rule]", "[Script]", "[MITM]", "spotify-upstream", "Spotify_remove_ads.js", "youtube.response"]:
+    for marker in ["[Rule]", "[Script]", "[MITM]", "spotify-json", "spotify-proto", "youtube.response"]:
         required_status.append(f"- {marker}: {'存在' if marker in after_text else '缺失'}")
 
     content = [
@@ -287,7 +287,7 @@ def main() -> None:
 
     after, logs, old_script_lines, new_script_lines = refine_script_section(before)
 
-    for marker in ["spotify-upstream", "Spotify_remove_ads.js", "youtube.response", "[Rule]", "[Script]", "[MITM]"]:
+    for marker in ["spotify-json", "spotify-proto", "youtube.response", "[Rule]", "[Script]", "[MITM]"]:
         if marker not in after:
             raise RuntimeError(f"safety check failed, missing: {marker}")
 

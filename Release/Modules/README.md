@@ -4,7 +4,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 
 | Module | File | Source | Sections |
 |---|---|---|---|
-| GrandpaNiu Spotify | `spotify.sgmodule` | `Rewrite/Sources/Apps/spotify.conf` | Rule:1, URL Rewrite:2, Script:1, MITM:1 |
+| GrandpaNiu Spotify | `spotify.sgmodule` | `Rewrite/Sources/Apps/spotify.conf` | URL Rewrite:1, Header Rewrite:1, Script:2, MITM:1 |
 | GrandpaNiu YouTube | `youtube.sgmodule` | `Rewrite/Sources/Apps/youtube.conf` | Rule:2, Map Local:1, Script:1, MITM:1 |
 | GrandpaNiu Zhihu | `zhihu.sgmodule` | `Rewrite/Sources/Apps/zhihu.conf` | Rule:10, URL Rewrite:3, Body Rewrite:5, Map Local:22, Script:10, MITM:1 |
 | GrandpaNiu Bilibili | `bilibili.sgmodule` | `Rewrite/Sources/Apps/bilibili.conf` | Rule:35, Body Rewrite:17, Map Local:8, Script:5, MITM:1 |

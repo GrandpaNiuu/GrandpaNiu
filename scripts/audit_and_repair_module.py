@@ -32,15 +32,16 @@ USER_AGENT = "GrandpaNiu-DailyAudit/1.0 (+https://github.com/GrandpaNiuu/Grandpa
 TIMEOUT_SECONDS = 25
 REQUIRED_SECTIONS = {"Rule", "Script", "MITM"}
 KNOWN_SECTIONS = {"Rule", "URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local", "Script", "MITM"}
-CORE_TOKENS = ("spotify-upstream", "Spotify_remove_ads.js", "youtube.response")
+CORE_TOKENS = ("spotify-json", "spotify-proto", "youtube.response")
 
 PROTECTED_PATTERNS = (
-    "spotify-upstream",
-    "Spotify_remove_ads.js",
+    "spotify-json",
+    "spotify-proto",
     "youtube.response",
     "spclient.wg.spotify.com",
-    "kelee.one/Tool/Loon/Lpx/Spotify_remove_ads.lpx",
-    "kelee.one/Resource/JavaScript/Spotify/Spotify_remove_ads.js",
+    "raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js",
+    "raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js",
+    "raw.githubusercontent.com/app2smile/rules/master/module/spotify.module",
     "Maasea/sgmodule",
     "blackmatrix7/ios_rule_script",
     "Cats-Team/AdRules",
@@ -487,7 +488,7 @@ def generate_report(
     ok_count = len(results) - len(failed_today)
     two_days = [url for url, record in history.items() if int(record.get("fail_count", 0)) == 2]
     three_days = [url for url, record in history.items() if int(record.get("fail_count", 0)) >= 3]
-    spotify_ok = all(token in "\n".join(lines) for token in ("spotify-upstream", "Spotify_remove_ads.js"))
+    spotify_ok = all(token in "\n".join(lines) for token in ("spotify-json", "spotify-proto"))
     youtube_ok = "youtube.response" in "\n".join(lines)
     update_ok = EXPECTED_UPDATE_URL in "\n".join(lines)
 

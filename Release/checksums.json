@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T20:12:48.386399Z",
+  "generated_at": "2026-06-16T20:37:25.308142Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 683528,
-      "sha256": "a86591284f458f4bee689aa5cc2b95ba2d3d1219256b63ba81b157604efd7951"
+      "size": 683774,
+      "sha256": "aa54ef2b40a7de9c020bfa202fddf23b2002b4867c9439d379767943cd773fd3"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -820,8 +820,8 @@
     },
     {
       "path": "Release/Modules/spotify.sgmodule",
-      "size": 888,
-      "sha256": "373be72929db9e38a131b17a0fdd0023ab6bc6681aa0cba5c1145b69802db673"
+      "size": 1296,
+      "sha256": "b4671b690d481bfd9228fcf9fba7faffd5a0a5698d3dada11021f9ab0a7a834b"
     },
     {
       "path": "Release/Modules/su-zhou-citizen-card.sgmodule",
@@ -1140,23 +1140,23 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 683528,
-      "sha256": "a86591284f458f4bee689aa5cc2b95ba2d3d1219256b63ba81b157604efd7951"
+      "size": 683774,
+      "sha256": "aa54ef2b40a7de9c020bfa202fddf23b2002b4867c9439d379767943cd773fd3"
     },
     {
       "path": "Release/Rules.conf",
-      "size": 49691,
-      "sha256": "a5ac810db2a621a3cc25de4bf59688df8d4de4e0a1b4e5c62c0cd73f54545f12"
+      "size": 49634,
+      "sha256": "07ebf0586f2818505df6d1cc58f760daa08cbe759eeaca0c8a984767a2c84e9c"
     },
     {
       "path": "Release/RulesGroup.conf",
-      "size": 49770,
-      "sha256": "e85c05a7e8b2f00bcb0561bc0cb464b20e6c9d18a4f042b302782692c07e96b1"
+      "size": 49713,
+      "sha256": "d2140bc944d6413f48186c6cf83063037c0b0420137c22215c074d05ad345400"
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 683528,
-      "sha256": "a86591284f458f4bee689aa5cc2b95ba2d3d1219256b63ba81b157604efd7951"
+      "size": 683774,
+      "sha256": "aa54ef2b40a7de9c020bfa202fddf23b2002b4867c9439d379767943cd773fd3"
     },
     {
       "path": "Release/Stable/README.md",
@@ -1165,18 +1165,18 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 683528,
-      "sha256": "a86591284f458f4bee689aa5cc2b95ba2d3d1219256b63ba81b157604efd7951"
+      "size": 683774,
+      "sha256": "aa54ef2b40a7de9c020bfa202fddf23b2002b4867c9439d379767943cd773fd3"
     },
     {
       "path": "Release/Stable/Rules.conf",
-      "size": 49691,
-      "sha256": "a5ac810db2a621a3cc25de4bf59688df8d4de4e0a1b4e5c62c0cd73f54545f12"
+      "size": 49634,
+      "sha256": "07ebf0586f2818505df6d1cc58f760daa08cbe759eeaca0c8a984767a2c84e9c"
     },
     {
       "path": "Release/Stable/RulesGroup.conf",
-      "size": 49770,
-      "sha256": "e85c05a7e8b2f00bcb0561bc0cb464b20e6c9d18a4f042b302782692c07e96b1"
+      "size": 49713,
+      "sha256": "d2140bc944d6413f48186c6cf83063037c0b0420137c22215c074d05ad345400"
     },
     {
       "path": "Web/README.md",
@@ -1185,8 +1185,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 57405,
-      "sha256": "75abba7381f23e5c0e8325562df0f3ae826de549a308338854cfd1c396fecbc9"
+      "size": 57415,
+      "sha256": "92b60ca4dfcca90bc29c8e8d592ae531c9c0ff2bb5306b9ffc59151e13fdb934"
     },
     {
       "path": "Web/index.html",
@@ -1195,8 +1195,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 218190,
-      "sha256": "85ab13a6386a06713e1086d0f288a3bdac2be59d5a86b28ebe3ec012d7ef0c2b"
+      "size": 218200,
+      "sha256": "4ef99b981812e220664581bb13e0072e99762a61ee3697ef012dda622bfd9c75"
     },
     {
       "path": "Web/registry.md",
@@ -1205,13 +1205,13 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 77286,
-      "sha256": "24f52ca9457cbbd10ab36cc4ad98f112ef1c018533fc173ac9b64ff5ea7c8732"
+      "size": 77296,
+      "sha256": "b9b2e45c2816ca80b060a66cb8ccab365489b10a30796a09ab2f8af40e0fcf4b"
     },
     {
       "path": "Web/remotes.md",
-      "size": 8145,
-      "sha256": "8f7f85cba3580c16a48b489402dc9981521adceff8bdf01e0931fcbb0b8c7dd2"
+      "size": 8173,
+      "sha256": "f88d2d18d1c3cf57cfc62470284f07946f937437abdf4af098b3a87778354d9e"
     },
     {
       "path": "Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json",

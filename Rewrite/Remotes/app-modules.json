@@ -1928,14 +1928,14 @@
     {
       "id": "spotify",
       "name": "Spotify",
-      "source_url": "https://kelee.one/Tool/Loon/Lpx/Spotify_remove_ads.lpx",
+      "source_url": "https://raw.githubusercontent.com/app2smile/rules/master/module/spotify.module",
       "target": "Rewrite/Sources/Apps/spotify.conf",
       "enabled": true,
       "direct_commit": true,
       "risk": "high",
       "backup": true,
-      "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "upstream_project": "app2smile/rules",
+      "last_sync_mode": "stable-upstream"
     },
     {
       "id": "su-zhou-citizen-card",

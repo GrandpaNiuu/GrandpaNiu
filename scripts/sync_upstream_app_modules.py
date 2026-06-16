@@ -28,6 +28,7 @@ BACKUP_ROOT = ROOT / "backup" / "upstream-app-modules"
 KELEE_CATALOG_URL = "https://hub.kelee.one/list.json"
 KELEE_UPSTREAM_PROJECT = "Kelee PluginHub"
 KELEE_USER_AGENT = "Loon/889 CFNetwork/1496.0.7 Darwin/23.5.0"
+SPOTIFY_STABLE_UPSTREAM_URL = "https://raw.githubusercontent.com/app2smile/rules/master/module/spotify.module"
 
 ALLOWED_SECTIONS = [
     "General",
@@ -64,7 +65,7 @@ REQUIRED_RECORD_KEYS = [
 CORE_BACKUP_IDS = {"spotify", "youtube", "zhihu", "wechat", "weibo", "bilibili"}
 HIGH_RISK_IDS = CORE_BACKUP_IDS | {"terabox"}
 TRUSTED_REPOSITORIES = ["QingRex/LoonKissSurge", "app2smile/rules", "Maasea/sgmodule"]
-KELEE_PINNED_REMOTE_SCRIPT_IDS = {"youtube"}
+KELEE_PINNED_REMOTE_SCRIPT_IDS = {"spotify", "youtube"}
 AD_TAG = "\u53bb\u5e7f\u544a"
 KELEE_EXCLUDED_BASES = {
     "Block_HTTPDNS.lpx",
@@ -580,6 +581,11 @@ def suspicious_reason(text: str) -> str:
     return ""
 
 
+def allow_known_spotify_upstream(module_id: str, source_url: str, reason: str) -> bool:
+    """Allow the pinned app2smile Spotify source despite upstream wording."""
+    return module_id == "spotify" and source_url == SPOTIFY_STABLE_UPSTREAM_URL and bool(reason)
+
+
 def split_module(text: str) -> tuple[list[str], dict[str, list[str]]]:
     meta: list[str] = []
     sections: dict[str, list[str]] = {name: [] for name in SOURCE_SECTIONS}
@@ -1017,7 +1023,7 @@ def sync_records(records: list[dict[str, Any]], config_only: bool) -> tuple[list
             errors.append({"id": module_id, "reason": f"fetch failed: {exc}"})
             continue
         reason = suspicious_reason(upstream_text + "\n" + source_url + "\n" + str(record.get("name", "")))
-        if reason:
+        if reason and not allow_known_spotify_upstream(module_id, source_url, reason):
             record["last_sync_mode"] = "blocked-risk"
             blocked.append({"id": module_id, "reason": reason})
             continue

@@ -49,7 +49,7 @@
       "name": "GrandpaNiu Spotify",
       "file": "Release/Modules/spotify.sgmodule",
       "source": "Rewrite/Sources/Apps/spotify.conf",
-      "sections": "Rule:1, URL Rewrite:2, Script:1, MITM:1",
+      "sections": "URL Rewrite:1, Header Rewrite:1, Script:2, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/spotify.sgmodule"
     },
     {

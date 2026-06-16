@@ -15,7 +15,7 @@ REPORT = ROOT / "reports" / "factory_finalize_report.md"
 FACTORY_REPORT = ROOT / "reports" / "module_factory_report.md"
 DIFF_REPORT = ROOT / "reports" / "module_factory_diff_report.md"
 EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
-CORE_TOKENS = ("spotify-upstream", "Spotify_remove_ads.js", "youtube.response", "zhihu-enhance")
+CORE_TOKENS = ("spotify-json", "spotify-proto", "youtube.response", "zhihu-enhance")
 
 
 def read(path: Path) -> str:
@@ -83,7 +83,7 @@ def script_name(line: str) -> str:
 def is_spotify_script(line: str) -> bool:
     name = script_name(line)
     low = line.lower()
-    return name in {"spotify-upstream"} or "spclient" in low and "spotify" in low
+    return name in {"spotify-json", "spotify-proto"} or "spclient" in low and "spotify" in low
 
 
 def is_youtube_script(line: str) -> bool:

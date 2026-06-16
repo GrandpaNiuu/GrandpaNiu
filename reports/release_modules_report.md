@@ -13,9 +13,9 @@
 ## GrandpaNiu Spotify
 - Source: `Rewrite/Sources/Apps/spotify.conf`
 - Discovery: manual
-- Rule: 1
-- URL Rewrite: 2
-- Script: 1
+- URL Rewrite: 1
+- Header Rewrite: 1
+- Script: 2
 - MITM: 1
 
 ## GrandpaNiu YouTube

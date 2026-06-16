@@ -75,7 +75,7 @@ REWRITE_ACTIONS = (
     " header",
 )
 REQUIRED_SECTIONS = set(SECTION_ORDER)
-CORE_TOKENS = ("spotify-upstream", "Spotify_remove_ads.js", "youtube.response", "zhihu-enhance")
+CORE_TOKENS = ("spotify-json", "spotify-proto", "youtube.response", "zhihu-enhance")
 EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
 SECTION_RE = re.compile(r"^\[([^\]]+)\]\s*$")
 SCRIPT_NAME_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=")

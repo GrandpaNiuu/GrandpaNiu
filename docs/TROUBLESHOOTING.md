@@ -10,7 +10,7 @@
 2. 是否只启用了 `Ronghemokuai.sgmodule`，没有同时启用其他 Spotify 模块。
 3. `[Rule]` 最前面是否仍有 Spotify 白名单。
 4. `[Header Rewrite]` 是否仍残留旧 app2smile 的 `header-del if-none-match`。
-5. `[Script]` 是否只有一套 Spotify protobuf 处理链，且包含 `spotify-upstream` / `Spotify_remove_ads.js`。
+5. `[Script]` 是否只有一套 Spotify JSON/protobuf 处理链，且包含 `spotify-json` / `spotify-proto`。
 6. `[MITM]` 是否包含 `spclient.wg.spotify.com` 和 `*spclient.spotify.com`。
 7. 最近新增的远程规则是否误拦 Spotify 播放链路。
 

@@ -37,7 +37,7 @@ python3 scripts/repository_health_check.py
 - Root 与 Release diff lines = 0。
 - `validate_repository.py` 通过。
 - `repository_health_check.py` 通过。
-- `spotify-upstream`、`Spotify_remove_ads.js`、`youtube.response`、`zhihu-enhance` 存在。
+- `spotify-json`、`spotify-proto`、`youtube.response`、`zhihu-enhance` 存在。
 - README 本地链接有效。
 - 无重复脚本名。
 - 无重复 MITM hostname。

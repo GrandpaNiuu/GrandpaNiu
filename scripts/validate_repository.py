@@ -26,8 +26,8 @@ REQUIRED_MARKERS = (
     "[Map Local]",
     "[Script]",
     "[MITM]",
-    "spotify-upstream",
-    "Spotify_remove_ads.js",
+    "spotify-json",
+    "spotify-proto",
     "youtube.response",
     "zhihu-enhance",
     "bilibili.protobuf.request.js",
@@ -280,8 +280,8 @@ def validate_scripts() -> None:
     youtube_text = read_text(ROOT / "Scripts" / "youtube.conf")
     app_text = read_text(ROOT / "Scripts" / "app-clean.conf")
 
-    if "spotify-upstream" not in spotify_text or "Spotify_remove_ads.js" not in spotify_text:
-        fail("Scripts/spotify.conf must contain the Kelee Spotify upstream script")
+    if "spotify-json" not in spotify_text or "spotify-proto" not in spotify_text:
+        fail("Scripts/spotify.conf must contain the app2smile Spotify JSON/protobuf scripts")
     if "youtube.response" not in youtube_text:
         fail("Scripts/youtube.conf must contain youtube.response")
     if "zhihu-enhance" not in read_text(ROOT / "Scripts" / "zhihu-enhance.conf"):

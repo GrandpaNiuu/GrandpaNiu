@@ -43,11 +43,12 @@ GITHUB_RAW_RE = re.compile(r"^https://raw\.githubusercontent\.com/([^/]+)/([^/]+
 GITHUB_BLOB_RE = re.compile(r"^https://github\.com/([^/]+)/([^/]+)/blob/([^/]+)/(.+)$")
 DOMAIN_SET_VALUE_RE = re.compile(r"^(?:\+\.)?(?:\*\.)?\.?[A-Za-z0-9_][A-Za-z0-9_.-]*[A-Za-z0-9_]$|^localhost$", re.I)
 PROTECTED_PATTERNS = (
-    "spotify-upstream",
-    "Spotify_remove_ads.js",
+    "spotify-json",
+    "spotify-proto",
     "youtube.response",
-    "kelee.one/Tool/Loon/Lpx/Spotify_remove_ads.lpx",
-    "kelee.one/Resource/JavaScript/Spotify/Spotify_remove_ads.js",
+    "raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js",
+    "raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js",
+    "raw.githubusercontent.com/app2smile/rules/master/module/spotify.module",
     "Maasea/sgmodule",
     "Ronghemokuai.sgmodule",
     EXPECTED_UPDATE_URL,
