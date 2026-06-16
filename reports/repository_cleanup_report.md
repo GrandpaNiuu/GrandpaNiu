@@ -5,15 +5,15 @@ Date: 2026-05-29
 ## Current Structure Status
 
 - Root import module: `Ronghemokuai.sgmodule`
-- Generated release module: `Release/Ronghemokuai.sgmodule`
+- Build release module: `Release/Ronghemokuai.sgmodule`
 - Active build profile: `Rewrite/Profiles/stable.conf`
 - Remote source registry: `Rewrite/Remotes/sources.json`
 - Local rule sources: `Rules/`
 - Script sources: `Scripts/`
 - Compatibility source fragments: `Rewrite/Sources/`
-- Factory scripts: `scripts/build_module.py`, `scripts/factory_finalize.py`
-- Factory workflow: `.github/workflows/module-factory-build.yml`
-- Factory documentation: `docs/FACTORY_FLOW.md`
+- Build scripts: `scripts/build_module.py`, `scripts/factory_finalize.py`
+- Build workflow: `.github/workflows/module-factory-build.yml`
+- Build documentation: `docs/BUILD_FLOW.md`
 
 ## Removed Redundant Files
 
@@ -31,7 +31,7 @@ Date: 2026-05-29
 - `scripts/build_module.py`
 - `scripts/factory_finalize.py`
 - `.github/workflows/module-factory-build.yml`
-- `docs/FACTORY_FLOW.md`
+- `docs/BUILD_FLOW.md`
 - `README.md`
 - `import.html`
 - `redirect.html`
@@ -40,15 +40,15 @@ Date: 2026-05-29
 
 ## Flow Fixes
 
-- Refactored the factory into a source-driven build path.
+- Refactored the repository into a source-driven build path.
 - Ran `scripts/build_module.py --build --profile fusion`.
 - Ran `scripts/factory_finalize.py --sync-root`.
-- Regenerated `Release/Ronghemokuai.sgmodule`.
+- Rebuilt `Release/Ronghemokuai.sgmodule`.
 - Synchronized `Release/Ronghemokuai.sgmodule` back to root `Ronghemokuai.sgmodule`.
-- Updated `docs/FACTORY_FLOW.md` as the single factory-flow reference.
-- Updated `README.md` maintenance links to include the source-driven factory reports.
+- Updated `docs/BUILD_FLOW.md` as the single build-flow reference.
+- Updated `README.md` maintenance links to include the source-driven build reports.
 - Updated `Rewrite/Profiles/README.md` so it no longer suggests inactive `full.conf` or `test.conf` profiles.
-- Fixed `scripts/build_module.py` merge deduplication so repeated factory runs do not accumulate duplicate comment/source marker lines.
+- Fixed `scripts/build_module.py` merge deduplication so repeated build runs do not accumulate duplicate comment/source marker lines.
 - Reserved `--extract-from-root` for initialization or recovery only.
 
 ## Scripts Classification
@@ -75,7 +75,7 @@ Date: 2026-05-29
 
 - `module-factory-build.yml`, `daily-module-update.yml`, and `daily-invalid-source-repair.yml` all have `permissions: contents: write`.
 - The three write workflows share `concurrency.group: module-maintenance`.
-- `module-factory-build.yml` compiles the factory scripts, builds from source inputs, finalizes with `--sync-root`, validates Root/Release equality, and commits generated factory output.
+- `module-factory-build.yml` compiles the build scripts, builds from source inputs, finalizes with `--sync-root`, validates Root/Release equality, and commits build output.
 - `daily-module-update.yml` remains limited to date and report updates.
 - `daily-invalid-source-repair.yml` keeps the 2-day confirmed failure threshold and protected core item checks.
 
@@ -92,4 +92,4 @@ Date: 2026-05-29
 - Test Spotify playback for skipping or loading issues.
 - Test YouTube playback and YouTube Enhance behavior.
 - Test login, payment, verification code, banking, WeChat, and Alipay flows with the module enabled.
-- Review `reports/module_factory_report.md`, `reports/module_factory_diff_report.md`, and `reports/factory_finalize_report.md` after the first GitHub Actions factory run.
+- Review `reports/module_factory_report.md`, `reports/module_factory_diff_report.md`, and `reports/factory_finalize_report.md` after the first build workflow run.
