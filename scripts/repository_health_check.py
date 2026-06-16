@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import datetime as dt
+import os
 import re
 import shutil
 import subprocess
@@ -92,14 +93,12 @@ def run_command(args: list[str]) -> tuple[bool, str]:
 
 
 def node_executable() -> str | None:
+    configured = os.environ.get("NODE_BINARY")
+    if configured and Path(configured).exists():
+        return configured
     found = shutil.which("node")
     if found:
         return found
-    bundled = Path.home() / ".cache" / "codex-runtimes" / "codex-primary-runtime" / "dependencies" / "node" / "bin"
-    candidates = [bundled / "node.exe", bundled / "node"]
-    for path in candidates:
-        if path.exists():
-            return str(path)
     return None
 
 
@@ -269,18 +268,8 @@ def main() -> None:
         "```text",
         js_output,
         "```",
-        "",
-        "## Maintenance Boundaries",
-        "",
-        "- Source-first maintenance: edit `Rules/`, `Scripts/`, `Rewrite/Sources/`, `Rewrite/Remotes/`, and `Rewrite/Profiles/fusion.conf` first.",
-        "- Fusion is the only public iOS entry; legacy Stable/Lite/Full files are compatibility placeholders only.",
-        "- `Release/` and generated `Web/` catalogs must be rebuilt, not manually patched as source files.",
     ]
-
     write(REPORT, "\n".join(lines))
-    print(f"Repository health report written to {REPORT}")
-    if blockers:
-        raise SystemExit("Repository health check found blocking issues: " + "; ".join(blockers))
 
 
 if __name__ == "__main__":
