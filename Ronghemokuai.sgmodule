@@ -37,8 +37,8 @@ DOMAIN-SUFFIX,bankcomm.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,psbc.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,jdpay.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,npay.meituan.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,spotify.com,PROXY,pre-matching
-DOMAIN-SUFFIX,spotifycdn.com,PROXY,pre-matching
+DOMAIN-SUFFIX,spotify.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,spotifycdn.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,scdn.co,DIRECT,pre-matching
 DOMAIN-SUFFIX,mgtv.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,youku.com,DIRECT,pre-matching
@@ -223,18 +223,18 @@ DOMAIN-SUFFIX,dpfile.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,msstatic.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,zdmimg.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,amap.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,spotify.com,DIRECT
-DOMAIN-SUFFIX,scdn.co,DIRECT
-DOMAIN-SUFFIX,spotifycdn.com,DIRECT
-DOMAIN-SUFFIX,pscdn.co,DIRECT
-DOMAIN,spclient.wg.spotify.com,DIRECT
-DOMAIN-SUFFIX,spclient.spotify.com,DIRECT
-DOMAIN-SUFFIX,youtube.com,PROXY,pre-matching
-DOMAIN-SUFFIX,youtu.be,PROXY,pre-matching
-DOMAIN-SUFFIX,ytimg.com,PROXY,pre-matching
-DOMAIN-SUFFIX,ggpht.com,PROXY,pre-matching
-DOMAIN-SUFFIX,googlevideo.com,PROXY,pre-matching
-DOMAIN,youtubei.googleapis.com,PROXY,pre-matching
+DOMAIN-SUFFIX,spotify.com,Spotify
+DOMAIN-SUFFIX,scdn.co,Spotify
+DOMAIN-SUFFIX,spotifycdn.com,Spotify
+DOMAIN-SUFFIX,pscdn.co,Spotify
+DOMAIN,spclient.wg.spotify.com,Spotify
+DOMAIN-SUFFIX,spclient.spotify.com,Spotify
+DOMAIN-SUFFIX,youtube.com,YouTube,pre-matching
+DOMAIN-SUFFIX,youtu.be,YouTube,pre-matching
+DOMAIN-SUFFIX,ytimg.com,YouTube,pre-matching
+DOMAIN-SUFFIX,ggpht.com,YouTube,pre-matching
+DOMAIN-SUFFIX,googlevideo.com,YouTube,pre-matching
+DOMAIN,youtubei.googleapis.com,YouTube,pre-matching
 DOMAIN-SUFFIX,doubleclick.net,REJECT
 DOMAIN-SUFFIX,googleadservices.com,REJECT
 DOMAIN-SUFFIX,googlesyndication.com,REJECT
@@ -962,6 +962,18 @@ URL-REGEX,"^http:\/\/mercury-gateway\.ixiaochuan\.cn\/mercury\/v1\/ad\/",REJECT-
 URL-REGEX,"^http:\/\/file-share\.izuiyou\.com\/octopus\/media\/templates\/search_home_page_(nv|nv_v2)\/search_home_page_nv",REJECT
 RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list,REJECT
 RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list,REJECT
+DOMAIN-SUFFIX,youtube.com,PROXY,pre-matching
+DOMAIN-SUFFIX,youtu.be,PROXY,pre-matching
+DOMAIN-SUFFIX,ytimg.com,PROXY,pre-matching
+DOMAIN-SUFFIX,ggpht.com,PROXY,pre-matching
+DOMAIN-SUFFIX,googlevideo.com,PROXY,pre-matching
+DOMAIN,youtubei.googleapis.com,PROXY,pre-matching
+DOMAIN-SUFFIX,spotify.com,DIRECT
+DOMAIN-SUFFIX,scdn.co,DIRECT
+DOMAIN-SUFFIX,spotifycdn.com,DIRECT
+DOMAIN-SUFFIX,pscdn.co,DIRECT
+DOMAIN,spclient.wg.spotify.com,DIRECT
+DOMAIN-SUFFIX,spclient.spotify.com,DIRECT
 [URL Rewrite]
 ^(^https?:\/\/www\.vgtime\.com\/app\/topic\/\d+\.jhtml\?.*?&close_ad=)false(&page=\d&sign=\w+&timestamp=\d+&font_size=\d$) $1true$2 302
 ^https?:\/\/((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\/music\/common\/upload\/t_splash_info\/ - reject
