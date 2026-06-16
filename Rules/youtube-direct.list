@@ -1,10 +1,10 @@
-# YouTube rules - controlled by local policy group
-DOMAIN-SUFFIX,youtube.com,YouTube,pre-matching
-DOMAIN-SUFFIX,youtu.be,YouTube,pre-matching
-DOMAIN-SUFFIX,ytimg.com,YouTube,pre-matching
-DOMAIN-SUFFIX,ggpht.com,YouTube,pre-matching
-DOMAIN-SUFFIX,googlevideo.com,YouTube,pre-matching
-DOMAIN,youtubei.googleapis.com,YouTube,pre-matching
+# YouTube safe passthrough start
+DOMAIN-SUFFIX,youtube.com,PROXY,pre-matching
+DOMAIN-SUFFIX,youtu.be,PROXY,pre-matching
+DOMAIN-SUFFIX,ytimg.com,PROXY,pre-matching
+DOMAIN-SUFFIX,ggpht.com,PROXY,pre-matching
+DOMAIN-SUFFIX,googlevideo.com,PROXY,pre-matching
+DOMAIN,youtubei.googleapis.com,PROXY,pre-matching
 # YouTube / Google ad delivery hard block
 DOMAIN-SUFFIX,doubleclick.net,REJECT
 DOMAIN-SUFFIX,googleadservices.com,REJECT
