@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import shutil
 import subprocess
 import sys
@@ -13,13 +14,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def node_executable() -> str:
+    configured = os.environ.get("NODE_BINARY")
+    if configured and Path(configured).exists():
+        return configured
     found = shutil.which("node")
     if found:
         return found
-    bundled = Path.home() / ".cache" / "codex-runtimes" / "codex-primary-runtime" / "dependencies" / "node" / "bin"
-    for candidate in (bundled / "node.exe", bundled / "node"):
-        if candidate.exists():
-            return str(candidate)
     raise SystemExit("ERROR: node executable not found")
 
 
