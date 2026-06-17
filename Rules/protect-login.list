@@ -1,6 +1,7 @@
 # GrandpaNiu login protection rules
 # Purpose: keep common account, passport and verification endpoints ahead of reject rules in the single fusion module.
 # These rules are intentionally conservative. Add only stable core login domains here.
+# Google login must use PROXY; direct routing can break Safari OAuth pages.
 
 DOMAIN-SUFFIX,passport.jd.com,DIRECT
 DOMAIN-SUFFIX,login.taobao.com,DIRECT
@@ -10,5 +11,8 @@ DOMAIN-SUFFIX,passport.baidu.com,DIRECT
 DOMAIN-SUFFIX,graph.qq.com,DIRECT
 DOMAIN-SUFFIX,open.weixin.qq.com,DIRECT
 DOMAIN-SUFFIX,appleid.apple.com,DIRECT
-DOMAIN-SUFFIX,accounts.google.com,DIRECT
+DOMAIN-SUFFIX,accounts.google.com,PROXY
+DOMAIN-SUFFIX,google.com,PROXY
+DOMAIN-SUFFIX,gstatic.com,PROXY
+DOMAIN-SUFFIX,googleapis.com,PROXY
 DOMAIN-SUFFIX,login.live.com,DIRECT
