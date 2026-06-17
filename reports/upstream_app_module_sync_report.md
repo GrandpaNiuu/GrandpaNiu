@@ -1,19 +1,16 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-06-17T17:28:29Z
+- generated: 2026-06-17T19:08:31Z
 - modules: 220
 - enabled: 212
 - direct_commit: 212
-- updated: 2
-- skipped: 218
+- updated: 0
+- skipped: 220
 - blocked: 0
 - errors: 0
 
 ## Updated
-| id | upstream | backup | source |
-| --- | --- | --- | --- |
-| bilibili | Bilibili增强 | backup/upstream-app-modules/bilibili/20260617-172810.conf | https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule |
-| spotify | Spotify(>=iOS15) | backup/upstream-app-modules/spotify/20260617-172810.conf | https://raw.githubusercontent.com/app2smile/rules/master/module/spotify.module |
+_None._
 
 ## Skipped
 | id | reason |
@@ -40,6 +37,7 @@
 | baidu-wenku | unchanged |
 | baidupan | unchanged |
 | beike | unchanged |
+| bilibili | unchanged |
 | bilibili-comic | unchanged |
 | bitqiu-pan | unchanged |
 | bodian-music | unchanged |
@@ -177,6 +175,7 @@
 | snowball | unchanged |
 | soda-music | unchanged |
 | soul | unchanged |
+| spotify | unchanged |
 | su-zhou-citizen-card | unchanged |
 | taobao | unchanged |
 | taobao-travel | unchanged |
