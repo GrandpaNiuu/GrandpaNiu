@@ -6,7 +6,7 @@
 
 | App / 服务 | 覆盖方式 | 覆盖强度 | 风险等级 | 来源文件 | 自动证据状态 | 观察项目 | 备注 |
 |---|---|---|---|---|---|---|---|
-| Spotify | Header Rewrite, MITM, Remote Rule, Rule, Script | 重点覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/Header-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rules/spotify-direct.list<br>Scripts/spotify.conf | 自动扫描已覆盖 | 播放、切歌、搜索、歌单加载由用户反馈或 Issue 观察，不作为自动门禁。 | 高风险项必须保留保护规则和回滚路径 |
+| Spotify | Header Rewrite, MITM, Remote Rule, Rule, Script | 重点覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/Header-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rules/qingrex-miniapp-app-ad.list<br>Rules/spotify-direct.list<br>Scripts/spotify.conf | 自动扫描已覆盖 | 播放、切歌、搜索、歌单加载由用户反馈或 Issue 观察，不作为自动门禁。 | 高风险项必须保留保护规则和回滚路径 |
 | YouTube | MITM, Remote Rule, Rule, Script | 重点覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/MITM.conf<br>Rules/youtube-direct.list<br>Scripts/youtube.conf | 自动扫描已覆盖 | 首页、搜索、播放、Shorts、评论区由用户反馈或 Issue 观察，不作为自动门禁。 | 高风险项必须保留保护规则和回滚路径 |
 | 知乎 | Body Rewrite, MITM, Remote Rule, Rule, Script, URL Rewrite | 重点覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/Body-Rewrite.conf<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/reject.list<br>Scripts/zhihu-enhance.conf | 自动扫描已覆盖 | 首页、回答页、搜索、评论、点赞、收藏由用户反馈或 Issue 观察，不作为自动门禁。 | 高风险项必须保留保护规则和回滚路径 |
 | Bilibili | MITM, Remote Rule, Rule, URL Rewrite | 局部覆盖 | 高 | Rewrite/Remotes/sources.json<br>Rewrite/Sources/MITM.conf<br>Rewrite/Sources/URL-Rewrite.conf<br>Rules/web-ads.list | 自动扫描已覆盖 | 首页、搜索、详情页、核心流程由用户反馈或 Issue 观察，不作为自动门禁。 | 高风险项必须保留保护规则和回滚路径 |

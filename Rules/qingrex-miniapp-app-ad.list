@@ -1,7 +1,7 @@
 # QingRex mini-program and app lazy ad removal rule layer
 # Source module: 小程序和应用懒人去广告合集.official.sgmodule
 # Scope: app and mini-program ad domain/IP rejects.
-# Fusion safety: non-ad safe-browsing bypass and WeChat HTTPDNS rejects are filtered out.
+# Fusion safety: non-ad safe-browsing bypass, WeChat HTTPDNS rejects, and Spotify rules are filtered out.
 # Rollback: remove qingrex_miniapp_rules from Rewrite/Profiles/fusion.conf and rebuild Fusion.
 
 #>爱奇艺

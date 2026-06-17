@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-18 01:48:18 +0800
+- Generated at: 2026-06-18 01:50:33 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -57,6 +57,8 @@
 
 ```text
 Repository validation passed.
+/home/runner/work/GrandpaNiu/GrandpaNiu/scripts/validate_repository.py:220: SyntaxWarning: invalid escape sequence '\/'
+  normalized = lowered.replace("\/", "/")
 ```
 
 ## automated quality evidence Output
