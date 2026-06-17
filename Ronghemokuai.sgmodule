@@ -1,11 +1,11 @@
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
 #!name=GrandpaNiu
-#!desc=2026-06-17 / fusion
+#!desc=2026-06-18 / fusion
 #!system=ios
 #!category=去广告 / 稳定净化
 #!arguments=屏蔽上传按钮:true,屏蔽选段按钮:true,屏蔽Shorts按钮:false,字幕翻译语言:off,歌词翻译语言:off,启用调试模式:false
 #!arguments-desc=- 屏蔽参数：[true, false]\n- 翻译参数：[语言代码, off]\n\n1. 语言代码遵循 Google Translate Languages Codes，填入 off 时关闭翻译。\n2. 开启调试模式用于输出更多日志。
-# update-date: 2026-06-17
+# update-date: 2026-06-18
 [Rule]
 AND,((DOMAIN-SUFFIX,pddpic.com,extended-matching),(USER-AGENT,"*bili*")),REJECT,pre-matching
 AND,((DOMAIN-SUFFIX,pddcdn.com,extended-matching),(USER-AGENT,"*bili*")),REJECT,pre-matching
@@ -37,6 +37,9 @@ DOMAIN-SUFFIX,bankcomm.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,psbc.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,jdpay.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,npay.meituan.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,spotify.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,spotifycdn.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,scdn.co,DIRECT,pre-matching
 DOMAIN-SUFFIX,mgtv.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,youku.com,DIRECT,pre-matching
 DOMAIN-KEYWORD,adlog,REJECT,pre-matching
@@ -107,6 +110,7 @@ DOMAIN,rmonitor.qq.com,REJECT,pre-matching
 DOMAIN,rtlog3-applog.fqnovel.com,REJECT,pre-matching
 DOMAIN,rtlog5-applog.fqnovel.com,REJECT,pre-matching
 DOMAIN,security.snssdk.com,REJECT,pre-matching
+DOMAIN,spotify-ads.spotifycdn.com,REJECT,pre-matching
 DOMAIN,static.doubleclick.net,REJECT,pre-matching
 DOMAIN,t.gdt.qq.com,REJECT,pre-matching
 DOMAIN,temai.snssdk.com,REJECT,pre-matching
@@ -134,6 +138,8 @@ DOMAIN-KEYWORD,kuaishou-ad,REJECT,pre-matching
 DOMAIN-KEYWORD,kwai-ad,REJECT,pre-matching
 DOMAIN-KEYWORD,pangolin,REJECT,pre-matching
 DOMAIN-KEYWORD,pdd-ad,REJECT,pre-matching
+DOMAIN-KEYWORD,spotify-ad,REJECT,pre-matching
+DOMAIN-KEYWORD,spotify-ads,REJECT,pre-matching
 DOMAIN-KEYWORD,weibo-ad,REJECT,pre-matching
 DOMAIN-KEYWORD,xhs-ad,REJECT,pre-matching
 DOMAIN-KEYWORD,xiaohongshu-ad,REJECT,pre-matching
@@ -217,7 +223,12 @@ DOMAIN-SUFFIX,dpfile.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,msstatic.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,zdmimg.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,amap.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,spotify.com,DIRECT
+DOMAIN-SUFFIX,scdn.co,DIRECT
+DOMAIN-SUFFIX,spotifycdn.com,DIRECT
 DOMAIN-SUFFIX,pscdn.co,DIRECT
+DOMAIN,spclient.wg.spotify.com,DIRECT
+DOMAIN-SUFFIX,spclient.spotify.com,DIRECT
 DOMAIN-SUFFIX,youtube.com,PROXY,pre-matching
 DOMAIN-SUFFIX,youtu.be,PROXY,pre-matching
 DOMAIN-SUFFIX,ytimg.com,PROXY,pre-matching
