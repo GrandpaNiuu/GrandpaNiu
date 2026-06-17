@@ -2,8 +2,8 @@ name: Daily invalid source audit and repair
 
 on:
   schedule:
-    # 16:00 UTC = 00:00 Beijing time.
-    - cron: "0 16 * * *"
+    # 16:14 UTC = 00:14 Beijing time.
+    - cron: "14 16 * * *"
   workflow_dispatch:
 
 permissions:
