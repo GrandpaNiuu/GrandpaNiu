@@ -86,6 +86,15 @@ REQUIRED_WORKFLOWS = (
     ".github/workflows/repository-health.yml",
 )
 
+EXPECTED_WORKFLOW_CRONS = {
+    ".github/workflows/daily-module-update.yml": "10 16 * * *",          # Beijing 00:10
+    ".github/workflows/daily-audit-and-repair.yml": "12 16 * * *",      # Beijing 00:12
+    ".github/workflows/daily-invalid-source-repair.yml": "14 16 * * *", # Beijing 00:14
+    ".github/workflows/upstream-collect.yml": "16 16 * * *",            # Beijing 00:16
+    ".github/workflows/scheduled-module-update.yml": "18 16 * * *",     # Beijing 00:18
+    ".github/workflows/upstream-app-module-sync.yml": "30 16 * * *",    # Beijing 00:30
+}
+
 ALLOWED_REMOTE_TYPES = {"RULE-SET", "DOMAIN-SET"}
 ALLOWED_POLICIES = {"REJECT", "REJECT-DROP", "DIRECT"}
 BLOCKED_URL_TOKENS = ("ghproxy", "mirror", "tinyurl", "bit.ly", "t.co/", "shorturl")
@@ -168,32 +177,6 @@ def active_lines(text: str):
             yield stripped
 
 
-def workflow_builds_fusion(text: str) -> bool:
-    compact = re.sub(r"\s+", " ", text)
-    return any(
-        token in text or token in compact
-        for token in (
-            "fusion-build-marker: scripts/build_module.py --build --profile fusion",
-            "scripts/build_module.py --build --profile fusion",
-            "--profile fusion",
-            '"--profile", "fusion"',
-            "'--profile', 'fusion'",
-            "profile=fusion",
-        )
-    )
-
-
-def parse_hosts(text: str) -> list[str]:
-    hosts: list[str] = []
-    for line in text.splitlines():
-        match = HOSTNAME_RE.match(line)
-        if not match:
-            continue
-        value = match.group(1).replace("%APPEND%", "")
-        hosts.extend(host.strip() for host in value.split(",") if host.strip())
-    return hosts
-
-
 def workflow_has_fusion_build(text: str) -> bool:
     """Accept shell commands and Python subprocess list syntax."""
     normalized = re.sub(r"\s+", " ", text)
@@ -205,8 +188,20 @@ def workflow_has_fusion_build(text: str) -> bool:
         "'--profile', 'fusion'",
         '"--profile","fusion"',
         "'--profile','fusion'",
+        "fusion-build-marker: scripts/build_module.py --build --profile fusion",
     )
-    return has_builder and any(pattern in normalized for pattern in patterns)
+    return has_builder and any(pattern in normalized or pattern in text for pattern in patterns)
+
+
+def parse_hosts(text: str) -> list[str]:
+    hosts: list[str] = []
+    for line in text.splitlines():
+        match = HOSTNAME_RE.match(line)
+        if not match:
+            continue
+        value = match.group(1).replace("%APPEND%", "")
+        hosts.extend(host.strip() for host in value.split(",") if host.strip())
+    return hosts
 
 
 def validate_root_release() -> None:
@@ -222,7 +217,7 @@ def validate_root_release() -> None:
     for line in active_lines(root_text):
         upper = line.upper()
         lowered = line.lower()
-        normalized = lowered.replace("\\/", "/")
+        normalized = lowered.replace("\/", "/")
         if "bilibili" in normalized:
             if 'data="{' in normalized:
                 fail("root module contains raw JSON Bilibili map-local data; use base64 data instead")
@@ -369,6 +364,10 @@ def validate_readme_links() -> None:
             fail(f"README link target missing: {target}")
 
 
+def workflow_contains_cron(text: str, cron: str) -> bool:
+    return f'cron: "{cron}"' in text or f"cron: '{cron}'" in text
+
+
 def validate_workflows() -> None:
     for relative in REQUIRED_WORKFLOWS:
         path = ROOT / relative
@@ -392,24 +391,16 @@ def validate_workflows() -> None:
         if token not in daily:
             fail(f"daily-module-update workflow missing command token: {token}")
 
-    for relative in (
-        ".github/workflows/daily-module-update.yml",
-        ".github/workflows/daily-audit-and-repair.yml",
-        ".github/workflows/daily-invalid-source-repair.yml",
-        ".github/workflows/upstream-collect.yml",
-        ".github/workflows/scheduled-module-update.yml",
-    ):
+    for relative, cron in EXPECTED_WORKFLOW_CRONS.items():
         text = read_text(ROOT / relative)
-        if 'cron: "0 16 * * *"' not in text and "cron: '0 16 * * *'" not in text:
-            fail(f"{relative} must run daily at Beijing 00:00")
+        if not workflow_contains_cron(text, cron):
+            fail(f"{relative} must run at expected staggered Beijing schedule: {cron}")
 
     scheduled = read_text(ROOT / ".github" / "workflows" / "scheduled-module-update.yml")
     if "scripts/refresh_module_date.py" not in scheduled:
         fail("scheduled-module-update workflow must refresh Beijing module date before building")
 
     upstream_app = read_text(ROOT / ".github" / "workflows" / "upstream-app-module-sync.yml")
-    if 'cron: "30 16 * * *"' not in upstream_app and "cron: '30 16 * * *'" not in upstream_app:
-        fail("upstream-app-module-sync workflow must run daily at Beijing 00:30")
     if "Rewrite/Sources/Meta.conf" not in upstream_app:
         fail("upstream-app-module-sync workflow must commit refreshed Meta.conf")
 
