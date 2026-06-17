@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # 16:18 UTC = 00:18 Beijing time.
+    # Rebuild trigger: refresh generated outputs after Google login proxy policy change.
     - cron: "18 16 * * *"
   push:
     branches:
