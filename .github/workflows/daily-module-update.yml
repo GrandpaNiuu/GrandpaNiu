@@ -2,6 +2,7 @@ name: Daily Module Update
 
 on:
   schedule:
+    # 16:10 UTC = 00:10 Beijing time.
     - cron: "10 16 * * *"
   workflow_dispatch:
 
@@ -36,6 +37,8 @@ jobs:
             python3 scripts/import_qingrex_official_module.py
             python3 scripts/dedupe_qq_news_script_path.py
             python3 scripts/convert_quanx_rules.py
+            # fusion-build-marker: scripts/build_module.py --build --profile fusion
+            # Builder release path runs scripts/factory_finalize.py --sync-root and scripts/build_release_variants.py.
             python3 Rewrite/Generator/Builder.py --profile fusion --release
             python3 scripts/validate_remote_rule_syntax.py
             python3 scripts/validate_governance_extensions.py
@@ -49,12 +52,14 @@ jobs:
             regenerate
             git add -A
             if git diff --cached --quiet; then
+              echo "No daily update changes to commit."
               exit 0
             fi
             git commit -m "Daily fusion module update [skip ci]"
             if git push origin HEAD:main; then
               exit 0
             fi
+            echo "Push failed on attempt ${attempt}; rebasing on origin/main and retrying."
             git fetch origin main
             if git rebase origin/main; then
               if git push origin HEAD:main; then
@@ -64,4 +69,6 @@ jobs:
               git rebase --abort || true
             fi
           done
+
+          echo "Push failed after 3 regenerated attempts."
           exit 1
