@@ -11,6 +11,8 @@ Fusion safety boundary:
   function and can weaken browser/app safety checks.
 - Do not import WeChat HTTPDNS rejects, because this repository already keeps
   those under manual review due to image/media false-positive risk.
+- Do not import Spotify DIRECT or Spotify ad-domain rules. Spotify rule handling
+  stays script-only unless manually reintroduced through a reviewed source.
 """
 
 from __future__ import annotations
@@ -42,7 +44,7 @@ HEADERS = {
         "# QingRex mini-program and app lazy ad removal rule layer\n"
         "# Source module: 小程序和应用懒人去广告合集.official.sgmodule\n"
         "# Scope: app and mini-program ad domain/IP rejects.\n"
-        "# Fusion safety: non-ad safe-browsing bypass and WeChat HTTPDNS rejects are filtered out.\n"
+        "# Fusion safety: non-ad safe-browsing bypass, WeChat HTTPDNS rejects, and Spotify rules are filtered out.\n"
         "# Rollback: remove qingrex_miniapp_rules from Rewrite/Profiles/fusion.conf and rebuild Fusion.\n\n"
     ),
     "URL Rewrite": (
@@ -101,6 +103,17 @@ EXCLUDED_EXACT_RULE_PREFIXES = {
     "DOMAIN,dns.weixin.qq.com.cn,REJECT",
     "DOMAIN,dns.weixin.qq.com,REJECT",
 }
+EXCLUDED_SPOTIFY_RULE_PREFIXES = (
+    "domain-suffix,spotify.com,direct",
+    "domain-suffix,spotifycdn.com,direct",
+    "domain-suffix,scdn.co,direct",
+    "domain-suffix,pscdn.co,direct",
+    "domain,spclient.wg.spotify.com,direct",
+    "domain-suffix,spclient.spotify.com,direct",
+    "domain,spotify-ads.spotifycdn.com,reject",
+    "domain-keyword,spotify-ad,reject",
+    "domain-keyword,spotify-ads,reject",
+)
 
 
 def download_text() -> str:
@@ -124,6 +137,11 @@ def parse_sections(text: str) -> dict[str, list[str]]:
     return sections
 
 
+def is_excluded_spotify_rule(stripped: str) -> bool:
+    normalized = re.sub(r"\s+", "", stripped).lower()
+    return any(normalized.startswith(prefix) for prefix in EXCLUDED_SPOTIFY_RULE_PREFIXES)
+
+
 def filter_rule_lines(lines: list[str]) -> tuple[list[str], list[str]]:
     filtered: list[str] = []
     excluded: list[str] = []
@@ -140,6 +158,9 @@ def filter_rule_lines(lines: list[str]) -> tuple[list[str], list[str]]:
             excluded.append(line)
             continue
         if any(stripped.startswith(prefix) for prefix in EXCLUDED_EXACT_RULE_PREFIXES):
+            excluded.append(line)
+            continue
+        if is_excluded_spotify_rule(stripped):
             excluded.append(line)
             continue
         filtered.append(line)
