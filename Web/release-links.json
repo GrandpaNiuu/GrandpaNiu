@@ -49,7 +49,7 @@
       "name": "GrandpaNiu Spotify",
       "file": "Release/Modules/spotify.sgmodule",
       "source": "Rewrite/Sources/Apps/spotify.conf",
-      "sections": "URL Rewrite:1, Header Rewrite:1, Script:2, MITM:1",
+      "sections": "Header Rewrite:1, Script:2, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/spotify.sgmodule"
     },
     {
@@ -70,7 +70,7 @@
       "name": "GrandpaNiu Bilibili",
       "file": "Release/Modules/bilibili.sgmodule",
       "source": "Rewrite/Sources/Apps/bilibili.conf",
-      "sections": "Rule:35, Body Rewrite:17, Map Local:8, Script:5, MITM:1",
+      "sections": "Rule:35, Body Rewrite:17, Map Local:9, Script:5, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/bilibili.sgmodule"
     },
     {

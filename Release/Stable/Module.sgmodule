@@ -3221,7 +3221,6 @@ https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyam/app/app\.php\? - reject-
 ^https://(beta-luna\.douyin|api5-lq\.qishui)\.com/luna/commerce/upsells\? - reject-dict
 ^https://(beta-luna\.douyin|api5-lq\.qishui)\.com/luna/commerce/v2/commerce_info\? - reject-dict
 ^https://(beta-luna\.douyin|api5-lq\.qishui)\.com/luna/listen-video/reminder\? - reject-dict
-^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/(.*)platform=iphone(.*) https://spclient.wg.spotify.com/$2/$3platform=ipad$4 header
 ^https://acs\.m\.taobao\.com/gw/mtop\.fliggy\.crm\.screen\.allresource/ - reject-dict
 ^https://acs\.m\.taobao\.com/gw/mtop\.fliggy\.crm\.screen\.predict/ - reject-dict
 ^https://acs\.m\.taobao\.com/gw/mtop\.fliggy\.tripzoo\.new\.couponlist/ - reject-dict
@@ -5294,6 +5293,7 @@ http-response-jq ^https://app\.zhuanzhuan\.com/zz/transfer/getmyprofilev3$ 'del(
 ^https?:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v\d+\.Teenagers\/ModeStatus$ data-type=base64 data="AAAAABMKEQgCEgl0ZWVuYWdlcnMgAioA" header="content-type: application/grpc|grpc-status: 0"
 ^https?:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v\d+\.Search\/DefaultWords$ data-type=base64 data="AAAAACEaHeaQnOe0ouinhumikeOAgeeVquWJp+aIlnVw5Li7KAE=" header="content-type: application/grpc|grpc-status: 0"
 ^https?:\/\/grpc\.biliapi\.net\/bilibili\.app\.(?:view\.v\d+\.View\/TFInfo|viewunite\.v\d+\.View\/(?:PlayPause|ViewEndPage))$ data-type=base64 data="AAAAAAA=" header="content-type: application/grpc|grpc-status: 0"
+^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/list\? header="content-type: text/plain" data-type=text data="OK"
 ^https:\/\/biz\.cyapi\.cn\/(p\/v1\/entries|p\/v1\/trial_card\/info|v2\/product) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https:\/\/starplucker\.cyapi\.cn\/v3\/(config\/cypage\/\w+\/conditions|notification\/message_center|operation\/homefeatures) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https://api\.cece\.com/live/user/coupon_tab\? data-type=json data="{"code":0,"msg":""}" status-code=200 status-code=200 header="content-type: application/json"

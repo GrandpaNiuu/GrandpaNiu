@@ -279,7 +279,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "kokoryh/Sparkle",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "bilibili-comic",
@@ -1935,7 +1935,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "app2smile/rules",
-      "last_sync_mode": "stable-upstream"
+      "last_sync_mode": "updated"
     },
     {
       "id": "su-zhou-citizen-card",

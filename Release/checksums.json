@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T17:27:29.552695Z",
+  "generated_at": "2026-06-17T17:28:30.326742Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 683774,
-      "sha256": "89df836e95840d8187cdcb54feb58fc873bbb33ad6dae6c2a8bbe15715bdad9a"
+      "size": 683673,
+      "sha256": "c4c3992abcada1da5ddb090b4983b0bc7a44f2dd385726ed619f60a54d4a2f74"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -135,8 +135,8 @@
     },
     {
       "path": "Release/Modules/bilibili.sgmodule",
-      "size": 13284,
-      "sha256": "4cb348ef745b4950e224cbdaf9a3000faa53601edd59afebfbccbaae5d250031"
+      "size": 13396,
+      "sha256": "9330c80253de5dce974f252cac876e74e18c771b44b0a9645a4dee8a686e212d"
     },
     {
       "path": "Release/Modules/bitqiu-pan.sgmodule",
@@ -820,8 +820,8 @@
     },
     {
       "path": "Release/Modules/spotify.sgmodule",
-      "size": 1296,
-      "sha256": "b4671b690d481bfd9228fcf9fba7faffd5a0a5698d3dada11021f9ab0a7a834b"
+      "size": 1068,
+      "sha256": "c0f01c4950f7d8b8a35302e34f42c01a08cd87f8108bb4fccbe4e6c90b74fa90"
     },
     {
       "path": "Release/Modules/su-zhou-citizen-card.sgmodule",
@@ -1140,8 +1140,8 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 683774,
-      "sha256": "89df836e95840d8187cdcb54feb58fc873bbb33ad6dae6c2a8bbe15715bdad9a"
+      "size": 683673,
+      "sha256": "c4c3992abcada1da5ddb090b4983b0bc7a44f2dd385726ed619f60a54d4a2f74"
     },
     {
       "path": "Release/Rules.conf",
@@ -1155,8 +1155,8 @@
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 683774,
-      "sha256": "89df836e95840d8187cdcb54feb58fc873bbb33ad6dae6c2a8bbe15715bdad9a"
+      "size": 683673,
+      "sha256": "c4c3992abcada1da5ddb090b4983b0bc7a44f2dd385726ed619f60a54d4a2f74"
     },
     {
       "path": "Release/Stable/README.md",
@@ -1165,8 +1165,8 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 683774,
-      "sha256": "89df836e95840d8187cdcb54feb58fc873bbb33ad6dae6c2a8bbe15715bdad9a"
+      "size": 683673,
+      "sha256": "c4c3992abcada1da5ddb090b4983b0bc7a44f2dd385726ed619f60a54d4a2f74"
     },
     {
       "path": "Release/Stable/Rules.conf",
@@ -1185,8 +1185,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 57415,
-      "sha256": "92b60ca4dfcca90bc29c8e8d592ae531c9c0ff2bb5306b9ffc59151e13fdb934"
+      "size": 57400,
+      "sha256": "ab6743ee461b45ec331170aa9f0bef36dc9b023e34b9d1b14e8f719d3b099967"
     },
     {
       "path": "Web/index.html",
@@ -1195,8 +1195,8 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 218200,
-      "sha256": "4ef99b981812e220664581bb13e0072e99762a61ee3697ef012dda622bfd9c75"
+      "size": 218185,
+      "sha256": "e13197898ccdc123034a057bf3f274d747c8c5eca0d43f35a9af7d091ad9c84c"
     },
     {
       "path": "Web/registry.md",
@@ -1205,8 +1205,8 @@
     },
     {
       "path": "Web/release-links.json",
-      "size": 77296,
-      "sha256": "b9b2e45c2816ca80b060a66cb8ccab365489b10a30796a09ab2f8af40e0fcf4b"
+      "size": 77281,
+      "sha256": "75b1567932aadaff8cacf29d3548066d19215ac8057f5165597dea6523f31e11"
     },
     {
       "path": "Web/remotes.md",

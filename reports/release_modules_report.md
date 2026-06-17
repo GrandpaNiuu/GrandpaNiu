@@ -13,7 +13,6 @@
 ## GrandpaNiu Spotify
 - Source: `Rewrite/Sources/Apps/spotify.conf`
 - Discovery: manual
-- URL Rewrite: 1
 - Header Rewrite: 1
 - Script: 2
 - MITM: 1
@@ -41,7 +40,7 @@
 - Discovery: manual
 - Rule: 35
 - Body Rewrite: 17
-- Map Local: 8
+- Map Local: 9
 - Script: 5
 - MITM: 1
 
