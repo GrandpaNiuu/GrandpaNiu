@@ -223,12 +223,6 @@ DOMAIN-SUFFIX,dpfile.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,msstatic.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,zdmimg.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,amap.com,DIRECT,pre-matching
-DOMAIN-SUFFIX,spotify.com,DIRECT
-DOMAIN-SUFFIX,scdn.co,DIRECT
-DOMAIN-SUFFIX,spotifycdn.com,DIRECT
-DOMAIN-SUFFIX,pscdn.co,DIRECT
-DOMAIN,spclient.wg.spotify.com,DIRECT
-DOMAIN-SUFFIX,spclient.spotify.com,DIRECT
 DOMAIN-SUFFIX,youtube.com,PROXY,pre-matching
 DOMAIN-SUFFIX,youtu.be,PROXY,pre-matching
 DOMAIN-SUFFIX,ytimg.com,PROXY,pre-matching

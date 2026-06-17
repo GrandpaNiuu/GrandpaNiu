@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-18 01:26:46 +0800
+- Generated at: 2026-06-18 01:45:17 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -12,11 +12,11 @@
 
 ## Section Counts
 
-- [Rule]: 954
-- [URL Rewrite]: 2491
+- [Rule]: 948
+- [URL Rewrite]: 2490
 - [Header Rewrite]: 1
 - [Body Rewrite]: 1652
-- [Map Local]: 351
+- [Map Local]: 352
 - [Script]: 85
 - [MITM]: 1
 
@@ -57,8 +57,6 @@
 
 ```text
 Repository validation passed.
-/home/runner/work/GrandpaNiu/GrandpaNiu/scripts/validate_repository.py:220: SyntaxWarning: invalid escape sequence '\/'
-  normalized = lowered.replace("\/", "/")
 ```
 
 ## automated quality evidence Output
