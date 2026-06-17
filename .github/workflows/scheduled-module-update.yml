@@ -3,8 +3,8 @@ name: Scheduled Module Factory Update
 on:
   workflow_dispatch:
   schedule:
-    # 16:00 UTC = 00:00 Beijing time.
-    - cron: "0 16 * * *"
+    # 16:18 UTC = 00:18 Beijing time.
+    - cron: "18 16 * * *"
   push:
     branches:
       - main
