@@ -2,8 +2,8 @@ name: Upstream candidate collect
 
 on:
   schedule:
-    # 16:00 UTC = 00:00 Beijing time.
-    - cron: "0 16 * * *"
+    # 16:16 UTC = 00:16 Beijing time.
+    - cron: "16 16 * * *"
   workflow_dispatch:
 
 permissions:
