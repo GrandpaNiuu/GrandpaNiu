@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T17:55:58.130881Z",
+  "generated_at": "2026-06-17T17:57:16.253141Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 683181,
-      "sha256": "f4e59e1cb4b2072e2a7432fa76a9c3aaf55021b17f312d92303e2e8742cb3ddb"
+      "size": 683278,
+      "sha256": "bee6c2b5d086267db558a4a227ee7e894cdaa468f4618ff30af788885832eccc"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -1145,18 +1145,18 @@
     },
     {
       "path": "Release/Rules.conf",
-      "size": 49142,
-      "sha256": "aadce9ed5fbb0cbaa2c5d4b271a0176409b841017c7721935b33ed0dd3a624e1"
+      "size": 49239,
+      "sha256": "a0ff8472a00c536c629c4750db97bc1b40623971166cdf7b1a5697b9c0c3ec73"
     },
     {
       "path": "Release/RulesGroup.conf",
-      "size": 49221,
-      "sha256": "47e4cc12f6de8ed50edc0ebaf574de86d309b1dbe49b80a179701d64626a0935"
+      "size": 49318,
+      "sha256": "29dd234b25267e629b300c72d49db09d5eaebf18657c41230244a439bd1c04e4"
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 683181,
-      "sha256": "f4e59e1cb4b2072e2a7432fa76a9c3aaf55021b17f312d92303e2e8742cb3ddb"
+      "size": 683278,
+      "sha256": "bee6c2b5d086267db558a4a227ee7e894cdaa468f4618ff30af788885832eccc"
     },
     {
       "path": "Release/Stable/README.md",
@@ -1165,18 +1165,18 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 683181,
-      "sha256": "f4e59e1cb4b2072e2a7432fa76a9c3aaf55021b17f312d92303e2e8742cb3ddb"
+      "size": 683278,
+      "sha256": "bee6c2b5d086267db558a4a227ee7e894cdaa468f4618ff30af788885832eccc"
     },
     {
       "path": "Release/Stable/Rules.conf",
-      "size": 49142,
-      "sha256": "aadce9ed5fbb0cbaa2c5d4b271a0176409b841017c7721935b33ed0dd3a624e1"
+      "size": 49239,
+      "sha256": "a0ff8472a00c536c629c4750db97bc1b40623971166cdf7b1a5697b9c0c3ec73"
     },
     {
       "path": "Release/Stable/RulesGroup.conf",
-      "size": 49221,
-      "sha256": "47e4cc12f6de8ed50edc0ebaf574de86d309b1dbe49b80a179701d64626a0935"
+      "size": 49318,
+      "sha256": "29dd234b25267e629b300c72d49db09d5eaebf18657c41230244a439bd1c04e4"
     },
     {
       "path": "Web/README.md",
