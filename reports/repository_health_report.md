@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-18 01:45:17 +0800
+- Generated at: 2026-06-18 01:45:46 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -12,7 +12,7 @@
 
 ## Section Counts
 
-- [Rule]: 948
+- [Rule]: 945
 - [URL Rewrite]: 2490
 - [Header Rewrite]: 1
 - [Body Rewrite]: 1652

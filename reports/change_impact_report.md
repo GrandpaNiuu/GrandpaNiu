@@ -1,11 +1,11 @@
 # 变更影响报告
 
-- 生成时间：2026-06-18 01:45:16 +0800
+- 生成时间：2026-06-18 01:45:45 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Rewrite/Sources/Rule.conf`
+- `Rewrite/Sources/Misc/android-compatible-ads.conf`
 
 ## 新增文件
 
@@ -17,7 +17,7 @@
 
 ## 修改文件
 
-- `Rewrite/Sources/Rule.conf`
+- `Rewrite/Sources/Misc/android-compatible-ads.conf`
 
 ## 影响的模块层
 
@@ -26,6 +26,7 @@
 ## 可能影响的 App
 
 - Spotify
+- 微博
 - 小红书
 
 ## 风险判断
