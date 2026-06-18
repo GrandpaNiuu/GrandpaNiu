@@ -51,6 +51,8 @@ REQUIRED_WORKFLOWS = [
     ".github/workflows/daily-module-update.yml",
     ".github/workflows/daily-audit-and-repair.yml",
     ".github/workflows/daily-invalid-source-repair.yml",
+    ".github/workflows/scheduled-module-update.yml",
+    ".github/workflows/upstream-app-module-sync.yml",
     ".github/workflows/upstream-collect.yml",
     ".github/workflows/repository-health.yml",
 ]
@@ -83,13 +85,19 @@ def write(path: Path, text: str) -> None:
     path.write_text(text.rstrip() + "\n", encoding="utf-8", newline="\n")
 
 
+def normalize_output(text: str) -> str:
+    root = str(ROOT)
+    normalized_root = root.replace("\\", "/")
+    return text.replace(root, ".").replace(normalized_root, ".")
+
+
 def run_command(args: list[str]) -> tuple[bool, str]:
     try:
         proc = subprocess.run(args, cwd=ROOT, text=True, capture_output=True)
     except OSError as exc:
         return False, f"{type(exc).__name__}: {exc}"
     output = (proc.stdout + proc.stderr).strip() or "no output"
-    return proc.returncode == 0, output
+    return proc.returncode == 0, normalize_output(output)
 
 
 def node_executable() -> str | None:

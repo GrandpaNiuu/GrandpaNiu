@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate workflow health report with optional GitHub Actions run status."""
+"""Generate a workflow health report with optional GitHub Actions status."""
 
 from __future__ import annotations
 
@@ -18,11 +18,15 @@ DEFAULT_REPOSITORY = "GrandpaNiuu/GrandpaNiu"
 API_ROOT = "https://api.github.com"
 
 WORKFLOWS = [
-    ("Module Factory Build", ".github/workflows/module-factory-build.yml", "构建 Release 并同步 Root"),
-    ("Daily Module Update", ".github/workflows/daily-module-update.yml", "每日日期、结构、链接和验证检查"),
-    ("Daily invalid source audit and repair", ".github/workflows/daily-invalid-source-repair.yml", "连续失效源审计和安全处理"),
-    ("Upstream candidate collect", ".github/workflows/upstream-collect.yml", "每周可信候选源收集"),
-    ("Repository Health Check", ".github/workflows/repository-health.yml", "仓库治理健康检查"),
+    ("Module Factory Build", ".github/workflows/module-factory-build.yml", "Build Release and sync Root"),
+    ("Daily Module Update", ".github/workflows/daily-module-update.yml", "Daily module date, build, report and validation"),
+    ("Daily invalid rule audit and safe repair", ".github/workflows/daily-audit-and-repair.yml", "Daily invalid rule audit and safe repair"),
+    ("Daily invalid source audit and repair", ".github/workflows/daily-invalid-source-repair.yml", "Daily invalid source audit and repair"),
+    ("Scheduled Module Factory Update", ".github/workflows/scheduled-module-update.yml", "Scheduled module factory build and publish"),
+    ("Upstream app module sync", ".github/workflows/upstream-app-module-sync.yml", "Sync upstream app modules and validate build"),
+    ("Upstream candidate collect", ".github/workflows/upstream-collect.yml", "Collect trusted upstream candidates"),
+    ("Repository Health Check", ".github/workflows/repository-health.yml", "Repository governance health check"),
+    ("Workflow failure issue", ".github/workflows/workflow-failure-issue.yml", "Create or update issues for failed Actions"),
 ]
 
 
@@ -33,26 +37,36 @@ def read(path: Path) -> str:
 def triggers(text: str) -> str:
     items: list[str] = []
     if "workflow_dispatch" in text:
-        items.append("手动")
+        items.append("manual")
     if "schedule:" in text:
-        items.append("定时")
+        items.append("schedule")
     if re.search(r"(?m)^\s*push:", text):
         items.append("push")
-    return " / ".join(items) if items else "待确认"
+    if "workflow_run" in text:
+        items.append("workflow_run")
+    return " / ".join(items) if items else "unconfirmed"
 
 
 def priority(path: str) -> str:
     if "module-factory" in path:
-        return "build_module.py、factory_finalize.py、profile、sources、Root/Release diff"
+        return "Builder, profile, source merge, Root/Release sync"
     if "daily-module" in path:
-        return "必要标记、远程链接、validate_repository.py 输出"
+        return "date refresh, Builder, validation, rebase retry"
+    if "daily-audit" in path:
+        return "audit_and_repair_module.py, Fusion build, rebase retry"
     if "invalid-source" in path:
-        return "GitHub 网络、history 计数、误判 404"
+        return "network fetch, invalid history, conservative source repair"
+    if "scheduled-module" in path:
+        return "Builder.py --profile fusion --release, commit, rebase retry"
+    if "upstream-app" in path:
+        return "app-modules.json, upstream fetch, rollback on failed build"
     if "upstream" in path:
-        return "candidates.json、风险词、重复源、trusted_repositories"
+        return "candidates.json, risk filters, trusted repositories"
     if "repository-health" in path:
-        return "治理文件、README 链接、重复脚本、重复 MITM、报告新鲜度"
-    return "待确认"
+        return "governance files, duplicate scripts, duplicate MITM, report freshness"
+    if "workflow-failure" in path:
+        return "workflow_run permissions, issue creation/update"
+    return "manual review"
 
 
 def github_json(path: str) -> tuple[dict[str, Any] | None, str]:
@@ -81,7 +95,7 @@ def latest_run(workflow_path: str, repository: str) -> tuple[dict[str, str], str
         return {}, error
     runs = data.get("workflow_runs", []) if isinstance(data, dict) else []
     if not runs:
-        return {}, "未找到运行记录"
+        return {}, "no runs found"
     run = runs[0]
     return {
         "created_at": str(run.get("created_at") or ""),
@@ -93,16 +107,16 @@ def latest_run(workflow_path: str, repository: str) -> tuple[dict[str, str], str
 
 def conclusion_advice(status: str, conclusion: str, fallback: str) -> str:
     if fallback:
-        return f"无法确认：{fallback}"
+        return f"Unable to confirm: {fallback}"
     if status != "completed":
-        return "运行中或未完成，等待完成后复查"
+        return "Run is not completed; check again after it finishes"
     if conclusion == "success":
-        return "通过"
+        return "passed"
     if conclusion == "cancelled":
-        return "已取消；通常是 module-maintenance 并发组被更新运行替代，连续取消时再人工复核"
+        return "cancelled, usually superseded by a newer concurrency run"
     if conclusion in {"failure", "timed_out", "action_required"}:
-        return "打开 run 日志，优先排查失败步骤"
-    return "状态未知，人工复核"
+        return "open the run log and fix the failed step"
+    return "unknown status; manual review required"
 
 
 def main() -> None:
@@ -110,40 +124,38 @@ def main() -> None:
     repository = os.environ.get("GITHUB_REPOSITORY", DEFAULT_REPOSITORY).strip() or DEFAULT_REPOSITORY
 
     lines = [
-        "# Workflow 健康报告",
+        "# Workflow Health Report",
         "",
-        f"生成时间：{now}",
+        f"- Generated at: {now}",
+        f"- Repository: `{repository}`",
+        f"- Workflows checked: {len(WORKFLOWS)}",
         "",
-        "本报告用于确认 workflow 文件是否存在，并尽量读取 GitHub Actions 最近运行状态。若 API 不可用，则只报告配置存在性，不伪造成功状态。",
-        "",
-        f"- Repository：`{repository}`",
-        "",
-        "| Workflow | 文件 | 用途 | 触发方式 | 最近运行时间 | Status | Conclusion | Run URL | 处理建议 |",
+        "| Workflow | File | Purpose | Triggers | Latest run | Status | Conclusion | Run URL | Advice |",
         "|---|---|---|---|---|---|---|---|---|",
     ]
 
     for name, rel, purpose in WORKFLOWS:
         text = read(ROOT / rel)
         if not text:
-            lines.append(f"| {name} | `{rel}` | {purpose} | 缺失 | 缺失 | missing | missing | - | 补齐 workflow 文件 |")
+            lines.append(f"| {name} | `{rel}` | {purpose} | missing | missing | missing | missing | - | add workflow file |")
             continue
         run_info, error = latest_run(rel, repository)
         status = run_info.get("status", "unconfirmed")
         conclusion = run_info.get("conclusion", "unconfirmed")
-        created_at = run_info.get("created_at", "无法确认")
+        created_at = run_info.get("created_at", "unconfirmed")
         url = run_info.get("url", "-")
         url_cell = f"[open]({url})" if url.startswith("https://") else "-"
-        advice = conclusion_advice(status, conclusion, error) if run_info else f"配置存在；{priority(rel)}；需要 Actions 页面确认"
+        advice = conclusion_advice(status, conclusion, error) if run_info else f"config exists; check {priority(rel)}"
         lines.append(f"| {name} | `{rel}` | {purpose} | {triggers(text)} | {created_at} | {status} | {conclusion} | {url_cell} | {advice} |")
 
     lines += [
         "",
-        "## 说明",
+        "## Notes",
         "",
-        "- `success` 才能视为 workflow 最近一次运行通过。",
-        "- `failure`、`timed_out`、`action_required` 必须打开对应 run 日志排查；`cancelled` 通常由并发组替代旧运行导致。",
-        "- API 不可用时，本报告只确认配置存在，不确认真实运行状态。",
-        "- iOS 公开入口只保留 Fusion；旧 Stable / Stable Plus / Lite / Full 不再作为正式 workflow 入口。",
+        "- Only `success` is treated as a fully passing latest run.",
+        "- `cancelled` is usually harmless when a newer Pages or maintenance run superseded an older one.",
+        "- If GitHub API access fails, this report still confirms local workflow configuration exists but cannot prove latest run state.",
+        "- iOS public entry remains the single Fusion module; legacy Stable / Stable Plus / Lite / Full outputs are not public workflow entries.",
         "",
     ]
     REPORT.parent.mkdir(parents=True, exist_ok=True)

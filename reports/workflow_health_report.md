@@ -1,22 +1,24 @@
-# Workflow 健康报告
+# Workflow Health Report
 
-生成时间：2026-06-18 23:27:42 +0800
+- Generated at: 2026-06-18 23:47:47 +0800
+- Repository: `GrandpaNiuu/GrandpaNiu`
+- Workflows checked: 9
 
-本报告用于确认 workflow 文件是否存在，并尽量读取 GitHub Actions 最近运行状态。若 API 不可用，则只报告配置存在性，不伪造成功状态。
-
-- Repository：`GrandpaNiuu/GrandpaNiu`
-
-| Workflow | 文件 | 用途 | 触发方式 | 最近运行时间 | Status | Conclusion | Run URL | 处理建议 |
+| Workflow | File | Purpose | Triggers | Latest run | Status | Conclusion | Run URL | Advice |
 |---|---|---|---|---|---|---|---|---|
-| Module Factory Build | `.github/workflows/module-factory-build.yml` | 构建 Release 并同步 Root | 手动 / push | 2026-06-18T15:27:11Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27770360331) | 运行中或未完成，等待完成后复查 |
-| Daily Module Update | `.github/workflows/daily-module-update.yml` | 每日日期、结构、链接和验证检查 | 手动 / 定时 | 2026-06-17T17:50:08Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27708709210) | 通过 |
-| Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | 连续失效源审计和安全处理 | 手动 / 定时 | 2026-06-17T17:30:10Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27707564669) | 通过 |
-| Upstream candidate collect | `.github/workflows/upstream-collect.yml` | 每周可信候选源收集 | 手动 / 定时 | 2026-06-17T17:29:05Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27707501055) | 通过 |
-| Repository Health Check | `.github/workflows/repository-health.yml` | 仓库治理健康检查 | 手动 / 定时 | 2026-06-15T19:36:18Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27571392238) | 通过 |
+| Module Factory Build | `.github/workflows/module-factory-build.yml` | Build Release and sync Root | manual / push | 2026-06-18T15:27:11Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27770360331) | passed |
+| Daily Module Update | `.github/workflows/daily-module-update.yml` | Daily module date, build, report and validation | manual / schedule | 2026-06-17T17:50:08Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27708709210) | passed |
+| Daily invalid rule audit and safe repair | `.github/workflows/daily-audit-and-repair.yml` | Daily invalid rule audit and safe repair | manual / schedule / push | 2026-06-17T17:33:48Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27707773738) | passed |
+| Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | Daily invalid source audit and repair | manual / schedule | 2026-06-17T17:30:10Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27707564669) | passed |
+| Scheduled Module Factory Update | `.github/workflows/scheduled-module-update.yml` | Scheduled module factory build and publish | manual / schedule / push | 2026-06-17T17:57:02Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27709107004) | passed |
+| Upstream app module sync | `.github/workflows/upstream-app-module-sync.yml` | Sync upstream app modules and validate build | manual / schedule | 2026-06-17T19:07:47Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27713132706) | passed |
+| Upstream candidate collect | `.github/workflows/upstream-collect.yml` | Collect trusted upstream candidates | manual / schedule | 2026-06-17T17:29:05Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27707501055) | passed |
+| Repository Health Check | `.github/workflows/repository-health.yml` | Repository governance health check | manual / schedule | 2026-06-15T19:36:18Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27571392238) | passed |
+| Workflow failure issue | `.github/workflows/workflow-failure-issue.yml` | Create or update issues for failed Actions | workflow_run | 2026-06-18T15:27:56Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27770407655) | passed |
 
-## 说明
+## Notes
 
-- `success` 才能视为 workflow 最近一次运行通过。
-- `failure`、`timed_out`、`action_required` 必须打开对应 run 日志排查；`cancelled` 通常由并发组替代旧运行导致。
-- API 不可用时，本报告只确认配置存在，不确认真实运行状态。
-- iOS 公开入口只保留 Fusion；旧 Stable / Stable Plus / Lite / Full 不再作为正式 workflow 入口。
+- Only `success` is treated as a fully passing latest run.
+- `cancelled` is usually harmless when a newer Pages or maintenance run superseded an older one.
+- If GitHub API access fails, this report still confirms local workflow configuration exists but cannot prove latest run state.
+- iOS public entry remains the single Fusion module; legacy Stable / Stable Plus / Lite / Full outputs are not public workflow entries.
