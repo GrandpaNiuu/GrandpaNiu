@@ -2,9 +2,9 @@
 
 - 日期：2026-06-18
 - 维护模式：source-first
-- 扫描源文件链接总数：207
+- 扫描源文件链接总数：206
 - 正常链接数量：206
-- 本次是否修改源头文件：yes
+- 本次是否修改源头文件：no
 
 本系统优先修复 `Rewrite/Remotes/`、`Rules/`、`Scripts/`、`Rewrite/Sources/`，随后由工作流重新构建 Release 并同步根目录主模块。不会因单日失败删除规则。
 
@@ -12,7 +12,7 @@
 - 无
 
 ## 连续失败 2 天链接
-- `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list`
+- 无
 
 ## 已自动替换链接
 - 无
@@ -24,7 +24,7 @@
 - 无
 
 ## 已自动禁用 JSON 源
-- `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list`
+- 无
 
 ## 受保护但失败链接
 - 无
@@ -33,4 +33,4 @@
 - 无
 
 ## 今日失败明细
-- `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list (HTTP 404 HTTP 404)`
+- 无

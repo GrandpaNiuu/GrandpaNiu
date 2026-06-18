@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-18 23:49:43 +0800
+- Generated at: 2026-06-19 00:01:01 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -64,7 +64,7 @@ Repository validation passed.
 ## automated quality evidence Output
 
 ```text
-Automated quality evidence written to ./reports/automated_quality_evidence.md
+Automated quality evidence written to .\reports\automated_quality_evidence.md
 ```
 
 ## node --check Output

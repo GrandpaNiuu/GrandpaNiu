@@ -54,19 +54,6 @@
       "purpose": "trusted privacy and tracker rule candidate enabled for conservative collection"
     },
     {
-      "name": "blackmatrix7 Privacy Lite",
-      "kind": "remote_rule",
-      "type": "RULE-SET",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrivacyLite/PrivacyLite.list",
-      "policy": "REJECT",
-      "enabled": false,
-      "activate": false,
-      "protected": false,
-      "purpose": "trusted lightweight privacy and tracker rule candidate enabled for conservative collection",
-      "watch_status": "HTTP 404 first seen 2026-05-30; keep enabled for observation until 2 consecutive failed checks",
-      "disabled_reason": "2026-06-18: source failed for 2 confirmed checks, last_error=HTTP 404 HTTP 404"
-    },
-    {
       "name": "blackmatrix7 Advertising MiTV",
       "kind": "remote_rule",
       "type": "RULE-SET",

@@ -19,7 +19,6 @@
 |---|---|---|---|
 | 可信规则源 | blackmatrix7 Advertising Lite / Hijacking / Privacy | 可进入候选或测试流程 | 仍需误伤审计，不得无审核进入 Stable |
 | 可信规则源 | ACL4SSR BanProgramAD / BanEasyListChina | 可进入候选或测试流程 | 先做规则格式、重复和误伤检查 |
-| 暂停或失败规则源 | blackmatrix7 Privacy Lite | manual-review | 已出现失败记录时，不自动恢复启用 |
 | 参考规则源 | Loyalsoldier reject domain set / Cats-Team AdRules DNS list | manual-review | 域名集风险较高，需分批复核 |
 | 脚本候选 | app2smile Tieba script | 保持 pending | 脚本默认风险高，需人工审查源码和行为 |
 | 参考模块 | Maasea YouTube Enhance reference | reference-only | 只作参考，不直接接入远程模块 |

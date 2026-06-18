@@ -58,7 +58,6 @@ Added or kept enabled low-risk remote-rule candidates:
 - blackmatrix7 Advertising Lite
 - blackmatrix7 Hijacking
 - blackmatrix7 Privacy
-- blackmatrix7 Privacy Lite
 - blackmatrix7 Advertising MiTV
 - ACL4SSR BanProgramAD
 - ACL4SSR BanEasyListChina
