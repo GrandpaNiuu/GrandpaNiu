@@ -25,6 +25,7 @@ WORKFLOWS = [
     ("Scheduled Module Factory Update", ".github/workflows/scheduled-module-update.yml", "Scheduled module factory build and publish"),
     ("Upstream app module sync", ".github/workflows/upstream-app-module-sync.yml", "Sync upstream app modules and validate build"),
     ("Upstream candidate collect", ".github/workflows/upstream-collect.yml", "Collect trusted upstream candidates"),
+    ("Daily schedule watchdog", ".github/workflows/daily-schedule-watchdog.yml", "Recover the daily module refresh if GitHub drops a scheduled run"),
     ("Repository Health Check", ".github/workflows/repository-health.yml", "Repository governance health check"),
     ("Workflow failure issue", ".github/workflows/workflow-failure-issue.yml", "Create or update issues for failed Actions"),
 ]
@@ -62,6 +63,8 @@ def priority(path: str) -> str:
         return "app-modules.json, upstream fetch, rollback on failed build"
     if "upstream" in path:
         return "candidates.json, risk filters, trusted repositories"
+    if "schedule-watchdog" in path:
+        return "module update-date, recovery build, rebase retry"
     if "repository-health" in path:
         return "governance files, duplicate scripts, duplicate MITM, report freshness"
     if "workflow-failure" in path:

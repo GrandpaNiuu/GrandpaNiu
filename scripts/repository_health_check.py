@@ -54,6 +54,7 @@ REQUIRED_WORKFLOWS = [
     ".github/workflows/scheduled-module-update.yml",
     ".github/workflows/upstream-app-module-sync.yml",
     ".github/workflows/upstream-collect.yml",
+    ".github/workflows/daily-schedule-watchdog.yml",
     ".github/workflows/repository-health.yml",
 ]
 
@@ -88,7 +89,7 @@ def write(path: Path, text: str) -> None:
 def normalize_output(text: str) -> str:
     root = str(ROOT)
     normalized_root = root.replace("\\", "/")
-    return text.replace(root, ".").replace(normalized_root, ".")
+    return text.replace(root, ".").replace(normalized_root, ".").replace("\\", "/")
 
 
 def run_command(args: list[str]) -> tuple[bool, str]:

@@ -2,8 +2,8 @@ name: Daily invalid rule audit and safe repair
 
 on:
   schedule:
-    # 16:12 UTC = 00:12 Beijing time.
-    - cron: "12 16 * * *"
+    # 16:43 UTC = 00:43 Beijing time. Staggered to reduce GitHub schedule delay/drop risk.
+    - cron: "43 16 * * *"
   workflow_dispatch:
   push:
     branches:

@@ -3,8 +3,8 @@ name: Upstream app module sync
 on:
   workflow_dispatch:
   schedule:
-    # 00:30 Beijing time.
-    - cron: "30 16 * * *"
+    # 17:19 UTC = 01:19 Beijing time. Staggered to reduce GitHub schedule delay/drop risk.
+    - cron: "19 17 * * *"
 
 permissions:
   contents: write

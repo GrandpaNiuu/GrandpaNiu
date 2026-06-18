@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-19 02:34:06 +0800
+- Generated at: 2026-06-19 04:37:19 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -12,11 +12,11 @@
 
 ## Section Counts
 
-- [Rule]: 945
+- [Rule]: 946
 - [URL Rewrite]: 2490
 - [Header Rewrite]: 1
 - [Body Rewrite]: 1652
-- [Map Local]: 352
+- [Map Local]: 351
 - [Script]: 86
 - [MITM]: 1
 
@@ -53,14 +53,13 @@
 - `.github/workflows/scheduled-module-update.yml`: contents: write; concurrency; fusion; rebase retry
 - `.github/workflows/upstream-app-module-sync.yml`: contents: write; concurrency; fusion; rebase retry
 - `.github/workflows/upstream-collect.yml`: contents: write; concurrency; fusion; rebase retry
+- `.github/workflows/daily-schedule-watchdog.yml`: contents: write; concurrency; fusion; rebase retry
 - `.github/workflows/repository-health.yml`: contents: write; concurrency; fusion; rebase retry
 
 ## validate_repository.py Output
 
 ```text
 Repository validation passed.
-./scripts/validate_repository.py:242: SyntaxWarning: invalid escape sequence '\/'
-  normalized = lowered.replace("\/", "/")
 ```
 
 ## automated quality evidence Output

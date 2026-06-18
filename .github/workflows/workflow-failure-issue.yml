@@ -11,8 +11,12 @@ on:
     workflows:
       - Module Factory Build
       - Daily Module Update
+      - Daily invalid rule audit and safe repair
       - Daily invalid source audit and repair
+      - Scheduled Module Factory Update
+      - Upstream app module sync
       - Upstream candidate collect
+      - Daily schedule watchdog
       - Repository Health Check
     types:
       - completed

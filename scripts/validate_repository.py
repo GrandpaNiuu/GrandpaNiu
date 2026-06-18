@@ -83,16 +83,18 @@ REQUIRED_WORKFLOWS = (
     ".github/workflows/upstream-collect.yml",
     ".github/workflows/scheduled-module-update.yml",
     ".github/workflows/upstream-app-module-sync.yml",
+    ".github/workflows/daily-schedule-watchdog.yml",
     ".github/workflows/repository-health.yml",
 )
 
 EXPECTED_WORKFLOW_CRONS = {
-    ".github/workflows/daily-module-update.yml": "10 16 * * *",          # Beijing 00:10
-    ".github/workflows/daily-audit-and-repair.yml": "12 16 * * *",      # Beijing 00:12
-    ".github/workflows/daily-invalid-source-repair.yml": "14 16 * * *", # Beijing 00:14
-    ".github/workflows/upstream-collect.yml": "16 16 * * *",            # Beijing 00:16
-    ".github/workflows/scheduled-module-update.yml": "18 16 * * *",     # Beijing 00:18
-    ".github/workflows/upstream-app-module-sync.yml": "30 16 * * *",    # Beijing 00:30
+    ".github/workflows/daily-module-update.yml": "37 16 * * *",          # Beijing 00:37
+    ".github/workflows/daily-audit-and-repair.yml": "43 16 * * *",      # Beijing 00:43
+    ".github/workflows/daily-invalid-source-repair.yml": "49 16 * * *", # Beijing 00:49
+    ".github/workflows/upstream-collect.yml": "55 16 * * *",            # Beijing 00:55
+    ".github/workflows/scheduled-module-update.yml": "7 17 * * *",      # Beijing 01:07
+    ".github/workflows/upstream-app-module-sync.yml": "19 17 * * *",    # Beijing 01:19
+    ".github/workflows/daily-schedule-watchdog.yml": "30 20 * * *",     # Beijing 04:30
 }
 
 ALLOWED_REMOTE_TYPES = {"RULE-SET", "DOMAIN-SET"}

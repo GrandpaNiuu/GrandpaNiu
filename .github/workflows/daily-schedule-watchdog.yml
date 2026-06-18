@@ -1,21 +1,30 @@
-name: Daily Module Update
+name: Daily schedule watchdog
 
 on:
-  schedule:
-    # 16:37 UTC = 00:37 Beijing time. Staggered to reduce GitHub schedule delay/drop risk.
-    - cron: "37 16 * * *"
   workflow_dispatch:
+  schedule:
+    # 20:30 UTC = 04:30 Beijing time. Recover if GitHub drops or delays the daily refresh.
+    - cron: "30 20 * * *"
 
 permissions:
   contents: write
   actions: read
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  PYTHONUTF8: "1"
+  LANG: C.UTF-8
+  LC_ALL: C.UTF-8
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  update:
+  watchdog:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -23,25 +32,33 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Compile maintenance scripts
-        run: python3 -m py_compile scripts/*.py Rewrite/Generator/Builder.py
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
 
-      - name: Generate and commit daily update
+      - name: Recover missed daily module refresh
         run: |
           set -euo pipefail
-          git config user.name "module-factory"
-          git config user.email "actions@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          beijing_today() {
+            TZ=Asia/Shanghai date +'%Y-%m-%d'
+          }
+
+          module_date() {
+            grep -m1 '^# update-date:' Ronghemokuai.sgmodule | sed 's/^# update-date:[[:space:]]*//' || true
+          }
 
           regenerate() {
             python3 scripts/refresh_module_date.py
-            python3 scripts/import_qingrex_official_module.py
-            python3 scripts/dedupe_qq_news_script_path.py
             python3 scripts/convert_quanx_rules.py
             # fusion-build-marker: scripts/build_module.py --build --profile fusion
-            # Builder release path runs scripts/factory_finalize.py --sync-root and scripts/build_release_variants.py.
             python3 Rewrite/Generator/Builder.py --profile fusion --release
             python3 scripts/validate_remote_rule_syntax.py
             python3 scripts/validate_governance_extensions.py
+            python3 scripts/validate_profiles.py
             python3 scripts/validate_repository.py
             python3 scripts/quality_gate.py
           }
@@ -49,16 +66,30 @@ jobs:
           for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
-            regenerate
-            git add -A
-            if git diff --cached --quiet; then
-              echo "No daily update changes to commit."
+
+            today="$(beijing_today)"
+            current="$(module_date)"
+            echo "Beijing today: ${today}"
+            echo "Current module update-date: ${current:-missing}"
+
+            if [ "${current}" = "${today}" ]; then
+              echo "Daily module date is already fresh; no watchdog recovery needed."
               exit 0
             fi
-            git commit -m "Daily fusion module update [skip ci]"
+
+            regenerate
+            git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
+
+            if git diff --cached --quiet; then
+              echo "Watchdog regenerated outputs but found no changes to commit."
+              exit 0
+            fi
+
+            git commit -m "chore: recover missed scheduled module update"
             if git push origin HEAD:main; then
               exit 0
             fi
+
             echo "Push failed on attempt ${attempt}; rebasing on origin/main and retrying."
             git fetch origin main
             if git rebase origin/main; then
@@ -70,5 +101,5 @@ jobs:
             fi
           done
 
-          echo "Push failed after 3 regenerated attempts."
+          echo "Watchdog push failed after 3 attempts."
           exit 1

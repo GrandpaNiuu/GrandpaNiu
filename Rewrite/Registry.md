@@ -102,11 +102,14 @@ Manual app specs are listed in `Rewrite/Generate.conf` `[release_modules]`. Addi
 | Workflow | Purpose | Schedule | Manual run | Writes |
 |---|---|---|---|---|
 | `module-factory-build.yml` | Build and validate Fusion, Release, Web, Android outputs | push / manual | yes | generated Release/Web/reports when changed |
-| `scheduled-module-update.yml` | Stable scheduled factory rebuild | `0 2 * * *` UTC | yes | generated Release/Web/reports when changed |
-| `daily-module-update.yml` | Beijing midnight daily Fusion refresh | `0 16 * * *` UTC | yes | daily date/report refresh |
-| `daily-invalid-source-repair.yml` | Source-first invalid source audit and safe repair | `0 16 * * *` UTC | yes | low-risk source reports and repairs |
-| `upstream-collect.yml` | Trusted candidate collection only | `0 16 * * *` UTC | yes | candidate reports only |
-| `repository-health.yml` | Repository health reports and guard checks | schedule / manual | yes | health reports |
+| `daily-module-update.yml` | Staggered Beijing daily Fusion refresh | `37 16 * * *` UTC / 00:37 Beijing | yes | daily date/report refresh |
+| `daily-audit-and-repair.yml` | Daily invalid rule audit and safe repair | `43 16 * * *` UTC / 00:43 Beijing | yes | safe repair reports and generated output |
+| `daily-invalid-source-repair.yml` | Source-first invalid source audit and safe repair | `49 16 * * *` UTC / 00:49 Beijing | yes | low-risk source reports and repairs |
+| `upstream-collect.yml` | Trusted candidate collection only | `55 16 * * *` UTC / 00:55 Beijing | yes | candidate reports only |
+| `scheduled-module-update.yml` | Stable scheduled factory rebuild | `7 17 * * *` UTC / 01:07 Beijing | yes | generated Release/Web/reports when changed |
+| `upstream-app-module-sync.yml` | Upstream app module sync and guarded release validation | `19 17 * * *` UTC / 01:19 Beijing | yes | app sources, backups, generated Release/Web/reports |
+| `daily-schedule-watchdog.yml` | Recovery build if GitHub drops or delays the daily refresh | `30 20 * * *` UTC / 04:30 Beijing | yes | only commits when module date is stale |
+| `repository-health.yml` | Repository health reports and guard checks | `37 17 * * 0` UTC / Sunday 01:37 Beijing | yes | health reports |
 
 ## Release and Web layer
 

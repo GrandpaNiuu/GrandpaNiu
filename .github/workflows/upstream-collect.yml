@@ -2,8 +2,8 @@ name: Upstream candidate collect
 
 on:
   schedule:
-    # 16:16 UTC = 00:16 Beijing time.
-    - cron: "16 16 * * *"
+    # 16:55 UTC = 00:55 Beijing time. Staggered to reduce GitHub schedule delay/drop risk.
+    - cron: "55 16 * * *"
   workflow_dispatch:
 
 permissions:

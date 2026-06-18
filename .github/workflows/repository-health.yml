@@ -2,7 +2,8 @@ name: Repository Health Check
 
 on:
   schedule:
-    - cron: "0 16 * * 0"
+    # 17:37 UTC = Sunday 01:37 Beijing time. Staggered away from the top of the hour.
+    - cron: "37 17 * * 0"
   workflow_dispatch:
 
 permissions:
