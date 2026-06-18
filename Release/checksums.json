@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T16:02:06.854453Z",
+  "generated_at": "2026-06-18T16:19:59.141075Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 683278,
-      "sha256": "bee6c2b5d086267db558a4a227ee7e894cdaa468f4618ff30af788885832eccc"
+      "size": 684393,
+      "sha256": "b0c1696a11c43cde09ee21a80bd03cbc2dc80709797cb3e050da91493b6168b8"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -135,8 +135,8 @@
     },
     {
       "path": "Release/Modules/bilibili.sgmodule",
-      "size": 13396,
-      "sha256": "9330c80253de5dce974f252cac876e74e18c771b44b0a9645a4dee8a686e212d"
+      "size": 14490,
+      "sha256": "d0086760a413a7960298a3ec55a961c310aade0498844ae526435cb19e5a9c02"
     },
     {
       "path": "Release/Modules/bitqiu-pan.sgmodule",
@@ -400,8 +400,8 @@
     },
     {
       "path": "Release/Modules/ithome.sgmodule",
-      "size": 659,
-      "sha256": "33f11f29076ecc5a91884c58dcd08d811fcdfae59f7fd41c38297c8580f72d68"
+      "size": 721,
+      "sha256": "9befefbf861c0d55591cfb8bcc4f6609f0076e4fcaecedca271dda1f46667dfd"
     },
     {
       "path": "Release/Modules/jd.sgmodule",
@@ -620,8 +620,8 @@
     },
     {
       "path": "Release/Modules/netease-music.sgmodule",
-      "size": 4074,
-      "sha256": "138d8f58f535f453a0090bbf1596a954b25b44378189ae607c5b7a393810be17"
+      "size": 4442,
+      "sha256": "b2980f7753911342793f68ef7f253839f50aa1eb89a8192397ae3ea91eb86f14"
     },
     {
       "path": "Release/Modules/netease-news.sgmodule",
@@ -860,8 +860,8 @@
     },
     {
       "path": "Release/Modules/tieba.sgmodule",
-      "size": 1098,
-      "sha256": "3bb68faaa26e58e8bd37bd444b8aa588888191d63aa97600a16a2dd5d2054b20"
+      "size": 1204,
+      "sha256": "16acbdef7a900185abf75ba71567a839c9c9c964e984c67f9c2c4e7e754eb442"
     },
     {
       "path": "Release/Modules/tu-guai-shou.sgmodule",
@@ -1055,8 +1055,8 @@
     },
     {
       "path": "Release/Modules/youtube.sgmodule",
-      "size": 1016,
-      "sha256": "7ef980f68e61ebcf7b5ba2234a419420a02ea46a001745a52b824bfdd642bb0a"
+      "size": 1519,
+      "sha256": "0ee213b7c54369dc9ee7c5bd0083e0d41d83c2c476a728f395dfec0e2c37f7c7"
     },
     {
       "path": "Release/Modules/yue-dan-ba.sgmodule",
@@ -1140,23 +1140,23 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 683278,
-      "sha256": "65b960219d9efb6520620e339dd646e38d6d68cbb410ec0d425ab1ca0e6dde73"
+      "size": 684393,
+      "sha256": "b0c1696a11c43cde09ee21a80bd03cbc2dc80709797cb3e050da91493b6168b8"
     },
     {
       "path": "Release/Rules.conf",
-      "size": 49239,
-      "sha256": "a0ff8472a00c536c629c4750db97bc1b40623971166cdf7b1a5697b9c0c3ec73"
+      "size": 49257,
+      "sha256": "b5aaea97ba077d8ab361c125ef45ebe6e47515f763eaaf4efbc1b183095e690f"
     },
     {
       "path": "Release/RulesGroup.conf",
-      "size": 49318,
-      "sha256": "29dd234b25267e629b300c72d49db09d5eaebf18657c41230244a439bd1c04e4"
+      "size": 49336,
+      "sha256": "c37eefdeead379b7b581a9c61694da22d3d8af85350a75118a8ede21964e6d13"
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 683278,
-      "sha256": "bee6c2b5d086267db558a4a227ee7e894cdaa468f4618ff30af788885832eccc"
+      "size": 684393,
+      "sha256": "b0c1696a11c43cde09ee21a80bd03cbc2dc80709797cb3e050da91493b6168b8"
     },
     {
       "path": "Release/Stable/README.md",
@@ -1165,18 +1165,18 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 683278,
-      "sha256": "bee6c2b5d086267db558a4a227ee7e894cdaa468f4618ff30af788885832eccc"
+      "size": 684393,
+      "sha256": "b0c1696a11c43cde09ee21a80bd03cbc2dc80709797cb3e050da91493b6168b8"
     },
     {
       "path": "Release/Stable/Rules.conf",
-      "size": 49239,
-      "sha256": "a0ff8472a00c536c629c4750db97bc1b40623971166cdf7b1a5697b9c0c3ec73"
+      "size": 49257,
+      "sha256": "b5aaea97ba077d8ab361c125ef45ebe6e47515f763eaaf4efbc1b183095e690f"
     },
     {
       "path": "Release/Stable/RulesGroup.conf",
-      "size": 49318,
-      "sha256": "29dd234b25267e629b300c72d49db09d5eaebf18657c41230244a439bd1c04e4"
+      "size": 49336,
+      "sha256": "c37eefdeead379b7b581a9c61694da22d3d8af85350a75118a8ede21964e6d13"
     },
     {
       "path": "Web/README.md",
@@ -1186,7 +1186,7 @@
     {
       "path": "Web/catalog.md",
       "size": 57400,
-      "sha256": "ab6743ee461b45ec331170aa9f0bef36dc9b023e34b9d1b14e8f719d3b099967"
+      "sha256": "406953cc27c823899c1cc0564b34b3561b035fcca8a93b14dcce4eabf68e7d32"
     },
     {
       "path": "Web/index.html",
@@ -1196,7 +1196,7 @@
     {
       "path": "Web/modules.html",
       "size": 218185,
-      "sha256": "e13197898ccdc123034a057bf3f274d747c8c5eca0d43f35a9af7d091ad9c84c"
+      "sha256": "95f87cc9f736db2eb0ba61c0553f59d363abfc1c561c50d9097e21dff85f7eed"
     },
     {
       "path": "Web/registry.md",
@@ -1206,7 +1206,7 @@
     {
       "path": "Web/release-links.json",
       "size": 77281,
-      "sha256": "75b1567932aadaff8cacf29d3548066d19215ac8057f5165597dea6523f31e11"
+      "sha256": "1aeb353f044d4f6cde2ab11b643db5afd23272e82988918ccf19a36143e7e1f4"
     },
     {
       "path": "Web/remotes.md",

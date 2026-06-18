@@ -1,12 +1,12 @@
 # Profile Validation Report
 
-Generated: 2026-06-19 00:02:08 +0800
+Generated: 2026-06-19 00:20:29 +0800
 
 This script validates the single public Fusion profile only.
 
 | Profile | Build | Required markers | Scripts | MITM | Usage | Publishable |
 |---|---|---|---:|---:|---|---|
-| fusion | yes | passed | 85 | 1189 | single Fusion release | yes |
+| fusion | yes | passed | 86 | 1189 | single Fusion release | yes |
 
 ## Rules
 

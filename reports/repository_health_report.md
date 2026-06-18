@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-19 00:02:11 +0800
+- Generated at: 2026-06-19 00:22:56 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -17,7 +17,7 @@
 - [Header Rewrite]: 1
 - [Body Rewrite]: 1652
 - [Map Local]: 352
-- [Script]: 85
+- [Script]: 86
 - [MITM]: 1
 
 ## Blocking Issues
@@ -64,7 +64,7 @@ Repository validation passed.
 ## automated quality evidence Output
 
 ```text
-Automated quality evidence written to ./reports/automated_quality_evidence.md
+Automated quality evidence written to .\reports\automated_quality_evidence.md
 ```
 
 ## node --check Output

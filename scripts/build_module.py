@@ -91,6 +91,22 @@ KNOWN_DOMAIN_SET_URLS = {
 }
 MISC_PROTECT_RULE_FILES = ("cdn-direct.conf", "finance-protect.conf", "video-protect.conf")
 UNRESOLVED_ARGUMENT_RE = re.compile(r"\{\{\{[^}]+\}\}\}")
+FUSION_ARGUMENT_NAMES = {
+    "动态最常访问",
+    "创作中心",
+    "过滤置顶评论广告",
+    "优化评论区加载",
+    "空降助手",
+    "空降助手策略",
+    "日志等级",
+    "屏蔽上传按钮",
+    "屏蔽选段按钮",
+    "屏蔽Shorts按钮",
+    "字幕翻译语言",
+    "歌词翻译语言",
+    "启用调试模式",
+}
+PRESERVE_APP_SCRIPT_NAMES = {"bilibili", "youtube"}
 PROTECTED_REJECT_TOKENS = (
     "api.biliapi.com",
     "api.biliapi.net",
@@ -281,11 +297,32 @@ def is_unsafe_protected_reject(line: str) -> bool:
     return any(token in lowered for token in PROTECTED_REJECT_TOKENS)
 
 
+def unresolved_argument_names(text: str) -> set[str]:
+    return {match.group(0)[3:-3].strip() for match in UNRESOLVED_ARGUMENT_RE.finditer(text)}
+
+
+def declared_argument_names(text: str) -> set[str]:
+    names: set[str] = set()
+    for raw in text.splitlines():
+        stripped = raw.strip()
+        if not stripped.startswith("#!arguments="):
+            continue
+        raw_args = stripped.split("=", 1)[1]
+        for item in raw_args.split(","):
+            if ":" not in item:
+                continue
+            name = item.split(":", 1)[0].strip()
+            if name:
+                names.add(name)
+    return names
+
+
 def should_skip_generated_line(line: str) -> bool:
     stripped = line.strip()
     if not stripped or stripped.startswith("#"):
         return False
-    if UNRESOLVED_ARGUMENT_RE.search(stripped):
+    placeholders = unresolved_argument_names(stripped)
+    if placeholders and not placeholders <= FUSION_ARGUMENT_NAMES:
         return True
     return is_unsafe_protected_reject(stripped)
 
@@ -299,6 +336,9 @@ def slug_script_block(path: Path, body: str) -> str:
         if not line or line.startswith("#") or should_skip_generated_line(line):
             continue
         if "=" not in line:
+            continue
+        if slug in PRESERVE_APP_SCRIPT_NAMES:
+            lines.append(line)
             continue
         index += 1
         _, rhs = line.split("=", 1)
@@ -705,8 +745,12 @@ def duplicates(values: list[str]) -> list[str]:
 def validate(text: str) -> None:
     if EXPECTED_UPDATE_URL not in text:
         stop("update-url is missing or incorrect")
-    if UNRESOLVED_ARGUMENT_RE.search(text):
-        stop("generated module contains unresolved argument placeholders")
+    unresolved = unresolved_argument_names(text)
+    if unresolved:
+        declared = declared_argument_names(text)
+        missing = sorted(unresolved - declared)
+        if missing:
+            stop("generated module contains undeclared argument placeholders: " + ", ".join(missing))
     for section in REQUIRED_SECTIONS:
         if f"[{section}]" not in text:
             stop(f"required section missing: [{section}]")

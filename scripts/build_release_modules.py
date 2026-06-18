@@ -247,12 +247,26 @@ def extract_sections(fusion_sections: dict[str, list[str]], spec: ModuleSpec) ->
     return selected
 
 
-def module_text(spec: ModuleSpec, sections: dict[str, list[str]]) -> tuple[str, dict[str, int]]:
+def preserved_argument_meta(spec: ModuleSpec, app_dir: Path) -> list[str]:
+    path = app_dir / f"{spec.slug}.conf"
+    if not path.exists():
+        return []
+    lines: list[str] = []
+    for raw in read(path).splitlines():
+        stripped = raw.strip()
+        if stripped.startswith("#!arguments=") or stripped.startswith("#!arguments-desc="):
+            lines.append(stripped)
+    return lines
+
+
+def module_text(spec: ModuleSpec, sections: dict[str, list[str]], meta_lines: list[str] | None = None) -> tuple[str, dict[str, int]]:
     lines = [
         f"#!name={spec.name}",
         "#!desc=Generated per-app module from GrandpaNiu app source or fusion output",
         f"#!update-url={BASE_URL}/{spec.slug}.sgmodule",
     ]
+    if meta_lines:
+        lines.extend(meta_lines)
     counts: dict[str, int] = {}
     for section in SECTION_ORDER:
         body = [line.strip() for line in sections.get(section, []) if active(line)]
@@ -339,7 +353,7 @@ def main() -> None:
     skipped: list[tuple[ModuleSpec, str]] = []
     for spec in specs:
         sections, source = source_sections(spec, app_dir, fusion_sections)
-        content, counts = module_text(spec, sections)
+        content, counts = module_text(spec, sections, preserved_argument_meta(spec, app_dir))
         if not counts and not include_empty:
             skipped.append((spec, source))
             continue

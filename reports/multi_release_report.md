@@ -1,13 +1,13 @@
 # 单一融合版发布报告
 
-生成时间：2026-06-19 00:02:06 +0800
+生成时间：2026-06-19 00:19:53 +0800
 
 本仓库现在只发布一个融合模块，不再拆分 Stable / Stable Plus / Lite / Full 给用户选择。
 
 | Profile | 文件 | 脚本数 | MITM 数量 | 默认发布 | 用途 | Pages 地址 | Raw 地址 |
 |---|---|---:|---:|---|---|---|---|
-| fusion | `Ronghemokuai.sgmodule` | 85 | 1189 | yes | 单一融合模块入口 | https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule | https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule |
-| fusion | `Release/Ronghemokuai.sgmodule` | 85 | 1189 | yes | Release 同步入口 | https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai.sgmodule | https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai.sgmodule |
+| fusion | `Ronghemokuai.sgmodule` | 86 | 1189 | yes | 单一融合模块入口 | https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule | https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Ronghemokuai.sgmodule |
+| fusion | `Release/Ronghemokuai.sgmodule` | 86 | 1189 | yes | Release 同步入口 | https://grandpaniuu.github.io/GrandpaNiu/Release/Ronghemokuai.sgmodule | https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Ronghemokuai.sgmodule |
 
 ## 使用规则
 

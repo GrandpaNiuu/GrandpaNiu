@@ -6,7 +6,7 @@
 - Total active rules: 945
 
 ## Groups
-- DIRECT: 106
+- DIRECT: 105
 - REJECT: 777
 - PROXY: 11
-- OTHER: 51
+- OTHER: 52

@@ -204,6 +204,25 @@ def parse_hosts(text: str) -> list[str]:
     return hosts
 
 
+def unresolved_argument_names(text: str) -> set[str]:
+    return {match.group(0)[3:-3].strip() for match in UNRESOLVED_ARGUMENT_RE.finditer(text)}
+
+
+def declared_argument_names(text: str) -> set[str]:
+    names: set[str] = set()
+    for raw in text.splitlines():
+        stripped = raw.strip()
+        if not stripped.startswith("#!arguments="):
+            continue
+        for item in stripped.split("=", 1)[1].split(","):
+            if ":" not in item:
+                continue
+            name = item.split(":", 1)[0].strip()
+            if name:
+                names.add(name)
+    return names
+
+
 def validate_root_release() -> None:
     root_text = read_text(MODULE)
     release_text = read_text(RELEASE)
@@ -212,8 +231,11 @@ def validate_root_release() -> None:
     for marker in REQUIRED_MARKERS:
         if marker not in root_text:
             fail(f"required marker missing from root module: {marker}")
-    if UNRESOLVED_ARGUMENT_RE.search(root_text):
-        fail("root module contains unresolved argument placeholders")
+    unresolved = unresolved_argument_names(root_text)
+    if unresolved:
+        missing = sorted(unresolved - declared_argument_names(root_text))
+        if missing:
+            fail("root module contains undeclared argument placeholders: " + ", ".join(missing))
     for line in active_lines(root_text):
         upper = line.upper()
         lowered = line.lower()

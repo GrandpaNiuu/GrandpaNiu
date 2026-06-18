@@ -153,8 +153,8 @@ SUSPICIOUS_PATTERNS = [
 ]
 BILIBILI_SPARKLE_SOURCE_URL = "https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule"
 BILIBILI_ARGUMENT_LINES = [
-    "#!arguments=displayUpList:auto,purifyComment:1,optimizeRequest:1,sponsorBlock:bilibili.airborne,showCreatorHub:0,logLevel:error",
-    "#!arguments-desc=Bilibili defaults keep splash/feed/comment ad cleanup enabled while avoiding account, payment and VIP rewrites.",
+    "#!arguments=动态最常访问:auto,创作中心:0,过滤置顶评论广告:1,优化评论区加载:bilibili.request,空降助手:bilibili.airborne,空降助手策略:DIRECT,日志等级:4",
+    "#!arguments-desc=动态最常访问\\n- auto: 仅当列表中存在直播状态时显示\\n- show: 始终显示\\n- hide: 始终隐藏\\n\\n创作中心\\n- 0: 隐藏\\n- 1: 显示\\n\\n过滤置顶评论广告\\n- 0: 关闭\\n- 1: 开启\\n\\n优化评论区加载: 默认开启，配置为 # 时关闭\\n\\n空降助手: 默认开启，配置为 # 时关闭\\n\\n空降助手策略: 默认直连，可改为你的代理策略\\n\\n日志等级\\n- 1: DEBUG\\n- 2: INFO\\n- 3: WARN\\n- 4: ERROR\\n- 5: OFF",
 ]
 BILIBILI_UNSAFE_RULE_PREFIXES = (
     "DOMAIN,api.biliapi.com,REJECT",
@@ -163,13 +163,14 @@ BILIBILI_UNSAFE_RULE_PREFIXES = (
     "DOMAIN,app.biliapi.net,REJECT",
 )
 BILIBILI_SCRIPT_LINES = {
-    "airborne": r'bilibili.airborne = type=http-request,pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.community\.service\.dm\.v1\.DM\/DmSegMobile$,argument="{"logLevel":"error"}",requires-body=1,binary-body-mode=1,max-size=-1,engine=webview,timeout=10,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.request.js',
-    "request": r'bilibili.request = type=http-request,pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(?:app\.viewunite\.v1\.View\/View|main\.community\.reply\.v1\.Reply\/MainList)$,argument="{"purifyComment":true,"logLevel":"error"}",requires-body=1,binary-body-mode=1,max-size=-1,engine=webview,timeout=10,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.request.js',
-    "json": r'bilibili.json = type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/(?:resource\/show\/tab\/v2|v2\/(?:splash\/(?:list|show|event\/list2)|feed\/index(?:\/story)?))\?,argument="{"showCreatorHub":false}",requires-body=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.json.js',
-    "protobuf": r'bilibili.protobuf = type=http-response,pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(?:app\.(?:show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|view(?:unite)?\.v1\.View\/(?:View|ViewProgress|RelatesFeed)|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|community\.service\.dm\.v1\.DM\/DmView|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$,argument="{"displayUpList":"auto","purifyComment":true,"sponsorBlock":"bilibili.airborne","logLevel":"error"}",requires-body=1,binary-body-mode=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.response.js',
+    "airborne": r'{{{空降助手}}} = type=http-request,pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.community\.service\.dm\.v1\.DM\/DmSegMobile$,argument="{"logLevel":"{{{日志等级}}}"}",requires-body=1,binary-body-mode=1,max-size=-1,engine=webview,timeout=10,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.request.js',
+    "request": r'{{{优化评论区加载}}} = type=http-request,pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(?:app\.viewunite\.v1\.View\/View|main\.community\.reply\.v1\.Reply\/MainList)$,argument="{"purifyComment":{{{过滤置顶评论广告}}},"logLevel":"{{{日志等级}}}"}",requires-body=1,binary-body-mode=1,max-size=-1,engine=webview,timeout=10,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.request.js',
+    "skin": r'bilibili.skin = type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\?,requires-body=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/bili-suit-diy.js',
+    "json": r'bilibili.json = type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/(?:resource\/show\/tab\/v2|v2\/(?:splash\/(?:list|show|event\/list2)|feed\/index(?:\/story)?|account\/(?:mine(?:\/ipad)?|myinfo)))\?,argument="{"showCreatorHub":{{{创作中心}}}}",requires-body=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.json.js',
+    "protobuf": r'bilibili.protobuf = type=http-response,pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(?:app\.(?:show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|view(?:unite)?\.v1\.View\/(?:View|ViewProgress|RelatesFeed)|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|community\.service\.dm\.v1\.DM\/DmView|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$,argument="{"displayUpList":"{{{动态最常访问}}}","purifyComment":{{{过滤置顶评论广告}}},"sponsorBlock":"{{{空降助手}}}","logLevel":"{{{日志等级}}}"}",requires-body=1,binary-body-mode=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.response.js',
 }
 BILIBILI_EXTRA_RULE_LINES = [
-    "DOMAIN,bsbsb.top,DIRECT,pre-matching",
+    "DOMAIN,bsbsb.top,{{{空降助手策略}}},pre-matching",
     "DOMAIN,t-dsp.pinduoduo.com,REJECT,pre-matching",
     "DOMAIN,video-dsp.pddpic.com,REJECT,pre-matching",
     "DOMAIN,promotion.pddpic.com,REJECT,pre-matching",
@@ -871,12 +872,7 @@ def postprocess_bilibili_source(text: str) -> str:
             stripped = line.strip()
         elif stripped.startswith("#!arguments"):
             continue
-        elif stripped.startswith("DOMAIN,bsbsb.top,"):
-            line = "DOMAIN,bsbsb.top,DIRECT,pre-matching"
-            stripped = line.strip()
         elif any(stripped.startswith(prefix) for prefix in BILIBILI_UNSAFE_RULE_PREFIXES):
-            continue
-        elif stripped.startswith("bilibili.skin"):
             continue
         elif (
             ("pgc\\/view\\/v2\\/app\\/season" in stripped or "pgc/view/v2/app/season" in stripped)
@@ -893,6 +889,9 @@ def postprocess_bilibili_source(text: str) -> str:
         elif "bilibili.protobuf.request.js" in stripped and r"Reply\/MainList" in stripped:
             line = BILIBILI_SCRIPT_LINES["request"]
             stripped = line.strip()
+        elif stripped.startswith("bilibili.skin ="):
+            line = BILIBILI_SCRIPT_LINES["skin"]
+            stripped = line.strip()
         elif stripped.startswith("bilibili.json ="):
             line = BILIBILI_SCRIPT_LINES["json"]
             stripped = line.strip()
@@ -903,8 +902,6 @@ def postprocess_bilibili_source(text: str) -> str:
             line = line.replace("bilibili.protobuf.js", "bilibili.protobuf.response.js")
             stripped = line.strip()
 
-        if "{{{" in stripped or "account\\/" in stripped or "myinfo" in stripped:
-            continue
         lines.append(line)
         if stripped.startswith("# risk:") and not inserted_arguments:
             lines.extend(BILIBILI_ARGUMENT_LINES)
