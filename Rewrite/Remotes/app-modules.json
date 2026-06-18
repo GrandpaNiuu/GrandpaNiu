@@ -279,7 +279,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "kokoryh/Sparkle",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "bilibili-comic",
