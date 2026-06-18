@@ -1,32 +1,21 @@
 # 变更影响报告
 
-- 生成时间：2026-06-18 01:57:29 +0800
+- 生成时间：2026-06-18 23:27:42 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Release/Android/branches.json`
-- `Release/Module.sgmodule`
-- `Release/Rules.conf`
-- `Release/RulesGroup.conf`
-- `Release/Stable/Module.sgmodule`
-- `Release/Stable/Ronghemokuai.sgmodule`
-- `Release/Stable/Rules.conf`
-- `Release/Stable/RulesGroup.conf`
-- `Release/checksums.json`
-- `Release/checksums.txt`
-- `reports/android_rules_report.md`
-- `reports/build_summary.json`
-- `reports/build_summary.md`
-- `reports/module_factory_report.md`
-- `reports/multi_release_report.md`
-- `reports/profile_validation_report.md`
-- `reports/release_rules_report.md`
-- `reports/remote_rule_syntax_report.md`
+- `AGENTS.md`
+- `docs/agents/domain.md`
+- `docs/agents/issue-tracker.md`
+- `docs/agents/triage-labels.md`
 
 ## 新增文件
 
-- 无
+- `AGENTS.md`
+- `docs/agents/domain.md`
+- `docs/agents/issue-tracker.md`
+- `docs/agents/triage-labels.md`
 
 ## 删除文件
 
@@ -34,24 +23,7 @@
 
 ## 修改文件
 
-- `Release/Android/branches.json`
-- `Release/Module.sgmodule`
-- `Release/Rules.conf`
-- `Release/RulesGroup.conf`
-- `Release/Stable/Module.sgmodule`
-- `Release/Stable/Ronghemokuai.sgmodule`
-- `Release/Stable/Rules.conf`
-- `Release/Stable/RulesGroup.conf`
-- `Release/checksums.json`
-- `Release/checksums.txt`
-- `reports/android_rules_report.md`
-- `reports/build_summary.json`
-- `reports/build_summary.md`
-- `reports/module_factory_report.md`
-- `reports/multi_release_report.md`
-- `reports/profile_validation_report.md`
-- `reports/release_rules_report.md`
-- `reports/remote_rule_syntax_report.md`
+- 无
 
 ## 影响的模块层
 
@@ -60,17 +32,16 @@
 
 ## 可能影响的 App
 
-- YouTube
-- 12306
+- 待人工确认
 
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：是
-- 是否涉及 Body Rewrite：是
+- 是否涉及 MITM：否
+- 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
 - 是否需要测试 Spotify：按需
-- 是否需要测试 YouTube：是
+- 是否需要测试 YouTube：按需
 - 是否需要测试知乎：按需
 - 是否需要测试登录/支付/验证码：按需
 
