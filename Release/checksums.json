@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T15:59:42.410703Z",
+  "generated_at": "2026-06-18T16:02:06.854453Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -1141,7 +1141,7 @@
     {
       "path": "Release/Ronghemokuai.sgmodule",
       "size": 683278,
-      "sha256": "bee6c2b5d086267db558a4a227ee7e894cdaa468f4618ff30af788885832eccc"
+      "sha256": "65b960219d9efb6520620e339dd646e38d6d68cbb410ec0d425ab1ca0e6dde73"
     },
     {
       "path": "Release/Rules.conf",
