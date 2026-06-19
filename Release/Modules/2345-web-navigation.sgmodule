@@ -1,0 +1,16 @@
+#!name=GrandpaNiu 2345网址导航 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/2345-web-navigation.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,dl.2345.com,REJECT
+DOMAIN-SUFFIX,download.2345.com,REJECT
+DOMAIN-SUFFIX,ggcode.2345.com,REJECT
+DOMAIN-SUFFIX,houtai.2345.com,REJECT
+DOMAIN-SUFFIX,jifen.2345.com,REJECT
+DOMAIN-SUFFIX,minipage.2345.com,REJECT
+DOMAIN-SUFFIX,wan.2345.com,REJECT
+DOMAIN-SUFFIX,zhushou.2345.com,REJECT
+DOMAIN-SUFFIX,tg.jifen.2345.com,REJECT
+DOMAIN-SUFFIX,update.minipage.2345.com,REJECT
+DOMAIN-SUFFIX,g.wan.2345.com,REJECT

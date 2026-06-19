@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 好奇心日报 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/hao-qi-xin-daily.sgmodule
+
+[URL Rewrite]
+^https?://notch\.qdaily\.com/api/v\d/boot_ad - reject
+^https?://app3\.qdaily\.com/app3/boot_advertisements\.json - reject
+
+[MITM]
+hostname = %APPEND% notch.qdaily.com,app3.qdaily.com

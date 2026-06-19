@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 超星学习通 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/chao-xing-xue-xi-tong.sgmodule
+
+[URL Rewrite]
+^https?://learn\.chaoxing\.com/apis/service/appConfig\? - reject
+
+[MITM]
+hostname = %APPEND% learn.chaoxing.com

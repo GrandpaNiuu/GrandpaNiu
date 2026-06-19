@@ -1,0 +1,7 @@
+#!name=GrandpaNiu 58汽车 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/58-auto.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,58.xgo.com.cn,REJECT
+DOMAIN-SUFFIX,imp.xgo.com.cn,REJECT

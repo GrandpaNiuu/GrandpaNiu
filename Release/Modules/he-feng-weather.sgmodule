@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 和风天气 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/he-feng-weather.sgmodule
+
+[URL Rewrite]
+^https?://hfapp-service\.qweather\.net/v\d\.\d/app/ad/list\? - reject-dict
+
+[MITM]
+hostname = %APPEND% hfapp-service.qweather.net

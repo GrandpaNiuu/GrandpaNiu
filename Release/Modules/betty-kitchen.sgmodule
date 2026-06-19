@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 贝太厨房 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/betty-kitchen.sgmodule
+
+[URL Rewrite]
+^https?://channel\.beitaichufang\.com/channel/api/v\d/promote/ios/start/page - reject
+
+[MITM]
+hostname = %APPEND% channel.beitaichufang.com

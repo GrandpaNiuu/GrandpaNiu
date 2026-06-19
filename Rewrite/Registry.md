@@ -81,6 +81,7 @@ Manual app specs are listed in `Rewrite/Generate.conf` `[release_modules]`. Addi
 |---|---|---|---|---|---|---|---|---|
 | remote.index | remote | Policy index | `Rewrite/Remotes/Index.md` | `Rewrite/Remotes/Catalog.md`; `Web/remotes.md` | `scripts/build_web_catalog.py` | yes | medium | Disable related remote item |
 | remote.sources | remote | Source registry | `Rewrite/Remotes/sources.json` | Rule-set entries in generated module | `scripts/build_module.py` | yes | high | Set related source `enabled` to false |
+| remote.app_modules | remote | App upstream registry | `Rewrite/Remotes/app-modules.json` | `Rewrite/Sources/Apps/*.conf`; `Release/Modules/`; fusion module | `scripts/sync_upstream_app_modules.py`; `Rewrite/Generator/Builder.py` | yes | high | Disable or narrow the failing app record, then rebuild |
 | remote.candidates | remote | Candidate registry | `Rewrite/Remotes/candidates.json` | `reports/upstream_collect_report.md` | upstream collector workflow | yes | medium | Keep candidate disabled or remove candidate |
 | remote.catalog | remote | Generated catalog | `Rewrite/Remotes/Catalog.md` | `Web/remotes.md` | `scripts/build_web_catalog.py` | yes | low | Regenerate catalog |
 
@@ -132,6 +133,7 @@ Manual app specs are listed in `Rewrite/Generate.conf` `[release_modules]`. Addi
 - Edit source files first; do not treat `Release/` as source of truth.
 - Every high-risk source must have a fallback path.
 - App-specific source fragments live under `Rewrite/Sources/Apps/` and generate `Release/Modules/*.sgmodule`.
+- App upstream sync supports Surge/Loon modules and conservative QuantumultX `.snippet` conversion; `fmz200/wool_scripts` is enabled for recent app-scoped ad rules.
 - Shared protection and generic cleanup fragments live under `Rewrite/Sources/Misc/` and are included in fusion builds.
 - Reference modules in `Rewrite/Remotes/sources.json` are disabled by default and are not public import entries.
 - `Web/catalog.md` and `Web/release-links.json` are public catalog outputs; legacy variants must stay out of the catalog.

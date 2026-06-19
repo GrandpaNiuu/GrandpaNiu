@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 机核网 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ji-he-wang.sgmodule
+
+[URL Rewrite]
+^https?://www\.gcores\.com/gapi/v1/app-start-pages\?page - reject-dict
+
+[MITM]
+hostname = %APPEND% www.gcores.com

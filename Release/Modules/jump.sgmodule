@@ -5,7 +5,6 @@
 [Rule]
 DOMAIN,zlsdk.1rtb.net,REJECT
 DOMAIN,jp.ad.gameley.com,REJECT
-DOMAIN,toblog.ctobsnssdk.com,REJECT
 DOMAIN,s3plus.meituan.net,REJECT
 DOMAIN,images.pinduoduo.com,REJECT
 DOMAIN,qh-material.taobao.com,REJECT

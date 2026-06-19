@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 超级课程表 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/chao-ji-ke-cheng-biao.sgmodule
+
+[URL Rewrite]
+^https?://182\.92\.244\.70/d/json - reject-dict
+http://ad\.myfriday\.cn/d/json/1\.1 - reject
+
+[MITM]
+hostname = %APPEND% 182.92.244.70,ad.myfriday.cn

@@ -1,0 +1,6 @@
+#!name=GrandpaNiu 九游 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/9-game.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,ad.9game.cn,REJECT

@@ -1,0 +1,6 @@
+#!name=GrandpaNiu 抖音 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/douyin.sgmodule
+
+[Rule]
+DOMAIN-KEYWORD,p3.pstatp.com,REJECT

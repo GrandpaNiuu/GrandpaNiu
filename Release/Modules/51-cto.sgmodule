@@ -1,0 +1,8 @@
+#!name=GrandpaNiu 51CTO学堂 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/51-cto.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,gg.51cto.com,REJECT
+DOMAIN-SUFFIX,gg2.51cto.com,REJECT
+DOMAIN-SUFFIX,gg3.51cto.com,REJECT

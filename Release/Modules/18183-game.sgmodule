@@ -1,0 +1,8 @@
+#!name=GrandpaNiu 18183游戏网 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/18183-game.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,img1.18183.com,REJECT
+DOMAIN-SUFFIX,eezdx.erc.18183.com,REJECT
+DOMAIN-SUFFIX,zpe.klre.18183.com,REJECT

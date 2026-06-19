@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 2345天气王 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/2345-weather-king.sgmodule
+
+[URL Rewrite]
+^http?://tianqi\.2345\.com/api/content/getContentFeeds\.php - reject-dict
+
+[MITM]
+hostname = %APPEND% tianqi.2345.com

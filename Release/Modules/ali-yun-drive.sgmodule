@@ -3,7 +3,7 @@
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ali-yun-drive.sgmodule
 
 [Rule]
-IP-CIDR,203.107.1.1/24,REJECT,no-resolve
+IP-CIDR,203.107.1.1/24,REJECT
 
 [URL Rewrite]
 ^https://member\.alipan\.com/v2/activity/sign_in_luckyBottle - reject-dict

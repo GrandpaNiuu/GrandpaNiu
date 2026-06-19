@@ -1,0 +1,10 @@
+#!name=GrandpaNiu CNN Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/cnn.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,customad.cnn.com,REJECT
+DOMAIN-SUFFIX,gdyn.cnn.com,REJECT
+DOMAIN-SUFFIX,metrics.cnn.com,REJECT
+DOMAIN-SUFFIX,cnn.dyn.cnn.com,REJECT
+DOMAIN-SUFFIX,i.l.cnn.net,REJECT

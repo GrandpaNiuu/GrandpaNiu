@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 华数TV Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/wasu-tv.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,acsystem.wasu.cn,REJECT
+DOMAIN-SUFFIX,afp.wasu.cn,REJECT
+DOMAIN-SUFFIX,afpcreative.wasu.cn,REJECT
+DOMAIN-SUFFIX,collector.wasu.cn,REJECT
+DOMAIN-SUFFIX,delivery.wasu.cn,REJECT
+DOMAIN-SUFFIX,delivery-pc.wasu.cn,REJECT
+DOMAIN-SUFFIX,adsystem.wasu.tv,REJECT
+DOMAIN-SUFFIX,adwasu.tv,REJECT

@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 今日水印相机 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/jin-ri-shui-yin-camera.sgmodule
+
+[URL Rewrite]
+^https?://api\.sogaha\.cn/ssp/ad/get\?ip - reject-dict
+
+[MITM]
+hostname = %APPEND% api.sogaha.cn

@@ -1,0 +1,10 @@
+#!name=GrandpaNiu AcFun Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/acfun.sgmodule
+
+[URL Rewrite]
+^https?://aes\.acfun\.cn/s\?adzones - reject
+^https?://api-new\.app\.acfun\.cn/rest/app/flash/screen/ - reject
+
+[MITM]
+hostname = %APPEND% aes.acfun.cn,api-new.app.acfun.cn

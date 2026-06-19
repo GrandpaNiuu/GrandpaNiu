@@ -1,0 +1,12 @@
+#!name=GrandpaNiu 懒人听书 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/lan-ren-ting-shu.sgmodule
+
+[URL Rewrite]
+^https?://118\.178\.214\.118/yyting/advertclient/ClientAdvertList\.action - reject-img
+^https?://dapis\.mting\.info/yyting/advertclient/ClientAdvertList\.action - reject-img
+^https?://.*/yyting/advertclient/ClientAdvertList.action - reject
+^https?://display\.wting\.info/.*.jpeg - reject-200
+
+[MITM]
+hostname = %APPEND% 118.178.214.118,dapis.mting.info,display.wting.info

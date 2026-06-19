@@ -3,11 +3,9 @@
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/i-qi-yi-video.sgmodule
 
 [Rule]
-IP-CIDR,103.44.59.54/32,REJECT,no-resolve
-IP-CIDR,111.63.147.158/32,REJECT,no-resolve
-IP-CIDR,116.211.198.237/32,REJECT,no-resolve
-DOMAIN-SUFFIX,cupid.iqiyi.com,DIRECT
-DOMAIN,access.if.iqiyi.com,REJECT
+IP-CIDR,103.44.59.54/32,REJECT
+IP-CIDR,111.63.147.158/32,REJECT
+IP-CIDR,116.211.198.237/32,REJECT
 
 [URL Rewrite]
 ^https?://iface2\.iqiyi\.com/control/3\.0/init_proxy\? - reject-dict

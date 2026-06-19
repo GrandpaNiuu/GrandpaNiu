@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 17173（网络游戏门户网站） Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/17173-game.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,ad.17173.com,REJECT
+DOMAIN-SUFFIX,cvda.17173.com,REJECT
+DOMAIN-SUFFIX,log1.17173.com,REJECT
+DOMAIN-SUFFIX,vda.17173.com,REJECT
+DOMAIN-SUFFIX,s.17173cdn.com,REJECT

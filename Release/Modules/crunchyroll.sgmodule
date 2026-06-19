@@ -1,0 +1,6 @@
+#!name=GrandpaNiu crunchyroll Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/crunchyroll.sgmodule
+
+[MITM]
+hostname = %APPEND% beta-api.crunchyroll.com

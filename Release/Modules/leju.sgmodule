@@ -1,0 +1,8 @@
+#!name=GrandpaNiu 乐居 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/leju.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,adm.leju.com,REJECT
+DOMAIN-SUFFIX,src.leju.com,REJECT
+DOMAIN-SUFFIX,staticadm.leju.com,REJECT

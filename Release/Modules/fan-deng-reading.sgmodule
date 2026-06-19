@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 樊登读书 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/fan-deng-reading.sgmodule
+
+[URL Rewrite]
+^https?://gateway-api\.dushu365\.com/chief-orch/config/config/v100/appConfig - reject
+
+[MITM]
+hostname = %APPEND% gateway-api.dushu365.com

@@ -1,0 +1,11 @@
+#!name=GrandpaNiu 百姓网 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/baixing.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,admx.baixing.com,REJECT
+DOMAIN-SUFFIX,tu.baixing.com,REJECT
+DOMAIN-SUFFIX,d.admx.baixing.com,REJECT
+DOMAIN-SUFFIX,bd-js.baixing.net,REJECT
+DOMAIN-SUFFIX,bd-s.baixing.net,REJECT
+DOMAIN-SUFFIX,script-bd.baixing.net,REJECT

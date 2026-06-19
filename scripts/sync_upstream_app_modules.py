@@ -44,6 +44,10 @@ SOURCE_SECTIONS = ALLOWED_SECTIONS + ["Rewrite"]
 SECTION_ALIASES = {
     "mitm": "MITM",
     "rewrite": "Rewrite",
+    "rewrite_local": "Rewrite",
+    "rewrite_remote": "Rewrite",
+    "filter_local": "Rule",
+    "filter_remote": "Rule",
     "url rewrite": "URL Rewrite",
     "header rewrite": "Header Rewrite",
     "body rewrite": "Body Rewrite",
@@ -64,7 +68,7 @@ REQUIRED_RECORD_KEYS = [
 ]
 CORE_BACKUP_IDS = {"spotify", "youtube", "zhihu", "wechat", "weibo", "bilibili"}
 HIGH_RISK_IDS = CORE_BACKUP_IDS | {"terabox"}
-TRUSTED_REPOSITORIES = ["QingRex/LoonKissSurge", "app2smile/rules", "Maasea/sgmodule"]
+TRUSTED_REPOSITORIES = ["QingRex/LoonKissSurge", "app2smile/rules", "Maasea/sgmodule", "fmz200/wool_scripts"]
 KELEE_PINNED_REMOTE_SCRIPT_IDS = {"spotify", "youtube"}
 AD_TAG = "\u53bb\u5e7f\u544a"
 KELEE_EXCLUDED_BASES = {
@@ -137,7 +141,33 @@ META_RE = re.compile(r"^\s*#!([^=\s]+)\s*=\s*(.*)$")
 COMMENT_FIELD_RE = re.compile(r"^\s*#\s*([A-Za-z0-9_-]+)\s*:\s*(.+?)\s*$")
 SCRIPT_PATH_RE = re.compile(r"script-path=(https?://[^,\s]+)", re.IGNORECASE)
 RULE_SET_RE = re.compile(r"RULE-SET,(https?://[^,\s]+)", re.IGNORECASE)
-RAW_MODULE_HINT_RE = re.compile(r"\.(?:sgmodule|module|conf|lpx)(?:$|[?#])", re.IGNORECASE)
+RAW_MODULE_HINT_RE = re.compile(r"\.(?:sgmodule|module|conf|lpx|snippet)(?:$|[?#])", re.IGNORECASE)
+QX_RULE_TYPES = {
+    "host-suffix": "DOMAIN-SUFFIX",
+    "host": "DOMAIN",
+    "host-keyword": "DOMAIN-KEYWORD",
+    "ip-cidr": "IP-CIDR",
+    "ip-cidr6": "IP-CIDR6",
+    "geoip": "GEOIP",
+    "user-agent": "USER-AGENT",
+}
+QX_REJECT_ACTIONS = {
+    "reject",
+    "reject-200",
+    "reject-dict",
+    "reject-img",
+    "reject-array",
+    "reject-drop",
+    "reject-ttl",
+    "reject-tinygif",
+}
+QX_SCRIPT_ACTIONS = {
+    "script-response-body": ("http-response", True),
+    "script-request-body": ("http-request", True),
+    "script-response-header": ("http-response", False),
+    "script-request-header": ("http-request", False),
+}
+EXAMPLE_TOKENS = ("this-is-an-example.com", "example.com")
 SUSPICIOUS_PATTERNS = [
     re.compile(pattern, re.IGNORECASE)
     for pattern in (
@@ -632,6 +662,15 @@ def normalize_pattern(value: str) -> str:
     return value.strip().replace("\\/", "/")
 
 
+def comparable_line(value: str) -> str:
+    return normalize_pattern(value).replace("\\.", ".").lower()
+
+
+def is_example_line(value: str) -> bool:
+    comparable = comparable_line(value)
+    return any(token in comparable for token in EXAMPLE_TOKENS)
+
+
 def jq_path(path: str) -> str:
     path = path.strip().strip(",")
     if not path:
@@ -676,13 +715,18 @@ def convert_loon_rewrite_line(line: str) -> tuple[str, str]:
         return "URL Rewrite", f"# unsupported-loon-rewrite: {normalize_pattern(stripped)}"
 
     simple = action.split()[0]
+    if simple == "url":
+        action = action[len("url") :].strip()
+        if not action:
+            return "", ""
+        simple = action.split()[0]
     if simple == "header":
         replacement = action[len("header") :].strip()
         if replacement:
             return "URL Rewrite", f"{pattern} {replacement} header"
     if simple in {"header-replace", "header-replace-regex", "header-del"}:
         return "Header Rewrite", f"http-request {pattern} {action}"
-    if simple in {"reject", "reject-dict", "reject-200", "reject-img", "reject-array", "reject-drop"}:
+    if simple in QX_REJECT_ACTIONS:
         return "URL Rewrite", f"{pattern} - {simple}"
     if simple in {"mock-response-body", "mock-response-body-replace"}:
         body = action[len(simple) :].strip()
@@ -702,6 +746,94 @@ def convert_loon_rewrite_line(line: str) -> tuple[str, str]:
         if jq:
             return "Body Rewrite", f"http-response-jq {pattern} '{jq}'"
     return "URL Rewrite", f"# unsupported-loon-rewrite: {normalize_pattern(stripped)}"
+
+
+def convert_qx_script_line(pattern: str, action: str, module_id: str, index: int) -> str:
+    parts = action.split()
+    if not parts:
+        return ""
+    script_type, requires_body = QX_SCRIPT_ACTIONS.get(parts[0], ("", False))
+    if not script_type:
+        return ""
+    script_path = ""
+    if len(parts) > 1 and parts[1].startswith("http"):
+        script_path = parts[1]
+    if not script_path:
+        match = URL_RE.search(action)
+        script_path = match.group(0) if match else ""
+    if not script_path:
+        return ""
+    suffix = "response" if script_type == "http-response" else "request"
+    name = safe_script_name("", f"{module_id}.{suffix}.{index}")
+    fields = [f"{name} = type={script_type}", f"pattern={normalize_pattern(pattern)}"]
+    if requires_body:
+        fields.extend(["requires-body=1", "max-size=0"])
+    fields.append(f"script-path={script_path}")
+    return ",".join(fields)
+
+
+def convert_rewrite_line(line: str, module_id: str, index: int) -> tuple[str, str]:
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return "", ""
+    if is_example_line(stripped):
+        return "", ""
+    pattern, action = split_pattern_action(stripped)
+    if action.startswith("url "):
+        action = action[len("url") :].strip()
+    action_name = action.split()[0] if action else ""
+    if action_name in QX_SCRIPT_ACTIONS:
+        converted = convert_qx_script_line(pattern, action, module_id, index)
+        return ("Script", converted) if converted else ("", "")
+    section, converted = convert_loon_rewrite_line(stripped)
+    if converted.startswith("# unsupported-loon-rewrite:"):
+        return "", ""
+    return section, converted
+
+
+def convert_qx_rule_line(line: str) -> str:
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return stripped
+    if is_example_line(stripped):
+        return ""
+    parts = [part.strip() for part in stripped.split(",")]
+    if len(parts) < 3:
+        return ""
+    rule_type = QX_RULE_TYPES.get(parts[0].lower())
+    if not rule_type:
+        return ""
+    value = parts[1]
+    policy_raw = parts[2]
+    policy_low = policy_raw.lower()
+    if policy_low.startswith("reject"):
+        policy = "REJECT"
+    elif policy_low == "direct":
+        policy = "DIRECT"
+    else:
+        policy = policy_raw.upper()
+    return f"{rule_type},{value},{policy}"
+
+
+def convert_loose_qx_lines(lines: list[str], module_id: str) -> dict[str, list[str]]:
+    converted_sections: dict[str, list[str]] = {name: [] for name in ALLOWED_SECTIONS}
+    mitm_lines: list[str] = []
+    for index, raw in enumerate(lines, 1):
+        stripped = raw.strip()
+        if not stripped or stripped.startswith("#!") or stripped.startswith("#"):
+            continue
+        if stripped.lower().startswith("hostname"):
+            mitm_lines.append(stripped)
+            continue
+        rule = convert_qx_rule_line(stripped)
+        if rule:
+            converted_sections["Rule"].append(rule)
+            continue
+        target_section, converted = convert_rewrite_line(stripped, module_id, index)
+        if target_section and converted:
+            converted_sections[target_section].append(converted)
+    converted_sections["MITM"].extend(convert_mitm_lines(mitm_lines))
+    return converted_sections
 
 
 def option_value(options: str, key: str) -> str:
@@ -772,6 +904,8 @@ def convert_mitm_lines(lines: list[str]) -> list[str]:
         value = value.replace("%APPEND%", "")
         for host in value.split(","):
             clean = host.strip()
+            if is_example_line(clean):
+                continue
             if any(token in clean.lower() for token in PROTECTED_MITM_HOST_TOKENS):
                 continue
             if clean and clean not in seen:
@@ -850,24 +984,38 @@ def clean_section_lines(lines: list[str]) -> list[str]:
 def converted_source(record: dict[str, Any], upstream_text: str) -> tuple[str, str]:
     meta, sections = split_module(upstream_text)
     converted_sections: dict[str, list[str]] = {name: [] for name in ALLOWED_SECTIONS}
+    module_id = str(record["id"])
     for section, lines in sections.items():
         if section == "Rewrite":
-            for line in lines:
-                target_section, converted = convert_loon_rewrite_line(line)
+            for index, line in enumerate(lines, 1):
+                target_section, converted = convert_rewrite_line(line, module_id, index)
                 if target_section and converted:
                     converted_sections[target_section].append(converted)
         elif section == "Rule":
-            converted_sections[section].extend(convert_rule_lines(lines))
+            qx_rules = [convert_qx_rule_line(line) for line in lines]
+            if any(qx_rules):
+                converted_sections[section].extend(rule for rule in qx_rules if rule)
+            else:
+                converted_sections[section].extend(convert_rule_lines(lines))
         elif section == "MITM":
             converted_sections[section].extend(convert_mitm_lines(lines))
         elif section == "Script":
             for index, line in enumerate(lines, 1):
-                converted_sections[section].append(convert_loon_script_line(line, str(record["id"]), index))
+                converted_sections[section].append(convert_loon_script_line(line, module_id, index))
         elif section in converted_sections:
             converted_sections[section].extend(lines)
 
+    if not any(lines for lines in converted_sections.values()):
+        loose_sections = convert_loose_qx_lines(meta, module_id)
+        for section, lines in loose_sections.items():
+            converted_sections[section].extend(lines)
+
     body_sections = {name: clean_section_lines(lines) for name, lines in converted_sections.items()}
-    body_sections = {name: lines for name, lines in body_sections.items() if lines}
+    body_sections = {
+        name: lines
+        for name, lines in body_sections.items()
+        if any(line.strip() and not line.strip().startswith("#") for line in lines)
+    }
     if not body_sections:
         raise ValueError("no supported module sections found")
 
@@ -1132,6 +1280,28 @@ def write_report(
     write_text(path, "\n".join(lines))
 
 
+def selected_records(
+    records: list[dict[str, Any]],
+    projects: list[str],
+    module_ids: list[str],
+) -> list[dict[str, Any]]:
+    project_needles = [item.lower() for item in projects if item.strip()]
+    id_needles = {item.strip() for item in module_ids if item.strip()}
+    if not project_needles and not id_needles:
+        return records
+    out: list[dict[str, Any]] = []
+    for record in records:
+        module_id = str(record.get("id", ""))
+        source_url = str(record.get("source_url", "")).lower()
+        upstream_project = str(record.get("upstream_project", "")).lower()
+        if id_needles and module_id in id_needles:
+            out.append(record)
+            continue
+        if project_needles and any(needle in upstream_project or needle in source_url for needle in project_needles):
+            out.append(record)
+    return out
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Sync upstream raw app modules into Rewrite/Sources/Apps.")
     parser.add_argument("--config", default=rel(DEFAULT_CONFIG), help="Path to Rewrite/Remotes/app-modules.json")
@@ -1139,6 +1309,8 @@ def main() -> int:
     parser.add_argument("--report", default=rel(DEFAULT_REPORT), help="Markdown report path")
     parser.add_argument("--config-only", action="store_true", help="Only discover and write app-modules.json/report")
     parser.add_argument("--no-kelee", action="store_true", help="Do not import Kelee PluginHub app ad modules")
+    parser.add_argument("--project", action="append", default=[], help="Only sync records matching this upstream project or URL")
+    parser.add_argument("--id", action="append", default=[], help="Only sync a specific module id")
     args = parser.parse_args()
 
     config_path = repo_path(args.config)
@@ -1149,9 +1321,10 @@ def main() -> int:
         config = read_json(config_path)
         records = discover_modules(config, apps_dir)
         records = merge_kelee_catalog(records, include_kelee=not args.no_kelee)
-        updated, skipped, blocked, errors = sync_records(records, args.config_only)
+        targets = selected_records(records, args.project, args.id)
+        updated, skipped, blocked, errors = sync_records(targets, args.config_only)
         write_config(config_path, config, records)
-        write_report(report_path, records, updated, skipped, blocked, errors)
+        write_report(report_path, targets, updated, skipped, blocked, errors)
     except SyncError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1

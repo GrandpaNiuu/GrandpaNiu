@@ -624,11 +624,65 @@ DOMAIN-SUFFIX,adsview.qq.com,REJECT,pre-matching
 RULE-SET,https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-appAdBlock-shadowrocket.list,REJECT
 RULE-SET,https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-allAdBlock-shadowrocket.list,REJECT
 DOMAIN,ad.12306.cn,DIRECT
+DOMAIN-SUFFIX,ad.17173.com,REJECT
+DOMAIN-SUFFIX,cvda.17173.com,REJECT
+DOMAIN-SUFFIX,log1.17173.com,REJECT
+DOMAIN-SUFFIX,vda.17173.com,REJECT
+DOMAIN-SUFFIX,s.17173cdn.com,REJECT
+DOMAIN-SUFFIX,market.178.com,REJECT
+DOMAIN-SUFFIX,tuiguang.178.com,REJECT
+DOMAIN-SUFFIX,img1.18183.com,REJECT
+DOMAIN-SUFFIX,eezdx.erc.18183.com,REJECT
+DOMAIN-SUFFIX,zpe.klre.18183.com,REJECT
+DOMAIN-SUFFIX,mlog.m1905.cn,REJECT
+DOMAIN-SUFFIX,vodlog.m1905.cn,REJECT
+DOMAIN-SUFFIX,afp.m1905.com,REJECT
+DOMAIN-SUFFIX,counter.m1905.com,REJECT
+DOMAIN-SUFFIX,dl.2345.com,REJECT
+DOMAIN-SUFFIX,download.2345.com,REJECT
+DOMAIN-SUFFIX,ggcode.2345.com,REJECT
+DOMAIN-SUFFIX,houtai.2345.com,REJECT
+DOMAIN-SUFFIX,jifen.2345.com,REJECT
+DOMAIN-SUFFIX,minipage.2345.com,REJECT
+DOMAIN-SUFFIX,wan.2345.com,REJECT
+DOMAIN-SUFFIX,zhushou.2345.com,REJECT
+DOMAIN-SUFFIX,tg.jifen.2345.com,REJECT
+DOMAIN-SUFFIX,update.minipage.2345.com,REJECT
+DOMAIN-SUFFIX,g.wan.2345.com,REJECT
 DOMAIN,adx.36kr.com,REJECT
 DOMAIN,ad.jiemian.com,REJECT
 DOMAIN,ad.jia.360.cn,REJECT
 DOMAIN,ad.iot.360.cn,REJECT
-IP-CIDR,203.107.1.1/24,REJECT,no-resolve
+DOMAIN-SUFFIX,ad.365rili.com,REJECT
+DOMAIN-SUFFIX,app-g.39.net,REJECT
+DOMAIN-SUFFIX,d.39.net,REJECT
+DOMAIN-SUFFIX,dpvc.39.net,REJECT
+DOMAIN-SUFFIX,thetestpage.39.net,REJECT
+DOMAIN-SUFFIX,gg.51cto.com,REJECT
+DOMAIN-SUFFIX,gg2.51cto.com,REJECT
+DOMAIN-SUFFIX,gg3.51cto.com,REJECT
+DOMAIN-SUFFIX,58.xgo.com.cn,REJECT
+DOMAIN-SUFFIX,imp.xgo.com.cn,REJECT
+DOMAIN,track.58.com,REJECT
+DOMAIN,tracklog.58.com,REJECT
+DOMAIN-SUFFIX,58mingri.cn,REJECT
+DOMAIN-SUFFIX,58mingtian.cn,REJECT
+DOMAIN-SUFFIX,sc.58mingtian.cn,REJECT
+DOMAIN-SUFFIX,t1.58cdn.com.cn,REJECT
+DOMAIN-SUFFIX,t2.58cdn.com.cn,REJECT
+DOMAIN-SUFFIX,t3.58cdn.com.cn,REJECT
+DOMAIN-SUFFIX,adshow.58.com,REJECT
+DOMAIN-SUFFIX,brandshow.58.com,REJECT
+DOMAIN-SUFFIX,jing.58.com,REJECT
+DOMAIN-SUFFIX,jumpluna.58.com,REJECT
+DOMAIN-SUFFIX,news.58.com,REJECT
+DOMAIN-SUFFIX,track.58.com,REJECT
+DOMAIN-SUFFIX,tracklog.58.com,REJECT
+DOMAIN-SUFFIX,zzpush.58.com,REJECT
+DOMAIN-SUFFIX,jump.luna.58.com,REJECT
+DOMAIN-SUFFIX,ad.9game.cn,REJECT
+IP-CIDR,203.107.1.1/24,REJECT
+DOMAIN-KEYWORD,apimg.qunliao.info,REJECT
 DOMAIN,amap-aos-info-nogw.amap.com,REJECT,extended-matching,pre-matching
 DOMAIN,free-aos-cdn-image.amap.com,REJECT,extended-matching,pre-matching
 DOMAIN-SUFFIX,v.smtcdns.com,REJECT,extended-matching,pre-matching
@@ -637,6 +691,60 @@ URL-REGEX,"^http:\/\/go\.babytree\.com\/go_search\/api\/mobile_search_new\/get_m
 URL-REGEX,"^http:\/\/m\.meitun\.com\/newapi\/router\/topic\/hometptf\/feedRecommend",REJECT-DICT
 URL-REGEX,"^http:\/\/pic08\.babytreeimg\.com\/knowledge\/2022\/0923\/\w+",REJECT
 URL-REGEX,"^http:\/\/plough\.babytree\.com\/plough\.do",REJECT-DICT
+DOMAIN,advertise.baicizhan.com,REJECT
+DOMAIN,advertise.baicizhan.org,REJECT
+DOMAIN-SUFFIX,admx.baixing.com,REJECT
+DOMAIN-SUFFIX,tu.baixing.com,REJECT
+DOMAIN-SUFFIX,d.admx.baixing.com,REJECT
+DOMAIN-SUFFIX,bd-js.baixing.net,REJECT
+DOMAIN-SUFFIX,bd-s.baixing.net,REJECT
+DOMAIN-SUFFIX,script-bd.baixing.net,REJECT
+DOMAIN-SUFFIX,active.baofeng.com,REJECT
+DOMAIN-SUFFIX,logger.baofeng.com,REJECT
+DOMAIN-SUFFIX,midinfo.baofeng.com,REJECT
+DOMAIN-SUFFIX,p2pmid.baofeng.com,REJECT
+DOMAIN-SUFFIX,data.danmu.baofeng.com,REJECT
+DOMAIN-SUFFIX,co.dtech.baofeng.com,REJECT
+DOMAIN-SUFFIX,eventlog.hd.baofeng.com,REJECT
+DOMAIN-SUFFIX,pvlog.hd.baofeng.com,REJECT
+DOMAIN-SUFFIX,action.logger.baofeng.com,REJECT
+DOMAIN-SUFFIX,duration.logger.baofeng.com,REJECT
+DOMAIN-SUFFIX,houyi.logger.baofeng.com,REJECT
+DOMAIN-SUFFIX,storm.logger.baofeng.com,REJECT
+DOMAIN-SUFFIX,tips.logger.baofeng.com,REJECT
+DOMAIN-SUFFIX,tree.logger.baofeng.com,REJECT
+DOMAIN-SUFFIX,sclog.moviebox.baofeng.com,REJECT
+DOMAIN-SUFFIX,timelog.moviebox.baofeng.com,REJECT
+DOMAIN-SUFFIX,vvlog.moviebox.baofeng.com,REJECT
+DOMAIN-SUFFIX,breeze.olclient.baofeng.com,REJECT
+DOMAIN-SUFFIX,coop.pop.baofeng.com,REJECT
+DOMAIN-SUFFIX,androidlog.shouji.baofeng.com,REJECT
+DOMAIN-SUFFIX,iphonelog.shouji.baofeng.com,REJECT
+DOMAIN-SUFFIX,dailylog.storm.baofeng.com,REJECT
+DOMAIN-SUFFIX,logger.treexml.baofeng.com,REJECT
+DOMAIN-SUFFIX,config.baofeng.net,REJECT
+DOMAIN-SUFFIX,houyi.baofeng.net,REJECT
+DOMAIN-SUFFIX,listlog.baofeng.net,REJECT
+DOMAIN-SUFFIX,loading.baofeng5.baofeng.net,REJECT
+DOMAIN-SUFFIX,onlinetips.baofeng5.baofeng.net,REJECT
+DOMAIN-SUFFIX,app.houyi.baofeng.net,REJECT
+DOMAIN-SUFFIX,ck.houyi.baofeng.net,REJECT
+DOMAIN-SUFFIX,corner.houyi.baofeng.net,REJECT
+DOMAIN-SUFFIX,d3f.houyi.baofeng.net,REJECT
+DOMAIN-SUFFIX,mid.houyi.baofeng.net,REJECT
+DOMAIN-SUFFIX,parser.houyi.baofeng.net,REJECT
+DOMAIN-SUFFIX,wbwl.houyi.baofeng.net,REJECT
+DOMAIN-SUFFIX,web.houyi.baofeng.net,REJECT
+DOMAIN-SUFFIX,wl.houyi.baofeng.net,REJECT
+DOMAIN-SUFFIX,wx.houyi.baofeng.net,REJECT
+DOMAIN-SUFFIX,xs.houyi.baofeng.net,REJECT
+DOMAIN-SUFFIX,nclog.mars.baofeng.net,REJECT
+DOMAIN-SUFFIX,clicklog.moviebox.baofeng.net,REJECT
+DOMAIN-SUFFIX,pvlog.moviebox.baofeng.net,REJECT
+DOMAIN-SUFFIX,rec.moviebox.baofeng.net,REJECT
+DOMAIN-SUFFIX,nclog.pad.baofeng.net,REJECT
+DOMAIN-SUFFIX,jfm4.pop.baofeng.net,REJECT
+DOMAIN-SUFFIX,visualscience.external.bbc.co.uk,REJECT
 DOMAIN,bsbsb.top,{{{空降助手策略}}},pre-matching
 DOMAIN,t-dsp.pinduoduo.com,REJECT,pre-matching
 DOMAIN,video-dsp.pddpic.com,REJECT,pre-matching
@@ -663,9 +771,25 @@ DOMAIN-KEYWORD,biliad,REJECT,pre-matching
 DOMAIN-KEYWORD,biligame-ad,REJECT,pre-matching
 AND,((DOMAIN-SUFFIX,chat.bilibili.com),(OR,((DOMAIN-KEYWORD,stun),(DOMAIN-KEYWORD,tracker)))),REJECT,pre-matching
 DOMAIN,bsbsb.top,{{{空降助手策略}}}
+DOMAIN-SUFFIX,j.biquge520.cc,REJECT
+DOMAIN-SUFFIX,m.biquge5200.cc,REJECT
+DOMAIN-SUFFIX,tt.biquge.la,REJECT
 DOMAIN,abyss.cyapi.cn,REJECT,extended-matching,pre-matching
 DOMAIN,ad.cyapi.cn,REJECT,extended-matching,pre-matching
 DOMAIN,gather.colorfulclouds.net,REJECT,extended-matching,pre-matching
+DOMAIN-SUFFIX,atrace.chelaile.net.cn,REJECT
+DOMAIN,logs.chelaile.net.cn,REJECT
+DOMAIN,ad.chelaile.net.cn,REJECT
+DOMAIN-SUFFIX,customad.cnn.com,REJECT
+DOMAIN-SUFFIX,gdyn.cnn.com,REJECT
+DOMAIN-SUFFIX,metrics.cnn.com,REJECT
+DOMAIN-SUFFIX,cnn.dyn.cnn.com,REJECT
+DOMAIN-SUFFIX,i.l.cnn.net,REJECT
+DOMAIN-SUFFIX,ad.csdn.net,REJECT
+DOMAIN-SUFFIX,counter.csdn.net,REJECT
+DOMAIN-SUFFIX,dc.csdn.net,REJECT
+DOMAIN-SUFFIX,dc2.csdn.net,REJECT
+DOMAIN-SUFFIX,medal.blog.csdn.net,REJECT
 DOMAIN,gwp.xiaojukeji.com,REJECT
 AND,((IP-ASN,45090,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP)),REJECT
 AND,((IP-ASN,55990,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP)),REJECT
@@ -674,6 +798,7 @@ DOMAIN,gwp.xiaojukeji.com,REJECT,extended-matching,pre-matching
 DOMAIN,trackercollect.ddxq.mobi,REJECT
 DOMAIN,ddfs-public.ddimg.mobi,REJECT
 DOMAIN,rttrack.ddxq.mobi,REJECT
+DOMAIN-KEYWORD,p3.pstatp.com,REJECT
 URL-REGEX,"^http:\/\/linkmicschedule\.douyucdn\.cn\/im_schedule\/im_gate_list",REJECT
 AND,((DEST-PORT,18000),(PROTOCOL,STUN)),REJECT
 DOMAIN,stun1.douyucdn.cn,REJECT
@@ -694,26 +819,60 @@ DOMAIN,mon3-misc.fqnovel.com,REJECT
 DOMAIN,rtlog3-applog.fqnovel.com,REJECT
 DOMAIN,rtlog5-applog.fqnovel.com,REJECT
 DOMAIN,mon.toutiaocloud.com,REJECT
+DOMAIN-SUFFIX,afpimages.eastday.com,REJECT
+DOMAIN-SUFFIX,jiaoben.eastday.com,REJECT
+DOMAIN-SUFFIX,mini.eastday.com,REJECT
+DOMAIN-SUFFIX,tt123.eastday.com,REJECT
+DOMAIN-SUFFIX,tt321.eastday.com,REJECT
+DOMAIN-SUFFIX,afpimages.eastday,REJECT
 DOMAIN,sdk.ad.sfys365.com,REJECT
+DOMAIN-SUFFIX,facebookma.cn,REJECT
+DOMAIN-SUFFIX,atdmt.com,REJECT
+DOMAIN-SUFFIX,staticxx.facebook.com,REJECT
 DOMAIN,api-ad.kajicam.com,REJECT
 DOMAIN,zjres-ad.kajicam.com,REJECT
 DOMAIN,popup-api.b612kaji.com,REJECT
+DOMAIN-SUFFIX,pb.funshion.net.cn,REJECT
+DOMAIN-SUFFIX,ad.funshion.org.cn,REJECT
+DOMAIN-SUFFIX,adk.funshion.com,REJECT
+DOMAIN-SUFFIX,adm.funshion.com,REJECT
+DOMAIN-SUFFIX,conf.funshion.com,REJECT
+DOMAIN-SUFFIX,pub.funshion.com,REJECT
+DOMAIN-SUFFIX,vas.funshion.com,REJECT
+DOMAIN-SUFFIX,vs.funshion.com,REJECT
+DOMAIN-SUFFIX,aa0.pub.funshion.com,REJECT
+DOMAIN-SUFFIX,aa1.pub.funshion.com,REJECT
+DOMAIN-SUFFIX,rt.funshion.net,REJECT
+DOMAIN-SUFFIX,jiaoben.ganji.cn,REJECT
+DOMAIN-SUFFIX,wuliao.ganji.cn,REJECT
+DOMAIN-SUFFIX,ad.ganji.com,REJECT
+DOMAIN-SUFFIX,ganjituiguang.ganji.com,REJECT
+DOMAIN-SUFFIX,sta.ganji.com,REJECT
+DOMAIN-SUFFIX,tralog.ganji.com,REJECT
+DOMAIN-SUFFIX,hao123rt.com,REJECT
+DOMAIN-SUFFIX,1.hao123.com,REJECT
+DOMAIN-SUFFIX,mini.hao123.com,REJECT
 AND,((IP-CIDR,101.126.58.201/32,no-resolve),(DEST-PORT,6443)),REJECT
 AND,((IP-CIDR,110.249.199.75/32,no-resolve),(DEST-PORT,6443)),REJECT
 AND,((IP-CIDR,111.225.147.191/32,no-resolve),(DEST-PORT,6443)),REJECT
 AND,((IP-CIDR,111.63.61.101/32,no-resolve),(DEST-PORT,6443)),REJECT
 AND,((IP-CIDR,220.243.141.0/32,no-resolve),(DEST-PORT,6443)),REJECT
 AND,((OR,((DOMAIN-SUFFIX,bytegecko.com),(DOMAIN-SUFFIX,byteeffecttos.com))),(DOMAIN-KEYWORD,ncdn)),REJECT
+DOMAIN-SUFFIX,anythinktech.com,REJECT
+DOMAIN-SUFFIX,adkwai.com,REJECT
+DOMAIN-SUFFIX,mob.com,REJECT
+DOMAIN-SUFFIX,mc.hujiang.com,REJECT
 DOMAIN,api-ad-product.huxiu.com,REJECT
 DOMAIN-SUFFIX,huya.com,DIRECT,pre-matching
-IP-CIDR,103.44.59.54/32,REJECT,no-resolve
-IP-CIDR,111.63.147.158/32,REJECT,no-resolve
-IP-CIDR,116.211.198.237/32,REJECT,no-resolve
-DOMAIN-SUFFIX,cupid.iqiyi.com,DIRECT
-DOMAIN,access.if.iqiyi.com,REJECT
+IP-CIDR,103.44.59.54/32,REJECT
+IP-CIDR,111.63.147.158/32,REJECT
+IP-CIDR,116.211.198.237/32,REJECT
 DOMAIN,smad.ms.zhangyue.net,REJECT
 DOMAIN,saad.ms.zhangyue.net,REJECT
 URL-REGEX,"^http:\/\/\w{32}\.jddebug\.com\/diagnose\?",REJECT,extended-matching
+DOMAIN,richmanapi.jxedt.com,REJECT
+DOMAIN,richmanmain.jxedt.com,REJECT
+DOMAIN,richmanrules.jxedt.com,REJECT
 DOMAIN,zlsdk.1rtb.net,REJECT
 DOMAIN,jp.ad.gameley.com,REJECT
 DOMAIN,s3plus.meituan.net,REJECT
@@ -721,10 +880,70 @@ DOMAIN,images.pinduoduo.com,REJECT
 DOMAIN,qh-material.taobao.com,REJECT
 DOMAIN-SUFFIX,admobile.top,REJECT
 DOMAIN,kad.gotokeep.com,REJECT,extended-matching,pre-matching
-DOMAIN,ads.service.kugou.com,REJECT
-DOMAIN,adstats.tencentmusic.com,REJECT
-DOMAIN,adsmind.gdtimg.com,REJECT
+DOMAIN,ad-stat.ksosoft.com,REJECT
+DOMAIN,img.auction-ads.wpscdn.cn,REJECT
+DOMAIN,counter.kingsoft.com,REJECT
+DOMAIN,counter.ksosoft.com,REJECT
+DOMAIN,minfo.wps.cn,REJECT
+DOMAIN,mobad.ijinshan.com,REJECT
+DOMAIN,ups.ksmobile.net,REJECT
+DOMAIN,ws.ksmobile.net,REJECT
 DOMAIN,adserviceretry.kugou.com,REJECT
+DOMAIN,ads.service.kugou.com,REJECT
+DOMAIN,adsfile.bssdlbig.kugou.com,REJECT
+DOMAIN,g.koowo.com,REJECT
+DOMAIN,kgmobilestat.kugou.com,REJECT
+DOMAIN,kgmobilestatbak.kugou.com,REJECT
+DOMAIN,mobilelog.kugou.com,REJECT
+DOMAIN,pgdt.gtimg.com,REJECT
+DOMAIN,adsmind.gdtimg.com,REJECT
+DOMAIN-KEYWORD,searchrecommend.kugou.com,REJECT
+DOMAIN-KEYWORD,nbcollectretry.kugou.com,REJECT
+DOMAIN-KEYWORD,rtmretry.kugou.com,REJECT
+DOMAIN-KEYWORD,rt-m.kugou.com,REJECT
+DOMAIN-KEYWORD,nbcollect.kugou.com,REJECT
+DOMAIN-KEYWORD,c1img.ali.kugou.com,REJECT
+DOMAIN-KEYWORD,kgstaticdlbssdlbig.tx.kugou.com,REJECT
+DOMAIN-KEYWORD,adsfilebssdlbig.ali.kugou.com,REJECT
+DOMAIN-KEYWORD,splashimgbssdl.yun.kugou.com,REJECT
+DOMAIN-KEYWORD,adservice.kugou.com,REJECT
+DOMAIN-KEYWORD,kgipadstat.kugou.com,REJECT
+DOMAIN-KEYWORD,kgipadstatbak.kugou.com,REJECT
+DOMAIN-KEYWORD,logwebs.kugou.com,REJECT
+DOMAIN-KEYWORD,tracker.kugou.com,REJECT
+DOMAIN-KEYWORD,trackercdnbj.kugou.com,REJECT
+DOMAIN-SUFFIX,oth.eve.mdt.qq.com,REJECT
+DOMAIN-SUFFIX,channel.fanxing.kugou.com,REJECT
+DOMAIN-SUFFIX,d.kugou.com,REJECT
+DOMAIN-SUFFIX,downmobile.kugou.com,REJECT
+DOMAIN-SUFFIX,gad.kugou.com,REJECT
+DOMAIN-SUFFIX,game.kugou.com,REJECT
+DOMAIN-SUFFIX,gamebox.kugou.com,REJECT
+DOMAIN-SUFFIX,gcapi.sy.kugou.com,REJECT
+DOMAIN-SUFFIX,gg.kugou.com,REJECT
+DOMAIN-SUFFIX,install.kugou.com,REJECT
+DOMAIN-SUFFIX,install2.kugou.com,REJECT
+DOMAIN-SUFFIX,minidcsc.kugou.com,REJECT
+DOMAIN-SUFFIX,mo.kugou.com,REJECT
+DOMAIN-SUFFIX,msg.mobile.kugou.com,REJECT
+DOMAIN-SUFFIX,mvads.kugou.com,REJECT
+DOMAIN-SUFFIX,p.kugou.com,REJECT
+DOMAIN-SUFFIX,push.mobile.kugou.com,REJECT
+DOMAIN-SUFFIX,rtmonitor.kugou.com,REJECT
+DOMAIN-SUFFIX,sdn.kugou.com,REJECT
+DOMAIN-SUFFIX,song.fanxing.kugou.com,REJECT
+DOMAIN-SUFFIX,update.mobile.kugou.com,REJECT
+DOMAIN-SUFFIX,youxi.kugou.com,REJECT
+DOMAIN-SUFFIX,adserviceretry.kugou.com,REJECT
+DOMAIN-SUFFIX,ads.service.kugou.com,REJECT
+DOMAIN-SUFFIX,adsfile.bssdlbig.kugou.com,REJECT
+DOMAIN-SUFFIX,log.stat.kugou.com,REJECT
+DOMAIN-SUFFIX,log.web.kugou.com,REJECT
+DOMAIN-SUFFIX,kgmobilestat.kugou.com,REJECT
+DOMAIN-SUFFIX,kgmobilestatbak.kugou.com,REJECT
+DOMAIN-SUFFIX,mobilelog.kugou.com,REJECT
+DOMAIN-SUFFIX,ad.kugou.com,REJECT
+DOMAIN,adstats.tencentmusic.com,REJECT
 DOMAIN,adserviceretry.kglink.cn,REJECT
 DOMAIN,ad.tencentmusic.com,REJECT
 DOMAIN,adservice.kugou.com,REJECT
@@ -734,16 +953,36 @@ DOMAIN,adx.zuoyebang.com,REJECT
 DOMAIN,ad.v3mh.com,REJECT
 DOMAIN,ipv6.kkmh.com,REJECT
 DOMAIN,ipv4.kkmh.com,REJECT
-URL-REGEX,"^http:\/\/rich\.kuwo\.cn\/AdService\/",REJECT-DICT
-URL-REGEX,"^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/user\/freeMode\/",REJECT-DICT
-URL-REGEX,"^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/pasterAdvert\/",REJECT-DICT
-URL-REGEX,"^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/startup\/config",REJECT-DICT
-URL-REGEX,"^http:\/\/rich\.kuwo\.cn\/EcomResourceServer\/",REJECT-DICT
-IP-CIDR,111.206.98.63/32,REJECT,no-resolve
-URL-REGEX,"^http:\/\/searchrecterm\.kuwo\.cn\/recterm\.s",REJECT-DICT
-URL-REGEX,"^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/newMenuList\/menuListInfo",REJECT-DICT
-URL-REGEX,"^http:\/\/vip\d\.kuwo\.cn\/vip\/v\d\/sysinfo\?op=getRePayAndDoPayBox",REJECT-DICT
-URL-REGEX,"^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/album\/adBar\/",REJECT-DICT
+DOMAIN-SUFFIX,e.kuaishou.com,REJECT
+DOMAIN-SUFFIX,cm.downloader.commercial.kuaishou.com,REJECT
+DOMAIN-SUFFIX,cm.ad.gifshow.com,REJECT
+DOMAIN-SUFFIX,cm.kwad.com,REJECT
+IP-CIDR,111.206.98.63/32,REJECT
+DOMAIN-SUFFIX,ad.hpplay.cn,REJECT
+DOMAIN-SUFFIX,adeng.hpplay.cn,REJECT
+DOMAIN-SUFFIX,rp.hpplay.cn,REJECT
+DOMAIN,emma-414870e223.huodonghezi.com,REJECT
+DOMAIN-SUFFIX,webp2p.letv.com,REJECT
+DOMAIN-SUFFIX,ark.letv.com,REJECT
+DOMAIN-SUFFIX,dc.letv.com,REJECT
+DOMAIN-SUFFIX,fz.letv.com,REJECT
+DOMAIN-SUFFIX,g3.letv.com,REJECT
+DOMAIN-SUFFIX,minisite.letv.com,REJECT
+DOMAIN-SUFFIX,pro.letv.com,REJECT
+DOMAIN-SUFFIX,stat.letv.com,REJECT
+DOMAIN-SUFFIX,pro.hoye.letv.com,REJECT
+DOMAIN-SUFFIX,msg.m.letv.com,REJECT
+DOMAIN-SUFFIX,static.app.m.letv.com,REJECT
+DOMAIN-SUFFIX,n.mark.letv.com,REJECT
+DOMAIN-SUFFIX,1.letvlive.com,REJECT
+DOMAIN-SUFFIX,2.letvlive.com,REJECT
+DOMAIN-SUFFIX,api.game.letvstore.com,REJECT
+DOMAIN-SUFFIX,api.push.le.com,REJECT
+DOMAIN-SUFFIX,cn.api.push.le.com,REJECT
+DOMAIN-SUFFIX,guang.lesports.com,REJECT
+DOMAIN-SUFFIX,adm.leju.com,REJECT
+DOMAIN-SUFFIX,src.leju.com,REJECT
+DOMAIN-SUFFIX,staticadm.leju.com,REJECT
 URL-REGEX,"^https:\/\/a\.line\.me\/er\/lads\/v\d\/ei\?",REJECT-IMG
 URL-REGEX,"^https:\/\/a\.line\.me\/er\/l.*\/v\d\/event\/image",REJECT-IMG
 URL-REGEX,"^https:\/\/a\.line\.me\/lass\/api\/v\d\/ads$",REJECT-DROP
@@ -764,6 +1003,7 @@ URL-REGEX,"^https:\/\/d\.line-scdn\.net\/lcp-prod-photo\/20.+\.(jpg|jpeg|png)",R
 URL-REGEX,"^https:\/\/web-mmap-pay\.line-apps\.com\/tw\/liff\/campaign\/v\d\/aggregate\/ad\/banner\/",REJECT-IMG
 URL-REGEX,"^https:\/\/scdn\.line-apps\.com\/lan\/image\/line\/bannerImageEvent\/",REJECT-DROP
 URL-REGEX,"^https:\/\/scdn\.line-apps\.com\/lan\/document\/pageEvent\/line\/ios\/",REJECT-DROP
+DOMAIN-SUFFIX,ads.linkedin.com,REJECT
 DOMAIN,advert.mafengwo.cn,REJECT
 DOMAIN,ad.seeyouyima.com,REJECT
 DOMAIN,axxd.xmseeyouyima.com,REJECT
@@ -792,38 +1032,7 @@ DOMAIN,th-a.pinduoduo.com,REJECT,extended-matching,pre-matching
 DOMAIN,ta-a.pinduoduo.com,REJECT,extended-matching,pre-matching
 DOMAIN,meta.pinduoduo.com,REJECT,extended-matching,pre-matching
 DOMAIN,apm-a.pinduoduo.com,REJECT,extended-matching,pre-matching
-DOMAIN,adsmind.ugdtimg.com,REJECT
-DOMAIN,c2.gdt.qq.com,REJECT
-DOMAIN,huatuocode.huatuo.qq.com,REJECT
-DOMAIN,info4.video.qq.com,REJECT
-DOMAIN,info6.video.qq.com,REJECT
-DOMAIN,ios.bugly.qq.com,REJECT
-DOMAIN,ios.video.mpush.qq.com,REJECT
-DOMAIN,mi.gdt.qq.com,REJECT
-DOMAIN,otheve.beacon.qq.com,REJECT
-DOMAIN,pgdt.gtimg.cn,REJECT
-DOMAIN,pgdt.ugdtimg.com,REJECT
-DOMAIN,qzs.gdtimg.com,REJECT
-DOMAIN,qzs.qq.com,REJECT
-DOMAIN,rmonitor.qq.com,REJECT
-DOMAIN,sdk.e.qq.com,REJECT
-DOMAIN,sdkconfig.video.qq.com,REJECT
-DOMAIN,t.gdt.qq.com,REJECT
-DOMAIN,tmead.y.qq.com,REJECT
-DOMAIN,tmeadbak.y.qq.com,REJECT
-DOMAIN,tmeadcomm.y.qq.com,REJECT
-DOMAIN,tpns.qq.com,REJECT
-DOMAIN,v.gdt.qq.com,REJECT
-DOMAIN,v2.gdt.qq.com,REJECT
-DOMAIN,win.gdt.qq.com,REJECT
-DOMAIN,wup.imtt.qq.com,REJECT
-DOMAIN,tpstelemetry.tencent.com,REJECT
-DOMAIN-KEYWORD,trace.qq.com,REJECT
-DOMAIN-KEYWORD,trace.video.qq.com,REJECT
-DOMAIN-SUFFIX,gdt.qq.com,REJECT
-DOMAIN-SUFFIX,l.qq.com,REJECT
-DOMAIN-SUFFIX,ugdtimg.com,REJECT
-URL-REGEX,"^http:\/\/y\.gtimg\.cn\/music\/common\/upload\/t_k_main_page_banner\/",REJECT
+IP-CIDR,47.110.187.87/32,REJECT
 DOMAIN,adstats.tencentmusic.com,REJECT,extended-matching,pre-matching
 DOMAIN,ad.tencentmusic.com,REJECT,extended-matching,pre-matching
 DOMAIN,adcdn.tencentmusic.com,REJECT,extended-matching,pre-matching
@@ -839,28 +1048,24 @@ DOMAIN,ad.12306.cn,DIRECT,extended-matching
 AND,((PROTOCOL,QUIC),(DOMAIN-SUFFIX,xiaohongshu.com,extended-matching)),REJECT
 DOMAIN,cdn-ad.wtzw.com,REJECT
 DOMAIN,cdn-new-ad.wtzw.com,REJECT
+DOMAIN-SUFFIX,gdt.qq.com,REJECT
 DOMAIN,render-web.11222.cn,REJECT
+DOMAIN-SUFFIX,hoisin.coocaa.com,REJECT
+DOMAIN-SUFFIX,hoisin.coocaatv.com,REJECT
+DOMAIN,data-hoisin.coocaa.com,REJECT
 DOMAIN,ad.snailsleep.net,REJECT
-DOMAIN-SUFFIX,soulapp.cn,DIRECT,extended-matching
-DOMAIN,ad-h5-cdn.soulapp.cn,REJECT,extended-matching,pre-matching
-DOMAIN,ad-h5-station-cdn.soulapp.cn,REJECT,extended-matching,pre-matching
-DOMAIN,ad-r.soulapp.cn,REJECT,extended-matching,pre-matching
-DOMAIN,soul-ad.soulapp.cn,REJECT,extended-matching,pre-matching
-IP-CIDR,47.56.131.76/32,REJECT,no-resolve,pre-matching
-IP-CIDR,47.97.215.55/32,REJECT,no-resolve,pre-matching
-IP-CIDR,47.99.42.29/32,REJECT,no-resolve,pre-matching
-IP-CIDR,47.110.187.87/32,REJECT,no-resolve,pre-matching
-IP-CIDR,47.243.147.125/32,REJECT,no-resolve,pre-matching
-IP-CIDR,120.27.235.201/32,REJECT,no-resolve,pre-matching
-IP-CIDR,121.196.197.147/32,REJECT,no-resolve,pre-matching
+IP-CIDR,8.210.3.170/32,DIRECT
+IP-CIDR,47.75.72.47/32,DIRECT
+IP-CIDR,47.56.131.76/32,REJECT
+IP-CIDR,47.97.215.55/32,REJECT
+IP-CIDR,47.99.42.29/32,REJECT
+IP-CIDR,47.243.147.125/32,REJECT
+IP-CIDR,120.27.235.201/32,REJECT
+IP-CIDR,121.196.197.147/32,REJECT
 DOMAIN,adashx.m.taobao.com,REJECT,extended-matching,pre-matching
 DOMAIN,ems.youku.com,REJECT,extended-matching,pre-matching
 DOMAIN,h-adashx.ut.taobao.com,REJECT,extended-matching,pre-matching
 DOMAIN,ut.taobao.com,REJECT,extended-matching,pre-matching
-DOMAIN,vv6.video.qq.com,REJECT
-URL-REGEX,"^http:\/\/[\d\.:]*\/?(defaultts\.tc|vmind\.qqvideo\.tc|finderpdd\.video)\.qq\.com\/\w+",REJECT
-URL-REGEX,"^http:\/\/apd-vlive\.apdcdn\.tc\.qq\.com\/vmind\.qqvideo\.tc\.qq\.com\/\w+",REJECT
-URL-REGEX,"^http:\/\/apd-\w+\.v\.smtcdns\.com\/(defaultts|omts|vmind\.qqvideo)\.tc\.qq\.com\/\w+",REJECT
 DOMAIN,ymg-api.terabox.com,REJECT,extended-matching,pre-matching
 RULE-SET,https://raw.githubusercontent.com/app2smile/rules/master/rule/tieba-ad.list,REJECT-DROP
 DOMAIN,app.tubemaxapp.com,PROXY
@@ -872,7 +1077,23 @@ DOMAIN-SUFFIX,applovin.com,REJECT
 DOMAIN-SUFFIX,appier.net,REJECT
 DOMAIN-SUFFIX,adsmoloco.com,REJECT
 DOMAIN-SUFFIX,adcanvas.com,REJECT
+DOMAIN-SUFFIX,fan.twitch.tv,REJECT
+DOMAIN-SUFFIX,spade.twitch.tv,REJECT
+DOMAIN-SUFFIX,ads-twitter.com,REJECT
+DOMAIN-SUFFIX,p.twitter.com,REJECT
+DOMAIN-SUFFIX,scribe.twitter.com,REJECT
+DOMAIN-SUFFIX,syndication.twitter.com,REJECT
+DOMAIN-SUFFIX,syndication-o.twitter.com,REJECT
+DOMAIN-SUFFIX,urls.api.twitter.com,REJECT
 URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native",REJECT,extended-matching
+DOMAIN-SUFFIX,acsystem.wasu.cn,REJECT
+DOMAIN-SUFFIX,afp.wasu.cn,REJECT
+DOMAIN-SUFFIX,afpcreative.wasu.cn,REJECT
+DOMAIN-SUFFIX,collector.wasu.cn,REJECT
+DOMAIN-SUFFIX,delivery.wasu.cn,REJECT
+DOMAIN-SUFFIX,delivery-pc.wasu.cn,REJECT
+DOMAIN-SUFFIX,adsystem.wasu.tv,REJECT
+DOMAIN-SUFFIX,adwasu.tv,REJECT
 DOMAIN,wxsnsdy.wxs.qq.com,REJECT
 DOMAIN,wxsmsdy.video.qq.com,REJECT
 DOMAIN,wxsnsdythumb.wxs.qq.com,REJECT
@@ -918,16 +1139,10 @@ DOMAIN,dsp-ad.yy.com,REJECT
 DOMAIN,ysad.yy.com,REJECT
 DOMAIN,adx-api.zdmimg.com,REJECT,extended-matching,pre-matching
 URL-REGEX,"^https:\/\/(ask|cgate)\.zhaopin\.com\/operation\/ad\/",REJECT
-DOMAIN,appcloud.zhihu.com,REJECT,extended-matching,pre-matching
-DOMAIN,appcloud2.in.zhihu.com,REJECT,extended-matching,pre-matching
-DOMAIN,crash2.zhihu.com,REJECT,extended-matching,pre-matching
-DOMAIN,mqtt.zhihu.com,REJECT,extended-matching,pre-matching
-DOMAIN,sugar.zhihu.com,REJECT,extended-matching,pre-matching
-DOMAIN,zxid-m.mobileservice.cn,REJECT,extended-matching,pre-matching
-IP-CIDR,103.41.167.237/32,REJECT,no-resolve,pre-matching
-IP-CIDR,118.89.204.198/32,REJECT,no-resolve,pre-matching
-IP-CIDR,182.61.194.7/32,REJECT,no-resolve,pre-matching
-IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,REJECT,no-resolve,pre-matching
+IP-CIDR,103.41.167.237/32,REJECT
+IP-CIDR,118.89.204.198/32,REJECT
+IP-CIDR,182.61.194.7/32,REJECT
+IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,REJECT
 DOMAIN,adapi.izuiyou.com,REJECT
 URL-REGEX,"^http:\/\/mercury-gateway\.ixiaochuan\.cn\/mercury\/v1\/ad\/",REJECT-DICT
 URL-REGEX,"^http:\/\/file-share\.izuiyou\.com\/octopus\/media\/templates\/search_home_page_(nv|nv_v2)\/search_home_page_nv",REJECT
@@ -2568,6 +2783,7 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https:\/\/api\.wfdata\.club\/v2\/yesfeng\/yesList - reject
 ^https:\/\/app\.10099\.com\.cn\/contact-web\/api\/version\/getFlashScreenPage - reject
 ^https://www\.123pan\.com/api/config/get - reject-dict
+^http?://tianqi\.2345\.com/api/content/getContentFeeds\.php - reject-dict
 ^https://helper\.2bulu\.com/search/searchHotKeyList\? - reject-dict
 ^https://helper\.2bulu\.com/promote/getAppUserModule\? - reject-dict
 ^https://helper\.2bulu\.com/proSpecial/allData\? - reject-dict
@@ -2586,6 +2802,10 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://cupid\.51jobapp\.com/open/resume/strategy/resume-build\? - reject-dict
 ^https://cupid\.51jobapp\.com/launch-hub/open/noauth/popUp/ - reject-dict
 ^https://cupid\.51jobapp\.com/launch-hub/open/noauth/popUp/getHomePagePopUp\? - reject-dict
+^https?://.+?\.58cdn\.com\.cn/brandads/ - reject-200
+^https?://app\.58\.com/api/home/(advertising|appadv)/ - reject
+^https?://app\.58\.com/api/home/invite/popupAdv - reject-200
+^https?://app\.58\.com/api/log/ - reject
 ^https://msglb\.91160\.com/msg/outer/broker/get$ - reject-dict
 ^https://patientgate\.91160\.com/advert-api/ - reject-dict
 ^https://snsapi\.91160\.com/vipmemberapi/mbCombo/mbComboWords\? - reject-dict
@@ -2594,6 +2814,8 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://snsapi\.91160\.com/hotword/open/v1/getHotWordPlate\? - reject-dict
 ^https://snsapi\.91160\.com/engine/backgroundWord/queryForFrontend\? - reject-dict
 ^https://patientappapi\.91160\.com/cus_index\.php\?c=adver - reject
+^https?://aes\.acfun\.cn/s\?adzones - reject
+^https?://api-new\.app\.acfun\.cn/rest/app/flash/screen/ - reject
 ^https://aiqicha\.baidu\.com/app/bannerPicAjax - reject-dict
 ^https://aiqicha\.baidu\.com/app/getPopConfigAjax - reject-dict
 ^https://aiqicha\.baidu\.com/app/getHotTopicAjax - reject-dict
@@ -2607,6 +2829,8 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://aiqicha\.baidu\.com/apps/searchRecommendAjax - reject-dict
 ^https://member\.alipan\.com/v2/activity/sign_in_luckyBottle - reject-dict
 ^https://api\.alipan\.com/adrive/v1/file/getTopFolders - reject-dict
+^https?://ap\.dongqiudi\.com/plat/v - reject
+^https?://sso\.ifanr\.com/jiong/IOS/appso/splash/ - reject
 ^https://(a\.athm\.cn/)?mobile\.app\.autohome\.com\.cn/platform/carserver/carcard/findEquitysV5 - reject-dict
 ^https://(a\.athm\.cn/)?mobile\.app\.autohome\.com\.cn/platform/carserver/carcard/mycardv6 - reject-dict
 ^https://(a\.athm\.cn/)?mobile\.app\.autohome\.com\.cn/platform/carserver/usercenter/chat/gse/recquery - reject-dict
@@ -2626,6 +2850,11 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://dealer\.m\.autohome\.com\.cn/handler/other/getdata\?__action=vrcore\.list - reject-dict
 ^https://dealer\.m\.autohome\.com\.cn/handler/other/getdata\?__action=platform\.search - reject-dict
 ^https://a\.athm\.cn/clientlive\.api\.autohome\.com\.cn/api/live/getserieswindowsinfo - reject-dict
+^https?://aimg\.babytreeimg\.com/group1/M00/*/*/.*.jpg - reject-200
+^https?://plough\.babytree\.com/plough\.do - reject-200
+^https?://mapiweb\.babytree\.com/newapi/luban/behavior/receive - reject-200
+^https?://go\.babytree\.com/go_pregnancy/api/index_activity/get_app_index_activity - reject-200
+^https?://go\.babytree\.com/go_tool/api/feeding_record/get_home_banner_info - reject-dict
 ^https?://mime\.baidu\.com/v5/start_screen_ads/list - reject-dict
 ^https?://mime\.baidu\.com/sapi/v1/lccorpus/(applist|pannellist) - reject-dict
 ^https?://mime\.baidu\.com/sapi/v1/(circle/joinedlist|lccorpus/usercorpussync|aihelpactivity/aihelpresource) - reject-dict
@@ -2648,9 +2877,13 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://pan\.baidu\.com/recommend/query/list\? - reject-dict
 ^https://pan\.baidu\.com/act/api/conf\?.*conf_key=youa_core_config_ios - reject-dict
 ^https://pan\.baidu\.com/youai/material/v1/getbynavid\?.*nav_id=1 - reject-dict
+^https?://mime\.baidu\.com/v\d/IosStart/getStartInfo - reject
+^https?://mime\.baidu\.com/v\d/activity/advertisement - reject
+^https?://www\.banyuetanapp\.com/byt-api/ad/getAdvertList\?adSpaceId=100000002 - reject-200
 ^https://apps\.api\.ke\.com/config/config/bootpage\? - reject-dict
 ^https://apps\.api\.ke\.com/platform/shellapp/userCenter/feed\? - reject-dict
 ^https://apps\.api\.ke\.com/config/config/getactivityconfig\? - reject-dict
+^https?://channel\.beitaichufang\.com/channel/api/v\d/promote/ios/start/page - reject
 ^https://manga\.bilibili\.com/twirp/comic\.v\d\.Comic/GetActivityTab - reject-dict
 ^https://manga\.bilibili\.com/twirp/comic\.v\d\.Comic/GetBubbles - reject-dict
 ^https://manga\.bilibili\.com/twirp/comic\.v\d\.Comic/GetCommonBanner - reject-dict
@@ -2664,6 +2897,8 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://pan-api\.bitqiu\.com/activity/getPromoteGuide$ - reject-dict
 ^http://pan-api\.bitqiu\.com/activity/getUrlList$ - reject-dict
 ^https://pan-api\.bitqiu\.com/activity/guides$ - reject-dict
+^https?://social\.blued\.cn/users/recommend - reject-dict
+^https?://social\.blued\.cn/users/no_auth/benefit - reject-dict
 ^https://bd-api\.kuwo\.cn/api/(play|service|advert)/advert/ - reject-dict
 ^https://bd-api\.kuwo\.cn/api/service/banner/ - reject-dict
 ^https://bd-api\.kuwo\.cn/api/ucenter/vip/give/config\? - reject-dict
@@ -2711,6 +2946,16 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://api\.cece\.com/chart/tools/get_search_recommend\? - reject-dict
 ^https://api\.cece\.com/user/rank/list\? - reject-dict
 ^https://api\.cece\.com/chart/config/chart_activity\? - reject-dict
+^https?://182\.92\.244\.70/d/json - reject-dict
+http://ad\.myfriday\.cn/d/json/1\.1 - reject
+^https?://learn\.chaoxing\.com/apis/service/appConfig\? - reject
+^https?://pic1\.chelaile\.net\.cn/adv/ - reject
+^https?://(api|atrace)\.chelaile\.net\.cn/adpub/ - reject
+^https?://api\.chelaile\.net\.cn/goocity/advert/ - reject
+^https?://atrace\.chelaile\.net\.cn/adpub/ - reject-img
+^https?://atrace\.chelaile\.net\.cn/exhibit\?&adv_image - reject-img
+^https?://web\.chelaile\.net\.cn/api/adpub/ad - reject
+^https?://cdn\.\w{3}\.chelaileapp\.cn/(api/)?adpub - reject
 ^https://app\.chengfenmiao\.com/Listing/LiveHots\? - reject-dict
 ^https://app\.chengfenmiao\.com/helper/VersionCheck\? - reject-dict
 ^https://app\.chengfenmiao\.com/item/closet\? - reject-dict
@@ -2719,11 +2964,20 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://app\.huashi6\.com/app/works/relative$ - reject-dict
 ^https://app\.huashi6\.com/app/index/follow/all_random/list$ - reject-dict
 ^https://app\.huashi6\.com/app/index/csyxh/icon$ - reject-dict
+^https?://app\.hbooker\.com/setting/get_startpage_url_list - reject
+^https?://js-ad\.ayximgs\.com\.ad-universe-cdn\.hzhcbkj\.cn/xgapp\.php/v2/top_notice - reject
 ^https://api\.coolapk\.com/v6/search\?.*type=hotSearch - reject-dict
+^https?://app-gw\.csdn\.net/silkroad-api/api/v\d/assemble/list/pub/channel/app_open_screen_ad - reject
+^https?://app-gw\.csdn\.net/abtesting/v2/getList? - reject
+^https?://gw\.csdn\.net/cms-app/v\d+/home_page/open_advertisement - reject
 ^https://95598\.csg\.cn/mp/ucs/ma/zt/content/queryHotInformations$ - reject-dict
 ^https://95598\.csg\.cn/mp/mpaas/rubik/openapi/rubik/mobile/getRubikScene$ - reject-dict
 ^https://acs\.m\.taobao\.com/gw/mtop\.damai\.wireless\.home\.welcome/ - reject-dict
 ^https://acs\.m\.taobao\.com/gw/mtop\.damai\.mec\.popup\.get/ - reject-dict
+^https?://e\.dangdang\.com/media/api.+\?action=getDeviceStartPage - reject
+^https?://e\.dangdang\.com/.+?getDeviceStartPage - reject
+^https?://api\.dangdang\.com/mapi\d/mobile/init - reject
+^https?://mapi\.dangdang\.com/index\.php\?action=init - reject
 ^https://app\.dewu\.com/api/v1/app/advertisement/ - reject-dict
 ^https://app\.dewu\.com/hacking-newbie/v1/app/coupon/module\? - reject-dict
 ^https://app\.dewu\.com/api/v1/app/search/lexicon/v3/background_words\? - reject-dict
@@ -2737,6 +2991,10 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://ct\.xiaojukeji\.com/agent/v3/feeds\? - reject-dict
 ^https://conf\.diditaxi\.com\.cn/dynamic/conf - reject-dict
 ^https://poi\.map\.xiaojukeji\.com/mapapi/recommend\? - reject-dict
+^https?://img\.ddrk\.me/ad190824 - reject-img
+^https?://img\.ddrk\.me/cover\.png - reject-img
+^https?://ddrk\.me/image/logo_footer\.png - reject-img
+^https?://ddrk\.me/wp-content/plugins/advanced-floating-content-lite/public/images/close\.png - reject-img
 ^https://capis\.didapinche\.com/adbase/ - reject-dict
 ^https://api-changzheng\.chinaath\.com/changzheng-basic-center-api/api/appConfigBanner/listBannerRelease\? - reject-dict
 ^https://api-changzheng\.chinaath\.com/changzheng-content-center-api/api/global/search/hotSearch/list$ - reject-dict
@@ -2755,6 +3013,7 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://maicai\.api\.ddxq\.mobi/guide-service/userLike/flowData$ - reject-dict
 ^https://dlabel\.ctaiot\.com/api/spreadstart/list\.json\? - reject-dict
 ^https://dlabel\.ctaiot\.com/api/spread/journey/select\.json\? - reject-dict
+^https?://api\.gamer\.com\.tw/mobile_app/anime/v\d/anime_get_question\.php - reject-dict
 ^https://api\.douban\.com/v\d/app_ads/splash - reject-dict
 ^https://frodo\.douban\.com/api/v\d/erebor/feed_ad - reject-dict
 ^https://m\.douban\.com/rexxar/api/v\d/market/products/ - reject-dict
@@ -2780,6 +3039,7 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://client-lz\.rili\.cn/lizhi/api/jujia/flow\? - reject-dict
 ^https://client-lz\.rili\.cn/lizhi/api/album/hl_card\? - reject-dict
 ^https://client-lz\.rili\.cn/lizhi/api/fortune/overview\? - reject-dict
+^https?://gateway-api\.dushu365\.com/chief-orch/config/config/v100/appConfig - reject
 ^https://consumer\.fcbox\.com/fcboxactivityweb/api/v\d/clientPage/modulesAggregated\? - reject-dict
 ^https://consumer\.fcbox\.com/fcboxactivityweb/api/v\d/clientPage/jinGangFirst\? - reject-dict
 ^https://consumer\.fcbox\.com/v2/home/mallInfo$ - reject-dict
@@ -2834,11 +3094,16 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://zone\.guiderank-app\.com/guiderank-web/app/manualOperationGoods/pageManualOperationGoods - reject-dict
 ^https://zone\.guiderank-app\.com/guiderank-web/app/specialSale/listSpecialSalePageBanner - reject-dict
 ^https://zone\.guiderank-app\.com/guiderank-web/app/personal/getPersonPageInfo\.do - reject-dict
+^https?://gfp\.veta\.naver\.com/adcall\? - reject
+^https?://api\.hanju\.koudaibaobao\.com/api/carp/kp\? - reject
 ^https://hweb-manager\.huazhu\.com/notice/getAppPopupNotifyAlert$ - reject-dict
 ^https://hweb-hotel\.huazhu\.com/home/getHomeLoinBanner$ - reject-dict
 ^https://hweb-hotel\.huazhu\.com//home/querySelectHotel$ - reject-dict
 ^https://hweb-hotel\.huazhu\.com/home/queryHotelBrand$ - reject-dict
 ^https://hweb-manager\.huazhu\.com/hotels/ad/getHotelListNoticeMerge$ - reject-dict
+^https?://notch\.qdaily\.com/api/v\d/boot_ad - reject
+^https?://app3\.qdaily\.com/app3/boot_advertisements\.json - reject
+^https?://hfapp-service\.qweather\.net/v\d\.\d/app/ad/list\? - reject-dict
 ^https://api\.psy-1\.com/cosleep/startup\? - reject-dict
 ^https://api\.psy-1\.com/cosleep/ad/ - reject-dict
 ^https://api\.psy-1\.com/cosleep/user/identity/ad\? - reject-dict
@@ -2854,6 +3119,9 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://api5-normal-lq\.amemv\.com/api/ad/ - reject
 ^https://(aweme\.snssdk\.com|api5-normal-m\.amemv\.com)/api/ad/ - reject
 ^https://zlink\.ugsdk\.cn/ad/ - reject
+^https?://cmsapi\.wifi8\.com/v\d/(emptyAd|adNew)/ - reject
+^https?://cmsfile\.wifi8\.com/uploads/png/ - reject-img
+^https?://api4\.bybutter\.com/v\d/app/placements/\d/advertisements - reject
 ^https://games\.mobileapi\.hupu\.com/\d/\d\.\d\.\d+/bplapi/reddot/v1/app/getReddot - reject-dict
 ^https://bbs\.mobileapi\.hupu\.com/\d/\d\.\d\.\d+/(bbsallapi/tag/v1/heatTag|bbsrankapi/v1/rating/list) - reject-dict
 ^https://games\.mobileapi\.hupu\.com/\d/\d\.\d\.\d+/search/v2/(hintkeylist|hotkeylist) - reject-dict
@@ -2889,8 +3157,11 @@ RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyP
 ^https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyapi/bookstore/user/mytab\? - reject-dict
 ^https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyboot/activity/mytab\? - reject-dict
 https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyam/app/app\.php\? - reject-dict
+^https?://jdread-api\.jd\.com/jdread/api/channel/module/opens - reject-200
+^https?://jdread-api\.jd\.com/jdread/api/popup - reject-200
 ^https://color\.jddj\.com/client\.action\?functionId=uniformRecommend - reject-dict
 ^https://color\.jddj\.com/client\.action\?functionId=search_recommendRanking$ - reject-dict
+^https?://www\.gcores\.com/gapi/v1/app-start-pages\?page - reject-dict
 ^https://scs\.kakamobi\.cn/api/open/v3/advert-sdk/ - reject-dict
 ^https://cheyouquan\.kakamobi\.com/api/open/group/recommend-subscribe-tag\.htm - reject-dict
 ^https://swallow\.kakamobi\.cn/api/open/config/get-config\.htm - reject-dict
@@ -2907,6 +3178,16 @@ https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyam/app/app\.php\? - reject-
 ^https://richmanrules\.ksedt\.com/intellectWaterfallBidding/find$ - reject-dict
 ^https://op\.ksedt\.com/jxedtLive/liveIntroduceResource - reject-dict
 ^https://richmanrules\.ksedt\.com/intellectWaterfall/find$ - reject-dict
+^https?://richmanrules\.ksedt\.com/intellectWaterfall(Bidding)?/find - reject
+^https?://richmanapi\.jxedt\.com/api/(ad|adplus|banadplus)/ - reject-200
+^https?://api\.jxedt\.com/ad/ - reject
+^https?://api\.jxedt\.com/jump/EMiCcDNp - reject-img
+^https?://richmanmain\.jxedt\.com/advertisement/fallback - reject-img
+^https?://img\.jiemian\.com/ads/ - reject
+^https?://api\.sogaha\.cn/ssp/ad/get\?ip - reject-dict
+^https?://api\.vistopia\.com\.cn/api/v\d/home/advertisement - reject
+^https?://open3\.vistastory\.com/v\d/api/index/loading_ad - reject
+^https?://open3\.vistastory\.com/v\d/api.*get_popup - reject
 ^https?://popup\.dushu365\.com/api/v2/sfo/(user_)?popup_(config|display)s - reject
 ^https?://g[a-z0-9-]+\.dushu365\.com/chief-orch/config/config/v\d+/(shortCut|appUpdateUnite|loadingAd) - reject
 ^https?://g[a-z0-9-]+\.dushu365\.com/fs-retain/trialVip/v\d+/requestTrialVipPopDoNotSendReward - reject
@@ -2916,6 +3197,9 @@ https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyam/app/app\.php\? - reject-
 ^https?://g[a-z0-9-]+\.dushu365\.com/fandeng-orch/bookboy/v\d+/vipPagePop - reject
 ^https?://g[a-z0-9-]+\.dushu365\.com/chief-orch/config/config/v\d+/appConfig - reject
 ^https?://g[a-z0-9-]+\.dushu365\.com/order-orchestration/orderWeb/exchange/v100/showExchangeButton - reject
+^https?://res\.kfc\.com\.cn/CRM/kfcad/apphome5/apphome - reject-200
+^https?://res\.kfc\.com\.cn/CRM/kfcad/apphome6/\w+\.json\? - reject-dict
+^https?://res\.kfc\.com.\cn/advertisement/ - reject
 ^http://api\.ring\.kugou\.com/user/notice/recommend$ - reject-dict
 ^https://tg\.feidee\.com/online_ad/api/search\.do$ - reject-dict
 ^https://yunmk\.feidee\.net/cab-market-ws/market/v2/contents$ - reject-dict
@@ -2923,6 +3207,11 @@ https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyam/app/app\.php\? - reject-
 ^https://api\.feidee\.net/v1/configs/client/configs - reject
 ^https://tg\.feidee\.com/vis-ad-engine-ws/api/show - reject-dict
 ^https://yun\.feidee\.net/cab-periodic-activity-ws/terminal/v1/members/status - reject-dict
+^https?://dict-mobile\.iciba\.com/interface/index\.php\?.+(c=ad|collectFeedsAdShowCount|KSFeedsAdCardViewController) - reject
+^https?://mobile-pic\.cache\.iciba\.com/feeds_ad/ - reject
+^https?://service\.iciba\.com/popo/open/screens/v\d\?adjson - reject-200
+^https?://\w+?\.kingsoft-office-service\.com/ad - reject-200
+^https?://.+?\.kingsoft-office-service\.com - reject
 ^https://www\.kookapp\.cn/api/v3/ad/config$ - reject-dict
 ^https://www\.kookapp\.cn/api/v3/promotion/ongoing$ - reject-dict
 ^https://gateway\.kugou\.com/ads\.service/ - reject-dict
@@ -2975,10 +3264,14 @@ https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyam/app/app\.php\? - reject-
 ^https://h5\.kuaikanmanhua\.com/game-h5/new-user-welfare/index\.html - reject-200
 ^https://(cdn-)?pay\.kkmh\.com/v\d/vip/platform_base/popups_display$ - reject-dict
 ^https://(cdn-)?api\.kkmh\.com/v\d/checkin/task_center/get_by_task_type - reject-dict
+^https?://api\.kkmh\.com/v\d/ad/show - reject-200
+^https?://api\.kkmh\.com/v\d/advertisement/ - reject-200
 ^https://(apissl|az\d-api(-js|-idc)?)\.(gifshow|ksapisrv)\.com/rest/n/nearby/widget/info\? - reject-dict
 ^https://(apissl|az\d-api(-js|-idc)?)\.(gifshow|ksapisrv)\.com/rest/n/taskCenter/task/report\? - reject-dict
 ^https://(apissl|az\d-api(-js|-idc)?)\.(gifshow|ksapisrv)\.com/rest/n/ad/ - reject-dict
 ^https://(apissl|az\d-api(-js|-idc)?)\.(gifshow|ksapisrv)\.com/rest/n/live/feed/info/simplelive/card\? - reject-dict
+^https://az2-api\.ksapisrv\.com/rest/n/taskCenter/task/report\? - reject-dict
+^https://az2-api\.ksapisrv\.com/rest/n/ad/ - reject-dict
 ^https://api\.kurobbs\.com/config/getOpenScreen$ - reject-dict
 ^https://api\.kurobbs\.com/config/index/windows$ - reject-dict
 ^https://api\.kurobbs\.com/config/search/getSearchConfig\? - reject-dict
@@ -2990,6 +3283,10 @@ https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyam/app/app\.php\? - reject-
 ^https://api\.kmovie\.gifshow\.com/rest/n/kmovie/app/banner/common/getBannerByType\? - reject-dict
 ^https://api\.kmovie\.gifshow\.com/rest/n/kmovie/app/merchant/ad/ - reject-dict
 ^https://api\.kmovie\.gifshow\.com/rest/n/kmovie/app/resource/activity/pendant\? - reject-dict
+^https?://118\.178\.214\.118/yyting/advertclient/ClientAdvertList\.action - reject-img
+^https?://dapis\.mting\.info/yyting/advertclient/ClientAdvertList\.action - reject-img
+^https?://.*/yyting/advertclient/ClientAdvertList.action - reject
+^https?://display\.wting\.info/.*.jpeg - reject-200
 ^https://gw\.line\.naver\.jp/ext/lgfp/lad/v\d$ - reject
 ^https://gw\.line\.naver\.jp/lass/api/v\d/ads$ - reject
 ^https://gw\.line\.naver\.jp/tr/event$ - reject
@@ -3068,6 +3365,7 @@ https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyam/app/app\.php\? - reject-
 ^https?://interface3?\.music\.163\.com/eapi/(ad|abtest|sp|hot|store|search/(specialkeyword|defaultkeyword|hot)) - reject
 ^https://www\.imxingzhe\.com/api/v1/pop/window/\? - reject-dict
 ^https://client-api-v2\.oray\.com/materials/SLCC_iOS_DEVICE_FREE\? - reject-dict
+^https?://www\.oschina\.net/action/apiv2/get_launcher - reject-img
 ^https://userapi\.qiekj\.com/slot/get$ - reject-dict
 ^https://userapi\.qiekj\.com/appTitle/get$ - reject-dict
 ^https://userapi\.qiekj\.com/integralRecord/integralDailStatistics$ - reject-dict
@@ -3203,6 +3501,7 @@ https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyam/app/app\.php\? - reject-
 ^https://gw-cn\.jiaoliuqu\.com/live_api/v\d/HallScroll/getList\? - reject-dict
 ^https://gw-cn\.jiaoliuqu\.com/taqu-msg-guide/v\d/RecommendColumn/getList\? - reject-dict
 ^https?://vv\.video\.qq\.com/(diff|get)vmind - reject-dict
+^https?://truthsocial\.com/api/v\d/truth/ads - reject
 ^https://api\.818ps\.com/v4/advertisement/ - reject-dict
 ^https://api\.818ps\.com/v4/popup/ - reject-dict
 ^https://api\.818ps\.com/v4/festival/newYear/pop\? - reject-dict
@@ -3232,6 +3531,8 @@ https://(webboot\.zhangyue\.com|ih2\.ireader\.com)/zyam/app/app\.php\? - reject-
 ^https://jz\.wacaijizhang\.com/api/banners/ribbon\? - reject-dict
 ^https://jz\.wacaijizhang\.com/api/banners/list\? - reject-dict
 ^https://jz\.wacaijizhang\.com/api/resource/universal/fetch$ - reject-dict
+^https?://api-one-wscn\.awtmt\.com/apiv1/advertising/ads/13424/materials - reject-dict
+^https?://api\.wallstreetcn\.com/apiv\d/advertising/ - reject
 ^https://api-hyper\.walmartmobile\.cn/search/ad/ - reject-dict
 ^https://api-hyper\.walmartmobile\.cn/cms-web/frontapi/shadedWords/list\? - reject-dict
 ^https://api-hyper\.walmartmobile\.cn/search/frontapi/discovery-words/list$ - reject-dict
@@ -5464,9 +5765,12 @@ bilibili.skin = type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/res
 bilibili.live = type=http-response,pattern=^https:\/\/api\.live\.bilibili\.com\/xlive\/(?:app-interface\/v2\/index\/feed|app-room\/v1\/index\/getInfoBy(?:Room|User))\?,requires-body=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.json.js
 bilibili.json = type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/(?:resource\/show\/tab\/v2|v2\/(?:splash\/(?:list|show|event\/list2)|feed\/index(?:\/story)?|account\/(?:mine(?:\/ipad)?|myinfo)))\?,argument="{"showCreatorHub":{{{创作中心}}}}",requires-body=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.json.js
 bilibili.protobuf = type=http-response,pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(?:app\.(?:show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|view(?:unite)?\.v1\.View\/(?:View|ViewProgress|RelatesFeed)|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|community\.service\.dm\.v1\.DM\/DmView|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$,argument="{"displayUpList":"{{{动态最常访问}}}","purifyComment":{{{过滤置顶评论广告}}},"sponsorBlock":"{{{空降助手}}}","logLevel":"{{{日志等级}}}"}",requires-body=1,binary-body-mode=1,max-size=-1,engine=webview,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.response.js
+app.blued.1 = type=http-response,pattern=^https?://social\.blued\.cn/users/.+/more/ios\?v=2,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/blued.js
 app.boo-hee.1 = type=http-response,pattern=^https://api\.boohee\.com/meta-interface/v1/index/plaza-flow\?,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/BooHee/BooHee_remove_ads.js
 app.caixin-media.1_merged = type=http-response,pattern=(?:^https://entities\.caixin\.com/api/dataplus/columns|^https://gateway\.caixin\.com/api/app-api/(caixinapp/appinfo|search/getkeyword)|^https://gateway\.caixin\.com/api/app-content/fm/index/list\?|^https://gg\.caixin\.com/s\?z=caixin&op=\d|^https://mappsv5\.caixin\.com/articlev5/\d+/\d+\.json$|^https://mapps?v5\.caixin\.com/(channelv5/list|/?index_page_v5/)\w+),requires-body=1,script-path=https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
 app.caiyun-weather.1 = type=http-response, pattern=^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\.caiyunapp\.com)\/v1\/activity\?, script-path=https://kelee.one/Resource/JavaScript/ColorfulClouds/ColorfulClouds_remove_ads.js, requires-body=true
+app.coolapk.1_merged = type=http-response,pattern=(?:^https?://api\.coolapk\.com/v6/feed/(detail|replyList)\?|^https?://api\.coolapk\.com/v6/main/(dataList|indexV8|init)|^https?://api\.coolapk\.com/v6/page/dataList\?),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/coolapk.js
+app.dong-hua-feng.1 = type=http-response,pattern=^https?://api\.gamer\.com\.tw/mobile_app/anime/v\d/(token|m3u8).php\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bahamut/BahamutAnimeAds.js
 app.douyu.1 = type=http-response,pattern=^https://apiv2\.douyucdn\.cn/mgapi/livenc/home/getRecV3,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/Douyu/Douyu_remove_ads.js
 app.dubbing-show.1 = type=http-response,pattern=^https://iosapi\.peiyinxiu\.com/Api/Film/GetConfigValue,requires-body=1,script-path=https://kelee.one/Resource/JavaScript/DubbingShow/DubbingShow_remove_ads.js
 app.flyer-tea.1_merged = type=http-response,pattern=(?:^https://www\.flyert\.com\.cn/api/mobile/index\.php\?version=5|^https://www\.flyert\.com\.cn/api/mobile/index\.php\?module=plugin&id=k_misign:sign),requires-body=1,script-path=https://kelee.one/Resource/JavaScript/FlyerTea/FlyerTea_remove_ads.js
@@ -5511,4 +5815,4 @@ app.weibo.1_merged = type=http-response,pattern=(?:^https:\/\/api\.weibo\.cn\/2\
 app.weread.1 = type=http-response,pattern=https:\/\/i\.weread\.qq\.com\/(book\/(reading[sS]tat|chapterReview)|user\/profile|groups\/readerEntrance|review\/list|mobileSync),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/WeRead/weread.js
 app.zhihu.1_merged = type=http-response,pattern=(?:^https:\/\/(?:api|page-info)\.zhihu\.com\/(?:answers|articles)\/v2\/\d+|^https:\/\/api\.zhihu\.com\/commercial_api\/app_float_layer|^https:\/\/api\.zhihu\.com\/feed\/render\/tab\/config\?|^https:\/\/api\.zhihu\.com\/(?:moments_v3|topstory\/hot-lists\/total|topstory\/recommend)|^https:\/\/api\.zhihu\.com\/root\/tab|^https:\/\/api\.zhihu\.com\/v2\/topstory\/hot-lists\/everyone-seeing\?|^https:\/\/api\.zhihu\.com\/next-(?:bff|data|render)|^https:\/\/www\.zhihu\.com\/api\/v4\/(?:articles|answers)\/\d+\/recommendations?\?|^https:\/\/appcloud2\.zhihu\.com\/v3\/config|^https:\/\/m-cloud\.zhihu\.com\/api\/cloud\/zhihu\/config\/all\?),requires-body=true,script-path=https://kelee.one/Resource/JavaScript/Zhihu/Zhihu_remove_ads.js
 [MITM]
-hostname = %APPEND% api.zhihu.com,appcloud2.zhihu.com,link.zhihu.com,m-cloud.zhihu.com,page-info.zhihu.com,www.zhihu.com,zhuanlan.zhihu.com,spclient.wg.spotify.com,*.spclient.spotify.com,youtubei.googleapis.com,acs.m.goofish.com,acs.m.taobao.com,afd.baidu.com,ai.amap.com,aiqicha.baidu.com,alsc-buy2.ele.me,an.baidu.com,api.bilibili.com,api.cc.163.com,api.coolapk.com,api.live.bilibili.com,api.m.jd.com,api.map.baidu.com,api.pinduoduo.com,api.weibo.cn,api.xiaoyuzhoufm.com,apimobile.meituan.com,apiv2.douyucdn.cn,app.bilibili.com,appapi.cc.163.com,appconf.mail.163.com,appwk.baidu.com,awp-assets.meituan.net,bootpreload.uve.weibo.com,c.m.163.com,capi.douyucdn.cn,cc.163.com,cdb.meituan.com,ci.xiaohongshu.com,client.mail.163.com,color.jddj.com,cover.baidu.com,cube.elemecdn.com,dashi.163.com,ddplus.meituan.net,*.dianping.com,ecom.map.baidu.com,edith.xiaohongshu.com,elemecdn.com,fcvbjbcebos.baidu.com,flowplus.meituan.net,fuss10.elemecdn.com,g-acs.m.goofish.com,g1.163.com,gql-fed.reddit.com,gql.reddit.com,gslbali.ximalaya.com,guide-acs.m.taobao.com,gw.m.163.com,idgdata.baidu.com,img.meituan.net,info.amap.com,interface*.music.163.com,jdread-api.jd.com,lop-proxy.jd.com,m.ximalaya.com,m.you.163.com,m5-zb.amap.com,m5.amap.com,mall.meituan.com,manga.bilibili.com,mbd.baidu.com,mime.baidu.com,mobile.ximalaya.com,mobile.yangkeduo.com,mobilehera.ximalaya.com,mobwsa.ximalaya.com,mshare.cc.163.com,mwsa.ximalaya.com,newclient.map.baidu.com,nex.163.com,nr-op.elemecdn.com,oss.amap.com,p*.meituan.net,p.du.163.com,p.meituan.com,pan.baidu.com,peisongapi.meituan.com,portal-portm.meituan.com,r6.mo.baidu.com,rec.xiaohongshu.com,res.mi.baidu.com,rms.meituan.com,router-app-api.jdcloud.com,rtbapi.douyucdn.cn,s3plus.meituan.net,search.ximalaya.com,searchwsa.ximalaya.com,shopping.ele.me,sns.amap.com,so.xiaohongshu.com,sqt.meituan.com,staticlive.douyucdn.cn,support.you.163.com,tanbi.baidu.com,tiebac.baidu.com,tqt.weibo.cn,update.pan.baidu.com,venus.douyucdn.cn,w.meituan.net,waimai-guide.ele.me,web.meituan.com,weibointl.api.weibo.cn,wmapi.meituan.com,www.baidu.com,www.icourse163.org,www.xiaohongshu.com,yongche.baidu.com,3pp.starbucks.com.cn,aag.enmonster.com,activity.yonghuivip.com,ad.maoyan.com,ad.xiaotucc.com,ads.ishansong.com,alittle-tea.oss-cn-shanghai.aliyuncs.com,api-fouth-mem.huazhu.com,api-marketing.zhinengxiyifang.cn,api.hellobike.com,api.hengdianfilm.com,api.hongyibo.com.cn,api.kuaidihelp.com,api.maoyan.com,api.mcd.cn,api.prod.dj.mstand.cn,api.songguo7.com,api.yonghuivip.com,apiproxy.zuche.com,apis.alenable.com,app.95504.net,app.homeinns.com,applets.jtexpress.com.cn,appuser-static.huolala.cn,as.xiaojukeji.com,capis*.didapinche.com,cappapi.alittle-tea.com,cbd-gateway-service-applets.hualala.com,ccmsupport-sz.tenpay.com,coco-com.e.verystar.net,creditcardapp.bankcomm.com,customer-app.sto.cn,daijia.kuaidadi.com,dock.tenchii.com,dsp.fcbox.com,file.dian.so,flow.dmall.com,fscdn.zto.com,gw-passenger-wap.01zhuanche.com,hdgateway.zto.com,htwkop.xiaojukeji.com,images.qmai.cn,lawsonapi.yorentown.com,m.ctrip.com,mapi.xiaotucc.com,mbmodule-openapi.paas.cmbchina.com,member.lxjchina.com.cn,miniapp.sexytea2013.com,minicap.caocaokeji.cn,minifm.maxxipoint.com,minipro.95504.net,miniprogram.ishansong.com,mkt-gateway.tuhu.cn,mobile-api.imlaidian.com,mxsa.mxbc.net,newton.gumingnc.com,passenger.t3go.cn,passengerapi.saicmobility.com,plt.yorentown.com,qapi.huolala.cn,r2.gzyct.com,res.hongyibo.com.cn,res.pizzahut.com.cn,s.jiediankeji.com,saas-ad.cloudpnr.com,sauron-report.yonghuivip.com,smarket.dian.so,sto-customer-app.oss-cn-shanghai.aliyuncs.com,supplier-api.imdada.cn,suyun-guest.daojia.com,tbgapplet.carlsberg.asia,tm-api.pin-dao.cn,ucmp.sf-express.com,ump.ems.com.cn,vod-movie.maoyan.com,webapi.qmai.cn,webchatapp.fcbox.com,wechat-api.i-xiaoma.com.cn,www.deppon.com,wx.bthhotels.com,wx.maoyan.com,wxapp.bestwehotel.com,wxproj.seeyouyima.com,wxs-weixin.sd.zhumanggroup.com,mcsp.cloudpnr.com,api.szbgcx.cn,api.zcool.com.cn,api-access.pangolin-sdk-toutiao*.com,api-access.pangolin-sdk-toutiao.com,api-mifit*.huami.com,api-mifit-cn2.huami.com,api-mifit.huami.com,api-overmind.youdao.com,api.ahmobile.cn,api.angkeduo.com,api.jr.mi.com,api.m.mi.com,api.wfdata.club,apiwz.midukanshu.com,app.zhoudamozi.com,cdke.youdao.com,conf-darwin.xycdn.com,dict.youdao.com,ecard.shenzhentong.com,ether-pack.pangolin-sdk-toutiao.com,gromore.pangolin-sdk-toutiao.com,gw.alicdn.com,gw.chuangkit.com,hfapp-service.qweather.net,home.mi.com,home.umetrip.com,img.allahall.com,img.dailmo.com,iyes.youku.com,lfd?-analytics.bytescm.com,lfd?-cdn-tos.bytescm.com,m.qianbao.qq.com,mercury-gateway.ixiaochuan.cn,mob.mddcloud.com.cn,mobads-pre-config.cdn.bcebos.com,p0.pipi.cn,qiye.gaoding.com,sdk1xyajs.data.kuiniuca.com,sfd?-fe-tos.pglstatp-toutiao.com,sfo.mddcloud.com.cn,shopapi.io.mi.com,shealthyapi.senssun.com,t-dsp.pinduoduo.com,toblog.ctobsnssdk.com,tower.ubixioe.com,umerp.umetrip.com,us.l.qq.com,lanfanapp.com,api.xiachufang.com,info.mina.xiaoaisound.com,api.xiangji.qq.com,video-dsp.pddpic.com,images.pinduoduo.com,client.app.coc.10086.cn,cdn.cmgadx.com,qadx.qinlinad.com,watch.iot.mi.com,cdn.web.chelaile.net.cn,d.socdm.com,-i.vip.iqiyi.com,*.iqiyi.com,aes.acfun.cn,api-new.app.acfun.cn,damang.api.mgtv.com,hb-boom.api.mgtv.com,common-sc.miguvideo.com,display*-sc.miguvideo.com,ggc.miguvideo.com,ggic*.miguvideo.com,ggx*.miguvideo.com,live-ads.huya.com,cdn.wup.huya.com,api-m2u.kuaishou.com,m2u-api.getkwai.com,apissl.gifshow.com,apissl.ksapisrv.com,az*-api.ksapisrv.com,az*-api-idc.ksapisrv.com,az*-api-js.gifshow.com,app.dewu.com,mapi.appvipshop.com,api.dangdang.com,mapi.dangdang.com,app.zhuanzhuan.com,app-api.smzdm.com,article-api.smzdm.com,haojia-api.smzdm.com,haojia-cdn.smzdm.com,homepage-api.smzdm.com,h5.smzdm.com,capi.lkcoffee.com,ecapi.lkcoffee.com,m.lkcoffee.com,client.qunar.com,download.trip.com,m.trip.com,client.tujia.com,m.tuniu.com,bkclient.umetrip.com.cn,discardrp.umetrip.com,app.variflight.com,3g.csair.com,app.ceair.com,api.douban.com,ad.lofter.com,lofter.lf127.net,api-ad-product.huxiu.com,adpai.thepaper.cn,api.wallstreetcn.com,api.wallstcn.com,app.peopleapp.com,adstatic.peopleapp.com,iphone.myzaker.com,ggs.myzaker.com,api-ac.liepin.com,api-c.liepin.com,api-wanda.liepin.com,api-ios.zhipin.com,apm-ios.zhipin.com,appapi.51jobapp.com,cupid.51jobapp.com,fastbuyer.zbj.com,gorgon.youdao.com,ios.wps.cn,f-api.kdocs.cn,learn.chaoxing.com,ke.fenbi.com,keapi.fenbi.com,api.alipan.com,api.cloud.189.cn,cloud.189.cn,api-shoulei-ssl.xunlei.com,conf-m-ssl.xunlei.com,client-api-v2.oray.com,autoapi.autohome.com.cn,club.app.autohome.com.cn,adproxy.autohome.com.cn,dealer.m.autohome.com.cn,api.ycapp.yiche.com,cheyouapi.ycapp.yiche.com,cache.bydauto.com.cn,ext-svc.xiaopeng.com,app-api.niu.com,api-mifit*.zepp.com,api.ys7.com,i.ys7.com,api.petkit.cn,news.ssp.qq.com,r.inews.qq.com,101.201.175.228,101.201.62.20,101.201.62.26,101.91.69.26,103.37.155.60,112.53.55.225,113.46.225.*,116.85.*,118.178.214.118,120.241.142.*,120.241.143.*,123.207.209.*,124.250.48.3,139.199.240.84,162.14.157.*,*.17u.cn,182.92.145.50,182.92.244.70,182.92.251.113,203.107.1.1,203.107.1.33,203.107.1.66,203.107.1.67,203.107.1.97,39.103.79.14,39.106.97.84,3gimg.qq.com,47.95.49.75,4gimg.map.qq.com,500px.com.cn,*.58cdn.com.cn,7n.bczcdn.com,a.athm.cn,a.line.me,a.sinopecsales.com,abcapi.lenovoimage.com,access.mypikpak.com,ad.life.360.cn,ad.line-scdn.net,ad.myfriday.cn,ad.shunchangzhixing.com,adapi.izuiyou.com,adm.10jqka.com.cn,ads.iconntech.com,ads.zhinengxiyifang.cn,adsoss.zhinengxiyifang.cn,adx-cn.anythinktech.com,agent-count.pcauto.com.cn,agent-count.pconline.com.cn,air-matters.com,alt-r.my.com,am.didistatic.com,ams-cdn.cdtft.cn,amsweb-cdn-*-1258344696.file.myqcloud.com,android.sogou.com,ap.dongdianqiu.com,apapia-sqk.manmanbuy.com,api*.bybutter.com,api*.futunn.com,api*.soulapp.cn,api*.sparke.cn,api-2.duitang.com,api-bc.wtzw.com,api-cfg.wtzw.com,api-changzheng.chinaath.com,api-cslp-emt.amazon.cn,api-gw.wtzw.com,api-miprint.hannto.com,api-one-wscn.awtmt.com,api-release.wuta-cam.com,api.00bang.cn,api.17gwx.com,api.17kjs.com,api.21ec74.com,api.21jingji.com,api.babytree.com,api.bevol.com,api.btyjscl.com,api.bwton.com,api.caijingmobile.com,api.chelaile.net.cn,api.club.lenovo.cn,api.feidee.net,api.fengshows.com,api.flydigi.com,api.gameplus.qq.com,api.gongkaoleida.com,api.gotokeep.com,api.hanju.koudaibaobao.com,api.htp.ad-scope.com.cn,api.huachenjie.com,api.indeedpower.com,api.internetofcity.cn,api.intsig.net,api.izuiyou.com,api.jiahui.com,api.jxedt.com,api.kkmh.com,api.kmovie.gifshow.com,api.ksedt.com,api.kurobbs.com,api.laifeng.com,api.meiyan.com,api.miaomiaoyd.com,api.ncarzone.com,api.nj.nbtv.cn,api.pipix.com,api.posters.meitu.com,api.psy-1.com,api.qbb6.com,api.qishui.com,api.ring.kugou.com,api.rq.run,api.sfacg.com,api.shanghaionstar.com,api.sodalife.xyz,api.sogaha.cn,api.swiftgram.app,api.taou.com,api.taptapdada.com,api.tipsoon.com,api.touker.com,api.udache.com,api.ulife.group,api.vistopia.com.cn,api.winbull8.com,api.wmpvp.com,api.xbxxhz.com,api.xiaoheihe.cn,api.xiaoyi.com,api.yikaobang.com.cn,api.zhuishushenqi.com,api.zuihuimai.com,api2.helper.qq.com,api2.yaduo.com,api3.cls.cn,api5-lq.pipix.com,api5-lq.qishui.com,api5.youonbike.com,api?.zongheng.com,apicloud.zol.com.cn,apicommunity.qbb6.com,apio.zhengqi100.com,apipt.qbb6.com,apis.folidaymall.com,apis.lifeweek.com.cn,apivip.kuaiduizuoye.com,app-cdn.2q10.com,app-gw.csdn.net,app-sc.miguvideo.com,app.10086.cn,app.10099.com.cn,app.58.com,app.api.d3yuiw4.com,app.api.versa-ai.com,app.badmintoncn.com,app.chengfenmiao.com,app.chinahxzq.com,app.flymodem.com.cn,app.hbooker.com,app.home.360.cn,app.meruki.cn,app.missevan.com,app.mval.qq.com,app.qtfm.cn,app.wy.guahao.com,app.xinpianchang.com,app.yinxiang.com,app02.vgtime.com,app02.vgtime.com:8080,appactive.1234567.com.cn,appapi.caiyicloud.com,appapi.huazhu.com:0,appc-v6.qixin.com,appc.qixin.com,appdmkj.5idream.net,appgw.ddpai.com,apphw.ddpai.com:0,appi.kuwo.cn,appmedia.springairlines.com,apps.api.ke.com,atrace.chelaile.net.cn,awg.enmonster.com,az*-live.ksapisrv.com,az4-api-idc.ksapisrv.com,b-api.ins.miaopai.com,b.appsimg.com,b.zhuishushenqi.com,backservice.offerxiansheng.com,bbs-api-ab.miyoushe.com,bbs-api.miyoushe.com,bd-api.kuwo.cn,beehiveapi.58.com,beta-api.crunchyroll.com,beta-luna.douyin.com,bgw.xinyue.qq.com,bk.bingo.qq.com,bla.gtimg.com,blog.nilbt.com,bohe.sfo-tx-shanghai-01.saas.sensorsdata.cn,*.boohee.cn,*.boohee.com,booking.bestwehotel.com,bp-api.bestv.cn,business.msstatic.com,buy.line.me,c.zhangle.com,cap.caocaokeji.cn,capi.mwee.cn,ccsp-egmas.sf-express.com,cdn-api.kkmh.com,cdn-evone-ceph.echargenet.com,cdn-h5.kuaikanmanhua.com,cdn-shop.kkmh.com,cdn-social.kkmh.com,cdn-topic.kkmh.com,cdn.*.chelaileapp.cn,cdn.133.cn,cdn.api.fotoable.com,cdn.sdb.com.cn,cdn.wtzw.com,cdnfile1.msstatic.com,cds.wifi188.com,cheyouquan.kakamobi.com,chl.tf.cn,circle.seeyouyima.com,circle.xmseeyouyima.com,cix.line-apps.com,client-lz.rili.cn,cloud.bluecardsoft.com,clubmed.bd.clubmedmnp.com,cn-acs.m.cainiao.com,cn-mall.dreame.tech,cn-wxmall.dreame.tech,cn.iot.dreame.tech:0,common.diditaxi.com.cn,common.seeyouyima.com,community.feidee.com,compus.xiaofubao.com,conf.diditaxi.com.cn,confssl*.iweimai.cn,crs-event.line.me,cstore-en-public-tx.seewo.com,ct.xiaojukeji.com,d.line-scdn.net,d1k8g7qaebqd28.cloudfront.net,daoyu.sdo.com,dapis.mting.info,dat.ruanmei.com,data.3g.yy.com,data.missevan.com,dc?.bz.mgtv.com,*default.ixigua.com,delivery-api.imdada.cn,dict-mobile.iciba.com,dili.bdatu.com,dili.sqcosmos.com,discuz.gtimg.cn,dispatcher.camera360.com,display.wting.info,dj.palmestore.com,djcapp.game.qq.com,dl-cu-hz.lechange.cn,dq.dxy.cn,dsa-mfp.fengshows.cn,dsxcx.tencent-prod.pagoda.com,du.hupucdn.com,dudian-oss.oss-cn-shenzhen.aliyuncs.com,dxy.com,dynamicad.kfc.com.cn,e-static.aia.com.cn,e.dangdang.com,e.jparking.cn,e.weather.com.cn,e2e-mtop.cainiao.com,easyreadfs.nosdn.127.net,ec-bot-obs.line-scdn.net,ec.ems.com.cn,ecloud.tppension.cntaiping.com,edit.sinaapp.com,editor.sm.cn,edu.51cto.com,egw.ejoy.sinopec.com,emisdatacenteraws.hafoo.com,energy.xiaojukeji.com,entry.qtfm.cn,ep.kugou.com,eshop-api-wx-mini.eshop.tencent-prod.pagoda.com,explorer.tratao.com,external.fcbox.com,facade-api.black-unique.com,fbchina.flipchina.cn,fcard.api.moji.com,feedback.uc.cn,file.cibfintech.com,fintechappdr.cgws.com,fm.fenqile.com,fm.missevan.com,fmapp.chinafamilymart.com.cn,fx.service.kugou.com,g*.dushu365.com,g.alicdn.com,ga-album-cdnqn.52tt.com,gaia.ch.com,*.gamersky.com,games.mobileapi.hupu.com,gateway-mobile-gray.soulapp.cn,gateway.benewtech.cn,gateway.cotticoffee.com,gateway.kugou.com,gateway.shouqiev.com,gatewayretry.kugou.com,gfp.veta.naver.com,gha.ghac.cn,go.babytree.com,goblin.hupu.com,god.gameyw.netease.com,gongdu.youshu.cc,gouche.ksedt.com,goway.reader.yueyouxs.com,gsp.gacmotor.com,guanyu.longfor.com,gugongmini.dpm.org.cn,gurd.snssdk.com,gw-passenger.01zhuanche.com,gw.aihuishou.com,gw.csdn.net,gw.etczs.net,gw.line.naver.jp,gw.xiaocantech.com,gw3.ykccn.com,gzacshow.kugou.com,h3.open.taou.com,h5.kuaikanmanhua.com,h5.qzone.qq.com,h5api.sginput.qq.com,haojia.m.smzdm.com,heic.alicdn.com,helper.2bulu.com,hera-webapp.fenbi.com,hmbaby.simshine.cn,hoapp.juneyaoair.com,homefront.qunar.com,hweb-hotel.huazhu.com,hweb-manager.huazhu.com,hwimg.beingfine.cn,hwstore.kugou.com,i*.hoopchina.com.cn,i-lq.snssdk.com,*.i18n-pglstatp.com,ih2.ireader.com,image.suning.com,imagepc.ctaiot.com,images.cib.com.cn,imeclient.openspeech.cn,img*.10101111cdn.com,img-tailor.11222.cn,img.admobile.top,img.beingfine.cn,img.jiemian.com,img.wukongtv.com,img.yun.01zhuanche,img0*.benlailife.com,img0*.luckincoffeecdn.com,img1.126.net,imgcache.qq.com,imgx.jampp.com,init.sms.mob.com,interface.aomiapp.com,interface.mcake.com,ios.jjwxc.com,ios.sogou.com,ios.sspai.com,iosapi.peiyinxiu.com,iphone.ac.qq.com,issuecdn.baidupcs.com,j1.pupuapi.com,j5.dfcfw.com,jad-api.jin10.com,japi.233.com,jia.360.cn,jiucaigongshe.oss-cn-beijing.aliyuncs.com,jp.rsscc.com,jt.rsscc.com,jx3comm.xoyocdn.com,jz.wacaijizhang.com,*.kakamobi.cn,kano.guahao.cn,*.kingsoft-office-service.com,l*.51fanli.net,lan.line.me,lcen.xiaote.net,lchttpapi.xczim.com,learnywhere.cn,legy.line-apps.com,lens.leoao.com,line3-h5-mobile-api.biligame.com,lion.didialift.com,list-app-m.i4.cn,longquan-mtop.cainiao.com,luckman.suning.com,m.360buyimg.com,m.client.10010.com,m.fqfin.cn,m.ibuscloud.com,m.kookapp.cn,m.ly.com,m.pvp.xoyo.com,m.sh.189.cn,m.yap.yahoo.com,m1.ad.10010.com,m1fxgroup.kugou.com,magev6.if.qidian.com,maicai.api.ddxq.mobi,manager.aiqiangua.com,manager.aiqiangua.com:8080,*mangaapi.manhuaren.*,mapi.chaogejiaoyu.com,mapi.mafengwo.cn,mapi.sfbest.com,mapi.txcmapp.com,mapiweb.babytree.com,market-api.fenbi.com,marketing-aibox.v.mitvos.com,mc.tencentmusic.com,mcbd.maiche.com,mch.juhesaas.com,mcmm.caiyun.feixin.10086.cn:0,mcs-mimp-web.sf-express.com,me.bz.mgtv.com,media.qyer.com,member.alipan.com,meta.duitang.com,mgesq.api.mgtv.com,middle.yun.139.com,miniapp.qmai.cn,misc-api-prd-mx.wandafilm.com,mlol.qt.qq.com,mme.api.moji.com,mmgr.gtimg.com,mobile-api2011.elong.com,mobile-consumer-sapp.chery.cn,mobile-pic.cache.iciba.com,mobile-thor.api.mgtv.com,mobile.1qianbao.com,mobile.api.hunantv.com,mobile.api.mgtv.com,mobile.app.autohome.com.cn,mobile.laichon.com,mobileapi.chebada.com,mobileapi.ly.com,mobileapi.xiamenair.com,mobilehotelapi.elong.com,mobileso.bz.mgtv.com,mp.weixin.qq.com,mpcs.suning.com,mps.95508.com,mrobot.pcauto.com.cn,mrobot.pconline.com.cn,mrp.mcloud.139.com,msglb.91160.com,muses.ksedt.com,*.music.126.net,myusmile.online,nam.veta.naver.com,napi.ithome.com,nbcps-mtop.cainiao.com,nelo2-col.linecorp.com,netflow-mtop.cainiao.com,new-app-api.ylyk.com,newapi.meishi.cc,newapp2.szsmk.com,news.app.autohome.com.cn,nnapp.cloudbae.cn:0,ntt-app.benewtech.cn,obs.line-scdn.net,ocrifs.ejoy.sinopec.com,ok.166.net,omgup*.xiaojukeji.com,oneapp-api.faw-vw.com,oneapph5.dongfeng-nissan.com.cn,online.aicarmap.com,op.ksedt.com,open-cms-api.quark.cn,open.e.kuaishou.cn,open.e.kuaishou.com,open.fitdays.cn,open.qyer.com,open.taou.com,open3.vistastory.com,operationapi.fosunhanig.com,order-app-api.lbdj.com,oss-zjrs.haier.net,oss.jegotrip.com.cn,oss.umetrip.com,ovs-shopwindow-server*.wps.com,oxadmin.cp.com.cn,p.kuaidi100.com,pagead2.googleadservices.com,pages.trip.com,*.pangolin-sdk-toutiao.com,patient-api.suh.cn,patientappapi.91160.com,patientgate.91160.com,pcmx.autohome.com.cn,personal-center.yy.com,*.pglstatp-toutiao.com,pic*.chelaile.net.cn,pic.edaijia.cn,plough.babytree.com,pocketuni.net,poplayer.template.alibaba.com,portal-xunyou.qingcdn.com,post.m.smzdm.com,post.soulapp.cn,preprod.cdzghome.com,preprod.cdzghome.com:8100,prom.mobile.gome.com.cn,psnlz.api.moji.com,pss.txffp.com,*.pstatp.com,pt-starimg.didistatic.com,ptmpcap.caocaokeji.cn,pubads.g.doubleclick.net,public-deliver9.miguvideo.com,push.it.10086.cn,push.m.youku.com,qde.qunar.com,qimg.cdnmama.com,qt.qq.com,quanguo.mygolbs.com,quanguo.mygolbs.com:8081,qxb-minicode-pic-osscache.qixin.com,qzonestyle.gtimg.cn,recite.perfectlingo.com,recommend-dy.miguvideo.com,recpage-c.qtfm.cn,res.kfc.com.cn,res.mall.10010.cn,res.xiaojukeji.com,res1.hubcloud.com.cn,restapi.iyunmai.com,richmanrules.ksedt.com,rtm.fcbox.com,s-api.smzdm.com,saas.hpplay.cn,scdn.line-apps.com,sch.line.me,sdk.1rtb.net,se-api.djiits.com,search.qtfm.cn,service.4gtv.tv,service.busi.inke.cn,service.haiersmarthomes.com,service.iciba.com,sg.teld.cn,sh-gateway.shihuo.cn,*.sh.wxgateway.com,shcss.suning.com,shop-api.retail.mi.com,shop.kkmh.com,shop.laichon.com,*.shuqireader.com,sichuan.95504.net,silk.lx.netease.com,slapi.oray.net,smart.789.image.mucang.cn,smkmp.96225.com,snailsleep.net,sns.api.moji.com,snsapi.91160.com,soapi.91160.com,social.blued.cn,social.kkmh.com,*.sohu.com,spamblocker-api.zeekstudio.com,splashqqlive.gtimg.com,sports3.gtimg.com,sq.iyunmai.com,sq.sljkj.com,sso.ifanr.com,ssp.dzh.com.cn,ssp.soulapp.cn,st7niu.aicarmap.com,starplucker.cyapi.cn,stars.shuqireader.com,startup.umetrip.com,stat.10jqka.com.cn,stat.peopleapp.com,static.95508.com,static.gameplus.qq.com,static.line-scdn.net,static.shihuocdn.cn,static.xyzq.cn,static01.versa-ai.com,stlib.qbb6.com,swdlcdn.eastmoney.com,switch.jumpvg.com,syh.zybang.com,syt.leshuazf.com,sytgate.jslife.com.cn,t1.market.xiaomi.com,tab.yy.com,tagit.hyhuo.com,tcmobileapi.17usoft.com,tg.feidee.com,thor.weidian.com,tiance.wps.cn,tianqi.2345.com,tianshu.qq.com,tingshu.kuwo.cn,tk.lanjiyin.com.cn,tmeadkg.y.qq.com,tnc*-*.zijieapi.com,top-widgets-api.xiaozujian.com,topic.kkmh.com,*.townmalls.cn,triangle.wearemanner.com,truthsocial.com,tv.qiaohuapp.com,*.ubixioe.com,ucmp-static.sf-express.com,umerp.umetrip.com.cn,un-acs.youku.com,user-api.smzdm.com,user.api.ddxq.mobi,user.qtfm.cn,userapi.qiekj.com,userpms-api.suh.cn,ut2.shuqistat.com,uts-front.line-apps.com,v-api.crazymaplestudios.com,v0-client-lz.rili.cn,v3.wufazhuce.com,v3.wufazhuce.com:8000,vapp.tmuyun.com,vdo.api.moji.com,venus.yhd.com,vip*.kuwo.cn,vv.video.qq.com,w.line.me,wallpaper-1258344696.file.myqcloud.com,wanciwangdata.oss-cn-beijing.aliyuncs.com,wap.ngchina.cn,wcprd.hilton.com.cn,web.chelaile.net.cn,web.yy.com,web2.realtech-inc.com,webapi.qbb6.com,webboot.zhangyue.com,webcast-open.douyin.com,webcdn.m.qq.com,wechat.tf.cn,wemallh5.usmile.com,wnsaviator.kg.qq.com,wrapper.cyapi.cn,www.123pan.com,www.1314zhilv.com,www.ahzs10000.com,www.banyuetanapp.com,www.didapinche.com,www.dpfile.com,www.duitang.com,www.flyert.com,www.flyert.com.cn,www.flyetrip.com,www.flyetrip.com.cn,www.gaoding.com,www.gcores.com,www.google.cn,www.google.com,www.haixue.com,www.iyingdi.cn,www.kdocs.cn,www.kookapp.cn,www.kuaiduizuoye.com,www.linkedin.com,www.msccruises.com.cn,www.myusmile.online,www.okx.com,www.onstar.com.cn,www.oschina.net,www.tailgdd.com,www.terabox.com,www.upwork.com,www.vgtime.com,www.xiaoxiongmeishu.com,www.ymm56.com,www.zybang.com,www1.elecfans.com,wx.17u.cn,wx.api.ke.com,wx.mygolbs.com,wxapp.api.ke.com,xhtz.oss-cn-guangzhou.aliyuncs.com,xiaoshuo.wtzw.com,xxyx-client-api.xiaoxiaoyouxuan.com,xyst.yuanfudao.com,xyz.cnki.net,y.gtimg.cn,yanxuan.nosdn.127.net,yixiu-abtest.alicdn.com,yun.feidee.net,yun.tuitiger.com,yunmk.feidee.net,yuyin-api.baizhanlive.com,ywab.reader.qq.com,yyapp-act-entrance.yy.com,yyapp-fastnet.yy.com,yyapp-idx.yy.com,z.onewo.com,zconfig.alibabausercontent.com,zj.haier.net,zone.guiderank-app.com,zt-app.go189.cn,ztoread.ziroom.com,zyfile.izuiyou.com,config-service.seeyouyima.com,ad.12306.cn,mobile.12306.cn,gateway.36kr.com,36kr.com,app-v1.ecoliving168.com,852b95d36.xwlpk.cn,bizapi.alipan.com,*.amap.com,apiautoappusc.che168.com,cars.app.autohome.com.cn,clientlive.api.autohome.com.cn,maam.pingan.com.cn,imeres.baidu.com,m.baidu.com,grpc.biliapi.net,pan-api.bitqiu.com,api.boohee.com,lego.boohee.com,status.boohee.com,e*.caixin.com,g*.caixin.com,m*.caixin.com,biz.cyapi.cn,api.caiyunapp.com,cdn-w.caiyunapp.com,api.cece.com,app.huashi6.com,95598.csg.cn,capis.didapinche.com,119.29.29.*,dlabel.ctaiot.com,frodo.douban.com,m.douban.com,read.douban.com,cn.iot.dreame.tech,gl-cn-api.ecovacs.cn,api-app.dc-cn.cn.ecouser.net,consumer.fcbox.com,appapi.motianlun.cn,ptf.flyertrip.com,res-pub.huazhu.com,aweme.snssdk.com,api5-normal-m.amemv.com,fairy.mobileapi.hupu.com,bbs.mobileapi.hupu.com,api-ms-config.huxiu.com,api-web-feed.huxiu.com,api-search.huxiu.com,api-article.huxiu.com,api-web-moment.huxiu.com,api-ms-feed.huxiu.com,*.huya.com,*.msstatic.com,businessapi.ksedt.com,jiaxiao-awd.kakamobi.cn,swallow.kakamobi.cn,monkey.kakamobi.cn,jiakao-misc.kakamobi.cn,squirrel.kakamobi.cn,scs.kakamobi.cn,pay.kkmh.com,cdn-pay.kkmh.com,api.livelab.com.cn,base.mkzcdn.com,jzts.cmpassport.com,ad.mcloud.139.com,grpc.moegirl.org.cn,acs-m.freshippo.com,cn-app.narwaltech.com,store.narwal.com,app-conf.ds.163.com,interface.music.163.com,interface3.music.163.com,interface9.music.163.com,ipv4.music.163.com,interface3?.music.163.com,www.imxingzhe.com,*.pcauto.com.cn,*.pconline.com.cn,appactivity.wmpvp.com,zgrb.epicc.com.cn,api.pinterest.com,woqt2.qtfm.cn,m.riskbird.com,cniot.roborock.com,api.roborock.com,sf3-fe-tos.pglstatp-toutiao.com,ocean.shuqireader.com,huichuan.sm.cn,api.xueqiu.com,open.xueqiu.com,stock.xueqiu.com,fund.xueqiu.com,*spclient.spotify.com,gw-cn.jiaoliuqu.com,api.818ps.com,api-http2.tumblr.com,api.chenlongtech.cn,114.115.217.129,api-hyper.walmartmobile.cn,chong.qq.com,wx.online-cmcc.cn,wx.10086.cn,ne.gdsz.sinopec.com,*.weibo.cn,*.weibo.com,weibo.com,i.weread.qq.com,cili.xfuse.fun,i.micecube.com,img.mofyi.com,*.xiaopeng.com,*.yiche.com,fanyiguan-server.youdao.com,*.googlevideo.com,ask.zhaopin.com,cgate.zhaopin.com,*.zhihu.com
+hostname = %APPEND% api.zhihu.com,appcloud2.zhihu.com,link.zhihu.com,m-cloud.zhihu.com,page-info.zhihu.com,www.zhihu.com,zhuanlan.zhihu.com,spclient.wg.spotify.com,*.spclient.spotify.com,youtubei.googleapis.com,acs.m.goofish.com,acs.m.taobao.com,afd.baidu.com,ai.amap.com,aiqicha.baidu.com,alsc-buy2.ele.me,an.baidu.com,api.bilibili.com,api.cc.163.com,api.coolapk.com,api.live.bilibili.com,api.m.jd.com,api.map.baidu.com,api.pinduoduo.com,api.weibo.cn,api.xiaoyuzhoufm.com,apimobile.meituan.com,apiv2.douyucdn.cn,app.bilibili.com,appapi.cc.163.com,appconf.mail.163.com,appwk.baidu.com,awp-assets.meituan.net,bootpreload.uve.weibo.com,c.m.163.com,capi.douyucdn.cn,cc.163.com,cdb.meituan.com,ci.xiaohongshu.com,client.mail.163.com,color.jddj.com,cover.baidu.com,cube.elemecdn.com,dashi.163.com,ddplus.meituan.net,*.dianping.com,ecom.map.baidu.com,edith.xiaohongshu.com,elemecdn.com,fcvbjbcebos.baidu.com,flowplus.meituan.net,fuss10.elemecdn.com,g-acs.m.goofish.com,g1.163.com,gql-fed.reddit.com,gql.reddit.com,gslbali.ximalaya.com,guide-acs.m.taobao.com,gw.m.163.com,idgdata.baidu.com,img.meituan.net,info.amap.com,interface*.music.163.com,jdread-api.jd.com,lop-proxy.jd.com,m.ximalaya.com,m.you.163.com,m5-zb.amap.com,m5.amap.com,mall.meituan.com,manga.bilibili.com,mbd.baidu.com,mime.baidu.com,mobile.ximalaya.com,mobile.yangkeduo.com,mobilehera.ximalaya.com,mobwsa.ximalaya.com,mshare.cc.163.com,mwsa.ximalaya.com,newclient.map.baidu.com,nex.163.com,nr-op.elemecdn.com,oss.amap.com,p*.meituan.net,p.du.163.com,p.meituan.com,pan.baidu.com,peisongapi.meituan.com,portal-portm.meituan.com,r6.mo.baidu.com,rec.xiaohongshu.com,res.mi.baidu.com,rms.meituan.com,router-app-api.jdcloud.com,rtbapi.douyucdn.cn,s3plus.meituan.net,search.ximalaya.com,searchwsa.ximalaya.com,shopping.ele.me,sns.amap.com,so.xiaohongshu.com,sqt.meituan.com,staticlive.douyucdn.cn,support.you.163.com,tanbi.baidu.com,tiebac.baidu.com,tqt.weibo.cn,update.pan.baidu.com,venus.douyucdn.cn,w.meituan.net,waimai-guide.ele.me,web.meituan.com,weibointl.api.weibo.cn,wmapi.meituan.com,www.baidu.com,www.icourse163.org,www.xiaohongshu.com,yongche.baidu.com,3pp.starbucks.com.cn,aag.enmonster.com,activity.yonghuivip.com,ad.maoyan.com,ad.xiaotucc.com,ads.ishansong.com,alittle-tea.oss-cn-shanghai.aliyuncs.com,api-fouth-mem.huazhu.com,api-marketing.zhinengxiyifang.cn,api.hellobike.com,api.hengdianfilm.com,api.hongyibo.com.cn,api.kuaidihelp.com,api.maoyan.com,api.mcd.cn,api.prod.dj.mstand.cn,api.songguo7.com,api.yonghuivip.com,apiproxy.zuche.com,apis.alenable.com,app.95504.net,app.homeinns.com,applets.jtexpress.com.cn,appuser-static.huolala.cn,as.xiaojukeji.com,capis*.didapinche.com,cappapi.alittle-tea.com,cbd-gateway-service-applets.hualala.com,ccmsupport-sz.tenpay.com,coco-com.e.verystar.net,creditcardapp.bankcomm.com,customer-app.sto.cn,daijia.kuaidadi.com,dock.tenchii.com,dsp.fcbox.com,file.dian.so,flow.dmall.com,fscdn.zto.com,gw-passenger-wap.01zhuanche.com,hdgateway.zto.com,htwkop.xiaojukeji.com,images.qmai.cn,lawsonapi.yorentown.com,m.ctrip.com,mapi.xiaotucc.com,mbmodule-openapi.paas.cmbchina.com,member.lxjchina.com.cn,miniapp.sexytea2013.com,minicap.caocaokeji.cn,minifm.maxxipoint.com,minipro.95504.net,miniprogram.ishansong.com,mkt-gateway.tuhu.cn,mobile-api.imlaidian.com,mxsa.mxbc.net,newton.gumingnc.com,passenger.t3go.cn,passengerapi.saicmobility.com,plt.yorentown.com,qapi.huolala.cn,r2.gzyct.com,res.hongyibo.com.cn,res.pizzahut.com.cn,s.jiediankeji.com,saas-ad.cloudpnr.com,sauron-report.yonghuivip.com,smarket.dian.so,sto-customer-app.oss-cn-shanghai.aliyuncs.com,supplier-api.imdada.cn,suyun-guest.daojia.com,tbgapplet.carlsberg.asia,tm-api.pin-dao.cn,ucmp.sf-express.com,ump.ems.com.cn,vod-movie.maoyan.com,webapi.qmai.cn,webchatapp.fcbox.com,wechat-api.i-xiaoma.com.cn,www.deppon.com,wx.bthhotels.com,wx.maoyan.com,wxapp.bestwehotel.com,wxproj.seeyouyima.com,wxs-weixin.sd.zhumanggroup.com,mcsp.cloudpnr.com,api.szbgcx.cn,api.zcool.com.cn,api-access.pangolin-sdk-toutiao*.com,api-access.pangolin-sdk-toutiao.com,api-mifit*.huami.com,api-mifit-cn2.huami.com,api-mifit.huami.com,api-overmind.youdao.com,api.ahmobile.cn,api.angkeduo.com,api.jr.mi.com,api.m.mi.com,api.wfdata.club,apiwz.midukanshu.com,app.zhoudamozi.com,cdke.youdao.com,conf-darwin.xycdn.com,dict.youdao.com,ecard.shenzhentong.com,ether-pack.pangolin-sdk-toutiao.com,gromore.pangolin-sdk-toutiao.com,gw.alicdn.com,gw.chuangkit.com,hfapp-service.qweather.net,home.mi.com,home.umetrip.com,img.allahall.com,img.dailmo.com,iyes.youku.com,lfd?-analytics.bytescm.com,lfd?-cdn-tos.bytescm.com,m.qianbao.qq.com,mercury-gateway.ixiaochuan.cn,mob.mddcloud.com.cn,mobads-pre-config.cdn.bcebos.com,p0.pipi.cn,qiye.gaoding.com,sdk1xyajs.data.kuiniuca.com,sfd?-fe-tos.pglstatp-toutiao.com,sfo.mddcloud.com.cn,shopapi.io.mi.com,shealthyapi.senssun.com,t-dsp.pinduoduo.com,toblog.ctobsnssdk.com,tower.ubixioe.com,umerp.umetrip.com,us.l.qq.com,lanfanapp.com,api.xiachufang.com,info.mina.xiaoaisound.com,api.xiangji.qq.com,video-dsp.pddpic.com,images.pinduoduo.com,client.app.coc.10086.cn,cdn.cmgadx.com,qadx.qinlinad.com,watch.iot.mi.com,cdn.web.chelaile.net.cn,d.socdm.com,-i.vip.iqiyi.com,*.iqiyi.com,aes.acfun.cn,api-new.app.acfun.cn,damang.api.mgtv.com,hb-boom.api.mgtv.com,common-sc.miguvideo.com,display*-sc.miguvideo.com,ggc.miguvideo.com,ggic*.miguvideo.com,ggx*.miguvideo.com,live-ads.huya.com,cdn.wup.huya.com,api-m2u.kuaishou.com,m2u-api.getkwai.com,apissl.gifshow.com,apissl.ksapisrv.com,az*-api.ksapisrv.com,az*-api-idc.ksapisrv.com,az*-api-js.gifshow.com,app.dewu.com,mapi.appvipshop.com,api.dangdang.com,mapi.dangdang.com,app.zhuanzhuan.com,app-api.smzdm.com,article-api.smzdm.com,haojia-api.smzdm.com,haojia-cdn.smzdm.com,homepage-api.smzdm.com,h5.smzdm.com,capi.lkcoffee.com,ecapi.lkcoffee.com,m.lkcoffee.com,client.qunar.com,download.trip.com,m.trip.com,client.tujia.com,m.tuniu.com,bkclient.umetrip.com.cn,discardrp.umetrip.com,app.variflight.com,3g.csair.com,app.ceair.com,api.douban.com,ad.lofter.com,lofter.lf127.net,api-ad-product.huxiu.com,adpai.thepaper.cn,api.wallstreetcn.com,api.wallstcn.com,app.peopleapp.com,adstatic.peopleapp.com,iphone.myzaker.com,ggs.myzaker.com,api-ac.liepin.com,api-c.liepin.com,api-wanda.liepin.com,api-ios.zhipin.com,apm-ios.zhipin.com,appapi.51jobapp.com,cupid.51jobapp.com,fastbuyer.zbj.com,gorgon.youdao.com,ios.wps.cn,f-api.kdocs.cn,learn.chaoxing.com,ke.fenbi.com,keapi.fenbi.com,api.alipan.com,api.cloud.189.cn,cloud.189.cn,api-shoulei-ssl.xunlei.com,conf-m-ssl.xunlei.com,client-api-v2.oray.com,autoapi.autohome.com.cn,club.app.autohome.com.cn,adproxy.autohome.com.cn,dealer.m.autohome.com.cn,api.ycapp.yiche.com,cheyouapi.ycapp.yiche.com,cache.bydauto.com.cn,ext-svc.xiaopeng.com,app-api.niu.com,api-mifit*.zepp.com,api.ys7.com,i.ys7.com,api.petkit.cn,news.ssp.qq.com,r.inews.qq.com,101.201.175.228,101.201.62.20,101.201.62.26,101.91.69.26,103.37.155.60,112.53.55.225,113.46.225.*,116.85.*,118.178.214.118,120.241.142.*,120.241.143.*,123.207.209.*,124.250.48.3,139.199.240.84,162.14.157.*,*.17u.cn,182.92.145.50,182.92.244.70,182.92.251.113,203.107.1.1,203.107.1.33,203.107.1.66,203.107.1.67,203.107.1.97,39.103.79.14,39.106.97.84,3gimg.qq.com,47.95.49.75,4gimg.map.qq.com,500px.com.cn,*.58cdn.com.cn,7n.bczcdn.com,a.athm.cn,a.line.me,a.sinopecsales.com,abcapi.lenovoimage.com,access.mypikpak.com,ad.life.360.cn,ad.line-scdn.net,ad.myfriday.cn,ad.shunchangzhixing.com,adapi.izuiyou.com,adm.10jqka.com.cn,ads.iconntech.com,ads.zhinengxiyifang.cn,adsoss.zhinengxiyifang.cn,adx-cn.anythinktech.com,agent-count.pcauto.com.cn,agent-count.pconline.com.cn,air-matters.com,alt-r.my.com,am.didistatic.com,ams-cdn.cdtft.cn,amsweb-cdn-*-1258344696.file.myqcloud.com,android.sogou.com,ap.dongdianqiu.com,apapia-sqk.manmanbuy.com,api*.bybutter.com,api*.futunn.com,api*.soulapp.cn,api*.sparke.cn,api-2.duitang.com,api-bc.wtzw.com,api-cfg.wtzw.com,api-changzheng.chinaath.com,api-cslp-emt.amazon.cn,api-gw.wtzw.com,api-miprint.hannto.com,api-one-wscn.awtmt.com,api-release.wuta-cam.com,api.00bang.cn,api.17gwx.com,api.17kjs.com,api.21ec74.com,api.21jingji.com,api.babytree.com,api.bevol.com,api.btyjscl.com,api.bwton.com,api.caijingmobile.com,api.chelaile.net.cn,api.club.lenovo.cn,api.feidee.net,api.fengshows.com,api.flydigi.com,api.gameplus.qq.com,api.gongkaoleida.com,api.gotokeep.com,api.hanju.koudaibaobao.com,api.htp.ad-scope.com.cn,api.huachenjie.com,api.indeedpower.com,api.internetofcity.cn,api.intsig.net,api.izuiyou.com,api.jiahui.com,api.jxedt.com,api.kkmh.com,api.kmovie.gifshow.com,api.ksedt.com,api.kurobbs.com,api.laifeng.com,api.meiyan.com,api.miaomiaoyd.com,api.ncarzone.com,api.nj.nbtv.cn,api.pipix.com,api.posters.meitu.com,api.psy-1.com,api.qbb6.com,api.qishui.com,api.ring.kugou.com,api.rq.run,api.sfacg.com,api.shanghaionstar.com,api.sodalife.xyz,api.sogaha.cn,api.swiftgram.app,api.taou.com,api.taptapdada.com,api.tipsoon.com,api.touker.com,api.udache.com,api.ulife.group,api.vistopia.com.cn,api.winbull8.com,api.wmpvp.com,api.xbxxhz.com,api.xiaoheihe.cn,api.xiaoyi.com,api.yikaobang.com.cn,api.zhuishushenqi.com,api.zuihuimai.com,api2.helper.qq.com,api2.yaduo.com,api3.cls.cn,api5-lq.pipix.com,api5-lq.qishui.com,api5.youonbike.com,api?.zongheng.com,apicloud.zol.com.cn,apicommunity.qbb6.com,apio.zhengqi100.com,apipt.qbb6.com,apis.folidaymall.com,apis.lifeweek.com.cn,apivip.kuaiduizuoye.com,app-cdn.2q10.com,app-gw.csdn.net,app-sc.miguvideo.com,app.10086.cn,app.10099.com.cn,app.58.com,app.api.d3yuiw4.com,app.api.versa-ai.com,app.badmintoncn.com,app.chengfenmiao.com,app.chinahxzq.com,app.flymodem.com.cn,app.hbooker.com,app.home.360.cn,app.meruki.cn,app.missevan.com,app.mval.qq.com,app.qtfm.cn,app.wy.guahao.com,app.xinpianchang.com,app.yinxiang.com,app02.vgtime.com,app02.vgtime.com:8080,appactive.1234567.com.cn,appapi.caiyicloud.com,appapi.huazhu.com:0,appc-v6.qixin.com,appc.qixin.com,appdmkj.5idream.net,appgw.ddpai.com,apphw.ddpai.com:0,appi.kuwo.cn,appmedia.springairlines.com,apps.api.ke.com,atrace.chelaile.net.cn,awg.enmonster.com,az*-live.ksapisrv.com,az4-api-idc.ksapisrv.com,b-api.ins.miaopai.com,b.appsimg.com,b.zhuishushenqi.com,backservice.offerxiansheng.com,bbs-api-ab.miyoushe.com,bbs-api.miyoushe.com,bd-api.kuwo.cn,beehiveapi.58.com,beta-api.crunchyroll.com,beta-luna.douyin.com,bgw.xinyue.qq.com,bk.bingo.qq.com,bla.gtimg.com,blog.nilbt.com,bohe.sfo-tx-shanghai-01.saas.sensorsdata.cn,*.boohee.cn,*.boohee.com,booking.bestwehotel.com,bp-api.bestv.cn,business.msstatic.com,buy.line.me,c.zhangle.com,cap.caocaokeji.cn,capi.mwee.cn,ccsp-egmas.sf-express.com,cdn-api.kkmh.com,cdn-evone-ceph.echargenet.com,cdn-h5.kuaikanmanhua.com,cdn-shop.kkmh.com,cdn-social.kkmh.com,cdn-topic.kkmh.com,cdn.*.chelaileapp.cn,cdn.133.cn,cdn.api.fotoable.com,cdn.sdb.com.cn,cdn.wtzw.com,cdnfile1.msstatic.com,cds.wifi188.com,cheyouquan.kakamobi.com,chl.tf.cn,circle.seeyouyima.com,circle.xmseeyouyima.com,cix.line-apps.com,client-lz.rili.cn,cloud.bluecardsoft.com,clubmed.bd.clubmedmnp.com,cn-acs.m.cainiao.com,cn-mall.dreame.tech,cn-wxmall.dreame.tech,cn.iot.dreame.tech:0,common.diditaxi.com.cn,common.seeyouyima.com,community.feidee.com,compus.xiaofubao.com,conf.diditaxi.com.cn,confssl*.iweimai.cn,crs-event.line.me,cstore-en-public-tx.seewo.com,ct.xiaojukeji.com,d.line-scdn.net,d1k8g7qaebqd28.cloudfront.net,daoyu.sdo.com,dapis.mting.info,dat.ruanmei.com,data.3g.yy.com,data.missevan.com,dc?.bz.mgtv.com,*default.ixigua.com,delivery-api.imdada.cn,dict-mobile.iciba.com,dili.bdatu.com,dili.sqcosmos.com,discuz.gtimg.cn,dispatcher.camera360.com,display.wting.info,dj.palmestore.com,djcapp.game.qq.com,dl-cu-hz.lechange.cn,dq.dxy.cn,dsa-mfp.fengshows.cn,dsxcx.tencent-prod.pagoda.com,du.hupucdn.com,dudian-oss.oss-cn-shenzhen.aliyuncs.com,dxy.com,dynamicad.kfc.com.cn,e-static.aia.com.cn,e.dangdang.com,e.jparking.cn,e.weather.com.cn,e2e-mtop.cainiao.com,easyreadfs.nosdn.127.net,ec-bot-obs.line-scdn.net,ec.ems.com.cn,ecloud.tppension.cntaiping.com,edit.sinaapp.com,editor.sm.cn,edu.51cto.com,egw.ejoy.sinopec.com,emisdatacenteraws.hafoo.com,energy.xiaojukeji.com,entry.qtfm.cn,ep.kugou.com,eshop-api-wx-mini.eshop.tencent-prod.pagoda.com,explorer.tratao.com,external.fcbox.com,facade-api.black-unique.com,fbchina.flipchina.cn,fcard.api.moji.com,feedback.uc.cn,file.cibfintech.com,fintechappdr.cgws.com,fm.fenqile.com,fm.missevan.com,fmapp.chinafamilymart.com.cn,fx.service.kugou.com,g*.dushu365.com,g.alicdn.com,ga-album-cdnqn.52tt.com,gaia.ch.com,*.gamersky.com,games.mobileapi.hupu.com,gateway-mobile-gray.soulapp.cn,gateway.benewtech.cn,gateway.cotticoffee.com,gateway.kugou.com,gateway.shouqiev.com,gatewayretry.kugou.com,gfp.veta.naver.com,gha.ghac.cn,go.babytree.com,goblin.hupu.com,god.gameyw.netease.com,gongdu.youshu.cc,gouche.ksedt.com,goway.reader.yueyouxs.com,gsp.gacmotor.com,guanyu.longfor.com,gugongmini.dpm.org.cn,gurd.snssdk.com,gw-passenger.01zhuanche.com,gw.aihuishou.com,gw.csdn.net,gw.etczs.net,gw.line.naver.jp,gw.xiaocantech.com,gw3.ykccn.com,gzacshow.kugou.com,h3.open.taou.com,h5.kuaikanmanhua.com,h5.qzone.qq.com,h5api.sginput.qq.com,haojia.m.smzdm.com,heic.alicdn.com,helper.2bulu.com,hera-webapp.fenbi.com,hmbaby.simshine.cn,hoapp.juneyaoair.com,homefront.qunar.com,hweb-hotel.huazhu.com,hweb-manager.huazhu.com,hwimg.beingfine.cn,hwstore.kugou.com,i*.hoopchina.com.cn,i-lq.snssdk.com,*.i18n-pglstatp.com,ih2.ireader.com,image.suning.com,imagepc.ctaiot.com,images.cib.com.cn,imeclient.openspeech.cn,img*.10101111cdn.com,img-tailor.11222.cn,img.admobile.top,img.beingfine.cn,img.jiemian.com,img.wukongtv.com,img.yun.01zhuanche,img0*.benlailife.com,img0*.luckincoffeecdn.com,img1.126.net,imgcache.qq.com,imgx.jampp.com,init.sms.mob.com,interface.aomiapp.com,interface.mcake.com,ios.jjwxc.com,ios.sogou.com,ios.sspai.com,iosapi.peiyinxiu.com,iphone.ac.qq.com,issuecdn.baidupcs.com,j1.pupuapi.com,j5.dfcfw.com,jad-api.jin10.com,japi.233.com,jia.360.cn,jiucaigongshe.oss-cn-beijing.aliyuncs.com,jp.rsscc.com,jt.rsscc.com,jx3comm.xoyocdn.com,jz.wacaijizhang.com,*.kakamobi.cn,kano.guahao.cn,*.kingsoft-office-service.com,l*.51fanli.net,lan.line.me,lcen.xiaote.net,lchttpapi.xczim.com,learnywhere.cn,legy.line-apps.com,lens.leoao.com,line3-h5-mobile-api.biligame.com,lion.didialift.com,list-app-m.i4.cn,longquan-mtop.cainiao.com,luckman.suning.com,m.360buyimg.com,m.client.10010.com,m.fqfin.cn,m.ibuscloud.com,m.kookapp.cn,m.ly.com,m.pvp.xoyo.com,m.sh.189.cn,m.yap.yahoo.com,m1.ad.10010.com,m1fxgroup.kugou.com,magev6.if.qidian.com,maicai.api.ddxq.mobi,manager.aiqiangua.com,manager.aiqiangua.com:8080,*mangaapi.manhuaren.*,mapi.chaogejiaoyu.com,mapi.mafengwo.cn,mapi.sfbest.com,mapi.txcmapp.com,mapiweb.babytree.com,market-api.fenbi.com,marketing-aibox.v.mitvos.com,mc.tencentmusic.com,mcbd.maiche.com,mch.juhesaas.com,mcmm.caiyun.feixin.10086.cn:0,mcs-mimp-web.sf-express.com,me.bz.mgtv.com,media.qyer.com,member.alipan.com,meta.duitang.com,mgesq.api.mgtv.com,middle.yun.139.com,miniapp.qmai.cn,misc-api-prd-mx.wandafilm.com,mlol.qt.qq.com,mme.api.moji.com,mmgr.gtimg.com,mobile-api2011.elong.com,mobile-consumer-sapp.chery.cn,mobile-pic.cache.iciba.com,mobile-thor.api.mgtv.com,mobile.1qianbao.com,mobile.api.hunantv.com,mobile.api.mgtv.com,mobile.app.autohome.com.cn,mobile.laichon.com,mobileapi.chebada.com,mobileapi.ly.com,mobileapi.xiamenair.com,mobilehotelapi.elong.com,mobileso.bz.mgtv.com,mp.weixin.qq.com,mpcs.suning.com,mps.95508.com,mrobot.pcauto.com.cn,mrobot.pconline.com.cn,mrp.mcloud.139.com,msglb.91160.com,muses.ksedt.com,*.music.126.net,myusmile.online,nam.veta.naver.com,napi.ithome.com,nbcps-mtop.cainiao.com,nelo2-col.linecorp.com,netflow-mtop.cainiao.com,new-app-api.ylyk.com,newapi.meishi.cc,newapp2.szsmk.com,news.app.autohome.com.cn,nnapp.cloudbae.cn:0,ntt-app.benewtech.cn,obs.line-scdn.net,ocrifs.ejoy.sinopec.com,ok.166.net,omgup*.xiaojukeji.com,oneapp-api.faw-vw.com,oneapph5.dongfeng-nissan.com.cn,online.aicarmap.com,op.ksedt.com,open-cms-api.quark.cn,open.e.kuaishou.cn,open.e.kuaishou.com,open.fitdays.cn,open.qyer.com,open.taou.com,open3.vistastory.com,operationapi.fosunhanig.com,order-app-api.lbdj.com,oss-zjrs.haier.net,oss.jegotrip.com.cn,oss.umetrip.com,ovs-shopwindow-server*.wps.com,oxadmin.cp.com.cn,p.kuaidi100.com,pagead2.googleadservices.com,pages.trip.com,*.pangolin-sdk-toutiao.com,patient-api.suh.cn,patientappapi.91160.com,patientgate.91160.com,pcmx.autohome.com.cn,personal-center.yy.com,*.pglstatp-toutiao.com,pic*.chelaile.net.cn,pic.edaijia.cn,plough.babytree.com,pocketuni.net,poplayer.template.alibaba.com,portal-xunyou.qingcdn.com,post.m.smzdm.com,post.soulapp.cn,preprod.cdzghome.com,preprod.cdzghome.com:8100,prom.mobile.gome.com.cn,psnlz.api.moji.com,pss.txffp.com,*.pstatp.com,pt-starimg.didistatic.com,ptmpcap.caocaokeji.cn,pubads.g.doubleclick.net,public-deliver9.miguvideo.com,push.it.10086.cn,push.m.youku.com,qde.qunar.com,qimg.cdnmama.com,qt.qq.com,quanguo.mygolbs.com,quanguo.mygolbs.com:8081,qxb-minicode-pic-osscache.qixin.com,qzonestyle.gtimg.cn,recite.perfectlingo.com,recommend-dy.miguvideo.com,recpage-c.qtfm.cn,res.kfc.com.cn,res.mall.10010.cn,res.xiaojukeji.com,res1.hubcloud.com.cn,restapi.iyunmai.com,richmanrules.ksedt.com,rtm.fcbox.com,s-api.smzdm.com,saas.hpplay.cn,scdn.line-apps.com,sch.line.me,sdk.1rtb.net,se-api.djiits.com,search.qtfm.cn,service.4gtv.tv,service.busi.inke.cn,service.haiersmarthomes.com,service.iciba.com,sg.teld.cn,sh-gateway.shihuo.cn,*.sh.wxgateway.com,shcss.suning.com,shop-api.retail.mi.com,shop.kkmh.com,shop.laichon.com,*.shuqireader.com,sichuan.95504.net,silk.lx.netease.com,slapi.oray.net,smart.789.image.mucang.cn,smkmp.96225.com,snailsleep.net,sns.api.moji.com,snsapi.91160.com,soapi.91160.com,social.blued.cn,social.kkmh.com,*.sohu.com,spamblocker-api.zeekstudio.com,splashqqlive.gtimg.com,sports3.gtimg.com,sq.iyunmai.com,sq.sljkj.com,sso.ifanr.com,ssp.dzh.com.cn,ssp.soulapp.cn,st7niu.aicarmap.com,starplucker.cyapi.cn,stars.shuqireader.com,startup.umetrip.com,stat.10jqka.com.cn,stat.peopleapp.com,static.95508.com,static.gameplus.qq.com,static.line-scdn.net,static.shihuocdn.cn,static.xyzq.cn,static01.versa-ai.com,stlib.qbb6.com,swdlcdn.eastmoney.com,switch.jumpvg.com,syh.zybang.com,syt.leshuazf.com,sytgate.jslife.com.cn,t1.market.xiaomi.com,tab.yy.com,tagit.hyhuo.com,tcmobileapi.17usoft.com,tg.feidee.com,thor.weidian.com,tiance.wps.cn,tianqi.2345.com,tianshu.qq.com,tingshu.kuwo.cn,tk.lanjiyin.com.cn,tmeadkg.y.qq.com,tnc*-*.zijieapi.com,top-widgets-api.xiaozujian.com,topic.kkmh.com,*.townmalls.cn,triangle.wearemanner.com,truthsocial.com,tv.qiaohuapp.com,*.ubixioe.com,ucmp-static.sf-express.com,umerp.umetrip.com.cn,un-acs.youku.com,user-api.smzdm.com,user.api.ddxq.mobi,user.qtfm.cn,userapi.qiekj.com,userpms-api.suh.cn,ut2.shuqistat.com,uts-front.line-apps.com,v-api.crazymaplestudios.com,v0-client-lz.rili.cn,v3.wufazhuce.com,v3.wufazhuce.com:8000,vapp.tmuyun.com,vdo.api.moji.com,venus.yhd.com,vip*.kuwo.cn,vv.video.qq.com,w.line.me,wallpaper-1258344696.file.myqcloud.com,wanciwangdata.oss-cn-beijing.aliyuncs.com,wap.ngchina.cn,wcprd.hilton.com.cn,web.chelaile.net.cn,web.yy.com,web2.realtech-inc.com,webapi.qbb6.com,webboot.zhangyue.com,webcast-open.douyin.com,webcdn.m.qq.com,wechat.tf.cn,wemallh5.usmile.com,wnsaviator.kg.qq.com,wrapper.cyapi.cn,www.123pan.com,www.1314zhilv.com,www.ahzs10000.com,www.banyuetanapp.com,www.didapinche.com,www.dpfile.com,www.duitang.com,www.flyert.com,www.flyert.com.cn,www.flyetrip.com,www.flyetrip.com.cn,www.gaoding.com,www.gcores.com,www.google.cn,www.google.com,www.haixue.com,www.iyingdi.cn,www.kdocs.cn,www.kookapp.cn,www.kuaiduizuoye.com,www.linkedin.com,www.msccruises.com.cn,www.myusmile.online,www.okx.com,www.onstar.com.cn,www.oschina.net,www.tailgdd.com,www.terabox.com,www.upwork.com,www.vgtime.com,www.xiaoxiongmeishu.com,www.ymm56.com,www.zybang.com,www1.elecfans.com,wx.17u.cn,wx.api.ke.com,wx.mygolbs.com,wxapp.api.ke.com,xhtz.oss-cn-guangzhou.aliyuncs.com,xiaoshuo.wtzw.com,xxyx-client-api.xiaoxiaoyouxuan.com,xyst.yuanfudao.com,xyz.cnki.net,y.gtimg.cn,yanxuan.nosdn.127.net,yixiu-abtest.alicdn.com,yun.feidee.net,yun.tuitiger.com,yunmk.feidee.net,yuyin-api.baizhanlive.com,ywab.reader.qq.com,yyapp-act-entrance.yy.com,yyapp-fastnet.yy.com,yyapp-idx.yy.com,z.onewo.com,zconfig.alibabausercontent.com,zj.haier.net,zone.guiderank-app.com,zt-app.go189.cn,ztoread.ziroom.com,zyfile.izuiyou.com,config-service.seeyouyima.com,ad.12306.cn,mobile.12306.cn,gateway.36kr.com,36kr.com,app-v1.ecoliving168.com,852b95d36.xwlpk.cn,bizapi.alipan.com,ap.dongqiudi.com,*.amap.com,apiautoappusc.che168.com,cars.app.autohome.com.cn,clientlive.api.autohome.com.cn,maam.pingan.com.cn,aimg.babytreeimg.com,imeres.baidu.com,m.baidu.com,channel.beitaichufang.com,grpc.biliapi.net,pan-api.bitqiu.com,api.boohee.com,lego.boohee.com,status.boohee.com,e*.caixin.com,g*.caixin.com,m*.caixin.com,biz.cyapi.cn,api.caiyunapp.com,cdn-w.caiyunapp.com,api.cece.com,pic1.chelaile.net.cn,app.huashi6.com,js-ad.ayximgs.com,95598.csg.cn,img.ddrk.me,ddrk.me,capis.didapinche.com,119.29.29.*,dlabel.ctaiot.com,api.gamer.com.tw,frodo.douban.com,m.douban.com,read.douban.com,cn.iot.dreame.tech,gl-cn-api.ecovacs.cn,api-app.dc-cn.cn.ecouser.net,gateway-api.dushu365.com,consumer.fcbox.com,appapi.motianlun.cn,mobile.flightradar24.com,ptf.flyertrip.com,res-pub.huazhu.com,notch.qdaily.com,app3.qdaily.com,aweme.snssdk.com,api5-normal-m.amemv.com,cmsapi.wifi8.com,cmsfile.wifi8.com,api4.bybutter.com,fairy.mobileapi.hupu.com,bbs.mobileapi.hupu.com,api-ms-config.huxiu.com,api-web-feed.huxiu.com,api-search.huxiu.com,api-article.huxiu.com,api-web-moment.huxiu.com,api-ms-feed.huxiu.com,*.huya.com,*.msstatic.com,businessapi.ksedt.com,jiaxiao-awd.kakamobi.cn,swallow.kakamobi.cn,monkey.kakamobi.cn,jiakao-misc.kakamobi.cn,squirrel.kakamobi.cn,scs.kakamobi.cn,richmanapi.jxedt.com,pay.kkmh.com,cdn-pay.kkmh.com,az4-api.ksapisrv.com,az2-api.ksapisrv.com,az2-api-idc.ksapisrv.com,az2-api-js.gifshow.com,az2-live.ksapisrv.com,api.livelab.com.cn,base.mkzcdn.com,jzts.cmpassport.com,ad.mcloud.139.com,grpc.moegirl.org.cn,acs-m.freshippo.com,cn-app.narwaltech.com,store.narwal.com,app-conf.ds.163.com,interface.music.163.com,interface3.music.163.com,interface9.music.163.com,ipv4.music.163.com,interface3?.music.163.com,www.imxingzhe.com,*.pcauto.com.cn,*.pconline.com.cn,appactivity.wmpvp.com,zgrb.epicc.com.cn,api.pinterest.com,woqt2.qtfm.cn,m.riskbird.com,cniot.roborock.com,api.roborock.com,sf3-fe-tos.pglstatp-toutiao.com,ocean.shuqireader.com,huichuan.sm.cn,api.xueqiu.com,open.xueqiu.com,stock.xueqiu.com,fund.xueqiu.com,*spclient.spotify.com,gw-cn.jiaoliuqu.com,api.818ps.com,api-http2.tumblr.com,api.chenlongtech.cn,114.115.217.129,api-hyper.walmartmobile.cn,chong.qq.com,wx.online-cmcc.cn,wx.10086.cn,ne.gdsz.sinopec.com,*.weibo.cn,*.weibo.com,weibo.com,i.weread.qq.com,cili.xfuse.fun,i.micecube.com,img.mofyi.com,*.xiaopeng.com,*.yiche.com,fanyiguan-server.youdao.com,*.googlevideo.com,ask.zhaopin.com,cgate.zhaopin.com,*.zhihu.com

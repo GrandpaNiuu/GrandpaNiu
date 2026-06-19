@@ -2,7 +2,8 @@
   "trusted_repositories": [
     "QingRex/LoonKissSurge",
     "app2smile/rules",
-    "Maasea/sgmodule"
+    "Maasea/sgmodule",
+    "fmz200/wool_scripts"
   ],
   "modules": [
     {
@@ -42,6 +43,78 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "17173-game",
+      "name": "17173（网络游戏门户网站）",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part1/17173Game.snippet",
+      "target": "Rewrite/Sources/Apps/17173-game.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "178-game",
+      "name": "178游戏网",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part1/178Game.snippet",
+      "target": "Rewrite/Sources/Apps/178-game.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "18183-game",
+      "name": "18183游戏网",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part1/18183Game.snippet",
+      "target": "Rewrite/Sources/Apps/18183-game.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "1905-movie-network",
+      "name": "1905电影网",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part1/1905MovieNetwork.snippet",
+      "target": "Rewrite/Sources/Apps/1905-movie-network.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "2345-weather-king",
+      "name": "2345天气王",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part2/2345WeatherKing.snippet",
+      "target": "Rewrite/Sources/Apps/2345-weather-king.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "2345-web-navigation",
+      "name": "2345网址导航",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part2/2345WebNavigation.snippet",
+      "target": "Rewrite/Sources/Apps/2345-web-navigation.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "2bulu",
       "name": "两步路户外助手",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/2bulu_remove_ads.lpx",
@@ -78,6 +151,42 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "365-calendar",
+      "name": "365日历",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part3/365Calendar.snippet",
+      "target": "Rewrite/Sources/Apps/365-calendar.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "39-health",
+      "name": "39健康网",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part3/39Health.snippet",
+      "target": "Rewrite/Sources/Apps/39-health.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "51-cto",
+      "name": "51CTO学堂",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part5/51CTO.snippet",
+      "target": "Rewrite/Sources/Apps/51-cto.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "51-job",
       "name": "前程无忧",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/51Job_remove_ads.lpx",
@@ -102,6 +211,42 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "58-auto",
+      "name": "58汽车",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part5/58Auto.snippet",
+      "target": "Rewrite/Sources/Apps/58-auto.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "58-tong-cheng",
+      "name": "58同城",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part5/58TongCheng.snippet",
+      "target": "Rewrite/Sources/Apps/58-tong-cheng.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "9-game",
+      "name": "九游",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partJ/9Game.snippet",
+      "target": "Rewrite/Sources/Apps/9-game.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "91160",
       "name": "健康160",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/91160_remove_ads.lpx",
@@ -111,6 +256,18 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "acfun",
+      "name": "AcFun",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partA/AcFun.snippet",
+      "target": "Rewrite/Sources/Apps/acfun.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -135,6 +292,18 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "all-football",
+      "name": "懂球帝",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/AllFootball.snippet",
+      "target": "Rewrite/Sources/Apps/all-football.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -147,6 +316,18 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "appso",
+      "name": "AppSo",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partA/AppSo.snippet",
+      "target": "Rewrite/Sources/Apps/appso.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -172,6 +353,30 @@
       "backup": false,
       "upstream_project": "Kelee PluginHub",
       "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "baby-tree-parenting",
+      "name": "宝宝树孕育",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/BabyTreeParenting.snippet",
+      "target": "Rewrite/Sources/Apps/baby-tree-parenting.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "baicizhan",
+      "name": "百词斩",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/baicizhan.snippet",
+      "target": "Rewrite/Sources/Apps/baicizhan.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
     },
     {
       "id": "baidu",
@@ -234,6 +439,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "baidu-translation",
+      "name": "百度翻译",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/BaiduTranslation.snippet",
+      "target": "Rewrite/Sources/Apps/baidu-translation.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "baidu-wenku",
       "name": "Baidu Wenku",
       "source_url": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule",
@@ -258,6 +475,54 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "baixing",
+      "name": "百姓网",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/Baixing.snippet",
+      "target": "Rewrite/Sources/Apps/baixing.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "ban-yue-tan",
+      "name": "半月谈",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/BanYueTan.snippet",
+      "target": "Rewrite/Sources/Apps/ban-yue-tan.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "baofeng-player",
+      "name": "暴风影音",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/BaofengPlayer.snippet",
+      "target": "Rewrite/Sources/Apps/baofeng-player.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "bbc",
+      "name": "BBC",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/BBC.snippet",
+      "target": "Rewrite/Sources/Apps/bbc.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "beike",
       "name": "贝壳找房",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/Beike_remove_ads.lpx",
@@ -270,6 +535,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "betty-kitchen",
+      "name": "贝太厨房",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/BettyKitchen.snippet",
+      "target": "Rewrite/Sources/Apps/betty-kitchen.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "bilibili",
       "name": "Bilibili Strong",
       "source_url": "https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule",
@@ -279,7 +556,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "kokoryh/Sparkle",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "bilibili-comic",
@@ -294,6 +571,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "biquge",
+      "name": "笔趣阁",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/BiQuGe.snippet",
+      "target": "Rewrite/Sources/Apps/biquge.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "bitqiu-pan",
       "name": "比特球云盘",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/BitqiuPan_remove_ads.lpx",
@@ -303,6 +592,18 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "blued",
+      "name": "Blued",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/Blued.snippet",
+      "target": "Rewrite/Sources/Apps/blued.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -402,6 +703,42 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "chao-ji-ke-cheng-biao",
+      "name": "超级课程表",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partC/ChaoJiKeChengBiao.snippet",
+      "target": "Rewrite/Sources/Apps/chao-ji-ke-cheng-biao.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "chao-xing-xue-xi-tong",
+      "name": "超星学习通",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partC/ChaoXingXueXiTong.snippet",
+      "target": "Rewrite/Sources/Apps/chao-xing-xue-xi-tong.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "che-lai-le",
+      "name": "车来了",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partC/CheLaiLe.snippet",
+      "target": "Rewrite/Sources/Apps/che-lai-le.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "cheng-fen-miao",
       "name": "成分喵",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/ChengFenMiao_remove_ads.lpx",
@@ -423,7 +760,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "chuzhan",
@@ -438,6 +775,42 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "ci-wei-mao-yue-du",
+      "name": "刺猬猫阅读",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partC/CiWeiMaoYueDu.snippet",
+      "target": "Rewrite/Sources/Apps/ci-wei-mao-yue-du.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "clicli",
+      "name": "clicli",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partC/clicli.snippet",
+      "target": "Rewrite/Sources/Apps/clicli.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "cnn",
+      "name": "CNN",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partC/CNN.snippet",
+      "target": "Rewrite/Sources/Apps/cnn.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "cool-apk",
       "name": "酷安",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/CoolApk_remove_ads.lpx",
@@ -447,6 +820,42 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "coolapk",
+      "name": "酷安",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partK/Coolapk.snippet",
+      "target": "Rewrite/Sources/Apps/coolapk.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "crunchyroll",
+      "name": "crunchyroll",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partC/Crunchyroll.snippet",
+      "target": "Rewrite/Sources/Apps/crunchyroll.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "csdn",
+      "name": "CSDN",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partC/csdn.snippet",
+      "target": "Rewrite/Sources/Apps/csdn.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -486,6 +895,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "dang-dang-reading",
+      "name": "当当阅读",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/DangDangReading.snippet",
+      "target": "Rewrite/Sources/Apps/dang-dang-reading.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "dewu",
       "name": "得物",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/Dewu_remove_ads.lpx",
@@ -507,6 +928,18 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "di-duan-ying-shi",
+      "name": "低端影视",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/DiDuanYingShi.snippet",
+      "target": "Rewrite/Sources/Apps/di-duan-ying-shi.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -570,6 +1003,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "dong-hua-feng",
+      "name": "动画疯",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/DongHuaFeng.snippet",
+      "target": "Rewrite/Sources/Apps/dong-hua-feng.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "dou-ban",
       "name": "豆瓣",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/DouBan_remove_ads.lpx",
@@ -594,6 +1039,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "douyin",
+      "name": "抖音",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/TikTok.snippet",
+      "target": "Rewrite/Sources/Apps/douyin.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "douyu",
       "name": "斗鱼",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/Douyu_remove_ads.lpx",
@@ -615,7 +1072,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "dreame",
@@ -654,6 +1111,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "eastday",
+      "name": "东方网",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/Eastday.snippet",
+      "target": "Rewrite/Sources/Apps/eastday.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "ecovacs-home",
       "name": "ECOVACS HOME",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/EcovacsHome_remove_ads.lpx",
@@ -675,6 +1144,30 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "facebook",
+      "name": "Facebook",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partF/Facebook.snippet",
+      "target": "Rewrite/Sources/Apps/facebook.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "fan-deng-reading",
+      "name": "樊登读书",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partF/FanDengReading.snippet",
+      "target": "Rewrite/Sources/Apps/fan-deng-reading.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -738,6 +1231,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "flightradar24",
+      "name": "Flightradar24",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partF/Flightradar24.snippet",
+      "target": "Rewrite/Sources/Apps/flightradar24.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "flyer-tea",
       "name": "飞客",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/FlyerTea_remove_ads.lpx",
@@ -760,6 +1265,30 @@
       "backup": false,
       "upstream_project": "Kelee PluginHub",
       "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "funshion",
+      "name": "风行网",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partF/Funshion.snippet",
+      "target": "Rewrite/Sources/Apps/funshion.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "ganji",
+      "name": "赶集网",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partG/Ganji.snippet",
+      "target": "Rewrite/Sources/Apps/ganji.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
     },
     {
       "id": "gao-ding",
@@ -798,6 +1327,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "hanju-tv",
+      "name": "韩剧TV",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partH/HanJuTV.snippet",
+      "target": "Rewrite/Sources/Apps/hanju-tv.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "hanting-hotels",
       "name": "华住会",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/HantingHotels_remove_ads.lpx",
@@ -807,6 +1348,42 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "hao-qi-xin-daily",
+      "name": "好奇心日报",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partH/HaoQiXinDaily.snippet",
+      "target": "Rewrite/Sources/Apps/hao-qi-xin-daily.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "hao123",
+      "name": "Hao123",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partH/Hao123.snippet",
+      "target": "Rewrite/Sources/Apps/hao123.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "he-feng-weather",
+      "name": "和风天气",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partH/HeFengWeather.snippet",
+      "target": "Rewrite/Sources/Apps/he-feng-weather.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -832,6 +1409,42 @@
       "backup": false,
       "upstream_project": "Kelee PluginHub",
       "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "hua-sheng-di-tie",
+      "name": "花生地铁",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partH/HuaShengDiTie.snippet",
+      "target": "Rewrite/Sources/Apps/hua-sheng-di-tie.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "huang-you-xiang-ji",
+      "name": "黄油相机",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partH/HuangYouXiangJi.snippet",
+      "target": "Rewrite/Sources/Apps/huang-you-xiang-ji.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "hujiang-online-school",
+      "name": "沪江网校",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partH/HujiangOnlineSchool.snippet",
+      "target": "Rewrite/Sources/Apps/hujiang-online-school.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
     },
     {
       "id": "hupu",
@@ -891,7 +1504,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "i-reader",
@@ -942,6 +1555,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "jdreading",
+      "name": "京东读书",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partJ/JDReading.snippet",
+      "target": "Rewrite/Sources/Apps/jdreading.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "jdwaimai",
       "name": "京东外卖",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/JDWaimai_remove_ads.lpx",
@@ -951,6 +1576,18 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "ji-he-wang",
+      "name": "机核网",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partJ/JiHeWang.snippet",
+      "target": "Rewrite/Sources/Apps/ji-he-wang.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -978,6 +1615,42 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "jia-xiao-yi-dian-tong",
+      "name": "驾校一点通",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partJ/JiaXiaoYiDianTong.snippet",
+      "target": "Rewrite/Sources/Apps/jia-xiao-yi-dian-tong.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "jie-mian-news",
+      "name": "界面新闻",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partJ/JieMianNews.snippet",
+      "target": "Rewrite/Sources/Apps/jie-mian-news.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "jin-ri-shui-yin-camera",
+      "name": "今日水印相机",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partJ/JinRiShuiYinCamera.snippet",
+      "target": "Rewrite/Sources/Apps/jin-ri-shui-yin-camera.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "jump",
       "name": "Jump",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/Jump_remove_ads.lpx",
@@ -987,6 +1660,30 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "kan-li-xiang",
+      "name": "看理想",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partK/KanLiXiang.snippet",
+      "target": "Rewrite/Sources/Apps/kan-li-xiang.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "kan-tian-xia",
+      "name": "看天下",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partK/KanTianXia.snippet",
+      "target": "Rewrite/Sources/Apps/kan-tian-xia.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -1014,6 +1711,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "kfc",
+      "name": "肯德基",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partK/KFC.snippet",
+      "target": "Rewrite/Sources/Apps/kfc.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "kgring",
       "name": "酷狗铃声",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/KGRing_remove_ads.lpx",
@@ -1035,6 +1744,18 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "kingsoft-power-word",
+      "name": "金山词霸",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partJ/KingsoftPowerWord.snippet",
+      "target": "Rewrite/Sources/Apps/kingsoft-power-word.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -1060,6 +1781,18 @@
       "backup": false,
       "upstream_project": "Kelee PluginHub",
       "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "ku-gou-music",
+      "name": "酷狗音乐",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partK/KuGouMusic.snippet",
+      "target": "Rewrite/Sources/Apps/ku-gou-music.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
     },
     {
       "id": "ku-gou-youth",
@@ -1098,6 +1831,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "kuai-kan",
+      "name": "快看",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partK/KuaiKan.snippet",
+      "target": "Rewrite/Sources/Apps/kuai-kan.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "kuai-kan-comic",
       "name": "快看漫画",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/KuaiKanComic_remove_ads.lpx",
@@ -1122,6 +1867,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "kuaishou",
+      "name": "快手",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partK/Kuaishou.snippet",
+      "target": "Rewrite/Sources/Apps/kuaishou.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "kuro-bbs",
       "name": "库街区",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/KuroBBS_remove_ads.lpx",
@@ -1143,7 +1900,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "kwai-videoeditor",
@@ -1158,6 +1915,54 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "lan-ren-ting-shu",
+      "name": "懒人听书",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partL/LanRenTingShu.snippet",
+      "target": "Rewrite/Sources/Apps/lan-ren-ting-shu.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "le-bo-screen-cast",
+      "name": "乐播投屏",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partL/LeBoScreenCast.snippet",
+      "target": "Rewrite/Sources/Apps/le-bo-screen-cast.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "le-eco",
+      "name": "乐视",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partL/LeEco.snippet",
+      "target": "Rewrite/Sources/Apps/le-eco.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "leju",
+      "name": "乐居",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partL/Leju.snippet",
+      "target": "Rewrite/Sources/Apps/leju.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "line",
       "name": "Line",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/Line_remove_ads.lpx",
@@ -1168,6 +1973,18 @@
       "backup": false,
       "upstream_project": "Kelee PluginHub",
       "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partL/LinkedIn.snippet",
+      "target": "Rewrite/Sources/Apps/linkedin.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
     },
     {
       "id": "live-lab",
@@ -1455,7 +2272,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "netease-news",
@@ -1491,6 +2308,18 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "oschina",
+      "name": "开源中国",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partK/OSChina.snippet",
+      "target": "Rewrite/Sources/Apps/oschina.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -1623,7 +2452,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "qqmusic",
@@ -1866,6 +2695,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "skyworth",
+      "name": "创维",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partC/Skyworth.snippet",
+      "target": "Rewrite/Sources/Apps/skyworth.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "snail-sleep",
       "name": "蜗牛睡眠",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/SnailSleep_remove_ads.lpx",
@@ -1923,7 +2764,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "spotify",
@@ -2007,7 +2848,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "terabox",
@@ -2031,6 +2872,18 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
+      "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "truth-social",
+      "name": "TruthSocial",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partT/TruthSocial.snippet",
+      "target": "Rewrite/Sources/Apps/truth-social.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
     {
@@ -2080,6 +2933,30 @@
       "backup": false,
       "upstream_project": "Kelee PluginHub",
       "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "twitch",
+      "name": "Twitch",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partT/Twitch.snippet",
+      "target": "Rewrite/Sources/Apps/twitch.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
+      "id": "twitter",
+      "name": "Twitter",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partT/Twitter.snippet",
+      "target": "Rewrite/Sources/Apps/twitter.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
     },
     {
       "id": "txdocs",
@@ -2154,6 +3031,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "wall-street-cn",
+      "name": "华尔街见闻",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partH/WallStreetCN.snippet",
+      "target": "Rewrite/Sources/Apps/wall-street-cn.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "unchanged"
+    },
+    {
       "id": "walmart",
       "name": "沃尔玛",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/Walmart_remove_ads.lpx",
@@ -2164,6 +3053,18 @@
       "backup": false,
       "upstream_project": "Kelee PluginHub",
       "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "wasu-tv",
+      "name": "华数TV",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partH/WasuTV.snippet",
+      "target": "Rewrite/Sources/Apps/wasu-tv.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
     },
     {
       "id": "wechat",
@@ -2595,7 +3496,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "zhuan-zhuan",

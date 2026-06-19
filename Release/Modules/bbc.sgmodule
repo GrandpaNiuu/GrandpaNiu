@@ -1,0 +1,6 @@
+#!name=GrandpaNiu BBC Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/bbc.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,visualscience.external.bbc.co.uk,REJECT

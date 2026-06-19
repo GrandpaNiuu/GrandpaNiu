@@ -3,6 +3,7 @@
 
 ||ad.line-scdn.net^
 ||ad.maoyan.com^
+||ad.myfriday.cn^
 ||ad.xiaotucc.com^
 ||adproxy.autohome.com.cn^
 ||ads.ishansong.com^

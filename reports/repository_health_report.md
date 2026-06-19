@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-20 02:20:24 +0800
+- Generated at: 2026-06-20 02:28:54 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -8,16 +8,16 @@
 - automated quality evidence: passed
 - node --check Scripts/app-cleaner.js: passed
 - Script entries: 26
-- MITM hostnames: 1188
+- MITM hostnames: 1209
 
 ## Section Counts
 
-- [Rule]: 926
-- [URL Rewrite]: 2482
+- [Rule]: 1141
+- [URL Rewrite]: 2568
 - [Header Rewrite]: 1
 - [Body Rewrite]: 1652
 - [Map Local]: 351
-- [Script]: 86
+- [Script]: 89
 - [MITM]: 1
 
 ## Blocking Issues
@@ -60,8 +60,6 @@
 
 ```text
 Repository validation passed.
-./scripts/validate_repository.py:269: SyntaxWarning: invalid escape sequence '//'
-  normalized = lowered.replace("//", "/")
 ```
 
 ## automated quality evidence Output

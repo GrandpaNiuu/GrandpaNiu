@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 百度翻译 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/baidu-translation.sgmodule
+
+[URL Rewrite]
+^https?://mime\.baidu\.com/v\d/IosStart/getStartInfo - reject
+^https?://mime\.baidu\.com/v\d/activity/advertisement - reject
+
+[MITM]
+hostname = %APPEND% mime.baidu.com

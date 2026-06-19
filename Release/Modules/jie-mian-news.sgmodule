@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 界面新闻 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/jie-mian-news.sgmodule
+
+[URL Rewrite]
+^https?://img\.jiemian\.com/ads/ - reject
+
+[MITM]
+hostname = %APPEND% img.jiemian.com

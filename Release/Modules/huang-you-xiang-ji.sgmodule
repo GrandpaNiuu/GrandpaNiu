@@ -1,0 +1,14 @@
+#!name=GrandpaNiu 黄油相机 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/huang-you-xiang-ji.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,anythinktech.com,REJECT
+DOMAIN-SUFFIX,adkwai.com,REJECT
+DOMAIN-SUFFIX,mob.com,REJECT
+
+[URL Rewrite]
+^https?://api4\.bybutter\.com/v\d/app/placements/\d/advertisements - reject
+
+[MITM]
+hostname = %APPEND% api4.bybutter.com

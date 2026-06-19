@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 宝宝树孕育 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/baby-tree-parenting.sgmodule
+
+[URL Rewrite]
+^https?://aimg\.babytreeimg\.com/group1/M00/*/*/.*.jpg - reject-200
+^https?://plough\.babytree\.com/plough\.do - reject-200
+^https?://mapiweb\.babytree\.com/newapi/luban/behavior/receive - reject-200
+^https?://go\.babytree\.com/go_pregnancy/api/index_activity/get_app_index_activity - reject-200
+^https?://go\.babytree\.com/go_tool/api/feeding_record/get_home_banner_info - reject-dict
+
+[MITM]
+hostname = %APPEND% aimg.babytreeimg.com,plough.babytree.com,mapiweb.babytree.com,go.babytree.com

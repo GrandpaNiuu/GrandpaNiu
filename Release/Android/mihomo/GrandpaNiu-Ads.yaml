@@ -5,7 +5,6 @@ payload:
   # Script, MITM, Rewrite and media-chain rules are not migrated to Android.
 
   - DOMAIN,aaid.uyunad.com
-  - DOMAIN,abtest3-misc.zijieapi.com
   - DOMAIN,abyss.cyapi.cn
   - DOMAIN,acdn.adnxs.com
   - DOMAIN,acs4baichuan.m.taobao.com
@@ -28,6 +27,7 @@ payload:
   - DOMAIN,ad.line-scdn.net
   - DOMAIN,ad.maoyan.com
   - DOMAIN,ad.mcloud.139.com
+  - DOMAIN,ad.myfriday.cn
   - DOMAIN,ad.partner.gifshow.com
   - DOMAIN,ad.qingting.fm
   - DOMAIN,ad.qtfm.cn
@@ -71,8 +71,6 @@ payload:
   - DOMAIN,ads.union.jd.com
   - DOMAIN,ads.youtube.com
   - DOMAIN,ads.zhinengxiyifang.cn
-  - DOMAIN,ads3-normal.zijieapi.com
-  - DOMAIN,ads5-normal.zijieapi.com
   - DOMAIN,adse.wsa.ximalaya.com
   - DOMAIN,adse.ximalaya.com
   - DOMAIN,adsebs.wsa.ximalaya.com
@@ -82,6 +80,7 @@ payload:
   - DOMAIN,adservice.kugou.com
   - DOMAIN,adserviceretry.kglink.cn
   - DOMAIN,adserviceretry.kugou.com
+  - DOMAIN,adsfile.bssdlbig.kugou.com
   - DOMAIN,adshows.21cn.com
   - DOMAIN,adsmind.gdtimg.com
   - DOMAIN,adsmind.ugdtimg.com
@@ -126,7 +125,6 @@ payload:
   - DOMAIN,atrace.chelaile.net.cn
   - DOMAIN,axxd.xmseeyouyima.com
   - DOMAIN,business.msstatic.com
-  - DOMAIN,c2.gdt.qq.com
   - DOMAIN,cad.youku.com
   - DOMAIN,cdn-ad.wtzw.com
   - DOMAIN,cdn-new-ad.wtzw.com
@@ -144,6 +142,7 @@ payload:
   - DOMAIN,cupid.iqiyi.com
   - DOMAIN,cupid.ptqy.gitv.tv
   - DOMAIN,da.bridgeturbo.com
+  - DOMAIN,data-hoisin.coocaa.com
   - DOMAIN,data.mistat.xiaomi.com
   - DOMAIN,ddfs-public.ddimg.mobi
   - DOMAIN,dflow.bz.mgtv.com
@@ -155,25 +154,22 @@ payload:
   - DOMAIN,dynamicf.sankuai.com
   - DOMAIN,e.jparking.cn
   - DOMAIN,e.kuaishou.com
-  - DOMAIN,effect.snssdk.com
   - DOMAIN,emdcadvertise.eastmoney.com
   - DOMAIN,emdcadvertisepj.eastmoney.com
+  - DOMAIN,emma-414870e223.huodonghezi.com
   - DOMAIN,ems.youku.com
   - DOMAIN,encounter.bz.mgtv.com
   - DOMAIN,et.ykccn.com
   - DOMAIN,etl.xlmc.sandai.net
-  - DOMAIN,feedback-c.zijieapi.com
   - DOMAIN,floor.bz.mgtv.com
   - DOMAIN,free-aos-cdn-image.amap.com
+  - DOMAIN,g.koowo.com
   - DOMAIN,gather.colorfulclouds.net
-  - DOMAIN,gecko3.zijieapi.com
-  - DOMAIN,gecko5.zijieapi.com
   - DOMAIN,googleads.g.doubleclick.net
   - DOMAIN,gwp.xiaojukeji.com
   - DOMAIN,h-adashx.ut.taobao.com
   - DOMAIN,hc-ssp.sm.cn
   - DOMAIN,hlx.meituan.com
-  - DOMAIN,huatuocode.huatuo.qq.com
   - DOMAIN,huodong.weibo.cn
   - DOMAIN,huyafile.msstatic.com
   - DOMAIN,iad.g.163.com
@@ -190,7 +186,6 @@ payload:
   - DOMAIN,imgad0.pcauto.com.cn
   - DOMAIN,imgad0.pconline.com.cn
   - DOMAIN,impression.biligame.com
-  - DOMAIN,ios.bugly.qq.com
   - DOMAIN,ios.video.mpush.qq.com
   - DOMAIN,ipv4.kkmh.com
   - DOMAIN,ipv4.music.163.com
@@ -202,6 +197,8 @@ payload:
   - DOMAIN,kad.gotokeep.com
   - DOMAIN,kepler.jd.com
   - DOMAIN,keplerapi.jd.com
+  - DOMAIN,kgmobilestat.kugou.com
+  - DOMAIN,kgmobilestatbak.kugou.com
   - DOMAIN,layer.bz.mgtv.com
   - DOMAIN,layout.meituan.net
   - DOMAIN,lf-normal-gr-sourcecdn.bytegecko.com
@@ -217,7 +214,6 @@ payload:
   - DOMAIN,logs.chelaile.net.cn
   - DOMAIN,lx0.meituan.com
   - DOMAIN,m.atm.youku.com
-  - DOMAIN,ma.zijieapi.com
   - DOMAIN,mall-dsp2.qinlinkeji.com
   - DOMAIN,mallapi2.qinlinkeji.com
   - DOMAIN,maplocatesdksnapshot.d.meituan.net
@@ -228,13 +224,11 @@ payload:
   - DOMAIN,mediation.adnxs.com
   - DOMAIN,meta.pinduoduo.com
   - DOMAIN,metrics-picture.d.meituan.net
-  - DOMAIN,mi.gdt.qq.com
   - DOMAIN,minfo.wps.cn
-  - DOMAIN,minigame3-normal.zijieapi.com
-  - DOMAIN,minigame5-normal.zijieapi.com
   - DOMAIN,mob.bz.mgtv.com
   - DOMAIN,mobad.ijinshan.com
   - DOMAIN,mobads.baidu.com
+  - DOMAIN,mobilelog.kugou.com
   - DOMAIN,mon.snssdk.com
   - DOMAIN,mon.toutiaocloud.com
   - DOMAIN,mon.toutiaocloud.net
@@ -243,7 +237,6 @@ payload:
   - DOMAIN,mon3-misc.fqnovel.com
   - DOMAIN,monitor.music.qq.com
   - DOMAIN,mqtt.zhihu.com
-  - DOMAIN,mssdk.zijieapi.com
   - DOMAIN,open-pixon.ads-pixiv.net
   - DOMAIN,open.e.kuaishou.com
   - DOMAIN,openjmacs.m.taobao.com
@@ -256,13 +249,11 @@ payload:
   - DOMAIN,pangolin-sdk-toutiao.com
   - DOMAIN,pangolin.snssdk.com
   - DOMAIN,partnerad.l.doubleclick.net
-  - DOMAIN,pgdt.ugdtimg.com
+  - DOMAIN,pgdt.gtimg.com
   - DOMAIN,popup-api.b612kaji.com
   - DOMAIN,popup.dushu365.com
   - DOMAIN,pp-cdnfile2pcdn.msstatic.com
   - DOMAIN,qh-material.taobao.com
-  - DOMAIN,qzs.gdtimg.com
-  - DOMAIN,qzs.qq.com
   - DOMAIN,r.dianping.com
   - DOMAIN,rc-topic-api.bz.mgtv.com
   - DOMAIN,render-web.11222.cn
@@ -271,7 +262,6 @@ payload:
   - DOMAIN,richmanapi.jxedt.com
   - DOMAIN,richmanmain.jxedt.com
   - DOMAIN,richmanrules.jxedt.com
-  - DOMAIN,rmonitor.qq.com
   - DOMAIN,rprain.bz.mgtv.com
   - DOMAIN,rprain.log.mgtv.com
   - DOMAIN,rtbapi.douyucdn.cn
@@ -284,7 +274,6 @@ payload:
   - DOMAIN,saxn.sina.com.cn
   - DOMAIN,saxs.sina.com.cn
   - DOMAIN,sdk.ad.sfys365.com
-  - DOMAIN,sdk.e.qq.com
   - DOMAIN,sdkconfig.ad.xiaomi.com
   - DOMAIN,sensors.umetrip.com.cn
   - DOMAIN,sin3-ib.adnxs.com
@@ -302,23 +291,19 @@ payload:
   - DOMAIN,sugar.zhihu.com
   - DOMAIN,t-ads.xiaohongshu.com
   - DOMAIN,t-dsp.pinduoduo.com
-  - DOMAIN,t.gdt.qq.com
   - DOMAIN,ta-a.pinduoduo.com
   - DOMAIN,ta.pinduoduo.com
   - DOMAIN,temai.snssdk.com
   - DOMAIN,th-a.pinduoduo.com
   - DOMAIN,th-b.pinduoduo.com
   - DOMAIN,th.pinduoduo.com
-  - DOMAIN,timon.zijieapi.com
   - DOMAIN,titan.pinduoduo.com
   - DOMAIN,tmead.y.qq.com
   - DOMAIN,tmeadbak.y.qq.com
   - DOMAIN,tmeadcomm.y.qq.com
   - DOMAIN,tmeadquic.y.qq.com
   - DOMAIN,tns.simba.taobao.com
-  - DOMAIN,toblog.ctobsnssdk.com
   - DOMAIN,tpc.googlesyndication.com
-  - DOMAIN,tpstelemetry.tencent.com
   - DOMAIN,track.58.com
   - DOMAIN,trackercollect.ddxq.mobi
   - DOMAIN,tracking.intl.miui.com
@@ -327,18 +312,14 @@ payload:
   - DOMAIN,u1.img.mobile.sina.cn
   - DOMAIN,ucdc.upaas.quark.cn
   - DOMAIN,umengacs.m.taobao.com
+  - DOMAIN,ups.ksmobile.net
   - DOMAIN,ut.taobao.com
-  - DOMAIN,v.gdt.qq.com
-  - DOMAIN,v2.gdt.qq.com
   - DOMAIN,vali-g1.cp31.ott.cibntv.net
   - DOMAIN,vali-ugc.cp31.ott.cibntv.net
-  - DOMAIN,vas.snssdk.com
-  - DOMAIN,vcs.zijieapi.com
   - DOMAIN,webcast-open.douyin.com
   - DOMAIN,wgo.mmstat.com
-  - DOMAIN,win.gdt.qq.com
   - DOMAIN,wmlog.meituan.com
-  - DOMAIN,wup.imtt.qq.com
+  - DOMAIN,ws.ksmobile.net
   - DOMAIN,www.googleadservices.com
   - DOMAIN,xadsdk.shellapp.cn
   - DOMAIN,xg.pinduoduo.com
@@ -351,42 +332,75 @@ payload:
   - DOMAIN,zjres-ad.kajicam.com
   - DOMAIN,zlink.ugsdk.cn
   - DOMAIN,zlsdk.1rtb.net
-  - DOMAIN,zxid-m.mobileservice.cn
   - DOMAIN-KEYWORD,ads.yahoo
   - DOMAIN-KEYWORD,adsage
+  - DOMAIN-KEYWORD,adservice.kugou.com
+  - DOMAIN-KEYWORD,adsfilebssdlbig.ali.kugou.com
   - DOMAIN-KEYWORD,adsmogo
   - DOMAIN-KEYWORD,adsrvmedia
   - DOMAIN-KEYWORD,adtrack
+  - DOMAIN-KEYWORD,apimg.qunliao.info
   - DOMAIN-KEYWORD,bili-ad
   - DOMAIN-KEYWORD,biliad
   - DOMAIN-KEYWORD,biligame-ad
   - DOMAIN-KEYWORD,bj.imp.voiceads.cn
+  - DOMAIN-KEYWORD,c1img.ali.kugou.com
   - DOMAIN-KEYWORD,doubleclick
   - DOMAIN-KEYWORD,googleads
   - DOMAIN-KEYWORD,googlesyndication
   - DOMAIN-KEYWORD,iflyad.bj.openstorage.cn
   - DOMAIN-KEYWORD,jd-ad
   - DOMAIN-KEYWORD,jingdong-ad
+  - DOMAIN-KEYWORD,kgipadstat.kugou.com
+  - DOMAIN-KEYWORD,kgipadstatbak.kugou.com
+  - DOMAIN-KEYWORD,kgstaticdlbssdlbig.tx.kugou.com
   - DOMAIN-KEYWORD,kuaishou-ad
   - DOMAIN-KEYWORD,kwai-ad
+  - DOMAIN-KEYWORD,logwebs.kugou.com
   - DOMAIN-KEYWORD,m.panda.voiceads.cn
   - DOMAIN-KEYWORD,mobads
+  - DOMAIN-KEYWORD,nbcollect.kugou.com
+  - DOMAIN-KEYWORD,nbcollectretry.kugou.com
+  - DOMAIN-KEYWORD,p3.pstatp.com
   - DOMAIN-KEYWORD,pangolin
   - DOMAIN-KEYWORD,pdd-ad
   - DOMAIN-KEYWORD,pglstatp
   - DOMAIN-KEYWORD,report.meituan
+  - DOMAIN-KEYWORD,rt-m.kugou.com
+  - DOMAIN-KEYWORD,rtmretry.kugou.com
+  - DOMAIN-KEYWORD,searchrecommend.kugou.com
+  - DOMAIN-KEYWORD,splashimgbssdl.yun.kugou.com
   - DOMAIN-KEYWORD,spotify-ad
   - DOMAIN-KEYWORD,spotify-ads
   - DOMAIN-KEYWORD,trace.qq.com
+  - DOMAIN-KEYWORD,tracker.kugou.com
+  - DOMAIN-KEYWORD,trackercdnbj.kugou.com
   - DOMAIN-KEYWORD,weibo-ad
   - DOMAIN-KEYWORD,xhs-ad
   - DOMAIN-KEYWORD,xiaohongshu-ad
   - DOMAIN-KEYWORD,zhihu-ad
+  - DOMAIN-SUFFIX,1.hao123.com
+  - DOMAIN-SUFFIX,1.letvlive.com
+  - DOMAIN-SUFFIX,2.letvlive.com
+  - DOMAIN-SUFFIX,58.xgo.com.cn
+  - DOMAIN-SUFFIX,58mingri.cn
+  - DOMAIN-SUFFIX,58mingtian.cn
+  - DOMAIN-SUFFIX,aa0.pub.funshion.com
+  - DOMAIN-SUFFIX,aa1.pub.funshion.com
+  - DOMAIN-SUFFIX,acsystem.wasu.cn
+  - DOMAIN-SUFFIX,action.logger.baofeng.com
+  - DOMAIN-SUFFIX,active.baofeng.com
   - DOMAIN-SUFFIX,ad.10010.com
+  - DOMAIN-SUFFIX,ad.17173.com
+  - DOMAIN-SUFFIX,ad.365rili.com
+  - DOMAIN-SUFFIX,ad.9game.cn
   - DOMAIN-SUFFIX,ad.csdn.net
   - DOMAIN-SUFFIX,ad.e.waimai.sankuai.com
+  - DOMAIN-SUFFIX,ad.funshion.org.cn
+  - DOMAIN-SUFFIX,ad.ganji.com
   - DOMAIN-SUFFIX,ad.hpplay.cn
   - DOMAIN-SUFFIX,ad.intl.xiaomi.com
+  - DOMAIN-SUFFIX,ad.kugou.com
   - DOMAIN-SUFFIX,ad.mail.sohu.com
   - DOMAIN-SUFFIX,ad.qq.com
   - DOMAIN-SUFFIX,ad.sohu.com
@@ -396,16 +410,23 @@ payload:
   - DOMAIN-SUFFIX,adbehavior.wsa.ximalaya.com
   - DOMAIN-SUFFIX,adbehavior.ximalaya.com
   - DOMAIN-SUFFIX,adcanvas.com
+  - DOMAIN-SUFFIX,adeng.hpplay.cn
   - DOMAIN-SUFFIX,adfilter.imtt.qq.com
   - DOMAIN-SUFFIX,adjust.com
   - DOMAIN-SUFFIX,adjust.net.in
+  - DOMAIN-SUFFIX,adk.funshion.com
   - DOMAIN-SUFFIX,adkwai.com
+  - DOMAIN-SUFFIX,adm.funshion.com
+  - DOMAIN-SUFFIX,adm.leju.com
   - DOMAIN-SUFFIX,admaster.com.cn
   - DOMAIN-SUFFIX,admobile.top
+  - DOMAIN-SUFFIX,admx.baixing.com
   - DOMAIN-SUFFIX,adnxs.com
   - DOMAIN-SUFFIX,adping.qq.com
   - DOMAIN-SUFFIX,adpm.app.qq.com
+  - DOMAIN-SUFFIX,ads-twitter.com
   - DOMAIN-SUFFIX,ads.linkedin.com
+  - DOMAIN-SUFFIX,ads.service.kugou.com
   - DOMAIN-SUFFIX,ads.sohu.com
   - DOMAIN-SUFFIX,ads.union.jd.com
   - DOMAIN-SUFFIX,ads.ximalaya.com
@@ -422,9 +443,12 @@ payload:
   - DOMAIN-SUFFIX,adsebs.ximalaya.com
   - DOMAIN-SUFFIX,adsebs.xmcdn.com
   - DOMAIN-SUFFIX,adserver.yahoo.com
+  - DOMAIN-SUFFIX,adserviceretry.kugou.com
+  - DOMAIN-SUFFIX,adsfile.bssdlbig.kugou.com
   - DOMAIN-SUFFIX,adsfile.qq.com
   - DOMAIN-SUFFIX,adsgroup.qq.com
   - DOMAIN-SUFFIX,adshmct.qq.com
+  - DOMAIN-SUFFIX,adshow.58.com
   - DOMAIN-SUFFIX,adslvfile.qq.com
   - DOMAIN-SUFFIX,adslvseed.qq.com
   - DOMAIN-SUFFIX,adsmind.apdcdn.tc.qq.com
@@ -437,92 +461,285 @@ payload:
   - DOMAIN-SUFFIX,adsrvr.org
   - DOMAIN-SUFFIX,adstextview.qq.com
   - DOMAIN-SUFFIX,adsview.qq.com
+  - DOMAIN-SUFFIX,adsystem.wasu.tv
   - DOMAIN-SUFFIX,adukwai.com
   - DOMAIN-SUFFIX,advertising.yahoo.com
   - DOMAIN-SUFFIX,adview.cn
   - DOMAIN-SUFFIX,adview.com
+  - DOMAIN-SUFFIX,adwasu.tv
   - DOMAIN-SUFFIX,adweb.wsa.ximalaya.com
   - DOMAIN-SUFFIX,adweb.ximalaya.com
   - DOMAIN-SUFFIX,adwo.com
   - DOMAIN-SUFFIX,adwx.wsa.ximalaya.com
   - DOMAIN-SUFFIX,adwx.ximalaya.com
   - DOMAIN-SUFFIX,adxs.ximalaya.com
+  - DOMAIN-SUFFIX,afp.m1905.com
+  - DOMAIN-SUFFIX,afp.wasu.cn
+  - DOMAIN-SUFFIX,afpcreative.wasu.cn
+  - DOMAIN-SUFFIX,afpimages.eastday
+  - DOMAIN-SUFFIX,afpimages.eastday.com
   - DOMAIN-SUFFIX,alimama.com
   - DOMAIN-SUFFIX,allyes.com
+  - DOMAIN-SUFFIX,androidlog.shouji.baofeng.com
   - DOMAIN-SUFFIX,anythinktech.com
   - DOMAIN-SUFFIX,api.ad.xiaomi.com
+  - DOMAIN-SUFFIX,api.game.letvstore.com
+  - DOMAIN-SUFFIX,api.push.le.com
+  - DOMAIN-SUFFIX,app-g.39.net
   - DOMAIN-SUFFIX,app-measurement.com
+  - DOMAIN-SUFFIX,app.houyi.baofeng.net
   - DOMAIN-SUFFIX,appier.net
   - DOMAIN-SUFFIX,applovin.com
   - DOMAIN-SUFFIX,applvn.com
   - DOMAIN-SUFFIX,appsflyer.com
+  - DOMAIN-SUFFIX,ark.letv.com
+  - DOMAIN-SUFFIX,atdmt.com
+  - DOMAIN-SUFFIX,atrace.chelaile.net.cn
+  - DOMAIN-SUFFIX,bd-js.baixing.net
+  - DOMAIN-SUFFIX,bd-s.baixing.net
   - DOMAIN-SUFFIX,biz.weibo.com
+  - DOMAIN-SUFFIX,brandshow.58.com
+  - DOMAIN-SUFFIX,breeze.olclient.baofeng.com
   - DOMAIN-SUFFIX,bugly.qq.com
   - DOMAIN-SUFFIX,c.gdt.qq.com
+  - DOMAIN-SUFFIX,channel.fanxing.kugou.com
+  - DOMAIN-SUFFIX,ck.houyi.baofeng.net
+  - DOMAIN-SUFFIX,clicklog.moviebox.baofeng.net
+  - DOMAIN-SUFFIX,cm.ad.gifshow.com
+  - DOMAIN-SUFFIX,cm.downloader.commercial.kuaishou.com
+  - DOMAIN-SUFFIX,cm.kwad.com
+  - DOMAIN-SUFFIX,cn.api.push.le.com
+  - DOMAIN-SUFFIX,cnn.dyn.cnn.com
   - DOMAIN-SUFFIX,cnzz.com
+  - DOMAIN-SUFFIX,co.dtech.baofeng.com
+  - DOMAIN-SUFFIX,collector.wasu.cn
+  - DOMAIN-SUFFIX,conf.funshion.com
+  - DOMAIN-SUFFIX,config.baofeng.net
+  - DOMAIN-SUFFIX,coop.pop.baofeng.com
+  - DOMAIN-SUFFIX,corner.houyi.baofeng.net
+  - DOMAIN-SUFFIX,counter.csdn.net
+  - DOMAIN-SUFFIX,counter.m1905.com
+  - DOMAIN-SUFFIX,customad.cnn.com
+  - DOMAIN-SUFFIX,cvda.17173.com
+  - DOMAIN-SUFFIX,d.39.net
+  - DOMAIN-SUFFIX,d.admx.baixing.com
+  - DOMAIN-SUFFIX,d.kugou.com
+  - DOMAIN-SUFFIX,d3f.houyi.baofeng.net
   - DOMAIN-SUFFIX,da.mgtv.com
+  - DOMAIN-SUFFIX,dailylog.storm.baofeng.com
+  - DOMAIN-SUFFIX,dc.csdn.net
+  - DOMAIN-SUFFIX,dc.letv.com
+  - DOMAIN-SUFFIX,dc2.csdn.net
+  - DOMAIN-SUFFIX,delivery-pc.wasu.cn
+  - DOMAIN-SUFFIX,delivery.wasu.cn
+  - DOMAIN-SUFFIX,dl.2345.com
   - DOMAIN-SUFFIX,domob.cn
   - DOMAIN-SUFFIX,doubleclick-cn.net
   - DOMAIN-SUFFIX,doubleclick.net
+  - DOMAIN-SUFFIX,download.2345.com
+  - DOMAIN-SUFFIX,downmobile.kugou.com
+  - DOMAIN-SUFFIX,dpvc.39.net
+  - DOMAIN-SUFFIX,duration.logger.baofeng.com
+  - DOMAIN-SUFFIX,e.kuaishou.com
   - DOMAIN-SUFFIX,e.qq.com
+  - DOMAIN-SUFFIX,eezdx.erc.18183.com
+  - DOMAIN-SUFFIX,eventlog.hd.baofeng.com
+  - DOMAIN-SUFFIX,facebookma.cn
+  - DOMAIN-SUFFIX,fan.twitch.tv
   - DOMAIN-SUFFIX,fds.api.moji.com
+  - DOMAIN-SUFFIX,fz.letv.com
+  - DOMAIN-SUFFIX,g.wan.2345.com
+  - DOMAIN-SUFFIX,g3.letv.com
+  - DOMAIN-SUFFIX,gad.kugou.com
+  - DOMAIN-SUFFIX,game.kugou.com
+  - DOMAIN-SUFFIX,gamebox.kugou.com
+  - DOMAIN-SUFFIX,ganjituiguang.ganji.com
+  - DOMAIN-SUFFIX,gcapi.sy.kugou.com
   - DOMAIN-SUFFIX,gdt.qq.com
+  - DOMAIN-SUFFIX,gdyn.cnn.com
+  - DOMAIN-SUFFIX,gg.51cto.com
+  - DOMAIN-SUFFIX,gg.kugou.com
+  - DOMAIN-SUFFIX,gg2.51cto.com
+  - DOMAIN-SUFFIX,gg3.51cto.com
+  - DOMAIN-SUFFIX,ggcode.2345.com
   - DOMAIN-SUFFIX,googleadservices.com
   - DOMAIN-SUFFIX,googlesyndication.com
   - DOMAIN-SUFFIX,gtags.net
+  - DOMAIN-SUFFIX,guang.lesports.com
+  - DOMAIN-SUFFIX,hao123rt.com
+  - DOMAIN-SUFFIX,hoisin.coocaa.com
+  - DOMAIN-SUFFIX,hoisin.coocaatv.com
+  - DOMAIN-SUFFIX,houtai.2345.com
+  - DOMAIN-SUFFIX,houyi.baofeng.net
+  - DOMAIN-SUFFIX,houyi.logger.baofeng.com
+  - DOMAIN-SUFFIX,i.l.cnn.net
   - DOMAIN-SUFFIX,iad.apple.com
   - DOMAIN-SUFFIX,ii.gdt.qq.com
+  - DOMAIN-SUFFIX,img1.18183.com
+  - DOMAIN-SUFFIX,imp.xgo.com.cn
   - DOMAIN-SUFFIX,inmobi.cn
+  - DOMAIN-SUFFIX,install.kugou.com
+  - DOMAIN-SUFFIX,install2.kugou.com
+  - DOMAIN-SUFFIX,iphonelog.shouji.baofeng.com
   - DOMAIN-SUFFIX,irs01.com
   - DOMAIN-SUFFIX,iyes.youku.com
+  - DOMAIN-SUFFIX,j.biquge520.cc
+  - DOMAIN-SUFFIX,jfm4.pop.baofeng.net
+  - DOMAIN-SUFFIX,jiaoben.eastday.com
+  - DOMAIN-SUFFIX,jiaoben.ganji.cn
+  - DOMAIN-SUFFIX,jifen.2345.com
+  - DOMAIN-SUFFIX,jing.58.com
+  - DOMAIN-SUFFIX,jump.luna.58.com
+  - DOMAIN-SUFFIX,jumpluna.58.com
   - DOMAIN-SUFFIX,jzt.jd.com
+  - DOMAIN-SUFFIX,kgmobilestat.kugou.com
+  - DOMAIN-SUFFIX,kgmobilestatbak.kugou.com
   - DOMAIN-SUFFIX,l.qq.com
+  - DOMAIN-SUFFIX,listlog.baofeng.net
+  - DOMAIN-SUFFIX,loading.baofeng5.baofeng.net
   - DOMAIN-SUFFIX,log.avlyun.com
   - DOMAIN-SUFFIX,log.moji.com
+  - DOMAIN-SUFFIX,log.stat.kugou.com
+  - DOMAIN-SUFFIX,log.web.kugou.com
+  - DOMAIN-SUFFIX,log1.17173.com
+  - DOMAIN-SUFFIX,logger.baofeng.com
+  - DOMAIN-SUFFIX,logger.treexml.baofeng.com
+  - DOMAIN-SUFFIX,m.biquge5200.cc
   - DOMAIN-SUFFIX,m.gdt.qq.com
   - DOMAIN-SUFFIX,m1.ad.10010.com
   - DOMAIN-SUFFIX,mads.meituan.com
+  - DOMAIN-SUFFIX,market.178.com
+  - DOMAIN-SUFFIX,mc.hujiang.com
   - DOMAIN-SUFFIX,me.api.moji.com
+  - DOMAIN-SUFFIX,medal.blog.csdn.net
   - DOMAIN-SUFFIX,medproad.com
+  - DOMAIN-SUFFIX,metrics.cnn.com
   - DOMAIN-SUFFIX,mi.gdt.qq.com
   - DOMAIN-SUFFIX,miaozhen.com
+  - DOMAIN-SUFFIX,mid.houyi.baofeng.net
+  - DOMAIN-SUFFIX,midinfo.baofeng.com
+  - DOMAIN-SUFFIX,mini.eastday.com
+  - DOMAIN-SUFFIX,mini.hao123.com
+  - DOMAIN-SUFFIX,minidcsc.kugou.com
+  - DOMAIN-SUFFIX,minipage.2345.com
+  - DOMAIN-SUFFIX,minisite.letv.com
+  - DOMAIN-SUFFIX,mlog.m1905.cn
   - DOMAIN-SUFFIX,mmstat.com
+  - DOMAIN-SUFFIX,mo.kugou.com
   - DOMAIN-SUFFIX,moatads.com
   - DOMAIN-SUFFIX,mob.com
+  - DOMAIN-SUFFIX,mobilelog.kugou.com
+  - DOMAIN-SUFFIX,msg.m.letv.com
+  - DOMAIN-SUFFIX,msg.mobile.kugou.com
+  - DOMAIN-SUFFIX,mvads.kugou.com
+  - DOMAIN-SUFFIX,n.mark.letv.com
+  - DOMAIN-SUFFIX,nclog.mars.baofeng.net
+  - DOMAIN-SUFFIX,nclog.pad.baofeng.net
+  - DOMAIN-SUFFIX,news.58.com
+  - DOMAIN-SUFFIX,onlinetips.baofeng5.baofeng.net
   - DOMAIN-SUFFIX,openx.net
+  - DOMAIN-SUFFIX,oth.eve.mdt.qq.com
+  - DOMAIN-SUFFIX,p.kugou.com
+  - DOMAIN-SUFFIX,p.twitter.com
+  - DOMAIN-SUFFIX,p2pmid.baofeng.com
   - DOMAIN-SUFFIX,pangle.io
   - DOMAIN-SUFFIX,pangolin-sdk-toutiao.com
+  - DOMAIN-SUFFIX,parser.houyi.baofeng.net
+  - DOMAIN-SUFFIX,pb.funshion.net.cn
   - DOMAIN-SUFFIX,pglstatp-toutiao.com
   - DOMAIN-SUFFIX,pos.baidu.com
+  - DOMAIN-SUFFIX,pro.hoye.letv.com
+  - DOMAIN-SUFFIX,pro.letv.com
+  - DOMAIN-SUFFIX,pub.funshion.com
+  - DOMAIN-SUFFIX,push.mobile.kugou.com
+  - DOMAIN-SUFFIX,pvlog.hd.baofeng.com
+  - DOMAIN-SUFFIX,pvlog.moviebox.baofeng.net
   - DOMAIN-SUFFIX,quantserve.com
+  - DOMAIN-SUFFIX,rec.moviebox.baofeng.net
+  - DOMAIN-SUFFIX,rp.hpplay.cn
+  - DOMAIN-SUFFIX,rt.funshion.net
+  - DOMAIN-SUFFIX,rtmonitor.kugou.com
+  - DOMAIN-SUFFIX,s.17173cdn.com
   - DOMAIN-SUFFIX,sax.sina.com.cn
+  - DOMAIN-SUFFIX,sc.58mingtian.cn
+  - DOMAIN-SUFFIX,sclog.moviebox.baofeng.com
   - DOMAIN-SUFFIX,scorecardresearch.com
+  - DOMAIN-SUFFIX,scribe.twitter.com
+  - DOMAIN-SUFFIX,script-bd.baixing.net
+  - DOMAIN-SUFFIX,sdn.kugou.com
   - DOMAIN-SUFFIX,shuzilm.cn
   - DOMAIN-SUFFIX,sigmob.cn
   - DOMAIN-SUFFIX,sigmob.com
+  - DOMAIN-SUFFIX,song.fanxing.kugou.com
+  - DOMAIN-SUFFIX,spade.twitch.tv
   - DOMAIN-SUFFIX,spotifycdn.com
+  - DOMAIN-SUFFIX,src.leju.com
+  - DOMAIN-SUFFIX,sta.ganji.com
+  - DOMAIN-SUFFIX,stat.letv.com
+  - DOMAIN-SUFFIX,static.app.m.letv.com
+  - DOMAIN-SUFFIX,staticadm.leju.com
+  - DOMAIN-SUFFIX,staticxx.facebook.com
+  - DOMAIN-SUFFIX,storm.logger.baofeng.com
+  - DOMAIN-SUFFIX,syndication-o.twitter.com
+  - DOMAIN-SUFFIX,syndication.twitter.com
+  - DOMAIN-SUFFIX,t1.58cdn.com.cn
+  - DOMAIN-SUFFIX,t2.58cdn.com.cn
+  - DOMAIN-SUFFIX,t3.58cdn.com.cn
   - DOMAIN-SUFFIX,taboola.com
   - DOMAIN-SUFFIX,talkingdata.com
   - DOMAIN-SUFFIX,tanx.com
+  - DOMAIN-SUFFIX,tg.jifen.2345.com
+  - DOMAIN-SUFFIX,thetestpage.39.net
+  - DOMAIN-SUFFIX,timelog.moviebox.baofeng.com
+  - DOMAIN-SUFFIX,tips.logger.baofeng.com
+  - DOMAIN-SUFFIX,track.58.com
   - DOMAIN-SUFFIX,track.mm.taou.com
   - DOMAIN-SUFFIX,track.sohu.com
   - DOMAIN-SUFFIX,tracker.yhd.com
-  - DOMAIN-SUFFIX,ugdtimg.com
+  - DOMAIN-SUFFIX,tracklog.58.com
+  - DOMAIN-SUFFIX,tralog.ganji.com
+  - DOMAIN-SUFFIX,tree.logger.baofeng.com
+  - DOMAIN-SUFFIX,tt.biquge.la
+  - DOMAIN-SUFFIX,tt123.eastday.com
+  - DOMAIN-SUFFIX,tt321.eastday.com
+  - DOMAIN-SUFFIX,tu.baixing.com
+  - DOMAIN-SUFFIX,tuiguang.178.com
   - DOMAIN-SUFFIX,umeng.com
   - DOMAIN-SUFFIX,umengcloud.com
   - DOMAIN-SUFFIX,umtrack.com
   - DOMAIN-SUFFIX,unityads.unity3d.com
+  - DOMAIN-SUFFIX,update.minipage.2345.com
+  - DOMAIN-SUFFIX,update.mobile.kugou.com
+  - DOMAIN-SUFFIX,urls.api.twitter.com
   - DOMAIN-SUFFIX,v.gdt.qq.com
   - DOMAIN-SUFFIX,v.smtcdns.com
   - DOMAIN-SUFFIX,v1d.szbdyd.com
+  - DOMAIN-SUFFIX,vas.funshion.com
+  - DOMAIN-SUFFIX,vda.17173.com
+  - DOMAIN-SUFFIX,visualscience.external.bbc.co.uk
+  - DOMAIN-SUFFIX,vodlog.m1905.cn
   - DOMAIN-SUFFIX,voiceads.cn
+  - DOMAIN-SUFFIX,vs.funshion.com
   - DOMAIN-SUFFIX,vungle.com
+  - DOMAIN-SUFFIX,vvlog.moviebox.baofeng.com
+  - DOMAIN-SUFFIX,wan.2345.com
+  - DOMAIN-SUFFIX,wbwl.houyi.baofeng.net
+  - DOMAIN-SUFFIX,web.houyi.baofeng.net
+  - DOMAIN-SUFFIX,webp2p.letv.com
   - DOMAIN-SUFFIX,win.gdt.qq.com
+  - DOMAIN-SUFFIX,wl.houyi.baofeng.net
   - DOMAIN-SUFFIX,wmlog.meituan.com
   - DOMAIN-SUFFIX,wrating.com
+  - DOMAIN-SUFFIX,wuliao.ganji.cn
+  - DOMAIN-SUFFIX,wx.houyi.baofeng.net
+  - DOMAIN-SUFFIX,xs.houyi.baofeng.net
   - DOMAIN-SUFFIX,youmi.net
+  - DOMAIN-SUFFIX,youxi.kugou.com
   - DOMAIN-SUFFIX,zhihu-web-analytics.zhihu.com
+  - DOMAIN-SUFFIX,zhushou.2345.com
   - DOMAIN-SUFFIX,zjcdn.com
+  - DOMAIN-SUFFIX,zpe.klre.18183.com
+  - DOMAIN-SUFFIX,zzpush.58.com
   - IP-CIDR,103.37.155.60/32
   - IP-CIDR,103.41.167.237/32
   - IP-CIDR,103.44.59.54/32

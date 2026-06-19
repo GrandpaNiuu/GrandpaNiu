@@ -1,0 +1,7 @@
+#!name=GrandpaNiu 178游戏网 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/178-game.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,market.178.com,REJECT
+DOMAIN-SUFFIX,tuiguang.178.com,REJECT

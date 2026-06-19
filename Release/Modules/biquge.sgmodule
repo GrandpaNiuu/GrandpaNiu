@@ -1,0 +1,8 @@
+#!name=GrandpaNiu 笔趣阁 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/biquge.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,j.biquge520.cc,REJECT
+DOMAIN-SUFFIX,m.biquge5200.cc,REJECT
+DOMAIN-SUFFIX,tt.biquge.la,REJECT

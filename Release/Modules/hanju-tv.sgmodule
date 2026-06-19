@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 韩剧TV Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/hanju-tv.sgmodule
+
+[URL Rewrite]
+^https?://gfp\.veta\.naver\.com/adcall\? - reject
+^https?://api\.hanju\.koudaibaobao\.com/api/carp/kp\? - reject
+
+[MITM]
+hostname = %APPEND% gfp.veta.naver.com,api.hanju.koudaibaobao.com

@@ -1,0 +1,11 @@
+#!name=GrandpaNiu 肯德基 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/kfc.sgmodule
+
+[URL Rewrite]
+^https?://res\.kfc\.com\.cn/CRM/kfcad/apphome5/apphome - reject-200
+^https?://res\.kfc\.com\.cn/CRM/kfcad/apphome6/\w+\.json\? - reject-dict
+^https?://res\.kfc\.com.\cn/advertisement/ - reject
+
+[MITM]
+hostname = %APPEND% res.kfc.com.cn

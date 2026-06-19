@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 花生地铁 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/hua-sheng-di-tie.sgmodule
+
+[URL Rewrite]
+^https?://cmsapi\.wifi8\.com/v\d/(emptyAd|adNew)/ - reject
+^https?://cmsfile\.wifi8\.com/uploads/png/ - reject-img
+
+[MITM]
+hostname = %APPEND% cmsapi.wifi8.com,cmsfile.wifi8.com

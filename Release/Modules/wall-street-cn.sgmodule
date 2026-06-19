@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 华尔街见闻 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/wall-street-cn.sgmodule
+
+[URL Rewrite]
+^https?://api-one-wscn\.awtmt\.com/apiv1/advertising/ads/13424/materials - reject-dict
+^https?://api\.wallstreetcn\.com/apiv\d/advertising/ - reject
+
+[MITM]
+hostname = %APPEND% api-one-wscn.awtmt.com,api.wallstreetcn.com

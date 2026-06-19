@@ -1,0 +1,8 @@
+#!name=GrandpaNiu 创维 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/skyworth.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,hoisin.coocaa.com,REJECT
+DOMAIN-SUFFIX,hoisin.coocaatv.com,REJECT
+DOMAIN,data-hoisin.coocaa.com,REJECT

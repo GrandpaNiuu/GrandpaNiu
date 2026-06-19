@@ -1,0 +1,18 @@
+#!name=GrandpaNiu 驾校一点通 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/jia-xiao-yi-dian-tong.sgmodule
+
+[Rule]
+DOMAIN,richmanapi.jxedt.com,REJECT
+DOMAIN,richmanmain.jxedt.com,REJECT
+DOMAIN,richmanrules.jxedt.com,REJECT
+
+[URL Rewrite]
+^https?://richmanrules\.ksedt\.com/intellectWaterfall(Bidding)?/find - reject
+^https?://richmanapi\.jxedt\.com/api/(ad|adplus|banadplus)/ - reject-200
+^https?://api\.jxedt\.com/ad/ - reject
+^https?://api\.jxedt\.com/jump/EMiCcDNp - reject-img
+^https?://richmanmain\.jxedt\.com/advertisement/fallback - reject-img
+
+[MITM]
+hostname = %APPEND% richmanrules.ksedt.com,api.jxedt.com,richmanapi.jxedt.com

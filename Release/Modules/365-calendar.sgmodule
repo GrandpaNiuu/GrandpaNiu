@@ -1,0 +1,6 @@
+#!name=GrandpaNiu 365日历 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/365-calendar.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,ad.365rili.com,REJECT

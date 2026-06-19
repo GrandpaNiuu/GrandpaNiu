@@ -1,0 +1,12 @@
+#!name=GrandpaNiu 低端影视 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/di-duan-ying-shi.sgmodule
+
+[URL Rewrite]
+^https?://img\.ddrk\.me/ad190824 - reject-img
+^https?://img\.ddrk\.me/cover\.png - reject-img
+^https?://ddrk\.me/image/logo_footer\.png - reject-img
+^https?://ddrk\.me/wp-content/plugins/advanced-floating-content-lite/public/images/close\.png - reject-img
+
+[MITM]
+hostname = %APPEND% img.ddrk.me,ddrk.me

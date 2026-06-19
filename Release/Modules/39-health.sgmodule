@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 39健康网 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/39-health.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,app-g.39.net,REJECT
+DOMAIN-SUFFIX,d.39.net,REJECT
+DOMAIN-SUFFIX,dpvc.39.net,REJECT
+DOMAIN-SUFFIX,thetestpage.39.net,REJECT

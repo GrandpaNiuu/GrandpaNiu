@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-19T18:20:18.623186Z",
+  "generated_at": "2026-06-19T18:27:25.619459Z",
   "algorithm": "sha256",
-  "count": 244,
+  "count": 319,
   "files": [
     {
       "path": "Release/Beta/README.md",
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 682812,
-      "sha256": "7c04dc5c8a4ddc11a74f17ebee06efbae146fca2f7520c88e466213ba665b063"
+      "size": 697066,
+      "sha256": "0fd04374414a97b96b9bebd610154b8deb35fb4930b4da045515288002459ec4"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -34,6 +34,36 @@
       "sha256": "7d31376d0f36e60e46c9cdf93b18cd1f0c1aadbaa2d01d71aaa84dce9e5bb31e"
     },
     {
+      "path": "Release/Modules/17173-game.sgmodule",
+      "size": 412,
+      "sha256": "532ad2ef04a283d7c94bea04caccb6e9da3bf2dd0ba5dded0e221912f8f6f0b8"
+    },
+    {
+      "path": "Release/Modules/178-game.sgmodule",
+      "size": 284,
+      "sha256": "46434ea7ecfe5f06327c002057660b8138b196eb2697509059f5bdc75e60dff2"
+    },
+    {
+      "path": "Release/Modules/18183-game.sgmodule",
+      "size": 331,
+      "sha256": "b5b41d8794760a237b3f57bf0c954c7e7f83b933309af7b1b30589e33bc26349"
+    },
+    {
+      "path": "Release/Modules/1905-movie-network.sgmodule",
+      "size": 367,
+      "sha256": "203a9d78ab58264c8f45858925187e6207bedb90383e5d8495f14195fdebee44"
+    },
+    {
+      "path": "Release/Modules/2345-weather-king.sgmodule",
+      "size": 345,
+      "sha256": "414d6d187708fdc61979acc5f58c3c6a9cea1f1ed4bb50548e35323a706f3079"
+    },
+    {
+      "path": "Release/Modules/2345-web-navigation.sgmodule",
+      "size": 639,
+      "sha256": "89b2a1d7aeca322c06e7adcd1166a4c917743a72a30998a2f858d3e4e637b290"
+    },
+    {
       "path": "Release/Modules/2bulu.sgmodule",
       "size": 772,
       "sha256": "a8d1f7c897dc916e44b3e2e649014e4608fcd1ce71fc0747ba7f8c37aee6f5b4"
@@ -49,6 +79,21 @@
       "sha256": "26f5bd8fc483a1e6fbe0d138339f231a53baad9bae4b8f75a9799103dbbfb891"
     },
     {
+      "path": "Release/Modules/365-calendar.sgmodule",
+      "size": 247,
+      "sha256": "98084f4140ae3b9cb5747c3f90635cbc48f4acc5326c0a56f06ad66a90207cde"
+    },
+    {
+      "path": "Release/Modules/39-health.sgmodule",
+      "size": 347,
+      "sha256": "30b3ce66338206fd576c4a0c4328c5d4cdf272f4ba0f23e57550652683f978c2"
+    },
+    {
+      "path": "Release/Modules/51-cto.sgmodule",
+      "size": 311,
+      "sha256": "df58ed6d1bcd281ce40396599524a2eaf8c7d04cf933bf03e0cd3cc372364a36"
+    },
+    {
       "path": "Release/Modules/51-job.sgmodule",
       "size": 1308,
       "sha256": "2b00db0be741cff41545d2746bc76512e02db1b2720d39fc14ca8dc66b7ff73f"
@@ -59,9 +104,29 @@
       "sha256": "3419e6198ca28f628f4fc5d0991cd90bc0ba9d5467b44b46f682e7652f7ea919"
     },
     {
+      "path": "Release/Modules/58-auto.sgmodule",
+      "size": 276,
+      "sha256": "c40a02ee69a7454ba11d150c34ec94055f9e87258cb1b6ced441a6e2a915283a"
+    },
+    {
+      "path": "Release/Modules/58-tong-cheng.sgmodule",
+      "size": 1092,
+      "sha256": "a41c95824d8ab6e6323d8eda4b6fcf69ecbe4ba18659a89c2e8f45b949eaf691"
+    },
+    {
+      "path": "Release/Modules/9-game.sgmodule",
+      "size": 235,
+      "sha256": "57eb3c9ce586c80ccce8fcc8fd9b2ab1a95e638ca24cad1372e03953eaadd843"
+    },
+    {
       "path": "Release/Modules/91160.sgmodule",
       "size": 1666,
       "sha256": "fcd4bdb39ed2875a351e2c578885b156d4f62145a51bc7de585a170e10945e29"
+    },
+    {
+      "path": "Release/Modules/acfun.sgmodule",
+      "size": 380,
+      "sha256": "a8d8bd6cb8073a1bcb6521e6904f163289ae9b30a30bff15902f47250dd7f195"
     },
     {
       "path": "Release/Modules/aiinquiry.sgmodule",
@@ -70,8 +135,13 @@
     },
     {
       "path": "Release/Modules/ali-yun-drive.sgmodule",
-      "size": 939,
-      "sha256": "4f6c8149cd12b66784a1d32811a40cd105c4e220f5178c1c6123c90210ee142c"
+      "size": 928,
+      "sha256": "6a6fc1382fab224d08d140156b3838bd1eb90e817e4ca0e8b8a422496268b860"
+    },
+    {
+      "path": "Release/Modules/all-football.sgmodule",
+      "size": 357,
+      "sha256": "f4787feb3949fe4ef4ea1b5fc081218a3f77a8cf42eaf5ed4f21faff3a2df3b6"
     },
     {
       "path": "Release/Modules/amap.sgmodule",
@@ -79,14 +149,29 @@
       "sha256": "6c773f525e4700063cbac5667ac763277ffba68f57f4a90e784317878327d069"
     },
     {
+      "path": "Release/Modules/appso.sgmodule",
+      "size": 308,
+      "sha256": "368fadfb444486e9321736738fe6a31cd633b5d22f94b475626c0153a1411a8d"
+    },
+    {
       "path": "Release/Modules/auto-home.sgmodule",
       "size": 3925,
       "sha256": "20cf54a24d11c640083be89211b5b1c92b7b8a37b38a2957c288166cfc42e182"
     },
     {
+      "path": "Release/Modules/baby-tree-parenting.sgmodule",
+      "size": 723,
+      "sha256": "798aba65be8f0074ab1bd0377de445ce3b9293f0fca1f282357fc1a2e3666ca3"
+    },
+    {
       "path": "Release/Modules/baby-tree.sgmodule",
       "size": 1503,
       "sha256": "ac108d52364fa69db8846b7178dfcd8c811a606ff4686aee27e1698a3ae72a01"
+    },
+    {
+      "path": "Release/Modules/baicizhan.sgmodule",
+      "size": 284,
+      "sha256": "13713665e578f97e8aea43bf45a1dff0dbbccf8fa387da43257396b1bd0d9bb5"
     },
     {
       "path": "Release/Modules/baidu-input-method.sgmodule",
@@ -109,6 +194,11 @@
       "sha256": "3db24427fb9c1a6f220ccda0d8e72a8cf922cc91455aaeb4c8c559c93ec7e40c"
     },
     {
+      "path": "Release/Modules/baidu-translation.sgmodule",
+      "size": 394,
+      "sha256": "5ded2a286d4e987d3c36380c5aee4e6e2722abb244c1276a1b81eab7c7ed7c56"
+    },
+    {
       "path": "Release/Modules/baidu-wenku.sgmodule",
       "size": 2035,
       "sha256": "09071cba79d108a938e4e0f803172f836a3d6b8e995ad9ba10dfa09952215395"
@@ -124,9 +214,34 @@
       "sha256": "bd7489740be87ff2dcc1799b74816a986150651dcdb13a2e52b24741a4aac6f0"
     },
     {
+      "path": "Release/Modules/baixing.sgmodule",
+      "size": 440,
+      "sha256": "457730173e3a8b9d818312c9a6eb58fbbda58772c0ecc549cad1c30fb13ad35f"
+    },
+    {
+      "path": "Release/Modules/ban-yue-tan.sgmodule",
+      "size": 358,
+      "sha256": "7563d1002dc3e6c8b29d759bfde5256480dc7cd5042e6e73953464c8ad671f85"
+    },
+    {
+      "path": "Release/Modules/baofeng-player.sgmodule",
+      "size": 2235,
+      "sha256": "fb5bb11fac1509e2ad6e3816e20f4946cdd456f1295bf8836f0c3c7e5ec7fc1a"
+    },
+    {
+      "path": "Release/Modules/bbc.sgmodule",
+      "size": 250,
+      "sha256": "86b6a032fada68215574747dc84b5c8ef9a6cd7a3e33fc0dcc06ce12adf3a090"
+    },
+    {
       "path": "Release/Modules/beike.sgmodule",
       "size": 1282,
       "sha256": "0978e6b365dd55347802357a5e62bc4b7a0a4586c82ed3b48c875cb1580dc43f"
+    },
+    {
+      "path": "Release/Modules/betty-kitchen.sgmodule",
+      "size": 362,
+      "sha256": "7bfe85622c63b1c534a6c35c73352f966f4dd032c51ab1fc8a27f64faa0d1c18"
     },
     {
       "path": "Release/Modules/bilibili-comic.sgmodule",
@@ -139,9 +254,19 @@
       "sha256": "a88a35a0221ba51eb4af71367604caf995834ba870a3d5a769de009a894a6fc2"
     },
     {
+      "path": "Release/Modules/biquge.sgmodule",
+      "size": 312,
+      "sha256": "daed063aa245dc5b9b013834113792af5da94a672a17077f6891e051aa3126b9"
+    },
+    {
       "path": "Release/Modules/bitqiu-pan.sgmodule",
       "size": 464,
       "sha256": "25fd135375a5768817bcdbac4a708b4d609e66d95f85bcbd383666dc0e2b773d"
+    },
+    {
+      "path": "Release/Modules/blued.sgmodule",
+      "size": 596,
+      "sha256": "ce9940ab4e06704d31b2129d9f34308434c86bc8697eb1d1cd019242a64176d8"
     },
     {
       "path": "Release/Modules/bodian-music.sgmodule",
@@ -184,6 +309,21 @@
       "sha256": "0fbb692b09036daeb5160336f9519c42d64442afc8ded59f7f65f773271463d0"
     },
     {
+      "path": "Release/Modules/chao-ji-ke-cheng-biao.sgmodule",
+      "size": 383,
+      "sha256": "0ab9973bedb1167d6e07e7773ff5e6eafd649767eca8397eeca63bf0583adf5f"
+    },
+    {
+      "path": "Release/Modules/chao-xing-xue-xi-tong.sgmodule",
+      "size": 345,
+      "sha256": "272d3b45be3893b3948263ac8c2aa791adfd9dcdaefee487140fcd1515aa0c2a"
+    },
+    {
+      "path": "Release/Modules/che-lai-le.sgmodule",
+      "size": 873,
+      "sha256": "9f3b8ca0b904509c0064cde1102c671c9a002ab1e5c70ddfaf1b57fcf311c8a7"
+    },
+    {
       "path": "Release/Modules/cheng-fen-miao.sgmodule",
       "size": 647,
       "sha256": "40783f3c6af83a3671207f01d8d92d6225f9f110a708fa49c03a1e5c4f2d2ad1"
@@ -199,9 +339,39 @@
       "sha256": "1860a51c9322c90974963bd72c600fc6afe0e90eb28d2d3cd172faa63f8903b5"
     },
     {
+      "path": "Release/Modules/ci-wei-mao-yue-du.sgmodule",
+      "size": 341,
+      "sha256": "55668557826b3fd50e24bc04c7d2244de52fd9a3c871bba5139dd1503716552d"
+    },
+    {
+      "path": "Release/Modules/clicli.sgmodule",
+      "size": 349,
+      "sha256": "dc67b92cb57893199926b08bb116ae976820c4a950966b4986420dff416f53c6"
+    },
+    {
+      "path": "Release/Modules/cnn.sgmodule",
+      "size": 375,
+      "sha256": "9d49c258faa659239265ffe8786c83ca1fdafc9df26e93cb4663eaf4178b9f4e"
+    },
+    {
       "path": "Release/Modules/cool-apk.sgmodule",
       "size": 1703,
       "sha256": "239dc040e394e295bce8555758d7f744901546914d747d799f7aa0b747d2626b"
+    },
+    {
+      "path": "Release/Modules/coolapk.sgmodule",
+      "size": 911,
+      "sha256": "349a177fe0804f913ca4aabac3268e85304a6f3d8b4cafe4a39dc70c16ddd85c"
+    },
+    {
+      "path": "Release/Modules/crunchyroll.sgmodule",
+      "size": 257,
+      "sha256": "96de5bcaa95c36e29b0549519265a42a8860368ed16b8a9f564cad777ca506b9"
+    },
+    {
+      "path": "Release/Modules/csdn.sgmodule",
+      "size": 685,
+      "sha256": "cb0f3ed37c9b780fa97c8dbb364c979a0238fe96cf3944e35245fe9389afffb6"
     },
     {
       "path": "Release/Modules/csg.sgmodule",
@@ -219,6 +389,11 @@
       "sha256": "06e8a26cf88dbe0027abbb31b959829e0457ca34950daad575a5959ca1f2b154"
     },
     {
+      "path": "Release/Modules/dang-dang-reading.sgmodule",
+      "size": 557,
+      "sha256": "e4ba296d8d3585be27ee737113bb762e0a8307aea4cda7b752f4c28063553324"
+    },
+    {
       "path": "Release/Modules/dewu.sgmodule",
       "size": 1631,
       "sha256": "c8a2750337b94953892144aa52fc244933de094bd039bc53cf629ab5d9584088"
@@ -227,6 +402,11 @@
       "path": "Release/Modules/di-di.sgmodule",
       "size": 3859,
       "sha256": "832ffc9fdeb344b62785b4b4388e531662cbdc34615024d6f8bcb86bfd9b041f"
+    },
+    {
+      "path": "Release/Modules/di-duan-ying-shi.sgmodule",
+      "size": 529,
+      "sha256": "5a2ffddaab9d6c72ce96504570651c454ea4cbf72a2a3c0e6ec579efa2d5e122"
     },
     {
       "path": "Release/Modules/dida-pinche-taxi.sgmodule",
@@ -254,6 +434,11 @@
       "sha256": "88f5580123f677e1a6b8292fc712c7db74182a65e76d048f5b0d28568e7620a6"
     },
     {
+      "path": "Release/Modules/dong-hua-feng.sgmodule",
+      "size": 609,
+      "sha256": "d1e1fe5368c9c0d033759169c98b8838e5ee8b2f40bb7ea55dceb19d152a6ddc"
+    },
+    {
       "path": "Release/Modules/dou-ban.sgmodule",
       "size": 667,
       "sha256": "1675fa094056fd0db00b466429a4e5d45f0c55196a91946cc9be22b54beb294e"
@@ -264,14 +449,19 @@
       "sha256": "0eeb02dcce5b001b58c2f802b32a4cfacffab2a9f3a184b85bd7bff3cb1a90af"
     },
     {
+      "path": "Release/Modules/douyin.sgmodule",
+      "size": 238,
+      "sha256": "f695e6ed8a37a130595b419bb741152d5ef2ba5428866738718f52ecf6b9352b"
+    },
+    {
       "path": "Release/Modules/douyu.sgmodule",
       "size": 1267,
       "sha256": "380ab1c9d394e7302cf807988fabbd0e477edb68a970a2c77d6dd0a3ceeff6f7"
     },
     {
       "path": "Release/Modules/dragon-read.sgmodule",
-      "size": 1352,
-      "sha256": "56284b207eec5506a7a13806d0e7c554c42ba1753b0bc821585d50d455abbd61"
+      "size": 852,
+      "sha256": "abc1a12ca9b5f63d56a753e0b7cfbc1ca70b5ec0e324cd2c7b0ed9c9992af816"
     },
     {
       "path": "Release/Modules/dreame.sgmodule",
@@ -289,6 +479,11 @@
       "sha256": "d4ffef62015372b1950102e8554753a6c0c26989ca893d650b273bc71a3a1e91"
     },
     {
+      "path": "Release/Modules/eastday.sgmodule",
+      "size": 445,
+      "sha256": "8cc9ad22cdb3b82d74c022816ac171ea99731876fe7624dc42afa356510445cc"
+    },
+    {
       "path": "Release/Modules/ecovacs-home.sgmodule",
       "size": 608,
       "sha256": "8d87d6cba19eb29135f576fd4583b1818c7bfeb2142cf53be5ebf76fb5c85f58"
@@ -297,6 +492,16 @@
       "path": "Release/Modules/etouch-ecalendar.sgmodule",
       "size": 1487,
       "sha256": "418202522f3fb144e1ff38011cedfc79adb4b1115b1b1c5b77f16639cc386a91"
+    },
+    {
+      "path": "Release/Modules/facebook.sgmodule",
+      "size": 315,
+      "sha256": "3bc97a571bf4d05202ad8016108e23cc39a8cc1857620e56d5b4e562b9d79725"
+    },
+    {
+      "path": "Release/Modules/fan-deng-reading.sgmodule",
+      "size": 364,
+      "sha256": "147aea39d7a77f7d189a2a4c372a89af6dd53def7e2271426b09ab31b6310e2d"
     },
     {
       "path": "Release/Modules/fc-box.sgmodule",
@@ -324,6 +529,11 @@
       "sha256": "dd753e55bd089fd38bf00ea473b09ff34f535aa3956c72221ed35c4149f5ed23"
     },
     {
+      "path": "Release/Modules/flightradar24.sgmodule",
+      "size": 261,
+      "sha256": "592b085a170b94e2c21837cec0cda93a22e76f085fc6fd14a5f4c8e85a81f3b4"
+    },
+    {
       "path": "Release/Modules/flyer-tea.sgmodule",
       "size": 1057,
       "sha256": "a615dc445042027c42cebd3df7340d27dd64f92ce4ea7224a5b6f1e801658dbe"
@@ -332,6 +542,16 @@
       "path": "Release/Modules/foodie.sgmodule",
       "size": 307,
       "sha256": "161d85b10f62cbe0a7504f74a797a2e51991565283b5e878ab29573884732125"
+    },
+    {
+      "path": "Release/Modules/funshion.sgmodule",
+      "size": 636,
+      "sha256": "3b32ad0a09be66f2f84ff72916cb128226c0f6209caf7e96f13315e0a31cf9a2"
+    },
+    {
+      "path": "Release/Modules/ganji.sgmodule",
+      "size": 431,
+      "sha256": "b0cc8f3c3270ab53e8aa6e31c3743df48d719ea3d8400eeea75726532653aaf3"
     },
     {
       "path": "Release/Modules/gao-ding.sgmodule",
@@ -349,9 +569,29 @@
       "sha256": "cdb6698f76eebfa9e56d10f94dbca7b34b35db8f5bad1147b0becfc736c1aca6"
     },
     {
+      "path": "Release/Modules/hanju-tv.sgmodule",
+      "size": 400,
+      "sha256": "3d9e248eb39db02b1e5c76fae16a4e32c412e0f162a7bde04d0eb2b151692cdb"
+    },
+    {
       "path": "Release/Modules/hanting-hotels.sgmodule",
       "size": 1159,
       "sha256": "35cdd0452412204b5638a7ff53be570417a61593aba111bb1f50939da3afcbe7"
+    },
+    {
+      "path": "Release/Modules/hao-qi-xin-daily.sgmodule",
+      "size": 411,
+      "sha256": "fbeaeb037755b8e9dae855391fcc3977c9f6c31203437069f6ffcbde8f4ea987"
+    },
+    {
+      "path": "Release/Modules/hao123.sgmodule",
+      "size": 307,
+      "sha256": "1fce071fca2ac31bac3a132bea76600ff5941adb106b84eb60257d857d1a4c02"
+    },
+    {
+      "path": "Release/Modules/he-feng-weather.sgmodule",
+      "size": 354,
+      "sha256": "eb636785f825bfb6aa9b1ed006fbbfcd0c2656d142550a93384e1185c8d3a33d"
     },
     {
       "path": "Release/Modules/heartide-brain-wave.sgmodule",
@@ -362,6 +602,21 @@
       "path": "Release/Modules/hkdou-yin.sgmodule",
       "size": 2106,
       "sha256": "44efc5b07d0333bd1ab412091946f6d44096b3bd90f6e1a46b21c081c3f3494a"
+    },
+    {
+      "path": "Release/Modules/hua-sheng-di-tie.sgmodule",
+      "size": 403,
+      "sha256": "e04b7beafe9fead6a270b5a8e3f9a6baaefe0f9fd60b2ba3da64598ff8b2e3f5"
+    },
+    {
+      "path": "Release/Modules/huang-you-xiang-ji.sgmodule",
+      "size": 456,
+      "sha256": "87404841b3b8f6f8064e7831935bdf1b3e8604cdb55145d832fd773d70809d28"
+    },
+    {
+      "path": "Release/Modules/hujiang-online-school.sgmodule",
+      "size": 259,
+      "sha256": "fb5f254e92037a160586d3c5f774733214d3cf686e154ae35b9a0b7050025d66"
     },
     {
       "path": "Release/Modules/hupu.sgmodule",
@@ -385,8 +640,8 @@
     },
     {
       "path": "Release/Modules/i-qi-yi-video.sgmodule",
-      "size": 3837,
-      "sha256": "b8d41e762e9b64a9e8a148aa4ca1fffd370037c6dd86c5eb38084c4e9f055145"
+      "size": 3733,
+      "sha256": "2890ac558fcc36f8207291a0e9f6bd80828a2ecefb495fe8a7e2221be874b450"
     },
     {
       "path": "Release/Modules/i-reader-dejian.sgmodule",
@@ -409,9 +664,19 @@
       "sha256": "8bbc2273013e5b40f144524ea3e0030215a2d5a7f7fe291d95ba7e9de049d202"
     },
     {
+      "path": "Release/Modules/jdreading.sgmodule",
+      "size": 399,
+      "sha256": "187b5064f04b9c4a26840d5972353688643fcde62ab4ce9a7e7d79fea2d7d570"
+    },
+    {
       "path": "Release/Modules/jdwaimai.sgmodule",
       "size": 1457,
       "sha256": "52ab378f65cd5c558fd59b9c388628f98a7db7fc92e0a257e0a64e050739c532"
+    },
+    {
+      "path": "Release/Modules/ji-he-wang.sgmodule",
+      "size": 330,
+      "sha256": "7bf9112cc0617f0c5fbdbd9a50742289ef0ca9072013d11637671c000e924dff"
     },
     {
       "path": "Release/Modules/jia-kao-bao-dian.sgmodule",
@@ -424,9 +689,34 @@
       "sha256": "afc4372b1be227900fa432e8138d127a947ddfdf0daa551a6246218192f7bd72"
     },
     {
+      "path": "Release/Modules/jia-xiao-yi-dian-tong.sgmodule",
+      "size": 748,
+      "sha256": "78b975232f251e16fe3d2a772bfb4beaa4c85ab3eef8487f192fe8a1d7e57194"
+    },
+    {
+      "path": "Release/Modules/jie-mian-news.sgmodule",
+      "size": 308,
+      "sha256": "2edab966eeea4193016854ccfd6a7f76437f0b49ebb6ac59fde15b14efe6abe1"
+    },
+    {
+      "path": "Release/Modules/jin-ri-shui-yin-camera.sgmodule",
+      "size": 334,
+      "sha256": "3e772834928a37077e3822f9b06eabc110fa9e6724bc6c21051f5b1df0949244"
+    },
+    {
       "path": "Release/Modules/jump.sgmodule",
-      "size": 688,
-      "sha256": "e4b3588b0c6337b86898e955e1d37140102e62189f6bee4c650f1451a47f2710"
+      "size": 652,
+      "sha256": "d0b77dd0adf4f71aec5ff746e1026a1b2330498d765b3a70f8828f8dad2459dd"
+    },
+    {
+      "path": "Release/Modules/kan-li-xiang.sgmodule",
+      "size": 335,
+      "sha256": "d4a0d6b06106da1d408f94e9c210521461710a41be1a1c17025a073adcbc8982"
+    },
+    {
+      "path": "Release/Modules/kan-tian-xia.sgmodule",
+      "size": 395,
+      "sha256": "84bd0983d46d50d6508bdcfdbe25d6f9035a96f3854c2916b4755b9c6c0029e7"
     },
     {
       "path": "Release/Modules/kebida-dushu.sgmodule",
@@ -439,6 +729,11 @@
       "sha256": "2311b9ff4fe043e0f9a72dd2742495f59a73782a14b569d64dfacbeacf0af825"
     },
     {
+      "path": "Release/Modules/kfc.sgmodule",
+      "size": 445,
+      "sha256": "767c5028c4f7f8f617ac86a8ed1a29804349a3f04f63f1c5c977af8362d004fb"
+    },
+    {
       "path": "Release/Modules/kgring.sgmodule",
       "size": 329,
       "sha256": "da020dd83a3607dd60b5c237cdf87f7fb1726886b3f874a973b2c6f8f3082646"
@@ -449,9 +744,19 @@
       "sha256": "23da946ef4ba53bfb9a1364710c06b4276e5812e88abfb2c7430432161ff0725"
     },
     {
+      "path": "Release/Modules/kingsoft-power-word.sgmodule",
+      "size": 997,
+      "sha256": "5ef281c4f83f95458b9519ba08fc8279f8145f7fd4548c35b5bf2b0828af624c"
+    },
+    {
       "path": "Release/Modules/kook.sgmodule",
       "size": 743,
       "sha256": "22a6368960b4390bc5d13a4bb469cb1a22b3f6de46dd642233e62fbaeac2506a"
+    },
+    {
+      "path": "Release/Modules/ku-gou-music.sgmodule",
+      "size": 2437,
+      "sha256": "7730f880efb4c3857f1f4689c558ffbc98d9fb4548ef3d98e8a84f7f02611a4e"
     },
     {
       "path": "Release/Modules/ku-gou-youth.sgmodule",
@@ -479,9 +784,19 @@
       "sha256": "a5a972c9e4922c9cd25e495dce94fe30015eb82c12bf9ba28bc3b050b758813a"
     },
     {
+      "path": "Release/Modules/kuai-kan.sgmodule",
+      "size": 359,
+      "sha256": "547de0c40e113abc1435b6f3de353877e8b8150d4b654061a95bf6437ffc2cc4"
+    },
+    {
       "path": "Release/Modules/kuai-shou.sgmodule",
       "size": 2139,
       "sha256": "e64f8016ac60f57e0f1092e74aca0a9333795b8e230f20bc2bf5bc332c183ed4"
+    },
+    {
+      "path": "Release/Modules/kuaishou.sgmodule",
+      "size": 725,
+      "sha256": "6166d971eecbbafb038d2e5fa7ce7b61bf38bceae02476ebb0d139131592b337"
     },
     {
       "path": "Release/Modules/kuro-bbs.sgmodule",
@@ -490,8 +805,8 @@
     },
     {
       "path": "Release/Modules/kuwo.sgmodule",
-      "size": 1452,
-      "sha256": "ba9dcbd6b4d031d5c366c230771a58589c36921d7bb5e32a7a826fdddb2ad40b"
+      "size": 721,
+      "sha256": "f6bba1bc2b3a69b69191d61556e75ef346075b871c93c467da1f63551d75b88c"
     },
     {
       "path": "Release/Modules/kwai-videoeditor.sgmodule",
@@ -499,9 +814,34 @@
       "sha256": "ea314888df4fe270bb8135a7f6c2caf3fe3483c1530e8754e107e0300fe550a9"
     },
     {
+      "path": "Release/Modules/lan-ren-ting-shu.sgmodule",
+      "size": 597,
+      "sha256": "0abe0629b44af8bd49617e6abc30d1b608a2dfa92764df943532a49e1fce85a8"
+    },
+    {
+      "path": "Release/Modules/le-bo-screen-cast.sgmodule",
+      "size": 324,
+      "sha256": "0b10822805a3a34df2d42e294714d532cda16bb9e33bf455952245d3c6ecc140"
+    },
+    {
+      "path": "Release/Modules/le-eco.sgmodule",
+      "size": 914,
+      "sha256": "071777e85430462723d484e7bf14cbebc0700fe0383ab93a7046eaf6df83268c"
+    },
+    {
+      "path": "Release/Modules/leju.sgmodule",
+      "size": 308,
+      "sha256": "354fe8d17342d3d026448408213505f5893c6bc63f4d067949d05592507304c0"
+    },
+    {
       "path": "Release/Modules/line.sgmodule",
       "size": 2863,
       "sha256": "dceb5d8ffcf4cf934089f23b5db082f820623d128b4ad569bbc0be031d77b797"
+    },
+    {
+      "path": "Release/Modules/linkedin.sgmodule",
+      "size": 244,
+      "sha256": "1561ca89474d9b49c26861eb9ebec83c96a7833bee207651ad293d3a0ab69d41"
     },
     {
       "path": "Release/Modules/live-lab.sgmodule",
@@ -639,6 +979,11 @@
       "sha256": "bbd81c03ba33397d7b65f56bbab876ddf6430e835016a6a21f90415e8dd56b8b"
     },
     {
+      "path": "Release/Modules/oschina.sgmodule",
+      "size": 327,
+      "sha256": "3178e70bcb9b4de24d6562d332e224c26690ad5cc8e422ada551b7d8b87b06e7"
+    },
+    {
       "path": "Release/Modules/pangguai-life.sgmodule",
       "size": 861,
       "sha256": "dda12ac79c157361f02de233394465cf3e6d44a5bfa746b3ffe868f4c3e1d837"
@@ -690,8 +1035,8 @@
     },
     {
       "path": "Release/Modules/qqksong.sgmodule",
-      "size": 1882,
-      "sha256": "23f695622c15f5cb6420d083bf6ed6a6948095fc00ec4b34649caaccbe5b028a"
+      "size": 773,
+      "sha256": "22dcacf127c7987eb78ddbbecd1d76816bcb1720b7d7378e4ef3aacf8f9b7a57"
     },
     {
       "path": "Release/Modules/qqmusic.sgmodule",
@@ -794,6 +1139,11 @@
       "sha256": "873e59cd26642b232b86f4a060763f3de8ec63685d13a71eac9ac98e51d0ab4a"
     },
     {
+      "path": "Release/Modules/skyworth.sgmodule",
+      "size": 321,
+      "sha256": "de8fc6616eec032b40a5dea1201a900f648dc957ae1462ce60807895ed60b111"
+    },
+    {
       "path": "Release/Modules/snail-sleep.sgmodule",
       "size": 245,
       "sha256": "ddf23ed0d40c369d448d165398ea0f185a80b8ae0b583894bf8dba72fd9e8cf8"
@@ -815,8 +1165,8 @@
     },
     {
       "path": "Release/Modules/soul.sgmodule",
-      "size": 1948,
-      "sha256": "8c7cb9ee0960576ab82f1339960b9cc570eb06de0157d7a5b6f66877dae7b77f"
+      "size": 1443,
+      "sha256": "9305c3962feccc2de0a6f4e6c1c1414931ac7ef9c9d872501dbdec9846d7d6c7"
     },
     {
       "path": "Release/Modules/spotify.sgmodule",
@@ -850,8 +1200,8 @@
     },
     {
       "path": "Release/Modules/tencent-video.sgmodule",
-      "size": 1270,
-      "sha256": "5ebe2704c2702b0fc596c7cce08c64cf4c71796697c0df53d75ec05528154b13"
+      "size": 560,
+      "sha256": "e92cfaee7dd26f4899ea2a986af907def449741c6a8b678187962815663aeaca"
     },
     {
       "path": "Release/Modules/terabox.sgmodule",
@@ -862,6 +1212,11 @@
       "path": "Release/Modules/tieba.sgmodule",
       "size": 1204,
       "sha256": "16acbdef7a900185abf75ba71567a839c9c9c964e984c67f9c2c4e7e754eb442"
+    },
+    {
+      "path": "Release/Modules/truth-social.sgmodule",
+      "size": 318,
+      "sha256": "1b826cbd5da90fd9aeb8863c22c4aee4ad1887b37a8873372ef0092958634d14"
     },
     {
       "path": "Release/Modules/tu-guai-shou.sgmodule",
@@ -882,6 +1237,16 @@
       "path": "Release/Modules/tv-assistant.sgmodule",
       "size": 963,
       "sha256": "04675e58b861d0a402edd99a9a690ccf12eda11efdedbc6db6376ded88c82dab"
+    },
+    {
+      "path": "Release/Modules/twitch.sgmodule",
+      "size": 274,
+      "sha256": "e23cefb81159fd8c20424c2158c71b4b222be0f047a7ecd844d79abb9654a2a7"
+    },
+    {
+      "path": "Release/Modules/twitter.sgmodule",
+      "size": 450,
+      "sha256": "b24f8d9a1f1aa7e2f92a178c25947ff56e7c7d03cd94b9aef54938bae268c406"
     },
     {
       "path": "Release/Modules/txdocs.sgmodule",
@@ -914,9 +1279,19 @@
       "sha256": "4fd5b882d706b149c8e9b753344038560eb01db655336f151da38c0d3f5da7ce"
     },
     {
+      "path": "Release/Modules/wall-street-cn.sgmodule",
+      "size": 447,
+      "sha256": "b12239726ef6ab2fedb6e4b18870efa74a0f5f99715c4f1fbe8e668e18295fd2"
+    },
+    {
       "path": "Release/Modules/walmart.sgmodule",
       "size": 864,
       "sha256": "f1e05ea0295cfe71be84cf45aa0f3e4cc725bf2d71cb7f40d51a467fb659c2f6"
+    },
+    {
+      "path": "Release/Modules/wasu-tv.sgmodule",
+      "size": 504,
+      "sha256": "cc33468b4dacf29964a463a1e3e75c2173e3b5e3fb5705e7ac92ca481b3ac172"
     },
     {
       "path": "Release/Modules/wechat-mini-programs.sgmodule",
@@ -1095,8 +1470,8 @@
     },
     {
       "path": "Release/Modules/zhihu.sgmodule",
-      "size": 7251,
-      "sha256": "74cc97a0b45d7694a1e9b2f19cc776a0204bdfaafae2bf1fb69c55df2e8d69c3"
+      "size": 6771,
+      "sha256": "d06531654521feb55a1bff0a432a584fe53299509e7028f7056ccdf3be1f7bb3"
     },
     {
       "path": "Release/Modules/zhuan-zhuan.sgmodule",
@@ -1140,23 +1515,23 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 682812,
-      "sha256": "7c04dc5c8a4ddc11a74f17ebee06efbae146fca2f7520c88e466213ba665b063"
+      "size": 697066,
+      "sha256": "0fd04374414a97b96b9bebd610154b8deb35fb4930b4da045515288002459ec4"
     },
     {
       "path": "Release/Rules.conf",
-      "size": 48282,
-      "sha256": "440dd8316bc5891d7f352927d11d9d5326e111b4c7582d6a85fafb8c9872e3aa"
+      "size": 55699,
+      "sha256": "bd7f67ca966945a835e5ce98a5be4b6081ef175f5efaf7427591b587b9306795"
     },
     {
       "path": "Release/RulesGroup.conf",
-      "size": 48361,
-      "sha256": "1e6ef67b5f59e172399b9b0bb7fc0b6152cd873c8fcdfcafbe2b83f779d0939a"
+      "size": 55778,
+      "sha256": "d9496458ad9e911426c8c9715a2164fb36f2da80ef3c0a1528b26a074c227426"
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 682812,
-      "sha256": "7c04dc5c8a4ddc11a74f17ebee06efbae146fca2f7520c88e466213ba665b063"
+      "size": 697066,
+      "sha256": "0fd04374414a97b96b9bebd610154b8deb35fb4930b4da045515288002459ec4"
     },
     {
       "path": "Release/Stable/README.md",
@@ -1165,18 +1540,18 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 682812,
-      "sha256": "7c04dc5c8a4ddc11a74f17ebee06efbae146fca2f7520c88e466213ba665b063"
+      "size": 697066,
+      "sha256": "0fd04374414a97b96b9bebd610154b8deb35fb4930b4da045515288002459ec4"
     },
     {
       "path": "Release/Stable/Rules.conf",
-      "size": 48282,
-      "sha256": "440dd8316bc5891d7f352927d11d9d5326e111b4c7582d6a85fafb8c9872e3aa"
+      "size": 55699,
+      "sha256": "bd7f67ca966945a835e5ce98a5be4b6081ef175f5efaf7427591b587b9306795"
     },
     {
       "path": "Release/Stable/RulesGroup.conf",
-      "size": 48361,
-      "sha256": "1e6ef67b5f59e172399b9b0bb7fc0b6152cd873c8fcdfcafbe2b83f779d0939a"
+      "size": 55778,
+      "sha256": "d9496458ad9e911426c8c9715a2164fb36f2da80ef3c0a1528b26a074c227426"
     },
     {
       "path": "Web/README.md",
@@ -1185,8 +1560,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 57400,
-      "sha256": "2c7abf77b3fee02dc2d7874c95e1ef608f60514b2988227e50e99e8e8b38f3a0"
+      "size": 75081,
+      "sha256": "403ad0d9df5cf4b42566d6b6f42dd54620629f55ddd8cd61020d150123ea1f33"
     },
     {
       "path": "Web/index.html",
@@ -1195,18 +1570,18 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 218185,
-      "sha256": "86a573d4e26272d0c80159e25732eb93473b303aef5e4f1367b44fa721158796"
+      "size": 290178,
+      "sha256": "ca0f4da947cb861ef492bb0b5cab96e688b7db71e858032d200fe9d6f3245f88"
     },
     {
       "path": "Web/registry.md",
-      "size": 1752,
-      "sha256": "68f50ca6151ff4e6becf915e2592cc494ecf6b7e70188df9ec62d6e71090fc44"
+      "size": 1929,
+      "sha256": "ff722187dcc1d4a0193872ab6557f85dd3d82f7493a08e58d8f29d361c3e1e48"
     },
     {
       "path": "Web/release-links.json",
-      "size": 77281,
-      "sha256": "eee88595e1b976d1bc8fbe139b09ec3043e287cebdb46e6f000e2a53c098d007"
+      "size": 101712,
+      "sha256": "222dedda7a3dbdb068a8346f88be25333746705a297590c196a60865852dff3d"
     },
     {
       "path": "Web/remotes.md",
@@ -1215,8 +1590,8 @@
     },
     {
       "path": "Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json",
-      "size": 18627,
-      "sha256": "97f5f745eeeaca91fd06f96309a78682caa1e01f4792955ed15469b333a06080"
+      "size": 26191,
+      "sha256": "3b397e7a1542c8a6636de8b4f13448c68f9afee2b58df36210718b3f8467f9fd"
     },
     {
       "path": "Windows/v2rayN/README.md",

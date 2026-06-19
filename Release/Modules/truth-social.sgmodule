@@ -1,0 +1,9 @@
+#!name=GrandpaNiu TruthSocial Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/truth-social.sgmodule
+
+[URL Rewrite]
+^https?://truthsocial\.com/api/v\d/truth/ads - reject
+
+[MITM]
+hostname = %APPEND% truthsocial.com

@@ -37,6 +37,7 @@ Windows/
 ## Source of truth
 
 - Edit `Rewrite/Sources/Apps/` for app-scoped module rules.
+- App-scoped upstream sync is controlled by `Rewrite/Remotes/app-modules.json`; recent GitHub `.snippet` sources from `fmz200/wool_scripts` are converted before release builds.
 - Edit `Rewrite/Sources/Misc/` for shared protection and generic low-risk cleanup.
 - Edit `Rewrite/Remotes/sources.json` only for low-risk remote rule sets.
 - Treat `Release/` and most `Web/` catalog files as generated outputs.
