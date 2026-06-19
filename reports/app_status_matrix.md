@@ -1,6 +1,6 @@
 # App 状态矩阵
 
-生成时间：2026-06-20 02:30:11 +0800
+生成时间：2026-06-20 07:32:21 +0800
 
 本矩阵是自动化质量总览。状态只表达仓库源头是否被自动扫描覆盖，以及是否满足可回滚、可审计的发布边界。
 
@@ -25,7 +25,7 @@
 | 12306 | 出行 | Rewrite, Rule | 未确认 | 自动门禁覆盖 | 高 | automated_quality_evidence.md / 静态扫描 | 保留保护优先、需可回滚源头 | 回滚 Rewrite、Rules 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
 | 高德地图 | 地图 | MITM, Rewrite, Rule, Script | fusion | 自动门禁覆盖 | 高 | automated_quality_evidence.md / 静态扫描 | 保留保护优先、需可回滚源头 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
 | 百度地图 | 地图 | MITM, Rewrite, Rule, Script | fusion | 自动门禁覆盖 | 高 | automated_quality_evidence.md / 静态扫描 | 保留保护优先、需可回滚源头 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
-| 网易云音乐 | 音乐 | MITM, Rewrite, Rule | fusion | 自动门禁覆盖 | 中 | automated_quality_evidence.md / 静态扫描 | 随 Fusion 自动门禁发布 | 回滚 Rewrite、Rules 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
+| 网易云音乐 | 音乐 | MITM, Rewrite, Rule, Script | fusion | 自动门禁覆盖 | 中 | automated_quality_evidence.md / 静态扫描 | 随 Fusion 自动门禁发布 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
 | 喜马拉雅 | 音频 | MITM, Rewrite, Rule, Script | fusion | 自动门禁覆盖 | 中 | automated_quality_evidence.md / 静态扫描 | 随 Fusion 自动门禁发布 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
 | 小宇宙 | 音频 | MITM, Rewrite, Script | fusion | 自动门禁覆盖 | 中 | automated_quality_evidence.md / 静态扫描 | 随 Fusion 自动门禁发布 | 回滚 Rewrite、Scripts 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
 | 斗鱼 | 直播 | MITM, Rewrite, Rule, Script | fusion | 自动门禁覆盖 | 中 | automated_quality_evidence.md / 静态扫描 | 随 Fusion 自动门禁发布 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
