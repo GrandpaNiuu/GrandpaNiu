@@ -1,96 +1,315 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-06-19T18:21:19Z
-- modules: 75
-- enabled: 75
-- direct_commit: 75
-- updated: 32
-- skipped: 43
+- generated: 2026-06-19T19:12:39Z
+- modules: 295
+- enabled: 287
+- direct_commit: 287
+- updated: 0
+- skipped: 295
 - blocked: 0
 - errors: 0
 
 ## Updated
-| id | upstream | backup | source |
-| --- | --- | --- | --- |
-| 17173-game | 17173（网络游戏门户网站） |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part1/17173Game.snippet |
-| 178-game | 178游戏网 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part1/178Game.snippet |
-| 18183-game | 18183游戏网 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part1/18183Game.snippet |
-| 1905-movie-network | 1905电影网 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part1/1905MovieNetwork.snippet |
-| 2345-web-navigation | 2345网址导航 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part2/2345WebNavigation.snippet |
-| 365-calendar | 365日历 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part3/365Calendar.snippet |
-| 39-health | 39健康网 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part3/39Health.snippet |
-| 51-cto | 51CTO学堂 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part5/51CTO.snippet |
-| 58-auto | 58汽车 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/part5/58Auto.snippet |
-| 9-game | 九游 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partJ/9Game.snippet |
-| baicizhan | 百词斩 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/baicizhan.snippet |
-| baixing | 百姓网 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/Baixing.snippet |
-| baofeng-player | 暴风影音 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/BaofengPlayer.snippet |
-| bbc | BBC |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/BBC.snippet |
-| biquge | 笔趣阁 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partB/BiQuGe.snippet |
-| cnn | CNN |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partC/CNN.snippet |
-| douyin | 抖音 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/TikTok.snippet |
-| eastday | 东方网 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/Eastday.snippet |
-| facebook | Facebook |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partF/Facebook.snippet |
-| funshion | 风行网 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partF/Funshion.snippet |
-| ganji | 赶集网 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partG/Ganji.snippet |
-| hao123 | Hao123 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partH/Hao123.snippet |
-| hujiang-online-school | 沪江网校 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partH/HujiangOnlineSchool.snippet |
-| ku-gou-music | 酷狗音乐 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partK/KuGouMusic.snippet |
-| le-bo-screen-cast | 乐播投屏 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partL/LeBoScreenCast.snippet |
-| le-eco | 乐视 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partL/LeEco.snippet |
-| leju | 乐居 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partL/Leju.snippet |
-| linkedin | LinkedIn |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partL/LinkedIn.snippet |
-| skyworth | 创维 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partC/Skyworth.snippet |
-| twitch | Twitch |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partT/Twitch.snippet |
-| twitter | Twitter |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partT/Twitter.snippet |
-| wasu-tv | 华数TV |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partH/WasuTV.snippet |
+_None._
 
 ## Skipped
 | id | reason |
 | --- | --- |
+| 123-net-work-disk | unchanged |
+| 12306 | unchanged |
+| 123pan | unchanged |
+| 17173-game | unchanged |
+| 178-game | unchanged |
+| 18183-game | unchanged |
+| 1905-movie-network | unchanged |
 | 2345-weather-king | unchanged |
+| 2345-web-navigation | unchanged |
+| 2bulu | unchanged |
+| 36-kr | unchanged |
+| 360-smart-camera | unchanged |
+| 365-calendar | unchanged |
+| 39-health | unchanged |
+| 51-cto | unchanged |
+| 51-job | unchanged |
+| 555-dy | unchanged |
+| 58-auto | unchanged |
 | 58-tong-cheng | unchanged |
+| 9-game | unchanged |
+| 91160 | unchanged |
 | acfun | unchanged |
+| aiinquiry | unchanged |
+| ali-yun-drive | unchanged |
 | all-football | unchanged |
+| amap | unchanged |
 | appso | unchanged |
+| auto-home | unchanged |
+| baby-tree | unchanged |
 | baby-tree-parenting | unchanged |
+| baicizhan | unchanged |
+| baidu | unchanged |
+| baidu-input-method | unchanged |
+| baidu-map | unchanged |
+| baidu-net-disk | unchanged |
+| baidu-photo | unchanged |
 | baidu-translation | unchanged |
+| baidu-wenku | unchanged |
+| baidupan | unchanged |
+| baixing | unchanged |
 | ban-yue-tan | unchanged |
+| baofeng-player | unchanged |
+| bbc | unchanged |
+| beike | unchanged |
 | betty-kitchen | unchanged |
+| bilibili | unchanged |
+| bilibili-comic | unchanged |
+| biquge | unchanged |
+| bitqiu-pan | unchanged |
 | blued | unchanged |
+| bodian-music | unchanged |
+| boo-hee | unchanged |
+| cainiao | unchanged |
+| caixin-media | unchanged |
+| caiyun-weather | unchanged |
+| cat-ear-fm | unchanged |
+| cclive | unchanged |
+| cece | unchanged |
 | chao-ji-ke-cheng-biao | unchanged |
 | chao-xing-xue-xi-tong | unchanged |
 | che-lai-le | unchanged |
+| cheng-fen-miao | unchanged |
+| china-unicom | unchanged |
+| chuzhan | unchanged |
 | ci-wei-mao-yue-du | unchanged |
 | clicli | unchanged |
+| cnn | unchanged |
+| cool-apk | unchanged |
 | coolapk | unchanged |
 | crunchyroll | unchanged |
 | csdn | unchanged |
+| csg | unchanged |
+| daily | unchanged |
+| damai | unchanged |
 | dang-dang-reading | unchanged |
+| dewu | unchanged |
+| di-di | unchanged |
 | di-duan-ying-shi | unchanged |
+| dida-pinche-taxi | unchanged |
+| didi | unchanged |
+| digital-heartbeat | unchanged |
+| dingdong-maicai | unchanged |
+| dlabel | unchanged |
 | dong-hua-feng | unchanged |
+| dou-ban | unchanged |
+| douban-read | unchanged |
+| douyin | unchanged |
+| douyu | unchanged |
+| dragon-read | unchanged |
+| dreame | unchanged |
+| dubbing-show | unchanged |
+| dui-tang | unchanged |
+| eastday | unchanged |
+| ecovacs-home | unchanged |
+| etouch-ecalendar | unchanged |
+| facebook | unchanged |
 | fan-deng-reading | unchanged |
+| fc-box | unchanged |
+| fen-bi | unchanged |
+| ferris-wheel | unchanged |
+| finance-news | unchanged |
+| flea-market | unchanged |
 | flightradar24 | unchanged |
+| flyer-tea | unchanged |
+| foodie | unchanged |
+| funshion | unchanged |
+| ganji | unchanged |
+| gao-ding | unchanged |
+| goofish | unchanged |
+| guide-rank | unchanged |
 | hanju-tv | unchanged |
+| hanting-hotels | unchanged |
 | hao-qi-xin-daily | unchanged |
+| hao123 | unchanged |
 | he-feng-weather | unchanged |
+| heartide-brain-wave | unchanged |
+| hkdou-yin | unchanged |
 | hua-sheng-di-tie | unchanged |
 | huang-you-xiang-ji | unchanged |
+| hujiang-online-school | unchanged |
+| hupu | unchanged |
+| huxiu | unchanged |
+| huya | disabled |
+| i-mai-cai | unchanged |
+| i-qi-yi-video | unchanged |
+| i-reader | unchanged |
+| i-reader-dejian | unchanged |
+| ithome | unchanged |
+| jd | unchanged |
 | jdreading | unchanged |
+| jdwaimai | unchanged |
 | ji-he-wang | unchanged |
+| jia-kao-bao-dian | unchanged |
+| jia-xiao-drive | unchanged |
 | jia-xiao-yi-dian-tong | unchanged |
 | jie-mian-news | unchanged |
 | jin-ri-shui-yin-camera | unchanged |
+| jump | unchanged |
 | kan-li-xiang | unchanged |
 | kan-tian-xia | unchanged |
+| kebida-dushu | unchanged |
+| keep | unchanged |
 | kfc | unchanged |
+| kgring | unchanged |
+| kingdee-my-money | unchanged |
 | kingsoft-power-word | unchanged |
+| kook | unchanged |
+| ku-gou | unchanged |
+| ku-gou-music | unchanged |
+| ku-gou-youth | unchanged |
+| kuai-di100 | unchanged |
+| kuai-dui-zuo-ye | unchanged |
 | kuai-kan | unchanged |
+| kuai-kan-comic | unchanged |
+| kuai-shou | unchanged |
 | kuaishou | unchanged |
+| kuro-bbs | unchanged |
+| kuwo | unchanged |
+| kwai-videoeditor | unchanged |
 | lan-ren-ting-shu | unchanged |
+| le-bo-screen-cast | unchanged |
+| le-eco | unchanged |
+| leju | unchanged |
+| line | unchanged |
+| linkedin | unchanged |
+| live-lab | unchanged |
+| lol-bible | unchanged |
+| luckin-coffee | unchanged |
+| ma-feng-wo | unchanged |
+| mai-mai | unchanged |
+| mail-master | unchanged |
+| meet-you | unchanged |
+| mei-shi-jie | unchanged |
+| mei-tu | unchanged |
+| meitu-myxj | unchanged |
+| meituan | disabled |
+| meizhixiuxing | unchanged |
+| mgtv | unchanged |
+| mi-ho-yo-bbs | unchanged |
+| miao-read | unchanged |
+| mkz | unchanged |
+| mobile-clouds | unchanged |
+| moe-girl-wiki | unchanged |
+| moji-weather | unchanged |
+| mr-hema | unchanged |
+| narwel-robots | unchanged |
+| net-ease-godlike | unchanged |
+| netease-mail | unchanged |
+| netease-music | unchanged |
+| netease-news | unchanged |
+| on-the-way | unchanged |
+| oray-sunlogin | unchanged |
 | oschina | unchanged |
+| pangguai-life | unchanged |
+| pcauto | disabled |
+| perfect-world-esport | unchanged |
+| pi-pi-xia | unchanged |
+| picc-insurance | unchanged |
+| pinduoduo | unchanged |
+| pinterest | unchanged |
+| pu-pu-mall | unchanged |
+| qi-dian | unchanged |
+| qi-xin-bao | unchanged |
+| qqksong | unchanged |
+| qqmusic | unchanged |
+| qqnews | disabled |
+| qting-fm | unchanged |
+| quark | unchanged |
+| quark-scan | unchanged |
+| railway12306 | unchanged |
+| reddit | unchanged |
+| rednote | unchanged |
+| reel-short | unchanged |
+| risk-bird | unchanged |
+| robo-taxi | unchanged |
+| roborock | unchanged |
+| rqrun | unchanged |
+| safety-home | unchanged |
+| seasun-jx3 | unchanged |
+| seven-cat | unchanged |
+| sf-express | unchanged |
+| shop-keeper-admin | unchanged |
+| shou-yin-tong-merchant | unchanged |
+| shu-qi-center-reader | unchanged |
+| skyworth | unchanged |
+| snail-sleep | unchanged |
+| snow-camera | unchanged |
+| snowball | unchanged |
+| soda-music | unchanged |
+| soul | unchanged |
+| spotify | unchanged |
+| su-zhou-citizen-card | unchanged |
+| taobao | unchanged |
+| taobao-travel | unchanged |
+| taopiaopiao | unchanged |
+| taqu | unchanged |
+| tencent-video | unchanged |
+| terabox | unchanged |
+| tieba | unchanged |
 | truth-social | unchanged |
+| tu-guai-shou | unchanged |
+| tube-max | unchanged |
+| tumblr | unchanged |
+| tv-assistant | unchanged |
+| twitch | unchanged |
+| twitter | unchanged |
+| txdocs | unchanged |
+| uki | unchanged |
+| umetrip | unchanged |
+| valorant-bible | unchanged |
+| video-go | unchanged |
+| wa-cai-ji-zhang | unchanged |
 | wall-street-cn | unchanged |
+| walmart | unchanged |
+| wasu-tv | unchanged |
+| wechat | unchanged |
+| wechat-mini-programs | unchanged |
+| wechat-official-accounts | unchanged |
+| weibo | unchanged |
+| weibo-intl | unchanged |
+| weimai | unchanged |
+| weread | unchanged |
+| wpforum | unchanged |
+| wps | unchanged |
+| wuta-camera | unchanged |
+| xfuse | unchanged |
+| xia-chu-fang | unchanged |
+| xiao-can | unchanged |
+| xiao-hei-he | unchanged |
+| xiaojukeji-charge | unchanged |
+| xiaomi-speaker | unchanged |
+| xiaopeng | disabled |
+| xiaoyuzhou | unchanged |
+| ximalaya | unchanged |
+| xun-lei | unchanged |
+| yi-kao-bang | unchanged |
+| yiche | disabled |
+| yitian | unchanged |
+| youdao-dict | unchanged |
+| youdao-note | unchanged |
+| youdao-trans | unchanged |
+| youku | unchanged |
+| youtube | disabled |
+| yue-dan-ba | unchanged |
+| yueyou | unchanged |
+| yy-voice | unchanged |
+| yyvoice-tool | unchanged |
+| zaker | unchanged |
+| zdm | unchanged |
+| zhi-lian-zhao-pin | unchanged |
+| zhihu | unchanged |
+| zhuan-zhuan | unchanged |
+| zong-heng | unchanged |
+| zui-you | unchanged |
+| zuoyebang | disabled |
 
 ## Blocked
 _None._

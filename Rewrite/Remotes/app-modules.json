@@ -52,7 +52,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "178-game",
@@ -64,7 +64,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "18183-game",
@@ -76,7 +76,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "1905-movie-network",
@@ -88,7 +88,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "2345-weather-king",
@@ -112,7 +112,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "2bulu",
@@ -160,7 +160,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "39-health",
@@ -172,7 +172,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "51-cto",
@@ -184,7 +184,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "51-job",
@@ -220,7 +220,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "58-tong-cheng",
@@ -244,7 +244,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "91160",
@@ -292,7 +292,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "all-football",
@@ -376,7 +376,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "baidu",
@@ -484,7 +484,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "ban-yue-tan",
@@ -508,7 +508,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "bbc",
@@ -520,7 +520,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "beike",
@@ -580,7 +580,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "bitqiu-pan",
@@ -760,7 +760,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "chuzhan",
@@ -808,7 +808,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "cool-apk",
@@ -1048,7 +1048,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "douyu",
@@ -1072,7 +1072,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "dreame",
@@ -1120,7 +1120,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "ecovacs-home",
@@ -1156,7 +1156,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "fan-deng-reading",
@@ -1276,7 +1276,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "ganji",
@@ -1288,7 +1288,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "gao-ding",
@@ -1372,7 +1372,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "he-feng-weather",
@@ -1444,7 +1444,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "hupu",
@@ -1504,7 +1504,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "i-reader",
@@ -1660,7 +1660,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "kan-li-xiang",
@@ -1792,7 +1792,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "ku-gou-youth",
@@ -1900,7 +1900,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "kwai-videoeditor",
@@ -1936,7 +1936,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "le-eco",
@@ -1948,7 +1948,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "leju",
@@ -1960,7 +1960,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "line",
@@ -1984,7 +1984,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "live-lab",
@@ -2272,7 +2272,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "netease-news",
@@ -2452,7 +2452,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "qqmusic",
@@ -2704,7 +2704,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "snail-sleep",
@@ -2764,7 +2764,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "spotify",
@@ -2848,7 +2848,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "terabox",
@@ -2944,7 +2944,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "twitter",
@@ -2956,7 +2956,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "txdocs",
@@ -3064,7 +3064,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "wechat",
@@ -3496,7 +3496,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "zhuan-zhuan",
