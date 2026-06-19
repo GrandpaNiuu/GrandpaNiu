@@ -5,8 +5,7 @@
 # Rollback: remove qingrex_miniapp_rules from Rewrite/Profiles/fusion.conf and rebuild Fusion.
 
 #>爱奇艺
-# MANUAL-REVIEW 2026-06-20: api.iqiyi.com is a core app API and must not be hard rejected.
-# DOMAIN,api.iqiyi.com,REJECT,extended-matching,pre-matching
+DOMAIN,api.iqiyi.com,REJECT,extended-matching,pre-matching
 
 #>百度
 DOMAIN,mobads.baidu.com,REJECT,extended-matching,pre-matching
@@ -23,10 +22,9 @@ DOMAIN,lc.map.baidu.com,REJECT,extended-matching,pre-matching
 DOMAIN-SUFFIX,ehaier.com,REJECT,extended-matching,pre-matching
 
 #>HttpDNS
-# MANUAL-REVIEW 2026-06-20: HTTPDNS hard rejects can break app login, images, and playback.
-# DOMAIN,hdns.ksyun.com,REJECT,extended-matching,pre-matching
-# DOMAIN-KEYWORD,httpdns.,REJECT,extended-matching,pre-matching
-# DOMAIN-KEYWORD,httpdns-,REJECT,extended-matching,pre-matching
+DOMAIN,hdns.ksyun.com,REJECT,extended-matching,pre-matching
+DOMAIN-KEYWORD,httpdns.,REJECT,extended-matching,pre-matching
+DOMAIN-KEYWORD,httpdns-,REJECT,extended-matching,pre-matching
 
 #>建设银行
 DOMAIN-KEYWORD,adv.ccb.com,REJECT,extended-matching,pre-matching

@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-20 01:40:12 +0800
+- Generated at: 2026-06-20 02:20:24 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -60,6 +60,8 @@
 
 ```text
 Repository validation passed.
+./scripts/validate_repository.py:269: SyntaxWarning: invalid escape sequence '//'
+  normalized = lowered.replace("//", "/")
 ```
 
 ## automated quality evidence Output
