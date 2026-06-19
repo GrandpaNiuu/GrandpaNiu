@@ -1,19 +1,19 @@
 # REJECT 风险审计报告
 
-生成时间：2026-06-19 04:38:38 +0800
+生成时间：2026-06-20 01:40:10 +0800
 
 本报告只做分类审计，不会自动删除、注释或替换任何规则。高风险项需要先确认 Shadowrocket 日志和真实 App 行为，再做 source-first 修复。
 
 ## 总览
 
-- 活跃 REJECT 规则数：113
+- 活跃 REJECT 规则数：103
 - 明确广告域：31
 - 图片 / CDN 风险：7
-- HTTPDNS 风险：10
+- HTTPDNS 风险：0
 - 微信 / 支付 / 银行风险：2
-- 国内核心 API 风险：12
+- 国内核心 API 风险：9
 - 不确定规则：55
-- 需要人工复核总数：86
+- 需要人工复核总数：73
 
 ## 重点风险域检查
 
@@ -36,7 +36,7 @@
 | `hdslb.com` | 已精确保护或覆盖 | 0 | 默认 DIRECT 或人工复核，不建议 REJECT |
 | `meituan.net` | 已精确保护或覆盖 | 1 | 默认 DIRECT 或人工复核，不建议 REJECT |
 | `dpfile.com` | 已精确保护或覆盖 | 0 | 默认 DIRECT 或人工复核，不建议 REJECT |
-| `httpdns` | 未发现 | 10 | 人工复核，不建议 pre-matching REJECT |
+| `httpdns` | 已精确保护或覆盖 | 0 | 人工复核，不建议 pre-matching REJECT |
 | `dns.weixin` | 已精确保护或覆盖 | 0 | 人工复核，不建议 pre-matching REJECT |
 
 ## 明确广告域：可保留 REJECT
@@ -85,16 +85,7 @@
 
 ## HTTPDNS：人工复核，不建议 pre-matching REJECT
 
-- `DOMAIN,httpdns-sdk.n.netease.com,REJECT,pre-matching`
-- `DOMAIN,httpdns.baidubce.com,REJECT,pre-matching`
-- `DOMAIN,httpdns.calorietech.com,REJECT,pre-matching`
-- `DOMAIN,httpdns.music.163.com,REJECT,pre-matching`
-- `DOMAIN,httpdns.n.netease.com,REJECT,pre-matching`
-- `DOMAIN,httpdns.yunxindns.com,REJECT,pre-matching`
-- `DOMAIN,httpdnsmultiapi.meituan.com,REJECT,pre-matching`
-- `DOMAIN,httpdnsmultiapivip.meituan.com,REJECT,pre-matching`
-- `DOMAIN,lofter.httpdns.c.163.com,REJECT,pre-matching`
-- `DOMAIN,music.httpdns.c.163.com,REJECT,pre-matching`
+- 无
 
 ## 微信 / 支付 / 银行：默认保护，不直接 REJECT
 
@@ -108,9 +99,6 @@
 - `DOMAIN,dpmtpush.dianping.com,REJECT,pre-matching`
 - `DOMAIN,free-aos-cdn-image.amap.com,REJECT,pre-matching`
 - `DOMAIN,hlx.meituan.com,REJECT,pre-matching`
-- `DOMAIN,httpdns.baidubce.com,REJECT,pre-matching`
-- `DOMAIN,httpdnsmultiapi.meituan.com,REJECT,pre-matching`
-- `DOMAIN,httpdnsmultiapivip.meituan.com,REJECT,pre-matching`
 - `DOMAIN,layout.meituan.net,REJECT,pre-matching`
 - `DOMAIN,lc.map.baidu.com,REJECT,pre-matching`
 - `DOMAIN,lx0.meituan.com,REJECT,pre-matching`

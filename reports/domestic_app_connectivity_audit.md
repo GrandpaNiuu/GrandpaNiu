@@ -1,6 +1,6 @@
 # 国内 App 联网与加载误伤风险排查报告
 
-生成时间：2026-06-19 04:38:38 +0800
+生成时间：2026-06-20 01:40:10 +0800
 
 本报告用于排查国内 App 图片加载失败、页面加载不完整、微信不能发图片等问题。报告只分析，不自动修改规则。
 
@@ -50,16 +50,7 @@
 
 ### httpdns
 
-- `DOMAIN,httpdns-sdk.n.netease.com,REJECT,pre-matching`
-- `DOMAIN,httpdns.baidubce.com,REJECT,pre-matching`
-- `DOMAIN,httpdns.calorietech.com,REJECT,pre-matching`
-- `DOMAIN,httpdns.music.163.com,REJECT,pre-matching`
-- `DOMAIN,httpdns.n.netease.com,REJECT,pre-matching`
-- `DOMAIN,httpdns.yunxindns.com,REJECT,pre-matching`
-- `DOMAIN,httpdnsmultiapi.meituan.com,REJECT,pre-matching`
-- `DOMAIN,httpdnsmultiapivip.meituan.com,REJECT,pre-matching`
-- `DOMAIN,lofter.httpdns.c.163.com,REJECT,pre-matching`
-- `DOMAIN,music.httpdns.c.163.com,REJECT,pre-matching`
+- 无
 
 ### domestic-core-api
 
@@ -68,9 +59,6 @@
 - `DOMAIN,dpmtpush.dianping.com,REJECT,pre-matching`
 - `DOMAIN,free-aos-cdn-image.amap.com,REJECT,pre-matching`
 - `DOMAIN,hlx.meituan.com,REJECT,pre-matching`
-- `DOMAIN,httpdns.baidubce.com,REJECT,pre-matching`
-- `DOMAIN,httpdnsmultiapi.meituan.com,REJECT,pre-matching`
-- `DOMAIN,httpdnsmultiapivip.meituan.com,REJECT,pre-matching`
 - `DOMAIN,layout.meituan.net,REJECT,pre-matching`
 - `DOMAIN,lc.map.baidu.com,REJECT,pre-matching`
 - `DOMAIN,lx0.meituan.com,REJECT,pre-matching`
