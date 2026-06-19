@@ -55,7 +55,7 @@ jobs:
         if: steps.upstream-sync.outcome != 'success' || steps.factory-build.outcome != 'success'
         run: |
           set -euo pipefail
-          git restore Rewrite/Sources/Apps Rewrite/Remotes/app-modules.json Ronghemokuai.sgmodule Release Web reports || true
+          git restore Rewrite/Sources/Apps Rewrite/Remotes/app-modules.json Scripts/generated Ronghemokuai.sgmodule Release Web reports || true
           mkdir -p reports
           {
             echo "# Upstream App Module Sync Report"
@@ -75,7 +75,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Rewrite/Sources/Meta.conf Rewrite/Sources/Apps Rewrite/Remotes/app-modules.json backup/upstream-app-modules reports Ronghemokuai.sgmodule Release Web
+          git add Rewrite/Sources/Meta.conf Rewrite/Sources/Apps Rewrite/Remotes/app-modules.json Scripts/generated backup/upstream-app-modules reports Ronghemokuai.sgmodule Release Web
 
           if git diff --cached --quiet; then
             echo "No upstream app module changes."

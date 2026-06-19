@@ -78,7 +78,7 @@ jobs:
             fi
 
             regenerate
-            git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
+            git add Rewrite/Sources/Meta.conf Scripts/generated Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
 
             if git diff --cached --quiet; then
               echo "Watchdog regenerated outputs but found no changes to commit."

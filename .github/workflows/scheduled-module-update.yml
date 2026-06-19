@@ -72,7 +72,7 @@ jobs:
             python3 scripts/validate_repository.py
           }
 
-          git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
+          git add Rewrite/Sources/Meta.conf Scripts/generated Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
           if git diff --cached --quiet; then
             echo "No scheduled module factory changes to commit."
             exit 0
@@ -87,7 +87,7 @@ jobs:
             git fetch origin main
             if git rebase origin/main; then
               regenerate
-              git add Rewrite/Sources/Meta.conf Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
+              git add Rewrite/Sources/Meta.conf Scripts/generated Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
               if ! git diff --cached --quiet; then
                 git commit --amend --no-edit
               fi

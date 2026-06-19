@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-20 02:30:16 +0800
+- Generated at: 2026-06-20 07:17:52 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -17,7 +17,7 @@
 - [Header Rewrite]: 1
 - [Body Rewrite]: 1652
 - [Map Local]: 351
-- [Script]: 89
+- [Script]: 42
 - [MITM]: 1
 
 ## Blocking Issues

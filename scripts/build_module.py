@@ -7,9 +7,12 @@ import argparse
 import configparser
 import datetime as dt
 import difflib
+import hashlib
 import json
 import re
 import sys
+import urllib.error
+import urllib.request
 from pathlib import Path
 from typing import Iterable
 
@@ -20,9 +23,13 @@ MODULE = ROOT / "Ronghemokuai.sgmodule"
 RELEASE = ROOT / "Release" / "Ronghemokuai.sgmodule"
 REPORT = ROOT / "reports" / "module_factory_report.md"
 DIFF_REPORT = ROOT / "reports" / "module_factory_diff_report.md"
+SCRIPT_AGGREGATION_REPORT = ROOT / "reports" / "script_aggregation_report.md"
 SOURCES = ROOT / "Rewrite" / "Sources"
 MISC_SOURCES = SOURCES / "Misc"
 APP_SOURCES = SOURCES / "Apps"
+GENERATED_SCRIPTS = ROOT / "Scripts" / "generated"
+SCRIPT_BUNDLE = GENERATED_SCRIPTS / "fusion-script-bundle.js"
+SCRIPT_BUNDLE_URL = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js"
 PROFILES = ROOT / "Rewrite" / "Profiles"
 REMOTES_JSON = ROOT / "Rewrite" / "Remotes" / "sources.json"
 
@@ -160,6 +167,45 @@ PROTECTED_REJECT_TOKENS = (
 SCRIPT_MERGE_MAX_ITEMS = 24
 SCRIPT_MERGE_MAX_PATTERN_LEN = 6000
 SCRIPT_MERGE_ESSENTIAL_PREFIXES = CORE_TOKENS + ("bilibili.", "zhihu-enhance")
+SCRIPT_AGGREGATOR_MAX_PATTERN_LEN = 5600
+SCRIPT_AGGREGATOR_FETCH_TIMEOUT = 20
+SCRIPT_AGGREGATOR_ALLOWED_PREFIXES = (
+    "https://kelee.one/Resource/JavaScript/",
+    "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/",
+    "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/",
+    "https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js",
+    "https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js",
+)
+SCRIPT_AGGREGATOR_PRESERVE_TOKENS = (
+    "spotify",
+    "youtube",
+    "bilibili",
+    "biliapi",
+    "protobuf",
+    "proto",
+    "zhihu",
+    "wechat",
+    "weixin",
+    "wechatpay",
+    "alipay",
+    "bank",
+    "insurance",
+    "finance",
+    "securities",
+    "fund",
+    "loan",
+    "credit",
+    "wallet",
+    "payment",
+    "picc",
+    "passport",
+    "login",
+    "auth",
+    "12306",
+    "umetrip",
+    "airchina",
+    "flight",
+)
 
 
 def stop(message: str) -> None:
@@ -578,6 +624,280 @@ def consolidate_script_entries(body: str) -> str:
     return "\n".join(line.rstrip() for line in out if line.strip()).strip() + "\n"
 
 
+def field_truthy(value: str | None) -> bool:
+    return str(value or "").strip().lower() in {"1", "true", "yes"}
+
+
+def allowed_aggregate_script_path(path: str) -> bool:
+    return any(path.startswith(prefix) for prefix in SCRIPT_AGGREGATOR_ALLOWED_PREFIXES)
+
+
+def aggregate_candidate_reason(entry: dict[str, str]) -> str:
+    script_type = entry.get("type", "").strip()
+    script_path = entry.get("script-path", "").strip()
+    lowered = " ".join([
+        entry.get("__name__", ""),
+        entry.get("pattern", ""),
+        script_path,
+    ]).lower()
+    if script_type != "http-response":
+        return "preserved: not http-response"
+    if not field_truthy(entry.get("requires-body")):
+        return "preserved: no response body"
+    if field_truthy(entry.get("binary-body-mode")):
+        return "preserved: binary body"
+    if "argument" in entry:
+        return "preserved: has argument"
+    if not script_path.endswith(".js"):
+        return "preserved: not javascript"
+    if not allowed_aggregate_script_path(script_path):
+        return "preserved: upstream not in aggregator allowlist"
+    if any(token in lowered for token in SCRIPT_AGGREGATOR_PRESERVE_TOKENS):
+        return "preserved: protected app or account/payment token"
+    return ""
+
+
+def fetch_script_source(url: str) -> tuple[str, str]:
+    headers = {
+        "User-Agent": "GrandpaNiu-Script-Aggregator/1.0",
+        "Accept": "text/javascript,text/plain,*/*;q=0.8",
+    }
+    if "kelee.one/" in url:
+        headers.update({
+            "User-Agent": "Loon/889 CFNetwork/1496.0.7 Darwin/23.5.0",
+            "Referer": "https://hub.kelee.one/",
+        })
+    request = urllib.request.Request(
+        url,
+        headers=headers,
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=SCRIPT_AGGREGATOR_FETCH_TIMEOUT) as response:
+            data = response.read()
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        return "", str(exc)
+    text = data.decode("utf-8-sig", errors="replace").strip()
+    if not text:
+        return "", "empty script source"
+    return text + "\n", ""
+
+
+def script_source_key(url: str) -> str:
+    return "src_" + hashlib.sha256(url.encode("utf-8")).hexdigest()[:16]
+
+
+def js_string(value: str) -> str:
+    return json.dumps(value, ensure_ascii=False)
+
+
+def build_script_bundle(routes: list[dict[str, str]], sources: dict[str, str]) -> str:
+    route_rows = [
+        "    {name: %s, pattern: %s, source: %s}" % (
+            js_string(route["name"]),
+            js_string(route["pattern"]),
+            js_string(route["source_key"]),
+        )
+        for route in routes
+    ]
+    source_rows = [
+        "    %s: %s" % (js_string(key), js_string(source))
+        for key, source in sorted(sources.items())
+    ]
+    generated = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    return "\n".join([
+        "// Generated by scripts/build_module.py. Do not edit by hand.",
+        f"// generated: {generated}",
+        "// purpose: dispatch low-risk app cleanup scripts from one stable GrandpaNiu URL.",
+        "(function () {",
+        '  const VERSION = "grandpaniu-fusion-script-bundle-v1";',
+        "  const ROUTES = [",
+        ",\n".join(route_rows),
+        "  ];",
+        "  const SOURCES = {",
+        ",\n".join(source_rows),
+        "  };",
+        "",
+        "  function requestUrl() {",
+        "    try { return ($request && $request.url) || \"\"; } catch (_) { return \"\"; }",
+        "  }",
+        "  function finishUnchanged() {",
+        "    try { $done({}); } catch (_) {}",
+        "  }",
+        "  function log(message) {",
+        "    try { console.log(\"[GrandpaNiu script bundle] \" + message); } catch (_) {}",
+        "  }",
+        "",
+        "  const url = requestUrl();",
+        "  for (const route of ROUTES) {",
+        "    try {",
+        "      if (!new RegExp(route.pattern).test(url)) continue;",
+        "      const source = SOURCES[route.source];",
+        "      if (!source) { log(\"missing source for \" + route.name); return finishUnchanged(); }",
+        "      return (0, eval)(source);",
+        "    } catch (error) {",
+        "      log(route.name + \" failed: \" + (error && error.message ? error.message : error));",
+        "      return finishUnchanged();",
+        "    }",
+        "  }",
+        "  finishUnchanged();",
+        "})();",
+        "",
+    ])
+
+
+def chunk_patterns(routes: list[dict[str, str]]) -> list[list[dict[str, str]]]:
+    chunks: list[list[dict[str, str]]] = []
+    current: list[dict[str, str]] = []
+    current_len = len("(?:)")
+    for route in routes:
+        pattern_len = len(route["pattern"])
+        next_len = current_len + pattern_len + (1 if current else 0)
+        if current and next_len > SCRIPT_AGGREGATOR_MAX_PATTERN_LEN:
+            chunks.append(current)
+            current = []
+            current_len = len("(?:)")
+        current.append(route)
+        current_len += pattern_len + (1 if len(current) > 1 else 0)
+    if current:
+        chunks.append(current)
+    return chunks
+
+
+def bundled_script_line(index: int, routes: list[dict[str, str]]) -> str:
+    pattern = "(?:" + "|".join(route["pattern"] for route in routes) + ")"
+    return (
+        f"grandpaniu-script-bundle-{index} = "
+        f"type=http-response,pattern={pattern},requires-body=1,max-size=0,"
+        f"script-path={SCRIPT_BUNDLE_URL},script-update-interval=86400"
+    )
+
+
+def script_path_count(lines: list[str]) -> int:
+    paths: set[str] = set()
+    for line in lines:
+        match = re.search(r"script-path=([^,\s]+)", line)
+        if match:
+            paths.add(match.group(1))
+    return len(paths)
+
+
+def write_script_aggregation_report(stats: dict[str, object]) -> None:
+    bundled_names = stats.get("bundled_names", [])
+    failed = stats.get("fetch_failed", [])
+    preserved = stats.get("preserved_reasons", {})
+    lines = [
+        "# Script Aggregation Report",
+        "",
+        f"- generated: {dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z')}",
+        f"- enabled: {stats.get('enabled', False)}",
+        f"- input script entries: {stats.get('input_entries', 0)}",
+        f"- output script entries: {stats.get('output_entries', 0)}",
+        f"- unique script-path before: {stats.get('unique_paths_before', 0)}",
+        f"- unique script-path after: {stats.get('unique_paths_after', 0)}",
+        f"- bundled entries: {stats.get('bundled_entries', 0)}",
+        f"- bundled upstream sources: {stats.get('bundled_sources', 0)}",
+        f"- bundle chunks: {stats.get('bundle_chunks', 0)}",
+        f"- output: `{SCRIPT_BUNDLE.relative_to(ROOT).as_posix()}`",
+        "",
+        "## Bundled Entries",
+    ]
+    if bundled_names:
+        lines.extend(f"- `{name}`" for name in bundled_names)
+    else:
+        lines.append("- None")
+    lines.extend(["", "## Fetch Failures"])
+    if failed:
+        for item in failed:
+            lines.append(f"- `{item['url']}`: {item['reason']}")
+    else:
+        lines.append("- None")
+    lines.extend(["", "## Preserved Reasons"])
+    if preserved:
+        for reason, count in sorted(preserved.items()):
+            lines.append(f"- {reason}: {count}")
+    else:
+        lines.append("- None")
+    write_text(SCRIPT_AGGREGATION_REPORT, "\n".join(lines) + "\n")
+
+
+def aggregate_script_entries(body: str) -> str:
+    lines = [line.rstrip() for line in body.splitlines() if line.strip()]
+    stats: dict[str, object] = {
+        "enabled": True,
+        "input_entries": len(lines),
+        "unique_paths_before": script_path_count(lines),
+    }
+    parsed: dict[int, dict[str, str]] = {}
+    candidates: dict[int, dict[str, str]] = {}
+    preserved_reasons: dict[str, int] = {}
+    for index, line in enumerate(lines):
+        entry = parse_script_entry(line.strip())
+        if entry is None:
+            preserved_reasons["preserved: unparsable or protected"] = preserved_reasons.get("preserved: unparsable or protected", 0) + 1
+            continue
+        parsed[index] = entry
+        reason = aggregate_candidate_reason(entry)
+        if reason:
+            preserved_reasons[reason] = preserved_reasons.get(reason, 0) + 1
+            continue
+        candidates[index] = entry
+
+    source_urls = sorted({entry["script-path"] for entry in candidates.values()})
+    fetched_sources: dict[str, str] = {}
+    fetch_failed: list[dict[str, str]] = []
+    for url in source_urls:
+        source, reason = fetch_script_source(url)
+        if reason:
+            fetch_failed.append({"url": url, "reason": reason})
+            continue
+        fetched_sources[url] = source
+
+    routes: list[dict[str, str]] = []
+    bundled_indices: set[int] = set()
+    bundle_sources: dict[str, str] = {}
+    for index, entry in candidates.items():
+        source_url = entry["script-path"]
+        source = fetched_sources.get(source_url)
+        if not source:
+            continue
+        source_key = script_source_key(source_url)
+        bundle_sources[source_key] = source
+        routes.append({
+            "name": entry["__name__"],
+            "pattern": entry["pattern"],
+            "source_key": source_key,
+        })
+        bundled_indices.add(index)
+
+    if routes:
+        write_text(SCRIPT_BUNDLE, build_script_bundle(routes, bundle_sources))
+
+    chunks = chunk_patterns(routes)
+    bundled_lines = [bundled_script_line(index, chunk) for index, chunk in enumerate(chunks, 1)]
+    inserted_bundle = False
+    out: list[str] = []
+    for index, line in enumerate(lines):
+        if index in bundled_indices:
+            if not inserted_bundle:
+                out.extend(bundled_lines)
+                inserted_bundle = True
+            continue
+        out.append(line)
+
+    stats.update({
+        "output_entries": len(out),
+        "unique_paths_after": script_path_count(out),
+        "bundled_entries": len(routes),
+        "bundled_sources": len(bundle_sources),
+        "bundle_chunks": len(chunks),
+        "bundled_names": [route["name"] for route in routes],
+        "fetch_failed": fetch_failed,
+        "preserved_reasons": preserved_reasons,
+    })
+    write_script_aggregation_report(stats)
+    return "\n".join(out).strip() + "\n"
+
+
 def is_preserved_metadata(line: str) -> bool:
     stripped = line.lstrip()
     return stripped.startswith("#!") or stripped.startswith("# update-date:")
@@ -654,7 +974,7 @@ def build_scripts(profile: configparser.ConfigParser) -> str:
     blocks.extend(misc_section_blocks("Script"))
     if as_bool(profile, "include", "source_script_compat", True):
         blocks.append(read_text(source_file("Script"), required=False))
-    return consolidate_script_entries(merge_lines(blocks))
+    return aggregate_script_entries(consolidate_script_entries(merge_lines(blocks)))
 
 
 def build_rewrite_section(profile: configparser.ConfigParser, section: str) -> str:

@@ -51,3 +51,15 @@ Scripts/Docs/     # 来源说明与风险记录
 ```
 
 当前阶段先保持现有文件兼容，不强制移动已有脚本文件，避免破坏历史引用路径。
+
+## 脚本聚合器
+
+`Scripts/generated/fusion-script-bundle.js` 由 `scripts/build_module.py` 自动生成，不要手工修改。
+
+聚合器只打包低风险的 `http-response` 清理脚本：必须依赖响应 body，且不能带 `binary-body-mode` 或自定义 `argument`。Spotify、YouTube、Bilibili protobuf、知乎、登录、支付、银行、钱包、航旅和账号相关脚本会继续保持独立入口。
+
+生成报告位于 `reports/script_aggregation_report.md`。如果某个 App 在聚合后出现异常，应在 `scripts/build_module.py` 中收窄 allowlist 或加入 preserve token，然后重新构建：
+
+```bash
+python3 Rewrite/Generator/Builder.py --profile fusion --release
+```

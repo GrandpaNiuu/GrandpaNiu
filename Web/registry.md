@@ -25,6 +25,7 @@ Windows/
 |---|---|---|
 | `Ronghemokuai.sgmodule` | `Release/Ronghemokuai.sgmodule` | `scripts/factory_finalize.py` |
 | `Release/Ronghemokuai.sgmodule` | `Rewrite/Sources/`, `Rules/`, `Scripts/`, `Rewrite/Sources/Misc/` | `scripts/build_module.py` |
+| `Scripts/generated/fusion-script-bundle.js` | low-risk response cleanup script entries | `scripts/build_module.py` |
 | `Release/Rules.conf` | `Release/Ronghemokuai.sgmodule` | `scripts/build_release_rules.py` |
 | `Release/RulesGroup.conf` | `Release/Ronghemokuai.sgmodule` | `scripts/build_release_rules.py` |
 | `Release/Modules/` | `Rewrite/Sources/Apps/` plus auto-discovery | `scripts/build_release_modules.py` |
@@ -38,6 +39,7 @@ Windows/
 
 - Edit `Rewrite/Sources/Apps/` for app-scoped module rules.
 - App-scoped upstream sync is controlled by `Rewrite/Remotes/app-modules.json`; recent GitHub `.snippet` sources from `fmz200/wool_scripts` are converted before release builds.
+- `Scripts/generated/fusion-script-bundle.js` is generated, not hand-maintained; it reduces visible script URLs while preserving core scripts as independent entries.
 - Edit `Rewrite/Sources/Misc/` for shared protection and generic low-risk cleanup.
 - Edit `Rewrite/Remotes/sources.json` only for low-risk remote rule sets.
 - Treat `Release/` and most `Web/` catalog files as generated outputs.
