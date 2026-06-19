@@ -51,3 +51,32 @@ DOMAIN-SUFFIX,dpfile.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,msstatic.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,zdmimg.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,amap.com,DIRECT,pre-matching
+
+# Core API and DNS safety bypass
+# Reason: these domains are used by app login, startup routing, playback, or image loading. They must stay ahead of broad ad RULE-SET entries.
+DOMAIN,api.iqiyi.com,DIRECT,pre-matching
+DOMAIN,api.bilibili.com,DIRECT,pre-matching
+DOMAIN,app.bilibili.com,DIRECT,pre-matching
+DOMAIN,grpc.biliapi.net,DIRECT,pre-matching
+DOMAIN-SUFFIX,biliapi.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,biliapi.net,DIRECT,pre-matching
+DOMAIN,httpdns-sdk.n.netease.com,DIRECT,pre-matching
+DOMAIN,httpdns.baidubce.com,DIRECT,pre-matching
+DOMAIN,httpdns.calorietech.com,DIRECT,pre-matching
+DOMAIN,httpdns.music.163.com,DIRECT,pre-matching
+DOMAIN,httpdns.n.netease.com,DIRECT,pre-matching
+DOMAIN,httpdns.yunxindns.com,DIRECT,pre-matching
+DOMAIN,httpdnsmultiapi.meituan.com,DIRECT,pre-matching
+DOMAIN,httpdnsmultiapivip.meituan.com,DIRECT,pre-matching
+DOMAIN,hdns.ksyun.com,DIRECT,pre-matching
+DOMAIN,lofter.httpdns.c.163.com,DIRECT,pre-matching
+DOMAIN,music.httpdns.c.163.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,zijieapi.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,zijieapi.net,DIRECT,pre-matching
+DOMAIN-SUFFIX,zijiecdn.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,snssdk.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,amemv.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,douyin.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,ixigua.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,toutiao.com,DIRECT,pre-matching
+DOMAIN-SUFFIX,baidustatic.com,DIRECT,pre-matching

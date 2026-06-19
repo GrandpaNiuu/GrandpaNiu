@@ -51,7 +51,8 @@ DOMAIN-SUFFIX,allyes.com,REJECT
 DOMAIN-SUFFIX,anythinktech.com,REJECT
 DOMAIN-SUFFIX,app-measurement.com,REJECT
 DOMAIN-SUFFIX,appsflyer.com,REJECT
-DOMAIN-SUFFIX,baidustatic.com,REJECT
+# MANUAL-REVIEW 2026-06-20: Broad static/CDN and app-core suffix rejects are too risky for long-term public builds.
+# DOMAIN-SUFFIX,baidustatic.com,REJECT
 DOMAIN-SUFFIX,bugly.qq.com,REJECT
 DOMAIN-SUFFIX,cnzz.com,REJECT
 DOMAIN-SUFFIX,doubleclick.net,REJECT
@@ -79,9 +80,9 @@ DOMAIN-SUFFIX,unityads.unity3d.com,REJECT
 DOMAIN-SUFFIX,vungle.com,REJECT
 DOMAIN-SUFFIX,wrating.com,REJECT
 DOMAIN-SUFFIX,zhiziyun.com,REJECT
-DOMAIN-SUFFIX,zijieapi.com,REJECT
-DOMAIN-SUFFIX,zijieapi.net,REJECT
-DOMAIN-SUFFIX,zijiecdn.com,REJECT
+# DOMAIN-SUFFIX,zijieapi.com,REJECT
+# DOMAIN-SUFFIX,zijieapi.net,REJECT
+# DOMAIN-SUFFIX,zijiecdn.com,REJECT
 DOMAIN,ad.12306.cn,REJECT
 DOMAIN,adash.m.taobao.com,REJECT
 DOMAIN,adashbc.m.taobao.com,REJECT

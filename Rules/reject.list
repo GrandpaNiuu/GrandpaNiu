@@ -53,14 +53,15 @@ DOMAIN,gather.colorfulclouds.net,REJECT,pre-matching
 DOMAIN,gwp.xiaojukeji.com,REJECT,pre-matching
 DOMAIN,hc-ssp.sm.cn,REJECT,pre-matching
 DOMAIN,hlx.meituan.com,REJECT,pre-matching
-DOMAIN,httpdns-sdk.n.netease.com,REJECT,pre-matching
-DOMAIN,httpdns.baidubce.com,REJECT,pre-matching
-DOMAIN,httpdns.calorietech.com,REJECT,pre-matching
-DOMAIN,httpdns.music.163.com,REJECT,pre-matching
-DOMAIN,httpdns.n.netease.com,REJECT,pre-matching
-DOMAIN,httpdns.yunxindns.com,REJECT,pre-matching
-DOMAIN,httpdnsmultiapi.meituan.com,REJECT,pre-matching
-DOMAIN,httpdnsmultiapivip.meituan.com,REJECT,pre-matching
+# MANUAL-REVIEW 2026-06-20: HTTPDNS hard rejects caused app login/media false positives; protect with DIRECT instead.
+# DOMAIN,httpdns-sdk.n.netease.com,REJECT,pre-matching
+# DOMAIN,httpdns.baidubce.com,REJECT,pre-matching
+# DOMAIN,httpdns.calorietech.com,REJECT,pre-matching
+# DOMAIN,httpdns.music.163.com,REJECT,pre-matching
+# DOMAIN,httpdns.n.netease.com,REJECT,pre-matching
+# DOMAIN,httpdns.yunxindns.com,REJECT,pre-matching
+# DOMAIN,httpdnsmultiapi.meituan.com,REJECT,pre-matching
+# DOMAIN,httpdnsmultiapivip.meituan.com,REJECT,pre-matching
 DOMAIN,hudong.alicdn.com,REJECT,pre-matching
 DOMAIN,huyafile.msstatic.com,REJECT,pre-matching
 DOMAIN,iad0ssl.pcauto.com.cn,REJECT,pre-matching
@@ -82,7 +83,7 @@ DOMAIN,lc.map.baidu.com,REJECT,pre-matching
 DOMAIN,live-monitor-broker.sankuai.com,REJECT,pre-matching
 DOMAIN,livewebbs2.msstatic.com,REJECT,pre-matching
 DOMAIN,livewebbs2pcdn.msstatic.com,REJECT,pre-matching
-DOMAIN,lofter.httpdns.c.163.com,REJECT,pre-matching
+# DOMAIN,lofter.httpdns.c.163.com,REJECT,pre-matching
 DOMAIN,log.17gwx.com,REJECT,pre-matching
 DOMAIN,log.ycapp.yiche.com,REJECT,pre-matching
 DOMAIN,logs.chelaile.net.cn,REJECT,pre-matching
@@ -95,7 +96,7 @@ DOMAIN,minfo.wps.cn,REJECT,pre-matching
 DOMAIN,mob.bz.mgtv.com,REJECT,pre-matching
 DOMAIN,mqtt.zhihu.com,REJECT,pre-matching
 DOMAIN,msmp.abchina.com.cn,REJECT,pre-matching
-DOMAIN,music.httpdns.c.163.com,REJECT,pre-matching
+# DOMAIN,music.httpdns.c.163.com,REJECT,pre-matching
 DOMAIN,nbsdk-baichuan.alicdn.com,REJECT,pre-matching
 DOMAIN,ossgw.alicdn.com,REJECT,pre-matching
 DOMAIN,popup.dushu365.com,REJECT,pre-matching

@@ -71,6 +71,29 @@ RULE_TYPE_MAP = {
 
 DOMAIN_VALUE_RE = re.compile(r"^[A-Za-z0-9*_.:-]+$")
 
+PROTECTED_CONVERTED_RULE_TOKENS = (
+    "api.iqiyi.com",
+    "api.biliapi",
+    "app.biliapi",
+    "httpdns",
+    "hdns.ksyun.com",
+    "adgw.alipay.com",
+    "amdc.alipay.com",
+    "amdc-sibling.alipay.com.cn",
+    "mobiledc.stable.alipay.net",
+    "rtms.alipay.com",
+    "api.verify.mob.com",
+    "log-verify.mob.com",
+    "mdap.wallet.pbcdci.cn",
+    "mdc.wallet.pbcdci.cn",
+    "baidustatic.com",
+    "zijieapi.com",
+    "zijieapi.net",
+    "zijiecdn.com",
+    "snssdk.com",
+    "video-cn.snssdk.com",
+)
+
 
 def stop(message: str) -> None:
     print(f"ERROR: {message}", file=sys.stderr)
@@ -165,6 +188,11 @@ def convert_line(raw: str) -> tuple[str | None, str | None]:
     return f"{target_type},{value}", None
 
 
+def is_protected_converted_rule(line: str) -> bool:
+    lowered = line.lower()
+    return any(token in lowered for token in PROTECTED_CONVERTED_RULE_TOKENS)
+
+
 def source_meta(text: str) -> list[str]:
     keep_prefixes = ("#!name=", "#!desc=", "#!author=", "#!homepage=", "#!raw-url=", "#!date=")
     lines: list[str] = []
@@ -179,10 +207,14 @@ def convert_text(source: Source, text: str) -> str:
     rules: list[str] = []
     seen: set[str] = set()
     unsupported: list[str] = []
+    filtered: list[str] = []
 
     for raw in text.splitlines():
         converted, bad = convert_line(raw)
         if converted:
+            if is_protected_converted_rule(converted):
+                filtered.append(converted)
+                continue
             if converted not in seen:
                 seen.add(converted)
                 rules.append(converted)
@@ -206,6 +238,7 @@ def convert_text(source: Source, text: str) -> str:
         f"# source-name: {source.name}",
         f"# source-url: {source.url}",
         f"# rule-count: {len(rules)}",
+        f"# protected-filtered-count: {len(filtered)}",
         *source_meta(text),
         "",
     ]

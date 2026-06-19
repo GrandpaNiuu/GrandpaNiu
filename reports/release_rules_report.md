@@ -3,10 +3,10 @@
 - Source: `Release/Ronghemokuai.sgmodule`
 - Rules output: `Release/Rules.conf`
 - Rule groups output: `Release/RulesGroup.conf`
-- Total active rules: 946
+- Total active rules: 926
 
 ## Groups
-- DIRECT: 105
-- REJECT: 777
-- PROXY: 11
-- OTHER: 53
+- DIRECT: 131
+- REJECT: 716
+- PROXY: 27
+- OTHER: 52

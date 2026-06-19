@@ -88,7 +88,6 @@
 ||huatuocode.huatuo.qq.com^
 ||huodong.weibo.cn^
 ||huyafile.msstatic.com^
-||i.snssdk.com^
 ||iad0ssl.pcauto.com.cn^
 ||iad0ssl.pconline.com.cn^
 ||images.pinduoduo.com^
@@ -100,8 +99,6 @@
 ||ios.video.mpush.qq.com^
 ||ipv4.kkmh.com^
 ||ipv6.kkmh.com^
-||is-lq.snssdk.com^
-||is.snssdk.com^
 ||jp.ad.gameley.com^
 ||jzt.jd.com^
 ||kad.gotokeep.com^
@@ -158,7 +155,6 @@
 ||saad.ms.zhangyue.net^
 ||sdk.ad.sfys365.com^
 ||sdk.e.qq.com^
-||security.snssdk.com^
 ||smad.ms.zhangyue.net^
 ||soul-ad.soulapp.cn^
 ||splash.yy.com^
@@ -203,8 +199,6 @@
 ||zlink.ugsdk.cn^
 ||zlsdk.1rtb.net^
 ||zxid-m.mobileservice.cn^
-/api.biliapi/
-/app.biliapi/
 /bili-ad/
 /biliad/
 /biligame-ad/

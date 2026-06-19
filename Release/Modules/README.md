@@ -7,7 +7,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Spotify | `spotify.sgmodule` | `Rewrite/Sources/Apps/spotify.conf` | Header Rewrite:1, Script:2, MITM:1 |
 | GrandpaNiu YouTube | `youtube.sgmodule` | `Rewrite/Sources/Apps/youtube.conf` | Rule:2, Map Local:1, Script:1, MITM:1 |
 | GrandpaNiu Zhihu | `zhihu.sgmodule` | `Rewrite/Sources/Apps/zhihu.conf` | Rule:10, URL Rewrite:3, Body Rewrite:5, Map Local:22, Script:10, MITM:1 |
-| GrandpaNiu Bilibili | `bilibili.sgmodule` | `Rewrite/Sources/Apps/bilibili.conf` | Rule:36, Body Rewrite:17, Map Local:8, Script:6, MITM:1 |
+| GrandpaNiu Bilibili | `bilibili.sgmodule` | `Rewrite/Sources/Apps/bilibili.conf` | Rule:34, Body Rewrite:17, Map Local:8, Script:6, MITM:1 |
 | GrandpaNiu RedNote | `rednote.sgmodule` | `Rewrite/Sources/Apps/rednote.conf` | Rule:1, Body Rewrite:5, Map Local:5, Script:12, MITM:1 |
 | GrandpaNiu WeChat | `wechat.sgmodule` | `Rewrite/Sources/Apps/wechat.conf` | Rule:1, Map Local:2, MITM:1 |
 | GrandpaNiu QQ News | `qqnews.sgmodule` | `Rewrite/Sources/Apps/qqnews.conf` | URL Rewrite:1, Body Rewrite:1, Script:1, MITM:1 |
@@ -15,7 +15,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Pinduoduo | `pinduoduo.sgmodule` | `Rewrite/Sources/Apps/pinduoduo.conf` | Rule:17, Body Rewrite:16, Map Local:19, MITM:1 |
 | GrandpaNiu JD | `jd.sgmodule` | `Rewrite/Sources/Apps/jd.conf` | Rule:1, Body Rewrite:3, Map Local:1, Script:1, MITM:1 |
 | GrandpaNiu Taobao | `taobao.sgmodule` | `Rewrite/Sources/Apps/taobao.conf` | Rule:6, Map Local:11, Script:2, MITM:1 |
-| GrandpaNiu Netease Music | `netease-music.sgmodule` | `Rewrite/Sources/Apps/netease-music.conf` | Rule:5, Map Local:6, Script:7, MITM:1 |
+| GrandpaNiu Netease Music | `netease-music.sgmodule` | `Rewrite/Sources/Apps/netease-music.conf` | Rule:3, Map Local:6, Script:7, MITM:1 |
 | GrandpaNiu MGTV | `mgtv.sgmodule` | `Rewrite/Sources/Apps/mgtv.conf` | Rule:13, Body Rewrite:23, Map Local:7, MITM:1 |
 | GrandpaNiu Huya | `huya.sgmodule` | `Rewrite/Sources/Apps/huya.conf` | Rule:6, MITM:1 |
 | GrandpaNiu Yiche | `yiche.sgmodule` | `Rewrite/Sources/Apps/yiche.conf` | Rule:3, MITM:1 |
@@ -71,7 +71,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 豆瓣 Source | `dou-ban.sgmodule` | `Rewrite/Sources/Apps/dou-ban.conf` | URL Rewrite:6, MITM:1 |
 | GrandpaNiu 豆瓣阅读 Source | `douban-read.sgmodule` | `Rewrite/Sources/Apps/douban-read.conf` | URL Rewrite:5, MITM:1 |
 | GrandpaNiu 斗鱼 Source | `douyu.sgmodule` | `Rewrite/Sources/Apps/douyu.conf` | Rule:5, URL Rewrite:1, Body Rewrite:2, Script:1, MITM:1 |
-| GrandpaNiu 番茄小说 Source | `dragon-read.sgmodule` | `Rewrite/Sources/Apps/dragon-read.conf` | Rule:34 |
+| GrandpaNiu 番茄小说 Source | `dragon-read.sgmodule` | `Rewrite/Sources/Apps/dragon-read.conf` | Rule:30 |
 | GrandpaNiu DREAME Source | `dreame.sgmodule` | `Rewrite/Sources/Apps/dreame.conf` | URL Rewrite:3, Body Rewrite:1, Map Local:1, MITM:1 |
 | GrandpaNiu 配音秀 Source | `dubbing-show.sgmodule` | `Rewrite/Sources/Apps/dubbing-show.conf` | Body Rewrite:4, Script:1, MITM:1 |
 | GrandpaNiu 堆糖 Source | `dui-tang.sgmodule` | `Rewrite/Sources/Apps/dui-tang.conf` | URL Rewrite:3, Body Rewrite:3, MITM:1 |
@@ -93,7 +93,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 虎扑 Source | `hupu.sgmodule` | `Rewrite/Sources/Apps/hupu.conf` | URL Rewrite:8, Script:4, MITM:1 |
 | GrandpaNiu 虎嗅 Source | `huxiu.sgmodule` | `Rewrite/Sources/Apps/huxiu.conf` | Rule:1, URL Rewrite:5, Body Rewrite:1, MITM:1 |
 | GrandpaNiu 小象超市 Source | `i-mai-cai.sgmodule` | `Rewrite/Sources/Apps/i-mai-cai.conf` | URL Rewrite:7, Script:1, MITM:1 |
-| GrandpaNiu 爱奇艺 Source | `i-qi-yi-video.sgmodule` | `Rewrite/Sources/Apps/i-qi-yi-video.conf` | Rule:6, URL Rewrite:5, Body Rewrite:17, MITM:1 |
+| GrandpaNiu 爱奇艺 Source | `i-qi-yi-video.sgmodule` | `Rewrite/Sources/Apps/i-qi-yi-video.conf` | Rule:5, URL Rewrite:5, Body Rewrite:17, MITM:1 |
 | GrandpaNiu 得间小说 Source | `i-reader-dejian.sgmodule` | `Rewrite/Sources/Apps/i-reader-dejian.conf` | Rule:2, URL Rewrite:4, Body Rewrite:2, MITM:1 |
 | GrandpaNiu 掌阅 Source | `i-reader.sgmodule` | `Rewrite/Sources/Apps/i-reader.conf` | Rule:1, URL Rewrite:6, Body Rewrite:2, MITM:1 |
 | GrandpaNiu IT Home Source | `ithome.sgmodule` | `Rewrite/Sources/Apps/ithome.conf` | URL Rewrite:1, Script:1, MITM:1 |

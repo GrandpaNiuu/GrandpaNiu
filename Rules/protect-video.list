@@ -7,3 +7,10 @@ DOMAIN-SUFFIX,hdslb.com,DIRECT
 DOMAIN-SUFFIX,akamaized.net,DIRECT
 DOMAIN-SUFFIX,akamaiedge.net,DIRECT
 DOMAIN-SUFFIX,akadns.net,DIRECT
+DOMAIN-SUFFIX,googlevideo.com,PROXY,pre-matching
+DOMAIN,youtubei.googleapis.com,PROXY,pre-matching
+DOMAIN-SUFFIX,ytimg.com,PROXY,pre-matching
+DOMAIN-SUFFIX,ggpht.com,PROXY,pre-matching
+DOMAIN-SUFFIX,netflix.com,PROXY,pre-matching
+DOMAIN-SUFFIX,nflxvideo.net,PROXY,pre-matching
+DOMAIN-SUFFIX,nflximg.net,PROXY,pre-matching

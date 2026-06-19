@@ -38,7 +38,7 @@
 ## GrandpaNiu Bilibili
 - Source: `Rewrite/Sources/Apps/bilibili.conf`
 - Discovery: manual
-- Rule: 36
+- Rule: 34
 - Body Rewrite: 17
 - Map Local: 8
 - Script: 6
@@ -104,7 +104,7 @@
 ## GrandpaNiu Netease Music
 - Source: `Rewrite/Sources/Apps/netease-music.conf`
 - Discovery: manual
-- Rule: 5
+- Rule: 3
 - Map Local: 6
 - Script: 7
 - MITM: 1
@@ -496,7 +496,7 @@
 ## GrandpaNiu 番茄小说 Source
 - Source: `Rewrite/Sources/Apps/dragon-read.conf`
 - Discovery: auto
-- Rule: 34
+- Rule: 30
 
 ## GrandpaNiu DREAME Source
 - Source: `Rewrite/Sources/Apps/dreame.conf`
@@ -649,7 +649,7 @@
 ## GrandpaNiu 爱奇艺 Source
 - Source: `Rewrite/Sources/Apps/i-qi-yi-video.conf`
 - Discovery: auto
-- Rule: 6
+- Rule: 5
 - URL Rewrite: 5
 - Body Rewrite: 17
 - MITM: 1

@@ -176,7 +176,6 @@ payload:
   - DOMAIN,huatuocode.huatuo.qq.com
   - DOMAIN,huodong.weibo.cn
   - DOMAIN,huyafile.msstatic.com
-  - DOMAIN,i.snssdk.com
   - DOMAIN,iad.g.163.com
   - DOMAIN,iad0ssl.pcauto.com.cn
   - DOMAIN,iad0ssl.pconline.com.cn
@@ -197,8 +196,6 @@ payload:
   - DOMAIN,ipv4.music.163.com
   - DOMAIN,ipv6.kkmh.com
   - DOMAIN,ipv6.music.163.com
-  - DOMAIN,is-lq.snssdk.com
-  - DOMAIN,is.snssdk.com
   - DOMAIN,ivy.pchouse.com.cn
   - DOMAIN,jp.ad.gameley.com
   - DOMAIN,jzt.jd.com
@@ -289,7 +286,6 @@ payload:
   - DOMAIN,sdk.ad.sfys365.com
   - DOMAIN,sdk.e.qq.com
   - DOMAIN,sdkconfig.ad.xiaomi.com
-  - DOMAIN,security.snssdk.com
   - DOMAIN,sensors.umetrip.com.cn
   - DOMAIN,sin3-ib.adnxs.com
   - DOMAIN,smad.ms.zhangyue.net
@@ -361,8 +357,6 @@ payload:
   - DOMAIN-KEYWORD,adsmogo
   - DOMAIN-KEYWORD,adsrvmedia
   - DOMAIN-KEYWORD,adtrack
-  - DOMAIN-KEYWORD,api.biliapi
-  - DOMAIN-KEYWORD,app.biliapi
   - DOMAIN-KEYWORD,bili-ad
   - DOMAIN-KEYWORD,biliad
   - DOMAIN-KEYWORD,biligame-ad

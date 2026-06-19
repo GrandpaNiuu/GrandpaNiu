@@ -1,16 +1,16 @@
 # 模块工厂报告
 
-- 日期：2026-06-19
+- 日期：2026-06-20
 - 构建 profile：fusion
 - 默认公开入口：单一融合版
 - 是否从 root 反拆：否
-- 构建阶段 Root/Release 是否一致：是
-- Release 行数：5542
-- Release MITM hostname 数量：1189
+- 构建阶段 Root/Release 是否一致：否
+- Release 行数：5514
+- Release MITM hostname 数量：1188
 
 ## 源文件统计
-- Rule: 114 行
-- URL Rewrite: 1598 行
+- Rule: 115 行
+- URL Rewrite: 1600 行
 - Header Rewrite: 5 行
 - Body Rewrite: 445 行
 - Map Local: 11 行

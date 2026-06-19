@@ -18,7 +18,6 @@ DOMAIN,adserviceretry.kugou.com,REJECT,pre-matching
 DOMAIN,adx-core.youku.com,REJECT,pre-matching
 DOMAIN,adx-open-service.youku.com,REJECT,pre-matching
 DOMAIN,amdc.m.youku.com,REJECT,pre-matching
-DOMAIN,api.iqiyi.com,REJECT,pre-matching
 DOMAIN,cad.youku.com,REJECT,pre-matching
 DOMAIN,dr-danmu.youku.com,REJECT,pre-matching
 DOMAIN,ems.youku.com,REJECT,pre-matching

@@ -19,10 +19,6 @@ DOMAIN,mon3-misc.fqnovel.com,REJECT
 DOMAIN,rtlog3-applog.fqnovel.com,REJECT
 DOMAIN,rtlog5-applog.fqnovel.com,REJECT
 DOMAIN,effect.snssdk.com,REJECT
-DOMAIN,i.snssdk.com,REJECT
-DOMAIN,is-lq.snssdk.com,REJECT
-DOMAIN,is.snssdk.com,REJECT
-DOMAIN,security.snssdk.com,REJECT
 DOMAIN,vas.snssdk.com,REJECT
 DOMAIN,mon.toutiaocloud.com,REJECT
 DOMAIN,abtest3-misc.zijieapi.com,REJECT

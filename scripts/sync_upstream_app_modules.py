@@ -151,6 +151,28 @@ SUSPICIOUS_PATTERNS = [
         r"(支付|登录|验证码|银行).{0,12}(绕过|破解|解锁)",
     )
 ]
+PROTECTED_REJECT_TOKENS = (
+    "api.biliapi",
+    "app.biliapi",
+    "api.iqiyi.com",
+    "httpdns",
+    "hdns.ksyun.com",
+    "adgw.alipay.com",
+    "amdc.alipay.com",
+    "amdc-sibling.alipay.com.cn",
+    "mobiledc.stable.alipay.net",
+    "rtms.alipay.com",
+    "api.verify.mob.com",
+    "log-verify.mob.com",
+    "mdap.wallet.pbcdci.cn",
+    "mdc.wallet.pbcdci.cn",
+    "baidustatic.com",
+    "zijieapi.com",
+    "zijieapi.net",
+    "zijiecdn.com",
+    "snssdk.com",
+)
+PROTECTED_MITM_HOST_TOKENS = ("httpdns", "hdns.ksyun.com")
 BILIBILI_SPARKLE_SOURCE_URL = "https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule"
 BILIBILI_ARGUMENT_LINES = [
     "#!arguments=动态最常访问:auto,创作中心:0,过滤置顶评论广告:1,优化评论区加载:bilibili.request,空降助手:bilibili.airborne,空降助手策略:DIRECT,日志等级:4",
@@ -161,6 +183,8 @@ BILIBILI_UNSAFE_RULE_PREFIXES = (
     "DOMAIN,app.biliapi.com,REJECT",
     "DOMAIN,api.biliapi.net,REJECT",
     "DOMAIN,app.biliapi.net,REJECT",
+    "DOMAIN-KEYWORD,api.biliapi,REJECT",
+    "DOMAIN-KEYWORD,app.biliapi,REJECT",
 )
 BILIBILI_SCRIPT_LINES = {
     "airborne": r'{{{空降助手}}} = type=http-request,pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.community\.service\.dm\.v1\.DM\/DmSegMobile$,argument="{"logLevel":"{{{日志等级}}}"}",requires-body=1,binary-body-mode=1,max-size=-1,engine=webview,timeout=10,script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.request.js',
@@ -193,8 +217,6 @@ BILIBILI_EXTRA_RULE_LINES = [
     r'URL-REGEX,"^http:\/\/upos-sz-static\.bilivideo\.com\/ssaxcode\/\w{2}\/\w{2}\/\w{32}-1-SPLASH",REJECT-TINYGIF,extended-matching',
     r'URL-REGEX,"^http:\/\/[\d\.]+:8000\/v1\/resource\/\w{32}-1-SPLASH",REJECT-TINYGIF,extended-matching',
     r'URL-REGEX,"^https?:\/\/m\.360buyimg\.com\/(?:mobilecms|babel)\/.*",REJECT-IMG,extended-matching',
-    "DOMAIN-KEYWORD,api.biliapi,REJECT,pre-matching,extended-matching",
-    "DOMAIN-KEYWORD,app.biliapi,REJECT,pre-matching,extended-matching",
     "DOMAIN,cm.bilibili.com,REJECT,pre-matching",
     "DOMAIN,cm.bilibili.net,REJECT,pre-matching",
     "DOMAIN,ad.bilibili.com,REJECT,pre-matching",
@@ -729,6 +751,13 @@ def convert_loon_script_line(line: str, module_id: str, index: int) -> str:
     return ",".join(parts)
 
 
+def is_protected_reject_line(line: str) -> bool:
+    lowered = line.lower()
+    if "reject" not in lowered:
+        return False
+    return any(token in lowered for token in PROTECTED_REJECT_TOKENS)
+
+
 def convert_mitm_lines(lines: list[str]) -> list[str]:
     hosts: list[str] = []
     seen: set[str] = set()
@@ -743,6 +772,8 @@ def convert_mitm_lines(lines: list[str]) -> list[str]:
         value = value.replace("%APPEND%", "")
         for host in value.split(","):
             clean = host.strip()
+            if any(token in clean.lower() for token in PROTECTED_MITM_HOST_TOKENS):
+                continue
             if clean and clean not in seen:
                 seen.add(clean)
                 hosts.append(clean)
@@ -755,6 +786,9 @@ def convert_rule_lines(lines: list[str]) -> list[str]:
         line = raw.strip()
         if not line or line.startswith("#"):
             out.append(raw.rstrip())
+            continue
+        if is_protected_reject_line(line):
+            out.append(f"# skipped protected core reject: {line}")
             continue
         parts = [part.strip() for part in line.split(",")]
         out.append(",".join(parts))
@@ -799,6 +833,8 @@ def clean_section_lines(lines: list[str]) -> list[str]:
             if out and not last_blank:
                 out.append("")
             last_blank = True
+            continue
+        if is_protected_reject_line(stripped):
             continue
         if not stripped.startswith("#"):
             if stripped in seen_active:

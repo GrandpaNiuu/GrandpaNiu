@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T20:38:35.030295Z",
+  "generated_at": "2026-06-19T17:36:56.886785Z",
   "algorithm": "sha256",
   "count": 244,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 684323,
-      "sha256": "b0b20abc786aa65cfcffd2e59730a4db86c02c9fa1d7230aa93143de67f5062a"
+      "size": 682812,
+      "sha256": "7c04dc5c8a4ddc11a74f17ebee06efbae146fca2f7520c88e466213ba665b063"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -135,8 +135,8 @@
     },
     {
       "path": "Release/Modules/bilibili.sgmodule",
-      "size": 14420,
-      "sha256": "94c6a52d0f9727e602b7f879b610eef87485d25001a882d14235b31b6c83bb1d"
+      "size": 14290,
+      "sha256": "a88a35a0221ba51eb4af71367604caf995834ba870a3d5a769de009a894a6fc2"
     },
     {
       "path": "Release/Modules/bitqiu-pan.sgmodule",
@@ -270,8 +270,8 @@
     },
     {
       "path": "Release/Modules/dragon-read.sgmodule",
-      "size": 1472,
-      "sha256": "b3a5ad09390294d1b35445c27e6aca7ebfda5760f923f3556de9d7e313547b85"
+      "size": 1352,
+      "sha256": "56284b207eec5506a7a13806d0e7c554c42ba1753b0bc821585d50d455abbd61"
     },
     {
       "path": "Release/Modules/dreame.sgmodule",
@@ -385,8 +385,8 @@
     },
     {
       "path": "Release/Modules/i-qi-yi-video.sgmodule",
-      "size": 3865,
-      "sha256": "285418dead8dea0c1bcc3a40322f5db82f89904f19069a2055be849771849040"
+      "size": 3837,
+      "sha256": "b8d41e762e9b64a9e8a148aa4ca1fffd370037c6dd86c5eb38084c4e9f055145"
     },
     {
       "path": "Release/Modules/i-reader-dejian.sgmodule",
@@ -620,8 +620,8 @@
     },
     {
       "path": "Release/Modules/netease-music.sgmodule",
-      "size": 4442,
-      "sha256": "b2980f7753911342793f68ef7f253839f50aa1eb89a8192397ae3ea91eb86f14"
+      "size": 4332,
+      "sha256": "2fd12d4221ff16ff28bd8c9410b269582c2a53f239dd78d475ea9f93eb3a322a"
     },
     {
       "path": "Release/Modules/netease-news.sgmodule",
@@ -1140,23 +1140,23 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 684323,
-      "sha256": "b0b20abc786aa65cfcffd2e59730a4db86c02c9fa1d7230aa93143de67f5062a"
+      "size": 682812,
+      "sha256": "7c04dc5c8a4ddc11a74f17ebee06efbae146fca2f7520c88e466213ba665b063"
     },
     {
       "path": "Release/Rules.conf",
-      "size": 49299,
-      "sha256": "ad769ad0c740b886dec9a25335b7b130830f959fa23f31487076bab63df7f46a"
+      "size": 48282,
+      "sha256": "440dd8316bc5891d7f352927d11d9d5326e111b4c7582d6a85fafb8c9872e3aa"
     },
     {
       "path": "Release/RulesGroup.conf",
-      "size": 49378,
-      "sha256": "1ce66db02807340ef3332d40d4577882765efaef90b8c7f629ffd11019f89dc8"
+      "size": 48361,
+      "sha256": "1e6ef67b5f59e172399b9b0bb7fc0b6152cd873c8fcdfcafbe2b83f779d0939a"
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 684323,
-      "sha256": "b0b20abc786aa65cfcffd2e59730a4db86c02c9fa1d7230aa93143de67f5062a"
+      "size": 682812,
+      "sha256": "7c04dc5c8a4ddc11a74f17ebee06efbae146fca2f7520c88e466213ba665b063"
     },
     {
       "path": "Release/Stable/README.md",
@@ -1165,18 +1165,18 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 684323,
-      "sha256": "b0b20abc786aa65cfcffd2e59730a4db86c02c9fa1d7230aa93143de67f5062a"
+      "size": 682812,
+      "sha256": "7c04dc5c8a4ddc11a74f17ebee06efbae146fca2f7520c88e466213ba665b063"
     },
     {
       "path": "Release/Stable/Rules.conf",
-      "size": 49299,
-      "sha256": "ad769ad0c740b886dec9a25335b7b130830f959fa23f31487076bab63df7f46a"
+      "size": 48282,
+      "sha256": "440dd8316bc5891d7f352927d11d9d5326e111b4c7582d6a85fafb8c9872e3aa"
     },
     {
       "path": "Release/Stable/RulesGroup.conf",
-      "size": 49378,
-      "sha256": "1ce66db02807340ef3332d40d4577882765efaef90b8c7f629ffd11019f89dc8"
+      "size": 48361,
+      "sha256": "1e6ef67b5f59e172399b9b0bb7fc0b6152cd873c8fcdfcafbe2b83f779d0939a"
     },
     {
       "path": "Web/README.md",
@@ -1186,7 +1186,7 @@
     {
       "path": "Web/catalog.md",
       "size": 57400,
-      "sha256": "dc5222cafec03b97dab6d02a19b55760ad775258c7118a4fb9707845ac98107a"
+      "sha256": "2c7abf77b3fee02dc2d7874c95e1ef608f60514b2988227e50e99e8e8b38f3a0"
     },
     {
       "path": "Web/index.html",
@@ -1196,7 +1196,7 @@
     {
       "path": "Web/modules.html",
       "size": 218185,
-      "sha256": "a640241c1932348d530df621765b49f2050efdf79eca82b18d22da66e55c0868"
+      "sha256": "86a573d4e26272d0c80159e25732eb93473b303aef5e4f1367b44fa721158796"
     },
     {
       "path": "Web/registry.md",
@@ -1206,7 +1206,7 @@
     {
       "path": "Web/release-links.json",
       "size": 77281,
-      "sha256": "ee87bf50ad32a90f53134e061b31af056cdd4d1353dee66ddf68e8e23490be1e"
+      "sha256": "eee88595e1b976d1bc8fbe139b09ec3043e287cebdb46e6f000e2a53c098d007"
     },
     {
       "path": "Web/remotes.md",
@@ -1215,8 +1215,8 @@
     },
     {
       "path": "Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json",
-      "size": 18805,
-      "sha256": "e9ba6379a298b267f2f4d2af3e83048a6a1d86ebfd37ebfff3656b99e0aa54bb"
+      "size": 18627,
+      "sha256": "97f5f745eeeaca91fd06f96309a78682caa1e01f4792955ed15469b333a06080"
     },
     {
       "path": "Windows/v2rayN/README.md",

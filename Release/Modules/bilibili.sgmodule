@@ -28,8 +28,6 @@ AND,((DOMAIN-SUFFIX,360buyimg.com,extended-matching),(USER-AGENT,"*bili*")),REJE
 URL-REGEX,"^http:\/\/upos-sz-static\.bilivideo\.com\/ssaxcode\/\w{2}\/\w{2}\/\w{32}-1-SPLASH",REJECT-TINYGIF,extended-matching
 URL-REGEX,"^http:\/\/[\d\.]+:8000\/v1\/resource\/\w{32}-1-SPLASH",REJECT-TINYGIF,extended-matching
 URL-REGEX,"^https?:\/\/m\.360buyimg\.com\/(?:mobilecms|babel)\/.*",REJECT-IMG,extended-matching
-DOMAIN-KEYWORD,api.biliapi,REJECT,pre-matching,extended-matching
-DOMAIN-KEYWORD,app.biliapi,REJECT,pre-matching,extended-matching
 DOMAIN,cm.bilibili.com,REJECT,pre-matching
 DOMAIN,cm.bilibili.net,REJECT,pre-matching
 DOMAIN,ad.bilibili.com,REJECT,pre-matching
