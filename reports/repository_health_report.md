@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-21 01:57:34 +0800
+- Generated at: 2026-06-21 03:10:41 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -12,8 +12,8 @@
 
 ## Section Counts
 
-- [Rule]: 1253
-- [URL Rewrite]: 2690
+- [Rule]: 1332
+- [URL Rewrite]: 2691
 - [Header Rewrite]: 1
 - [Body Rewrite]: 1652
 - [Map Local]: 351
@@ -60,8 +60,6 @@
 
 ```text
 Repository validation passed.
-./scripts/validate_repository.py:269: SyntaxWarning: invalid escape sequence '//'
-  normalized = lowered.replace("//", "/")
 ```
 
 ## automated quality evidence Output
