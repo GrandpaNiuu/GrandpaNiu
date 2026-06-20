@@ -1,6 +1,6 @@
 # 远程规则语法校验报告
 
-生成时间：2026-06-21 00:32:23 +0800
+生成时间：2026-06-21 01:57:27 +0800
 
 本报告用于阻断 Shadowrocket / Surge 远程规则集红叉问题。校验目标包括：
 
@@ -26,7 +26,7 @@
 
 | 状态 | 类型 | 规则数 | 检查来源 | 引用位置 | URL | 错误 / 警告 |
 |---|---|---:|---|---|---|---|
-| pass | DOMAIN-SET | 179215 | http:200 | Release/Ronghemokuai.sgmodule:514<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:514 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
+| pass | DOMAIN-SET | 177601 | http:200 | Release/Ronghemokuai.sgmodule:514<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:514 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
 | pass | DOMAIN-SET | 177544 | http:200 | Release/Ronghemokuai.sgmodule:510<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:510 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
 | pass | DOMAIN-SET | 166925 | http:200 | Release/Ronghemokuai.sgmodule:513<br>Rewrite/Remotes/sources.json:Loyalsoldier reject<br>Ronghemokuai.sgmodule:513 | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` | - |
 | pass | DOMAIN-SET | 103218 | http:200 | Release/Ronghemokuai.sgmodule:511<br>Rewrite/Remotes/sources.json:anti-AD Surge<br>Ronghemokuai.sgmodule:511 | `https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt` | - |
