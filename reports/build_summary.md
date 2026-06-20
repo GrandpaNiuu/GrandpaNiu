@@ -1,8 +1,8 @@
 # Build Summary
 
-- Generated at: `2026-06-20T19:10:20.424763Z`
+- Generated at: `2026-06-20T22:35:59.175934Z`
 - Main module: `Release/Ronghemokuai.sgmodule`
-- Main module size: `706051` bytes
+- Main module size: `2979538` bytes
 - Release modules: `398`
 - Checksum entries: `422`
 
@@ -11,9 +11,9 @@
 | Section | Active lines |
 |---|---:|
 | `Body Rewrite` | 1652 |
-| `Header Rewrite` | 1 |
+| `Header Rewrite` | 2 |
 | `MITM` | 1 |
-| `Map Local` | 351 |
-| `Rule` | 1332 |
+| `Map Local` | 352 |
+| `Rule` | 1339 |
 | `Script` | 44 |
-| `URL Rewrite` | 2691 |
+| `URL Rewrite` | 2692 |

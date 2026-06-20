@@ -128,6 +128,15 @@ Rule maintenance rule: only make source-first single-rule changes when there is 
 
 ## Current Risk Points
 
+## Current App Source Syntax Hardening Pass
+
+- Reproduced independent module syntax defects that the old Fusion-only validator did not see.
+- Added an App source/release validator and connected it to both Generator configs, Builder `--check`, the full quality gate, repository health, report freshness, governance, and automated evidence.
+- Re-synced only 17 affected App sources from their registered upstream URLs. High-risk RedNote, Weibo, and Zhihu sources were backed up under `backup/upstream-app-modules/` before replacement.
+- The final source and Release scan covers 398 + 398 files with 3806 active entries on each side and reports 0 syntax errors.
+- Main Fusion output has no duplicate script names or MITM hostnames and Root/Release/alias outputs are generated through Builder.
+- Do not claim all Apps are device-verified. Static validation proves syntax/build consistency; runtime networking, login, payment, images, and video still require actual client evidence.
+
 - Do not weaken the upstream risk gate to force in unsafe modules.
 - Do not assume all newly added upstream snippets are device-verified; they passed syntax/build/governance checks, but real app behavior remains owner-tested.
 - If one new app breaks login, images, video, or normal networking, disable or narrow that app source first rather than reverting the whole expansion.

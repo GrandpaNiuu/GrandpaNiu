@@ -3,7 +3,7 @@
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/youdao-dict.sgmodule
 
 [Rule]
-ad-sdk-config.youdao.com
+DOMAIN,ad-sdk-config.youdao.com,REJECT
 
 [URL Rewrite]
 ^https://dict\.youdao\.com/vip/activity/startup/ - reject-dict

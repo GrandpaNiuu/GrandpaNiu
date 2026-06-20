@@ -20,6 +20,7 @@ RELEASE = ROOT / "Release" / "Ronghemokuai.sgmodule"
 EVIDENCE_FILES = [
     "reports/android_rules_report.md",
     "reports/module_integrity_report.md",
+    "reports/app_source_validation_report.md",
     "reports/multi_release_report.md",
     "reports/profile_validation_report.md",
     "reports/remote_rule_syntax_report.md",
@@ -44,6 +45,7 @@ QUALITY_COMMANDS = [
     "python -m py_compile scripts/*.py Rewrite/Generator/Builder.py tools/*.py",
     "node --check Scripts/app-cleaner.js",
     "python -m unittest discover -s tests",
+    "python scripts/validate_app_sources.py",
     "python scripts/build_android_rules.py",
     "python scripts/android_format_check.py",
     "python scripts/convert_quanx_rules.py",

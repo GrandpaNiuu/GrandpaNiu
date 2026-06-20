@@ -44,6 +44,7 @@ def main() -> None:
         [sys.executable, "-m", "py_compile", *compile_targets()],
         [node, "--check", "Scripts/app-cleaner.js"],
         [sys.executable, "-m", "unittest", "discover", "-s", "tests"],
+        [sys.executable, "scripts/validate_app_sources.py"],
         [sys.executable, "scripts/refresh_module_date.py"],
         [sys.executable, "scripts/build_android_rules.py"],
         [sys.executable, "scripts/build_windows_v2rayn.py"],

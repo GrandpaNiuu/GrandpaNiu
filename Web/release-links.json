@@ -63,7 +63,7 @@
       "name": "GrandpaNiu Zhihu",
       "file": "Release/Modules/zhihu.sgmodule",
       "source": "Rewrite/Sources/Apps/zhihu.conf",
-      "sections": "Rule:4, URL Rewrite:3, Body Rewrite:5, Map Local:22, Script:10, MITM:1",
+      "sections": "Rule:10, URL Rewrite:3, Body Rewrite:5, Map Local:22, Script:10, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/zhihu.sgmodule"
     },
     {
@@ -924,7 +924,7 @@
       "name": "GrandpaNiu 斗鱼 Source",
       "file": "Release/Modules/douyu.sgmodule",
       "source": "Rewrite/Sources/Apps/douyu.conf",
-      "sections": "Rule:5, URL Rewrite:1, Body Rewrite:2, Script:1, MITM:1",
+      "sections": "Rule:4, URL Rewrite:2, Body Rewrite:2, Script:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/douyu.sgmodule"
     },
     {

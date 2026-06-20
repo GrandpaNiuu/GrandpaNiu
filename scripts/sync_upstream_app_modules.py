@@ -9,6 +9,7 @@ Rewrite/Generator/Builder.py so generated files stay source-first.
 from __future__ import annotations
 
 import argparse
+import base64
 import datetime as dt
 import json
 import re
@@ -167,6 +168,20 @@ QX_SCRIPT_ACTIONS = {
     "script-response-header": ("http-response", False),
     "script-request-header": ("http-request", False),
 }
+SHADOWROCKET_RULE_TYPES = {
+    "AND",
+    "DOMAIN",
+    "DOMAIN-KEYWORD",
+    "DOMAIN-SET",
+    "DOMAIN-SUFFIX",
+    "IP-CIDR",
+    "IP-CIDR6",
+    "RULE-SET",
+    "URL-REGEX",
+}
+DOMAIN_VALUE_RE = re.compile(
+    r"^(?:[A-Za-z0-9_](?:[A-Za-z0-9_-]{0,61}[A-Za-z0-9_])?\.)+[A-Za-z]{2,63}$"
+)
 EXAMPLE_TOKENS = ("this-is-an-example.com", "example.com")
 SUSPICIOUS_PATTERNS = [
     re.compile(pattern, re.IGNORECASE)
@@ -700,6 +715,46 @@ def convert_json_replace(args: str) -> str:
     return f"{jq_path(path)} = {value.strip()}"
 
 
+def normalize_map_local_body(body: str) -> tuple[str, str]:
+    """Normalize Loon mock-response options into one Shadowrocket response."""
+    statuses = re.findall(r"(?:^|\s)status-code=(\d{3})(?=\s|$)", body)
+    status = statuses[-1] if statuses else "200"
+    normalized = re.sub(r"(?:^|\s)status-code=\d{3}(?=\s|$)", " ", body)
+    normalized = re.sub(r"\s+", " ", normalized).strip()
+
+    data_match = re.search(r'\bdata="(.*?)"(?=\s+(?:header|data-path)=|$)', normalized)
+    if data_match:
+        payload = data_match.group(1)
+        if payload.startswith(('{"', '["')):
+            try:
+                parsed = json.loads(payload)
+            except json.JSONDecodeError:
+                pass
+            else:
+                compact = json.dumps(parsed, ensure_ascii=False, separators=(",", ":"))
+                escaped = compact.replace("\\", "\\\\").replace('"', '\\"')
+                normalized = normalized[: data_match.start(1)] + escaped + normalized[data_match.end(1) :]
+    return normalized, status
+
+
+def normalize_map_local_line(line: str) -> str:
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return line.rstrip()
+    pattern, body = split_pattern_action(stripped)
+    for token in ("mock-response-body-replace", "mock-response-body"):
+        if body.startswith(token + " "):
+            body = body[len(token) :].strip()
+            break
+    normalized, status = normalize_map_local_body(body)
+    header_match = re.search(r"\s+header=", normalized)
+    if header_match:
+        payload = normalized[: header_match.start()].rstrip()
+        header = normalized[header_match.start() :]
+        return f"{pattern} {payload} status-code={status}{header}"
+    return f"{pattern} {normalized} status-code={status}".strip()
+
+
 def split_pattern_action(line: str) -> tuple[str, str]:
     normalized = normalize_pattern(line)
     parts = normalized.split(None, 1)
@@ -729,13 +784,20 @@ def convert_loon_rewrite_line(line: str) -> tuple[str, str]:
         replacement = action[len("header") :].strip()
         if replacement:
             return "URL Rewrite", f"{pattern} {replacement} header"
-    if simple in {"header-replace", "header-replace-regex", "header-del"}:
+    if simple == "header-replace-regex":
+        action = "header-replace" + action[len(simple) :]
+        simple = "header-replace"
+    if simple in {"header-replace", "header-del"}:
         return "Header Rewrite", f"http-request {pattern} {action}"
+    if simple in {"302", "307", "308"}:
+        replacement = action[len(simple) :].strip()
+        if replacement:
+            return "URL Rewrite", f"{pattern} {replacement} {simple}"
     if simple in QX_REJECT_ACTIONS:
         return "URL Rewrite", f"{pattern} - {simple}"
     if simple in {"mock-response-body", "mock-response-body-replace"}:
         body = action[len(simple) :].strip()
-        status = "200"
+        body, status = normalize_map_local_body(body)
         header = ""
         if "data-type=json" in body and "header=" not in body:
             header = ' header="content-type: application/json"'
@@ -934,6 +996,39 @@ def convert_rule_lines(lines: list[str]) -> list[str]:
     return out
 
 
+def convert_rule_section(lines: list[str], module_id: str) -> dict[str, list[str]]:
+    """Convert mixed upstream Rule sections without leaving rewrites in Rule."""
+    converted: dict[str, list[str]] = {name: [] for name in ALLOWED_SECTIONS}
+    for index, raw in enumerate(lines, 1):
+        stripped = raw.strip()
+        if not stripped or stripped.startswith("#"):
+            converted["Rule"].append(raw.rstrip())
+            continue
+        if is_protected_reject_line(stripped):
+            converted["Rule"].append(f"# skipped protected core reject: {stripped}")
+            continue
+
+        qx_rule = convert_qx_rule_line(stripped)
+        if qx_rule and qx_rule.split(",", 1)[0] in SHADOWROCKET_RULE_TYPES:
+            converted["Rule"].append(qx_rule)
+            continue
+
+        prefix = stripped.split(",", 1)[0].strip().upper()
+        if prefix in SHADOWROCKET_RULE_TYPES:
+            converted["Rule"].extend(convert_rule_lines([stripped]))
+            continue
+        if DOMAIN_VALUE_RE.fullmatch(stripped):
+            converted["Rule"].append(f"DOMAIN,{stripped},REJECT")
+            continue
+
+        target_section, rewrite = convert_rewrite_line(stripped, module_id, index)
+        if target_section and rewrite:
+            converted[target_section].append(rewrite)
+        else:
+            converted["Rule"].append(f"# unsupported-rule: {stripped}")
+    return converted
+
+
 def upstream_name(meta: list[str], fallback: str) -> str:
     for line in meta:
         match = META_RE.match(line)
@@ -986,6 +1081,25 @@ def clean_section_lines(lines: list[str]) -> list[str]:
     return out
 
 
+def dedupe_script_names(lines: list[str]) -> list[str]:
+    seen: dict[str, int] = {}
+    out: list[str] = []
+    for raw in lines:
+        line = raw.rstrip()
+        match = re.match(r"^\s*([^#\s][^=]+?)\s*=", line)
+        if not match:
+            out.append(line)
+            continue
+        name = match.group(1).strip()
+        count = seen.get(name, 0) + 1
+        seen[name] = count
+        if count > 1:
+            replacement = f"{name}-{count}"
+            line = line[: match.start(1)] + replacement + line[match.end(1) :]
+        out.append(line)
+    return out
+
+
 def converted_source(record: dict[str, Any], upstream_text: str) -> tuple[str, str]:
     meta, sections = split_module(upstream_text)
     converted_sections: dict[str, list[str]] = {name: [] for name in ALLOWED_SECTIONS}
@@ -997,11 +1111,9 @@ def converted_source(record: dict[str, Any], upstream_text: str) -> tuple[str, s
                 if target_section and converted:
                     converted_sections[target_section].append(converted)
         elif section == "Rule":
-            qx_rules = [convert_qx_rule_line(line) for line in lines]
-            if any(qx_rules):
-                converted_sections[section].extend(rule for rule in qx_rules if rule)
-            else:
-                converted_sections[section].extend(convert_rule_lines(lines))
+            mixed = convert_rule_section(lines, module_id)
+            for target_section, converted_lines in mixed.items():
+                converted_sections[target_section].extend(converted_lines)
         elif section == "MITM":
             converted_sections[section].extend(convert_mitm_lines(lines))
         elif section == "Script":
@@ -1016,6 +1128,8 @@ def converted_source(record: dict[str, Any], upstream_text: str) -> tuple[str, s
             converted_sections[section].extend(lines)
 
     body_sections = {name: clean_section_lines(lines) for name, lines in converted_sections.items()}
+    body_sections["Map Local"] = [normalize_map_local_line(line) for line in body_sections["Map Local"]]
+    body_sections["Script"] = dedupe_script_names(body_sections["Script"])
     body_sections = {
         name: lines
         for name, lines in body_sections.items()
@@ -1157,11 +1271,40 @@ def apply_bilibili_comic_overlay(text: str) -> str:
 
 
 def postprocess_converted_source(record: dict[str, Any], text: str) -> str:
+    text = inline_remote_map_local_data(text)
     if str(record.get("id")) == "bilibili":
         return postprocess_bilibili_source(text)
     if str(record.get("id")) == "bilibili-comic":
         return apply_bilibili_comic_overlay(text)
     return text
+
+
+def inline_remote_map_local_data(text: str) -> str:
+    """Replace unsupported remote data-path values with embedded base64 data."""
+    lines: list[str] = []
+    current = ""
+    for raw in text.splitlines():
+        section_match = SECTION_RE.match(raw)
+        if section_match:
+            current = SECTION_ALIASES.get(section_match.group(1).lower(), section_match.group(1))
+            lines.append(raw)
+            continue
+        if current != "Map Local" or "data-path=" not in raw:
+            lines.append(raw)
+            continue
+        match = re.search(r'data-path="(https?://[^"\s]+)"', raw)
+        if not match:
+            raise ValueError(f"unsupported Map Local data-path: {raw}")
+        url = match.group(1)
+        try:
+            payload = fetch_text(url)
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            raise ValueError(f"Map Local data-path fetch failed: {url}: {exc}") from exc
+        encoded = base64.b64encode(payload.encode("utf-8")).decode("ascii")
+        line = raw[: match.start()] + f'data="{encoded}"' + raw[match.end() :]
+        line = re.sub(r"\bdata-type=\S+", "data-type=base64", line, count=1)
+        lines.append(line)
+    return "\n".join(lines).rstrip() + "\n"
 
 
 def backup_target(target: Path, module_id: str, timestamp: str) -> str:
@@ -1329,7 +1472,7 @@ def main() -> int:
         targets = selected_records(records, args.project, args.id)
         updated, skipped, blocked, errors = sync_records(targets, args.config_only)
         write_config(config_path, config, records)
-        write_report(report_path, targets, updated, skipped, blocked, errors)
+        write_report(report_path, records, updated, skipped, blocked, errors)
     except SyncError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
@@ -1339,7 +1482,7 @@ def main() -> int:
         f"{len(records)} module(s), {len(updated)} updated, "
         f"{len(blocked)} blocked, {len(errors)} error(s)."
     )
-    return 0
+    return 1 if blocked or errors else 0
 
 
 if __name__ == "__main__":

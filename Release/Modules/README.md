@@ -6,7 +6,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 |---|---|---|---|
 | GrandpaNiu Spotify | `spotify.sgmodule` | `Rewrite/Sources/Apps/spotify.conf` | Header Rewrite:1, Script:2, MITM:1 |
 | GrandpaNiu YouTube | `youtube.sgmodule` | `Rewrite/Sources/Apps/youtube.conf` | Rule:2, Map Local:1, Script:1, MITM:1 |
-| GrandpaNiu Zhihu | `zhihu.sgmodule` | `Rewrite/Sources/Apps/zhihu.conf` | Rule:4, URL Rewrite:3, Body Rewrite:5, Map Local:22, Script:10, MITM:1 |
+| GrandpaNiu Zhihu | `zhihu.sgmodule` | `Rewrite/Sources/Apps/zhihu.conf` | Rule:10, URL Rewrite:3, Body Rewrite:5, Map Local:22, Script:10, MITM:1 |
 | GrandpaNiu Bilibili | `bilibili.sgmodule` | `Rewrite/Sources/Apps/bilibili.conf` | Rule:34, Body Rewrite:17, Map Local:8, Script:6, MITM:1 |
 | GrandpaNiu RedNote | `rednote.sgmodule` | `Rewrite/Sources/Apps/rednote.conf` | Rule:1, Body Rewrite:5, Map Local:5, Script:12, MITM:1 |
 | GrandpaNiu WeChat | `wechat.sgmodule` | `Rewrite/Sources/Apps/wechat.conf` | Rule:1, Map Local:2, MITM:1 |
@@ -129,7 +129,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 豆瓣 Source | `dou-ban.sgmodule` | `Rewrite/Sources/Apps/dou-ban.conf` | URL Rewrite:6, MITM:1 |
 | GrandpaNiu 豆瓣阅读 Source | `douban-read.sgmodule` | `Rewrite/Sources/Apps/douban-read.conf` | URL Rewrite:5, MITM:1 |
 | GrandpaNiu 抖音 Source | `douyin.sgmodule` | `Rewrite/Sources/Apps/douyin.conf` | Rule:1 |
-| GrandpaNiu 斗鱼 Source | `douyu.sgmodule` | `Rewrite/Sources/Apps/douyu.conf` | Rule:5, URL Rewrite:1, Body Rewrite:2, Script:1, MITM:1 |
+| GrandpaNiu 斗鱼 Source | `douyu.sgmodule` | `Rewrite/Sources/Apps/douyu.conf` | Rule:4, URL Rewrite:2, Body Rewrite:2, Script:1, MITM:1 |
 | GrandpaNiu 番茄小说 Source | `dragon-read.sgmodule` | `Rewrite/Sources/Apps/dragon-read.conf` | Rule:16 |
 | GrandpaNiu DREAME Source | `dreame.sgmodule` | `Rewrite/Sources/Apps/dreame.conf` | URL Rewrite:3, Body Rewrite:1, Map Local:1, MITM:1 |
 | GrandpaNiu 配音秀 Source | `dubbing-show.sgmodule` | `Rewrite/Sources/Apps/dubbing-show.conf` | Body Rewrite:4, Script:1, MITM:1 |

@@ -67,6 +67,7 @@ python scripts/quality_gate.py
 python -m py_compile scripts/*.py Rewrite/Generator/Builder.py tools/*.py
 node --check Scripts/app-cleaner.js
 python -m unittest discover -s tests
+python scripts/validate_app_sources.py
 python scripts/convert_quanx_rules.py
 python scripts/build_module.py --build --profile fusion
 python scripts/factory_finalize.py --sync-root

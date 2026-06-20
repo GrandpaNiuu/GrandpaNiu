@@ -14,6 +14,7 @@ payload:
   - DOMAIN,ad-h5-cdn.soulapp.cn
   - DOMAIN,ad-h5-station-cdn.soulapp.cn
   - DOMAIN,ad-r.soulapp.cn
+  - DOMAIN,ad-sdk-config.youdao.com
   - DOMAIN,ad-stat.ksosoft.com
   - DOMAIN,ad.12306.cn
   - DOMAIN,ad.21cn.com
@@ -362,6 +363,7 @@ payload:
   - DOMAIN,zjres-ad.kajicam.com
   - DOMAIN,zlink.ugsdk.cn
   - DOMAIN,zlsdk.1rtb.net
+  - DOMAIN,zxid-m.mobileservice.cn
   - DOMAIN-KEYWORD,ads.yahoo
   - DOMAIN-KEYWORD,adsage
   - DOMAIN-KEYWORD,adservice.kugou.com

@@ -190,6 +190,15 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 
 ## Next Recommendations
 
+## 2026-06-21 App Source Syntax Hardening
+
+- Added `scripts/validate_app_sources.py` to validate all 398 App source fragments and all 398 generated `Release/Modules/*.sgmodule` files.
+- The validator now blocks unsupported sections/actions, malformed rules, duplicate script names, duplicate MITM hostnames, duplicate active lines, remote `data-path`, duplicate status codes, and unescaped Map Local JSON.
+- Fixed the upstream converter instead of hand-editing Release outputs. Confirmed fixes cover mixed Rule/rewrite input, Loon redirect ordering, `header-replace-regex`, bare domains, Map Local JSON/status normalization, remote response-body embedding, and duplicate script names.
+- Expanded invalid-source discovery to `Rewrite/Sources/Apps/*.conf` while limiting App scanning to actionable source/script URLs and checking unique URLs with bounded concurrency.
+- Latest local Builder result: 398 App modules, 0 empty modules, 6097-line Fusion output, 941 Android main rules, and all Builder checks passed.
+- Latest full quality gate passed. Static/build checks do not prove every App's runtime behavior; real Shadowrocket device behavior remains owner-tested and must drive any future traffic-rule change.
+
 - Keep AI maintenance records updated on every change.
 - Keep Markdown files readable with normal headings, lists, tables, and fenced command blocks.
 - Prefer source-first fixes instead of direct Release edits.

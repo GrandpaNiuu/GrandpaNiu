@@ -13,6 +13,7 @@
         "ad-h5-cdn.soulapp.cn",
         "ad-h5-station-cdn.soulapp.cn",
         "ad-r.soulapp.cn",
+        "ad-sdk-config.youdao.com",
         "ad-stat.ksosoft.com",
         "ad.12306.cn",
         "ad.21cn.com",
@@ -360,7 +361,8 @@
         "ysad.yy.com",
         "zjres-ad.kajicam.com",
         "zlink.ugsdk.cn",
-        "zlsdk.1rtb.net"
+        "zlsdk.1rtb.net",
+        "zxid-m.mobileservice.cn"
       ],
       "domain_suffix": [
         "1.hao123.com",

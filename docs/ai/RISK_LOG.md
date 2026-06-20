@@ -1,6 +1,6 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-06-21 02:58 +0800
+Last updated: 2026-06-21 06:44 +0800
 
 ## Standing High-Risk Areas
 
@@ -55,6 +55,28 @@ Remaining risk:
 - Yahoo includes an exact MITM scope for `m.yap.yahoo.com`; if Yahoo pages show abnormal behavior, narrow or disable `Rewrite/Sources/Apps/yahoo.conf` first.
 
 ## Pending REJECT Risk Review Checklist
+
+## App Source Syntax Hardening Risk Note
+
+Risk level: medium.
+
+Observed failure signal:
+
+- The former quality gate validated only the final Fusion module, allowing malformed independent App modules to remain unnoticed.
+- Reproduced defects included a rewrite line inside `[Rule]`, an unsupported Header Rewrite action, a bare domain rule, duplicate script names, duplicate Map Local status codes, unescaped JSON, and a remote `data-path` unsupported by the repository syntax contract.
+
+Mitigations:
+
+- Fixed conversion logic at the source synchronizer and re-synced only affected records from their existing registered upstreams.
+- Embedded the Xiaoju charging response resource as base64 instead of retaining a remote `data-path`.
+- Preserved high-risk rollback copies for RedNote, Weibo, and Zhihu.
+- Added blocking validation for every source fragment and every generated App module.
+- Did not add or broaden login, payment, banking, captcha, video playback, or image/CDN policies.
+
+Remaining risk:
+
+- Normalized App modules can still have upstream behavioral regressions that static syntax checks cannot detect.
+- Device/runtime behavior must be diagnosed one App and one source rule at a time from real evidence.
 
 Source: `reports/reject_risk_report.md` generated at 2026-06-20 12:04:12 +0800.
 

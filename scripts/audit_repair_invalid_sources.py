@@ -9,6 +9,7 @@ failures, then the workflow rebuilds Release and syncs the root module.
 from __future__ import annotations
 
 import datetime as dt
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import re
 import urllib.error
@@ -28,6 +29,7 @@ SOURCE_GLOBS = [
     "Rules/*.list",
     "Scripts/*.conf",
     "Rewrite/Sources/*.conf",
+    "Rewrite/Sources/Apps/*.conf",
 ]
 EXPECTED_UPDATE_URL = "https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
 USER_AGENT = "GrandpaNiu-InvalidSourceRepair/2.0 (+https://github.com/GrandpaNiuu/GrandpaNiu)"
@@ -35,6 +37,7 @@ TIMEOUT_SECONDS = 25
 FAIL_THRESHOLD = 2
 MAX_AUTO_COMMENTS = 20
 MAX_AUTO_DELETES = 5
+MAX_CHECK_WORKERS = 12
 TRANSIENT_STATUS = {429, 500, 502, 503, 504}
 URL_RE = re.compile(r"https?://[^\s\"'<>)\],]+")
 SCRIPT_PATH_RE = re.compile(r"script-path=(https?://[^,\s]+)")
@@ -174,7 +177,10 @@ def scan_text_file(path: Path) -> list[Source]:
         parts = [part.strip() for part in line.split(",")]
         if len(parts) >= 2 and parts[0] in {"RULE-SET", "DOMAIN-SET"} and parts[1].startswith("http"):
             urls.append(parts[1])
-        urls.extend(URL_RE.findall(line))
+        app_source = rel.startswith("Rewrite/Sources/Apps/")
+        source_metadata = line.lstrip().startswith(("# source-url:", "# converted-from:", "# upstream-url:"))
+        if not app_source or source_metadata:
+            urls.extend(URL_RE.findall(line))
         for raw in dict.fromkeys(urls):
             url = clean_url(raw)
             if "$" in url:
@@ -251,6 +257,22 @@ def check_source(source: Source) -> Check:
     if check.status in TRANSIENT_STATUS:
         check.confirmed_invalid = False
     return check
+
+
+def check_sources(sources: list[Source]) -> dict[str, Check]:
+    representatives: dict[tuple[str, str], Source] = {}
+    for source in sources:
+        representatives.setdefault((source.url, source.kind), source)
+
+    cached: dict[tuple[str, str], Check] = {}
+    with ThreadPoolExecutor(max_workers=min(MAX_CHECK_WORKERS, max(1, len(representatives)))) as executor:
+        futures = {
+            executor.submit(check_source, source): key
+            for key, source in representatives.items()
+        }
+        for future in as_completed(futures):
+            cached[futures[future]] = future.result()
+    return {history_key(source): cached[(source.url, source.kind)] for source in sources}
 
 
 def is_protected(source: Source) -> bool:
@@ -545,7 +567,7 @@ def main() -> None:
     today = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).date().isoformat()
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     sources = scan_sources()
-    checks = {history_key(source): check_source(source) for source in sources}
+    checks = check_sources(sources)
     guard_github_outage(sources, checks)
     history = update_history(load_history(), sources, checks, today)
     actions = apply_repairs(sources, checks, history, today)

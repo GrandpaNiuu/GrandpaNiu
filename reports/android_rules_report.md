@@ -1,8 +1,8 @@
 # Android rules build report
 
-- generated: 2026-06-21 03:10:27 Asia/Shanghai
+- generated: 2026-06-21 06:45:36 Asia/Shanghai
 - app rule files: 22
-- main Android rules: 939
+- main Android rules: 941
 - source: Android/mihomo/apps/*.yaml
 - iOS common source: Rules/reject.list -> iOS-Compatible-Reject
 - iOS app source: Rewrite/Sources/Apps/*.conf [Rule] REJECT -> iOS-App-Compatible-Reject
@@ -19,7 +19,7 @@
 | Bilibili | 1 | yes |
 | Domestic-Apps | 146 | yes |
 | Douyin | 12 | yes |
-| iOS-App-Compatible-Reject | 655 | yes |
+| iOS-App-Compatible-Reject | 662 | yes |
 | iOS-Compatible-Reject | 91 | yes |
 | iOS-Rewrite-Compatible-Reject | 10 | yes |
 | iQiyi | 2 | yes |
@@ -168,11 +168,12 @@
 | ximalaya | 5 |
 | yahoo | 41 |
 | yiche | 2 |
+| youdao-dict | 1 |
 | youku | 13 |
 | yueyou | 1 |
 | yy-voice | 3 |
 | zdm | 1 |
-| zhihu | 4 |
+| zhihu | 10 |
 | zui-you | 1 |
 | zuoyebang | 1 |
 

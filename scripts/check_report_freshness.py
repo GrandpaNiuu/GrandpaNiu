@@ -12,6 +12,12 @@ REPORT = ROOT / "reports" / "report_freshness_report.md"
 
 CHECKS = [
     {
+        "report": "reports/app_source_validation_report.md",
+        "inputs": ["Rewrite/Sources/Apps", "scripts/validate_app_sources.py", "scripts/sync_upstream_app_modules.py"],
+        "blocking": True,
+        "reason": "App 源或上游转换逻辑变更后必须重新验证每个独立模块的语法。",
+    },
+    {
         "report": "reports/profile_validation_report.md",
         "inputs": ["Rewrite/Profiles", "Rules", "Scripts", "scripts/build_module.py", "scripts/validate_profiles.py"],
         "blocking": True,

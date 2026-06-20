@@ -1,8 +1,8 @@
 # 自动化质量证据报告
 
-生成时间：2026-06-21 03:10:41 +0800
-Git 分支：`main`
-Git 提交：`32886bef`
+生成时间：2026-06-21 06:49:43 +0800
+Git 分支：`repair/upstream-app-sync`
+Git 提交：`66b30090`
 
 本仓库发布门禁以可重复执行的自动化证据为准：构建、语法检查、远程规则校验、模块完整性、报告新鲜度和仓库健康检查。
 
@@ -10,13 +10,14 @@ Git 提交：`32886bef`
 
 - Root / Release 一致：是
 - UTF-8 BOM 命中：0
-- 证据报告数量：20
+- 证据报告数量：21
 
 ## 必跑自动化命令
 
 - `python -m py_compile scripts/*.py Rewrite/Generator/Builder.py tools/*.py`
 - `node --check Scripts/app-cleaner.js`
 - `python -m unittest discover -s tests`
+- `python scripts/validate_app_sources.py`
 - `python scripts/build_android_rules.py`
 - `python scripts/android_format_check.py`
 - `python scripts/convert_quanx_rules.py`
@@ -47,6 +48,7 @@ Git 提交：`32886bef`
 |---|---|
 | `reports/android_rules_report.md` | present |
 | `reports/module_integrity_report.md` | present |
+| `reports/app_source_validation_report.md` | present |
 | `reports/multi_release_report.md` | present |
 | `reports/profile_validation_report.md` | present |
 | `reports/remote_rule_syntax_report.md` | present |

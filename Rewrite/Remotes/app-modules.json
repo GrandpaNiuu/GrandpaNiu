@@ -3880,7 +3880,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "taobao-travel",

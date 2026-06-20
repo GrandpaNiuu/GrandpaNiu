@@ -28,7 +28,7 @@
 ## GrandpaNiu Zhihu
 - Source: `Rewrite/Sources/Apps/zhihu.conf`
 - Discovery: manual
-- Rule: 4
+- Rule: 10
 - URL Rewrite: 3
 - Body Rewrite: 5
 - Map Local: 22
@@ -823,8 +823,8 @@
 ## GrandpaNiu 斗鱼 Source
 - Source: `Rewrite/Sources/Apps/douyu.conf`
 - Discovery: auto
-- Rule: 5
-- URL Rewrite: 1
+- Rule: 4
+- URL Rewrite: 2
 - Body Rewrite: 2
 - Script: 1
 - MITM: 1

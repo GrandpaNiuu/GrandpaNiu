@@ -82,6 +82,7 @@ class AutomatedQualityGateTests(unittest.TestCase):
     def test_quality_gate_runs_unit_tests_and_writes_automated_evidence(self) -> None:
         text = (ROOT / "scripts" / "quality_gate.py").read_text(encoding="utf-8")
         self.assertIn("unittest", text)
+        self.assertIn("validate_app_sources.py", text)
         self.assertIn("generate_automated_quality_evidence.py", text)
         self.assertIn("validate_repository.py", text)
 
@@ -90,6 +91,10 @@ class AutomatedQualityGateTests(unittest.TestCase):
             text = (ROOT / rel).read_text(encoding="utf-8")
             self.assertNotIn("manual_test_log", text)
             self.assertNotIn("MANUAL_LOG", text)
+
+    def test_invalid_source_audit_includes_app_sources(self) -> None:
+        text = (ROOT / "scripts" / "audit_repair_invalid_sources.py").read_text(encoding="utf-8")
+        self.assertIn('"Rewrite/Sources/Apps/*.conf"', text)
 
     def test_workflows_use_automated_quality_evidence_not_legacy_log(self) -> None:
         workflow_text = "\n".join(

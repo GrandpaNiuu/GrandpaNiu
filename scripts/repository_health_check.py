@@ -42,6 +42,7 @@ REQUIRED_FILES = [
     "scripts/factory_finalize.py",
     "scripts/validate_repository.py",
     "scripts/validate_profiles.py",
+    "scripts/validate_app_sources.py",
     "tools/generate_automated_quality_evidence.py",
     "tools/validate_script_aggregation.py",
     "tools/test_script_bundle_sandbox.py",
@@ -56,6 +57,7 @@ REQUIRED_FILES = [
     "reports/mitm_scope_report.md",
     "reports/rule_overlap_report.md",
     "reports/app_cleaner_active_report.md",
+    "reports/app_source_validation_report.md",
 ]
 
 REQUIRED_WORKFLOWS = [

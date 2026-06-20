@@ -12,6 +12,7 @@ REQUIRED_FILES = [
     "scripts/validate_remote_rule_syntax.py",
     "scripts/convert_quanx_rules.py",
     "scripts/quality_gate.py",
+    "scripts/validate_app_sources.py",
     "tools/generate_automated_quality_evidence.py",
     "reports/automated_quality_evidence.md",
     ".github/ISSUE_TEMPLATE/rule_false_positive.yml",
@@ -21,6 +22,7 @@ REQUIRED_FILES = [
 ]
 
 QUALITY_GATE_REQUIRED_TOKENS = [
+    "validate_app_sources.py",
     "validate_remote_rule_syntax.py",
     "convert_quanx_rules.py",
     "远程规则语法门禁",

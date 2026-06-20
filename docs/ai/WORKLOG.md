@@ -446,3 +446,50 @@ docs: normalize AI maintenance records
 
 - 提交维护记录文件。
 - 后续修改必须追加 `docs/ai/WORKLOG.md`，并按需要更新 `TASKS`、`DECISIONS`、`RISK_LOG`、`PROJECT_STATE` 和 `AI_HANDOFF`。
+## 2026-06-21 06:44 - App 源语法与长期维护加固
+
+### 本次任务
+
+对仓库执行证据优先的完整自检，修复可复现的 App 独立模块语法问题，并加强每日失效源审计和质量门禁。
+
+### 开始前状态
+
+- 分支：`repair/upstream-app-sync`
+- 基线提交：`66b30090`
+- git status 摘要：开始时干净；审计脚本随后刷新了两份报告
+- 预计修改范围：App 上游转换器、App 源验证器、相关测试/门禁、受影响源、生成产物和维护记录
+
+### 实际修改
+
+- 新增 `scripts/validate_app_sources.py`，逐个验证 398 个 App 源和 398 个 Release App 模块。
+- 修复 `scripts/sync_upstream_app_modules.py` 的混合 Rule、307 重定向、Header Rewrite、裸域名、Map Local、远程数据内联和重复脚本名转换。
+- 从已登记上游重同步 17 个受影响 App 源；未新增未知上游或猜测规则。
+- 将 App 源验证接入 Builder、质量门禁、治理校验、仓库健康和自动化证据。
+- 将失效源审计扩展到 App 源，并用 12 路上限并发检查唯一 URL，避免每日 workflow 串行超时。
+- 通过 Builder 重新生成 Fusion、Release Modules、Android、Windows、Web 和 reports。
+
+### 测试结果
+
+- 14 项单元测试通过。
+- `python scripts/validate_app_sources.py`：398 个源、398 个 Release 模块、0 语法错误。
+- `python Rewrite/Generator/Builder.py --profile fusion --release --check`：通过，398 个模块、0 empty。
+- `python scripts/quality_gate.py`：通过。
+- 仓库健康报告：0 blocking issue；Root / Release 一致；无重复脚本名；无重复 MITM hostname。
+
+### 风险
+
+- 未修改登录、支付、银行、验证码、视频播放或图片/CDN 的策略。
+- RedNote、Weibo、Zhihu 在重同步前保留了回滚备份。
+- 静态检查不能证明所有国内外 App 的真机行为；后续只依据实际异常和日志做 source-first 单点修复。
+
+### Self-Review
+
+- What was not good enough: 旧门禁只验证 Fusion 成品，独立 App 模块可带着错误发布；首次扩展失效源审计时也需要评估请求规模。
+- What I changed to reduce that risk: 增加源/Release 双层阻断验证、转换单测、有限并发和高风险备份。
+- What I would check first next time: 先运行 App 源验证和 Builder，再检查 Actions 的 Module Factory Build 与 Upstream app module sync 实际结果。
+
+### 下一步
+
+- 提交并推送本次修改。
+- 观察远端 Module Factory Build、Upstream app module sync 和 Repository Health。
+- 只有出现真实 App 异常或日志证据时才调整具体流量规则。

@@ -48,6 +48,8 @@ If no code or repository file changed, include the same points in the final repl
 - Running full builders in the main worktree when a temporary worktree would avoid generated-output noise.
 - Forgetting to update AI records after a real maintenance change.
 - Saying "fixed" before confirming the GitHub Actions run that actually failed.
+- Validating only the final Fusion artifact while forgetting independently published `Release/Modules/*.sgmodule` files.
+- Expanding a remote audit without checking whether its request count can make a scheduled workflow time out.
 
 ## Default Improvement Rule
 
