@@ -1,6 +1,6 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-06-20 11:58 +0800
+Last updated: 2026-06-20 12:22 +0800
 
 ## Decisions
 
@@ -12,7 +12,9 @@ Reason: this repository has many generated files, risk gates, upstream sync path
 
 ### 2026-06-20 - Keep Fusion Single Public Module Strategy
 
-The public iOS strategy remains one Fusion module. Stable, Lite, Full, Stable Plus, Aggressive, or similar routes should not return as public user choices without explicit owner approval.
+The public iOS strategy remains one Fusion module.
+
+Stable, Lite, Full, Stable Plus, Aggressive, or similar routes should not return as public user choices without explicit owner approval.
 
 Reason: earlier multi-version logic caused workflow, validation, README, and release-report drift.
 
@@ -33,3 +35,9 @@ Reason: these paths are the most likely to cause app unusability when over-block
 Upstream app modules may sync automatically only while `tools/validate_upstream_risk_gate.py` remains active and passing.
 
 Reason: automatic upstream replacement is useful but can accidentally import unsafe unlock or bypass logic.
+
+### 2026-06-20 - Keep AI Maintenance Markdown Readable
+
+AI maintenance Markdown files must keep normal headings, lists, tables, and fenced command blocks.
+
+Reason: collapsed single-line records can make future AI or human maintainers misread safety rules.

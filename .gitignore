@@ -1,20 +1,24 @@
 # Python
 __pycache__/
+pycache/
 *.py[cod]
 .venv/
 venv/
-.env
 
-# OS / editors
+# Environment files
+.env
+.env.*
+
+# OS and editors
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
 
-# Temporary files
+# Temporary and local files
 *.tmp
 *.bak
 *.log
-
-# Local test output
+*.local.md
 .local/
+_codex_private_logs/

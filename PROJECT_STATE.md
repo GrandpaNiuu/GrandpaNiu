@@ -1,21 +1,30 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-06-20 11:58 +0800
+Last updated: 2026-06-20 21:40 +0800
 
 ## Project Purpose
 
-GrandpaNiu is a rule construction and advertising cleanup repository for Shadowrocket / Surge style iOS modules, Android rule formats, and Windows v2rayN routing. Its main output is a Fusion `.sgmodule` plus derived Android, Windows, Web, and report artifacts.
+GrandpaNiu is a rule construction and advertising cleanup repository for Shadowrocket / Surge style iOS modules, Android rule formats, and Windows v2rayN routing.
 
-The repository is high risk: rule or MITM mistakes can break app login, payment, banking, captcha, video playback, image loading, CDN access, or normal network connectivity.
+The main output is a Fusion `.sgmodule` plus derived Android, Windows, Web, and report artifacts.
+
+This repository is high risk. Rule, script, MITM, or routing mistakes can break:
+
+- app login
+- payment or banking flows
+- captcha and verification
+- video playback
+- image and CDN loading
+- normal domestic or overseas app connectivity
 
 ## Current Main Functions
 
 - Build one public iOS Fusion module.
-- Maintain app-scoped rewrite/rule/script source fragments under `Rewrite/Sources/Apps/`.
-- Maintain common protection and cleanup layers under `Rewrite/Sources/Misc/` and `Rules/`.
+- Maintain app-scoped rewrite, rule, and script fragments under `Rewrite/Sources/Apps/`.
+- Maintain shared protection and cleanup layers under `Rewrite/Sources/Misc/` and `Rules/`.
 - Aggregate compatible scripts into `Scripts/generated/fusion-script-bundle.js`.
 - Sync eligible upstream app modules through `Rewrite/Remotes/app-modules.json`.
-- Generate Android outputs for Mihomo / sing-box / AdGuard / v2rayNG.
+- Generate Android outputs for Mihomo, sing-box, AdGuard, and v2rayNG.
 - Generate Windows v2rayN custom routing output.
 - Generate Web catalog and GitHub Pages entry files.
 - Generate governance reports for script aggregation, MITM scope, rule overlap, upstream risk, repository health, and workflow health.
@@ -48,7 +57,9 @@ Android and Windows public outputs:
 
 ## Version Strategy
 
-The current strategy is Fusion single-module first. Do not reintroduce Stable / Lite / Full / Aggressive as public user-facing choices unless the owner explicitly changes the strategy.
+The current strategy is Fusion single-module first.
+
+Do not reintroduce Stable, Lite, Full, Aggressive, or similar public user-facing variants unless the owner explicitly changes the strategy.
 
 Legacy profiles may remain for compatibility or history, but README, import pages, default workflows, health checks, and release reports should point to Fusion as the main public route.
 
@@ -97,7 +108,9 @@ python scripts/android_format_check.py
 
 ## Testing Method
 
-Use local validation for syntax, generated output consistency, repository health, workflow text, Android format, script aggregation, and upstream risk gate. Real app end-to-end testing is currently performed manually by the owner and is not automated.
+Use local validation for syntax, generated output consistency, repository health, workflow text, Android format, script aggregation, and upstream risk gate.
+
+Real app end-to-end testing is currently performed manually by the owner and is not automated.
 
 ## Known Risks
 
@@ -107,22 +120,31 @@ Use local validation for syntax, generated output consistency, repository health
 - Script aggregation can cause blank pages or hangs if `$done` handling regresses.
 - Android formats cannot fully reproduce iOS Rewrite / MITM / Script behavior.
 - Generated files under `Release/`, `Web/`, `reports/`, and `Scripts/generated/` can be overwritten by the builder.
+- AI maintenance documents must stay readable; collapsed Markdown can cause future agents to misunderstand safety rules.
 
 ## Recent Stable State
 
-Initial snapshot baseline:
+- Current branch during this formatting pass: `repair/upstream-app-sync`.
+- Working tree before this task: clean.
+- Current public strategy: Fusion single public module.
+- Recent CI observed before this task: Module Factory Build and Pages were green after the previous AI maintenance record commit.
+- Approximate scale from the initial snapshot: 297 app source files and 295 generated app module outputs.
 
-- Branch: `repair/upstream-app-sync`
-- Remote `main` / local HEAD before this record initialization: `661b7205d696cccd518cbdcea97cbd4022bc550e`
-- Recent CI observed green: Module Factory Build, Pages deployment, Workflow failure issue automation.
-- Working tree before creating AI records: clean.
-- Approximate scale: 297 app source files and 295 generated app module outputs.
+## Latest Maintenance Note
+
+2026-06-20 21:40 +0800:
+
+- This pass only formats AI maintenance records and `.gitignore`.
+- No business code, rule files, generated outputs, Android outputs, Windows outputs, Web files, reports, or workflow logic are intentionally changed.
+- The current worktree diff was checked and only includes `.gitignore`, `AGENTS.md`, `PROJECT_STATE.md`, `AI_HANDOFF.md`, and `docs/ai/*`.
+- Validation was run in a repository-external temporary copy under `../_codex_private_logs/GrandpaNiu/` to avoid persisting generated Release/report changes in the main worktree.
+- `python scripts/quality_gate.py`, `python scripts/validate_repository.py`, and `python scripts/repository_health_check.py` passed in that temporary copy.
 
 ## Next Recommendations
 
 - Keep AI maintenance records updated on every change.
+- Keep Markdown files readable with normal headings, lists, tables, and fenced command blocks.
 - Prefer source-first fixes instead of direct Release edits.
 - Keep Fusion public entry stable.
 - Continue using risk reports before narrowing or expanding MITM.
-- Add automation only when it improves repeatability and does not bypass safety gates.
 - Treat user-reported app breakage as evidence for targeted rollback or protection rules.
