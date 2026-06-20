@@ -1,0 +1,6 @@
+#!name=GrandpaNiu 妈妈网 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/mama.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,ad.mama.cn,REJECT

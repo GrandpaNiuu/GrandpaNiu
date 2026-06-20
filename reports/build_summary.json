@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-06-20T14:51:52.342714Z",
+  "generated_at": "2026-06-20T16:19:46.839411Z",
   "module": "Release/Ronghemokuai.sgmodule",
   "module_exists": true,
-  "module_size": 689438,
+  "module_size": 702864,
   "section_counts": {
     "Body Rewrite": 1652,
     "Header Rewrite": 1,
     "MITM": 1,
     "Map Local": 351,
-    "Rule": 1141,
-    "Script": 42,
-    "URL Rewrite": 2568
+    "Rule": 1253,
+    "Script": 44,
+    "URL Rewrite": 2690
   },
-  "release_modules": 295,
-  "checksum_files": 319
+  "release_modules": 389,
+  "checksum_files": 413
 }

@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 来疯 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/lai-feng.sgmodule
+
+[URL Rewrite]
+^https?://api\.laifeng\.com/v\d/start/ads - reject
+^https?://api\.jxedt\.com/ad/ - reject-200
+
+[MITM]
+hostname = %APPEND% api.laifeng.com,api.jxedt.com

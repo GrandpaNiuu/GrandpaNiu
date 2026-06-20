@@ -1,0 +1,10 @@
+#!name=GrandpaNiu DLabel云标签 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/dlabel-cloud-tag.sgmodule
+
+[URL Rewrite]
+^https://imagepc\.ctaiot\.com/dlabel/0/startpage - reject
+^https://dudian-oss\.oss-cn-shenzhen\.aliyuncs\.com/dlabel/1/startpage - reject
+
+[MITM]
+hostname = %APPEND% dudian-oss.oss-cn-shenzhen.aliyuncs.com,imagepc.ctaiot.com

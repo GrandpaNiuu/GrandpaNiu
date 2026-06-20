@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 推栏 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/tui-lan.sgmodule
+
+[URL Rewrite]
+^https?://m\.pvp\.xoyo\.com/conf/server-mapping - reject-dict
+
+[MITM]
+hostname = %APPEND% m.pvp.xoyo.com

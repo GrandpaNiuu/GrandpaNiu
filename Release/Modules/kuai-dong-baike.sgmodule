@@ -1,0 +1,7 @@
+#!name=GrandpaNiu 快懂百科 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/kuai-dong-baike.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,ehd.baike.com,REJECT
+DOMAIN-SUFFIX,hdad.baike.com,REJECT

@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 全民K歌 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/quan-min-ge-ge.sgmodule
+
+[URL Rewrite]
+^https?://y\.gtimg\.cn/music/common//upload/kg_ad/.+?\d{3,4}x\d{4} - reject-200
+
+[MITM]
+hostname = %APPEND% y.gtimg.cn

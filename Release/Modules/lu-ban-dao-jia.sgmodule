@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 鲁班到家用户版 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/lu-ban-dao-jia.sgmodule
+
+[URL Rewrite]
+^https://order-app-api\.lbdj\.com/lbdj/apporder/ad/ - reject-dict
+
+[MITM]
+hostname = %APPEND% order-app-api.lbdj.com

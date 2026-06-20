@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 少数派 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/shao-shu-pai.sgmodule
+
+[URL Rewrite]
+https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
+
+[MITM]
+hostname = %APPEND% ios.sspai.com

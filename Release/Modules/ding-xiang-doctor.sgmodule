@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 丁香医生 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ding-xiang-doctor.sgmodule
+
+[URL Rewrite]
+^https?://dxy\.com/app/i/ask/biz/feed/launch - reject
+
+[MITM]
+hostname = %APPEND% dxy.com

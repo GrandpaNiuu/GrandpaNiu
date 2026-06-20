@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 口袋校园 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/kou-dai-xiao-yuan.sgmodule
+
+[URL Rewrite]
+^https?://pocketuni\.net/\?app=api&mod=Message&act=ad - reject-200
+
+[MITM]
+hostname = %APPEND% pocketuni.net

@@ -1,8 +1,8 @@
 # Android rules build report
 
-- generated: 2026-06-20 22:51:59 Asia/Shanghai
+- generated: 2026-06-21 00:26:43 Asia/Shanghai
 - app rule files: 22
-- main Android rules: 757
+- main Android rules: 869
 - source: Android/mihomo/apps/*.yaml
 - iOS common source: Rules/reject.list -> iOS-Compatible-Reject
 - iOS app source: Rewrite/Sources/Apps/*.conf [Rule] REJECT -> iOS-App-Compatible-Reject
@@ -19,9 +19,9 @@
 | Bilibili | 1 | yes |
 | Domestic-Apps | 146 | yes |
 | Douyin | 12 | yes |
-| iOS-App-Compatible-Reject | 464 | yes |
+| iOS-App-Compatible-Reject | 576 | yes |
 | iOS-Compatible-Reject | 91 | yes |
-| iOS-Rewrite-Compatible-Reject | 8 | yes |
+| iOS-Rewrite-Compatible-Reject | 10 | yes |
 | iQiyi | 2 | yes |
 | Kugou | 4 | yes |
 | MangoTV | 11 | yes |
@@ -55,19 +55,24 @@
 | 58-auto | 2 |
 | 58-tong-cheng | 17 |
 | 9-game | 1 |
+| ai-pai | 3 |
 | ali-yun-drive | 1 |
 | all-football | 1 |
 | amap | 3 |
 | baicizhan | 2 |
 | baixing | 6 |
+| bao-mi-hua | 3 |
 | baofeng-player | 44 |
 | bbc | 1 |
 | bilibili | 15 |
+| bing | 2 |
 | biquge | 3 |
 | caiyun-weather | 3 |
+| camera360 | 3 |
 | che-lai-le | 3 |
 | cnn | 5 |
 | csdn | 5 |
+| dang-dang | 3 |
 | di-di | 1 |
 | didi | 1 |
 | dingdong-maicai | 3 |
@@ -77,9 +82,11 @@
 | eastday | 6 |
 | etouch-ecalendar | 1 |
 | facebook | 3 |
+| fan-qie-novel | 14 |
 | foodie | 3 |
 | funshion | 11 |
 | ganji | 6 |
+| hao-you-kuai-bao | 1 |
 | hao123 | 3 |
 | huang-you-xiang-ji | 3 |
 | hujiang-online-school | 1 |
@@ -94,8 +101,12 @@
 | kingsoft-power-word | 8 |
 | ku-gou | 8 |
 | ku-gou-music | 55 |
+| ku6 | 7 |
+| kua-ya-zip | 1 |
+| kuai-dong-baike | 2 |
 | kuai-dui-zuo-ye | 1 |
 | kuai-kan-comic | 3 |
+| kuai-le-guang-bo | 7 |
 | kuaishou | 4 |
 | kuwo | 1 |
 | le-bo-screen-cast | 3 |
@@ -103,26 +114,42 @@
 | leju | 3 |
 | linkedin | 1 |
 | ma-feng-wo | 1 |
+| mama | 1 |
 | meet-you | 2 |
 | mei-tu | 1 |
+| mei-yan-xiang-ji | 2 |
 | meitu-myxj | 1 |
 | meituan | 11 |
 | mgtv | 12 |
+| mijia | 1 |
+| mop | 2 |
+| naver | 4 |
+| oupeng | 6 |
+| outfit7 | 5 |
 | pcauto | 5 |
+| phoenix-new-media | 17 |
+| photoable | 2 |
 | pinduoduo | 10 |
+| pptv | 14 |
+| qilu | 2 |
 | qqksong | 1 |
 | qqmusic | 11 |
 | qting-fm | 2 |
 | safety-home | 1 |
 | seven-cat | 3 |
+| sheng-qu-games | 1 |
 | shu-qi-center-reader | 1 |
 | skyworth | 3 |
 | snail-sleep | 1 |
+| snapchat | 2 |
 | snow-camera | 3 |
+| sogou-input | 1 |
+| soufun | 2 |
 | soul | 7 |
 | taobao | 4 |
 | tencent-video | 1 |
 | terabox | 1 |
+| the-paper-news | 5 |
 | tube-max | 8 |
 | twitch | 2 |
 | twitter | 6 |
@@ -149,6 +176,8 @@
 | Rewrite/Sources/Apps/chao-ji-ke-cheng-biao.conf | 1 |
 | Rewrite/Sources/Apps/douyu.conf | 1 |
 | Rewrite/Sources/Apps/line.conf | 1 |
+| Rewrite/Sources/Apps/qi-shui-music.conf | 1 |
+| Rewrite/Sources/Apps/shao-shu-pai.conf | 1 |
 | Rewrite/Sources/Apps/wechat-mini-programs.conf | 3 |
 
 ## Repository rule source coverage

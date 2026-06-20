@@ -2,14 +2,14 @@
   "bundle": {
     "chunks": 2,
     "path": "Scripts/generated/fusion-script-bundle.js",
-    "routes": 49,
-    "sha256": "cc45c1e8b07e0d9c8922ea338af65e168aa22b4a71c81eb2ab5e81edaa54879d",
-    "sources": 49,
+    "routes": 52,
+    "sha256": "8f84f6eb76b19d7634a6a8a21a3553026f1670ced92d9da82295427b82c481b6",
+    "sources": 52,
     "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js",
     "version": "grandpaniu-fusion-script-bundle-v1"
   },
   "fetch_failed": [],
-  "generated": "2026-06-20T14:52:08Z",
+  "generated": "2026-06-20T16:29:19Z",
   "policy": {
     "allowed_prefixes": [
       "https://kelee.one/Resource/JavaScript/",
@@ -57,7 +57,7 @@
     "preserved: not http-response": 5,
     "preserved: protected app or account/payment token": 16,
     "preserved: unparsable or protected": 146,
-    "preserved: upstream not in aggregator allowlist": 3
+    "preserved: upstream not in aggregator allowlist": 5
   },
   "routes": [
     {
@@ -286,6 +286,22 @@
     },
     {
       "chunk": 1,
+      "name": "app.fei-ke-cha-guan.1",
+      "pattern": "^https?://47\\.100\\.65\\.202/source/plugin/mobile/mobile\\.php\\?module=threadpost&.+?&page=1",
+      "pattern_sha256": "63af90058befb83060745d65cf2e31fcf7fcbbf68e8cf039d217f65bb134adc4",
+      "source_key": "src_5caa481275e3c78c",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/fly.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.fei-ke-cha-guan.2",
+      "pattern": "^https?://www\\.flyert\\.com(\\.cn)?/.*plugin",
+      "pattern_sha256": "50b43f67063c8fde263fe528731fc327257386f841f168767fcfe3b99a8a2e0e",
+      "source_key": "src_0024b28e1094abd5",
+      "source_url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/flyert.js"
+    },
+    {
+      "chunk": 1,
       "name": "app.flyer-tea.1_merged",
       "pattern": "(?:^https://www\\.flyert\\.com\\.cn/api/mobile/index\\.php\\?version=5|^https://www\\.flyert\\.com\\.cn/api/mobile/index\\.php\\?module=plugin&id=k_misign:sign)",
       "pattern_sha256": "c5483334f80c73839aa3e85a37a47b98cbbe67004a8a12b9cc915c65364ae211",
@@ -331,6 +347,14 @@
       "pattern_sha256": "d89c563b429cc795f89a43433b31770553a5c5b847f8ce47d0284d5750ba5b4d",
       "source_key": "src_5d403a80285ee588",
       "source_url": "https://kelee.one/Resource/JavaScript/KuaiKanComic/KuaiKanComic_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.lv-tu-sui-shen-ting.1",
+      "pattern": "^https?://www\\.1314zhilv\\.com/ltsstnew/(common/getJGQIconNew|city/getAllBannelByCity)",
+      "pattern_sha256": "1499798b1e42793dfd4b447693f2461f96b5e85effbe778b7100d2748fb09d4c",
+      "source_key": "src_733ffc3b95115e5a",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/lvtusuishenting/ltsst-ad.js"
     },
     {
       "chunk": 2,
@@ -455,6 +479,13 @@
   ],
   "schema_version": 1,
   "sources": [
+    {
+      "bytes": 842,
+      "key": "src_0024b28e1094abd5",
+      "lines": 28,
+      "sha256": "9f7b49651ad956ae5fd7a17ad120c486c4f228ae2f7cfab21fcb4fccedfe2d98",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/flyert.js"
+    },
     {
       "bytes": 911,
       "key": "src_01b098e7bfc4092b",
@@ -582,6 +613,13 @@
       "url": "https://kelee.one/Resource/JavaScript/NetEaseGodlike/NetEaseGodlike_remove_ads.js"
     },
     {
+      "bytes": 489,
+      "key": "src_5caa481275e3c78c",
+      "lines": 13,
+      "sha256": "d0f0a0254ce1dcb73ca136cc4f163c37abec728f5ef8d42dff9528174f3721e2",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/fly.js"
+    },
+    {
       "bytes": 2424,
       "key": "src_5d403a80285ee588",
       "lines": 76,
@@ -629,6 +667,13 @@
       "lines": 9,
       "sha256": "aedcbe57f569bb7d38ff148de854c260224f0200cd1fd1d2745ebab6b3e4dd26",
       "url": "https://kelee.one/Resource/JavaScript/TV_Assistant/TV_Assistant_remove_ads.js"
+    },
+    {
+      "bytes": 869,
+      "key": "src_733ffc3b95115e5a",
+      "lines": 25,
+      "sha256": "d056e2f2ecb0a48ce09e324e7c5296b8e4fe54b0fbad0c68173bbd7717f3da49",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/lvtusuishenting/ltsst-ad.js"
     },
     {
       "bytes": 1418,
@@ -800,12 +845,12 @@
     }
   ],
   "summary": {
-    "bundled_entries": 49,
-    "bundled_sources": 49,
+    "bundled_entries": 52,
+    "bundled_sources": 52,
     "fetch_failures": 0,
-    "input_entries": 225,
+    "input_entries": 230,
     "output_entries": 0,
     "unique_paths_after": 0,
-    "unique_paths_before": 87
+    "unique_paths_before": 91
   }
 }

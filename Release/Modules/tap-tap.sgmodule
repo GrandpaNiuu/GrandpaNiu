@@ -1,0 +1,9 @@
+#!name=GrandpaNiu TapTap Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/tap-tap.sgmodule
+
+[URL Rewrite]
+^https?://api\.taptapdada\.com/startup-logo/v\d/combo\? - reject-dict
+
+[MITM]
+hostname = %APPEND% api.taptapdada.com

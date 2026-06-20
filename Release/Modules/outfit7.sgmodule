@@ -1,0 +1,10 @@
+#!name=GrandpaNiu Outfit7（会说话的汤姆猫） Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/outfit7.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,apps.outfit7.com,REJECT
+DOMAIN-SUFFIX,apps2.outfit7.com,REJECT
+DOMAIN-SUFFIX,cdn.outfit7.com,REJECT
+DOMAIN-SUFFIX,cdn-gcs.outfit7.com,REJECT
+DOMAIN-SUFFIX,events-api.outfit7.net,REJECT

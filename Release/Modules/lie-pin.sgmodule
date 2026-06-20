@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 猎聘 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/lie-pin.sgmodule
+
+[URL Rewrite]
+^https?://api-ac\.liepin\.com/api/com\.liepin\.cyclops\.live\.get-ad-cards - reject-dict
+^https?://api-wanda\.liepin\.com/api/com\.liepin\.cbp\.baizhong\.op\.v2-show-4app - reject-200
+
+[MITM]
+hostname = %APPEND% api-ac.liepin.com,api-wanda.liepin.com

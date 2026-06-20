@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 皮皮搞笑 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/pi-pi-gao-xiao.sgmodule
+
+[URL Rewrite]
+^https?://adapi\.izuiyou\.com/ad/fetch_api_ads\? - reject-dict
+
+[MITM]
+hostname = %APPEND% adapi.izuiyou.com

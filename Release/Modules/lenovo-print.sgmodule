@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 联想至像打印 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/lenovo-print.sgmodule
+
+[URL Rewrite]
+^https://abcapi\.lenovoimage\.com/v1/promote/startup - reject-dict
+
+[MITM]
+hostname = %APPEND% abcapi.lenovoimage.com

@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 来电 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/lai-dian.sgmodule
+
+[URL Rewrite]
+^https?://mobile-api\.imlaidian\.com/api/args - reject-dict
+
+[MITM]
+hostname = %APPEND% mobile-api.imlaidian.com

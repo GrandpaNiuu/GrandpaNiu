@@ -1,8 +1,8 @@
 # Script Bundle Sandbox Report
 
-- Generated at: 2026-06-20 22:52:03 +0800
+- Generated at: 2026-06-21 00:28:01 +0800
 - Status: passed
-- Cases: 50
+- Cases: 53
 - Failed: 0
 
 ## Failed Cases
@@ -39,12 +39,15 @@
 - `app.coolapk.1_merged`: passed
 - `app.douyu.1`: passed
 - `app.dubbing-show.1`: passed
+- `app.fei-ke-cha-guan.1`: passed
+- `app.fei-ke-cha-guan.2`: passed
 - `app.flyer-tea.1_merged`: passed
 - `app.hupu.1_merged`: passed
 - `app.i-mai-cai.1`: passed
 - `app.jd.1`: passed
 - `app.kebida-dushu.1_merged`: passed
 - `app.kuai-kan-comic.1_merged`: passed
+- `app.lv-tu-sui-shen-ting.1`: passed
 - `app.mai-mai.1`: passed
 - `app.meitu-myxj.1`: passed
 - `app.mkz.1`: passed

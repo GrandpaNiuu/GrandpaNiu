@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 汽水音乐 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/qi-shui-music.sgmodule
+
+[URL Rewrite]
+^https://webcast-open\.douyin\.com/webcast/openapi/feed/\? - reject-dict
+^https://ether-pack\.pangolin-sdk-toutiao\.com/union/endcard/ - reject
+^https://api-access\.pangolin-sdk-toutiao\d?\.com/api/ad/ - reject
+^https://sf\d+-fe-tos\.pglstatp-toutiao\.com/obj/ad-pattern/ - reject
+^https://lf-cdn-tos\.bytescm\.com/obj/static/ad/ - reject
+
+[MITM]
+hostname = %APPEND% webcast-open.douyin.com,ether-pack.pangolin-sdk-toutiao.com,api-access.pangolin-sdk-toutiao?.com,sf*-fe-tos.pglstatp-toutiao.com,lf-cdn-tos.bytescm.com

@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 电视家 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/dian-shi-jia.sgmodule
+
+[URL Rewrite]
+^https?://api\.gaoqingdianshi\.com/api/v\d/ad/ - reject
+^https?://cdn\.dianshihome\.com/static/ad/ - reject
+
+[MITM]
+hostname = %APPEND% api.gaoqingdianshi.com,cdn.dianshihome.com

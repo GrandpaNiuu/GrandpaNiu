@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 看东方（百视TV） Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/kan-dong-fang.sgmodule
+
+[URL Rewrite]
+^https://bp-api\.bestv\.com\.cn/cms/api/free/open/advertisingV2 - reject-dict
+
+[MITM]
+hostname = %APPEND% bp-api.bestv.com.cn,bp-api.bestv.cn

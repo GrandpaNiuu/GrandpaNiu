@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 天山云TV Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/tian-shan-yun-tv.sgmodule
+
+[URL Rewrite]
+^https?://www\.tsytv\.com\.cn/api/app/ios/ads - reject-img
+
+[MITM]
+hostname = %APPEND% www.tsytv.com.cn

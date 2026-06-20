@@ -1,0 +1,8 @@
+#!name=GrandpaNiu 爱拍 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ai-pai.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,apas.aipai.com,REJECT
+DOMAIN-SUFFIX,atiws.aipai.com,REJECT
+DOMAIN-SUFFIX,mlog.aipai.com,REJECT

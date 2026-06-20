@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 丁香园 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ding-xiang-yuan.sgmodule
+
+[URL Rewrite]
+^https?://dq\.dxy\.cn/api\.php\?action=getpostbanners - reject
+
+[MITM]
+hostname = %APPEND% dq.dxy.cn

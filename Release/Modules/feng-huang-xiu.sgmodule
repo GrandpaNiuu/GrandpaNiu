@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 凤凰秀 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/feng-huang-xiu.sgmodule
+
+[URL Rewrite]
+^https?://dsa-mfp\.fengshows\.cn/mfp/mfpMultipleDelivery\.do\?.+?adunitid - reject
+^https?://api\.fengshows\.com/api/launchAD - reject-img
+
+[MITM]
+hostname = %APPEND% dsa-mfp.fengshows.cn,api.fengshows.com

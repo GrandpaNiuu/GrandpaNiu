@@ -1,0 +1,16 @@
+#!name=GrandpaNiu 澎湃新闻 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/the-paper-news.sgmodule
+
+[Rule]
+DOMAIN,admonitor.thepaper.cn,REJECT
+DOMAIN,adpai.thepaper.cn,REJECT
+DOMAIN,imgadpai.thepaper.cn,REJECT
+DOMAIN-SUFFIX,ad.thepaper.cn,REJECT
+DOMAIN-SUFFIX,imgad.thepaper.cn,REJECT
+
+[URL Rewrite]
+^https?://adpai\.thepaper\.cn/.+&ad= - reject
+
+[MITM]
+hostname = %APPEND% adpai.thepaper.cn

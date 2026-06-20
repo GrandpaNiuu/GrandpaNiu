@@ -1,6 +1,6 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-06-20 22:58 +0800
+Last updated: 2026-06-21 00:22 +0800
 
 ## Active Rules For Task Handling
 
@@ -23,6 +23,7 @@ Last updated: 2026-06-20 22:58 +0800
 - Only perform source-first single-rule adjustments when real app abnormal behavior, logs, captures, or another reproducible signal exists; then run the full quality gate.
 - Continue moving workflow build steps toward `Rewrite/Generator/Builder.py --profile fusion --release`.
 - Keep the AI self-review checklist current when new process weaknesses are found.
+- For newly added GitHub app modules, fix future breakage by disabling or narrowing the specific `Rewrite/Sources/Apps/<slug>.conf` and its `Rewrite/Remotes/app-modules.json` record first.
 
 ## Current Self-Review Process Task
 
@@ -102,9 +103,11 @@ Validation:
 - Add more focused tests for protected traffic categories if stable fixtures become available.
 - Add clearer report summaries for non-technical maintainers.
 - Review empty or legacy rule files periodically, but avoid deleting compatibility files without tracing references.
+- Add a future report that groups app modules by upstream project and highlights modules that have not been device-tested yet.
 
 ## Done
 
 - 2026-06-20: Initial AI maintenance record system created.
 - 2026-06-20: Baseline project state and handoff captured.
 - 2026-06-20: Private local log directory initialized outside the repository.
+- 2026-06-21: Added 94 GitHub-backed app ad cleanup modules and regenerated Fusion/Release/Web/Android/Windows outputs.

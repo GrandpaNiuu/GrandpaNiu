@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 腾讯游戏社区 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/tencent-games-community.sgmodule
+
+[URL Rewrite]
+^https?://static\.gameplus\.qq\.com/img/\d{10}-\d{4}$ - reject
+
+[MITM]
+hostname = %APPEND% static.gameplus.qq.com

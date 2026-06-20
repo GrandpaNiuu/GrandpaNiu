@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 牛津高阶词典第十版 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/oxford-ald10th.sgmodule
+
+[URL Rewrite]
+^https?://oxadmin\.cp\.com\.cn/api/hot/index - reject-dict
+^https?://oxadmin\.cp\.com\.cn/api/advertise/banner - reject-dict
+
+[MITM]
+hostname = %APPEND% oxadmin.cp.com.cn

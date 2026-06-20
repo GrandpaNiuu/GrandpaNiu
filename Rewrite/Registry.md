@@ -33,6 +33,8 @@ This is the master source index for the module factory. It links editable source
 
 Manual app specs are listed in `Rewrite/Generate.conf` `[release_modules]`. Additional `Rewrite/Sources/Apps/*.conf` files are auto-discovered by `scripts/build_release_modules.py` and generated when they are not empty.
 
+Current active app source files: **389**. The latest bulk expansion added GitHub app-scoped ad cleanup sources from `fmz200/wool_scripts`, plus `vgtime` from `app2smile/rules` and `bahamut-anime` from `NobyDa/Script`.
+
 | ID | Source path | Output path | Registration | Risk | Fallback |
 |---|---|---|---|---|---|
 | app.amap | `Rewrite/Sources/Apps/amap.conf` | `Release/Modules/amap.sgmodule` | auto | medium | Disable or narrow source file |
@@ -139,6 +141,7 @@ Manual app specs are listed in `Rewrite/Generate.conf` `[release_modules]`. Addi
 - Every high-risk source must have a fallback path.
 - App-specific source fragments live under `Rewrite/Sources/Apps/` and generate `Release/Modules/*.sgmodule`.
 - App upstream sync supports Surge/Loon modules and conservative QuantumultX `.snippet` conversion; `fmz200/wool_scripts` is enabled for recent app-scoped ad rules.
+- Upstream import filtering removes known protected login/message/CDN entries such as `apd-pcdnwxlogin`, `msync-im`, and `ossgw.alicdn.com` when they appear as REJECT or forced MITM lines.
 - Low-risk response scripts may be bundled into `Scripts/generated/fusion-script-bundle.js`; the machine-readable manifest is `Scripts/generated/fusion-script-bundle.manifest.json`, the bundle is sandbox-tested, and core protobuf, binary, request-body, login/payment/bank/account scripts must stay independent.
 - Upstream app auto-sync must pass `tools/validate_upstream_risk_gate.py`; sensitive direct-commit modules keep backup enabled.
 - MITM and source rule overlap reports are governance signals, not automatic deletion instructions.

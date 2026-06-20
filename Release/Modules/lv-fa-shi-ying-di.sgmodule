@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 旅法师营地 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/lv-fa-shi-ying-di.sgmodule
+
+[URL Rewrite]
+^https?://www\.iyingdi\.cn/ad - reject-200
+
+[MITM]
+hostname = %APPEND% www.iyingdi.cn

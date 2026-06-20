@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 简讯 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/jian-xun.sgmodule
+
+[URL Rewrite]
+^https?://api\.tipsoon\.com/api/v1/top/ad - reject-img
+
+[MITM]
+hostname = %APPEND% api.tipsoon.com

@@ -1,0 +1,8 @@
+#!name=GrandpaNiu 当当网 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/dang-dang.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,a.dangdang.com,REJECT
+DOMAIN-SUFFIX,schprompt.dangdang.com,REJECT
+DOMAIN-SUFFIX,t.dangdang.com,REJECT

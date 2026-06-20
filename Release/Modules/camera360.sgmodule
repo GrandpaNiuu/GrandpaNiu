@@ -1,0 +1,8 @@
+#!name=GrandpaNiu Camera360 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/camera360.sgmodule
+
+[Rule]
+DOMAIN,dispatcher.360in.com,REJECT
+DOMAIN,ad.360in.com,REJECT
+DOMAIN,exp.360in.com,REJECT

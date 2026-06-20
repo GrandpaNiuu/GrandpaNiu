@@ -1,0 +1,11 @@
+#!name=GrandpaNiu ONE Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/one.sgmodule
+
+[URL Rewrite]
+^https?://v3\.wufazhuce\.com:8000/api/adpreloadlist - reject-dict
+^https?://app\.api\.d3yuiw4\.com/api/app/ad - reject
+^https?://api\.21ec74\.com/v2\.5/ad - reject
+
+[MITM]
+hostname = %APPEND% v3.wufazhuce.com,app.api.d3yuiw4.com,api.21ec74.com

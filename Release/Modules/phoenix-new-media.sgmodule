@@ -1,0 +1,22 @@
+#!name=GrandpaNiu 凤凰新媒体 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/phoenix-new-media.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,stadig.ifeng.com,REJECT
+DOMAIN-SUFFIX,stadig0.ifeng.com,REJECT
+DOMAIN-SUFFIX,exp.3g.ifeng.com,REJECT
+DOMAIN-SUFFIX,ifengad.3g.ifeng.com,REJECT
+DOMAIN-SUFFIX,dmpclick.deliver.ifeng.com,REJECT
+DOMAIN-SUFFIX,dol.deliver.ifeng.com,REJECT
+DOMAIN-SUFFIX,dolphin.deliver.ifeng.com,REJECT
+DOMAIN-SUFFIX,ids.deliver.ifeng.com,REJECT
+DOMAIN-SUFFIX,ids1.deliver.ifeng.com,REJECT
+DOMAIN-SUFFIX,iis1.deliver.ifeng.com,REJECT
+DOMAIN-SUFFIX,iis3g.deliver.ifeng.com,REJECT
+DOMAIN-SUFFIX,mfp.deliver.ifeng.com,REJECT
+DOMAIN-SUFFIX,api.iapps.ifeng.com,REJECT
+DOMAIN-SUFFIX,api.newad.ifeng.com,REJECT
+DOMAIN-SUFFIX,cz.ifeng0.com,REJECT
+DOMAIN-SUFFIX,c0.ifengimg.com,REJECT
+DOMAIN-SUFFIX,c1.ifengimg.com,REJECT

@@ -1,12 +1,12 @@
 # 模块工厂报告
 
-- 日期：2026-06-20
+- 日期：2026-06-21
 - 构建 profile：fusion
 - 默认公开入口：单一融合版
 - 是否从 root 反拆：否
 - 构建阶段 Root/Release 是否一致：是
-- Release 行数：5771
-- Release MITM hostname 数量：1209
+- Release 行数：6007
+- Release MITM hostname 数量：1235
 
 ## 源文件统计
 - Rule: 115 行

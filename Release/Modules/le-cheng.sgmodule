@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 乐橙 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/le-cheng.sgmodule
+
+[URL Rewrite]
+^https://dl-cu-hz\.lechange\.cn/oms-online/advertisementPush - reject
+
+[MITM]
+hostname = %APPEND% dl-cu-hz.lechange.cn

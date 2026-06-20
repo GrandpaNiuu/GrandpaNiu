@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 好好住 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/hao-hao-zhu.sgmodule
+
+[URL Rewrite]
+^https?://api\.haohaozhu\.cn/index\.php/home/AppInit/getStartPhoto - reject
+
+[MITM]
+hostname = %APPEND% api.haohaozhu.cn

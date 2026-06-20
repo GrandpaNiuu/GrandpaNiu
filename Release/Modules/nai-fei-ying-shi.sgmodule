@@ -1,0 +1,11 @@
+#!name=GrandpaNiu 奈菲影视 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/nai-fei-ying-shi.sgmodule
+
+[URL Rewrite]
+^https?://www\.nfmovies\.com/pic/tu/ - reject-img
+^https?://www\.nfmovies\.com/templets/default/images/logos - reject-img
+^https?://www\.nfmovies\.com/uploads/images/play\.jpg - reject-img
+
+[MITM]
+hostname = %APPEND% www.nfmovies.com

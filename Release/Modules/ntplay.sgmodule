@@ -1,0 +1,9 @@
+#!name=GrandpaNiu NTPlay Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ntplay.sgmodule
+
+[URL Rewrite]
+^https?://blog\.nilbt\.com/static/api/update - reject-200
+
+[MITM]
+hostname = %APPEND% blog.nilbt.com

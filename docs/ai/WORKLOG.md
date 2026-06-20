@@ -1,5 +1,50 @@
 # AI Maintenance Worklog
 
+## 2026-06-21 00:22 - Work Record
+
+### Task
+
+Bulk-added missing GitHub app ad-cleaning modules into the GrandpaNiu app module factory and kept them under daily upstream sync.
+
+### Start State
+
+- Branch: `repair/upstream-app-sync`
+- Git status summary: clean before this pass
+- Expected scope: `Rewrite/Remotes/app-modules.json`, `Rewrite/Sources/Apps/`, upstream sync converter, generated Release/Web/Android/Windows outputs, reports, and AI maintenance records
+
+### Actual Changes
+
+- Added 94 new direct-commit upstream records to `Rewrite/Remotes/app-modules.json`.
+- Synced 94 new app source fragments into `Rewrite/Sources/Apps/`.
+- Added protected upstream conversion filters for `apd-pcdnwxlogin`, `msync-im`, and `ossgw.alicdn.com` in `scripts/sync_upstream_app_modules.py`.
+- Regenerated Fusion, Release Modules, Android, Windows v2rayN, Web catalog, checksums, and reports through the Builder.
+- Updated `Rewrite/Sources/Apps/README.md`, `Rewrite/Registry.md`, `Web/registry.md`, `PROJECT_STATE.md`, `AI_HANDOFF.md`, `docs/ai/TASKS.md`, and `docs/ai/RISK_LOG.md`.
+
+### Test Result
+
+- `python -m py_compile scripts/sync_upstream_app_modules.py scripts/build_release_modules.py Rewrite/Generator/Builder.py` passed.
+- `python scripts/sync_upstream_app_modules.py --no-kelee ...` synced the selected new modules with 0 blocked modules after retrying one transient GitHub raw fetch failure.
+- `python Rewrite/Generator/Builder.py --profile fusion --release --check` passed.
+- Builder output: 389 per-app modules, 0 empty modules, repository validation passed, profile validation passed, script aggregation validation passed, script bundle sandbox passed, upstream risk gate passed, Android format check passed, and governance extension validation passed.
+
+### Risk
+
+- Medium to high. This pass adds many app-scoped rules and MITM/script entries at once.
+- Mitigation: no VIP/member unlock, payment bypass, login bypass, token/cookie rewrite, receipt forgery, or account-sharing modules were intentionally added.
+- Mitigation: protected login/message/CDN entries are filtered during conversion.
+- Remaining risk: real app behavior is still manually tested by the owner. If an app breaks, disable or narrow the single affected `Rewrite/Sources/Apps/<slug>.conf` first.
+
+### Self-Review
+
+- What was not good enough: the first sync allowed protected CDN/login-looking lines from upstream into two new app files before the risk scan.
+- What I changed to reduce that risk: added converter-level protected filters and regenerated the affected sources before building.
+- What I would check first next time: run the protected-token scan before committing any converted source files, especially after bulk imports.
+
+### Next Step
+
+- Run final quality gate and diff review.
+- Commit and push if validation remains clean.
+
 ## 2026-06-20 22:58 - Work Record
 
 ### Task

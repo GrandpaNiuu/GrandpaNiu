@@ -1,0 +1,7 @@
+#!name=GrandpaNiu 美颜相机 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/mei-yan-xiang-ji.sgmodule
+
+[Rule]
+DOMAIN,adui.tg.meitu.com,REJECT
+DOMAIN,aaid.uyunad.com,REJECT

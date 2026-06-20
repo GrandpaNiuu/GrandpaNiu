@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 腾讯手机管家 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/tencent-mobile-manager.sgmodule
+
+[URL Rewrite]
+^https?://otheve.beacon.qq.com/analytics/upload\?sid=.* - reject
+
+[MITM]
+hostname = %APPEND% otheve.beacon.qq.com

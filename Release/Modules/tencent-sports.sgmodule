@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 腾讯体育 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/tencent-sports.sgmodule
+
+[URL Rewrite]
+^https?://news\.ssp\.qq\.com/app - reject
+^https?://sports3\.gtimg\.com/community/20cf93884470434eaf38b2e77ab7796a\.png - reject
+
+[MITM]
+hostname = %APPEND% news.ssp.qq.com,sports3.gtimg.com

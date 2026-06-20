@@ -1,13 +1,13 @@
 # Script Aggregation Report
 
-- generated: 2026-06-20T14:52:08Z
+- generated: 2026-06-20T16:29:19Z
 - enabled: True
-- input script entries: 225
-- output script entries: 178
-- unique script-path before: 87
-- unique script-path after: 39
-- bundled entries: 49
-- bundled upstream sources: 49
+- input script entries: 230
+- output script entries: 180
+- unique script-path before: 91
+- unique script-path after: 40
+- bundled entries: 52
+- bundled upstream sources: 52
 - bundle chunks: 2
 - output: `Scripts/generated/fusion-script-bundle.js`
 - manifest: `Scripts/generated/fusion-script-bundle.manifest.json`
@@ -41,12 +41,15 @@
 - `app.coolapk.1_merged`
 - `app.douyu.1`
 - `app.dubbing-show.1`
+- `app.fei-ke-cha-guan.1`
+- `app.fei-ke-cha-guan.2`
 - `app.flyer-tea.1_merged`
 - `app.hupu.1_merged`
 - `app.i-mai-cai.1`
 - `app.jd.1`
 - `app.kebida-dushu.1_merged`
 - `app.kuai-kan-comic.1_merged`
+- `app.lv-tu-sui-shen-ting.1`
 - `app.mai-mai.1`
 - `app.meitu-myxj.1`
 - `app.mkz.1`
@@ -72,4 +75,4 @@
 - preserved: not http-response: 5
 - preserved: protected app or account/payment token: 16
 - preserved: unparsable or protected: 146
-- preserved: upstream not in aggregator allowlist: 3
+- preserved: upstream not in aggregator allowlist: 5

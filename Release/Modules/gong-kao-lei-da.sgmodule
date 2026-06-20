@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 公考雷达 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/gong-kao-lei-da.sgmodule
+
+[URL Rewrite]
+^https?://api\.gongkaoleida\.com/api/v2/ad/info - reject-dict
+
+[MITM]
+hostname = %APPEND% api.gongkaoleida.com

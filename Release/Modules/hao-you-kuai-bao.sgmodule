@@ -1,0 +1,6 @@
+#!name=GrandpaNiu 好游快爆 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/hao-you-kuai-bao.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,ad.3839.com,REJECT

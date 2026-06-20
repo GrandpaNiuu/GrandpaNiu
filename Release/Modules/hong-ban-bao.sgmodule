@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 红版报 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/hong-ban-bao.sgmodule
+
+[URL Rewrite]
+^https?://fbchina\.flipchina\.cn/v\d/ad/query - reject
+
+[MITM]
+hostname = %APPEND% fbchina.flipchina.cn

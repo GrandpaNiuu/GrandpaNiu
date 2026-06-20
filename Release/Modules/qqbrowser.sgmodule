@@ -1,0 +1,9 @@
+#!name=GrandpaNiu QQ浏览器 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/qqbrowser.sgmodule
+
+[URL Rewrite]
+^https?://us\.l\.qq\.com/exapp\?spsa=\d - reject
+
+[MITM]
+hostname = %APPEND% us.l.qq.com

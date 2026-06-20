@@ -1,0 +1,12 @@
+#!name=GrandpaNiu 大师兄 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/da-shi-xiong.sgmodule
+
+[URL Rewrite]
+^https?://sdk\.alibaba\.com\.ailbaba\.me/xgapp\.php/v\d/version - reject-200
+^https?://sdk\.alibaba\.com\.ailbaba\.me/xgapp\.php/v\d/advert\?position=[^2]+ - reject-200
+^https?://sdk\.alibaba\.com\.ailbaba\.me/xgapp\.php/v\d/top_notice\? - reject-200
+^https?://sdk\.alibaba\.com\.ailbaba\.me/(dsx|xgapp)\.php/v\d/(top_notice\?|version|advert\?position=[^2]+) - reject-200
+
+[MITM]
+hostname = %APPEND% sdk.alibaba.com.ailbaba.me,adservice.sigmob.cn

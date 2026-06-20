@@ -1,0 +1,7 @@
+#!name=GrandpaNiu 房天下 (Soufun) Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/soufun.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,click1n.soufun.com,REJECT
+DOMAIN-SUFFIX,countubn.light.soufun.com,REJECT

@@ -1,0 +1,36 @@
+#!name=GrandpaNiu 番茄小说 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/fan-qie-novel.sgmodule
+
+[Rule]
+DOMAIN,ug-sinfonlinea.bytedance.com,REJECT
+DOMAIN,dig.bdurl.net,REJECT
+DOMAIN,activity-ag.awemeughun.com,REJECT
+DOMAIN,v6-novelapp.ixigua.com,REJECT
+DOMAIN-SUFFIX,novelapp.ixigua.com,REJECT
+DOMAIN-SUFFIX,default.ixigua.com,REJECT
+DOMAIN,api.iegadp.qq.com,REJECT
+DOMAIN-SUFFIX,byteorge.com,REJECT
+IP-CIDR,49.71.37.101/32,REJECT
+IP-CIDR,117.71.105.23/32,REJECT
+IP-CIDR,218.94.207.205/32,REJECT
+IP-CIDR,117.92.229.188/32,REJECT
+IP-CIDR,101.36.166.16/32,REJECT
+IP-CIDR,180.96.2.114/32,REJECT
+
+[URL Rewrite]
+^https?://.+\.pangolin-sdk-toutiao\.com/api/ad/union/sdk/(get_ads|stats|settings)/ - reject
+^https?://.+\.pglstatp-toutiao\.com/.+/toutiao\.mp4 - reject
+^https?://.+\.(pglstatp-toutiao|pstatp)\.com/(obj|img)/(ad-app-package|ad)/.+ - reject
+^https?://.+\.(pglstatp-toutiao|pstatp)\.com/(obj|img)/web\.business\.image/.+ - reject
+^https?://.+\.(pglstatp-toutiao|pstatp)\.com/obj/ad-pattern/renderer - reject
+^https?://gurd\.snssdk\.com/src/server/v3/package - reject
+^https?://.+\.byteimg.com/tos-cn-i-1yzifmftcy/(.+)-jpeg\.jpeg - reject
+^https?://.+\.pstatp\.com/obj/mosaic-legacy/.+\?from\=ad - reject
+^https?://.+\.pstatp\.com/bytecom/resource/track_log/src/.+ - reject
+^https?://.+\.snssdk\.com/video/play/1/toutiao/.+/mp4 - reject
+^https?://.+\.byteimg\.com/ad-app-package - reject
+^https?://.+\.byteimg\.com/web\.business\.image - reject
+
+[MITM]
+hostname = %APPEND% *.pangolin-sdk-toutiao.com,*.pangolin-sdk-toutiao.*,*.pstatp.com,*.pstatp.com.*,*.pglstatp-toutiao.com.*,*.pglstatp-toutiao.com,gurd.snssdk.com,gurd.snssdk.com.*,i-lq.snssdk.com,i-lq.snssdk.com.*,*default.ixigua.com

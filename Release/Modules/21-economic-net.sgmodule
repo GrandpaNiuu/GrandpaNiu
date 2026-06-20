@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 21经济网 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/21-economic-net.sgmodule
+
+[URL Rewrite]
+^https?://api\.21jingji\.com/ad/ - reject
+
+[MITM]
+hostname = %APPEND% api.21jingji.com

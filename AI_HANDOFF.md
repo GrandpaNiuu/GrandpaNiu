@@ -1,6 +1,6 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-06-20 22:58 +0800
+Last updated: 2026-06-21 00:22 +0800
 
 ## What This Project Is
 
@@ -31,6 +31,25 @@ Maintain it as a high-risk network rules repository. Small changes can break use
 - Script aggregation was introduced through `Scripts/generated/fusion-script-bundle.js`.
 - Governance gates were added for script aggregation, script bundle sandbox testing, upstream app module risk, MITM scope, rule overlap, and app-cleaner active state.
 - AI maintenance records were added and then reformatted for readability.
+- Latest app expansion added 94 GitHub-backed app ad cleanup sources, bringing `Rewrite/Sources/Apps/` and `Release/Modules/` to 389 active modules.
+- New app sync records are direct-commit enabled in `Rewrite/Remotes/app-modules.json`, so the added app modules are covered by the daily upstream app module sync workflow.
+- `scripts/sync_upstream_app_modules.py` now filters `apd-pcdnwxlogin`, `msync-im`, and `ossgw.alicdn.com` out of imported REJECT / forced MITM lines.
+
+## Current App Expansion Pass
+
+Scope:
+
+- Added app-scoped sources from trusted GitHub upstreams:
+  - `fmz200/wool_scripts`
+  - `app2smile/rules`
+  - `NobyDa/Script`
+- Refreshed generated Fusion, Release Modules, Android, Windows v2rayN, Web catalog, checksums, and reports through the Builder.
+- No VIP/member unlock, payment bypass, login bypass, token/cookie rewriting, or account-sharing modules were intentionally added.
+
+Validation:
+
+- `python -m py_compile scripts/sync_upstream_app_modules.py scripts/build_release_modules.py Rewrite/Generator/Builder.py` passed.
+- `python Rewrite/Generator/Builder.py --profile fusion --release --check` passed with 389 generated app modules and 0 empty modules.
 
 ## Current Formatting Pass
 
@@ -85,6 +104,8 @@ Rule maintenance rule: only make source-first single-rule changes when there is 
 ## Current Risk Points
 
 - Do not weaken the upstream risk gate to force in unsafe modules.
+- Do not assume all newly added upstream snippets are device-verified; they passed syntax/build/governance checks, but real app behavior remains owner-tested.
+- If one new app breaks login, images, video, or normal networking, disable or narrow that app source first rather than reverting the whole expansion.
 - Do not directly edit `Release/Ronghemokuai.sgmodule` or `Release/Module.sgmodule`; regenerate them.
 - Do not casually change MITM hostnames for payment, banking, login, video playback, or image/CDN.
 - Do not reintroduce multi-version public user routes unless the owner explicitly requests a version strategy change.

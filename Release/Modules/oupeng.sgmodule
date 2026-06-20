@@ -1,0 +1,11 @@
+#!name=GrandpaNiu Oupeng (欧朋) Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/oupeng.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,ezine.oupeng.com,REJECT
+DOMAIN-SUFFIX,img-ad.oupeng.com,REJECT
+DOMAIN-SUFFIX,notify.oupeng.com,REJECT
+DOMAIN-SUFFIX,startup.oupeng.com,REJECT
+DOMAIN-SUFFIX,c.bxb.oupeng.com,REJECT
+DOMAIN-SUFFIX,r.bxb.oupeng.com,REJECT

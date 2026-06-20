@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 米家 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/mijia.sgmodule
+
+[Rule]
+DOMAIN,sdkconfig.ad.xiaomi.com,REJECT
+
+[URL Rewrite]
+^https?://home\.mi\.com/cgi-op/api/v1/recommendation/(banner|carousel/banners|myTab|openingBanner) - reject-dict
+^https?://home\.mi\.com/cgi-op/api/v1/resource/realtime/openingBanner - reject-dict
+
+[MITM]
+hostname = %APPEND% home.mi.com

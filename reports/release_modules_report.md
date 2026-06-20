@@ -4,10 +4,10 @@
 - Fusion fallback source: `Release/Ronghemokuai.sgmodule`
 - Output directory: `Release/Modules`
 - Manual modules: 18
-- Auto-discovered modules: 277
-- Auto-discovered generated modules: 277
-- Total module specs: 295
-- Generated modules: 295
+- Auto-discovered modules: 371
+- Auto-discovered generated modules: 371
+- Total module specs: 389
+- Generated modules: 389
 - Skipped empty modules: 0
 
 ## GrandpaNiu Spotify
@@ -188,6 +188,12 @@
 - Discovery: auto
 - Rule: 4
 
+## GrandpaNiu 21经济网 Source
+- Source: `Rewrite/Sources/Apps/21-economic-net.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 2345天气王 Source
 - Source: `Rewrite/Sources/Apps/2345-weather-king.conf`
 - Discovery: auto
@@ -212,6 +218,12 @@
 - Rule: 2
 - URL Rewrite: 7
 - Body Rewrite: 5
+- MITM: 1
+
+## GrandpaNiu 360儿童卫士 Source
+- Source: `Rewrite/Sources/Apps/360-child-guard.conf`
+- Discovery: auto
+- URL Rewrite: 1
 - MITM: 1
 
 ## GrandpaNiu 360摄像机 Source
@@ -279,6 +291,29 @@
 - URL Rewrite: 2
 - MITM: 1
 
+## GrandpaNiu 爱美剧 Source
+- Source: `Rewrite/Sources/Apps/ai-mei-ju.conf`
+- Discovery: auto
+- URL Rewrite: 3
+- MITM: 1
+
+## GrandpaNiu 爱拍 Source
+- Source: `Rewrite/Sources/Apps/ai-pai.conf`
+- Discovery: auto
+- Rule: 3
+
+## GrandpaNiu 爱思助手 Source
+- Source: `Rewrite/Sources/Apps/ai-si-assistant.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 爱阅书香 Source
+- Source: `Rewrite/Sources/Apps/ai-yue-shu-xiang.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 爱企查 Source
 - Source: `Rewrite/Sources/Apps/aiinquiry.conf`
 - Discovery: auto
@@ -333,6 +368,12 @@
 - Discovery: auto
 - Rule: 5
 - Script: 3
+- MITM: 1
+
+## GrandpaNiu Bahamut Anime Source
+- Source: `Rewrite/Sources/Apps/bahamut-anime.conf`
+- Discovery: auto
+- Script: 1
 - MITM: 1
 
 ## GrandpaNiu 百词斩 Source
@@ -405,6 +446,11 @@
 - URL Rewrite: 1
 - MITM: 1
 
+## GrandpaNiu 爆米花 Source
+- Source: `Rewrite/Sources/Apps/bao-mi-hua.conf`
+- Discovery: auto
+- Rule: 3
+
 ## GrandpaNiu 暴风影音 Source
 - Source: `Rewrite/Sources/Apps/baofeng-player.conf`
 - Discovery: auto
@@ -436,6 +482,11 @@
 - Script: 2
 - MITM: 1
 
+## GrandpaNiu Bing Source
+- Source: `Rewrite/Sources/Apps/bing.conf`
+- Discovery: auto
+- Rule: 2
+
 ## GrandpaNiu 笔趣阁 Source
 - Source: `Rewrite/Sources/Apps/biquge.conf`
 - Discovery: auto
@@ -454,6 +505,12 @@
 - Script: 1
 - MITM: 1
 
+## GrandpaNiu 菠萝包轻小说 Source
+- Source: `Rewrite/Sources/Apps/bo-luo-bao-light-novel.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 波点音乐 Source
 - Source: `Rewrite/Sources/Apps/bodian-music.conf`
 - Discovery: auto
@@ -467,6 +524,18 @@
 - URL Rewrite: 6
 - Body Rewrite: 3
 - Script: 1
+- MITM: 1
+
+## GrandpaNiu 财经杂志 Source
+- Source: `Rewrite/Sources/Apps/cai-jing-za-zhi.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 财联社 Source
+- Source: `Rewrite/Sources/Apps/cai-lian-she.conf`
+- Discovery: auto
+- URL Rewrite: 1
 - MITM: 1
 
 ## GrandpaNiu Cainiao Source
@@ -490,6 +559,11 @@
 - Map Local: 2
 - Script: 1
 - MITM: 1
+
+## GrandpaNiu Camera360 Source
+- Source: `Rewrite/Sources/Apps/camera360.conf`
+- Discovery: auto
+- Rule: 3
 
 ## GrandpaNiu 猫耳FM Source
 - Source: `Rewrite/Sources/Apps/cat-ear-fm.conf`
@@ -601,6 +675,12 @@
 - Body Rewrite: 1
 - MITM: 1
 
+## GrandpaNiu 大师兄 Source
+- Source: `Rewrite/Sources/Apps/da-shi-xiong.conf`
+- Discovery: auto
+- URL Rewrite: 4
+- MITM: 1
+
 ## GrandpaNiu 推栏 Source
 - Source: `Rewrite/Sources/Apps/daily.conf`
 - Discovery: auto
@@ -618,6 +698,17 @@
 - Source: `Rewrite/Sources/Apps/dang-dang-reading.conf`
 - Discovery: auto
 - URL Rewrite: 4
+- MITM: 1
+
+## GrandpaNiu 当当网 Source
+- Source: `Rewrite/Sources/Apps/dang-dang.conf`
+- Discovery: auto
+- Rule: 3
+
+## GrandpaNiu 到梦空间 Source
+- Source: `Rewrite/Sources/Apps/dao-meng-kong-jian.conf`
+- Discovery: auto
+- URL Rewrite: 3
 - MITM: 1
 
 ## GrandpaNiu 得物 Source
@@ -641,6 +732,12 @@
 - URL Rewrite: 4
 - MITM: 1
 
+## GrandpaNiu 电视家 Source
+- Source: `Rewrite/Sources/Apps/dian-shi-jia.conf`
+- Discovery: auto
+- URL Rewrite: 2
+- MITM: 1
+
 ## GrandpaNiu 滴答出行 Source
 - Source: `Rewrite/Sources/Apps/dida-pinche-taxi.conf`
 - Discovery: auto
@@ -662,12 +759,30 @@
 - Body Rewrite: 4
 - MITM: 1
 
+## GrandpaNiu 丁香医生 Source
+- Source: `Rewrite/Sources/Apps/ding-xiang-doctor.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 丁香园 Source
+- Source: `Rewrite/Sources/Apps/ding-xiang-yuan.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 叮咚买菜 Source
 - Source: `Rewrite/Sources/Apps/dingdong-maicai.conf`
 - Discovery: auto
 - Rule: 3
 - URL Rewrite: 12
 - Body Rewrite: 7
+- MITM: 1
+
+## GrandpaNiu DLabel云标签 Source
+- Source: `Rewrite/Sources/Apps/dlabel-cloud-tag.conf`
+- Discovery: auto
+- URL Rewrite: 2
 - MITM: 1
 
 ## GrandpaNiu Dlabel云标签 Source
@@ -767,11 +882,25 @@
 - URL Rewrite: 1
 - MITM: 1
 
+## GrandpaNiu 番茄小说 Source
+- Source: `Rewrite/Sources/Apps/fan-qie-novel.conf`
+- Discovery: auto
+- Rule: 14
+- URL Rewrite: 12
+- MITM: 1
+
 ## GrandpaNiu 丰巢 Source
 - Source: `Rewrite/Sources/Apps/fc-box.conf`
 - Discovery: auto
 - URL Rewrite: 9
 - Body Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 飞客茶馆 Source
+- Source: `Rewrite/Sources/Apps/fei-ke-cha-guan.conf`
+- Discovery: auto
+- URL Rewrite: 5
+- Script: 2
 - MITM: 1
 
 ## GrandpaNiu 粉笔 Source
@@ -780,6 +909,12 @@
 - URL Rewrite: 10
 - Body Rewrite: 2
 - Map Local: 1
+- MITM: 1
+
+## GrandpaNiu 凤凰秀 Source
+- Source: `Rewrite/Sources/Apps/feng-huang-xiu.conf`
+- Discovery: auto
+- URL Rewrite: 2
 - MITM: 1
 
 ## GrandpaNiu 摩天轮 Source
@@ -836,6 +971,12 @@
 - Body Rewrite: 3
 - MITM: 1
 
+## GrandpaNiu 公考雷达 Source
+- Source: `Rewrite/Sources/Apps/gong-kao-lei-da.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu Goofish Source
 - Source: `Rewrite/Sources/Apps/goofish.conf`
 - Discovery: auto
@@ -863,11 +1004,22 @@
 - Body Rewrite: 2
 - MITM: 1
 
+## GrandpaNiu 好好住 Source
+- Source: `Rewrite/Sources/Apps/hao-hao-zhu.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 好奇心日报 Source
 - Source: `Rewrite/Sources/Apps/hao-qi-xin-daily.conf`
 - Discovery: auto
 - URL Rewrite: 2
 - MITM: 1
+
+## GrandpaNiu 好游快爆 Source
+- Source: `Rewrite/Sources/Apps/hao-you-kuai-bao.conf`
+- Discovery: auto
+- Rule: 1
 
 ## GrandpaNiu Hao123 Source
 - Source: `Rewrite/Sources/Apps/hao123.conf`
@@ -894,6 +1046,12 @@
 - Body Rewrite: 4
 - MITM: 1
 
+## GrandpaNiu 红版报 Source
+- Source: `Rewrite/Sources/Apps/hong-ban-bao.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 花生地铁 Source
 - Source: `Rewrite/Sources/Apps/hua-sheng-di-tie.conf`
 - Discovery: auto
@@ -911,6 +1069,12 @@
 - Source: `Rewrite/Sources/Apps/hujiang-online-school.conf`
 - Discovery: auto
 - Rule: 1
+
+## GrandpaNiu 火猫 Source
+- Source: `Rewrite/Sources/Apps/huo-mao.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
 
 ## GrandpaNiu 虎扑 Source
 - Source: `Rewrite/Sources/Apps/hupu.conf`
@@ -1004,6 +1168,12 @@
 - URL Rewrite: 5
 - MITM: 1
 
+## GrandpaNiu 简讯 Source
+- Source: `Rewrite/Sources/Apps/jian-xun.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 界面新闻 Source
 - Source: `Rewrite/Sources/Apps/jie-mian-news.conf`
 - Discovery: auto
@@ -1021,6 +1191,12 @@
 - Discovery: auto
 - Rule: 6
 - Body Rewrite: 2
+- MITM: 1
+
+## GrandpaNiu 看东方（百视TV） Source
+- Source: `Rewrite/Sources/Apps/kan-dong-fang.conf`
+- Discovery: auto
+- URL Rewrite: 1
 - MITM: 1
 
 ## GrandpaNiu 看理想 Source
@@ -1082,6 +1258,12 @@
 - Body Rewrite: 3
 - MITM: 1
 
+## GrandpaNiu 口袋校园 Source
+- Source: `Rewrite/Sources/Apps/kou-dai-xiao-yuan.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 酷狗音乐 Source
 - Source: `Rewrite/Sources/Apps/ku-gou-music.conf`
 - Discovery: auto
@@ -1102,12 +1284,27 @@
 - Body Rewrite: 1
 - MITM: 1
 
+## GrandpaNiu 酷6网 Source
+- Source: `Rewrite/Sources/Apps/ku6.conf`
+- Discovery: auto
+- Rule: 7
+
+## GrandpaNiu 快压zip Source
+- Source: `Rewrite/Sources/Apps/kua-ya-zip.conf`
+- Discovery: auto
+- Rule: 1
+
 ## GrandpaNiu 快递100 Source
 - Source: `Rewrite/Sources/Apps/kuai-di100.conf`
 - Discovery: auto
 - URL Rewrite: 3
 - Body Rewrite: 2
 - MITM: 1
+
+## GrandpaNiu 快懂百科 Source
+- Source: `Rewrite/Sources/Apps/kuai-dong-baike.conf`
+- Discovery: auto
+- Rule: 2
 
 ## GrandpaNiu 快对 Source
 - Source: `Rewrite/Sources/Apps/kuai-dui-zuo-ye.conf`
@@ -1130,6 +1327,11 @@
 - Discovery: auto
 - URL Rewrite: 2
 - MITM: 1
+
+## GrandpaNiu 快乐广播 Source
+- Source: `Rewrite/Sources/Apps/kuai-le-guang-bo.conf`
+- Discovery: auto
+- Rule: 7
 
 ## GrandpaNiu 快手 Source
 - Source: `Rewrite/Sources/Apps/kuai-shou.conf`
@@ -1166,6 +1368,24 @@
 - Body Rewrite: 2
 - MITM: 1
 
+## GrandpaNiu 来电 Source
+- Source: `Rewrite/Sources/Apps/lai-dian.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 来疯 Source
+- Source: `Rewrite/Sources/Apps/lai-feng.conf`
+- Discovery: auto
+- URL Rewrite: 2
+- MITM: 1
+
+## GrandpaNiu 拦截100 Source
+- Source: `Rewrite/Sources/Apps/lan-jie100.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 懒人听书 Source
 - Source: `Rewrite/Sources/Apps/lan-ren-ting-shu.conf`
 - Discovery: auto
@@ -1177,6 +1397,12 @@
 - Discovery: auto
 - Rule: 3
 
+## GrandpaNiu 乐橙 Source
+- Source: `Rewrite/Sources/Apps/le-cheng.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 乐视 Source
 - Source: `Rewrite/Sources/Apps/le-eco.conf`
 - Discovery: auto
@@ -1186,6 +1412,18 @@
 - Source: `Rewrite/Sources/Apps/leju.conf`
 - Discovery: auto
 - Rule: 3
+
+## GrandpaNiu 联想至像打印 Source
+- Source: `Rewrite/Sources/Apps/lenovo-print.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 猎聘 Source
+- Source: `Rewrite/Sources/Apps/lie-pin.conf`
+- Discovery: auto
+- URL Rewrite: 2
+- MITM: 1
 
 ## GrandpaNiu Line Source
 - Source: `Rewrite/Sources/Apps/line.conf`
@@ -1206,10 +1444,22 @@
 - Body Rewrite: 1
 - MITM: 1
 
+## GrandpaNiu lofter Source
+- Source: `Rewrite/Sources/Apps/lofter.conf`
+- Discovery: auto
+- URL Rewrite: 3
+- MITM: 1
+
 ## GrandpaNiu 掌上英雄联盟 Source
 - Source: `Rewrite/Sources/Apps/lol-bible.conf`
 - Discovery: auto
 - URL Rewrite: 6
+- MITM: 1
+
+## GrandpaNiu 鲁班到家用户版 Source
+- Source: `Rewrite/Sources/Apps/lu-ban-dao-jia.conf`
+- Discovery: auto
+- URL Rewrite: 1
 - MITM: 1
 
 ## GrandpaNiu 瑞幸咖啡 Source
@@ -1218,12 +1468,43 @@
 - URL Rewrite: 8
 - MITM: 1
 
+## GrandpaNiu 旅法师营地 Source
+- Source: `Rewrite/Sources/Apps/lv-fa-shi-ying-di.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 旅途随身听 Source
+- Source: `Rewrite/Sources/Apps/lv-tu-sui-shen-ting.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- Script: 1
+- MITM: 1
+
 ## GrandpaNiu 马蜂窝 Source
 - Source: `Rewrite/Sources/Apps/ma-feng-wo.conf`
 - Discovery: auto
 - Rule: 1
 - URL Rewrite: 1
 - Body Rewrite: 2
+- MITM: 1
+
+## GrandpaNiu 马卡龙玩图 Source
+- Source: `Rewrite/Sources/Apps/ma-ka-long-wan-tu.conf`
+- Discovery: auto
+- URL Rewrite: 2
+- MITM: 1
+
+## GrandpaNiu 妈妈网孕育 Source
+- Source: `Rewrite/Sources/Apps/ma-ma-wang-yun-yu.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 埋堆堆 Source
+- Source: `Rewrite/Sources/Apps/mai-dui-dui.conf`
+- Discovery: auto
+- URL Rewrite: 8
 - MITM: 1
 
 ## GrandpaNiu 脉脉 Source
@@ -1241,6 +1522,17 @@
 - Body Rewrite: 2
 - MITM: 1
 
+## GrandpaNiu 妈妈网 Source
+- Source: `Rewrite/Sources/Apps/mama.conf`
+- Discovery: auto
+- Rule: 1
+
+## GrandpaNiu 漫画人 Source
+- Source: `Rewrite/Sources/Apps/man-hua-ren.conf`
+- Discovery: auto
+- URL Rewrite: 3
+- MITM: 1
+
 ## GrandpaNiu 美柚 Source
 - Source: `Rewrite/Sources/Apps/meet-you.conf`
 - Discovery: auto
@@ -1248,6 +1540,11 @@
 - URL Rewrite: 1
 - Body Rewrite: 1
 - MITM: 1
+
+## GrandpaNiu 每日精选 Source
+- Source: `Rewrite/Sources/Apps/mei-ri-jing-xuan.conf`
+- Discovery: auto
+- URL Rewrite: 1
 
 ## GrandpaNiu 美食杰 Source
 - Source: `Rewrite/Sources/Apps/mei-shi-jie.conf`
@@ -1261,6 +1558,11 @@
 - Rule: 1
 - Body Rewrite: 1
 - MITM: 1
+
+## GrandpaNiu 美颜相机 Source
+- Source: `Rewrite/Sources/Apps/mei-yan-xiang-ji.conf`
+- Discovery: auto
+- Rule: 2
 
 ## GrandpaNiu 美颜相机 Source
 - Source: `Rewrite/Sources/Apps/meitu-myxj.conf`
@@ -1292,8 +1594,27 @@
 - Body Rewrite: 3
 - MITM: 1
 
+## GrandpaNiu 秒拍 Source
+- Source: `Rewrite/Sources/Apps/miao-pai.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 小喵看书 Source
 - Source: `Rewrite/Sources/Apps/miao-read.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 米家 Source
+- Source: `Rewrite/Sources/Apps/mijia.conf`
+- Discovery: auto
+- Rule: 1
+- URL Rewrite: 2
+- MITM: 1
+
+## GrandpaNiu MIX Source
+- Source: `Rewrite/Sources/Apps/mix.conf`
 - Discovery: auto
 - URL Rewrite: 1
 - MITM: 1
@@ -1325,6 +1646,11 @@
 - Map Local: 5
 - MITM: 1
 
+## GrandpaNiu 猫扑 (Mop) Source
+- Source: `Rewrite/Sources/Apps/mop.conf`
+- Discovery: auto
+- Rule: 2
+
 ## GrandpaNiu 盒马 Source
 - Source: `Rewrite/Sources/Apps/mr-hema.conf`
 - Discovery: auto
@@ -1332,11 +1658,22 @@
 - Body Rewrite: 5
 - MITM: 1
 
+## GrandpaNiu 奈菲影视 Source
+- Source: `Rewrite/Sources/Apps/nai-fei-ying-shi.conf`
+- Discovery: auto
+- URL Rewrite: 3
+- MITM: 1
+
 ## GrandpaNiu 云鲸智能 Source
 - Source: `Rewrite/Sources/Apps/narwel-robots.conf`
 - Discovery: auto
 - URL Rewrite: 3
 - MITM: 1
+
+## GrandpaNiu Naver Source
+- Source: `Rewrite/Sources/Apps/naver.conf`
+- Discovery: auto
+- Rule: 4
 
 ## GrandpaNiu 网易大神 Source
 - Source: `Rewrite/Sources/Apps/net-ease-godlike.conf`
@@ -1360,11 +1697,35 @@
 - Script: 3
 - MITM: 1
 
+## GrandpaNiu 牛听听 Source
+- Source: `Rewrite/Sources/Apps/niu-ting-ting.conf`
+- Discovery: auto
+- URL Rewrite: 2
+- MITM: 1
+
+## GrandpaNiu NTPlay Source
+- Source: `Rewrite/Sources/Apps/ntplay.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu omofun Source
+- Source: `Rewrite/Sources/Apps/omofun.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 行者户外 Source
 - Source: `Rewrite/Sources/Apps/on-the-way.conf`
 - Discovery: auto
 - URL Rewrite: 1
 - Body Rewrite: 3
+- MITM: 1
+
+## GrandpaNiu ONE Source
+- Source: `Rewrite/Sources/Apps/one.conf`
+- Discovery: auto
+- URL Rewrite: 3
 - MITM: 1
 
 ## GrandpaNiu 向日葵 Source
@@ -1379,6 +1740,22 @@
 - URL Rewrite: 1
 - MITM: 1
 
+## GrandpaNiu Oupeng (欧朋) Source
+- Source: `Rewrite/Sources/Apps/oupeng.conf`
+- Discovery: auto
+- Rule: 6
+
+## GrandpaNiu Outfit7（会说话的汤姆猫） Source
+- Source: `Rewrite/Sources/Apps/outfit7.conf`
+- Discovery: auto
+- Rule: 5
+
+## GrandpaNiu 牛津高阶词典第十版 Source
+- Source: `Rewrite/Sources/Apps/oxford-ald10th.conf`
+- Discovery: auto
+- URL Rewrite: 2
+- MITM: 1
+
 ## GrandpaNiu 胖乖生活 Source
 - Source: `Rewrite/Sources/Apps/pangguai-life.conf`
 - Discovery: auto
@@ -1391,6 +1768,22 @@
 - Discovery: auto
 - URL Rewrite: 1
 - Body Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 凤凰新媒体 Source
+- Source: `Rewrite/Sources/Apps/phoenix-new-media.conf`
+- Discovery: auto
+- Rule: 17
+
+## GrandpaNiu Photoable Source
+- Source: `Rewrite/Sources/Apps/photoable.conf`
+- Discovery: auto
+- Rule: 2
+
+## GrandpaNiu 皮皮搞笑 Source
+- Source: `Rewrite/Sources/Apps/pi-pi-gao-xiao.conf`
+- Discovery: auto
+- URL Rewrite: 1
 - MITM: 1
 
 ## GrandpaNiu 皮皮虾 Source
@@ -1413,6 +1806,11 @@
 - Body Rewrite: 2
 - MITM: 1
 
+## GrandpaNiu PPTV Source
+- Source: `Rewrite/Sources/Apps/pptv.conf`
+- Discovery: auto
+- Rule: 14
+
 ## GrandpaNiu 朴朴超市 Source
 - Source: `Rewrite/Sources/Apps/pu-pu-mall.conf`
 - Discovery: auto
@@ -1427,10 +1825,27 @@
 - Body Rewrite: 4
 - MITM: 1
 
+## GrandpaNiu 汽水音乐 Source
+- Source: `Rewrite/Sources/Apps/qi-shui-music.conf`
+- Discovery: auto
+- URL Rewrite: 5
+- MITM: 1
+
 ## GrandpaNiu 启信宝 Source
 - Source: `Rewrite/Sources/Apps/qi-xin-bao.conf`
 - Discovery: auto
 - URL Rewrite: 10
+- MITM: 1
+
+## GrandpaNiu 齐鲁网 Source
+- Source: `Rewrite/Sources/Apps/qilu.conf`
+- Discovery: auto
+- Rule: 2
+
+## GrandpaNiu QQ浏览器 Source
+- Source: `Rewrite/Sources/Apps/qqbrowser.conf`
+- Discovery: auto
+- URL Rewrite: 1
 - MITM: 1
 
 ## GrandpaNiu 全民K歌 Source
@@ -1451,6 +1866,18 @@
 - Rule: 2
 - URL Rewrite: 11
 - Body Rewrite: 6
+- MITM: 1
+
+## GrandpaNiu 全民K歌 Source
+- Source: `Rewrite/Sources/Apps/quan-min-ge-ge.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 全能浏览器 Source
+- Source: `Rewrite/Sources/Apps/quan-neng-browser.conf`
+- Discovery: auto
+- URL Rewrite: 1
 - MITM: 1
 
 ## GrandpaNiu 夸克扫描王 Source
@@ -1487,6 +1914,12 @@
 - Body Rewrite: 2
 - MITM: 1
 
+## GrandpaNiu 日日煮 Source
+- Source: `Rewrite/Sources/Apps/ri-ri-zhu.conf`
+- Discovery: auto
+- URL Rewrite: 2
+- MITM: 1
+
 ## GrandpaNiu 风鸟 Source
 - Source: `Rewrite/Sources/Apps/risk-bird.conf`
 - Discovery: auto
@@ -1520,6 +1953,12 @@
 - URL Rewrite: 1
 - MITM: 1
 
+## GrandpaNiu 三联中读 Source
+- Source: `Rewrite/Sources/Apps/san-lian-zhong-du.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 剑网三无界 Source
 - Source: `Rewrite/Sources/Apps/seasun-jx3.conf`
 - Discovery: auto
@@ -1542,6 +1981,19 @@
 - Map Local: 1
 - MITM: 1
 
+## GrandpaNiu 少数派 Source
+- Source: `Rewrite/Sources/Apps/shao-shu-pai.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 盛趣游戏 Source
+- Source: `Rewrite/Sources/Apps/sheng-qu-games.conf`
+- Discovery: auto
+- Rule: 1
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 小店掌柜 Source
 - Source: `Rewrite/Sources/Apps/shop-keeper-admin.conf`
 - Discovery: auto
@@ -1562,6 +2014,12 @@
 - Script: 1
 - MITM: 1
 
+## GrandpaNiu 四季線上影視 Source
+- Source: `Rewrite/Sources/Apps/si-ji-xian-shang-ying-shi.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 创维 Source
 - Source: `Rewrite/Sources/Apps/skyworth.conf`
 - Discovery: auto
@@ -1571,6 +2029,11 @@
 - Source: `Rewrite/Sources/Apps/snail-sleep.conf`
 - Discovery: auto
 - Rule: 1
+
+## GrandpaNiu Snapchat Source
+- Source: `Rewrite/Sources/Apps/snapchat.conf`
+- Discovery: auto
+- Rule: 2
 
 ## GrandpaNiu B612咔叽 Source
 - Source: `Rewrite/Sources/Apps/snow-camera.conf`
@@ -1591,6 +2054,18 @@
 - Body Rewrite: 7
 - Script: 1
 - MITM: 1
+
+## GrandpaNiu 搜狗输入法 Source
+- Source: `Rewrite/Sources/Apps/sogou-input.conf`
+- Discovery: auto
+- Rule: 1
+- URL Rewrite: 2
+- MITM: 1
+
+## GrandpaNiu 房天下 (Soufun) Source
+- Source: `Rewrite/Sources/Apps/soufun.conf`
+- Discovery: auto
+- Rule: 2
 
 ## GrandpaNiu Soul Source
 - Source: `Rewrite/Sources/Apps/soul.conf`
@@ -1620,11 +2095,41 @@
 - Body Rewrite: 3
 - MITM: 1
 
+## GrandpaNiu TapTap Source
+- Source: `Rewrite/Sources/Apps/tap-tap.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu 他趣 Source
 - Source: `Rewrite/Sources/Apps/taqu.conf`
 - Discovery: auto
 - URL Rewrite: 9
 - Body Rewrite: 3
+- MITM: 1
+
+## GrandpaNiu 腾讯游戏社区 Source
+- Source: `Rewrite/Sources/Apps/tencent-games-community.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 腾讯游戏 Source
+- Source: `Rewrite/Sources/Apps/tencent-games.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 腾讯手机管家 Source
+- Source: `Rewrite/Sources/Apps/tencent-mobile-manager.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 腾讯体育 Source
+- Source: `Rewrite/Sources/Apps/tencent-sports.conf`
+- Discovery: auto
+- URL Rewrite: 2
 - MITM: 1
 
 ## GrandpaNiu 腾讯视频 Source
@@ -1642,6 +2147,19 @@
 - Map Local: 4
 - MITM: 1
 
+## GrandpaNiu 澎湃新闻 Source
+- Source: `Rewrite/Sources/Apps/the-paper-news.conf`
+- Discovery: auto
+- Rule: 5
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 天山云TV Source
+- Source: `Rewrite/Sources/Apps/tian-shan-yun-tv.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu Tieba Source
 - Source: `Rewrite/Sources/Apps/tieba.conf`
 - Discovery: auto
@@ -1649,8 +2167,26 @@
 - Script: 2
 - MITM: 1
 
+## GrandpaNiu 天猫精灵 Source
+- Source: `Rewrite/Sources/Apps/tmall-genie.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu Top Widgets Source
+- Source: `Rewrite/Sources/Apps/top-widget.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
 ## GrandpaNiu TruthSocial Source
 - Source: `Rewrite/Sources/Apps/truth-social.conf`
+- Discovery: auto
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu TT语音 Source
+- Source: `Rewrite/Sources/Apps/ttvoice.conf`
 - Discovery: auto
 - URL Rewrite: 1
 - MITM: 1
@@ -1665,6 +2201,12 @@
 - Source: `Rewrite/Sources/Apps/tube-max.conf`
 - Discovery: auto
 - Rule: 9
+- URL Rewrite: 1
+- MITM: 1
+
+## GrandpaNiu 推栏 Source
+- Source: `Rewrite/Sources/Apps/tui-lan.conf`
+- Discovery: auto
 - URL Rewrite: 1
 - MITM: 1
 
@@ -1709,6 +2251,11 @@
 - Discovery: auto
 - URL Rewrite: 3
 - MITM: 1
+
+## GrandpaNiu vgTime Source
+- Source: `Rewrite/Sources/Apps/vgtime.conf`
+- Discovery: auto
+- Script: 1
 
 ## GrandpaNiu 萤石云视频 Source
 - Source: `Rewrite/Sources/Apps/video-go.conf`

@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 四季線上影視 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/si-ji-xian-shang-ying-shi.sgmodule
+
+[URL Rewrite]
+^https?://service\.4gtv\.tv/4gtv/Data/(?>GetAD|ADLog) - reject-200
+
+[MITM]
+hostname = %APPEND% service.4gtv.tv

@@ -1,0 +1,9 @@
+#!name=GrandpaNiu Top Widgets Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/top-widget.sgmodule
+
+[URL Rewrite]
+^https?://top-widgets-api\.xiaozujian\.com/api/ad/config - reject
+
+[MITM]
+hostname = %APPEND% top-widgets-api.xiaozujian.com

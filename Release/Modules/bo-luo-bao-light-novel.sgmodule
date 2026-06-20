@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 菠萝包轻小说 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/bo-luo-bao-light-novel.sgmodule
+
+[URL Rewrite]
+^https?://api\.sfacg\.com/ioscfg - reject
+
+[MITM]
+hostname = %APPEND% api.sfacg.com

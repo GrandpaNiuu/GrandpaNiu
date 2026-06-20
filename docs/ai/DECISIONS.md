@@ -1,6 +1,6 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-06-20 22:58 +0800
+Last updated: 2026-06-21 00:22 +0800
 
 ## Decisions
 
@@ -71,3 +71,15 @@ Reason: the repository is moving to the Builder entrypoint; requiring old marker
 Every meaningful AI maintenance task must include a short self-review before final response, commit, or push.
 
 Reason: recent work showed that process drift, stale validation assumptions, and incomplete final checks are easier to prevent when the agent explicitly records what was not good enough and how the next pass should start.
+
+### 2026-06-21 - Bulk App Upstream Imports Need Protected Host Filtering
+
+GitHub app module imports may be added as direct-commit upstream records, but the converter must filter known protected login, message, and CDN entries before publishing them into source fragments.
+
+Current protected additions include:
+
+- `apd-pcdnwxlogin`
+- `msync-im`
+- `ossgw.alicdn.com`
+
+Reason: bulk imports are useful for coverage, but upstream ad snippets can contain over-broad REJECT or MITM lines. Filtering high-risk host patterns at conversion time reduces the chance that future daily syncs reintroduce the same breakage.

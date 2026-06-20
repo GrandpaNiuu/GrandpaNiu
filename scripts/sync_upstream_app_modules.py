@@ -194,15 +194,18 @@ PROTECTED_REJECT_TOKENS = (
     "rtms.alipay.com",
     "api.verify.mob.com",
     "log-verify.mob.com",
+    "apd-pcdnwxlogin",
+    "msync-im",
     "mdap.wallet.pbcdci.cn",
     "mdc.wallet.pbcdci.cn",
+    "ossgw.alicdn.com",
     "baidustatic.com",
     "zijieapi.com",
     "zijieapi.net",
     "zijiecdn.com",
     "snssdk.com",
 )
-PROTECTED_MITM_HOST_TOKENS = ("httpdns", "hdns.ksyun.com")
+PROTECTED_MITM_HOST_TOKENS = ("httpdns", "hdns.ksyun.com", "ossgw.alicdn.com")
 BILIBILI_SPARKLE_SOURCE_URL = "https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule"
 BILIBILI_ARGUMENT_LINES = [
     "#!arguments=动态最常访问:auto,创作中心:0,过滤置顶评论广告:1,优化评论区加载:bilibili.request,空降助手:bilibili.airborne,空降助手策略:DIRECT,日志等级:4",

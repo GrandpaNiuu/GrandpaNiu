@@ -1,0 +1,12 @@
+#!name=GrandpaNiu 盛趣游戏 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/sheng-qu-games.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,adrs.sdo.com,REJECT
+
+[URL Rewrite]
+^https?://daoyu\.sdo\.com/api/userCommon/getAppStartAd - reject
+
+[MITM]
+hostname = %APPEND% daoyu.sdo.com

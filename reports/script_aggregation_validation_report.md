@@ -1,9 +1,9 @@
 # Script Aggregation Validation Report
 
-- generated: 2026-06-20T14:52:02Z
+- generated: 2026-06-20T16:27:41Z
 - status: passed
-- routes: 49
-- sources: 49
+- routes: 52
+- sources: 52
 - chunks: 2
 - release bundle entries: 2
 

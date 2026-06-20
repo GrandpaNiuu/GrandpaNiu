@@ -1,0 +1,11 @@
+#!name=GrandpaNiu 到梦空间 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/dao-meng-kong-jian.sgmodule
+
+[URL Rewrite]
+^https?://appdmkj\.5idream\.net/appPic/homepage - reject-dict
+^https?://appdmkj\.5idream\.net/v2/login/message/tip - reject-dict
+^https?://appdmkj\.5idream\.net/v3/user/advertising/list - reject-dict
+
+[MITM]
+hostname = %APPEND% appdmkj.5idream.net

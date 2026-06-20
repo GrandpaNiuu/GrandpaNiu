@@ -1,0 +1,9 @@
+#!name=GrandpaNiu Naver Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/naver.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,ad.naver.com,REJECT
+DOMAIN-SUFFIX,adcr.naver.com,REJECT
+DOMAIN-SUFFIX,adcreative.naver.com,REJECT
+DOMAIN-SUFFIX,adimg3.search.naver.net,REJECT

@@ -1,0 +1,9 @@
+#!name=GrandpaNiu Bahamut Anime Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/bahamut-anime.sgmodule
+
+[Script]
+动画疯(屏蔽广告) = type=http-response,pattern=^https:\/\/api\.gamer\.com\.tw\/mobile_app\/anime\/v\d/(token|m3u8).php\?,requires-body=1,max-size=0,timeout=40,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bahamut/BahamutAnimeAds.js
+
+[MITM]
+hostname = %APPEND% api.gamer.com.tw

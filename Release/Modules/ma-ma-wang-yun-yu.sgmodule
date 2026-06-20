@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 妈妈网孕育 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ma-ma-wang-yun-yu.sgmodule
+
+[URL Rewrite]
+^https?://qimg\.cdnmama\.com/rd - reject-dict
+
+[MITM]
+hostname = %APPEND% qimg.cdnmama.com

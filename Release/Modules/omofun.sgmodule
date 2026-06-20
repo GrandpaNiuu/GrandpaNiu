@@ -1,0 +1,9 @@
+#!name=GrandpaNiu omofun Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/omofun.sgmodule
+
+[URL Rewrite]
+^https?://103\.91\.210\.141\:2515/xgapp\.php/v2/top_notice - reject
+
+[MITM]
+hostname = %APPEND% 103.91.210.141

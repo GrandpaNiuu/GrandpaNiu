@@ -1,0 +1,11 @@
+#!name=GrandpaNiu lofter Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/lofter.sgmodule
+
+[URL Rewrite]
+^https?://ad\.lofter.com/v1\.1/yitou/madr - reject-200
+^https?://images\.pinduoduo\.com/marketing\_api - reject-200
+^https?://lofter\.lf127\.net/ad\-material - reject-200
+
+[MITM]
+hostname = %APPEND% ad.lofter.com,images.pinduoduo.com,lofter.lf127.net

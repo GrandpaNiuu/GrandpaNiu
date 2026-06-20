@@ -1,0 +1,16 @@
+#!name=GrandpaNiu 埋堆堆 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/mai-dui-dui.sgmodule
+
+[URL Rewrite]
+^https?://mob\.mddcloud\.com\.cn/adApi/advert/(first|third)part/advertList - reject-dict
+^https?://t-dsp\.pinduoduo\.com - reject-200
+^https?://mobads-pre-config\.cdn\.bcebos\.com/preload\.php - reject-200
+^https?://sfo\.mddcloud\.com\.cn/api/v\d/sfo/popup_displays? - reject-dict
+^https?://tower\.ubixioe\.com/mob/mediation - reject
+^https?://toblog\.ctobsnssdk\.com - reject-200
+^https?://conf-darwin\.xycdn\.com - reject-dict
+^https?://sdk1xyajs\.data\.kuiniuca\.com - reject
+
+[MITM]
+hostname = %APPEND% sfo.mddcloud.com.cn,mob.mddcloud.com.cn,toblog.ctobsnssdk.com,t-dsp.pinduoduo.com,mobads-pre-config.cdn.bcebos.com,sdk1xyajs.data.kuiniuca.com,conf-darwin.xycdn.com,*.ubixioe.com

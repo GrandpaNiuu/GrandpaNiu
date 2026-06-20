@@ -1,0 +1,11 @@
+#!name=GrandpaNiu 漫画人 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/man-hua-ren.sgmodule
+
+[URL Rewrite]
+^https?://mangaapi\.manhuaren\.com/v\d/public/getStartPageAds - reject
+^https?://.*mangaapi\.manhuaren\.\w{2,4}/v\d/public/(getStartUpMessage|getStartPageAds|getShelfActivity) - reject
+^https?://.*mangaapi\.manhuaren\.\w{2,4}/v\d/ad - reject
+
+[MITM]
+hostname = %APPEND% mangaapi.manhuaren.com,*mangaapi.manhuaren.*

@@ -1,0 +1,13 @@
+#!name=GrandpaNiu 搜狗输入法 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/sogou-input.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,push-service-ios.sginput.qq.com,REJECT
+
+[URL Rewrite]
+^https?://(ios|android)\.sogou\.com/[^/]+/sogou_input_[^/]+/[^/]+/index\.html - reject
+^https?://h5api\.sginput\.qq\.com/v1/gcenter/ios/homepage - reject-dict
+
+[MITM]
+hostname = %APPEND% business-cdn.shouji.sogou.com,ios.sogou.com,android.sogou.com,h5api.sginput.qq.com

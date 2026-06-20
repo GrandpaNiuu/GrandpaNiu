@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 腾讯游戏 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/tencent-games.sgmodule
+
+[URL Rewrite]
+^https?://qt\.qq\.com/lua/mengyou/get_splash_screen_info - reject
+
+[MITM]
+hostname = %APPEND% qt.qq.com

@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 牛听听 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/niu-ting-ting.sgmodule
+
+[URL Rewrite]
+^https://gateway\.benewtech\.cn/resources-app/app/startup/prepage - reject-dict
+^https://ntt-app\.benewtech\.cn/v6/user/\d+/messages/event - reject-dict
+
+[MITM]
+hostname = %APPEND% gateway.benewtech.cn,ntt-app.benewtech.cn

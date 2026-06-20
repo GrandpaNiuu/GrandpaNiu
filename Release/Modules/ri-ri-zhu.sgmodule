@@ -1,0 +1,10 @@
+#!name=GrandpaNiu 日日煮 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ri-ri-zhu.sgmodule
+
+[URL Rewrite]
+^https?://cms\.daydaycook\.com\.cn/api/cms/advertisement/ - reject
+^https?://api\.daydaycook\.com\.cn/daydaycook/server/ad/ - reject
+
+[MITM]
+hostname = %APPEND% cms.daydaycook.com.cn,api.daydaycook.com.cn

@@ -1,0 +1,12 @@
+#!name=GrandpaNiu 酷6网 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ku6.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,st.vq.ku6.cn,REJECT
+DOMAIN-SUFFIX,addata.ku6.com,REJECT
+DOMAIN-SUFFIX,pvdata.ku6.com,REJECT
+DOMAIN-SUFFIX,static.ku6.com,REJECT
+DOMAIN-SUFFIX,gug.ku6cdn.com,REJECT
+DOMAIN-SUFFIX,vi1.ku6img.net,REJECT
+DOMAIN-SUFFIX,vi2.ku6img.net,REJECT

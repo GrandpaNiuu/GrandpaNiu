@@ -1,0 +1,9 @@
+#!name=GrandpaNiu 爱思助手 Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/ai-si-assistant.sgmodule
+
+[URL Rewrite]
+^https?://list-app-m\.i4\.cn/(adclickcb|getHotSearchList|getopfstadinfo)\.xhtml - reject
+
+[MITM]
+hostname = %APPEND% list-app-m.i4.cn

@@ -1,6 +1,6 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-06-20 22:58 +0800
+Last updated: 2026-06-21 00:22 +0800
 
 ## Project Purpose
 
@@ -130,9 +130,17 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Working tree before this task: clean.
 - Current public strategy: Fusion single public module.
 - Recent CI observed before this task: Module Factory Build and Pages were green after the previous AI maintenance record commit.
-- Approximate scale from the initial snapshot: 297 app source files and 295 generated app module outputs.
+- Current scale after the latest GitHub app expansion: 389 app source files and 389 generated app module outputs.
 
 ## Latest Maintenance Note
+
+2026-06-21 00:22 +0800:
+
+- Added 94 GitHub-backed app ad cleanup sources to `Rewrite/Sources/Apps/`.
+- New upstream records were added to `Rewrite/Remotes/app-modules.json` so the modules continue to follow daily upstream sync.
+- Sources came primarily from `fmz200/wool_scripts`, with `vgtime` from `app2smile/rules` and `bahamut-anime` from `NobyDa/Script`.
+- The upstream converter now filters protected login/message/CDN entries `apd-pcdnwxlogin`, `msync-im`, and `ossgw.alicdn.com` when imported as REJECT or forced MITM entries.
+- Build validation passed with `python Rewrite/Generator/Builder.py --profile fusion --release --check`: 389 app modules generated, 0 empty modules, repository validation, profile validation, script aggregation validation, upstream risk gate, Android format check, and governance checks passed.
 
 2026-06-20 22:58 +0800:
 

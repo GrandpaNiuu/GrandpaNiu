@@ -1,9 +1,9 @@
 # MITM Scope Report
 
-- Generated at: 2026-06-20 22:52:08 +0800
-- Total hostnames: 1209
-- Wildcard hostnames: 31
-- Unique base domains: 660
+- Generated at: 2026-06-21 00:29:20 +0800
+- Total hostnames: 1235
+- Wildcard hostnames: 34
+- Unique base domains: 674
 
 ## Category Counts
 
@@ -16,12 +16,12 @@
 | `httpdns` | 0 |
 | `shopping_life` | 30 |
 | `social_content` | 28 |
-| `other_app_or_service` | 1103 |
+| `other_app_or_service` | 1129 |
 
 ## Top Base Domains
 
-- `com.cn`: 68
-- `qq.com`: 29
+- `com.cn`: 72
+- `qq.com`: 31
 - `baidu.com`: 22
 - `163.com`: 21
 - `meituan.com`: 10
