@@ -1,6 +1,6 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-06-20 22:41 +0800
+Last updated: 2026-06-20 22:58 +0800
 
 ## What This Project Is
 
@@ -90,6 +90,7 @@ Rule maintenance rule: only make source-first single-rule changes when there is 
 - Do not reintroduce multi-version public user routes unless the owner explicitly requests a version strategy change.
 - Do not remove Android or Windows outputs while cleaning iOS module logic.
 - Do not collapse AI maintenance Markdown into long single-line text.
+- Run the end-of-task self-review in `docs/ai/SELF_REVIEW.md` before final response, commit, or push.
 
 ## Current Unfinished Tasks
 
@@ -126,12 +127,13 @@ Generated files may change through the builder; avoid hand-editing them.
 4. Read `docs/ai/TASKS.md`.
 5. Read `docs/ai/DECISIONS.md`.
 6. Read `docs/ai/RISK_LOG.md`.
-7. Read the latest entries in `docs/ai/WORKLOG.md`.
-8. Run:
+7. Read `docs/ai/SELF_REVIEW.md`.
+8. Read the latest entries in `docs/ai/WORKLOG.md`.
+9. Run:
 
 ```bash
 git status
 git branch --show-current
 ```
 
-9. Only then decide whether to modify files.
+10. Only then decide whether to modify files.

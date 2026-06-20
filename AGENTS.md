@@ -13,6 +13,7 @@ Before starting any work, read:
 - `docs/ai/TASKS.md`
 - `docs/ai/DECISIONS.md`
 - `docs/ai/RISK_LOG.md`
+- `docs/ai/SELF_REVIEW.md`
 - Recent entries in `docs/ai/WORKLOG.md`
 
 If any required record file is missing or unreadable, create or repair the maintenance record first. Do not touch business logic, routing rules, scripts, workflows, release outputs, or generated files until the maintenance records exist.
@@ -109,6 +110,16 @@ For documentation-only changes, business builds are not required, but the reason
 
 If a check cannot be run, explain why and record the limitation in the work log.
 
+## Required Self-Review
+
+Before the final response, commit, or push, review `docs/ai/SELF_REVIEW.md`.
+
+For meaningful work, add a `Self-Review` section to `docs/ai/WORKLOG.md` that records:
+
+- what was not good enough
+- what was changed to reduce that risk
+- what should be checked first next time
+
 ## Required Record Updates
 
 Update these records before finishing meaningful work:
@@ -117,6 +128,7 @@ Update these records before finishing meaningful work:
 - `AI_HANDOFF.md`
 - `docs/ai/WORKLOG.md`
 - `docs/ai/TASKS.md`
+- `docs/ai/SELF_REVIEW.md` when the checklist itself changes
 
 Update these when relevant:
 
@@ -132,6 +144,7 @@ The work log entry must include:
 - Commands run
 - Test or validation result
 - Risks
+- Self-review
 - Next step
 
 ## Local Private Logs
@@ -155,4 +168,5 @@ At the end of each task, report:
 3. What checks were run
 4. Whether the repository has uncommitted changes
 5. What risks remain
-6. What should be done next
+6. Self-review summary
+7. What should be done next

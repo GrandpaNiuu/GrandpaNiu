@@ -1,6 +1,6 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-06-20 22:41 +0800
+Last updated: 2026-06-20 22:58 +0800
 
 ## Decisions
 
@@ -65,3 +65,9 @@ Reason: this repository protects many login, payment, bank, captcha, video, imag
 Workflow governance validation should recognize `Rewrite/Generator/Builder.py --profile fusion --release` as the preferred Fusion build signal, while remaining backward-compatible with old `build_module.py --build --profile fusion` markers.
 
 Reason: the repository is moving to the Builder entrypoint; requiring old marker comments can break CI even when the workflow is correct.
+
+### 2026-06-20 - Require End-Of-Task AI Self-Review
+
+Every meaningful AI maintenance task must include a short self-review before final response, commit, or push.
+
+Reason: recent work showed that process drift, stale validation assumptions, and incomplete final checks are easier to prevent when the agent explicitly records what was not good enough and how the next pass should start.

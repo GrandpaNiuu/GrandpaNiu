@@ -1,6 +1,6 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-06-20 22:41 +0800
+Last updated: 2026-06-20 22:58 +0800
 
 ## Active Rules For Task Handling
 
@@ -9,6 +9,7 @@ Last updated: 2026-06-20 22:41 +0800
 - Do not directly edit generated Release outputs unless the task is explicitly about generated artifact repair and the source path is understood.
 - Update AI records after each meaningful maintenance change.
 - Keep AI maintenance Markdown readable; do not collapse headings, lists, tables, or command blocks into single-line text.
+- Before final response, commit, or push, run the self-review checklist in `docs/ai/SELF_REVIEW.md`.
 
 ## Current Open Tasks
 
@@ -21,6 +22,22 @@ Last updated: 2026-06-20 22:41 +0800
 - Review the high-risk REJECT checklist before changing any login, payment, banking, CDN, video, or domestic core API rules.
 - Only perform source-first single-rule adjustments when real app abnormal behavior, logs, captures, or another reproducible signal exists; then run the full quality gate.
 - Continue moving workflow build steps toward `Rewrite/Generator/Builder.py --profile fusion --release`.
+- Keep the AI self-review checklist current when new process weaknesses are found.
+
+## Current Self-Review Process Task
+
+Status: validated; pending commit and push.
+
+Scope:
+
+- Add a reusable end-of-task self-review checklist.
+- Require future worklogs to include what was not good enough, what was improved, and what should be checked first next time.
+- Do not modify business rules, generated outputs, Android, Windows, Web, or workflow runtime logic.
+
+Validation:
+
+- `git diff --check` passed.
+- `python scripts/validate_repository.py` passed.
 
 ## Current CI Repair Task
 

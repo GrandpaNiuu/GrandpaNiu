@@ -1,6 +1,6 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-06-20 22:41 +0800
+Last updated: 2026-06-20 22:58 +0800
 
 ## Project Purpose
 
@@ -122,6 +122,7 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Android formats cannot fully reproduce iOS Rewrite / MITM / Script behavior.
 - Generated files under `Release/`, `Web/`, `reports/`, and `Scripts/generated/` can be overwritten by the builder.
 - AI maintenance documents must stay readable; collapsed Markdown can cause future agents to misunderstand safety rules.
+- Every meaningful maintenance task now requires an end-of-task AI self-review before final response, commit, or push.
 
 ## Recent Stable State
 
@@ -132,6 +133,14 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Approximate scale from the initial snapshot: 297 app source files and 295 generated app module outputs.
 
 ## Latest Maintenance Note
+
+2026-06-20 22:58 +0800:
+
+- Added an AI self-review checklist at `docs/ai/SELF_REVIEW.md`.
+- Updated `AGENTS.md` so future agents must review the checklist before final response, commit, or push.
+- The self-review requires recording what was not good enough, what was changed to reduce risk, and what should be checked first next time.
+- This is a process/documentation-only change; no business rules, generated outputs, Android, Windows, Web, or workflow runtime logic were changed.
+- Validation passed: `git diff --check` and `python scripts/validate_repository.py`.
 
 2026-06-20 22:41 +0800:
 

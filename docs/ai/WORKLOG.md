@@ -1,5 +1,43 @@
 # AI Maintenance Worklog
 
+## 2026-06-20 22:58 - Work Record
+
+### Task
+
+Added a required AI self-review habit for future maintenance work.
+
+### Start State
+
+- Branch: `repair/upstream-app-sync`
+- Git status summary: clean before this pass
+- Expected scope: AI maintenance process documents only
+
+### Actual Changes
+
+- Added `docs/ai/SELF_REVIEW.md`.
+- Updated `AGENTS.md` to require the self-review before final response, commit, or push.
+- Updated `PROJECT_STATE.md`, `AI_HANDOFF.md`, `docs/ai/TASKS.md`, and `docs/ai/DECISIONS.md`.
+- No business rules, generated outputs, Android files, Windows files, Web files, reports, or workflow runtime logic were changed.
+
+### Test Result
+
+- `git diff --check` passed.
+- `python scripts/validate_repository.py` passed.
+
+### Risk
+
+- Low. This is a process/documentation-only change.
+
+### Self-Review
+
+- What was not good enough: the repository had strong startup and validation rules, but no explicit end-of-task self-critique habit.
+- What I changed to reduce that risk: added a reusable self-review checklist and wired it into `AGENTS.md`, handoff, tasks, decisions, and worklog expectations.
+- What I would check first next time: whether the latest worklog entry includes a real self-review instead of only listing commands.
+
+### Next Step
+
+- Run documentation validation, then commit and push if clean.
+
 ## 2026-06-20 22:41 - Work Record
 
 ### Task
