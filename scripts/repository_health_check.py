@@ -40,6 +40,7 @@ REQUIRED_FILES = [
     "scripts/build_module.py",
     "scripts/build_release_variants.py",
     "scripts/factory_finalize.py",
+    "scripts/commit_generated_changes.sh",
     "scripts/validate_repository.py",
     "scripts/validate_profiles.py",
     "scripts/validate_app_sources.py",
@@ -184,11 +185,14 @@ def workflow_has_fusion_build(text: str) -> bool:
 
 def workflow_summary(path: Path) -> str:
     text = read(path)
+    helper = read(ROOT / "scripts" / "commit_generated_changes.sh")
+    uses_helper = "scripts/commit_generated_changes.sh" in text
     items = [
         "contents: write" if "contents: write" in text else "missing contents: write",
-        "concurrency" if "concurrency:" in text else "missing concurrency",
+        "shared concurrency" if "group: module-maintenance" in text else "missing shared concurrency",
         "fusion" if workflow_has_fusion_build(text) else "missing fusion build",
-        "rebase retry" if "git rebase origin/main" in text else "missing rebase retry",
+        "safe commit helper" if uses_helper else "missing safe commit helper",
+        "rebase retry" if uses_helper and "git rebase origin/main" in helper else "missing rebase retry",
     ]
     return "; ".join(items)
 

@@ -1,6 +1,6 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-06-21 02:58 +0800
+Last updated: 2026-06-21 07:24 +0800
 
 ## What This Project Is
 
@@ -192,3 +192,15 @@ git branch --show-current
 ```
 
 10. Only then decide whether to modify files.
+
+## Latest Automation Hardening Pass
+
+- Fixed a reproducible false-green quality gate: freshness reported blocking stale script reports while the command still exited successfully.
+- Moved script aggregation validation and sandbox execution after the last profile rebuild and enabled strict freshness enforcement.
+- Replaced duplicated workflow commit loops with `scripts/commit_generated_changes.sh`.
+- All maintenance workflows that write generated output now share `group: module-maintenance`.
+- Removed `git reset --hard` and broad `git add -A` from maintenance automation.
+- Added tests for ordering, workflow safety contracts, and a real local push through the commit helper.
+- No traffic rules or protected App paths were changed.
+
+First check next time: inspect the GitHub Actions runs triggered by the automation-hardening commit, especially `Module Factory Build`.

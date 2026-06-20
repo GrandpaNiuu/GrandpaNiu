@@ -30,7 +30,7 @@ env:
   LC_ALL: C.UTF-8
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: module-maintenance
   cancel-in-progress: false
 
 jobs:
@@ -61,46 +61,14 @@ jobs:
       - name: Commit generated files
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          regenerate() {
-            python3 Rewrite/Generator/Builder.py --profile fusion --release --check
-            python3 scripts/quality_gate.py
-          }
-
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git reset --hard origin/main
-            regenerate
-            git add \
-              Rewrite/Sources/Meta.conf \
-              Rules/converted \
-              Scripts/generated \
-              Ronghemokuai.sgmodule \
-              Release \
-              Web \
-              Android \
-              Windows \
-              reports
-            if git diff --cached --quiet; then
-              echo "No generated file changes."
-              exit 0
-            fi
-            git commit -m "Build module factory outputs [skip ci]"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            echo "Push failed on attempt ${attempt}; rebasing on origin/main and retrying."
-            git fetch origin main
-            if git rebase origin/main; then
-              if git push origin HEAD:main; then
-                exit 0
-              fi
-            else
-              git rebase --abort || true
-            fi
-          done
-
-          echo "Push failed after 3 regenerated attempts."
-          exit 1
+          bash scripts/commit_generated_changes.sh \
+            "Build module factory outputs [skip ci]" \
+            Rewrite/Sources/Meta.conf \
+            Rules/converted \
+            Scripts/generated \
+            Ronghemokuai.sgmodule \
+            Release \
+            Web \
+            Android \
+            Windows \
+            reports

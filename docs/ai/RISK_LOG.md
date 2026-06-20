@@ -117,3 +117,25 @@ Evidence requirement: only make a source-first single-rule change when there is 
 - Prefer commenting or narrowing one rule at a time over batch deletion.
 - Do not use broad suffix allow rules such as `DOMAIN-SUFFIX,qq.com,DIRECT`.
 - Rebuild and validate after any future source-first rule change.
+
+## 2026-06-21 Automation Hardening Risk Note
+
+Risk level: medium operational, low traffic-policy risk.
+
+Observed signals:
+
+- The quality gate exited successfully while its freshness report contained blocking stale script reports.
+- Maintenance workflows used separate concurrency groups, so different workflows could write to `main` concurrently.
+- Several workflows and the commit helper used `git reset --hard`, contrary to repository safety policy.
+
+Mitigations:
+
+- Enforced strict report freshness after the final bundle rebuild and runtime sandbox.
+- Serialized generated-output writers with `group: module-maintenance`.
+- Centralized explicit-path staging and fetch/rebase/retry in one tested helper.
+- Rebase conflicts now stop the workflow instead of force-overwriting generated files.
+
+Traffic risk boundary:
+
+- No Rules, App source, MITM, login, payment, banking, captcha, playback, or CDN policy was changed.
+- Real App behavior remains device-tested by the owner; static automation cannot certify every App network path.

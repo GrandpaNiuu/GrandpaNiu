@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: module-maintenance
   cancel-in-progress: false
 
 jobs:
@@ -45,43 +45,17 @@ jobs:
 
       - name: Commit audit report and safe repairs
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git reset --hard origin/main
-            python3 scripts/audit_and_repair_module.py
-            python3 Rewrite/Generator/Builder.py --profile fusion --release
-            python3 scripts/validate_remote_rule_syntax.py
-            python3 scripts/validate_repository.py
-            git add \
-              Rules \
-              Rewrite/Sources \
-              Rewrite/Remotes \
-              Scripts/*.conf \
-              Scripts/generated \
-              Ronghemokuai.sgmodule \
-              Release \
-              Web \
-              Android \
-              Windows \
-              reports
-            if git diff --cached --quiet; then
-              echo "No audit changes to commit."
-              exit 0
-            fi
-            git commit -m "Daily audit and safe fusion repair"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            echo "Push failed on attempt ${attempt}; trying rebase before regenerating."
-            git fetch origin main
-            if git rebase origin/main; then
-              if git push origin HEAD:main; then
-                exit 0
-              fi
-            else
-              git rebase --abort || true
-            fi
-          done
-          exit 1
+          set -euo pipefail
+          bash scripts/commit_generated_changes.sh \
+            "Daily audit and safe fusion repair" \
+            Rules \
+            Rewrite/Sources \
+            Rewrite/Remotes \
+            Scripts/*.conf \
+            Scripts/generated \
+            Ronghemokuai.sgmodule \
+            Release \
+            Web \
+            Android \
+            Windows \
+            reports

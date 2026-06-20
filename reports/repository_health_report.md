@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-21 06:52:36 +0800
+- Generated at: 2026-06-21 07:26:06 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -46,15 +46,15 @@
 
 ## Workflow Summary
 
-- `.github/workflows/module-factory-build.yml`: contents: write; concurrency; fusion; rebase retry
-- `.github/workflows/daily-module-update.yml`: contents: write; concurrency; fusion; rebase retry
-- `.github/workflows/daily-audit-and-repair.yml`: contents: write; concurrency; fusion; rebase retry
-- `.github/workflows/daily-invalid-source-repair.yml`: contents: write; concurrency; fusion; rebase retry
-- `.github/workflows/scheduled-module-update.yml`: contents: write; concurrency; fusion; rebase retry
-- `.github/workflows/upstream-app-module-sync.yml`: contents: write; concurrency; fusion; rebase retry
-- `.github/workflows/upstream-collect.yml`: contents: write; concurrency; fusion; rebase retry
-- `.github/workflows/daily-schedule-watchdog.yml`: contents: write; concurrency; fusion; rebase retry
-- `.github/workflows/repository-health.yml`: contents: write; concurrency; fusion; rebase retry
+- `.github/workflows/module-factory-build.yml`: contents: write; shared concurrency; fusion; safe commit helper; rebase retry
+- `.github/workflows/daily-module-update.yml`: contents: write; shared concurrency; fusion; safe commit helper; rebase retry
+- `.github/workflows/daily-audit-and-repair.yml`: contents: write; shared concurrency; fusion; safe commit helper; rebase retry
+- `.github/workflows/daily-invalid-source-repair.yml`: contents: write; shared concurrency; fusion; safe commit helper; rebase retry
+- `.github/workflows/scheduled-module-update.yml`: contents: write; shared concurrency; fusion; safe commit helper; rebase retry
+- `.github/workflows/upstream-app-module-sync.yml`: contents: write; shared concurrency; fusion; safe commit helper; rebase retry
+- `.github/workflows/upstream-collect.yml`: contents: write; shared concurrency; fusion; safe commit helper; rebase retry
+- `.github/workflows/daily-schedule-watchdog.yml`: contents: write; shared concurrency; fusion; safe commit helper; rebase retry
+- `.github/workflows/repository-health.yml`: contents: write; shared concurrency; fusion; safe commit helper; rebase retry
 
 ## validate_repository.py Output
 

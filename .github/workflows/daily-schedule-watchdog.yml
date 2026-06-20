@@ -20,7 +20,7 @@ env:
   LC_ALL: C.UTF-8
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: module-maintenance
   cancel-in-progress: false
 
 jobs:
@@ -40,9 +40,6 @@ jobs:
       - name: Recover missed daily module refresh
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
           beijing_today() {
             TZ=Asia/Shanghai date +'%Y-%m-%d'
           }
@@ -63,43 +60,23 @@ jobs:
             python3 scripts/quality_gate.py
           }
 
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git reset --hard origin/main
+          today="$(beijing_today)"
+          current="$(module_date)"
+          echo "Beijing today: ${today}"
+          echo "Current module update-date: ${current:-missing}"
 
-            today="$(beijing_today)"
-            current="$(module_date)"
-            echo "Beijing today: ${today}"
-            echo "Current module update-date: ${current:-missing}"
+          if [ "${current}" = "${today}" ]; then
+            echo "Daily module date is already fresh; no watchdog recovery needed."
+            exit 0
+          fi
 
-            if [ "${current}" = "${today}" ]; then
-              echo "Daily module date is already fresh; no watchdog recovery needed."
-              exit 0
-            fi
-
-            regenerate
-            git add Rewrite/Sources/Meta.conf Scripts/generated Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
-
-            if git diff --cached --quiet; then
-              echo "Watchdog regenerated outputs but found no changes to commit."
-              exit 0
-            fi
-
-            git commit -m "chore: recover missed scheduled module update"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-
-            echo "Push failed on attempt ${attempt}; rebasing on origin/main and retrying."
-            git fetch origin main
-            if git rebase origin/main; then
-              if git push origin HEAD:main; then
-                exit 0
-              fi
-            else
-              git rebase --abort || true
-            fi
-          done
-
-          echo "Watchdog push failed after 3 attempts."
-          exit 1
+          regenerate
+          bash scripts/commit_generated_changes.sh \
+            "chore: recover missed scheduled module update" \
+            Rewrite/Sources/Meta.conf \
+            Scripts/generated \
+            Ronghemokuai.sgmodule \
+            Release \
+            Web \
+            reports \
+            Rewrite/Remotes/Catalog.md

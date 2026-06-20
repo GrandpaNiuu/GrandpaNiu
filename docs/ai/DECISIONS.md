@@ -101,3 +101,22 @@ Current added Go.com protection examples:
 - `seavideo-ak.espn.go.com`
 
 Reason: foreign coverage is useful, but broad platform rules can break normal app access, security checks, playback, or system connectivity. App expansion should favor narrow ad / telemetry endpoints and converter-level protection.
+
+### 2026-06-21 - Serialize And Centralize Generated Output Publishing
+
+All maintenance workflows that write generated outputs use the shared `module-maintenance` concurrency group and `scripts/commit_generated_changes.sh`.
+
+The helper must:
+
+- accept explicit paths only
+- refuse broad staging
+- retry push after fetch and rebase
+- stop on rebase conflict instead of overwriting files
+
+Reason: workflow-specific locks did not prevent different maintenance jobs from racing each other, and duplicated reset/regenerate loops could hide conflicts or drift apart.
+
+### 2026-06-21 - Freshness Is A Blocking Quality Contract
+
+Non-self-refresh governance reports marked blocking must be fresh when the quality gate finishes. Script aggregation and sandbox reports must be generated after the final profile build, and `check_report_freshness.py` must run with `--strict`.
+
+Reason: a report that says blocking stale while CI exits successfully is false evidence and must not be published as a green gate.

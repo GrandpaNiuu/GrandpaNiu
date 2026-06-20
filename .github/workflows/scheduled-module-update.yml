@@ -25,7 +25,7 @@ env:
   LC_ALL: C.UTF-8
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: module-maintenance
   cancel-in-progress: false
 
 jobs:
@@ -60,44 +60,12 @@ jobs:
       - name: Commit scheduled update
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          regenerate() {
-            python3 scripts/refresh_module_date.py
-            python3 Rewrite/Generator/Builder.py --profile fusion --release
-            python3 scripts/validate_remote_rule_syntax.py
-            python3 scripts/validate_governance_extensions.py
-            python3 scripts/validate_profiles.py
-            python3 scripts/validate_repository.py
-          }
-
-          git add Rewrite/Sources/Meta.conf Scripts/generated Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
-          if git diff --cached --quiet; then
-            echo "No scheduled module factory changes to commit."
-            exit 0
-          fi
-          git commit -m "chore: scheduled module factory update"
-
-          for attempt in 1 2 3; do
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            echo "Push failed on attempt ${attempt}; rebasing on origin/main and retrying."
-            git fetch origin main
-            if git rebase origin/main; then
-              regenerate
-              git add Rewrite/Sources/Meta.conf Scripts/generated Ronghemokuai.sgmodule Release Web reports Rewrite/Remotes/Catalog.md
-              if ! git diff --cached --quiet; then
-                git commit --amend --no-edit
-              fi
-              if git push origin HEAD:main; then
-                exit 0
-              fi
-            else
-              git rebase --abort || true
-            fi
-          done
-
-          echo "Push failed after 3 attempts."
-          exit 1
+          bash scripts/commit_generated_changes.sh \
+            "chore: scheduled module factory update" \
+            Rewrite/Sources/Meta.conf \
+            Scripts/generated \
+            Ronghemokuai.sgmodule \
+            Release \
+            Web \
+            reports \
+            Rewrite/Remotes/Catalog.md

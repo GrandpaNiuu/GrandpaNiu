@@ -64,6 +64,7 @@ REQUIRED_FILES = (
     "scripts/build_release_variants.py",
     "scripts/factory_finalize.py",
     "scripts/build_windows_v2rayn.py",
+    "scripts/commit_generated_changes.sh",
     "scripts/validate_profiles.py",
     "scripts/validate_module_integrity.py",
     "scripts/validate_repository.py",
@@ -418,6 +419,20 @@ def workflow_contains_cron(text: str, cron: str) -> bool:
 
 
 def validate_workflows() -> None:
+    helper = read_text(ROOT / "scripts" / "commit_generated_changes.sh")
+    for token in (
+        'git add -- "$@"',
+        "for attempt in 1 2 3",
+        "git push origin HEAD:main",
+        "git fetch origin main",
+        "git rebase origin/main",
+    ):
+        if token not in helper:
+            fail(f"generated commit helper missing safety token: {token}")
+    for token in ("git add -A", "git reset --hard", "git clean -fd", "git push --force"):
+        if token in helper:
+            fail(f"generated commit helper contains unsafe command: {token}")
+
     for relative in REQUIRED_WORKFLOWS:
         path = ROOT / relative
         if not path.exists():
@@ -425,10 +440,13 @@ def validate_workflows() -> None:
         text = read_text(path)
         if "contents: write" not in text:
             fail(f"workflow must declare contents: write: {relative}")
-        if "concurrency:" not in text:
-            fail(f"workflow must declare concurrency: {relative}")
-        if "git rebase origin/main" not in text:
-            fail(f"workflow must retry push after rebase: {relative}")
+        if "group: module-maintenance" not in text:
+            fail(f"workflow must use shared module-maintenance concurrency: {relative}")
+        if "scripts/commit_generated_changes.sh" not in text:
+            fail(f"workflow must use the generated commit helper: {relative}")
+        for token in ("git add -A", "git reset --hard", "git clean -fd", "git push --force"):
+            if token in text:
+                fail(f"workflow contains unsafe git command {token}: {relative}")
 
     for relative in REQUIRED_WORKFLOWS:
         text = read_text(ROOT / relative)
@@ -457,9 +475,6 @@ def validate_workflows() -> None:
     for token in ("collect_upstreams.py", "audit_repair_invalid_sources.py", "validate_remote_rule_syntax.py"):
         if token not in invalid_source:
             fail(f"daily-invalid-source-repair workflow missing command token: {token}")
-    if "reset --hard origin/main" not in invalid_source:
-        fail("daily-invalid-source-repair workflow must regenerate after reset to origin/main before push retry")
-
     audit = read_text(ROOT / ".github" / "workflows" / "daily-audit-and-repair.yml")
     if "validate_remote_rule_syntax.py" not in audit:
         fail("daily-audit-and-repair workflow missing validate_remote_rule_syntax.py")

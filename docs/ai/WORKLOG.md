@@ -493,3 +493,51 @@ docs: normalize AI maintenance records
 - 提交并推送本次修改。
 - 观察远端 Module Factory Build、Upstream app module sync 和 Repository Health。
 - 只有出现真实 App 异常或日志证据时才调整具体流量规则。
+
+## 2026-06-21 07:24 - 质量门禁与自动发布加固
+
+### 本次任务
+
+继续对仓库做证据驱动的自检，修复可复现的自动化假绿和 workflow 并发写入风险，不改动 App 流量规则。
+
+### 开始前状态
+
+- 分支：`repair/upstream-app-sync`
+- 基线提交：`173a92eb`
+- git status 摘要：工作树干净
+- 预计修改范围：质量门禁、工作流提交逻辑、验证脚本、测试和 AI 记录
+
+### 实际修改
+
+- 修复 `quality_gate.py` 顺序：最后一次 profile 重建后再校验 bundle 语法、聚合一致性和运行时沙箱。
+- freshness 改为 `--strict`，阻断报告过期时 CI 必须失败。
+- 9 个维护 workflow 统一使用 `module-maintenance` 并发锁。
+- 重写 `commit_generated_changes.sh`：仅暂存显式路径，push 失败后 fetch + rebase + retry，冲突时停止而不覆盖。
+- 移除维护自动化中的 `git reset --hard` 和 `git add -A`。
+- 增加 freshness 顺序、workflow 契约和本地裸 Git 远端提交集成测试。
+
+### 测试结果
+
+- 18 项单元/集成测试通过。
+- 10 个 workflow YAML 全部可解析。
+- `bash -n scripts/commit_generated_changes.sh` 通过。
+- `python Rewrite/Generator/Builder.py --profile fusion --release --check` 通过。
+- `python scripts/quality_gate.py` 通过，并且使用严格 freshness。
+- 398 个 App 模块、0 empty、17 个远程源 0 warning。
+
+### 风险
+
+- 未修改 Rules、App 源、MITM、登录、支付、银行、验证码、视频或 CDN 策略。
+- 不能用静态语法检查代替全部 App 真机联网验证。
+- 新提交助手遇到 rebase 冲突会主动失败，交给故障 issue 流程处理，不会自动覆盖。
+
+### Self-Review
+
+- What was not good enough: 上一次只看到质量门禁返回成功，没有立即对照 freshness 报告的阻断数；workflow 虽然有 concurrency，但不同 workflow 之间并未真正串行。
+- What I changed to reduce that risk: 把报告语义、进程退出码、并发锁和提交助手都写成自动回归测试。
+- What I would check first next time: 先看远端 Module Factory Build 是否绿色，再检查定时工作流是否在共享并发锁下顺序运行。
+
+### 下一步
+
+- 审查最终 diff，刷新健康与 freshness 报告。
+- 提交并推送后核对 GitHub Actions。

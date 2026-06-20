@@ -1,6 +1,6 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-06-21 02:58 +0800
+Last updated: 2026-06-21 07:24 +0800
 
 ## Project Purpose
 
@@ -205,3 +205,13 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Keep Fusion public entry stable.
 - Continue using risk reports before narrowing or expanding MITM.
 - Treat user-reported app breakage as evidence for targeted rollback or protection rules.
+
+## 2026-06-21 Automation Hardening
+
+- The quality gate now runs script aggregation and bundle sandbox checks after the final profile rebuild.
+- Report freshness is enforced with `--strict`; a blocking stale report can no longer be published behind a successful exit code.
+- All nine maintenance workflows use the shared `module-maintenance` concurrency group.
+- Generated commits are handled by `scripts/commit_generated_changes.sh` with explicit paths and fetch/rebase/retry.
+- Maintenance automation no longer uses `git reset --hard` or `git add -A`.
+- The commit helper has a local bare-repository integration test proving that unstaged unrelated files are not published.
+- Latest validation: 18 tests passed, 398 App modules built with 0 empty modules, 17 remote sources checked with 0 warnings, and the full quality gate passed.
