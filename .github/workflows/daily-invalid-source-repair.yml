@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Validate Python scripts
-        run: python3 -m py_compile scripts/collect_upstreams.py scripts/audit_repair_invalid_sources.py scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/validate_repository.py
+        run: python3 -m py_compile scripts/collect_upstreams.py scripts/audit_repair_invalid_sources.py Rewrite/Generator/Builder.py scripts/validate_remote_rule_syntax.py scripts/validate_repository.py
 
       - name: Refresh trusted upstream candidate pool
         run: python3 scripts/collect_upstreams.py
@@ -34,13 +34,7 @@ jobs:
       - name: Build fusion factory output
         run: |
           # fusion-build-marker: scripts/build_module.py --build --profile fusion
-          python3 scripts/build_module.py --build --profile fusion
-
-      - name: Finalize factory output and sync root module
-        run: python3 scripts/factory_finalize.py --sync-root
-
-      - name: Generate single fusion release report
-        run: python3 scripts/build_release_variants.py
+          python3 Rewrite/Generator/Builder.py --profile fusion --release
 
       - name: Validate repository
         run: |
@@ -57,9 +51,7 @@ jobs:
             python3 scripts/collect_upstreams.py
             python3 scripts/audit_repair_invalid_sources.py
             # fusion-build-marker: scripts/build_module.py --build --profile fusion
-            python3 scripts/build_module.py --build --profile fusion
-            python3 scripts/factory_finalize.py --sync-root
-            python3 scripts/build_release_variants.py
+            python3 Rewrite/Generator/Builder.py --profile fusion --release
             python3 scripts/validate_remote_rule_syntax.py
             python3 scripts/validate_repository.py
           }
@@ -68,7 +60,18 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             regenerate
-            git add -A
+            git add \
+              Rewrite/Remotes \
+              Rewrite/Sources \
+              Rules \
+              Scripts/*.conf \
+              Scripts/generated \
+              Ronghemokuai.sgmodule \
+              Release \
+              Web \
+              Android \
+              Windows \
+              reports
             if git diff --cached --quiet; then
               echo "No invalid source changes to commit."
               exit 0

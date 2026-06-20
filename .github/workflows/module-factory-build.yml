@@ -55,7 +55,7 @@ jobs:
       - name: Run full automated quality gate
         run: |
           set -euo pipefail
-          # fusion-build-marker: scripts/build_module.py --build --profile fusion
+          python3 Rewrite/Generator/Builder.py --profile fusion --release --check
           python3 scripts/quality_gate.py
 
       - name: Commit generated files
@@ -65,7 +65,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           regenerate() {
-            # fusion-build-marker: scripts/build_module.py --build --profile fusion
+            python3 Rewrite/Generator/Builder.py --profile fusion --release --check
             python3 scripts/quality_gate.py
           }
 
@@ -73,7 +73,16 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             regenerate
-            git add -A
+            git add \
+              Rewrite/Sources/Meta.conf \
+              Rules/converted \
+              Scripts/generated \
+              Ronghemokuai.sgmodule \
+              Release \
+              Web \
+              Android \
+              Windows \
+              reports
             if git diff --cached --quiet; then
               echo "No generated file changes."
               exit 0

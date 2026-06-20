@@ -1,6 +1,6 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-06-20 21:40 +0800
+Last updated: 2026-06-20 22:12 +0800
 
 ## Active Rules For Task Handling
 
@@ -18,10 +18,13 @@ Last updated: 2026-06-20 21:40 +0800
 - Use MITM and rule overlap reports for future narrowing or dedupe, but avoid automatic deletions without review.
 - Keep Android and Windows outputs aligned with iOS source rules where technically possible.
 - Preserve local-only logging rules in `.gitignore`.
+- Review the high-risk REJECT checklist before changing any login, payment, banking, CDN, video, or domestic core API rules.
+- Only perform source-first single-rule adjustments when real app abnormal behavior, logs, captures, or another reproducible signal exists; then run the full quality gate.
+- Continue moving workflow build steps toward `Rewrite/Generator/Builder.py --profile fusion --release`.
 
 ## Current Formatting Task
 
-Status: validated, pending owner review and optional commit.
+Status: committed locally in `225817bb`; not yet pushed to remote when this pass started.
 
 Scope:
 
@@ -36,6 +39,28 @@ Validation:
 - `python scripts/validate_repository.py` passed in a repository-external temporary copy.
 - `python scripts/repository_health_check.py` passed in a repository-external temporary copy.
 - Main worktree diff still only contains `.gitignore` and AI maintenance records.
+
+## Current Documentation And Workflow Cleanup
+
+Status: validated; owner approved commit and push.
+
+Scope:
+
+- Mark old four-version docs as Fusion-first with deprecated / legacy references only.
+- Document the current read-only health review result.
+- Convert broad workflow `git add -A` usage to explicit path lists.
+- Move selected workflow build steps to the Builder entrypoint.
+- Do not modify rules or generated outputs in this pass.
+
+Pending risk review checklist is recorded in `docs/ai/RISK_LOG.md`.
+
+Validation:
+
+- `git diff --check` passed.
+- Workflow text scan found no `git add -A` and confirmed Builder usage where expected.
+- `python -m py_compile scripts/validate_repository.py scripts/repository_health_check.py Rewrite/Generator/Builder.py` passed.
+- `python scripts/validate_repository.py` passed.
+- Full build was not run in the main worktree because this pass intentionally avoids refreshing generated outputs.
 
 ## Backlog
 

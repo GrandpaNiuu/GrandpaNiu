@@ -1,6 +1,6 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-06-20 12:22 +0800
+Last updated: 2026-06-20 22:12 +0800
 
 ## Standing High-Risk Areas
 
@@ -34,3 +34,45 @@ Last updated: 2026-06-20 12:22 +0800
 This formatting pass is low risk because it only touches AI maintenance records and `.gitignore`.
 
 No business code, generated module output, Android output, Windows output, Web output, report output, or workflow logic is intentionally changed.
+
+## Pending REJECT Risk Review Checklist
+
+Source: `reports/reject_risk_report.md` generated at 2026-06-20 12:04:12 +0800.
+
+Do not change these rules without Shadowrocket logs, user-confirmed breakage, or targeted source-first review.
+
+Evidence requirement: only make a source-first single-rule change when there is real app abnormal behavior or log/capture evidence. Every such change must be followed by the full quality gate.
+
+### Bank / Payment
+
+- `DOMAIN,iisp-oidea.mbs.boc.cn,REJECT,pre-matching`
+- `DOMAIN,iisp.mbs.boc.cn,REJECT,pre-matching`
+
+### Image / CDN
+
+- `DOMAIN,cd-1.pddpic.com,REJECT,pre-matching`
+- `DOMAIN,cdl-1.pddpic.com,REJECT,pre-matching`
+- `DOMAIN,cdl-p2.pddpic.com,REJECT,pre-matching`
+- `DOMAIN,hudong.alicdn.com,REJECT,pre-matching`
+- `DOMAIN,layout.meituan.net,REJECT,pre-matching`
+- `DOMAIN,nbsdk-baichuan.alicdn.com,REJECT,pre-matching`
+- `DOMAIN,ossgw.alicdn.com,REJECT,pre-matching`
+
+### Domestic Core API
+
+- `DOMAIN,afdconf.baidu.com,REJECT,pre-matching`
+- `DOMAIN,amap-aos-info-nogw.amap.com,REJECT,pre-matching`
+- `DOMAIN,dpmtpush.dianping.com,REJECT,pre-matching`
+- `DOMAIN,free-aos-cdn-image.amap.com,REJECT,pre-matching`
+- `DOMAIN,hlx.meituan.com,REJECT,pre-matching`
+- `DOMAIN,layout.meituan.net,REJECT,pre-matching`
+- `DOMAIN,lc.map.baidu.com,REJECT,pre-matching`
+- `DOMAIN,lx0.meituan.com,REJECT,pre-matching`
+- `DOMAIN,r.dianping.com,REJECT,pre-matching`
+
+### Review Guidance
+
+- Prefer exact `DIRECT,pre-matching` protection only when logs prove a false positive.
+- Prefer commenting or narrowing one rule at a time over batch deletion.
+- Do not use broad suffix allow rules such as `DOMAIN-SUFFIX,qq.com,DIRECT`.
+- Rebuild and validate after any future source-first rule change.

@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Validate Python scripts
-        run: python3 -m py_compile scripts/collect_upstreams.py scripts/build_module.py scripts/build_release_variants.py scripts/factory_finalize.py scripts/validate_repository.py
+        run: python3 -m py_compile scripts/collect_upstreams.py Rewrite/Generator/Builder.py scripts/validate_remote_rule_syntax.py scripts/validate_repository.py
 
       - name: Collect trusted upstream candidates
         run: python3 scripts/collect_upstreams.py
@@ -31,13 +31,7 @@ jobs:
       - name: Build fusion factory output
         run: |
           # fusion-build-marker: scripts/build_module.py --build --profile fusion
-          python3 scripts/build_module.py --build --profile fusion
-
-      - name: Finalize factory output and sync root module
-        run: python3 scripts/factory_finalize.py --sync-root
-
-      - name: Generate single fusion release report
-        run: python3 scripts/build_release_variants.py
+          python3 Rewrite/Generator/Builder.py --profile fusion --release
 
       - name: Validate repository
         run: |
@@ -53,15 +47,23 @@ jobs:
           regenerate() {
             # fusion-build-marker: scripts/build_module.py --build --profile fusion
             python3 scripts/collect_upstreams.py
-            python3 scripts/build_module.py --build --profile fusion
-            python3 scripts/factory_finalize.py --sync-root
-            python3 scripts/build_release_variants.py
+            python3 Rewrite/Generator/Builder.py --profile fusion --release
             python3 scripts/validate_remote_rule_syntax.py
             python3 scripts/validate_repository.py
           }
 
           commit_changes() {
-            git add -A
+            git add \
+              Rewrite/Remotes \
+              Rewrite/Sources/Meta.conf \
+              Rules/converted \
+              Scripts/generated \
+              Ronghemokuai.sgmodule \
+              Release \
+              Web \
+              Android \
+              Windows \
+              reports
             if git diff --cached --quiet; then
               echo "No upstream collect changes to commit."
               return 1

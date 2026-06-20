@@ -1,6 +1,6 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-06-20 12:22 +0800
+Last updated: 2026-06-20 22:12 +0800
 
 ## Decisions
 
@@ -41,3 +41,21 @@ Reason: automatic upstream replacement is useful but can accidentally import uns
 AI maintenance Markdown files must keep normal headings, lists, tables, and fenced command blocks.
 
 Reason: collapsed single-line records can make future AI or human maintainers misread safety rules.
+
+### 2026-06-20 - Treat Old Four Profiles As Legacy Reference Only
+
+Fusion is the only public iOS module strategy. Old Stable / Stable Plus / Lite / Full files may remain only as deprecated compatibility or rollback references.
+
+Reason: public multi-version routing previously caused README, workflow, validation, and release-report drift.
+
+### 2026-06-20 - Avoid Broad Workflow Staging
+
+Automation should use explicit `git add` path lists instead of `git add -A`.
+
+Reason: generated workflows can refresh many files; explicit staging reduces accidental commits outside the intended output set.
+
+### 2026-06-20 - Require Evidence Before Rule Changes
+
+Rule changes that touch app behavior must be based on real app breakage, Shadowrocket/client logs, packet-capture evidence, or another reproducible signal. Do not change high-risk rules only because a report looks suspicious.
+
+Reason: this repository protects many login, payment, bank, captcha, video, image/CDN, and core API paths. Guess-based broad rule edits can create worse breakage than the original ad issue.

@@ -1,5 +1,93 @@
 # AI Maintenance Worklog
 
+## 2026-06-20 22:12 - Work Record
+
+### Task
+
+Recorded the owner instruction that rule changes must require real app abnormal behavior, client logs, packet captures, or another reproducible signal.
+
+### Start State
+
+- Branch: `repair/upstream-app-sync`
+- Git status summary: documentation and workflow cleanup already in progress
+- Expected scope: AI maintenance records only
+
+### Actual Changes
+
+- Updated `PROJECT_STATE.md`, `AI_HANDOFF.md`, `docs/ai/DECISIONS.md`, `docs/ai/RISK_LOG.md`, and `docs/ai/TASKS.md`.
+- No rules, scripts, generated outputs, Android files, Windows files, Web files, reports, or workflow files were changed by this note.
+
+### Test Result
+
+- `git diff --check` passed.
+- Workflow text scan found no `git add -A` and confirmed Builder usage where expected.
+- `python -m py_compile scripts/validate_repository.py scripts/repository_health_check.py Rewrite/Generator/Builder.py` passed.
+- `python scripts/validate_repository.py` passed.
+- Full build was not run in the main worktree because this pass intentionally avoids refreshing generated outputs.
+
+### Risk
+
+- Low. This is a maintenance-record clarification only.
+
+### Next Step
+
+- Owner approved commit and push after validation.
+
+## 2026-06-20 22:09 - 工作记录
+
+### 本次任务
+
+先做文档和 workflow 小修：
+
+- 记录当前“工作树干净、本地领先 1 commit、本次只读体检已完成”。
+- 将旧四版本文档统一改为 Fusion 单模块策略，历史四版本只作为 deprecated / legacy reference。
+- 不碰规则，只把 `reject_risk_report.md` 中的高风险 REJECT 项整理成待复核清单。
+- workflow 优先把宽泛 `git add -A` 改成明确路径，并逐步统一构建入口。
+
+### 开始前状态
+
+- 分支：`repair/upstream-app-sync`
+- git status 摘要：工作树干净
+- 本地领先：比 `origin/main` 领先 1 个提交
+- 预计修改范围：
+  - `PROJECT_STATE.md`
+  - `AI_HANDOFF.md`
+  - `docs/ai/*`
+  - `docs/FOUR_PROFILE_GOVERNANCE.md`
+  - `docs/LOCAL_ENV_SETUP.md`
+  - `docs/ROADMAP.md`
+  - `docs/MAINTENANCE_PLAYBOOK.md`
+  - `.github/workflows/*.yml`
+
+### 实际修改
+
+- 更新 AI 维护记录，记录只读体检、当前分支状态、未 push 的本地领先提交。
+- 重写旧四版本相关文档，将 Stable / Stable Plus / Lite / Full 标记为 deprecated / legacy reference。
+- 在 `docs/ai/RISK_LOG.md` 中整理待复核清单：
+  - 2 条银行 / 支付风险
+  - 7 条图片 / CDN 风险
+  - 9 条国内核心 API 风险
+- workflow 小修：
+  - 将 6 处 `git add -A` 改成明确路径。
+  - 将 selected daily/audit/collect 构建步骤逐步切到 `Rewrite/Generator/Builder.py --profile fusion --release`。
+
+### 测试结果
+
+- 待执行最终 diff 和轻量检查。
+- 本次不运行会刷新生成物的主仓库构建命令。
+
+### 风险
+
+- 未修改 `Rules/`，所以待复核 REJECT 风险只是记录，不改变模块行为。
+- workflow 修改会影响自动提交范围，必须检查 YAML 文本和 `git add -A` 是否已清除。
+- 旧四版本文档被替换为 Fusion 策略说明，属于文档策略更新。
+
+### 下一步
+
+- 检查 `git diff --stat`、`git diff --name-only`。
+- 检查是否仍存在 workflow `git add -A`。
+- 只做不会刷新生成物的轻量验证。
+
 ## 2026-06-20 21:40 - 工作记录
 
 ### 本次任务

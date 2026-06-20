@@ -50,7 +50,21 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             regenerate
-            git add -A
+            git add \
+              Rewrite/Sources/Meta.conf \
+              Rewrite/Sources \
+              Rewrite/Remotes/Catalog.md \
+              Rewrite/Remotes/candidates.json \
+              Rewrite/Remotes/sources.json \
+              Rules/converted \
+              Scripts/*.conf \
+              Scripts/generated \
+              Ronghemokuai.sgmodule \
+              Release \
+              Web \
+              Android \
+              Windows \
+              reports
             if git diff --cached --quiet; then
               echo "No daily update changes to commit."
               exit 0

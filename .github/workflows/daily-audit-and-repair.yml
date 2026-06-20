@@ -39,9 +39,7 @@ jobs:
       - name: Build fusion module after audit
         run: |
           # fusion-build-marker: scripts/build_module.py --build --profile fusion
-          python3 scripts/build_module.py --build --profile fusion
-          python3 scripts/factory_finalize.py --sync-root
-          python3 scripts/build_release_variants.py
+          python3 Rewrite/Generator/Builder.py --profile fusion --release
           python3 scripts/validate_remote_rule_syntax.py
           python3 scripts/validate_repository.py
 
@@ -53,12 +51,21 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             python3 scripts/audit_and_repair_module.py
-            python3 scripts/build_module.py --build --profile fusion
-            python3 scripts/factory_finalize.py --sync-root
-            python3 scripts/build_release_variants.py
+            python3 Rewrite/Generator/Builder.py --profile fusion --release
             python3 scripts/validate_remote_rule_syntax.py
             python3 scripts/validate_repository.py
-            git add -A
+            git add \
+              Rules \
+              Rewrite/Sources \
+              Rewrite/Remotes \
+              Scripts/*.conf \
+              Scripts/generated \
+              Ronghemokuai.sgmodule \
+              Release \
+              Web \
+              Android \
+              Windows \
+              reports
             if git diff --cached --quiet; then
               echo "No audit changes to commit."
               exit 0

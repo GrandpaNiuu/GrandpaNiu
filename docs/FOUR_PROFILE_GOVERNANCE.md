@@ -1,53 +1,73 @@
-# 四版本治理统一说明
+# Fusion 单模块策略与旧四版本归档说明
 
-本文件统一说明 GrandpaNiu 的四版本边界，供 README、维护文档、报告和后续任务引用。旧文档如存在三版本表述，应以本文件为准后续逐步修正。
+本文替代旧的四版本治理说明。当前 GrandpaNiu 的公开 iOS 策略是 **Fusion 单一融合模块**，不再把 Stable / Stable Plus / Lite / Full 作为公开版本路线维护。
 
-## 版本定义
+## 当前公开策略
 
-| Profile | 发布文件 | 定位 | 默认发布 |
-|---|---|---|---|
-| `stable` | `Ronghemokuai.sgmodule` / `Release/Ronghemokuai-stable.sgmodule` | 默认正式版，长期日常使用 | 是 |
-| `stable-plus` | `Release/Ronghemokuai-stable-plus.sgmodule` | 增强测试版，测试更多常用 App 覆盖 | 否 |
-| `lite` | `Release/Ronghemokuai-lite.sgmodule` | 低耗电、低风险、异常排查 | 否 |
-| `full` | `Release/Ronghemokuai-full.sgmodule` | 全量排查、查漏拦 | 否 |
+| 类型 | 文件 | 状态 |
+|---|---|---|
+| 主公开入口 | `Ronghemokuai.sgmodule` | active |
+| Release 主模块 | `Release/Ronghemokuai.sgmodule` | active |
+| Release 兼容别名 | `Release/Module.sgmodule` | active |
+| App 独立模块 | `Release/Modules/*.sgmodule` | diagnostic / convenience |
 
-## 统一边界
+普通用户只应导入 Fusion 主模块：
 
-- `GrandpaNiu` / `Ronghemokuai.sgmodule` = 默认 Stable。
-- `Release/Ronghemokuai-stable.sgmodule` 是默认 Stable 的独立发布文件。
-- Stable Plus 只做增强测试，不默认发布，不整体合并进 Stable。
-- Lite 用于省电和异常排查，不追求覆盖广度。
-- Full 只用于全量排查，不长期启用。
+```text
+https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule
+```
+
+## Deprecated / Legacy Reference
+
+以下旧文件只作为历史兼容、审计或回滚参考：
+
+```text
+Release/Ronghemokuai-stable.sgmodule
+Release/Ronghemokuai-stable-plus.sgmodule
+Release/Ronghemokuai-lite.sgmodule
+Release/Ronghemokuai-full.sgmodule
+Rewrite/Profiles/stable.conf
+Rewrite/Profiles/stable-plus.conf
+Rewrite/Profiles/lite.conf
+Rewrite/Profiles/full.conf
+```
+
+这些文件不得作为 README、导入页、默认 workflow、健康检查、发布报告或 Web catalog 的正式入口。
 
 ## 构建链路
 
-```text
-Rules + Scripts + Rewrite/Sources + Rewrite/Remotes + Rewrite/Profiles
-        -> scripts/build_module.py --build --profile fusion
-        -> scripts/factory_finalize.py --sync-root
-        -> scripts/build_release_variants.py
-        -> Release/Ronghemokuai-*.sgmodule
+当前标准构建入口：
+
+```bash
+python3 Rewrite/Generator/Builder.py --profile fusion --release
 ```
 
-Root 与 Release 必须保持一致。四个 Release 版本必须都能构建。
-
-## 晋级规则
+Builder 负责调用底层脚本，并生成：
 
 ```text
-Stable Plus 单项测试
--> 人工确认常用流程正常
--> 记录到 reports/automated_quality_evidence.md
--> 刷新 reports/app_status_matrix.md
--> 生成晋级审查材料
--> 单项进入 Stable
+Release/Ronghemokuai.sgmodule
+Release/Module.sgmodule
+Ronghemokuai.sgmodule
+Release/Rules.conf
+Release/RulesGroup.conf
+Release/Modules/
+Release/Android/
+Web/
+reports/
 ```
 
-禁止把 Stable Plus 或 Full 整体合并进 Stable。
+## 维护边界
 
-## 后续修正文档时的标准
+- 不再做 Stable Plus 整体晋级 Stable。
+- 不再以 Lite / Full 作为公开排查入口。
+- 如需回滚或对照，可查看 legacy profile 和 legacy Release 占位文件。
+- 新规则、新脚本、新 MITM 覆盖应进入 Fusion 源层，并通过风险门禁、沙盒、仓库验证和人工实测逐步确认。
+- 登录、支付、银行、验证码、视频播放、图片/CDN 相关链路优先保护，不用扩大版本线解决误伤。
 
-凡是旧文档只写 `stable / lite / full`，都应改为 `stable / stable-plus / lite / full`。
+## 后续文档修正标准
 
-凡是旧文档把 Full 写成可长期使用，都应修正为“只用于排查”。
+旧文档中如果仍出现“四版本正式路线”“Stable Plus 晋级 Stable”“Full 长期启用”等说法，应改为：
 
-凡是旧文档暗示 Stable Plus 可以整体进入 Stable，都应修正为“只允许单项晋级”。
+```text
+Fusion 为唯一公开主模块；旧四版本仅为 deprecated / legacy reference。
+```

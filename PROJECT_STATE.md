@@ -1,6 +1,6 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-06-20 21:40 +0800
+Last updated: 2026-06-20 22:12 +0800
 
 ## Project Purpose
 
@@ -118,6 +118,7 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Aggressive reject rules can break domestic and overseas app connectivity.
 - Upstream module auto-sync can import incompatible rewrites if the risk gate is weakened.
 - Script aggregation can cause blank pages or hangs if `$done` handling regresses.
+- Future rule changes should be evidence-led: use real app abnormal behavior, logs, captures, or another reproducible signal before source-first single-rule adjustments.
 - Android formats cannot fully reproduce iOS Rewrite / MITM / Script behavior.
 - Generated files under `Release/`, `Web/`, `reports/`, and `Scripts/generated/` can be overwritten by the builder.
 - AI maintenance documents must stay readable; collapsed Markdown can cause future agents to misunderstand safety rules.
@@ -131,6 +132,18 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Approximate scale from the initial snapshot: 297 app source files and 295 generated app module outputs.
 
 ## Latest Maintenance Note
+
+2026-06-20 22:12 +0800:
+
+- Current worktree was clean before this pass.
+- Local branch was ahead of `origin/main` by 1 commit before this pass.
+- A read-only repository health review was completed before editing.
+- Legacy four-version documentation was rewritten or marked as deprecated / legacy reference.
+- Workflow commit staging was narrowed from broad `git add -A` to explicit path lists.
+- Several workflow build paths were moved toward `Rewrite/Generator/Builder.py --profile fusion --release`.
+- No rule files, generated Release files, Android outputs, Windows outputs, Web catalog files, reports, or script implementation files were intentionally changed.
+- Evidence-first rule maintenance was recorded: future rule changes need real app abnormal behavior, logs, captures, or another reproducible signal.
+- Lightweight validation passed: `git diff --check`, workflow text scan, Python compile of validation scripts and Builder, and `python scripts/validate_repository.py`.
 
 2026-06-20 21:40 +0800:
 

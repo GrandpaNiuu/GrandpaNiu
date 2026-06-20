@@ -1,6 +1,6 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-06-20 21:40 +0800
+Last updated: 2026-06-20 22:12 +0800
 
 ## What This Project Is
 
@@ -34,7 +34,7 @@ Maintain it as a high-risk network rules repository. Small changes can break use
 
 ## Current Formatting Pass
 
-This pass is documentation-only and has passed validation in a repository-external temporary copy.
+The earlier formatting pass was documentation-only and passed validation in a repository-external temporary copy.
 
 Allowed files for this pass:
 
@@ -58,6 +58,21 @@ python scripts/repository_health_check.py
 ```
 
 All three commands passed. The main worktree remains limited to `.gitignore` and AI maintenance records.
+
+## Current Maintenance Pass
+
+Scope:
+
+- AI records updated to note the completed read-only health review.
+- Old four-version docs now state Fusion single-module strategy and mark legacy variants as deprecated / reference only.
+- Workflow staging was narrowed from `git add -A` to explicit paths.
+- Selected workflows now call `Rewrite/Generator/Builder.py --profile fusion --release` instead of manually chaining `build_module.py`, `factory_finalize.py`, and `build_release_variants.py`.
+- Rule files are intentionally untouched.
+- Lightweight validation passed for this pass: `git diff --check`, workflow text scan, Python compile of validation scripts and Builder, and `python scripts/validate_repository.py`.
+
+Important: `reject_risk_report.md` still lists bank/payment, CDN, and domestic core API REJECT risks. These are documented in `docs/ai/RISK_LOG.md` as pending review; do not change them without Shadowrocket logs or owner-confirmed app behavior.
+
+Rule maintenance rule: only make source-first single-rule changes when there is real app abnormal behavior, client logs, packet captures, or another reproducible signal. Follow every such change with the full quality gate.
 
 ## Current Risk Points
 
