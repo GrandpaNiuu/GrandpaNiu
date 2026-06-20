@@ -1,8 +1,8 @@
 # 自动化质量证据报告
 
-生成时间：2026-06-20 08:11:54 +0800
-Git 分支：`main`
-Git 提交：`55c16615`
+生成时间：2026-06-20 08:56:54 +0800
+Git 分支：`repair/upstream-app-sync`
+Git 提交：`fd441043`
 
 本仓库发布门禁以可重复执行的自动化证据为准：构建、语法检查、远程规则校验、模块完整性、报告新鲜度和仓库健康检查。
 
@@ -10,7 +10,7 @@ Git 提交：`55c16615`
 
 - Root / Release 一致：是
 - UTF-8 BOM 命中：0
-- 证据报告数量：13
+- 证据报告数量：20
 
 ## 必跑自动化命令
 
@@ -21,6 +21,10 @@ Git 提交：`55c16615`
 - `python scripts/android_format_check.py`
 - `python scripts/convert_quanx_rules.py`
 - `python scripts/build_module.py --build --profile fusion`
+- `node --check Scripts/generated/fusion-script-bundle.js`
+- `python tools/validate_script_aggregation.py`
+- `python tools/test_script_bundle_sandbox.py`
+- `python tools/validate_upstream_risk_gate.py`
 - `python scripts/factory_finalize.py --sync-root`
 - `python scripts/build_release_variants.py`
 - `python scripts/build_checksums.py`
@@ -30,6 +34,9 @@ Git 提交：`55c16615`
 - `python scripts/validate_governance_extensions.py`
 - `python scripts/validate_profiles.py`
 - `python scripts/validate_module_integrity.py`
+- `python tools/generate_mitm_scope_report.py`
+- `python tools/generate_rule_overlap_report.py`
+- `python tools/generate_app_cleaner_active_report.py`
 - `python scripts/repository_health_check.py`
 - `python tools/generate_automated_quality_evidence.py`
 - `python scripts/validate_repository.py`
@@ -48,6 +55,13 @@ Git 提交：`55c16615`
 | `reports/app_coverage_matrix.md` | present |
 | `reports/app_status_matrix.md` | present |
 | `reports/script_inventory_report.md` | present |
+| `reports/script_aggregation_report.md` | present |
+| `reports/script_aggregation_validation_report.md` | present |
+| `reports/script_bundle_sandbox_report.md` | present |
+| `reports/upstream_risk_gate_report.md` | present |
+| `reports/mitm_scope_report.md` | present |
+| `reports/rule_overlap_report.md` | present |
+| `reports/app_cleaner_active_report.md` | present |
 | `reports/candidate_security_score_report.md` | present |
 | `reports/reject_risk_report.md` | present |
 | `reports/domestic_app_connectivity_audit.md` | present |

@@ -58,7 +58,7 @@ Scripts/Docs/     # 来源说明与风险记录
 
 聚合器只打包低风险的 `http-response` 清理脚本：必须依赖响应 body，且不能带 `binary-body-mode` 或自定义 `argument`。Spotify、YouTube、Bilibili protobuf、知乎、登录、支付、银行、钱包、航旅和账号相关脚本会继续保持独立入口。
 
-聚合器同时生成 `Scripts/generated/fusion-script-bundle.manifest.json`，记录每个被聚合脚本的名称、上游 URL、来源哈希、所在 bundle chunk 和保护策略。`tools/validate_script_aggregation.py` 会校验 manifest、bundle、Release 脚本入口是否一致。验证报告位于 `reports/script_aggregation_validation_report.md`，聚合摘要位于 `reports/script_aggregation_report.md`。
+聚合器同时生成 `Scripts/generated/fusion-script-bundle.manifest.json`，记录每个被聚合脚本的名称、上游 URL、来源哈希、所在 bundle chunk 和保护策略。`tools/validate_script_aggregation.py` 会校验 manifest、bundle、Release 脚本入口是否一致，`tools/test_script_bundle_sandbox.py` 会用 Shadowrocket 风格的 `$request` / `$response` / `$done` 沙箱逐路由验证 bundle。若上游脚本命中后没有调用 `$done`，bundle 会自动 pass-through，避免客户端等待。验证报告位于 `reports/script_aggregation_validation_report.md` 和 `reports/script_bundle_sandbox_report.md`，聚合摘要位于 `reports/script_aggregation_report.md`。
 
 如果某个 App 在聚合后出现异常，应在 `scripts/build_module.py` 中收窄 allowlist 或加入 preserve token，然后重新构建：
 

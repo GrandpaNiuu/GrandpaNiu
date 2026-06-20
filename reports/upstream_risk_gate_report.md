@@ -1,0 +1,49 @@
+# Upstream Risk Gate Report
+
+- Generated at: 2026-06-20 08:54:09 +0800
+- Status: passed
+- Records: 295
+- Enabled: 287
+- Direct commit: 287
+- High risk enabled: 25
+
+## Errors
+- None
+
+## Warnings
+- None
+
+## Policy
+
+- Enabled direct-commit records must use HTTPS and trusted hosts.
+- High-risk and core app records must keep backup enabled.
+- Target paths must stay under `Rewrite/Sources/Apps/`.
+- Clear VIP unlock, payment bypass, login bypass, purchase receipt and token rewrites are blocked.
+
+## High Risk Enabled Records
+
+- `123-net-work-disk` -> `Rewrite/Sources/Apps/123-net-work-disk.conf` (Kelee PluginHub)
+- `12306` -> `Rewrite/Sources/Apps/12306.conf` (Kelee PluginHub)
+- `ali-yun-drive` -> `Rewrite/Sources/Apps/ali-yun-drive.conf` (Kelee PluginHub)
+- `baidu-map` -> `Rewrite/Sources/Apps/baidu-map.conf` (Kelee PluginHub)
+- `baidu-net-disk` -> `Rewrite/Sources/Apps/baidu-net-disk.conf` (Kelee PluginHub)
+- `baidupan` -> `Rewrite/Sources/Apps/baidupan.conf` (QingRex/LoonKissSurge)
+- `bilibili` -> `Rewrite/Sources/Apps/bilibili.conf` (kokoryh/Sparkle)
+- `bitqiu-pan` -> `Rewrite/Sources/Apps/bitqiu-pan.conf` (Kelee PluginHub)
+- `china-unicom` -> `Rewrite/Sources/Apps/china-unicom.conf` (QingRex/LoonKissSurge)
+- `di-di` -> `Rewrite/Sources/Apps/di-di.conf` (Kelee PluginHub)
+- `dida-pinche-taxi` -> `Rewrite/Sources/Apps/dida-pinche-taxi.conf` (Kelee PluginHub)
+- `didi` -> `Rewrite/Sources/Apps/didi.conf` (QingRex/LoonKissSurge)
+- `goofish` -> `Rewrite/Sources/Apps/goofish.conf` (QingRex/LoonKissSurge)
+- `mail-master` -> `Rewrite/Sources/Apps/mail-master.conf` (Kelee PluginHub)
+- `mobile-clouds` -> `Rewrite/Sources/Apps/mobile-clouds.conf` (Kelee PluginHub)
+- `netease-mail` -> `Rewrite/Sources/Apps/netease-mail.conf` (QingRex/LoonKissSurge)
+- `railway12306` -> `Rewrite/Sources/Apps/railway12306.conf` (QingRex/LoonKissSurge)
+- `shou-yin-tong-merchant` -> `Rewrite/Sources/Apps/shou-yin-tong-merchant.conf` (Kelee PluginHub)
+- `spotify` -> `Rewrite/Sources/Apps/spotify.conf` (app2smile/rules)
+- `taobao-travel` -> `Rewrite/Sources/Apps/taobao-travel.conf` (Kelee PluginHub)
+- `taopiaopiao` -> `Rewrite/Sources/Apps/taopiaopiao.conf` (Kelee PluginHub)
+- `terabox` -> `Rewrite/Sources/Apps/terabox.conf` (QingRex/LoonKissSurge)
+- `wechat` -> `Rewrite/Sources/Apps/wechat.conf` (QingRex/LoonKissSurge)
+- `weibo` -> `Rewrite/Sources/Apps/weibo.conf` (QingRex/LoonKissSurge)
+- `zhihu` -> `Rewrite/Sources/Apps/zhihu.conf` (QingRex/LoonKissSurge)

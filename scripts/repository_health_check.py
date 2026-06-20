@@ -43,7 +43,19 @@ REQUIRED_FILES = [
     "scripts/validate_repository.py",
     "scripts/validate_profiles.py",
     "tools/generate_automated_quality_evidence.py",
+    "tools/validate_script_aggregation.py",
+    "tools/test_script_bundle_sandbox.py",
+    "tools/validate_upstream_risk_gate.py",
+    "tools/generate_mitm_scope_report.py",
+    "tools/generate_rule_overlap_report.py",
+    "tools/generate_app_cleaner_active_report.py",
     "reports/automated_quality_evidence.md",
+    "reports/script_aggregation_validation_report.md",
+    "reports/script_bundle_sandbox_report.md",
+    "reports/upstream_risk_gate_report.md",
+    "reports/mitm_scope_report.md",
+    "reports/rule_overlap_report.md",
+    "reports/app_cleaner_active_report.md",
 ]
 
 REQUIRED_WORKFLOWS = [

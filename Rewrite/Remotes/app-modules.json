@@ -50,7 +50,7 @@
       "enabled": true,
       "direct_commit": true,
       "risk": "medium",
-      "backup": false,
+      "backup": true,
       "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
@@ -122,7 +122,7 @@
       "enabled": true,
       "direct_commit": true,
       "risk": "medium",
-      "backup": false,
+      "backup": true,
       "upstream_project": "Kelee PluginHub",
       "last_sync_mode": "unchanged"
     },
@@ -134,7 +134,7 @@
       "enabled": true,
       "direct_commit": true,
       "risk": "medium",
-      "backup": false,
+      "backup": true,
       "upstream_project": "Kelee PluginHub",
       "last_sync_mode": "unchanged"
     },
@@ -1238,7 +1238,7 @@
       "enabled": true,
       "direct_commit": true,
       "risk": "medium",
-      "backup": false,
+      "backup": true,
       "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
     },
@@ -2306,7 +2306,7 @@
       "enabled": true,
       "direct_commit": true,
       "risk": "medium",
-      "backup": false,
+      "backup": true,
       "upstream_project": "Kelee PluginHub",
       "last_sync_mode": "unchanged"
     },
@@ -2378,7 +2378,7 @@
       "enabled": true,
       "direct_commit": true,
       "risk": "medium",
-      "backup": false,
+      "backup": true,
       "upstream_project": "Kelee PluginHub",
       "last_sync_mode": "unchanged"
     },
