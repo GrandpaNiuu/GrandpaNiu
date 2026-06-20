@@ -1,12 +1,12 @@
 # Workflow Health Report
 
-- Generated at: 2026-06-21 07:41:51 +0800
+- Generated at: 2026-06-21 07:44:17 +0800
 - Repository: `GrandpaNiuu/GrandpaNiu`
 - Workflows checked: 10
 
 | Workflow | File | Purpose | Triggers | Latest run | Status | Conclusion | Run URL | Advice |
 |---|---|---|---|---|---|---|---|---|
-| Module Factory Build | `.github/workflows/module-factory-build.yml` | Build Release and sync Root | manual / push | 2026-06-20T23:27:47Z | completed | cancelled | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27887130057) | cancelled, usually superseded by a newer concurrency run |
+| Module Factory Build | `.github/workflows/module-factory-build.yml` | Build Release and sync Root | manual / push | 2026-06-20T23:43:34Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27887472503) | Run is not completed; check again after it finishes |
 | Daily Module Update | `.github/workflows/daily-module-update.yml` | Daily module date, build, report and validation | manual / schedule | 2026-06-20T17:57:06Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27879272255) | passed |
 | Daily invalid rule audit and safe repair | `.github/workflows/daily-audit-and-repair.yml` | Daily invalid rule audit and safe repair | manual / schedule | 2026-06-20T23:27:47Z | completed | failure | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27887130066) | open the run log and fix the failed step |
 | Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | Daily invalid source audit and repair | manual / schedule | 2026-06-20T18:01:37Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/27879388762) | passed |
