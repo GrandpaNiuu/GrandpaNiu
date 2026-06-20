@@ -1,6 +1,6 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-06-20 22:12 +0800
+Last updated: 2026-06-20 22:41 +0800
 
 ## What This Project Is
 
@@ -73,6 +73,14 @@ Scope:
 Important: `reject_risk_report.md` still lists bank/payment, CDN, and domestic core API REJECT risks. These are documented in `docs/ai/RISK_LOG.md` as pending review; do not change them without Shadowrocket logs or owner-confirmed app behavior.
 
 Rule maintenance rule: only make source-first single-rule changes when there is real app abnormal behavior, client logs, packet captures, or another reproducible signal. Follow every such change with the full quality gate.
+
+## Current CI Repair Pass
+
+- Latest failed workflow checked: `Module Factory Build` run `27873963030`, commit `660d8aeb`.
+- Failure was reproduced outside the main worktree with `python Rewrite/Generator/Builder.py --profile fusion --release --check`.
+- Root cause was stale governance validation: `scripts/validate_governance_extensions.py` required the old `fusion-build-marker` workflow comment and rejected the new Builder entrypoint.
+- Fix keeps the old marker/build command as a compatibility option and adds `Rewrite/Generator/Builder.py --profile fusion --release` as the preferred governance signal.
+- Temporary worktree validation passed: Builder release check and full `scripts/quality_gate.py`.
 
 ## Current Risk Points
 

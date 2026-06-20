@@ -62,7 +62,14 @@ IMPORT_TEMPLATE_REQUIRED_TOKENS = [
 WORKFLOW_REQUIRED_TOKENS = [
     "scripts/quality_gate.py",
     "automated_quality_evidence.md",
-    "fusion-build-marker: scripts/build_module.py --build --profile fusion",
+]
+
+WORKFLOW_REQUIRED_ANY = [
+    [
+        "Rewrite/Generator/Builder.py --profile fusion --release",
+        "fusion-build-marker: scripts/build_module.py --build --profile fusion",
+        "scripts/build_module.py --build --profile fusion",
+    ],
 ]
 
 
@@ -106,6 +113,7 @@ def main() -> None:
     require_tokens(".github/ISSUE_TEMPLATE/rule_false_positive.yml", FALSE_POSITIVE_TEMPLATE_REQUIRED_TOKENS)
     require_tokens(".github/ISSUE_TEMPLATE/import_red_cross.yml", IMPORT_TEMPLATE_REQUIRED_TOKENS)
     require_tokens(".github/workflows/module-factory-build.yml", WORKFLOW_REQUIRED_TOKENS)
+    require_any(".github/workflows/module-factory-build.yml", WORKFLOW_REQUIRED_ANY)
 
     daily = read(".github/workflows/daily-module-update.yml")
     for token in ("validate_remote_rule_syntax.py", "convert_quanx_rules.py", "quality_gate.py"):

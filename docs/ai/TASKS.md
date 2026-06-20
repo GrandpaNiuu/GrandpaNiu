@@ -1,6 +1,6 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-06-20 22:12 +0800
+Last updated: 2026-06-20 22:41 +0800
 
 ## Active Rules For Task Handling
 
@@ -21,6 +21,23 @@ Last updated: 2026-06-20 22:12 +0800
 - Review the high-risk REJECT checklist before changing any login, payment, banking, CDN, video, or domestic core API rules.
 - Only perform source-first single-rule adjustments when real app abnormal behavior, logs, captures, or another reproducible signal exists; then run the full quality gate.
 - Continue moving workflow build steps toward `Rewrite/Generator/Builder.py --profile fusion --release`.
+
+## Current CI Repair Task
+
+Status: fixed locally and validated; pending commit and push.
+
+Scope:
+
+- Repair the failed `Module Factory Build` caused by stale governance workflow-token validation.
+- Do not modify rules, app sources, generated outputs, Android, Windows, Web, or reports in the main worktree.
+
+Validation:
+
+- `python -m py_compile scripts/validate_governance_extensions.py scripts/validate_repository.py scripts/repository_health_check.py Rewrite/Generator/Builder.py` passed.
+- `python scripts/validate_governance_extensions.py` passed.
+- `python scripts/validate_repository.py` passed.
+- In the repository-external worktree, `python Rewrite/Generator/Builder.py --profile fusion --release --check` passed.
+- In the repository-external worktree, `python scripts/quality_gate.py` passed.
 
 ## Current Formatting Task
 

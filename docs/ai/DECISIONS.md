@@ -1,6 +1,6 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-06-20 22:12 +0800
+Last updated: 2026-06-20 22:41 +0800
 
 ## Decisions
 
@@ -59,3 +59,9 @@ Reason: generated workflows can refresh many files; explicit staging reduces acc
 Rule changes that touch app behavior must be based on real app breakage, Shadowrocket/client logs, packet-capture evidence, or another reproducible signal. Do not change high-risk rules only because a report looks suspicious.
 
 Reason: this repository protects many login, payment, bank, captcha, video, image/CDN, and core API paths. Guess-based broad rule edits can create worse breakage than the original ad issue.
+
+### 2026-06-20 - Governance Checks Accept Builder Entrypoint
+
+Workflow governance validation should recognize `Rewrite/Generator/Builder.py --profile fusion --release` as the preferred Fusion build signal, while remaining backward-compatible with old `build_module.py --build --profile fusion` markers.
+
+Reason: the repository is moving to the Builder entrypoint; requiring old marker comments can break CI even when the workflow is correct.

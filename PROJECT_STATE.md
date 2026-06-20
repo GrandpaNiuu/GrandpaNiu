@@ -1,6 +1,6 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-06-20 22:12 +0800
+Last updated: 2026-06-20 22:41 +0800
 
 ## Project Purpose
 
@@ -132,6 +132,16 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Approximate scale from the initial snapshot: 297 app source files and 295 generated app module outputs.
 
 ## Latest Maintenance Note
+
+2026-06-20 22:41 +0800:
+
+- Checked current GitHub Actions state after the workflow cleanup push.
+- Found the latest `Module Factory Build` failure at commit `660d8aeb`.
+- Reproduced the failure in a repository-external worktree under `../_codex_private_logs/GrandpaNiu/`.
+- Root cause: `scripts/validate_governance_extensions.py` still required the old `fusion-build-marker: scripts/build_module.py --build --profile fusion` workflow marker and did not accept the new Builder entrypoint.
+- Fixed the governance validation to accept `Rewrite/Generator/Builder.py --profile fusion --release` while keeping compatibility with the old marker/build command.
+- No rule files, app sources, generated Release files, Android outputs, Windows outputs, Web catalog files, or report outputs were changed in the main worktree.
+- Validation passed in the temporary worktree: `python Rewrite/Generator/Builder.py --profile fusion --release --check` and `python scripts/quality_gate.py`.
 
 2026-06-20 22:12 +0800:
 

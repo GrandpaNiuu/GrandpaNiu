@@ -1,5 +1,44 @@
 # AI Maintenance Worklog
 
+## 2026-06-20 22:41 - Work Record
+
+### Task
+
+Checked failed repository workflows and repaired the latest `Module Factory Build` failure.
+
+### Start State
+
+- Branch: `repair/upstream-app-sync`
+- Git status summary: clean before this repair
+- Expected scope: workflow/governance validation script and AI maintenance records
+
+### Actual Changes
+
+- Updated `scripts/validate_governance_extensions.py`.
+- Updated `PROJECT_STATE.md`, `AI_HANDOFF.md`, `docs/ai/TASKS.md`, `docs/ai/DECISIONS.md`, and this worklog.
+- No rules, app sources, generated Release files, Android outputs, Windows outputs, Web files, or report outputs were changed in the main worktree.
+
+### Root Cause
+
+The latest `Module Factory Build` failed because `scripts/validate_governance_extensions.py` still required the old `fusion-build-marker: scripts/build_module.py --build --profile fusion` workflow marker. The workflow now uses the preferred Builder entrypoint, so the validation script rejected a correct workflow.
+
+### Test Result
+
+- `python -m py_compile scripts/validate_governance_extensions.py scripts/validate_repository.py scripts/repository_health_check.py Rewrite/Generator/Builder.py` passed.
+- `python scripts/validate_governance_extensions.py` passed.
+- `python scripts/validate_repository.py` passed.
+- In a repository-external worktree, `python Rewrite/Generator/Builder.py --profile fusion --release --check` passed.
+- In a repository-external worktree, `python scripts/quality_gate.py` passed.
+
+### Risk
+
+- Low. The fix changes validation logic only and does not change module rules or generated outputs.
+- The temporary worktree under `../_codex_private_logs/GrandpaNiu/` is local-only and must not be committed.
+
+### Next Step
+
+- Commit and push the CI repair, then confirm GitHub Actions rerun status.
+
 ## 2026-06-20 22:12 - Work Record
 
 ### Task
