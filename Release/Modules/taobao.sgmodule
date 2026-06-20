@@ -4,7 +4,6 @@
 
 [Rule]
 DOMAIN,adashx.m.taobao.com,REJECT,extended-matching,pre-matching
-DOMAIN,ossgw.alicdn.com,REJECT,extended-matching,pre-matching
 DOMAIN,ems.youku.com,REJECT,extended-matching,pre-matching
 DOMAIN,hudong.alicdn.com,REJECT,extended-matching,pre-matching
 DOMAIN,h-adashx.ut.taobao.com,REJECT,extended-matching,pre-matching

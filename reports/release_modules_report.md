@@ -96,7 +96,7 @@
 ## GrandpaNiu Taobao
 - Source: `Rewrite/Sources/Apps/taobao.conf`
 - Discovery: manual
-- Rule: 6
+- Rule: 5
 - Map Local: 11
 - Script: 2
 - MITM: 1

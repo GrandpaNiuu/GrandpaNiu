@@ -14,7 +14,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Weibo | `weibo.sgmodule` | `Rewrite/Sources/Apps/weibo.conf` | Rule:3, Map Local:18, Script:19, MITM:1 |
 | GrandpaNiu Pinduoduo | `pinduoduo.sgmodule` | `Rewrite/Sources/Apps/pinduoduo.conf` | Rule:17, Body Rewrite:16, Map Local:19, MITM:1 |
 | GrandpaNiu JD | `jd.sgmodule` | `Rewrite/Sources/Apps/jd.conf` | Rule:1, Body Rewrite:3, Map Local:1, Script:1, MITM:1 |
-| GrandpaNiu Taobao | `taobao.sgmodule` | `Rewrite/Sources/Apps/taobao.conf` | Rule:6, Map Local:11, Script:2, MITM:1 |
+| GrandpaNiu Taobao | `taobao.sgmodule` | `Rewrite/Sources/Apps/taobao.conf` | Rule:5, Map Local:11, Script:2, MITM:1 |
 | GrandpaNiu Netease Music | `netease-music.sgmodule` | `Rewrite/Sources/Apps/netease-music.conf` | Rule:3, Map Local:6, Script:7, MITM:1 |
 | GrandpaNiu MGTV | `mgtv.sgmodule` | `Rewrite/Sources/Apps/mgtv.conf` | Rule:13, Body Rewrite:23, Map Local:7, MITM:1 |
 | GrandpaNiu Huya | `huya.sgmodule` | `Rewrite/Sources/Apps/huya.conf` | Rule:6, MITM:1 |

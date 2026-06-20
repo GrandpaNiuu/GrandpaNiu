@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T18:20:22.234337Z",
+  "generated_at": "2026-06-20T18:51:31.956218Z",
   "algorithm": "sha256",
   "count": 413,
   "files": [
@@ -1595,8 +1595,8 @@
     },
     {
       "path": "Release/Modules/taobao.sgmodule",
-      "size": 3064,
-      "sha256": "d1caae4466f8513e9aa60fa089a1e71beaa12856c5f72e045a2cdf7428fa9974"
+      "size": 3002,
+      "sha256": "5f2f73158ed49864897f8b7e3da22674626ff7e1a328f3b3e4c958146aac3ac8"
     },
     {
       "path": "Release/Modules/taopiaopiao.sgmodule",
@@ -2031,7 +2031,7 @@
     {
       "path": "Web/catalog.md",
       "size": 97722,
-      "sha256": "51b38d6a5ef905499b7fa1bd172534035ccc965a7a7b89e2bc6cf073971b3d65"
+      "sha256": "898fde9d20b8b1de979d00e1384e63052585507f2a740fc2efbc4ddcab1ec6a7"
     },
     {
       "path": "Web/index.html",
@@ -2041,7 +2041,7 @@
     {
       "path": "Web/modules.html",
       "size": 380995,
-      "sha256": "8aaafb685eea2b3d3b69044160fbfc6532ac0a5b8b7422c2a097b23ec2437398"
+      "sha256": "674b95a95ab4f0e6c1defbb68dd0630d1c3c532f72a732eb6495d3f1bd0f5b90"
     },
     {
       "path": "Web/registry.md",
@@ -2051,7 +2051,7 @@
     {
       "path": "Web/release-links.json",
       "size": 132813,
-      "sha256": "8b305f2cafbbb4e9b3369fa031e67a45bdbd7cc5eee4e95d247d42709b194473"
+      "sha256": "b01a42c33b610a0bc8781eb2d2e66ea05a63978a3beb83c4a8b7af637be3f138"
     },
     {
       "path": "Web/remotes.md",
