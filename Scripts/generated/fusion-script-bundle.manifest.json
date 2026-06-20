@@ -1,0 +1,811 @@
+{
+  "bundle": {
+    "chunks": 2,
+    "path": "Scripts/generated/fusion-script-bundle.js",
+    "routes": 49,
+    "sha256": "3112d72a9d306fd485d6f4affeac979524ef8e23e60c59da5e4f28ed3fb2e6f8",
+    "sources": 49,
+    "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js",
+    "version": "grandpaniu-fusion-script-bundle-v1"
+  },
+  "fetch_failed": [],
+  "generated": "2026-06-20T00:09:11Z",
+  "policy": {
+    "allowed_prefixes": [
+      "https://kelee.one/Resource/JavaScript/",
+      "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/",
+      "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/",
+      "https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js",
+      "https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js"
+    ],
+    "fetch_timeout_seconds": 20,
+    "max_pattern_length": 5600,
+    "preserve_tokens": [
+      "spotify",
+      "youtube",
+      "bilibili",
+      "biliapi",
+      "protobuf",
+      "proto",
+      "zhihu",
+      "wechat",
+      "weixin",
+      "wechatpay",
+      "alipay",
+      "bank",
+      "insurance",
+      "finance",
+      "securities",
+      "fund",
+      "loan",
+      "credit",
+      "wallet",
+      "payment",
+      "picc",
+      "passport",
+      "login",
+      "auth",
+      "12306",
+      "umetrip",
+      "airchina",
+      "flight"
+    ]
+  },
+  "preserved_reasons": {
+    "preserved: binary body": 2,
+    "preserved: no response body": 4,
+    "preserved: not http-response": 5,
+    "preserved: protected app or account/payment token": 16,
+    "preserved: unparsable or protected": 146,
+    "preserved: upstream not in aggregator allowlist": 3
+  },
+  "routes": [
+    {
+      "chunk": 1,
+      "name": "cmp_block_084_json_merged",
+      "pattern": "(?:^http(s:\\/\\/tiebac|:\\/\\/c\\.tieba)\\.baidu\\.com\\/(c\\/(s\\/sync|f\\/(ad\\/getSplashAd|frs\\/(page|threadlist|generalTabList)|pb\\/(pic)?page|excellent\\/personalized))$|tiebaads\\/commonbatch\\?)|^https?:\\/\\/(tiebac|c\\.tieba)\\.baidu\\.com\\/(c\\/(s\\/sync|f\\/(ad\\/getSplashAd|frs\\/(page|threadlist|generalTabList)|pb\\/(pic)?page|excellent\\/personalized))$|tiebaads\\/commonbatch\\?))",
+      "pattern_sha256": "e590a3fb10f02ead2d369e82c4170d0ac59274961a5eb7acce8a589a4bff11b0",
+      "source_key": "src_9d456958a06617ec",
+      "source_url": "https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_allad_001_weibo",
+      "pattern": "^https?:\\/\\/api\\.weibo\\.cn\\/2\\/groups\\/allgroups\\/v2\\?",
+      "pattern_sha256": "d4e89aa3a4f2eb325e9c39b35eaa6f25520cb0234d829e457f11398d5130e6d9",
+      "source_key": "src_b1f8a6bf7dab7e05",
+      "source_url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/weibo.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_allad_003_keep",
+      "pattern": "^https?:\\/\\/api\\.gotokeep\\.com\\/nuocha\\/course\\/v\\d/\\w+\\/preview",
+      "pattern_sha256": "6cd10038035471aecc4e9b024670be4f1aa6e356a12880386a7c29b5e87f93ef",
+      "source_key": "src_e1e91a5fcd96442d",
+      "source_url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/keep.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_allad_005_mgtv",
+      "pattern": "^https?:\\/\\/mob-st\\.bz\\.mgtv\\.com\\/odin\\/c\\d\\/channel\\/index\\?",
+      "pattern_sha256": "5c684e692db2733db7ca33b57444959d1abcf88112179c1b21221e0cbca1a37e",
+      "source_key": "src_87119b51bccf2fd6",
+      "source_url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/cntv.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_allad_006_tflj",
+      "pattern": "^https?:\\/\\/tf02\\.istrongcloud\\.com\\/member\\/v[0-9.]+\\/home",
+      "pattern_sha256": "8d801351f337d7d12e4ddbcbe034f9563e187553f92f69b79888d7ba4fb053e0",
+      "source_key": "src_2b71a171bbad1e89",
+      "source_url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/tflj.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_allad_012_dushu365",
+      "pattern": "^https?:\\/\\/g(.*)\\.dushu365\\.com\\/task-orchestration\\/taskCenter\\/api\\/v101\\/taskList",
+      "pattern_sha256": "dab173ffb7a80067caa26b2d1269f04fa2287f71dde2d2827adb62f19c70b727",
+      "source_key": "src_bac54b78e31baf6e",
+      "source_url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/dushu365.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_allad_017_xiaohongshu",
+      "pattern": "^https?:\\/\\/edith\\.xiaohongshu\\.com\\/api\\/sns\\/v\\d+\\/interaction\\/comment\\/video\\/download\\?",
+      "pattern_sha256": "99f67857e4e09775cd05bcaa78d1677239a2853a3ecf227253a1e075e53688d5",
+      "source_key": "src_55f495c845d81ee7",
+      "source_url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xiaohongshu.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_allad_025_rrtv",
+      "pattern": "^https?:\\/\\/api\\.rr\\.tv\\/drama\\/app\\/get_combined_drama_detail",
+      "pattern_sha256": "10441026e1deec2b7f06b52b53cf9bcf1f97eefc68270ebade7e8d9df628df70",
+      "source_key": "src_60c8814c0ae87557",
+      "source_url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/rrtv.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_allad_026_163music",
+      "pattern": "^https?:\\/\\/interface\\d?\\.music\\.163\\.com\\/w?e?api\\/song\\/play\\/more\\/list\\/v\\d",
+      "pattern_sha256": "0ec70a2f74bfd3123f867f0a3a72c73a6ddcc4af22f6a5fc29021ed122a432b4",
+      "source_key": "src_acc5f4890f34bdda",
+      "source_url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163music.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_allad_028_xmgtv",
+      "pattern": "^https?:\\/\\/mgesq\\.api\\.mgtv\\.com\\/dsl\\/index\\.+",
+      "pattern_sha256": "3da8f7dd0f7dd61b1f0ab4acad5b926e55d23d67ed258c983332b281f9dc6bc7",
+      "source_key": "src_de2395dcd605087d",
+      "source_url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xmgtv.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_allad_066_wjx",
+      "pattern": "^https?:\\/\\/kaoshi\\.wjx\\.top\\/wjx\\/join\\/completemobile",
+      "pattern_sha256": "88c16412cbc98675e4af490c6f6896da4e5e9517cc63250a44feac30fb2d03e0",
+      "source_key": "src_01b098e7bfc4092b",
+      "source_url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/wjx.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_block_083_ad",
+      "pattern": "^https?:\\/\\/[\\d\\.]+\\/3f1\\/cards\\.iqiyi\\.com\\/(views_home\\/3\\.0\\/qy_home|waterfall\\/3\\.0\\/feed)\\?",
+      "pattern_sha256": "191e724fac9a131bb32918763563821ff3de8de1bd2df8991f8f088f97c9c25d",
+      "source_key": "src_47c242029d83452d",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_block_087_ad",
+      "pattern": "^https?:\\/\\/ct\\.xiaojukeji\\.com\\/agent\\/v3\\/feeds",
+      "pattern_sha256": "4ee7760c6e6b191727ebe265f8a7607ff6f41d16d96d95aed54c6d658bbb700b",
+      "source_key": "src_6497035a5ea6a19f",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js"
+    },
+    {
+      "chunk": 1,
+      "name": "cmp_block_095_rrtv_json",
+      "pattern": "^https?:\\/\\/api\\.rr\\.tv\\/ad\\/getAll",
+      "pattern_sha256": "eaca56bcb4c57249bf40a928320c5a47b8a3d9ff982e31387e3494dc378949c3",
+      "source_key": "src_26050e48827affcf",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/rrtv_json.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app2smile_qqnews_json",
+      "pattern": "^https:\\/\\/(news\\.ssp\\.qq\\.com\\/app|r\\.inews\\.qq\\.com\\/(get(QQNewsUnreadList|TagFeedList)|gw\\/page\\/(channel_feed|event_detail)|news_feed\\/hot_module_list))",
+      "pattern_sha256": "4cba1cd03e6488c275012045505ec3b47a40e77ef04dea287beb1d52fe68521b",
+      "source_key": "src_a4ac231868fb4ed3",
+      "source_url": "https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.ali-yun-drive.1_merged",
+      "pattern": "(?:^https://(biz)?api\\.alipan\\.com/apps/v\\d/users?/home/(news|widgets)|^https://member\\.alipan\\.com/v1/users/onboard_list)",
+      "pattern_sha256": "131a89fdb11260d4baaae26480ed2f507945b6bc312a594a5dbf9c5bc8a50c55",
+      "source_key": "src_37eca0771b704596",
+      "source_url": "https://kelee.one/Resource/JavaScript/AliYunDrive/AliYunDrive_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.amap.1_merged",
+      "pattern": "(?:^https:\\/\\/m5\\.amap\\.com\\/ws\\/aos\\/perception\\/publicTravel\\/beforeNavi\\?|^https:\\/\\/m5\\.amap\\.com\\/ws\\/bus\\/plan\\/integrate\\?|^https:\\/\\/m5\\.amap\\.com\\/ws\\/c3frontend\\/(?:af-(?:hotel|launch)\\/page\\/main|af-nearby\\/nearby)|^https:\\/\\/m5\\.amap\\.com\\/ws\\/perception\\/drive\\/(?:routeInfo|routePlan)|^https:\\/\\/m5\\.amap\\.com\\/ws\\/shield\\/search_bff\\/hotword\\?|^https:\\/\\/m5\\.amap\\.com\\/ws\\/shield\\/search_poi\\/(?:mps|search\\/sp|sug|tips_operation_location)|^https:\\/\\/m5\\.amap\\.com\\/ws\\/faas\\/amap-navigation\\/(?:card-service-plan-home|main-page)|^https:\\/\\/m5\\.amap\\.com\\/ws\\/shield\\/frogserver\\/aocs\\/updatable\\/1\\?|^https:\\/\\/m5\\.amap\\.com\\/ws\\/shield\\/dsp\\/profile\\/index\\/nodefaasv3\\?|^https:\\/\\/m5\\.amap\\.com\\/ws\\/shield\\/search\\/nearbyrec_smart\\?|^https:\\/\\/m5\\.amap\\.com\\/ws\\/valueadded\\/alimama\\/splash_screen\\?|^https:\\/\\/m5-zb\\.amap\\.com\\/ws\\/boss\\/(?:car\\/order\\/content_info|order_web\\/friendly_information)|^https:\\/\\/m5-zb\\.amap\\.com\\/ws\\/promotion-web\\/resource(\\/home)?\\?|^https:\\/\\/(?:info|m5)\\.amap\\.com\\/ws\\/shield\\/search\\/(?:common\\/coupon\\/info|poi\\/detail))",
+      "pattern_sha256": "e4c35f190ed1ade1bc036e2f863da731e3a6b0b89f6df01ac5d44087da3454a4",
+      "source_key": "src_19b1882f8decd5f0",
+      "source_url": "https://kelee.one/Resource/JavaScript/Amap/Amap_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.auto-home.1_merged",
+      "pattern": "(?:^https://news\\.app\\.autohome\\.com\\.cn/news_v\\d+(?:\\.\\d+){2}/news/homenavigation|^https://(a\\.athm\\.cn/)?mobile\\.app\\.autohome\\.com\\.cn/platform/carserver/((usercenter/getservicecards)|(carcard/allcard)|(carcard/mycardv\\d+)|(carcard/cards))|^https://(a\\.athm\\.cn/)?club\\.app\\.autohome\\.com\\.cn/club_v\\d+(?:\\.\\d+){2}/club/index/businessv\\d+|^https://(a\\.athm\\.cn/)?cars\\.app\\.autohome\\.com\\.cn/carstreaming/selectcarportal/reclist|^https://(a\\.athm\\.cn/)?cars\\.app\\.autohome\\.com\\.cn/carstreaming/selectcarportal/seriestopwithtagscard|^https://(a\\.athm\\.cn/)?apiautoappusc\\.che168\\.com/apic/v\\d+/gethomepagefeed)",
+      "pattern_sha256": "fff901943bc54be8770616aa95e601b4bcaefbe9814d38df4114399d81a83f2f",
+      "source_key": "src_3a6c3cc31e79d9bc",
+      "source_url": "https://kelee.one/Resource/JavaScript/AutoHome/AutoHome_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.baby-tree.1_merged",
+      "pattern": "(?:^http://api\\.babytree\\.com/bafconfigcenter_intf/config/get\\?|^http://go\\.babytree\\.com/go_pregnancy/api/(app_index/get_app_tab|cms_column/get_column_list|feeds/get_index_feeds_list|user/get_user_info)\\?|^http://go\\.babytree\\.com/go_search/api/mobile_search_new/search_index)",
+      "pattern_sha256": "41e2a0e28bd49deebb7cd0ae68527e6fa33f3400ebb8ed7d17c19074c67a580e",
+      "source_key": "src_cbe221cf5dc04adb",
+      "source_url": "https://kelee.one/Resource/JavaScript/BabyTree/BabyTree_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.baidu-input-method.1",
+      "pattern": "^https?://mime\\.baidu\\.com/(imrobot/v1/pub/relation/get_robot_list|v5/custom_page/(layout|getdata))",
+      "pattern_sha256": "78a440f596aa9678d08616c09307af852308a3338a1cbe233b5a87e09f7abfd6",
+      "source_key": "src_83bee2441664cf5a",
+      "source_url": "https://kelee.one/Resource/JavaScript/Baidu_input_method/Baidu_input_method_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.baidu.1",
+      "pattern": "\"^https?:\\/\\/(www|m)\\.baidu\\.com\\/?($|\\?from=\\w{8,9})\"",
+      "pattern_sha256": "08d62771e271bcd192601595b561d3d8929f23e28a4f4e0c727a6f22d1f5c0be",
+      "source_key": "src_c5a7ae3bef67c08a",
+      "source_url": "https://kelee.one/Resource/JavaScript/BaiduSearch/BaiduSearchHomePage_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.blued.1",
+      "pattern": "^https?://social\\.blued\\.cn/users/.+/more/ios\\?v=2",
+      "pattern_sha256": "59fac0bfbff2809e12fb45ede7162267acaa275b1ba2db45077633594a51c26a",
+      "source_key": "src_e118fec1aaae6a11",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/blued.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.boo-hee.1",
+      "pattern": "^https://api\\.boohee\\.com/meta-interface/v1/index/plaza-flow\\?",
+      "pattern_sha256": "2823e9c9351030cafaf619f44547de9014dbec3fb5536b0ff286bf374f66b94d",
+      "source_key": "src_28f4dc541f88bac8",
+      "source_url": "https://kelee.one/Resource/JavaScript/BooHee/BooHee_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.caixin-media.1_merged",
+      "pattern": "(?:^https://entities\\.caixin\\.com/api/dataplus/columns|^https://gateway\\.caixin\\.com/api/app-api/(caixinapp/appinfo|search/getkeyword)|^https://gateway\\.caixin\\.com/api/app-content/fm/index/list\\?|^https://gg\\.caixin\\.com/s\\?z=caixin&op=\\d|^https://mappsv5\\.caixin\\.com/articlev5/\\d+/\\d+\\.json$|^https://mapps?v5\\.caixin\\.com/(channelv5/list|/?index_page_v5/)\\w+)",
+      "pattern_sha256": "ca11c1befb9e5fcb9d1c5d57b8a43d59a1e10fd8bde45c4c53cb3503f399ea38",
+      "source_key": "src_1717ca508ca6ae8a",
+      "source_url": "https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.caiyun-weather.1",
+      "pattern": "^https:\\/\\/(wrapper\\.cyapi\\.cn|api\\.caiyunapp\\.com|cdn-w\\.caiyunapp\\.com)\\/v1\\/activity\\?",
+      "pattern_sha256": "15b3727e0ab0140f8ef16fbc69d7150ad1aff31914560ed23ed9592f8369285f",
+      "source_key": "src_b42c74e37c3cad92",
+      "source_url": "https://kelee.one/Resource/JavaScript/ColorfulClouds/ColorfulClouds_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.coolapk.1_merged",
+      "pattern": "(?:^https?://api\\.coolapk\\.com/v6/feed/(detail|replyList)\\?|^https?://api\\.coolapk\\.com/v6/main/(dataList|indexV8|init)|^https?://api\\.coolapk\\.com/v6/page/dataList\\?)",
+      "pattern_sha256": "03080a4bcf52ef7f1db8e9d742d9aaa6b0cb013d6fa741c8d382595a357425c8",
+      "source_key": "src_14d1e419b620df50",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/coolapk.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.douyu.1",
+      "pattern": "^https://apiv2\\.douyucdn\\.cn/mgapi/livenc/home/getRecV3",
+      "pattern_sha256": "de76ebb98cf7e441e61288fa960e07abb09af892a472517515d62b0078c42c2c",
+      "source_key": "src_c2037a6bd2937364",
+      "source_url": "https://kelee.one/Resource/JavaScript/Douyu/Douyu_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.dubbing-show.1",
+      "pattern": "^https://iosapi\\.peiyinxiu\\.com/Api/Film/GetConfigValue",
+      "pattern_sha256": "c572f102d0f97e1e58abdafe5f4c74ff5ce8d7ce5ac7241ce785b5be8ab486e0",
+      "source_key": "src_694792f21aae2fcb",
+      "source_url": "https://kelee.one/Resource/JavaScript/DubbingShow/DubbingShow_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.flyer-tea.1_merged",
+      "pattern": "(?:^https://www\\.flyert\\.com\\.cn/api/mobile/index\\.php\\?version=5|^https://www\\.flyert\\.com\\.cn/api/mobile/index\\.php\\?module=plugin&id=k_misign:sign)",
+      "pattern_sha256": "c5483334f80c73839aa3e85a37a47b98cbbe67004a8a12b9cc915c65364ae211",
+      "source_key": "src_dd1adf0ea56d8040",
+      "source_url": "https://kelee.one/Resource/JavaScript/FlyerTea/FlyerTea_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.hupu.1_merged",
+      "pattern": "(?:^https://fairy\\.mobileapi\\.hupu\\.com/mang/preview/banners|^https://bbs\\.mobileapi\\.hupu\\.com/\\d/\\d\\.\\d\\.\\d+/bbsallapi/lego/data|^https://games\\.mobileapi\\.hupu\\.com/\\d/\\d\\.\\d\\.\\d+/buffer/hotList|^https://games\\.mobileapi\\.hupu\\.com/\\d/\\d\\.\\d\\.\\d+/bplapi/user/v1/more)",
+      "pattern_sha256": "eb50b4ee2f1c8a683e3ecd0c9f7801f6795165f4a78760a362a393d8473b5ff2",
+      "source_key": "src_09e8dc8c196b43ef",
+      "source_url": "https://kelee.one/Resource/JavaScript/HUPU/HUPU_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.i-mai-cai.1",
+      "pattern": "^https://portal-portm\\.meituan\\.com/horn_ios/mergeRequest",
+      "pattern_sha256": "304b19601a7a9792fc16bf65996053e60be9f6c1817cb2f544f8fdd7888e92aa",
+      "source_key": "src_1560243f758f9a73",
+      "source_url": "https://kelee.one/Resource/JavaScript/iMaiCai/iMaiCai_remove_ads.js"
+    },
+    {
+      "chunk": 1,
+      "name": "app.jd.1",
+      "pattern": "^https:\\/\\/api\\.m\\.jd\\.com\\/client\\.action\\?functionId=(deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome)",
+      "pattern_sha256": "4d5db2b36c861e4175b0a46a8b3defe1f6791c321b21cc9fc118ae793e684d18",
+      "source_key": "src_0c08b6ade279c82c",
+      "source_url": "https://kelee.one/Resource/JavaScript/JD/JD_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.kebida-dushu.1_merged",
+      "pattern": "(?:^https?://g[a-z0-9-]+\\.dushu365\\.com/chief-orch/home/bookPortal/v105/category|^https?://g[a-z0-9-]+\\.dushu365\\.com/abtest-front/banner-modular/get|^https?://g[a-z0-9-]+\\.dushu365\\.com/resource-orchestration-system/book/channel/v100/info|^https?://g[a-z0-9-]+\\.dushu365\\.com/fs-member/user/profile/v100/detail|^https?://g[a-z0-9-]+\\.dushu365\\.com/chief-orch/home/bookPortal/v111/forApp|^https?://g[a-z0-9-]+\\.dushu365\\.com/sns-orchestration-system/homePage/api/v100/myPage|^https?://g[a-z0-9-]+\\.dushu365\\.com/task-orchestration/taskCenter/api/v101/taskList|^https?://g[a-z0-9-]+\\.dushu365\\.com/resource-orchestration-system/book/v101/content|^https?://g[a-z0-9-]+\\.dushu365\\.com/user-orchestration/user/api/v101/ceiltip)",
+      "pattern_sha256": "9bfd79bac65257e672b59da057a7a84235fb625ceeab4655f68857d261e4feb3",
+      "source_key": "src_dbe13bf5df247a34",
+      "source_url": "https://kelee.one/Resource/JavaScript/KebidaDushu/KebidaDushu_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.kuai-kan-comic.1_merged",
+      "pattern": "(?:^https://(cdn-)?api\\.kkmh\\.com/v\\d/ironman/comic/recommend|^https://(cdn-)?api\\.kkmh\\.com/v\\d/ironman/discovery_v\\d/tab_list_v\\d|^https://(cdn-)?social\\.kkmh\\.com/v\\d/graph/homepage/comicVideo/v\\d/configs|^https://(cdn-)?social\\.kkmh\\.com/v\\d/graph/unified_feed$)",
+      "pattern_sha256": "d89c563b429cc795f89a43433b31770553a5c5b847f8ce47d0284d5750ba5b4d",
+      "source_key": "src_5d403a80285ee588",
+      "source_url": "https://kelee.one/Resource/JavaScript/KuaiKanComic/KuaiKanComic_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.mai-mai.1",
+      "pattern": "^https://(h3\\.)?open\\.taou\\.com/maimai/(feed|gossip)/v\\d/(focus_feed|gossip_detail_comment|feed_detail_comment?)\\?",
+      "pattern_sha256": "aeff3a3cf499a5b2c18f140c7bf94428b4577e94f0683f6e9899bfdb98a5c1c6",
+      "source_key": "src_88e0dafed4cd147b",
+      "source_url": "https://kelee.one/Resource/JavaScript/MaiMai/MaiMai_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.meitu-myxj.1",
+      "pattern": "^https://api\\.meiyan\\.com/operation/home\\.json\\?",
+      "pattern_sha256": "e1570ef7afdcfdfd4783a9a6ab2babb8476c92d348d2ba10d65e0aa9b3891b83",
+      "source_key": "src_b158d39001e0c748",
+      "source_url": "https://kelee.one/Resource/JavaScript/MeituMYXJ/MeituMYXJ_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.mkz.1",
+      "pattern": "^https://base\\.mkzcdn\\.com/app/config/",
+      "pattern_sha256": "39e7dd7a2a7b6f6ab82edc070e09dfec9641b31030cf28315616bdd7fbf08892",
+      "source_key": "src_34857e13ac47a2ad",
+      "source_url": "https://kelee.one/Resource/JavaScript/MKZ/MKZ_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.net-ease-godlike.1",
+      "pattern": "^https://app-conf\\.ds\\.163\\.com/v1/app/base/conf/static/start-config\\?os=ios",
+      "pattern_sha256": "719f699d45067ecb095f81c7c3b9ca82be8c973f9d9b9bbc9ad4cc984b15244f",
+      "source_key": "src_57cfa1b30d9eed78",
+      "source_url": "https://kelee.one/Resource/JavaScript/NetEaseGodlike/NetEaseGodlike_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.netease-news.1_merged",
+      "pattern": "(?:^https://nex\\.163\\.com/q|^https://gw\\.m\\.163\\.com/nc/api/v1/feed/dynamic/headline-list\\?|^https://gw\\.m\\.163\\.com/nc/api/v1/search/hot-word)",
+      "pattern_sha256": "366d7ab468671a3bd23f57974128176561dfc9886a3ebb016af33c21da723b5d",
+      "source_key": "src_8fd25976d1ef634a",
+      "source_url": "https://kelee.one/Resource/JavaScript/NeteaseNews/NeteaseNews_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.pu-pu-mall.1_merged",
+      "pattern": "(?:^https://j1\\.pupuapi\\.com/client/marketing/banner/v7|^https://j1\\.pupuapi\\.com/client/marketing/banner/search_component_banner|^https://j1\\.pupuapi\\.com/client/search/hot_keywords/v3|^https://j1\\.pupuapi\\.com/client/app_resource/resource_preload/list_h5_resource|^https://j1\\.pupuapi\\.com/client/recommendation/interests/products|^https://j1\\.pupuapi\\.com/client/marketing/advertisement/v1)",
+      "pattern_sha256": "340ce14cfa2071f534812e35d50f66250758ba0c201670e2d96bbe717dffed68",
+      "source_key": "src_15d2e267fe35d511",
+      "source_url": "https://kelee.one/Resource/JavaScript/PuPuMall/PuPuMall_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.rednote.1_merged",
+      "pattern": "(?:^https:\\/\\/edith\\.xiaohongshu\\.com\\/api\\/sns\\/v1\\/note\\/(?:imagefeed|live_photo\\/save)|^https:\\/\\/edith\\.xiaohongshu\\.com\\/api\\/sns\\/v1\\/system\\/service\\/ui\\/config\\?|^https:\\/\\/edith\\.xiaohongshu\\.com\\/api\\/sns\\/v1\\/system_service\\/config\\?|^https:\\/\\/edith\\.xiaohongshu\\.com\\/api\\/sns\\/v2\\/system_service\\/splash_config|^https:\\/\\/edith\\.xiaohongshu\\.com\\/api\\/sns\\/v2\\/(?:note\\/widgets|user\\/followings\\/followfeed)|^https:\\/\\/edith\\.xiaohongshu\\.com\\/api\\/sns\\/v4\\/followfeed\\?|^https:\\/\\/edith\\.xiaohongshu\\.com\\/api\\/sns\\/v5\\/recommend\\/user\\/follow_recommend\\?|^https:\\/\\/edith\\.xiaohongshu\\.com\\/api\\/sns\\/(?:v1\\/interaction\\/comment\\/video\\/download|v5\\/note\\/comment\\/list)|^https:\\/\\/edith\\.xiaohongshu\\.com\\/api\\/sns\\/(?:v2\\/note\\/feed|v3\\/note\\/videofeed)|^https:\\/\\/(?:edith|rec)\\.xiaohongshu\\.com\\/api\\/sns\\/v6\\/homefeed\\?|^https:\\/\\/(?:edith|so)\\.xiaohongshu\\.com\\/api\\/sns\\/v10\\/search\\/notes\\?|^https:\\/\\/(?:edith|rec|www)\\.xiaohongshu\\.com\\/api\\/sns\\/(?:v4\\/note\\/videofeed|v10\\/note\\/video\\/save))",
+      "pattern_sha256": "cfcfa6bbad44ba62ce628bb01ebe8967f1addba14f4d1a7912d46eef61fb45be",
+      "source_key": "src_a29fbc10f00cfc6e",
+      "source_url": "https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.risk-bird.1",
+      "pattern": "^https://m\\.riskbird\\.com/prod-qbb-api/query/person/personRecommend",
+      "pattern_sha256": "198dd171c5b0a179968ec347074b78454d094e25b0df9c851eb6f779da9907bb",
+      "source_key": "src_bb38729be757d53f",
+      "source_url": "https://kelee.one/Resource/JavaScript/RiskBird/RiskBird_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.shu-qi-center-reader.1",
+      "pattern": "^https://ocean\\.shuqireader\\.com/sqios/render/render/page/bookstore$",
+      "pattern_sha256": "dbff8968fe34d11b48de872da9ca536c98463bfbd99804f6b8afdeecaf1cdd94",
+      "source_key": "src_b3647f0da5e106d6",
+      "source_url": "https://kelee.one/Resource/JavaScript/ShuQiCenterReader/ShuQiCenterReader_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.soda-music.1",
+      "pattern": "^https://(beta-luna\\.douyin|api5-lq\\.qishui)\\.com/luna/me/recently-played-media\\?",
+      "pattern_sha256": "b3ed00da45ebdf02c14f2935c6572905f892191d521d47038362ca4dd6538ccf",
+      "source_key": "src_2531c9fe6208f110",
+      "source_url": "https://kelee.one/Resource/JavaScript/SodaMusic/SodaMusic_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.soul.1",
+      "pattern": "^https:\\/\\/(?:api-\\w+|chat-live|post)\\.soulapp\\.cn\\/(?:chat\\/limitInfo|chatroom\\/chatClassifyRoomList|homepage\\/diamond\\/position\\/info|v2\\/post\\/recSquare\\/subTabs|v6\\/planet\\/config)",
+      "pattern_sha256": "667cf7084d7eece9db6c8de616a16668128dcda944b253e97776c692d2fb5656",
+      "source_key": "src_6659152f24c8df86",
+      "source_url": "https://kelee.one/Resource/JavaScript/Soul/Soul_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.taobao.1_merged",
+      "pattern": "(?:^https:\\/\\/guide-acs\\.m\\.taobao\\.com\\/gw\\/mtop\\.taobao\\.(cloudvideo\\.video\\.query|wireless\\.home\\.splash\\.awesome\\.get)|^https:\\/\\/poplayer\\.template\\.alibaba\\.com\\/\\w+\\.json)",
+      "pattern_sha256": "0860906c326286e5c7c50af6a58c835fa17ca9289717b3f2edf914d78ccafcd5",
+      "source_key": "src_9d853d73b21f0772",
+      "source_url": "https://kelee.one/Resource/JavaScript/Taobao/Taobao_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.tv-assistant.1",
+      "pattern": "^https://saas\\.hpplay\\.cn/api/lebo-desk/endpoint/app-resource/app_tab_red_dot\\?user-tag=1$",
+      "pattern_sha256": "3fd683b4b3a6f1381516e13b3a55886fa23be093d664ae22a825b2721d8d2052",
+      "source_key": "src_6df6a61bc422d4a6",
+      "source_url": "https://kelee.one/Resource/JavaScript/TV_Assistant/TV_Assistant_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.uki.1_merged",
+      "pattern": "(?:^https://api\\.chenlongtech\\.cn/v\\d/lover/productList|^https://api\\.chenlongtech\\.cn/v\\d/friends/closeFriend/home|^https://api\\.chenlongtech\\.cn/v\\d/party/config$|^https://api\\.chenlongtech\\.cn/v1/post/fetchSearchRecommend$)",
+      "pattern_sha256": "9786c590dace1cd1a317d770d3a82bd492f4e0511300af198849eae98af43f7a",
+      "source_key": "src_6cf1d356d9f8222e",
+      "source_url": "https://kelee.one/Resource/JavaScript/Uki/Uki_remove_ads.js"
+    },
+    {
+      "chunk": 2,
+      "name": "app.weibo.1_merged",
+      "pattern": "(?:^https:\\/\\/api\\.weibo\\.cn\\/2\\/(?:checkin\\/show|client\\/publisher_list|push\\/active)|^https:\\/\\/api\\.weibo\\.cn\\/2\\/groups\\/allgroups\\/v2\\?|^https:\\/\\/api\\.weibo\\.cn\\/2\\/(?:cardlist|page)|^https:\\/\\/api\\.weibo\\.cn\\/2\\/comments\\/build_comments\\?|^https:\\/\\/api\\.weibo\\.cn\\/2\\/(?:container\\/asyn|flowlist|flowpage)|^https:\\/\\/api\\.weibo\\.cn\\/2\\/friendships\\/(?:create|destroy)|^https:\\/\\/api\\.weibo\\.cn\\/2\\/profile\\/(?:container_timeline|dealatt|me|statuses\\/tab|userinfo)|^https:\\/\\/api\\.weibo\\.cn\\/2\\/shproxy\\/chaohua\\/discovery\\/searchactive\\?|^https:\\/\\/api\\.weibo\\.cn\\/2\\/statuses\\/(?:container_detail(_comment)?|container_timeline(?:_hot|_topic|_topicpage|_unread)?|repost_timeline|unread_hot_timeline)|^https:\\/\\/api\\.weibo\\.cn\\/2\\/statuses\\/(?:extend|show)\\?|^https:\\/\\/api\\.weibo\\.cn\\/2\\/video\\/(?:full_screen_stream|tiny_stream_mid_detail|tiny_stream_video_list)\\?|^https:\\/\\/api\\.weibo\\.cn\\/2\\/!\\/huati\\/discovery_home_bottom_channels\\?|^https:\\/\\/api\\.weibo\\.cn\\/2\\/direct_messages\\/user_list\\?|^https:\\/\\/api\\.weibo\\.cn\\/2\\/messageflow\\/notice\\?|^https:\\/\\/api\\.weibo\\.cn\\/2\\/search\\/(?:container_timeline|finder)\\?|^https:\\/\\/api\\.weibo\\.cn\\/2\\/searchall\\?|^https:\\/\\/bootpreload\\.uve\\.weibo\\.com\\/v[12]\\/ad\\/preload|^https:\\/\\/sdkapp\\.uve\\.weibo\\.com\\/interface\\/sdk\\/sdkad\\.php|^https:\\/\\/wbapp\\.uve\\.weibo\\.com\\/(?:preload\\/get_ad|wbapplua\\/wbpullad\\.lua))",
+      "pattern_sha256": "93fabedced7ce681fca29efad53054b6b4caf068a4722baf48899803412c9d92",
+      "source_key": "src_dc0eef05c006b1a8",
+      "source_url": "https://kelee.one/Resource/JavaScript/Weibo/Weibo_remove_ads.js"
+    }
+  ],
+  "schema_version": 1,
+  "sources": [
+    {
+      "bytes": 911,
+      "key": "src_01b098e7bfc4092b",
+      "lines": 23,
+      "sha256": "bd51ef96a3ef5d72ed10f7e3a90f2d8d45b13e3f66049a5cedf706295b14c4da",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/wjx.js"
+    },
+    {
+      "bytes": 1458,
+      "key": "src_09e8dc8c196b43ef",
+      "lines": 47,
+      "sha256": "7d24b852a6d756bf31f9086841bf63f64172e38237e2b2f7ccde43458cf4a010",
+      "url": "https://kelee.one/Resource/JavaScript/HUPU/HUPU_remove_ads.js"
+    },
+    {
+      "bytes": 6828,
+      "key": "src_0c08b6ade279c82c",
+      "lines": 199,
+      "sha256": "4944c4e54c34262525f87725cacaae4ee1b7fc7026314a5c6f312ce14e0b26b2",
+      "url": "https://kelee.one/Resource/JavaScript/JD/JD_remove_ads.js"
+    },
+    {
+      "bytes": 2473,
+      "key": "src_14d1e419b620df50",
+      "lines": 84,
+      "sha256": "58002f35b6ed5dbcb277e4571f231cc5491d9cd2d04f72ad9c63d4b35b15c003",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/coolapk.js"
+    },
+    {
+      "bytes": 223,
+      "key": "src_1560243f758f9a73",
+      "lines": 3,
+      "sha256": "81f3916b30c4a6301a3e6baa29537127e5856fbe99f67f039f6bb6a6e3df759a",
+      "url": "https://kelee.one/Resource/JavaScript/iMaiCai/iMaiCai_remove_ads.js"
+    },
+    {
+      "bytes": 1751,
+      "key": "src_15d2e267fe35d511",
+      "lines": 67,
+      "sha256": "3943ffe3f9aadb79397ce207688adda9655b7d58790a2993d6cf2c534c991cf1",
+      "url": "https://kelee.one/Resource/JavaScript/PuPuMall/PuPuMall_remove_ads.js"
+    },
+    {
+      "bytes": 2451,
+      "key": "src_1717ca508ca6ae8a",
+      "lines": 78,
+      "sha256": "e83fa662c9aa9757bb3a6b76ac5825b4d32de59f80c129d6f2e417179876b84d",
+      "url": "https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js"
+    },
+    {
+      "bytes": 23520,
+      "key": "src_19b1882f8decd5f0",
+      "lines": 672,
+      "sha256": "9c6a38b93dece39e60a11e6c196e5e184dfddbe339cdd6406426720eac093336",
+      "url": "https://kelee.one/Resource/JavaScript/Amap/Amap_remove_ads.js"
+    },
+    {
+      "bytes": 990,
+      "key": "src_2531c9fe6208f110",
+      "lines": 40,
+      "sha256": "b2ad07429194c0960afd566c0b3f9019868fe39af7102e3d1adef8c574734891",
+      "url": "https://kelee.one/Resource/JavaScript/SodaMusic/SodaMusic_remove_ads.js"
+    },
+    {
+      "bytes": 25962,
+      "key": "src_26050e48827affcf",
+      "lines": 339,
+      "sha256": "cf09cdde8a0b698b55cbc1bf93e03e3e5b6ee1f5f87fe0bed5f46557448766dc",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/rrtv_json.js"
+    },
+    {
+      "bytes": 363,
+      "key": "src_28f4dc541f88bac8",
+      "lines": 11,
+      "sha256": "8b044d530e905fd358dbe155ec75aa8ee460450bed5bf8634556716d544ff388",
+      "url": "https://kelee.one/Resource/JavaScript/BooHee/BooHee_remove_ads.js"
+    },
+    {
+      "bytes": 688,
+      "key": "src_2b71a171bbad1e89",
+      "lines": 16,
+      "sha256": "777ffcdf134ae95ab7de21242131a37d0b1954fd303120bdfdcc052273956433",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/tflj.js"
+    },
+    {
+      "bytes": 250,
+      "key": "src_34857e13ac47a2ad",
+      "lines": 13,
+      "sha256": "58839265b2dba8ed19a320060b8569e70e5cfcd71ce8e901e3dfba093e847bc6",
+      "url": "https://kelee.one/Resource/JavaScript/MKZ/MKZ_remove_ads.js"
+    },
+    {
+      "bytes": 1205,
+      "key": "src_37eca0771b704596",
+      "lines": 43,
+      "sha256": "c587bc833f498e4cb9287eb2d3e75c14b89b6b2fe21f6c7865150b51b91d85cb",
+      "url": "https://kelee.one/Resource/JavaScript/AliYunDrive/AliYunDrive_remove_ads.js"
+    },
+    {
+      "bytes": 2506,
+      "key": "src_3a6c3cc31e79d9bc",
+      "lines": 77,
+      "sha256": "c39bdfeea8e74c9b68fb21f867408e7ac2d500b37710494b32b86ef7394633f2",
+      "url": "https://kelee.one/Resource/JavaScript/AutoHome/AutoHome_remove_ads.js"
+    },
+    {
+      "bytes": 31607,
+      "key": "src_47c242029d83452d",
+      "lines": 873,
+      "sha256": "6457ed64aea708526d3b440c54f8ff9e7d41aa9a49d6ae4942be2bb7952d12d4",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js"
+    },
+    {
+      "bytes": 25261,
+      "key": "src_55f495c845d81ee7",
+      "lines": 392,
+      "sha256": "006a70e8b99ea17ca853c8d7d940f8bc869264058dda738e86b55c3af530b428",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xiaohongshu.js"
+    },
+    {
+      "bytes": 4668,
+      "key": "src_57cfa1b30d9eed78",
+      "lines": 146,
+      "sha256": "02e6eb6bf078c678c584c742d4a645be097f8854bc459a2748c2cedad765b8fe",
+      "url": "https://kelee.one/Resource/JavaScript/NetEaseGodlike/NetEaseGodlike_remove_ads.js"
+    },
+    {
+      "bytes": 2424,
+      "key": "src_5d403a80285ee588",
+      "lines": 76,
+      "sha256": "e9f4e623df954abbaa76b3e67059b370d7df97e71c16067fc5014d2c1a81a911",
+      "url": "https://kelee.one/Resource/JavaScript/KuaiKanComic/KuaiKanComic_remove_ads.js"
+    },
+    {
+      "bytes": 26493,
+      "key": "src_60c8814c0ae87557",
+      "lines": 351,
+      "sha256": "09477a48e240a48d3dbbacb8f2b94247193c6225348953c8e8349aabcbb58aa8",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/rrtv.js"
+    },
+    {
+      "bytes": 2745,
+      "key": "src_6497035a5ea6a19f",
+      "lines": 78,
+      "sha256": "c4f17a8ca8b27e15b7332460c83b5ba19aeded4c21e8f31beff8cefc54425ab7",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js"
+    },
+    {
+      "bytes": 1741,
+      "key": "src_6659152f24c8df86",
+      "lines": 48,
+      "sha256": "d57135b6c1a4f39f9df60db7f5a1fde3e497ef99fa44a993bc101a6d12730c28",
+      "url": "https://kelee.one/Resource/JavaScript/Soul/Soul_remove_ads.js"
+    },
+    {
+      "bytes": 691,
+      "key": "src_694792f21aae2fcb",
+      "lines": 30,
+      "sha256": "00b312e3ed559cfcda15cb43e637c94d6293ad3cb34b2c5d23d9bd330668fe52",
+      "url": "https://kelee.one/Resource/JavaScript/DubbingShow/DubbingShow_remove_ads.js"
+    },
+    {
+      "bytes": 946,
+      "key": "src_6cf1d356d9f8222e",
+      "lines": 33,
+      "sha256": "e2388e38f840e09182eae8663f4def10b41c02bbfdcb31cef87f7cb6a0af4ce0",
+      "url": "https://kelee.one/Resource/JavaScript/Uki/Uki_remove_ads.js"
+    },
+    {
+      "bytes": 225,
+      "key": "src_6df6a61bc422d4a6",
+      "lines": 9,
+      "sha256": "aedcbe57f569bb7d38ff148de854c260224f0200cd1fd1d2745ebab6b3e4dd26",
+      "url": "https://kelee.one/Resource/JavaScript/TV_Assistant/TV_Assistant_remove_ads.js"
+    },
+    {
+      "bytes": 1418,
+      "key": "src_83bee2441664cf5a",
+      "lines": 20,
+      "sha256": "4401933fa39f97c72711cf075c9caa8506be46e3fdbf0572d96ab9493aaf623b",
+      "url": "https://kelee.one/Resource/JavaScript/Baidu_input_method/Baidu_input_method_remove_ads.js"
+    },
+    {
+      "bytes": 32538,
+      "key": "src_87119b51bccf2fd6",
+      "lines": 890,
+      "sha256": "a5242876770cd4c151435f687e98bf58dcf75fe8cad9e7f256ec26f019fb7c1b",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/cntv.js"
+    },
+    {
+      "bytes": 717,
+      "key": "src_88e0dafed4cd147b",
+      "lines": 19,
+      "sha256": "f7ef12753a174075eaa71cb72ab55a22d4981dc8e29cecb3facf33f612fef87e",
+      "url": "https://kelee.one/Resource/JavaScript/MaiMai/MaiMai_remove_ads.js"
+    },
+    {
+      "bytes": 972,
+      "key": "src_8fd25976d1ef634a",
+      "lines": 39,
+      "sha256": "7fb9b13023152d3b55aa986e590442a6101ab911dded0d026bac66f5a7befd23",
+      "url": "https://kelee.one/Resource/JavaScript/NeteaseNews/NeteaseNews_remove_ads.js"
+    },
+    {
+      "bytes": 9971,
+      "key": "src_9d456958a06617ec",
+      "lines": 275,
+      "sha256": "91040c0d5bf906357829d8df344a3bdce00b59e6c24f255e54a2ef7a46d04c69",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js"
+    },
+    {
+      "bytes": 3182,
+      "key": "src_9d853d73b21f0772",
+      "lines": 99,
+      "sha256": "2305a9bb9994a7312ee788204c8960eef465da59102596b3c6516cdb66da6cf1",
+      "url": "https://kelee.one/Resource/JavaScript/Taobao/Taobao_remove_ads.js"
+    },
+    {
+      "bytes": 15187,
+      "key": "src_a29fbc10f00cfc6e",
+      "lines": 408,
+      "sha256": "57c625e7e92db37e137d9f0a1947e7e7967eab2a9c2528ddd56371ab368b35f6",
+      "url": "https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js"
+    },
+    {
+      "bytes": 2283,
+      "key": "src_a4ac231868fb4ed3",
+      "lines": 72,
+      "sha256": "98b921f278eae3f4d99751a35c2b0c867b9716bd20713da14859f4033f8c7394",
+      "url": "https://raw.githubusercontent.com/app2smile/rules/master/js/qq-news.js"
+    },
+    {
+      "bytes": 17843,
+      "key": "src_acc5f4890f34bdda",
+      "lines": 15,
+      "sha256": "fd38e5d609b031440b52cfb94aaac8e510b0bcb8edef41c43ed23094d7c21504",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/163music.js"
+    },
+    {
+      "bytes": 691,
+      "key": "src_b158d39001e0c748",
+      "lines": 22,
+      "sha256": "b60ee60a764ceaa03d565c0c63d9353bba8c86ebcf6763e952d9db34486c6c88",
+      "url": "https://kelee.one/Resource/JavaScript/MeituMYXJ/MeituMYXJ_remove_ads.js"
+    },
+    {
+      "bytes": 44872,
+      "key": "src_b1f8a6bf7dab7e05",
+      "lines": 1323,
+      "sha256": "03e1324d5652bf018856cf7968dcaa3dcb0e1e52ed353a23df853219b7318b78",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/weibo.js"
+    },
+    {
+      "bytes": 475,
+      "key": "src_b3647f0da5e106d6",
+      "lines": 12,
+      "sha256": "4fbbef1c35484def70776486ec70fdc65f3d5a6c35225c340739a50b495b9e6f",
+      "url": "https://kelee.one/Resource/JavaScript/ShuQiCenterReader/ShuQiCenterReader_remove_ads.js"
+    },
+    {
+      "bytes": 1045,
+      "key": "src_b42c74e37c3cad92",
+      "lines": 36,
+      "sha256": "656aca2095e6de4120923b75641682da51dc3ce585db4c326173b49f9b8ec066",
+      "url": "https://kelee.one/Resource/JavaScript/ColorfulClouds/ColorfulClouds_remove_ads.js"
+    },
+    {
+      "bytes": 10828,
+      "key": "src_bac54b78e31baf6e",
+      "lines": 170,
+      "sha256": "28a4aea629f4892edab04b51276e0649d39b67ee5d76dc9daf85483427cef914",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/dushu365.js"
+    },
+    {
+      "bytes": 167,
+      "key": "src_bb38729be757d53f",
+      "lines": 6,
+      "sha256": "c7c3691edf9f6663cf6dacf63332a8c7da676d03c6fb399bef892a119319378f",
+      "url": "https://kelee.one/Resource/JavaScript/RiskBird/RiskBird_remove_ads.js"
+    },
+    {
+      "bytes": 1208,
+      "key": "src_c2037a6bd2937364",
+      "lines": 42,
+      "sha256": "9cf0db18169a4db293bcab83f9d5d49d39f588951545b9e90b664eefddc2f677",
+      "url": "https://kelee.one/Resource/JavaScript/Douyu/Douyu_remove_ads.js"
+    },
+    {
+      "bytes": 23070,
+      "key": "src_c5a7ae3bef67c08a",
+      "lines": 5,
+      "sha256": "a135cb358571270371159b1c1539e555f51c7e53d6531afc6b3687796df0b0d4",
+      "url": "https://kelee.one/Resource/JavaScript/BaiduSearch/BaiduSearchHomePage_remove_ads.js"
+    },
+    {
+      "bytes": 2345,
+      "key": "src_cbe221cf5dc04adb",
+      "lines": 76,
+      "sha256": "ce011fb19147d331dd85cfbd29e75a675b8c8dfc8cf0e5c66b84a04f2fddb85c",
+      "url": "https://kelee.one/Resource/JavaScript/BabyTree/BabyTree_remove_ads.js"
+    },
+    {
+      "bytes": 7592,
+      "key": "src_dbe13bf5df247a34",
+      "lines": 140,
+      "sha256": "6eba002fad79ac2e3ace82f895ce9ebb7adc4fb49f60e7a85c58a55a17048da0",
+      "url": "https://kelee.one/Resource/JavaScript/KebidaDushu/KebidaDushu_remove_ads.js"
+    },
+    {
+      "bytes": 56703,
+      "key": "src_dc0eef05c006b1a8",
+      "lines": 1593,
+      "sha256": "df99f94b2abcea553867cbd0053fb8d0a71e4b91452b23e0251d3b9b70a553bf",
+      "url": "https://kelee.one/Resource/JavaScript/Weibo/Weibo_remove_ads.js"
+    },
+    {
+      "bytes": 1661,
+      "key": "src_dd1adf0ea56d8040",
+      "lines": 55,
+      "sha256": "ce05e64122bc0368bf854467e5fa0b92813756579dfe74546dbed4c7f460f254",
+      "url": "https://kelee.one/Resource/JavaScript/FlyerTea/FlyerTea_remove_ads.js"
+    },
+    {
+      "bytes": 925,
+      "key": "src_de2395dcd605087d",
+      "lines": 27,
+      "sha256": "b8f7bf3f14c54e862468f352ddfb9dd5d19feb6ae07ac0e60a479cc709c91b71",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xmgtv.js"
+    },
+    {
+      "bytes": 246,
+      "key": "src_e118fec1aaae6a11",
+      "lines": 7,
+      "sha256": "29149a59094249b906f0d16d66477b974a76bfb6b409e46f6ec8387a8a51aa90",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/blued.js"
+    },
+    {
+      "bytes": 19237,
+      "key": "src_e1e91a5fcd96442d",
+      "lines": 379,
+      "sha256": "d8884245f321915eeade4afadc8470d52d4e99264acbd0b8a6bb3e179ab22ebb",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/keep.js"
+    }
+  ],
+  "summary": {
+    "bundled_entries": 49,
+    "bundled_sources": 49,
+    "fetch_failures": 0,
+    "input_entries": 225,
+    "output_entries": 0,
+    "unique_paths_after": 0,
+    "unique_paths_before": 87
+  }
+}

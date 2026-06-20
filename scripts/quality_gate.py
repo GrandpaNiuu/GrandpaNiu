@@ -51,6 +51,8 @@ def main() -> None:
         [sys.executable, "scripts/android_format_check.py"],
         [sys.executable, "scripts/convert_quanx_rules.py"],
         [sys.executable, "scripts/build_module.py", "--build", "--profile", "fusion"],
+        [node, "--check", "Scripts/generated/fusion-script-bundle.js"],
+        [sys.executable, "tools/validate_script_aggregation.py"],
         [sys.executable, "scripts/factory_finalize.py", "--sync-root"],
         [sys.executable, "scripts/build_release_variants.py"],
         [sys.executable, "scripts/build_checksums.py"],

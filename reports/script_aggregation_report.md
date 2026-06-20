@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-06-19T23:32:21Z
+- generated: 2026-06-20T00:09:11Z
 - enabled: True
 - input script entries: 225
 - output script entries: 178
@@ -10,6 +10,7 @@
 - bundled upstream sources: 49
 - bundle chunks: 2
 - output: `Scripts/generated/fusion-script-bundle.js`
+- manifest: `Scripts/generated/fusion-script-bundle.manifest.json`
 
 ## Bundled Entries
 - `cmp_block_084_json_merged`

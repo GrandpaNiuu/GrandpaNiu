@@ -29,7 +29,9 @@ MISC_SOURCES = SOURCES / "Misc"
 APP_SOURCES = SOURCES / "Apps"
 GENERATED_SCRIPTS = ROOT / "Scripts" / "generated"
 SCRIPT_BUNDLE = GENERATED_SCRIPTS / "fusion-script-bundle.js"
+SCRIPT_BUNDLE_MANIFEST = GENERATED_SCRIPTS / "fusion-script-bundle.manifest.json"
 SCRIPT_BUNDLE_URL = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js"
+SCRIPT_BUNDLE_VERSION = "grandpaniu-fusion-script-bundle-v1"
 PROFILES = ROOT / "Rewrite" / "Profiles"
 REMOTES_JSON = ROOT / "Rewrite" / "Remotes" / "sources.json"
 
@@ -709,7 +711,7 @@ def build_script_bundle(routes: list[dict[str, str]], sources: dict[str, str]) -
         f"// generated: {generated}",
         "// purpose: dispatch low-risk app cleanup scripts from one stable GrandpaNiu URL.",
         "(function () {",
-        '  const VERSION = "grandpaniu-fusion-script-bundle-v1";',
+        f"  const VERSION = {js_string(SCRIPT_BUNDLE_VERSION)};",
         "  const ROUTES = [",
         ",\n".join(route_rows),
         "  ];",
@@ -763,6 +765,74 @@ def chunk_patterns(routes: list[dict[str, str]]) -> list[list[dict[str, str]]]:
     return chunks
 
 
+def build_script_bundle_manifest(
+    stats: dict[str, object],
+    routes: list[dict[str, str]],
+    chunks: list[list[dict[str, str]]],
+    sources_by_key: dict[str, str],
+    source_urls_by_key: dict[str, str],
+    bundle_text: str,
+) -> dict[str, object]:
+    chunk_by_name: dict[str, int] = {}
+    for chunk_index, chunk in enumerate(chunks, 1):
+        for route in chunk:
+            chunk_by_name[route["name"]] = chunk_index
+
+    source_rows = []
+    for source_key, source in sorted(sources_by_key.items()):
+        source_rows.append({
+            "key": source_key,
+            "url": source_urls_by_key.get(source_key, ""),
+            "sha256": hashlib.sha256(source.encode("utf-8")).hexdigest(),
+            "bytes": len(source.encode("utf-8")),
+            "lines": len(source.splitlines()),
+        })
+
+    route_rows = []
+    for route in routes:
+        route_rows.append({
+            "name": route["name"],
+            "pattern": route["pattern"],
+            "pattern_sha256": hashlib.sha256(route["pattern"].encode("utf-8")).hexdigest(),
+            "source_key": route["source_key"],
+            "source_url": route["source_url"],
+            "chunk": chunk_by_name.get(route["name"], 0),
+        })
+
+    return {
+        "schema_version": 1,
+        "generated": dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "bundle": {
+            "version": SCRIPT_BUNDLE_VERSION,
+            "path": SCRIPT_BUNDLE.relative_to(ROOT).as_posix(),
+            "url": SCRIPT_BUNDLE_URL,
+            "sha256": hashlib.sha256(bundle_text.encode("utf-8")).hexdigest(),
+            "chunks": len(chunks),
+            "routes": len(routes),
+            "sources": len(sources_by_key),
+        },
+        "policy": {
+            "allowed_prefixes": list(SCRIPT_AGGREGATOR_ALLOWED_PREFIXES),
+            "preserve_tokens": list(SCRIPT_AGGREGATOR_PRESERVE_TOKENS),
+            "max_pattern_length": SCRIPT_AGGREGATOR_MAX_PATTERN_LEN,
+            "fetch_timeout_seconds": SCRIPT_AGGREGATOR_FETCH_TIMEOUT,
+        },
+        "summary": {
+            "input_entries": stats.get("input_entries", 0),
+            "output_entries": stats.get("output_entries", 0),
+            "unique_paths_before": stats.get("unique_paths_before", 0),
+            "unique_paths_after": stats.get("unique_paths_after", 0),
+            "bundled_entries": stats.get("bundled_entries", 0),
+            "bundled_sources": stats.get("bundled_sources", 0),
+            "fetch_failures": len(stats.get("fetch_failed", [])),
+        },
+        "routes": route_rows,
+        "sources": source_rows,
+        "fetch_failed": stats.get("fetch_failed", []),
+        "preserved_reasons": stats.get("preserved_reasons", {}),
+    }
+
+
 def bundled_script_line(index: int, routes: list[dict[str, str]]) -> str:
     pattern = "(?:" + "|".join(route["pattern"] for route in routes) + ")"
     return (
@@ -798,6 +868,7 @@ def write_script_aggregation_report(stats: dict[str, object]) -> None:
         f"- bundled upstream sources: {stats.get('bundled_sources', 0)}",
         f"- bundle chunks: {stats.get('bundle_chunks', 0)}",
         f"- output: `{SCRIPT_BUNDLE.relative_to(ROOT).as_posix()}`",
+        f"- manifest: `{SCRIPT_BUNDLE_MANIFEST.relative_to(ROOT).as_posix()}`",
         "",
         "## Bundled Entries",
     ]
@@ -855,6 +926,7 @@ def aggregate_script_entries(body: str) -> str:
     routes: list[dict[str, str]] = []
     bundled_indices: set[int] = set()
     bundle_sources: dict[str, str] = {}
+    bundle_source_urls: dict[str, str] = {}
     for index, entry in candidates.items():
         source_url = entry["script-path"]
         source = fetched_sources.get(source_url)
@@ -862,17 +934,32 @@ def aggregate_script_entries(body: str) -> str:
             continue
         source_key = script_source_key(source_url)
         bundle_sources[source_key] = source
+        bundle_source_urls[source_key] = source_url
         routes.append({
             "name": entry["__name__"],
             "pattern": entry["pattern"],
             "source_key": source_key,
+            "source_url": source_url,
         })
         bundled_indices.add(index)
 
-    if routes:
-        write_text(SCRIPT_BUNDLE, build_script_bundle(routes, bundle_sources))
-
     chunks = chunk_patterns(routes)
+    bundle_text = build_script_bundle(routes, bundle_sources)
+    write_text(SCRIPT_BUNDLE, bundle_text)
+    manifest = build_script_bundle_manifest(
+        stats | {
+            "bundled_entries": len(routes),
+            "bundled_sources": len(bundle_sources),
+            "fetch_failed": fetch_failed,
+            "preserved_reasons": preserved_reasons,
+        },
+        routes,
+        chunks,
+        bundle_sources,
+        bundle_source_urls,
+        bundle_text,
+    )
+    write_text(SCRIPT_BUNDLE_MANIFEST, json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
     bundled_lines = [bundled_script_line(index, chunk) for index, chunk in enumerate(chunks, 1)]
     inserted_bundle = False
     out: list[str] = []

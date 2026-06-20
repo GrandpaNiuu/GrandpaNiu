@@ -92,7 +92,7 @@ Manual app specs are listed in `Rewrite/Generate.conf` `[release_modules]`. Addi
 | build.plan | build | Generation plan | `Rewrite/Generate.conf` | All Release and Web outputs | `Rewrite/Generator/Builder.py` | yes | medium | Revert plan change |
 | build.manifest | build | Manifest | `Rewrite/Manifest.conf` | Fusion module section mapping | `scripts/build_module.py` | yes | medium | Revert manifest change |
 | build.generator | build | Generator entry | `Rewrite/Generator/Builder.py` | Full pipeline | GitHub Actions; manual command | yes | high | Run scripts directly |
-| build.script_aggregator | build | Script aggregation stage | `Scripts/*.conf`; `Rewrite/Sources/Apps/*.conf`; allowed upstream JS | `Scripts/generated/fusion-script-bundle.js`; `reports/script_aggregation_report.md` | `scripts/build_module.py` | yes | high | Preserve the failing script-path or disable aggregation token |
+| build.script_aggregator | build | Script aggregation stage | `Scripts/*.conf`; `Rewrite/Sources/Apps/*.conf`; allowed upstream JS | `Scripts/generated/fusion-script-bundle.js`; `Scripts/generated/fusion-script-bundle.manifest.json`; `reports/script_aggregation_report.md`; `reports/script_aggregation_validation_report.md` | `scripts/build_module.py`; `tools/validate_script_aggregation.py` | yes | high | Preserve the failing script-path or disable aggregation token |
 | build.modules | build | App module builder | `scripts/build_release_modules.py` | `Release/Modules/`; `Release/Android/`; `Web/` catalogs | `Rewrite/Generator/Builder.py` | yes | high | Revert module builder change |
 | build.rules | build | Rule output builder | `scripts/build_release_rules.py` | `Release/Rules.conf`; `Release/RulesGroup.conf` | `Rewrite/Generator/Builder.py` | yes | medium | Regenerate from fusion module |
 | build.android | build | Android publisher | `scripts/build_release_android.py` | `Release/Android/` | module builder follow-up | yes | medium | Regenerate from `Android/` |
@@ -135,7 +135,7 @@ Manual app specs are listed in `Rewrite/Generate.conf` `[release_modules]`. Addi
 - Every high-risk source must have a fallback path.
 - App-specific source fragments live under `Rewrite/Sources/Apps/` and generate `Release/Modules/*.sgmodule`.
 - App upstream sync supports Surge/Loon modules and conservative QuantumultX `.snippet` conversion; `fmz200/wool_scripts` is enabled for recent app-scoped ad rules.
-- Low-risk response scripts may be bundled into `Scripts/generated/fusion-script-bundle.js`; core protobuf, binary, request-body, login/payment/bank/account scripts must stay independent.
+- Low-risk response scripts may be bundled into `Scripts/generated/fusion-script-bundle.js`; the machine-readable manifest is `Scripts/generated/fusion-script-bundle.manifest.json`, and core protobuf, binary, request-body, login/payment/bank/account scripts must stay independent.
 - Shared protection and generic cleanup fragments live under `Rewrite/Sources/Misc/` and are included in fusion builds.
 - Reference modules in `Rewrite/Remotes/sources.json` are disabled by default and are not public import entries.
 - `Web/catalog.md` and `Web/release-links.json` are public catalog outputs; legacy variants must stay out of the catalog.

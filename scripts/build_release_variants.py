@@ -1,14 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the single fusion release report.
-
-The repository now publishes one entry only:
-
-- Ronghemokuai.sgmodule
-- Release/Ronghemokuai.sgmodule
-
-Former stable / stable-plus / lite / full artifacts are no longer public entry
-points. The maintained build profile is Rewrite/Profiles/fusion.conf.
-"""
+"""Generate the single Fusion release report from the current Release output."""
 
 from __future__ import annotations
 
@@ -63,9 +54,10 @@ def count_scripts(text: str) -> int:
 
 
 def main() -> None:
-    text = build_module.build_from_sources(PROFILE)
+    text = read(RELEASE)
+    if not text.strip():
+        raise SystemExit(f"ERROR: missing release module: {RELEASE}")
     build_module.validate(text)
-    write(RELEASE, text)
 
     root_text = read(ROOT_MODULE)
     same_as_root = root_text.strip() == text.strip()

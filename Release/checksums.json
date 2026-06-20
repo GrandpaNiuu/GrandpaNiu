@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-19T23:32:17.614668Z",
+  "generated_at": "2026-06-20T00:07:24.910787Z",
   "algorithm": "sha256",
   "count": 319,
   "files": [
@@ -1575,8 +1575,8 @@
     },
     {
       "path": "Web/registry.md",
-      "size": 2214,
-      "sha256": "de4e3c4c77edf142ef2cfd02d04394f58b9d5cbc504d15eb10b7d4f5141378ec"
+      "size": 2405,
+      "sha256": "73389bb92b2a8ec2f1825180041181910c7094e75edf26e73b5403c9faafb9be"
     },
     {
       "path": "Web/release-links.json",
