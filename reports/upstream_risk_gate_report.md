@@ -1,10 +1,10 @@
 # Upstream Risk Gate Report
 
-- Generated at: 2026-06-21 02:51:45 +0800
+- Generated at: 2026-06-21 03:09:01 +0800
 - Status: passed
-- Records: 389
-- Enabled: 381
-- Direct commit: 381
+- Records: 398
+- Enabled: 390
+- Direct commit: 390
 - High risk enabled: 46
 
 ## Errors

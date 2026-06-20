@@ -44,7 +44,8 @@ Windows/
 
 - Edit `Rewrite/Sources/Apps/` for app-scoped module rules.
 - App-scoped upstream sync is controlled by `Rewrite/Remotes/app-modules.json`; recent GitHub `.snippet` sources from `fmz200/wool_scripts` are converted before release builds.
-- Current public App Modules count is 389. The latest expansion added fmz200 app snippets plus `app2smile/rules` `vgtime` and `NobyDa/Script` `bahamut-anime`.
+- Current public App Modules count is 398. The latest foreign expansion added AOL, Go.com, Lycos, MacKeeper, New Relic, Openmultimedia, Outlook, Sape, and Yahoo from `fmz200/wool_scripts`.
+- Broad platform candidates such as Adobe activation/licensing, Apple / Google Safe Browsing, Microsoft CRL, and Amazon AWS core service rules are intentionally not published as direct-sync app modules without targeted risk review.
 - Protected login/message/CDN entries such as `apd-pcdnwxlogin`, `msync-im`, and `ossgw.alicdn.com` are filtered during upstream conversion instead of being published as REJECT or forced MITM lines.
 - `Scripts/generated/fusion-script-bundle.js` and `Scripts/generated/fusion-script-bundle.manifest.json` are generated, not hand-maintained; they reduce visible script URLs while preserving core scripts as independent entries.
 - Upstream direct-commit sync, generated script bundles, MITM scope and source rule overlap are checked by generated governance reports before release.

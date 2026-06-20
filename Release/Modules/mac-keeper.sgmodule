@@ -1,0 +1,10 @@
+#!name=GrandpaNiu MacKeeper Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/mac-keeper.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,mackeeper.com,REJECT
+DOMAIN-SUFFIX,download.mackeeper.com,REJECT
+DOMAIN-SUFFIX,event.mackeeper.com,REJECT
+DOMAIN-SUFFIX,mackeeperapp.mackeeper.com,REJECT
+DOMAIN-SUFFIX,zryydi.com,REJECT

@@ -54,6 +54,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 阿里云盘 Source | `ali-yun-drive.sgmodule` | `Rewrite/Sources/Apps/ali-yun-drive.conf` | Rule:1, URL Rewrite:2, Script:2, MITM:1 |
 | GrandpaNiu 懂球帝 Source | `all-football.sgmodule` | `Rewrite/Sources/Apps/all-football.conf` | Rule:1, URL Rewrite:1, MITM:1 |
 | GrandpaNiu Amap Source | `amap.sgmodule` | `Rewrite/Sources/Apps/amap.conf` | Rule:3, Body Rewrite:5, Map Local:15, Script:14, MITM:1 |
+| GrandpaNiu AOL Source | `aol.sgmodule` | `Rewrite/Sources/Apps/aol.conf` | Rule:5 |
 | GrandpaNiu AppSo Source | `appso.sgmodule` | `Rewrite/Sources/Apps/appso.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu 汽车之家 Source | `auto-home.sgmodule` | `Rewrite/Sources/Apps/auto-home.conf` | URL Rewrite:19, Script:6, MITM:1 |
 | GrandpaNiu 宝宝树孕育 Source | `baby-tree-parenting.sgmodule` | `Rewrite/Sources/Apps/baby-tree-parenting.conf` | URL Rewrite:5, MITM:1 |
@@ -152,6 +153,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 风行网 Source | `funshion.sgmodule` | `Rewrite/Sources/Apps/funshion.conf` | Rule:11 |
 | GrandpaNiu 赶集网 Source | `ganji.sgmodule` | `Rewrite/Sources/Apps/ganji.conf` | Rule:6 |
 | GrandpaNiu 稿定设计 Source | `gao-ding.sgmodule` | `Rewrite/Sources/Apps/gao-ding.conf` | URL Rewrite:3, Body Rewrite:3, MITM:1 |
+| GrandpaNiu Go.com Source | `go-com.sgmodule` | `Rewrite/Sources/Apps/go-com.conf` | Rule:7 |
 | GrandpaNiu 公考雷达 Source | `gong-kao-lei-da.sgmodule` | `Rewrite/Sources/Apps/gong-kao-lei-da.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu Goofish Source | `goofish.sgmodule` | `Rewrite/Sources/Apps/goofish.conf` | Body Rewrite:17, Map Local:7, MITM:1 |
 | GrandpaNiu 盖得排行 Source | `guide-rank.sgmodule` | `Rewrite/Sources/Apps/guide-rank.conf` | URL Rewrite:8, Body Rewrite:2, MITM:1 |
@@ -232,9 +234,11 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 瑞幸咖啡 Source | `luckin-coffee.sgmodule` | `Rewrite/Sources/Apps/luckin-coffee.conf` | URL Rewrite:8, MITM:1 |
 | GrandpaNiu 旅法师营地 Source | `lv-fa-shi-ying-di.sgmodule` | `Rewrite/Sources/Apps/lv-fa-shi-ying-di.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu 旅途随身听 Source | `lv-tu-sui-shen-ting.sgmodule` | `Rewrite/Sources/Apps/lv-tu-sui-shen-ting.conf` | URL Rewrite:1, Script:1, MITM:1 |
+| GrandpaNiu Lycos Source | `lycos.sgmodule` | `Rewrite/Sources/Apps/lycos.conf` | Rule:10 |
 | GrandpaNiu 马蜂窝 Source | `ma-feng-wo.sgmodule` | `Rewrite/Sources/Apps/ma-feng-wo.conf` | Rule:1, URL Rewrite:1, Body Rewrite:2, MITM:1 |
 | GrandpaNiu 马卡龙玩图 Source | `ma-ka-long-wan-tu.sgmodule` | `Rewrite/Sources/Apps/ma-ka-long-wan-tu.conf` | URL Rewrite:2, MITM:1 |
 | GrandpaNiu 妈妈网孕育 Source | `ma-ma-wang-yun-yu.sgmodule` | `Rewrite/Sources/Apps/ma-ma-wang-yun-yu.conf` | URL Rewrite:1, MITM:1 |
+| GrandpaNiu MacKeeper Source | `mac-keeper.sgmodule` | `Rewrite/Sources/Apps/mac-keeper.conf` | Rule:5 |
 | GrandpaNiu 埋堆堆 Source | `mai-dui-dui.sgmodule` | `Rewrite/Sources/Apps/mai-dui-dui.conf` | URL Rewrite:8, MITM:1 |
 | GrandpaNiu 脉脉 Source | `mai-mai.sgmodule` | `Rewrite/Sources/Apps/mai-mai.conf` | URL Rewrite:3, Body Rewrite:1, Script:1, MITM:1 |
 | GrandpaNiu 网易邮箱大师 Source | `mail-master.sgmodule` | `Rewrite/Sources/Apps/mail-master.conf` | URL Rewrite:3, Body Rewrite:2, MITM:1 |
@@ -265,15 +269,18 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 网易大神 Source | `net-ease-godlike.sgmodule` | `Rewrite/Sources/Apps/net-ease-godlike.conf` | URL Rewrite:1, Script:1, MITM:1 |
 | GrandpaNiu Netease Mail Source | `netease-mail.sgmodule` | `Rewrite/Sources/Apps/netease-mail.conf` | Body Rewrite:4, Map Local:3, MITM:1 |
 | GrandpaNiu 网易新闻 Source | `netease-news.sgmodule` | `Rewrite/Sources/Apps/netease-news.conf` | Rule:2, URL Rewrite:7, Script:3, MITM:1 |
+| GrandpaNiu New Relic Source | `new-relic.sgmodule` | `Rewrite/Sources/Apps/new-relic.conf` | Rule:3 |
 | GrandpaNiu 牛听听 Source | `niu-ting-ting.sgmodule` | `Rewrite/Sources/Apps/niu-ting-ting.conf` | URL Rewrite:2, MITM:1 |
 | GrandpaNiu NTPlay Source | `ntplay.sgmodule` | `Rewrite/Sources/Apps/ntplay.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu omofun Source | `omofun.sgmodule` | `Rewrite/Sources/Apps/omofun.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu 行者户外 Source | `on-the-way.sgmodule` | `Rewrite/Sources/Apps/on-the-way.conf` | URL Rewrite:1, Body Rewrite:3, MITM:1 |
 | GrandpaNiu ONE Source | `one.sgmodule` | `Rewrite/Sources/Apps/one.conf` | URL Rewrite:3, MITM:1 |
+| GrandpaNiu Openmultimedia Source | `openmultimedia.sgmodule` | `Rewrite/Sources/Apps/openmultimedia.conf` | Rule:1 |
 | GrandpaNiu 向日葵 Source | `oray-sunlogin.sgmodule` | `Rewrite/Sources/Apps/oray-sunlogin.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu 开源中国 Source | `oschina.sgmodule` | `Rewrite/Sources/Apps/oschina.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu Oupeng (欧朋) Source | `oupeng.sgmodule` | `Rewrite/Sources/Apps/oupeng.conf` | Rule:6 |
 | GrandpaNiu Outfit7（会说话的汤姆猫） Source | `outfit7.sgmodule` | `Rewrite/Sources/Apps/outfit7.conf` | Rule:5 |
+| GrandpaNiu Outlook Source | `outlook.sgmodule` | `Rewrite/Sources/Apps/outlook.conf` | Rule:3 |
 | GrandpaNiu 牛津高阶词典第十版 Source | `oxford-ald10th.sgmodule` | `Rewrite/Sources/Apps/oxford-ald10th.conf` | URL Rewrite:2, MITM:1 |
 | GrandpaNiu 胖乖生活 Source | `pangguai-life.sgmodule` | `Rewrite/Sources/Apps/pangguai-life.conf` | URL Rewrite:6, Body Rewrite:2, MITM:1 |
 | GrandpaNiu 完美世界电竞 Source | `perfect-world-esport.sgmodule` | `Rewrite/Sources/Apps/perfect-world-esport.conf` | URL Rewrite:1, Body Rewrite:1, MITM:1 |
@@ -307,6 +314,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu RQrun Source | `rqrun.sgmodule` | `Rewrite/Sources/Apps/rqrun.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu 360智慧生活 Source | `safety-home.sgmodule` | `Rewrite/Sources/Apps/safety-home.conf` | Rule:1, URL Rewrite:1, MITM:1 |
 | GrandpaNiu 三联中读 Source | `san-lian-zhong-du.sgmodule` | `Rewrite/Sources/Apps/san-lian-zhong-du.conf` | URL Rewrite:1, MITM:1 |
+| GrandpaNiu Sape Source | `sape.sgmodule` | `Rewrite/Sources/Apps/sape.conf` | Rule:4 |
 | GrandpaNiu 剑网三无界 Source | `seasun-jx3.sgmodule` | `Rewrite/Sources/Apps/seasun-jx3.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu 七猫小说 Source | `seven-cat.sgmodule` | `Rewrite/Sources/Apps/seven-cat.conf` | Rule:3, URL Rewrite:13, Body Rewrite:1, MITM:1 |
 | GrandpaNiu 顺丰速运 Source | `sf-express.sgmodule` | `Rewrite/Sources/Apps/sf-express.conf` | URL Rewrite:2, Body Rewrite:1, Map Local:1, MITM:1 |
@@ -376,6 +384,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Xiaoyuzhou Source | `xiaoyuzhou.sgmodule` | `Rewrite/Sources/Apps/xiaoyuzhou.conf` | Body Rewrite:1, Map Local:4, MITM:1 |
 | GrandpaNiu Ximalaya Source | `ximalaya.sgmodule` | `Rewrite/Sources/Apps/ximalaya.conf` | Rule:5, Body Rewrite:9, Map Local:15, MITM:1 |
 | GrandpaNiu 迅雷 Source | `xun-lei.sgmodule` | `Rewrite/Sources/Apps/xun-lei.conf` | Body Rewrite:2, MITM:1 |
+| GrandpaNiu Yahoo Source | `yahoo.sgmodule` | `Rewrite/Sources/Apps/yahoo.conf` | Rule:41, URL Rewrite:1, MITM:1 |
 | GrandpaNiu 医考帮 Source | `yi-kao-bang.sgmodule` | `Rewrite/Sources/Apps/yi-kao-bang.conf` | URL Rewrite:2, MITM:1 |
 | GrandpaNiu 一甜相机 Source | `yitian.sgmodule` | `Rewrite/Sources/Apps/yitian.conf` | URL Rewrite:2, Body Rewrite:1, MITM:1 |
 | GrandpaNiu 网易有道词典 Source | `youdao-dict.sgmodule` | `Rewrite/Sources/Apps/youdao-dict.conf` | Rule:1, URL Rewrite:4, Body Rewrite:1, MITM:1 |

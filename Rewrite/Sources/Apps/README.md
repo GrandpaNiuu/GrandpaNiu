@@ -1,6 +1,6 @@
 # Rewrite Sources / Apps
 
-This directory stores app-scoped source fragments used by the module factory. Current active app source files: **389**.
+This directory stores app-scoped source fragments used by the module factory. Current active app source files: **398**. `_TEMPLATE.conf` is a local authoring template and is not generated as an app module.
 
 `Release/Modules/*.sgmodule` is generated from these files by `scripts/build_release_modules.py`. Do not edit generated files under `Release/Modules/` as the source of truth.
 
@@ -17,8 +17,9 @@ This directory stores app-scoped source fragments used by the module factory. Cu
 - `Rewrite/Remotes/app-modules.json` records app upstream URLs and whether direct daily sync is enabled.
 - `scripts/sync_upstream_app_modules.py` converts Surge/Loon/QuantumultX-style app fragments into GrandpaNiu source fragments.
 - `.snippet` sources from `fmz200/wool_scripts` are supported and filtered to remove upstream example hosts before build.
-- Protected login/message/CDN hosts such as `apd-pcdnwxlogin`, `msync-im`, and `ossgw.alicdn.com` are filtered out when imported as REJECT or forced MITM entries.
+- Protected login/message/CDN/video/core hosts such as `apd-pcdnwxlogin`, `msync-im`, `ossgw.alicdn.com`, `dcapps.disney.go.com`, and `seavideo-ak.espn.go.com` are filtered out when imported as REJECT or forced MITM entries.
 - Do not add VIP unlock, payment bypass, login bypass, bank/payment rewrites, token/cookie rewriting, or account sharing modules.
+- Broad platform candidates such as Adobe activation/licensing, Apple/Google Safe Browsing, Microsoft CRL, and Amazon AWS core service rules must stay out unless there is a targeted risk review.
 
 ## Active app source files
 
@@ -56,6 +57,7 @@ This directory stores app-scoped source fragments used by the module factory. Cu
 | ali-yun-drive | 阿里云盘 | auto: Kelee PluginHub | auto-discovered |
 | all-football | 懂球帝 | auto: fmz200/wool_scripts | auto-discovered |
 | amap | Amap | auto: QingRex/LoonKissSurge | auto-discovered |
+| aol | AOL | auto: fmz200/wool_scripts | auto-discovered |
 | appso | AppSo | auto: fmz200/wool_scripts | auto-discovered |
 | auto-home | 汽车之家 | auto: Kelee PluginHub | auto-discovered |
 | baby-tree | 宝宝树孕育 | auto: Kelee PluginHub | auto-discovered |
@@ -155,6 +157,7 @@ This directory stores app-scoped source fragments used by the module factory. Cu
 | funshion | 风行网 | auto: fmz200/wool_scripts | auto-discovered |
 | ganji | 赶集网 | auto: fmz200/wool_scripts | auto-discovered |
 | gao-ding | 稿定设计 | auto: Kelee PluginHub | auto-discovered |
+| go-com | Go.com | auto: fmz200/wool_scripts | auto-discovered |
 | gong-kao-lei-da | 公考雷达 | auto: fmz200/wool_scripts | auto-discovered |
 | goofish | Goofish | auto: QingRex/LoonKissSurge | auto-discovered |
 | guide-rank | 盖得排行 | auto: Kelee PluginHub | auto-discovered |
@@ -237,9 +240,11 @@ This directory stores app-scoped source fragments used by the module factory. Cu
 | luckin-coffee | 瑞幸咖啡 | auto: Kelee PluginHub | auto-discovered |
 | lv-fa-shi-ying-di | 旅法师营地 | auto: fmz200/wool_scripts | auto-discovered |
 | lv-tu-sui-shen-ting | 旅途随身听 | auto: fmz200/wool_scripts | auto-discovered |
+| lycos | Lycos | auto: fmz200/wool_scripts | auto-discovered |
 | ma-feng-wo | 马蜂窝 | auto: Kelee PluginHub | auto-discovered |
 | ma-ka-long-wan-tu | 马卡龙玩图 | auto: fmz200/wool_scripts | auto-discovered |
 | ma-ma-wang-yun-yu | 妈妈网孕育 | auto: fmz200/wool_scripts | auto-discovered |
+| mac-keeper | MacKeeper | auto: fmz200/wool_scripts | auto-discovered |
 | mai-dui-dui | 埋堆堆 | auto: fmz200/wool_scripts | auto-discovered |
 | mai-mai | 脉脉 | auto: Kelee PluginHub | auto-discovered |
 | mail-master | 网易邮箱大师 | auto: Kelee PluginHub | auto-discovered |
@@ -272,15 +277,18 @@ This directory stores app-scoped source fragments used by the module factory. Cu
 | netease-mail | Netease Mail | auto: QingRex/LoonKissSurge | auto-discovered |
 | netease-music | Netease Music | auto: QingRex/LoonKissSurge | manual |
 | netease-news | 网易新闻 | auto: Kelee PluginHub | auto-discovered |
+| new-relic | New Relic | auto: fmz200/wool_scripts | auto-discovered |
 | niu-ting-ting | 牛听听 | auto: fmz200/wool_scripts | auto-discovered |
 | ntplay | NTPlay | auto: fmz200/wool_scripts | auto-discovered |
 | omofun | omofun | auto: fmz200/wool_scripts | auto-discovered |
 | on-the-way | 行者户外 | auto: Kelee PluginHub | auto-discovered |
 | one | ONE | auto: fmz200/wool_scripts | auto-discovered |
+| openmultimedia | Openmultimedia | auto: fmz200/wool_scripts | auto-discovered |
 | oray-sunlogin | 向日葵 | auto: Kelee PluginHub | auto-discovered |
 | oschina | 开源中国 | auto: fmz200/wool_scripts | auto-discovered |
 | oupeng | Oupeng (欧朋) | auto: fmz200/wool_scripts | auto-discovered |
 | outfit7 | Outfit7（会说话的汤姆猫） | auto: fmz200/wool_scripts | auto-discovered |
+| outlook | Outlook | auto: fmz200/wool_scripts | auto-discovered |
 | oxford-ald10th | 牛津高阶词典第十版 | auto: fmz200/wool_scripts | auto-discovered |
 | pangguai-life | 胖乖生活 | auto: Kelee PluginHub | auto-discovered |
 | pcauto | PCAuto | disabled | manual |
@@ -318,6 +326,7 @@ This directory stores app-scoped source fragments used by the module factory. Cu
 | rqrun | RQrun | auto: Kelee PluginHub | auto-discovered |
 | safety-home | 360智慧生活 | auto: Kelee PluginHub | auto-discovered |
 | san-lian-zhong-du | 三联中读 | auto: fmz200/wool_scripts | auto-discovered |
+| sape | Sape | auto: fmz200/wool_scripts | auto-discovered |
 | seasun-jx3 | 剑网三无界 | auto: Kelee PluginHub | auto-discovered |
 | seven-cat | 七猫小说 | auto: Kelee PluginHub | auto-discovered |
 | sf-express | 顺丰速运 | auto: Kelee PluginHub | auto-discovered |
@@ -393,6 +402,7 @@ This directory stores app-scoped source fragments used by the module factory. Cu
 | xiaoyuzhou | Xiaoyuzhou | auto: QingRex/LoonKissSurge | auto-discovered |
 | ximalaya | Ximalaya | auto: QingRex/LoonKissSurge | auto-discovered |
 | xun-lei | 迅雷 | auto: Kelee PluginHub | auto-discovered |
+| yahoo | Yahoo | auto: fmz200/wool_scripts | auto-discovered |
 | yi-kao-bang | 医考帮 | auto: Kelee PluginHub | auto-discovered |
 | yiche | Yiche | disabled | manual |
 | yitian | 一甜相机 | auto: Kelee PluginHub | auto-discovered |

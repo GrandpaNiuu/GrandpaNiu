@@ -1,8 +1,8 @@
 # Android rules build report
 
-- generated: 2026-06-21 02:51:31 Asia/Shanghai
+- generated: 2026-06-21 03:07:11 Asia/Shanghai
 - app rule files: 22
-- main Android rules: 869
+- main Android rules: 939
 - source: Android/mihomo/apps/*.yaml
 - iOS common source: Rules/reject.list -> iOS-Compatible-Reject
 - iOS app source: Rewrite/Sources/Apps/*.conf [Rule] REJECT -> iOS-App-Compatible-Reject
@@ -19,7 +19,7 @@
 | Bilibili | 1 | yes |
 | Domestic-Apps | 146 | yes |
 | Douyin | 12 | yes |
-| iOS-App-Compatible-Reject | 576 | yes |
+| iOS-App-Compatible-Reject | 655 | yes |
 | iOS-Compatible-Reject | 91 | yes |
 | iOS-Rewrite-Compatible-Reject | 10 | yes |
 | iQiyi | 2 | yes |
@@ -59,6 +59,7 @@
 | ali-yun-drive | 1 |
 | all-football | 1 |
 | amap | 3 |
+| aol | 5 |
 | baicizhan | 2 |
 | baixing | 6 |
 | bao-mi-hua | 3 |
@@ -86,6 +87,7 @@
 | foodie | 3 |
 | funshion | 11 |
 | ganji | 6 |
+| go-com | 7 |
 | hao-you-kuai-bao | 1 |
 | hao123 | 3 |
 | huang-you-xiang-ji | 3 |
@@ -113,7 +115,9 @@
 | le-eco | 19 |
 | leju | 3 |
 | linkedin | 1 |
+| lycos | 10 |
 | ma-feng-wo | 1 |
+| mac-keeper | 5 |
 | mama | 1 |
 | meet-you | 2 |
 | mei-tu | 1 |
@@ -124,8 +128,11 @@
 | mijia | 1 |
 | mop | 2 |
 | naver | 4 |
+| new-relic | 3 |
+| openmultimedia | 1 |
 | oupeng | 6 |
 | outfit7 | 5 |
+| outlook | 3 |
 | pcauto | 5 |
 | phoenix-new-media | 17 |
 | photoable | 2 |
@@ -136,6 +143,7 @@
 | qqmusic | 11 |
 | qting-fm | 2 |
 | safety-home | 1 |
+| sape | 4 |
 | seven-cat | 3 |
 | sheng-qu-games | 1 |
 | shu-qi-center-reader | 1 |
@@ -158,6 +166,7 @@
 | weibo | 2 |
 | xiaopeng | 2 |
 | ximalaya | 5 |
+| yahoo | 41 |
 | yiche | 2 |
 | youku | 13 |
 | yueyou | 1 |

@@ -689,6 +689,11 @@ DOMAIN-KEYWORD,apimg.qunliao.info,REJECT
 DOMAIN,amap-aos-info-nogw.amap.com,REJECT,extended-matching,pre-matching
 DOMAIN,free-aos-cdn-image.amap.com,REJECT,extended-matching,pre-matching
 DOMAIN-SUFFIX,v.smtcdns.com,REJECT,extended-matching,pre-matching
+DOMAIN-SUFFIX,adinfo.aol.com,REJECT
+DOMAIN-SUFFIX,dynamic.aol.com,REJECT
+DOMAIN-SUFFIX,free.aol.com,REJECT
+DOMAIN-SUFFIX,mads.aol.com,REJECT
+DOMAIN-SUFFIX,cdn.komentary.aol.com,REJECT
 URL-REGEX,"^http:\/\/go\.babytree\.com\/go_pregnancy\/api\/(index_activity\/get_app_index_activity|sign\/sign_h_5)\?",REJECT-DICT
 URL-REGEX,"^http:\/\/go\.babytree\.com\/go_search\/api\/mobile_search_new\/get_multi_search_default_keywords\?",REJECT-DICT
 URL-REGEX,"^http:\/\/m\.meitun\.com\/newapi\/router\/topic\/hometptf\/feedRecommend",REJECT-DICT
@@ -877,6 +882,13 @@ DOMAIN-SUFFIX,ad.ganji.com,REJECT
 DOMAIN-SUFFIX,ganjituiguang.ganji.com,REJECT
 DOMAIN-SUFFIX,sta.ganji.com,REJECT
 DOMAIN-SUFFIX,tralog.ganji.com,REJECT
+DOMAIN-SUFFIX,ad.go.com,REJECT
+DOMAIN-SUFFIX,adimages.go.com,REJECT
+DOMAIN-SUFFIX,ngads.go.com,REJECT
+DOMAIN-SUFFIX,w88.go.com,REJECT
+DOMAIN-SUFFIX,verdict.abc.go.com,REJECT
+DOMAIN-SUFFIX,oascentral.abclocal.go.com,REJECT
+DOMAIN-SUFFIX,adsatt.espn.go.com,REJECT
 DOMAIN-SUFFIX,ad.3839.com,REJECT
 DOMAIN-SUFFIX,hao123rt.com,REJECT
 DOMAIN-SUFFIX,1.hao123.com,REJECT
@@ -1050,7 +1062,22 @@ URL-REGEX,"^https:\/\/web-mmap-pay\.line-apps\.com\/tw\/liff\/campaign\/v\d\/agg
 URL-REGEX,"^https:\/\/scdn\.line-apps\.com\/lan\/image\/line\/bannerImageEvent\/",REJECT-DROP
 URL-REGEX,"^https:\/\/scdn\.line-apps\.com\/lan\/document\/pageEvent\/line\/ios\/",REJECT-DROP
 DOMAIN-SUFFIX,ads.linkedin.com,REJECT
+DOMAIN-SUFFIX,adbuyer3.lycos.com,REJECT
+DOMAIN-SUFFIX,cm8.lycos.com,REJECT
+DOMAIN-SUFFIX,oascentral.lycos.com,REJECT
+DOMAIN-SUFFIX,ratings.lycos.com,REJECT
+DOMAIN-SUFFIX,client.sidesearch.lycos.com,REJECT
+DOMAIN-SUFFIX,install.sidesearch.lycos.com,REJECT
+DOMAIN-SUFFIX,guestworld.tripod.lycos.com,REJECT
+DOMAIN-SUFFIX,titan.guestworld.tripod.lycos.com,REJECT
+DOMAIN-SUFFIX,fe.lea.lycos.co.uk,REJECT
+DOMAIN-SUFFIX,hit.webcentre.lycos.co.uk,REJECT
 DOMAIN,advert.mafengwo.cn,REJECT
+DOMAIN-SUFFIX,mackeeper.com,REJECT
+DOMAIN-SUFFIX,download.mackeeper.com,REJECT
+DOMAIN-SUFFIX,event.mackeeper.com,REJECT
+DOMAIN-SUFFIX,mackeeperapp.mackeeper.com,REJECT
+DOMAIN-SUFFIX,zryydi.com,REJECT
 DOMAIN-SUFFIX,ad.mama.cn,REJECT
 DOMAIN,ad.seeyouyima.com,REJECT
 DOMAIN,axxd.xmseeyouyima.com,REJECT
@@ -1071,6 +1098,10 @@ DOMAIN,iadmat.nosdn.127.net,REJECT-NO-DROP
 DOMAIN,iadmatapk.nosdn.127.net,REJECT-NO-DROP
 DOMAIN,nex.163.com,DIRECT
 DOMAIN,gw.m.163.com,DIRECT
+DOMAIN-SUFFIX,newrelic.com,REJECT
+DOMAIN-SUFFIX,js-agent.newrelic.com,REJECT
+DOMAIN-SUFFIX,bam.nr-data.net,REJECT
+DOMAIN-SUFFIX,ad.openmultimedia.biz,REJECT
 DOMAIN-SUFFIX,ezine.oupeng.com,REJECT
 DOMAIN-SUFFIX,img-ad.oupeng.com,REJECT
 DOMAIN-SUFFIX,notify.oupeng.com,REJECT
@@ -1082,6 +1113,9 @@ DOMAIN-SUFFIX,apps2.outfit7.com,REJECT
 DOMAIN-SUFFIX,cdn.outfit7.com,REJECT
 DOMAIN-SUFFIX,cdn-gcs.outfit7.com,REJECT
 DOMAIN-SUFFIX,events-api.outfit7.net,REJECT
+DOMAIN,acdn.adnxs.com,REJECT
+DOMAIN,mediation.adnxs.com,REJECT
+DOMAIN,sin3-ib.adnxs.com,REJECT
 DOMAIN-SUFFIX,pcauto.com.cn,DIRECT,pre-matching
 DOMAIN-SUFFIX,pconline.com.cn,DIRECT,pre-matching
 DOMAIN-SUFFIX,stadig.ifeng.com,REJECT
@@ -1147,6 +1181,10 @@ DOMAIN,ad.qtfm.cn,REJECT
 DOMAIN,adlaunch.qtfm.cn,REJECT
 DOMAIN,ad.12306.cn,DIRECT,extended-matching
 AND,((PROTOCOL,QUIC),(DOMAIN-SUFFIX,xiaohongshu.com,extended-matching)),REJECT
+DOMAIN-SUFFIX,sape.ru,REJECT
+DOMAIN-SUFFIX,cdn-rtb.sape.ru,REJECT
+DOMAIN-SUFFIX,dispenser-rtb.sape.ru,REJECT
+DOMAIN-SUFFIX,ssp-rtb.sape.ru,REJECT
 DOMAIN,cdn-ad.wtzw.com,REJECT
 DOMAIN,cdn-new-ad.wtzw.com,REJECT
 DOMAIN-SUFFIX,gdt.qq.com,REJECT
@@ -1222,6 +1260,47 @@ DOMAIN,adsehera.ximalaya.com,REJECT,extended-matching,pre-matching
 DOMAIN,adse.wsa.ximalaya.com,REJECT,extended-matching,pre-matching
 DOMAIN,adbehavior.ximalaya.com,REJECT,extended-matching,pre-matching
 DOMAIN,adbehavior.wsa.ximalaya.com,REJECT,extended-matching,pre-matching
+DOMAIN-SUFFIX,adss.yahoo.com,REJECT
+DOMAIN-SUFFIX,beap-bc.yahoo.com,REJECT
+DOMAIN-SUFFIX,comet.yahoo.com,REJECT
+DOMAIN-SUFFIX,geo.yahoo.com,REJECT
+DOMAIN-SUFFIX,marketingsolutions.yahoo.com,REJECT
+DOMAIN-SUFFIX,p3p.yahoo.com,REJECT
+DOMAIN-SUFFIX,themis.yahoo.com,REJECT
+DOMAIN-SUFFIX,ysm.yahoo.com,REJECT
+DOMAIN-SUFFIX,us.adserver.yahoo.com,REJECT
+DOMAIN-SUFFIX,beap.adss.yahoo.com,REJECT
+DOMAIN-SUFFIX,clicks.beap.bc.yahoo.com,REJECT
+DOMAIN-SUFFIX,aliunion.cn.yahoo.com,REJECT
+DOMAIN-SUFFIX,cm.p4p.cn.yahoo.com,REJECT
+DOMAIN-SUFFIX,n.gemini.yahoo.com,REJECT
+DOMAIN-SUFFIX,doubleplay-conf-yql.media.yahoo.com,REJECT
+DOMAIN-SUFFIX,ws.progrss.yahoo.com,REJECT
+DOMAIN-SUFFIX,analytics.query.yahoo.com,REJECT
+DOMAIN-SUFFIX,locdrop.query.yahoo.com,REJECT
+DOMAIN-SUFFIX,onepush.query.yahoo.com,REJECT
+DOMAIN-SUFFIX,iframe.travel.yahoo.com,REJECT
+DOMAIN-SUFFIX,m.yap.yahoo.com,REJECT
+DOMAIN-SUFFIX,pr.ybp.yahoo.com,REJECT
+DOMAIN-SUFFIX,pr-bh.ybp.yahoo.com,REJECT
+DOMAIN-SUFFIX,js-apac-ss.ysm.yahoo.com,REJECT
+DOMAIN-SUFFIX,w.homes.yahoo.net,REJECT
+DOMAIN-SUFFIX,yieldmanager.com,REJECT
+DOMAIN-SUFFIX,ard.yahoo.co.jp,REJECT
+DOMAIN-SUFFIX,yads.yahoo.co.jp,REJECT
+DOMAIN-SUFFIX,yeas.yahoo.co.jp,REJECT
+DOMAIN-SUFFIX,rd.ane.yahoo.co.jp,REJECT
+DOMAIN-SUFFIX,bc.geocities.yahoo.co.jp,REJECT
+DOMAIN-SUFFIX,im.ov.yahoo.co.jp,REJECT
+DOMAIN-SUFFIX,adserver.yahoo.com,REJECT
+DOMAIN-SUFFIX,adspecs.yahoo.com,REJECT
+DOMAIN-SUFFIX,advertising.yahoo.com,REJECT
+DOMAIN-SUFFIX,gemini.yahoo.com,REJECT
+DOMAIN,admarketing.yahoo.net,REJECT
+DOMAIN,ads.auctions.yahoo.com,REJECT
+DOMAIN,ads.finance.yahoo.com,REJECT
+DOMAIN,ads.yahoo.com,REJECT
+DOMAIN,ads.yahoo.de,REJECT
 DOMAIN-SUFFIX,yiche.com,DIRECT,pre-matching
 DOMAIN,push.m.youku.com,DIRECT,extended-matching
 DOMAIN,un-acs.youku.com,DIRECT,extended-matching
@@ -3904,6 +3983,7 @@ https://ios.sspai.com/api/v3/recommend/page/get\?ad.*ios_home_modal - reject
 ^https://marketing-aibox\.v\.mitvos\.com/advertise/ - reject-dict
 ^https://marketing-aibox\.v\.mitvos\.com/payGuide/halfScreenMulti/(home|cache)\? - reject-dict
 ^https://marketing-aibox\.v\.mitvos\.com/payGuide/tabPage\? - reject-dict
+^https?://m\.yap\.yahoo\.com/v\d{2}/getAds\.do - reject
 ^https://api\.yikaobang\.com\.cn/index\.php/client/main/ads\? - reject-dict
 ^https://api\.yikaobang\.com\.cn/index\.php/client/Main/startPage\? - reject-dict
 ^https://(m2u-api\.getkwai|api-m2u\.kuaishou)\.com/api-server/api/v1/ad/ - reject-dict

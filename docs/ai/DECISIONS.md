@@ -1,6 +1,6 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-06-21 00:22 +0800
+Last updated: 2026-06-21 02:58 +0800
 
 ## Decisions
 
@@ -83,3 +83,21 @@ Current protected additions include:
 - `ossgw.alicdn.com`
 
 Reason: bulk imports are useful for coverage, but upstream ad snippets can contain over-broad REJECT or MITM lines. Filtering high-risk host patterns at conversion time reduces the chance that future daily syncs reintroduce the same breakage.
+
+### 2026-06-21 - Foreign Expansion Must Skip Broad Platform Core Rules
+
+Overseas / international app coverage can be expanded from trusted GitHub upstreams, but broad platform rules that touch activation/licensing, Safe Browsing, certificate revocation, AWS/cloud core services, payment, login, or account authorization paths must stay out of direct sync unless a targeted risk review approves them.
+
+Current skipped examples:
+
+- Adobe activation / licensing hosts
+- Apple / Google Safe Browsing hosts
+- Microsoft CRL and system service hosts
+- Amazon AWS core service hosts
+
+Current added Go.com protection examples:
+
+- `dcapps.disney.go.com`
+- `seavideo-ak.espn.go.com`
+
+Reason: foreign coverage is useful, but broad platform rules can break normal app access, security checks, playback, or system connectivity. App expansion should favor narrow ad / telemetry endpoints and converter-level protection.

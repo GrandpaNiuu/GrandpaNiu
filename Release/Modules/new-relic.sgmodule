@@ -1,0 +1,8 @@
+#!name=GrandpaNiu New Relic Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/new-relic.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,newrelic.com,REJECT
+DOMAIN-SUFFIX,js-agent.newrelic.com,REJECT
+DOMAIN-SUFFIX,bam.nr-data.net,REJECT

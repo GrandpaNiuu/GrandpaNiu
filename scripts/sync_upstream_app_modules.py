@@ -204,6 +204,8 @@ PROTECTED_REJECT_TOKENS = (
     "zijieapi.net",
     "zijiecdn.com",
     "snssdk.com",
+    "dcapps.disney.go.com",
+    "seavideo-ak.espn.go.com",
 )
 PROTECTED_MITM_HOST_TOKENS = ("httpdns", "hdns.ksyun.com", "ossgw.alicdn.com")
 BILIBILI_SPARKLE_SOURCE_URL = "https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule"

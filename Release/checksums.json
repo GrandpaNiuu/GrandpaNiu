@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-20T18:51:31.956218Z",
+  "generated_at": "2026-06-20T19:07:14.776397Z",
   "algorithm": "sha256",
-  "count": 413,
+  "count": 422,
   "files": [
     {
       "path": "Release/Beta/README.md",
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 702864,
-      "sha256": "d011206b49803253c3fdf262f0e1753b19fba86610ac33ff6dee273c02fb5a09"
+      "size": 706051,
+      "sha256": "694dc5dd138c759beb432b56c7a71b485873f5f5fc8c4fe4e91c0e87583408c1"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -177,6 +177,11 @@
       "path": "Release/Modules/amap.sgmodule",
       "size": 6892,
       "sha256": "6c773f525e4700063cbac5667ac763277ffba68f57f4a90e784317878327d069"
+    },
+    {
+      "path": "Release/Modules/aol.sgmodule",
+      "size": 380,
+      "sha256": "3ca79821057d301b99b082cdd2546cd969d5dbe2bb795229f683ac8b0f12d3fd"
     },
     {
       "path": "Release/Modules/appso.sgmodule",
@@ -674,6 +679,11 @@
       "sha256": "5a491f77745ff32a8e49db477f1364d2519757d17df481c92d27c7d4d802ecac"
     },
     {
+      "path": "Release/Modules/go-com.sgmodule",
+      "size": 464,
+      "sha256": "7623e1a726612ded0700cb80d5b6c75706862bc6a422ab89c7cb3bb61927fe80"
+    },
+    {
       "path": "Release/Modules/gong-kao-lei-da.sgmodule",
       "size": 335,
       "sha256": "eef8b0780a63b124143004c99c3978a3da1fe881b07067539f12528622700933"
@@ -1084,6 +1094,11 @@
       "sha256": "703667ead3811d0b553be551bd8869137999690e4becaafb72a7b399d06d36c8"
     },
     {
+      "path": "Release/Modules/lycos.sgmodule",
+      "size": 646,
+      "sha256": "cdf66276748cd068da079c92d55d277f630fdfb85fed40537eecbb3bf2e3c846"
+    },
+    {
       "path": "Release/Modules/ma-feng-wo.sgmodule",
       "size": 639,
       "sha256": "0d34839c74543be52493c92d0d4408d296330c269a70ec0c64e72a505a3b19e5"
@@ -1097,6 +1112,11 @@
       "path": "Release/Modules/ma-ma-wang-yun-yu.sgmodule",
       "size": 320,
       "sha256": "8ecff2b9c7e1304695afff2e3b75b3aad9ecfc594bc9fac3eab8eb1f898a39ad"
+    },
+    {
+      "path": "Release/Modules/mac-keeper.sgmodule",
+      "size": 409,
+      "sha256": "2b6a0d610720d61b1ff2969ea331e167754d3990f923b083ee64b508f9e22a84"
     },
     {
       "path": "Release/Modules/mai-dui-dui.sgmodule",
@@ -1259,6 +1279,11 @@
       "sha256": "ba03f5c6d608c7b0fdaf7e77f9f4a2dead650b9c86312076637e199d23d4e741"
     },
     {
+      "path": "Release/Modules/new-relic.sgmodule",
+      "size": 322,
+      "sha256": "c56077341217e67aac35587581cd1fdfd5e318482ad4b42f3b9b2d8c65768eac"
+    },
+    {
       "path": "Release/Modules/niu-ting-ting.sgmodule",
       "size": 442,
       "sha256": "435072845217ce31dc2d72f72f3a0d5474d43f97eb581d663332c248b375999c"
@@ -1284,6 +1309,11 @@
       "sha256": "81e847766362e8fb267e6330cb2c0a715e8ebcaad8213f5edd21dea0f57f2de8"
     },
     {
+      "path": "Release/Modules/openmultimedia.sgmodule",
+      "size": 261,
+      "sha256": "911b35170d6ebf32cd2e391a86db5e88d2330373030634ffe97f08e31c6926b0"
+    },
+    {
       "path": "Release/Modules/oray-sunlogin.sgmodule",
       "size": 351,
       "sha256": "bbd81c03ba33397d7b65f56bbab876ddf6430e835016a6a21f90415e8dd56b8b"
@@ -1302,6 +1332,11 @@
       "path": "Release/Modules/outfit7.sgmodule",
       "size": 430,
       "sha256": "50cce9e57767d0f5dd0d3e378b0f489309352b8da68badf8ac8cf088bf73da3f"
+    },
+    {
+      "path": "Release/Modules/outlook.sgmodule",
+      "size": 299,
+      "sha256": "f2b7440c4b75c287fd16a73584a57c214c000a2ea79d0023ace39ad70c162e17"
     },
     {
       "path": "Release/Modules/oxford-ald10th.sgmodule",
@@ -1487,6 +1522,11 @@
       "path": "Release/Modules/san-lian-zhong-du.sgmodule",
       "size": 344,
       "sha256": "fbb311949cf9f59b0531fcab1d6afb7b901b382076910adf9607a8b779a9663c"
+    },
+    {
+      "path": "Release/Modules/sape.sgmodule",
+      "size": 344,
+      "sha256": "df69b42e92a3cab199f1cba441ca1bbfa3bab493eea2b84e4579b11d4f98353a"
     },
     {
       "path": "Release/Modules/seasun-jx3.sgmodule",
@@ -1864,6 +1904,11 @@
       "sha256": "424f33642c805e31a76992f9c52b1b343f10e18ba7af60d18a539854e101f2ec"
     },
     {
+      "path": "Release/Modules/yahoo.sgmodule",
+      "size": 1956,
+      "sha256": "f974a8ea4d13e4e152cb2649d6a78942ccb83023334b4f0aa3121e34603cc045"
+    },
+    {
       "path": "Release/Modules/yi-kao-bang.sgmodule",
       "size": 424,
       "sha256": "c4b3b705e4d93769a0642f6f6dbeead4f95ea7089df67f803c4663f85e6ade97"
@@ -1985,23 +2030,23 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 702864,
-      "sha256": "d011206b49803253c3fdf262f0e1753b19fba86610ac33ff6dee273c02fb5a09"
+      "size": 706051,
+      "sha256": "694dc5dd138c759beb432b56c7a71b485873f5f5fc8c4fe4e91c0e87583408c1"
     },
     {
       "path": "Release/Rules.conf",
-      "size": 59798,
-      "sha256": "d34f61ced7497e94efa1408590c710bb439dc2be9a5088282fa9741667fa8139"
+      "size": 62929,
+      "sha256": "deed2e7745aec5f0242f06e74a1fbf33ccfb868ef3f83eadd3e88b5fdbb41d83"
     },
     {
       "path": "Release/RulesGroup.conf",
-      "size": 59877,
-      "sha256": "2163e78d4e3148b32f662a5858e35af08e338450c258db9a90002f6a69ef88c3"
+      "size": 63008,
+      "sha256": "ccc8ffb9a5e9e74895612f7ce240144075aef13fb1c411f855b9bbd71fc95376"
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 702864,
-      "sha256": "d011206b49803253c3fdf262f0e1753b19fba86610ac33ff6dee273c02fb5a09"
+      "size": 706051,
+      "sha256": "694dc5dd138c759beb432b56c7a71b485873f5f5fc8c4fe4e91c0e87583408c1"
     },
     {
       "path": "Release/Stable/README.md",
@@ -2010,18 +2055,18 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 702864,
-      "sha256": "d011206b49803253c3fdf262f0e1753b19fba86610ac33ff6dee273c02fb5a09"
+      "size": 706051,
+      "sha256": "694dc5dd138c759beb432b56c7a71b485873f5f5fc8c4fe4e91c0e87583408c1"
     },
     {
       "path": "Release/Stable/Rules.conf",
-      "size": 59798,
-      "sha256": "d34f61ced7497e94efa1408590c710bb439dc2be9a5088282fa9741667fa8139"
+      "size": 62929,
+      "sha256": "deed2e7745aec5f0242f06e74a1fbf33ccfb868ef3f83eadd3e88b5fdbb41d83"
     },
     {
       "path": "Release/Stable/RulesGroup.conf",
-      "size": 59877,
-      "sha256": "2163e78d4e3148b32f662a5858e35af08e338450c258db9a90002f6a69ef88c3"
+      "size": 63008,
+      "sha256": "ccc8ffb9a5e9e74895612f7ce240144075aef13fb1c411f855b9bbd71fc95376"
     },
     {
       "path": "Web/README.md",
@@ -2030,8 +2075,8 @@
     },
     {
       "path": "Web/catalog.md",
-      "size": 97722,
-      "sha256": "898fde9d20b8b1de979d00e1384e63052585507f2a740fc2efbc4ddcab1ec6a7"
+      "size": 99645,
+      "sha256": "ed0ba31670a0813d996cc0821ffee5ee3f2c68378c19ffef8ca3eb33265e0bb0"
     },
     {
       "path": "Web/index.html",
@@ -2040,18 +2085,18 @@
     },
     {
       "path": "Web/modules.html",
-      "size": 380995,
-      "sha256": "674b95a95ab4f0e6c1defbb68dd0630d1c3c532f72a732eb6495d3f1bd0f5b90"
+      "size": 389362,
+      "sha256": "20c6c7bc41678dedd09acb329d37f4ca2c9e9b019a8936a2f95438c3f588bcce"
     },
     {
       "path": "Web/registry.md",
-      "size": 3410,
-      "sha256": "0186cf4e73dfe69a250f2c10d82d7dff35bc7553d20679e75d883039312c2f4a"
+      "size": 3672,
+      "sha256": "a334aa98e5bec40cda20130510c59443238ff3bc7c245f8c94475f88a6d64aa5"
     },
     {
       "path": "Web/release-links.json",
-      "size": 132813,
-      "sha256": "b01a42c33b610a0bc8781eb2d2e66ea05a63978a3beb83c4a8b7af637be3f138"
+      "size": 135546,
+      "sha256": "6a58448132bd4c5ff024156f0375b69a10622641e1995324d5086638dc31956d"
     },
     {
       "path": "Web/remotes.md",
@@ -2060,8 +2105,8 @@
     },
     {
       "path": "Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json",
-      "size": 29874,
-      "sha256": "142116600af138d2bd11a9368e662f17bea6a1dd39996e802c925d0734018f92"
+      "size": 32339,
+      "sha256": "c0eedea47214eb7ade5a82ccf7b0b582ad33ca0e7c32783f8768c56c8afdc22d"
     },
     {
       "path": "Windows/v2rayN/README.md",

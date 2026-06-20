@@ -391,6 +391,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "aol",
+      "name": "AOL",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partA/AOL.snippet",
+      "target": "Rewrite/Sources/Apps/aol.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "appso",
       "name": "AppSo",
       "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partA/AppSo.snippet",
@@ -1579,6 +1591,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "go-com",
+      "name": "Go.com",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partG/Go.com.snippet",
+      "target": "Rewrite/Sources/Apps/go-com.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "gong-kao-lei-da",
       "name": "公考雷达",
       "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partG/GongKaoLeiDa.snippet",
@@ -2563,6 +2587,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "lycos",
+      "name": "Lycos",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partL/Lycos.snippet",
+      "target": "Rewrite/Sources/Apps/lycos.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "ma-feng-wo",
       "name": "马蜂窝",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/MaFengWo_remove_ads.lpx",
@@ -2597,6 +2633,18 @@
       "backup": true,
       "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "mac-keeper",
+      "name": "MacKeeper",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partM/MacKeeper.snippet",
+      "target": "Rewrite/Sources/Apps/mac-keeper.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
     },
     {
       "id": "mai-dui-dui",
@@ -2983,6 +3031,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "new-relic",
+      "name": "New Relic",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partN/NewRelic.snippet",
+      "target": "Rewrite/Sources/Apps/new-relic.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "niu-ting-ting",
       "name": "牛听听",
       "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partN/NiuTingTing.snippet",
@@ -3043,6 +3103,18 @@
       "last_sync_mode": "unchanged"
     },
     {
+      "id": "openmultimedia",
+      "name": "Openmultimedia",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partO/Openmultimedia.snippet",
+      "target": "Rewrite/Sources/Apps/openmultimedia.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
+    },
+    {
       "id": "oray-sunlogin",
       "name": "向日葵",
       "source_url": "https://kelee.one/Tool/Loon/Lpx/OraySunlogin_remove_ads.lpx",
@@ -3089,6 +3161,18 @@
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "outlook",
+      "name": "Outlook",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partO/Outlook.snippet",
+      "target": "Rewrite/Sources/Apps/outlook.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
     },
     {
       "id": "oxford-ald10th",
@@ -3533,6 +3617,18 @@
       "backup": false,
       "upstream_project": "fmz200/wool_scripts",
       "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "sape",
+      "name": "Sape",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partS/Sape.snippet",
+      "target": "Rewrite/Sources/Apps/sape.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
     },
     {
       "id": "seasun-jx3",
@@ -4433,6 +4529,18 @@
       "backup": false,
       "upstream_project": "Kelee PluginHub",
       "last_sync_mode": "unchanged"
+    },
+    {
+      "id": "yahoo",
+      "name": "Yahoo",
+      "source_url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partY/Yahoo.snippet",
+      "target": "Rewrite/Sources/Apps/yahoo.conf",
+      "enabled": true,
+      "direct_commit": true,
+      "risk": "medium",
+      "backup": false,
+      "upstream_project": "fmz200/wool_scripts",
+      "last_sync_mode": "updated"
     },
     {
       "id": "yi-kao-bang",

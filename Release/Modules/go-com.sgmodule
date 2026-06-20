@@ -1,0 +1,12 @@
+#!name=GrandpaNiu Go.com Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/go-com.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,ad.go.com,REJECT
+DOMAIN-SUFFIX,adimages.go.com,REJECT
+DOMAIN-SUFFIX,ngads.go.com,REJECT
+DOMAIN-SUFFIX,w88.go.com,REJECT
+DOMAIN-SUFFIX,verdict.abc.go.com,REJECT
+DOMAIN-SUFFIX,oascentral.abclocal.go.com,REJECT
+DOMAIN-SUFFIX,adsatt.espn.go.com,REJECT

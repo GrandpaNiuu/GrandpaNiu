@@ -1,0 +1,10 @@
+#!name=GrandpaNiu AOL Source
+#!desc=Generated per-app module from GrandpaNiu app source or fusion output
+#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/aol.sgmodule
+
+[Rule]
+DOMAIN-SUFFIX,adinfo.aol.com,REJECT
+DOMAIN-SUFFIX,dynamic.aol.com,REJECT
+DOMAIN-SUFFIX,free.aol.com,REJECT
+DOMAIN-SUFFIX,mads.aol.com,REJECT
+DOMAIN-SUFFIX,cdn.komentary.aol.com,REJECT

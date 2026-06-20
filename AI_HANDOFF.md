@@ -1,6 +1,6 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-06-21 00:22 +0800
+Last updated: 2026-06-21 02:58 +0800
 
 ## What This Project Is
 
@@ -31,11 +31,36 @@ Maintain it as a high-risk network rules repository. Small changes can break use
 - Script aggregation was introduced through `Scripts/generated/fusion-script-bundle.js`.
 - Governance gates were added for script aggregation, script bundle sandbox testing, upstream app module risk, MITM scope, rule overlap, and app-cleaner active state.
 - AI maintenance records were added and then reformatted for readability.
-- Latest app expansion added 94 GitHub-backed app ad cleanup sources, bringing `Rewrite/Sources/Apps/` and `Release/Modules/` to 389 active modules.
+- Latest app expansion added 9 more overseas / international GitHub-backed app-service cleanup sources, bringing `Rewrite/Sources/Apps/` and `Release/Modules/` to 398 active modules.
 - New app sync records are direct-commit enabled in `Rewrite/Remotes/app-modules.json`, so the added app modules are covered by the daily upstream app module sync workflow.
 - `scripts/sync_upstream_app_modules.py` now filters `apd-pcdnwxlogin`, `msync-im`, and `ossgw.alicdn.com` out of imported REJECT / forced MITM lines.
+- `scripts/sync_upstream_app_modules.py` also filters `dcapps.disney.go.com` and `seavideo-ak.espn.go.com` out of imported REJECT lines to avoid Go.com / Disney / ESPN playback-core false positives.
 
-## Current App Expansion Pass
+## Current Foreign App Expansion Pass
+
+Scope:
+
+- Added these GitHub-backed overseas / international sources from `fmz200/wool_scripts`:
+  - AOL
+  - Go.com
+  - Lycos
+  - MacKeeper
+  - New Relic
+  - Openmultimedia
+  - Outlook
+  - Sape
+  - Yahoo
+- Registered all 9 in `Rewrite/Remotes/app-modules.json` with `enabled=true` and `direct_commit=true`.
+- Regenerated Fusion, Release Modules, Android, Windows v2rayN, Web catalog, checksums, and reports through the Builder.
+- Did not add broad unsafe candidates containing activation/licensing, Safe Browsing, Microsoft CRL, Amazon AWS core service, VIP/member unlock, payment bypass, login bypass, or token/cookie rewriting behavior.
+
+Validation:
+
+- `python -m py_compile scripts/sync_upstream_app_modules.py scripts/build_release_modules.py Rewrite/Generator/Builder.py` passed.
+- `python scripts/sync_upstream_app_modules.py --no-kelee --id ...` synced the 9 selected modules with 0 blocked modules and 0 errors.
+- `python Rewrite/Generator/Builder.py --profile fusion --release --check` passed with 398 generated app modules and 0 empty modules.
+
+## Previous App Expansion Pass
 
 Scope:
 

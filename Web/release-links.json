@@ -396,6 +396,13 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/amap.sgmodule"
     },
     {
+      "name": "GrandpaNiu AOL Source",
+      "file": "Release/Modules/aol.sgmodule",
+      "source": "Rewrite/Sources/Apps/aol.conf",
+      "sections": "Rule:5",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/aol.sgmodule"
+    },
+    {
       "name": "GrandpaNiu AppSo Source",
       "file": "Release/Modules/appso.sgmodule",
       "source": "Rewrite/Sources/Apps/appso.conf",
@@ -1082,6 +1089,13 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/gao-ding.sgmodule"
     },
     {
+      "name": "GrandpaNiu Go.com Source",
+      "file": "Release/Modules/go-com.sgmodule",
+      "source": "Rewrite/Sources/Apps/go-com.conf",
+      "sections": "Rule:7",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/go-com.sgmodule"
+    },
+    {
       "name": "GrandpaNiu 公考雷达 Source",
       "file": "Release/Modules/gong-kao-lei-da.sgmodule",
       "source": "Rewrite/Sources/Apps/gong-kao-lei-da.conf",
@@ -1642,6 +1656,13 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/lv-tu-sui-shen-ting.sgmodule"
     },
     {
+      "name": "GrandpaNiu Lycos Source",
+      "file": "Release/Modules/lycos.sgmodule",
+      "source": "Rewrite/Sources/Apps/lycos.conf",
+      "sections": "Rule:10",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/lycos.sgmodule"
+    },
+    {
       "name": "GrandpaNiu 马蜂窝 Source",
       "file": "Release/Modules/ma-feng-wo.sgmodule",
       "source": "Rewrite/Sources/Apps/ma-feng-wo.conf",
@@ -1661,6 +1682,13 @@
       "source": "Rewrite/Sources/Apps/ma-ma-wang-yun-yu.conf",
       "sections": "URL Rewrite:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/ma-ma-wang-yun-yu.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu MacKeeper Source",
+      "file": "Release/Modules/mac-keeper.sgmodule",
+      "source": "Rewrite/Sources/Apps/mac-keeper.conf",
+      "sections": "Rule:5",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/mac-keeper.sgmodule"
     },
     {
       "name": "GrandpaNiu 埋堆堆 Source",
@@ -1873,6 +1901,13 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/netease-news.sgmodule"
     },
     {
+      "name": "GrandpaNiu New Relic Source",
+      "file": "Release/Modules/new-relic.sgmodule",
+      "source": "Rewrite/Sources/Apps/new-relic.conf",
+      "sections": "Rule:3",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/new-relic.sgmodule"
+    },
+    {
       "name": "GrandpaNiu 牛听听 Source",
       "file": "Release/Modules/niu-ting-ting.sgmodule",
       "source": "Rewrite/Sources/Apps/niu-ting-ting.conf",
@@ -1908,6 +1943,13 @@
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/one.sgmodule"
     },
     {
+      "name": "GrandpaNiu Openmultimedia Source",
+      "file": "Release/Modules/openmultimedia.sgmodule",
+      "source": "Rewrite/Sources/Apps/openmultimedia.conf",
+      "sections": "Rule:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/openmultimedia.sgmodule"
+    },
+    {
       "name": "GrandpaNiu 向日葵 Source",
       "file": "Release/Modules/oray-sunlogin.sgmodule",
       "source": "Rewrite/Sources/Apps/oray-sunlogin.conf",
@@ -1934,6 +1976,13 @@
       "source": "Rewrite/Sources/Apps/outfit7.conf",
       "sections": "Rule:5",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/outfit7.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Outlook Source",
+      "file": "Release/Modules/outlook.sgmodule",
+      "source": "Rewrite/Sources/Apps/outlook.conf",
+      "sections": "Rule:3",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/outlook.sgmodule"
     },
     {
       "name": "GrandpaNiu 牛津高阶词典第十版 Source",
@@ -2165,6 +2214,13 @@
       "source": "Rewrite/Sources/Apps/san-lian-zhong-du.conf",
       "sections": "URL Rewrite:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/san-lian-zhong-du.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Sape Source",
+      "file": "Release/Modules/sape.sgmodule",
+      "source": "Rewrite/Sources/Apps/sape.conf",
+      "sections": "Rule:4",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/sape.sgmodule"
     },
     {
       "name": "GrandpaNiu 剑网三无界 Source",
@@ -2648,6 +2704,13 @@
       "source": "Rewrite/Sources/Apps/xun-lei.conf",
       "sections": "Body Rewrite:2, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/xun-lei.sgmodule"
+    },
+    {
+      "name": "GrandpaNiu Yahoo Source",
+      "file": "Release/Modules/yahoo.sgmodule",
+      "source": "Rewrite/Sources/Apps/yahoo.conf",
+      "sections": "Rule:41, URL Rewrite:1, MITM:1",
+      "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/yahoo.sgmodule"
     },
     {
       "name": "GrandpaNiu 医考帮 Source",

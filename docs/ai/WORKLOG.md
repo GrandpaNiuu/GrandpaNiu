@@ -1,5 +1,59 @@
 # AI Maintenance Worklog
 
+## 2026-06-21 02:58 - Work Record
+
+### Task
+
+Expanded overseas / international app-service ad cleanup coverage from public GitHub upstream modules and kept the additions under daily upstream sync.
+
+### Start State
+
+- Branch: `repair/upstream-app-sync`
+- Git status summary: clean before this pass
+- Expected scope: `Rewrite/Remotes/app-modules.json`, selected `Rewrite/Sources/Apps/*.conf`, upstream sync converter protection, generated Release/Web/Android/Windows outputs, reports, source indexes, and AI maintenance records
+
+### Actual Changes
+
+- Added 9 new direct-commit upstream app records:
+  - `aol`
+  - `go-com`
+  - `lycos`
+  - `mac-keeper`
+  - `new-relic`
+  - `openmultimedia`
+  - `outlook`
+  - `sape`
+  - `yahoo`
+- Synced those sources from `fmz200/wool_scripts` into `Rewrite/Sources/Apps/`.
+- Added protected conversion filters for `dcapps.disney.go.com` and `seavideo-ak.espn.go.com` so Go.com upstream sync does not import Disney / ESPN video-core REJECT lines.
+- Regenerated Fusion, Release Modules, Android, Windows v2rayN, Web catalog, checksums, generated script bundle, and reports through the Builder.
+- Updated `Rewrite/Sources/Apps/README.md`, `PROJECT_STATE.md`, `AI_HANDOFF.md`, `docs/ai/TASKS.md`, `docs/ai/DECISIONS.md`, and `docs/ai/RISK_LOG.md`.
+
+### Test Result
+
+- `python -m py_compile scripts/sync_upstream_app_modules.py scripts/build_release_modules.py Rewrite/Generator/Builder.py` passed.
+- `python scripts/sync_upstream_app_modules.py --no-kelee --id aol --id go-com --id lycos --id mac-keeper --id new-relic --id openmultimedia --id outlook --id sape --id yahoo` passed with 9 updated, 0 blocked, and 0 errors.
+- `python Rewrite/Generator/Builder.py --profile fusion --release --check` passed.
+- Builder output: 398 per-app modules, 0 empty modules, repository validation passed, profile validation passed, script aggregation validation passed, script bundle sandbox passed, upstream risk gate passed, Android format check passed, and governance extension validation passed.
+- `git diff --check` passed.
+- `python scripts/quality_gate.py` passed.
+
+### Risk
+
+- Medium. The new modules are mostly rule-only, but Yahoo adds an exact MITM hostname and Go.com required playback-core filtering.
+- Broad high-risk platform candidates were intentionally skipped: Adobe activation/licensing, Apple / Google Safe Browsing, Microsoft CRL, and Amazon AWS core service hosts.
+- Remaining risk: real app behavior is still manually tested by the owner. If a new foreign source breaks normal networking, disable or narrow the single affected `Rewrite/Sources/Apps/<slug>.conf` and its upstream record first.
+
+### Self-Review
+
+- What was not good enough: the first candidate list treated some platform-service snippets as normal foreign app modules even though they contained activation, Safe Browsing, CRL, or cloud-core endpoints.
+- What I changed to reduce that risk: inspected candidate contents before adding, skipped broad platform snippets, and added converter-level Go.com video/core protection before syncing.
+- What I would check first next time: scan each foreign candidate for platform security, licensing, playback, and cloud-service tokens before counting it as usable coverage.
+
+### Next Step
+
+- Commit and push if final diff review remains clean.
+
 ## 2026-06-21 00:22 - Work Record
 
 ### Task

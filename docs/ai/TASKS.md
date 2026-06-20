@@ -1,6 +1,6 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-06-21 00:22 +0800
+Last updated: 2026-06-21 02:58 +0800
 
 ## Active Rules For Task Handling
 
@@ -24,6 +24,23 @@ Last updated: 2026-06-21 00:22 +0800
 - Continue moving workflow build steps toward `Rewrite/Generator/Builder.py --profile fusion --release`.
 - Keep the AI self-review checklist current when new process weaknesses are found.
 - For newly added GitHub app modules, fix future breakage by disabling or narrowing the specific `Rewrite/Sources/Apps/<slug>.conf` and its `Rewrite/Remotes/app-modules.json` record first.
+- For future foreign app expansion, keep rejecting broad platform rules that touch activation/licensing, Safe Browsing, certificate revocation, AWS/cloud core services, payment, login, or account authorization paths.
+
+## Current Foreign App Expansion Task
+
+Status: locally generated and validated; pending commit, push, and CI confirmation.
+
+Scope:
+
+- Added 9 overseas / international app-service sources from `fmz200/wool_scripts`.
+- Registered the new sources for daily direct upstream sync.
+- Added converter-level protection for Go.com Disney / ESPN video-core false positives.
+- Regenerated Fusion, Release, Android, Windows, Web, and reports through the Builder.
+
+Validation:
+
+- `python -m py_compile scripts/sync_upstream_app_modules.py scripts/build_release_modules.py Rewrite/Generator/Builder.py` passed.
+- `python Rewrite/Generator/Builder.py --profile fusion --release --check` passed with 398 generated app modules and 0 empty modules.
 
 ## Current Self-Review Process Task
 

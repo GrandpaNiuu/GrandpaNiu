@@ -1,6 +1,6 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-06-21 00:22 +0800
+Last updated: 2026-06-21 02:58 +0800
 
 ## Project Purpose
 
@@ -130,9 +130,17 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Working tree before this task: clean.
 - Current public strategy: Fusion single public module.
 - Recent CI observed before this task: Module Factory Build and Pages were green after the previous AI maintenance record commit.
-- Current scale after the latest GitHub app expansion: 389 app source files and 389 generated app module outputs.
+- Current scale after the latest GitHub app expansion: 398 active app source files and 398 generated app module outputs. `Rewrite/Sources/Apps/_TEMPLATE.conf` is an authoring template and is not generated.
 
 ## Latest Maintenance Note
+
+2026-06-21 02:58 +0800:
+
+- Added 9 additional GitHub-backed overseas / international app-service cleanup sources from `fmz200/wool_scripts`: AOL, Go.com, Lycos, MacKeeper, New Relic, Openmultimedia, Outlook, Sape, and Yahoo.
+- These records are enabled in `Rewrite/Remotes/app-modules.json` with `direct_commit=true`, so daily upstream app module sync will keep them refreshed.
+- Added converter protection for `dcapps.disney.go.com` and `seavideo-ak.espn.go.com` so Go.com sync does not publish Disney / ESPN video-core style REJECT lines.
+- Intentionally skipped broad high-risk foreign candidates such as Adobe activation/licensing, Apple / Google Safe Browsing, Microsoft CRL, and Amazon AWS core-service rules.
+- Build validation passed with `python Rewrite/Generator/Builder.py --profile fusion --release --check`: 398 app modules generated, 0 empty modules, repository validation, profile validation, script aggregation validation, upstream risk gate, Android format check, and governance checks passed.
 
 2026-06-21 00:22 +0800:
 

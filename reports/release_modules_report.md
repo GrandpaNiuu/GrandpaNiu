@@ -4,10 +4,10 @@
 - Fusion fallback source: `Release/Ronghemokuai.sgmodule`
 - Output directory: `Release/Modules`
 - Manual modules: 18
-- Auto-discovered modules: 371
-- Auto-discovered generated modules: 371
-- Total module specs: 389
-- Generated modules: 389
+- Auto-discovered modules: 380
+- Auto-discovered generated modules: 380
+- Total module specs: 398
+- Generated modules: 398
 - Skipped empty modules: 0
 
 ## GrandpaNiu Spotify
@@ -343,6 +343,11 @@
 - Map Local: 15
 - Script: 14
 - MITM: 1
+
+## GrandpaNiu AOL Source
+- Source: `Rewrite/Sources/Apps/aol.conf`
+- Discovery: auto
+- Rule: 5
 
 ## GrandpaNiu AppSo Source
 - Source: `Rewrite/Sources/Apps/appso.conf`
@@ -971,6 +976,11 @@
 - Body Rewrite: 3
 - MITM: 1
 
+## GrandpaNiu Go.com Source
+- Source: `Rewrite/Sources/Apps/go-com.conf`
+- Discovery: auto
+- Rule: 7
+
 ## GrandpaNiu 公考雷达 Source
 - Source: `Rewrite/Sources/Apps/gong-kao-lei-da.conf`
 - Discovery: auto
@@ -1481,6 +1491,11 @@
 - Script: 1
 - MITM: 1
 
+## GrandpaNiu Lycos Source
+- Source: `Rewrite/Sources/Apps/lycos.conf`
+- Discovery: auto
+- Rule: 10
+
 ## GrandpaNiu 马蜂窝 Source
 - Source: `Rewrite/Sources/Apps/ma-feng-wo.conf`
 - Discovery: auto
@@ -1500,6 +1515,11 @@
 - Discovery: auto
 - URL Rewrite: 1
 - MITM: 1
+
+## GrandpaNiu MacKeeper Source
+- Source: `Rewrite/Sources/Apps/mac-keeper.conf`
+- Discovery: auto
+- Rule: 5
 
 ## GrandpaNiu 埋堆堆 Source
 - Source: `Rewrite/Sources/Apps/mai-dui-dui.conf`
@@ -1697,6 +1717,11 @@
 - Script: 3
 - MITM: 1
 
+## GrandpaNiu New Relic Source
+- Source: `Rewrite/Sources/Apps/new-relic.conf`
+- Discovery: auto
+- Rule: 3
+
 ## GrandpaNiu 牛听听 Source
 - Source: `Rewrite/Sources/Apps/niu-ting-ting.conf`
 - Discovery: auto
@@ -1728,6 +1753,11 @@
 - URL Rewrite: 3
 - MITM: 1
 
+## GrandpaNiu Openmultimedia Source
+- Source: `Rewrite/Sources/Apps/openmultimedia.conf`
+- Discovery: auto
+- Rule: 1
+
 ## GrandpaNiu 向日葵 Source
 - Source: `Rewrite/Sources/Apps/oray-sunlogin.conf`
 - Discovery: auto
@@ -1749,6 +1779,11 @@
 - Source: `Rewrite/Sources/Apps/outfit7.conf`
 - Discovery: auto
 - Rule: 5
+
+## GrandpaNiu Outlook Source
+- Source: `Rewrite/Sources/Apps/outlook.conf`
+- Discovery: auto
+- Rule: 3
 
 ## GrandpaNiu 牛津高阶词典第十版 Source
 - Source: `Rewrite/Sources/Apps/oxford-ald10th.conf`
@@ -1958,6 +1993,11 @@
 - Discovery: auto
 - URL Rewrite: 1
 - MITM: 1
+
+## GrandpaNiu Sape Source
+- Source: `Rewrite/Sources/Apps/sape.conf`
+- Discovery: auto
+- Rule: 4
 
 ## GrandpaNiu 剑网三无界 Source
 - Source: `Rewrite/Sources/Apps/seasun-jx3.conf`
@@ -2401,6 +2441,13 @@
 - Source: `Rewrite/Sources/Apps/xun-lei.conf`
 - Discovery: auto
 - Body Rewrite: 2
+- MITM: 1
+
+## GrandpaNiu Yahoo Source
+- Source: `Rewrite/Sources/Apps/yahoo.conf`
+- Discovery: auto
+- Rule: 41
+- URL Rewrite: 1
 - MITM: 1
 
 ## GrandpaNiu 医考帮 Source

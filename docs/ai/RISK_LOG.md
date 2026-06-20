@@ -1,6 +1,6 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-06-21 00:22 +0800
+Last updated: 2026-06-21 02:58 +0800
 
 ## Standing High-Risk Areas
 
@@ -31,20 +31,28 @@ Last updated: 2026-06-21 00:22 +0800
 
 ## Current Task Risk
 
-The latest app expansion is medium to high operational risk because it adds many app-scoped rewrite, rule, script, and MITM fragments at once.
+The latest foreign app expansion is medium operational risk because it adds 9 overseas / international app-service cleanup sources and regenerates public outputs.
 
 Mitigations:
 
 - Added only app ad-cleaning sources from trusted GitHub upstreams already compatible with the sync framework.
+- Kept every new record under `Rewrite/Remotes/app-modules.json` daily direct sync.
+- Added converter protection for `dcapps.disney.go.com` and `seavideo-ak.espn.go.com` before syncing Go.com, preventing Disney / ESPN video-core style REJECT lines from entering the module.
+- Skipped broad high-risk foreign candidates:
+  - Adobe activation / licensing hosts
+  - Apple / Google Safe Browsing hosts
+  - Microsoft CRL and system service hosts
+  - Amazon AWS core-service hosts
 - Did not intentionally add VIP/member unlock, payment bypass, login bypass, token/cookie rewrite, receipt forgery, or account-sharing modules.
 - Preserved daily upstream tracking through `Rewrite/Remotes/app-modules.json`.
-- Added protected import filters for `apd-pcdnwxlogin`, `msync-im`, and `ossgw.alicdn.com`.
+- Kept existing protected import filters for `apd-pcdnwxlogin`, `msync-im`, and `ossgw.alicdn.com`.
 - Ran Builder release check with repository validation, upstream risk gate, script aggregation validation, script bundle sandbox, Android format check, and governance validation.
 
 Remaining risk:
 
 - Real App end-to-end behavior is still owner-tested manually.
 - Some imported App modules use broad ad network hostnames. If a specific App breaks login, video, images, or normal networking, disable or narrow that single App source first.
+- Yahoo includes an exact MITM scope for `m.yap.yahoo.com`; if Yahoo pages show abnormal behavior, narrow or disable `Rewrite/Sources/Apps/yahoo.conf` first.
 
 ## Pending REJECT Risk Review Checklist
 
