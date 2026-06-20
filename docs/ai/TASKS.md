@@ -152,14 +152,16 @@ Completed scope:
 
 - Make report freshness blocking in the actual quality-gate exit status.
 - Validate the final generated script bundle instead of an earlier intermediate bundle.
-- Serialize all generated-output maintenance workflows with one shared concurrency group.
+- Isolate generated-output workflow concurrency by workflow/ref so unrelated jobs cannot cancel each other.
+- Keep one push-validation entrypoint in `Module Factory Build`.
 - Centralize explicit-path commit and fetch/rebase/retry behavior.
 - Remove destructive reset and broad staging from maintenance automation.
 - Add regression and local Git integration tests.
+- Preserve Markdown and recovery commands in automatically created failure Issues.
 
 Validation:
 
-- 18 unit/integration tests passed.
+- 20 unit/integration tests passed.
 - All 10 workflow YAML files parsed successfully.
 - `bash -n scripts/commit_generated_changes.sh` passed.
 - `python Rewrite/Generator/Builder.py --profile fusion --release --check` passed.

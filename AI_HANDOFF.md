@@ -198,9 +198,11 @@ git branch --show-current
 - Fixed a reproducible false-green quality gate: freshness reported blocking stale script reports while the command still exited successfully.
 - Moved script aggregation validation and sandbox execution after the last profile rebuild and enabled strict freshness enforcement.
 - Replaced duplicated workflow commit loops with `scripts/commit_generated_changes.sh`.
-- All maintenance workflows that write generated output now share `group: module-maintenance`.
+- All maintenance workflows use isolated `module-maintenance-${{ github.workflow }}-${{ github.ref }}` groups after remote run #555 proved that one global group cancels older pending workflows.
+- `Module Factory Build` is the only push-validation entrypoint; daily audit and scheduled update remain schedule/manual workflows.
 - Removed `git reset --hard` and broad `git add -A` from maintenance automation.
 - Added tests for ordering, workflow safety contracts, and a real local push through the commit helper.
+- Fixed `workflow-failure-issue.yml` so Markdown backticks and recovery commands are not erased by shell command substitution.
 - No traffic rules or protected App paths were changed.
 
 First check next time: inspect the GitHub Actions runs triggered by the automation-hardening commit, especially `Module Factory Build`.

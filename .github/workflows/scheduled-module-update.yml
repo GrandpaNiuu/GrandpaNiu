@@ -6,11 +6,6 @@ on:
     # 17:07 UTC = 01:07 Beijing time. Staggered to reduce GitHub schedule delay/drop risk.
     # Rebuild trigger: refresh generated outputs after Google login proxy policy change.
     - cron: "7 17 * * *"
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/scheduled-module-update.yml"
 
 permissions:
   contents: write
@@ -25,7 +20,7 @@ env:
   LC_ALL: C.UTF-8
 
 concurrency:
-  group: module-maintenance
+  group: module-maintenance-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:

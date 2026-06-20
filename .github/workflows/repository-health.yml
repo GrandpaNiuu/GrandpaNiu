@@ -11,7 +11,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: module-maintenance
+  group: module-maintenance-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:

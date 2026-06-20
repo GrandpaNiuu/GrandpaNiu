@@ -36,7 +36,7 @@ jobs:
     # - success: skipped, no issue
     # - skipped: skipped, no issue, because normal skipped runs can happen in GitHub Actions
     # - failure / timed_out / action_required: open or update issue
-    # - cancelled: ignored, because module-maintenance concurrency can cancel older runs normally
+    # - cancelled: ignored because cancellation is not a repository correctness failure
     if: ${{ contains(fromJSON('["failure","timed_out","action_required"]'), github.event.workflow_run.conclusion) }}
     runs-on: ubuntu-latest
     steps:
@@ -63,19 +63,23 @@ jobs:
           set -euo pipefail
           TITLE="[Automation Failure] ${WORKFLOW_NAME}"
           BODY_FILE="failure_issue_body.md"
-          cat > "$BODY_FILE" <<EOF
-          ## Workflow failure detected
+          export BODY_FILE
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          body = f"""## Workflow failure detected
 
           | Field | Value |
           |---|---|
-          | Workflow | ${WORKFLOW_NAME} |
-          | Run number | ${RUN_NUMBER} |
-          | Run ID | ${RUN_ID} |
-          | Conclusion | ${CONCLUSION} |
-          | Event | ${EVENT_NAME} |
-          | Branch | ${HEAD_BRANCH} |
-          | Commit | ${HEAD_SHA} |
-          | Run URL | ${HTML_URL} |
+          | Workflow | {os.environ['WORKFLOW_NAME']} |
+          | Run number | {os.environ['RUN_NUMBER']} |
+          | Run ID | {os.environ['RUN_ID']} |
+          | Conclusion | {os.environ['CONCLUSION']} |
+          | Event | {os.environ['EVENT_NAME']} |
+          | Branch | {os.environ['HEAD_BRANCH']} |
+          | Commit | {os.environ['HEAD_SHA']} |
+          | Run URL | {os.environ['HTML_URL']} |
 
           ## Expected watcher behavior
 
@@ -102,7 +106,9 @@ jobs:
           ```
 
           This issue was created automatically. Close it only after the workflow has returned to `completed / success` or the cancellation has been confirmed as intentional.
-          EOF
+          """
+          Path(os.environ["BODY_FILE"]).write_text(body, encoding="utf-8")
+          PY
 
           EXISTING=$(gh issue list --repo "$REPO" --state open --search "\"[Automation Failure] ${WORKFLOW_NAME}\" in:title label:automation-failure" --json number --jq '.[0].number // empty')
           if [ -n "$EXISTING" ]; then

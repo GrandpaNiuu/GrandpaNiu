@@ -20,7 +20,7 @@ env:
   LC_ALL: C.UTF-8
 
 concurrency:
-  group: module-maintenance
+  group: module-maintenance-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:

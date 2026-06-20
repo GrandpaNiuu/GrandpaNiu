@@ -5,18 +5,12 @@ on:
     # 16:43 UTC = 00:43 Beijing time. Staggered to reduce GitHub schedule delay/drop risk.
     - cron: "43 16 * * *"
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/daily-audit-and-repair.yml"
-      - "scripts/audit_and_repair_module.py"
 
 permissions:
   contents: write
 
 concurrency:
-  group: module-maintenance
+  group: module-maintenance-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:

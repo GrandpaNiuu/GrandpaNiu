@@ -102,9 +102,11 @@ Current added Go.com protection examples:
 
 Reason: foreign coverage is useful, but broad platform rules can break normal app access, security checks, playback, or system connectivity. App expansion should favor narrow ad / telemetry endpoints and converter-level protection.
 
-### 2026-06-21 - Serialize And Centralize Generated Output Publishing
+### 2026-06-21 - Isolate And Centralize Generated Output Publishing
 
-All maintenance workflows that write generated outputs use the shared `module-maintenance` concurrency group and `scripts/commit_generated_changes.sh`.
+All maintenance workflows that write generated outputs use isolated `module-maintenance-${{ github.workflow }}-${{ github.ref }}` groups and `scripts/commit_generated_changes.sh`.
+
+Only `Module Factory Build` validates pushes. Scheduled maintenance workflows use schedule/manual triggers so one workflow-file change does not launch several generated-output writers.
 
 The helper must:
 
@@ -113,10 +115,16 @@ The helper must:
 - retry push after fetch and rebase
 - stop on rebase conflict instead of overwriting files
 
-Reason: workflow-specific locks did not prevent different maintenance jobs from racing each other, and duplicated reset/regenerate loops could hide conflicts or drift apart.
+Reason: one global GitHub concurrency group cancels older pending runs when several workflows start together, as demonstrated by cancelled Module Factory Build run #555. Isolated workflow locks preserve every run, while staggered schedules and the safe rebase helper control write races without destructive resets.
 
 ### 2026-06-21 - Freshness Is A Blocking Quality Contract
 
 Non-self-refresh governance reports marked blocking must be fresh when the quality gate finishes. Script aggregation and sandbox reports must be generated after the final profile build, and `check_report_freshness.py` must run with `--strict`.
 
 Reason: a report that says blocking stale while CI exits successfully is false evidence and must not be published as a green gate.
+
+### 2026-06-21 - Generate Failure Issue Markdown Outside Shell Expansion
+
+`workflow-failure-issue.yml` writes its Markdown body with Python reading environment variables. Do not use an unquoted shell heredoc for Markdown containing backticks.
+
+Reason: Bash treats backticks in an expanding heredoc as command substitution. Issue #248 proved that this erased status names and all recovery commands from the automated failure report.

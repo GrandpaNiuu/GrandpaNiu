@@ -511,14 +511,16 @@ docs: normalize AI maintenance records
 
 - 修复 `quality_gate.py` 顺序：最后一次 profile 重建后再校验 bundle 语法、聚合一致性和运行时沙箱。
 - freshness 改为 `--strict`，阻断报告过期时 CI 必须失败。
-- 9 个维护 workflow 统一使用 `module-maintenance` 并发锁。
+- 9 个维护 workflow 使用按 workflow/ref 隔离的 `module-maintenance-*` 并发锁。远程 #555 证明单一全局锁会取消较早的 pending 运行，因此不再共享一个固定 group。
+- 仅保留 `Module Factory Build` 的 push 验收；每日审计和计划更新只保留 schedule/manual 触发。
 - 重写 `commit_generated_changes.sh`：仅暂存显式路径，push 失败后 fetch + rebase + retry，冲突时停止而不覆盖。
 - 移除维护自动化中的 `git reset --hard` 和 `git add -A`。
 - 增加 freshness 顺序、workflow 契约和本地裸 Git 远端提交集成测试。
+- 修复 `workflow-failure-issue.yml` 的 shell heredoc 命令替换；Issue #248 中被清空的状态名和恢复命令现在由 Python 安全写入 Markdown。
 
 ### 测试结果
 
-- 18 项单元/集成测试通过。
+- 20 项单元/集成测试通过。
 - 10 个 workflow YAML 全部可解析。
 - `bash -n scripts/commit_generated_changes.sh` 通过。
 - `python Rewrite/Generator/Builder.py --profile fusion --release --check` 通过。
@@ -533,8 +535,8 @@ docs: normalize AI maintenance records
 
 ### Self-Review
 
-- What was not good enough: 上一次只看到质量门禁返回成功，没有立即对照 freshness 报告的阻断数；workflow 虽然有 concurrency，但不同 workflow 之间并未真正串行。
-- What I changed to reduce that risk: 把报告语义、进程退出码、并发锁和提交助手都写成自动回归测试。
+- What was not good enough: 上一次只看到质量门禁返回成功，没有立即对照 freshness 报告的阻断数；第一版并发修复又误用了全局 group，直到远程 #555 被取消才证明该设计不成立。
+- What I changed to reduce that risk: 把报告语义、进程退出码、隔离并发锁、单一 push 验收和提交助手都写成自动回归测试。
 - What I would check first next time: 先看远端 Module Factory Build 是否绿色，再检查定时工作流是否在共享并发锁下顺序运行。
 
 ### 下一步

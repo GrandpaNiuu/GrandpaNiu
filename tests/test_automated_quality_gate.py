@@ -117,14 +117,15 @@ class AutomatedQualityGateTests(unittest.TestCase):
         self.assertIn("automated_quality_evidence.md", workflow_text)
         self.assertIn("scripts/quality_gate.py", workflow_text)
 
-    def test_auto_commit_workflows_share_lock_and_use_safe_commit_helper(self) -> None:
+    def test_auto_commit_workflows_use_isolated_lock_and_safe_commit_helper(self) -> None:
         offenders: list[str] = []
         for path in sorted((ROOT / ".github" / "workflows").glob("*.yml")):
             text = path.read_text(encoding="utf-8")
             if "git push origin HEAD:main" not in text and "commit_generated_changes.sh" not in text:
                 continue
-            if "group: module-maintenance" not in text:
-                offenders.append(f"{path.name}: missing shared concurrency group")
+            expected_group = "group: module-maintenance-${{ github.workflow }}-${{ github.ref }}"
+            if expected_group not in text:
+                offenders.append(f"{path.name}: missing isolated maintenance concurrency group")
             if "scripts/commit_generated_changes.sh" not in text:
                 offenders.append(f"{path.name}: missing commit helper")
             if "git reset --hard" in text:
@@ -132,6 +133,18 @@ class AutomatedQualityGateTests(unittest.TestCase):
             if "git add -A" in text:
                 offenders.append(f"{path.name}: broad staging")
         self.assertEqual([], offenders)
+
+    def test_push_validation_has_one_factory_entrypoint(self) -> None:
+        factory = (ROOT / ".github" / "workflows" / "module-factory-build.yml").read_text(encoding="utf-8")
+        self.assertIn("\n  push:\n", factory)
+        for name in ("daily-audit-and-repair.yml", "scheduled-module-update.yml"):
+            text = (ROOT / ".github" / "workflows" / name).read_text(encoding="utf-8")
+            self.assertNotIn("\n  push:\n", text, name)
+
+    def test_failure_issue_body_does_not_use_expanding_shell_heredoc(self) -> None:
+        text = (ROOT / ".github" / "workflows" / "workflow-failure-issue.yml").read_text(encoding="utf-8")
+        self.assertNotIn("<<EOF", text)
+        self.assertIn("python3 - <<'PY'", text)
 
     def test_commit_helper_requires_explicit_paths_and_safe_rebase(self) -> None:
         text = (ROOT / "scripts" / "commit_generated_changes.sh").read_text(encoding="utf-8")

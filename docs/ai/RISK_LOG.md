@@ -125,15 +125,18 @@ Risk level: medium operational, low traffic-policy risk.
 Observed signals:
 
 - The quality gate exited successfully while its freshness report contained blocking stale script reports.
-- Maintenance workflows used separate concurrency groups, so different workflows could write to `main` concurrently.
+- The first hardening attempt used one global concurrency group; remote run #555 proved that GitHub cancels older pending workflows when several jobs share that group.
 - Several workflows and the commit helper used `git reset --hard`, contrary to repository safety policy.
+- Automated failure Issue #248 lost backticked status names and recovery commands because an expanding shell heredoc performed command substitution.
 
 Mitigations:
 
 - Enforced strict report freshness after the final bundle rebuild and runtime sandbox.
-- Serialized generated-output writers with `group: module-maintenance`.
+- Isolated concurrency by workflow/ref and retained staggered schedules, so unrelated maintenance jobs cannot cancel each other.
+- Kept `Module Factory Build` as the single push-validation entrypoint.
 - Centralized explicit-path staging and fetch/rebase/retry in one tested helper.
 - Rebase conflicts now stop the workflow instead of force-overwriting generated files.
+- Failure Issue Markdown is generated without shell expansion, preserving diagnostic commands.
 
 Traffic risk boundary:
 

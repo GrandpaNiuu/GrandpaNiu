@@ -440,8 +440,9 @@ def validate_workflows() -> None:
         text = read_text(path)
         if "contents: write" not in text:
             fail(f"workflow must declare contents: write: {relative}")
-        if "group: module-maintenance" not in text:
-            fail(f"workflow must use shared module-maintenance concurrency: {relative}")
+        expected_group = "group: module-maintenance-${{ github.workflow }}-${{ github.ref }}"
+        if expected_group not in text:
+            fail(f"workflow must use isolated maintenance concurrency: {relative}")
         if "scripts/commit_generated_changes.sh" not in text:
             fail(f"workflow must use the generated commit helper: {relative}")
         for token in ("git add -A", "git reset --hard", "git clean -fd", "git push --force"):
@@ -464,6 +465,8 @@ def validate_workflows() -> None:
             fail(f"{relative} must run at expected staggered Beijing schedule: {cron}")
 
     scheduled = read_text(ROOT / ".github" / "workflows" / "scheduled-module-update.yml")
+    if "\n  push:\n" in scheduled:
+        fail("scheduled-module-update must not duplicate the Module Factory push validation trigger")
     if "scripts/refresh_module_date.py" not in scheduled:
         fail("scheduled-module-update workflow must refresh Beijing module date before building")
 
@@ -476,6 +479,8 @@ def validate_workflows() -> None:
         if token not in invalid_source:
             fail(f"daily-invalid-source-repair workflow missing command token: {token}")
     audit = read_text(ROOT / ".github" / "workflows" / "daily-audit-and-repair.yml")
+    if "\n  push:\n" in audit:
+        fail("daily-audit-and-repair must not duplicate the Module Factory push validation trigger")
     if "validate_remote_rule_syntax.py" not in audit:
         fail("daily-audit-and-repair workflow missing validate_remote_rule_syntax.py")
 

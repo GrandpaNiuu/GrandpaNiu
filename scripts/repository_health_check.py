@@ -189,7 +189,9 @@ def workflow_summary(path: Path) -> str:
     uses_helper = "scripts/commit_generated_changes.sh" in text
     items = [
         "contents: write" if "contents: write" in text else "missing contents: write",
-        "shared concurrency" if "group: module-maintenance" in text else "missing shared concurrency",
+        "isolated concurrency"
+        if "group: module-maintenance-${{ github.workflow }}-${{ github.ref }}" in text
+        else "missing isolated concurrency",
         "fusion" if workflow_has_fusion_build(text) else "missing fusion build",
         "safe commit helper" if uses_helper else "missing safe commit helper",
         "rebase retry" if uses_helper and "git rebase origin/main" in helper else "missing rebase retry",
