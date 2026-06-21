@@ -595,3 +595,12 @@ docs: normalize AI maintenance records
 - 提交并推送本次自动化修复。
 - 检查由 push 触发的 Module Factory Build。
 - 等待或手动触发 invalid-rule audit，确认 Issue #249 自动关闭。
+
+### 远端确认
+
+- 修复提交：`e85254fa codex: serialize daily maintenance writers`。
+- Module Factory Build `27913770402`：成功；运行时锁存在，Release 步骤后锁消失。
+- invalid-rule audit 手动复验 `27913813597`：成功；运行时锁存在，结束后无残留锁。
+- Pages 与 Workflow failure issue watcher：成功。
+- 自动故障 Issue #249：已关闭。
+- 最终远端生成提交：`b07f6116 Daily audit and safe fusion repair`。

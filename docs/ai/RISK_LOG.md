@@ -1,6 +1,6 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-06-22 02:33 +0800
+Last updated: 2026-06-22 02:41 +0800
 
 ## Standing High-Risk Areas
 
@@ -165,5 +165,5 @@ Mitigations:
 Remaining risk:
 
 - A job running longer than the stale threshold could have its lock reclaimed. Current maintenance jobs normally finish well inside one hour; investigate before increasing job scope substantially.
-- The next scheduled invalid-rule audit is still needed as remote confirmation of the repaired collision path.
+- The repaired path was remotely confirmed by Module Factory Build `27913770402` and invalid-rule audit rerun `27913813597`; Issue #249 closed automatically.
 - No Rules, App sources, MITM, login, payment, banking, captcha, video, or CDN policy changed in this repair.

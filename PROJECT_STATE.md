@@ -1,6 +1,6 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-06-22 02:33 +0800
+Last updated: 2026-06-22 02:41 +0800
 
 ## Project Purpose
 
@@ -143,6 +143,7 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Lock helpers live in `tools/`, not `scripts/`, because this repository also contains `Scripts/`; Windows case folding would otherwise create a Linux-only path failure.
 - No Rules, App sources, MITM scopes, protected traffic policies, or public module contents were changed. Generated reports and metadata were refreshed by the full quality gate.
 - Final validation passed: 21 tests, 398 App modules, 0 empty modules, 17 remote sources with 0 warnings, 14 fresh governance reports, and 0 repository-health blocking issues.
+- Remote confirmation passed: Module Factory Build `27913770402`, invalid-rule audit rerun `27913813597`, Pages, and the failure watcher all completed successfully. Issue #249 closed automatically and the lock ref was absent after completion.
 
 2026-06-21 02:58 +0800:
 
