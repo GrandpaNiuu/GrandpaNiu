@@ -1,8 +1,8 @@
 # Android rules build report
 
-- generated: 2026-06-22 02:40:08 Asia/Shanghai
+- generated: 2026-06-22 02:55:58 Asia/Shanghai
 - app rule files: 22
-- main Android rules: 941
+- main Android rules: 957
 - source: Android/mihomo/apps/*.yaml
 - iOS common source: Rules/reject.list -> iOS-Compatible-Reject
 - iOS app source: Rewrite/Sources/Apps/*.conf [Rule] REJECT -> iOS-App-Compatible-Reject
@@ -19,7 +19,7 @@
 | Bilibili | 1 | yes |
 | Domestic-Apps | 146 | yes |
 | Douyin | 12 | yes |
-| iOS-App-Compatible-Reject | 662 | yes |
+| iOS-App-Compatible-Reject | 687 | yes |
 | iOS-Compatible-Reject | 91 | yes |
 | iOS-Rewrite-Compatible-Reject | 10 | yes |
 | iQiyi | 2 | yes |
@@ -139,7 +139,7 @@
 | pinduoduo | 10 |
 | pptv | 14 |
 | qilu | 2 |
-| qqksong | 1 |
+| qqksong | 27 |
 | qqmusic | 11 |
 | qting-fm | 2 |
 | safety-home | 1 |
@@ -153,9 +153,9 @@
 | snow-camera | 3 |
 | sogou-input | 1 |
 | soufun | 2 |
-| soul | 7 |
+| soul | 11 |
 | taobao | 4 |
-| tencent-video | 1 |
+| tencent-video | 7 |
 | terabox | 1 |
 | the-paper-news | 5 |
 | tube-max | 8 |

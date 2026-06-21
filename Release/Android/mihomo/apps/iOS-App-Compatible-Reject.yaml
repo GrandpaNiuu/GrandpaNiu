@@ -7,6 +7,9 @@ payload:
   - DOMAIN,acdn.adnxs.com
   - DOMAIN,activity-ag.awemeughun.com
   - DOMAIN,ad-analysis.pconline.com.cn
+  - DOMAIN,ad-h5-cdn.soulapp.cn
+  - DOMAIN,ad-h5-station-cdn.soulapp.cn
+  - DOMAIN,ad-r.soulapp.cn
   - DOMAIN,ad-sdk-config.youdao.com
   - DOMAIN,ad-stat.ksosoft.com
   - DOMAIN,ad.360in.com
@@ -79,6 +82,7 @@ payload:
   - DOMAIN,apps-booster.xiaopeng.com
   - DOMAIN,asimgs.pplive.cn
   - DOMAIN,axxd.xmseeyouyima.com
+  - DOMAIN,c2.gdt.qq.com
   - DOMAIN,cad.youku.com
   - DOMAIN,cdn-ad.wtzw.com
   - DOMAIN,cdn-new-ad.wtzw.com
@@ -112,6 +116,7 @@ payload:
   - DOMAIN,gather.colorfulclouds.net
   - DOMAIN,gwp.xiaojukeji.com
   - DOMAIN,h-adashx.ut.taobao.com
+  - DOMAIN,huatuocode.huatuo.qq.com
   - DOMAIN,huodong.weibo.cn
   - DOMAIN,huyafile.msstatic.com
   - DOMAIN,iad0ssl.pcauto.com.cn
@@ -123,6 +128,8 @@ payload:
   - DOMAIN,imgad0.pconline.com.cn
   - DOMAIN,imgadpai.thepaper.cn
   - DOMAIN,impression.biligame.com
+  - DOMAIN,ios.bugly.qq.com
+  - DOMAIN,ios.video.mpush.qq.com
   - DOMAIN,ipv4.kkmh.com
   - DOMAIN,ipv6.kkmh.com
   - DOMAIN,jp.ad.gameley.com
@@ -149,6 +156,7 @@ payload:
   - DOMAIN,mc.tencentmusic.com
   - DOMAIN,mediation.adnxs.com
   - DOMAIN,meta.pinduoduo.com
+  - DOMAIN,mi.gdt.qq.com
   - DOMAIN,minfo.wps.cn
   - DOMAIN,mob.bz.mgtv.com
   - DOMAIN,mobad.ijinshan.com
@@ -160,14 +168,18 @@ payload:
   - DOMAIN,mon3-misc.fqnovel.com
   - DOMAIN,monitor.music.qq.com
   - DOMAIN,mqtt.zhihu.com
+  - DOMAIN,otheve.beacon.qq.com
   - DOMAIN,p11-webcast-sign.douyinpic.com
   - DOMAIN,p3-developer.bytemaimg.com
   - DOMAIN,p3-webcast-sign.douyinpic.com
   - DOMAIN,pgdt.gtimg.com
+  - DOMAIN,pgdt.ugdtimg.com
   - DOMAIN,pin.hpplay.cn
   - DOMAIN,popup-api.b612kaji.com
   - DOMAIN,pp-cdnfile2pcdn.msstatic.com
   - DOMAIN,qh-material.taobao.com
+  - DOMAIN,qzs.gdtimg.com
+  - DOMAIN,qzs.qq.com
   - DOMAIN,r.dianping.com
   - DOMAIN,rc-topic-api.bz.mgtv.com
   - DOMAIN,regist.fotoable.com
@@ -175,6 +187,7 @@ payload:
   - DOMAIN,richmanapi.jxedt.com
   - DOMAIN,richmanmain.jxedt.com
   - DOMAIN,richmanrules.jxedt.com
+  - DOMAIN,rmonitor.qq.com
   - DOMAIN,rp.hpplay.cn
   - DOMAIN,rprain.bz.mgtv.com
   - DOMAIN,rprain.log.mgtv.com
@@ -185,15 +198,18 @@ payload:
   - DOMAIN,s3plus.meituan.net
   - DOMAIN,saad.ms.zhangyue.net
   - DOMAIN,sdk.ad.sfys365.com
+  - DOMAIN,sdk.e.qq.com
   - DOMAIN,sdkconfig.ad.xiaomi.com
   - DOMAIN,sin3-ib.adnxs.com
   - DOMAIN,smad.ms.zhangyue.net
+  - DOMAIN,soul-ad.soulapp.cn
   - DOMAIN,splash.yy.com
   - DOMAIN,splashimgretrybssdl.cloud.kugou.com
   - DOMAIN,stun1.douyucdn.cn
   - DOMAIN,stun1.qvb.qcloud.com
   - DOMAIN,sugar.zhihu.com
   - DOMAIN,t-dsp.pinduoduo.com
+  - DOMAIN,t.gdt.qq.com
   - DOMAIN,ta-a.pinduoduo.com
   - DOMAIN,ta.pinduoduo.com
   - DOMAIN,th-a.pinduoduo.com
@@ -202,7 +218,9 @@ payload:
   - DOMAIN,titan.pinduoduo.com
   - DOMAIN,tmead.y.qq.com
   - DOMAIN,tmeadbak.y.qq.com
+  - DOMAIN,tmeadcomm.y.qq.com
   - DOMAIN,tmeadquic.y.qq.com
+  - DOMAIN,tpstelemetry.tencent.com
   - DOMAIN,track.58.com
   - DOMAIN,trackercollect.ddxq.mobi
   - DOMAIN,tracklog.58.com
@@ -210,11 +228,15 @@ payload:
   - DOMAIN,ug-sinfonlinea.bytedance.com
   - DOMAIN,ups.ksmobile.net
   - DOMAIN,ut.taobao.com
+  - DOMAIN,v.gdt.qq.com
+  - DOMAIN,v2.gdt.qq.com
   - DOMAIN,v6-novelapp.ixigua.com
   - DOMAIN,vali-g1.cp31.ott.cibntv.net
   - DOMAIN,vali-ugc.cp31.ott.cibntv.net
   - DOMAIN,webcast-open.douyin.com
+  - DOMAIN,win.gdt.qq.com
   - DOMAIN,ws.ksmobile.net
+  - DOMAIN,wup.imtt.qq.com
   - DOMAIN,xg.pinduoduo.com
   - DOMAIN,yk-ssp.ad.youku.com
   - DOMAIN,ykad-data.youku.com
@@ -247,6 +269,7 @@ payload:
   - DOMAIN-KEYWORD,rtmretry.kugou.com
   - DOMAIN-KEYWORD,searchrecommend.kugou.com
   - DOMAIN-KEYWORD,splashimgbssdl.yun.kugou.com
+  - DOMAIN-KEYWORD,trace.qq.com
   - DOMAIN-KEYWORD,tracker.kugou.com
   - DOMAIN-KEYWORD,trackercdnbj.kugou.com
   - DOMAIN-SUFFIX,1.hao123.com
@@ -482,6 +505,7 @@ payload:
   - DOMAIN-SUFFIX,kgmobilestat.kugou.com
   - DOMAIN-SUFFIX,kgmobilestatbak.kugou.com
   - DOMAIN-SUFFIX,kuaizip.com
+  - DOMAIN-SUFFIX,l.qq.com
   - DOMAIN-SUFFIX,listlog.baofeng.net
   - DOMAIN-SUFFIX,loading.baofeng5.baofeng.net
   - DOMAIN-SUFFIX,locdrop.query.yahoo.com
@@ -605,6 +629,7 @@ payload:
   - DOMAIN-SUFFIX,tt321.eastday.com
   - DOMAIN-SUFFIX,tu.baixing.com
   - DOMAIN-SUFFIX,tuiguang.178.com
+  - DOMAIN-SUFFIX,ugdtimg.com
   - DOMAIN-SUFFIX,union.mop.com
   - DOMAIN-SUFFIX,update.minipage.2345.com
   - DOMAIN-SUFFIX,update.mobile.kugou.com

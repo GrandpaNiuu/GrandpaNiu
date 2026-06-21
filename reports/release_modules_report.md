@@ -1111,7 +1111,7 @@
 ## GrandpaNiu 爱奇艺 Source
 - Source: `Rewrite/Sources/Apps/i-qi-yi-video.conf`
 - Discovery: auto
-- Rule: 3
+- Rule: 5
 - URL Rewrite: 5
 - Body Rewrite: 17
 - MITM: 1
@@ -1366,7 +1366,7 @@
 ## GrandpaNiu 酷我音乐 Source
 - Source: `Rewrite/Sources/Apps/kuwo.conf`
 - Discovery: auto
-- Rule: 1
+- Rule: 10
 - URL Rewrite: 3
 - Body Rewrite: 1
 - MITM: 1
@@ -1886,7 +1886,7 @@
 ## GrandpaNiu 全民K歌 Source
 - Source: `Rewrite/Sources/Apps/qqksong.conf`
 - Discovery: auto
-- Rule: 1
+- Rule: 34
 - URL Rewrite: 5
 - MITM: 1
 
@@ -2110,7 +2110,7 @@
 ## GrandpaNiu Soul Source
 - Source: `Rewrite/Sources/Apps/soul.conf`
 - Discovery: auto
-- Rule: 9
+- Rule: 14
 - Body Rewrite: 1
 - Map Local: 2
 - Script: 1
@@ -2175,7 +2175,7 @@
 ## GrandpaNiu 腾讯视频 Source
 - Source: `Rewrite/Sources/Apps/tencent-video.conf`
 - Discovery: auto
-- Rule: 1
+- Rule: 16
 - URL Rewrite: 1
 - Script: 1
 - MITM: 1

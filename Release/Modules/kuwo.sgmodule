@@ -3,7 +3,16 @@
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/kuwo.sgmodule
 
 [Rule]
+URL-REGEX,"^http:\/\/rich\.kuwo\.cn\/AdService\/",REJECT-DICT
+URL-REGEX,"^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/user\/freeMode\/",REJECT-DICT
+URL-REGEX,"^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/pasterAdvert\/",REJECT-DICT
+URL-REGEX,"^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/startup\/config",REJECT-DICT
+URL-REGEX,"^http:\/\/rich\.kuwo\.cn\/EcomResourceServer\/",REJECT-DICT
 IP-CIDR,111.206.98.63/32,REJECT
+URL-REGEX,"^http:\/\/searchrecterm\.kuwo\.cn\/recterm\.s",REJECT-DICT
+URL-REGEX,"^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/newMenuList\/menuListInfo",REJECT-DICT
+URL-REGEX,"^http:\/\/vip\d\.kuwo\.cn\/vip\/v\d\/sysinfo\?op=getRePayAndDoPayBox",REJECT-DICT
+URL-REGEX,"^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/album\/adBar\/",REJECT-DICT
 
 [URL Rewrite]
 ^https://vip\d\.kuwo\.cn/commercia/vipconf/projectPage/getPageContent - reject-dict

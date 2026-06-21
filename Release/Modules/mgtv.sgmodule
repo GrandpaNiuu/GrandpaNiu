@@ -43,13 +43,13 @@ http-response-jq ^https:\/\/mobile-thor\.api\.mgtv\.com\/v\d+\/vod\/info\? '.dat
 http-response-jq ^https:\/\/comment\.mgtv\.com\/v\d\/comment\/getCommentList\? '.data.list |= map(select(.type == 0))'
 
 [Map Local]
-^https:\/\/dc\.bz\.mgtv\.com\/dynamic\/v\d\/skin\/config\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https:\/\/dc\.bz\.mgtv\.com\/dynamic\/v\d\/channel\/ads\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^http:\/\/mobileso\.bz\.mgtv\.com\/spotlight\/search\/v\d\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https:\/\/damang\.api\.mgtv\.com\/station\/album\/red\/dot\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https:\/\/hb-boom\.api\.mgtv\.com\/release\/pullReleaseInfo$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https:\/\/mobile\.api\.mgtv\.com\/v\d\/mobile\/checkUpdate\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/mobileso\.bz\.mgtv\.com\/mobile\/recommend\/v\d\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https://dc\.bz\.mgtv\.com/dynamic/v\d/skin/config\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https://dc\.bz\.mgtv\.com/dynamic/v\d/channel/ads\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^http://mobileso\.bz\.mgtv\.com/spotlight/search/v\d\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https://damang\.api\.mgtv\.com/station/album/red/dot\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https://hb-boom\.api\.mgtv\.com/release/pullReleaseInfo$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https://mobile\.api\.mgtv\.com/v\d/mobile/checkUpdate\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?://mobileso\.bz\.mgtv\.com/mobile/recommend/v\d\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [MITM]
 hostname = %APPEND% dc?.bz.mgtv.com,mobileso.bz.mgtv.com,damang.api.mgtv.com,hb-boom.api.mgtv.com,mobile.api.mgtv.com,mobile.api.hunantv.com,me.bz.mgtv.com,mobile-thor.api.mgtv.com

@@ -708,8 +708,8 @@ http-response-jq ^https:\/\/open-cms-api\.quark\.cn\/open-cms\? 'delpaths([["res
 http-response-jq ^https:\/\/open-cms-api\.quark\.cn\/open-cms\? 'delpaths([["result","qks_ab_paisou_sc_entry"]])'
 
 [Map Local]
-^https:\/\/stars\.shuqireader\.com\/kkios\/render\/load\/resource\/app$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https:\/\/stars\.shuqireader\.com\/kkios\/render\/load\/resource\/appConfig$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https://stars\.shuqireader\.com/kkios/render/load/resource/app$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https://stars\.shuqireader\.com/kkios/render/load/resource/appConfig$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [MITM]
 hostname = %APPEND% open-cms-api.quark.cn,stars.shuqireader.com

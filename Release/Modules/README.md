@@ -174,7 +174,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 虎扑 Source | `hupu.sgmodule` | `Rewrite/Sources/Apps/hupu.conf` | URL Rewrite:8, Script:4, MITM:1 |
 | GrandpaNiu 虎嗅 Source | `huxiu.sgmodule` | `Rewrite/Sources/Apps/huxiu.conf` | Rule:1, URL Rewrite:5, Body Rewrite:1, MITM:1 |
 | GrandpaNiu 小象超市 Source | `i-mai-cai.sgmodule` | `Rewrite/Sources/Apps/i-mai-cai.conf` | URL Rewrite:7, Script:1, MITM:1 |
-| GrandpaNiu 爱奇艺 Source | `i-qi-yi-video.sgmodule` | `Rewrite/Sources/Apps/i-qi-yi-video.conf` | Rule:3, URL Rewrite:5, Body Rewrite:17, MITM:1 |
+| GrandpaNiu 爱奇艺 Source | `i-qi-yi-video.sgmodule` | `Rewrite/Sources/Apps/i-qi-yi-video.conf` | Rule:5, URL Rewrite:5, Body Rewrite:17, MITM:1 |
 | GrandpaNiu 得间小说 Source | `i-reader-dejian.sgmodule` | `Rewrite/Sources/Apps/i-reader-dejian.conf` | Rule:2, URL Rewrite:4, Body Rewrite:2, MITM:1 |
 | GrandpaNiu 掌阅 Source | `i-reader.sgmodule` | `Rewrite/Sources/Apps/i-reader.conf` | Rule:1, URL Rewrite:6, Body Rewrite:2, MITM:1 |
 | GrandpaNiu IT Home Source | `ithome.sgmodule` | `Rewrite/Sources/Apps/ithome.conf` | URL Rewrite:1, Script:1, MITM:1 |
@@ -213,7 +213,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 快手 Source | `kuai-shou.sgmodule` | `Rewrite/Sources/Apps/kuai-shou.conf` | URL Rewrite:4, Body Rewrite:6, MITM:1 |
 | GrandpaNiu 快手 Source | `kuaishou.sgmodule` | `Rewrite/Sources/Apps/kuaishou.conf` | Rule:4, URL Rewrite:2, MITM:1 |
 | GrandpaNiu 库街区 Source | `kuro-bbs.sgmodule` | `Rewrite/Sources/Apps/kuro-bbs.conf` | URL Rewrite:4, MITM:1 |
-| GrandpaNiu 酷我音乐 Source | `kuwo.sgmodule` | `Rewrite/Sources/Apps/kuwo.conf` | Rule:1, URL Rewrite:3, Body Rewrite:1, MITM:1 |
+| GrandpaNiu 酷我音乐 Source | `kuwo.sgmodule` | `Rewrite/Sources/Apps/kuwo.conf` | Rule:10, URL Rewrite:3, Body Rewrite:1, MITM:1 |
 | GrandpaNiu 快影 Source | `kwai-videoeditor.sgmodule` | `Rewrite/Sources/Apps/kwai-videoeditor.conf` | URL Rewrite:4, Body Rewrite:2, MITM:1 |
 | GrandpaNiu 来电 Source | `lai-dian.sgmodule` | `Rewrite/Sources/Apps/lai-dian.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu 来疯 Source | `lai-feng.sgmodule` | `Rewrite/Sources/Apps/lai-feng.conf` | URL Rewrite:2, MITM:1 |
@@ -297,7 +297,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 启信宝 Source | `qi-xin-bao.sgmodule` | `Rewrite/Sources/Apps/qi-xin-bao.conf` | URL Rewrite:10, MITM:1 |
 | GrandpaNiu 齐鲁网 Source | `qilu.sgmodule` | `Rewrite/Sources/Apps/qilu.conf` | Rule:2 |
 | GrandpaNiu QQ浏览器 Source | `qqbrowser.sgmodule` | `Rewrite/Sources/Apps/qqbrowser.conf` | URL Rewrite:1, MITM:1 |
-| GrandpaNiu 全民K歌 Source | `qqksong.sgmodule` | `Rewrite/Sources/Apps/qqksong.conf` | Rule:1, URL Rewrite:5, MITM:1 |
+| GrandpaNiu 全民K歌 Source | `qqksong.sgmodule` | `Rewrite/Sources/Apps/qqksong.conf` | Rule:34, URL Rewrite:5, MITM:1 |
 | GrandpaNiu QQ Music Source | `qqmusic.sgmodule` | `Rewrite/Sources/Apps/qqmusic.conf` | Rule:11 |
 | GrandpaNiu 蜻蜓FM Source | `qting-fm.sgmodule` | `Rewrite/Sources/Apps/qting-fm.conf` | Rule:2, URL Rewrite:11, Body Rewrite:6, MITM:1 |
 | GrandpaNiu 全民K歌 Source | `quan-min-ge-ge.sgmodule` | `Rewrite/Sources/Apps/quan-min-ge-ge.conf` | URL Rewrite:1, MITM:1 |
@@ -332,7 +332,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 汽水音乐 Source | `soda-music.sgmodule` | `Rewrite/Sources/Apps/soda-music.conf` | URL Rewrite:10, Body Rewrite:7, Script:1, MITM:1 |
 | GrandpaNiu 搜狗输入法 Source | `sogou-input.sgmodule` | `Rewrite/Sources/Apps/sogou-input.conf` | Rule:1, URL Rewrite:2, MITM:1 |
 | GrandpaNiu 房天下 (Soufun) Source | `soufun.sgmodule` | `Rewrite/Sources/Apps/soufun.conf` | Rule:2 |
-| GrandpaNiu Soul Source | `soul.sgmodule` | `Rewrite/Sources/Apps/soul.conf` | Rule:9, Body Rewrite:1, Map Local:2, Script:1, MITM:1 |
+| GrandpaNiu Soul Source | `soul.sgmodule` | `Rewrite/Sources/Apps/soul.conf` | Rule:14, Body Rewrite:1, Map Local:2, Script:1, MITM:1 |
 | GrandpaNiu 智慧苏州 Source | `su-zhou-citizen-card.sgmodule` | `Rewrite/Sources/Apps/su-zhou-citizen-card.conf` | Map Local:2, MITM:1 |
 | GrandpaNiu 飞猪旅行 Source | `taobao-travel.sgmodule` | `Rewrite/Sources/Apps/taobao-travel.conf` | URL Rewrite:5, MITM:1 |
 | GrandpaNiu 淘票票 Source | `taopiaopiao.sgmodule` | `Rewrite/Sources/Apps/taopiaopiao.conf` | URL Rewrite:3, Body Rewrite:3, MITM:1 |
@@ -342,7 +342,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 腾讯游戏 Source | `tencent-games.sgmodule` | `Rewrite/Sources/Apps/tencent-games.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu 腾讯手机管家 Source | `tencent-mobile-manager.sgmodule` | `Rewrite/Sources/Apps/tencent-mobile-manager.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu 腾讯体育 Source | `tencent-sports.sgmodule` | `Rewrite/Sources/Apps/tencent-sports.conf` | URL Rewrite:2, MITM:1 |
-| GrandpaNiu 腾讯视频 Source | `tencent-video.sgmodule` | `Rewrite/Sources/Apps/tencent-video.conf` | Rule:1, URL Rewrite:1, Script:1, MITM:1 |
+| GrandpaNiu 腾讯视频 Source | `tencent-video.sgmodule` | `Rewrite/Sources/Apps/tencent-video.conf` | Rule:16, URL Rewrite:1, Script:1, MITM:1 |
 | GrandpaNiu TeraBox Source | `terabox.sgmodule` | `Rewrite/Sources/Apps/terabox.conf` | Rule:1, Map Local:4, MITM:1 |
 | GrandpaNiu 澎湃新闻 Source | `the-paper-news.sgmodule` | `Rewrite/Sources/Apps/the-paper-news.conf` | Rule:5, URL Rewrite:1, MITM:1 |
 | GrandpaNiu 天山云TV Source | `tian-shan-yun-tv.sgmodule` | `Rewrite/Sources/Apps/tian-shan-yun-tv.conf` | URL Rewrite:1, MITM:1 |
