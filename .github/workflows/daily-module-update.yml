@@ -23,6 +23,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Acquire cross-workflow maintenance lock
+        run: bash tools/acquire_automation_lock.sh
+
       - name: Compile maintenance scripts
         run: python3 -m py_compile scripts/*.py Rewrite/Generator/Builder.py
 
@@ -56,3 +59,7 @@ jobs:
             Android \
             Windows \
             reports
+
+      - name: Release cross-workflow maintenance lock
+        if: always()
+        run: bash tools/release_automation_lock.sh

@@ -37,6 +37,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Acquire cross-workflow maintenance lock
+        run: bash tools/acquire_automation_lock.sh
+
       - name: Compile maintenance scripts
         run: |
           set -euo pipefail
@@ -64,3 +67,7 @@ jobs:
             Web \
             reports \
             Rewrite/Remotes/Catalog.md
+
+      - name: Release cross-workflow maintenance lock
+        if: always()
+        run: bash tools/release_automation_lock.sh

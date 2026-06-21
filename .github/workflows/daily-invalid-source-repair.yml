@@ -22,6 +22,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Acquire cross-workflow maintenance lock
+        run: bash tools/acquire_automation_lock.sh
+
       - name: Validate Python scripts
         run: python3 -m py_compile scripts/collect_upstreams.py scripts/audit_repair_invalid_sources.py Rewrite/Generator/Builder.py scripts/validate_remote_rule_syntax.py scripts/validate_repository.py
 
@@ -57,3 +60,7 @@ jobs:
             Android \
             Windows \
             reports
+
+      - name: Release cross-workflow maintenance lock
+        if: always()
+        run: bash tools/release_automation_lock.sh

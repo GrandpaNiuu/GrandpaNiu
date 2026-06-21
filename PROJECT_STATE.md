@@ -1,6 +1,6 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-06-21 07:24 +0800
+Last updated: 2026-06-22 02:33 +0800
 
 ## Project Purpose
 
@@ -133,6 +133,16 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Current scale after the latest GitHub app expansion: 398 active app source files and 398 generated app module outputs. `Rewrite/Sources/Apps/_TEMPLATE.conf` is an authoring template and is not generated.
 
 ## Latest Maintenance Note
+
+2026-06-22 02:33 +0800:
+
+- Audited all Actions runs created on 2026-06-22. Daily Module Update, invalid source repair, upstream candidate collect, Pages, and the failure watcher succeeded.
+- Daily invalid rule audit run `27913047570` completed its audit and Fusion build successfully, then failed while publishing because GitHub delayed two scheduled writers into the same minute. The other writer advanced `main`, and the safe rebase correctly refused conflicting generated reports.
+- Added a remote cross-workflow maintenance lock under `tools/`. Every workflow that writes generated output now acquires the lock before generation, fast-forwards to current `origin/main`, and releases the lock with ownership verification under `if: always()`.
+- Added stale-lock recovery and an integration test using a real local bare Git remote. The test proves a second writer is blocked, then fast-forwards after the first writer publishes and releases the lock.
+- Lock helpers live in `tools/`, not `scripts/`, because this repository also contains `Scripts/`; Windows case folding would otherwise create a Linux-only path failure.
+- No Rules, App sources, MITM scopes, protected traffic policies, or public module contents were changed. Generated reports and metadata were refreshed by the full quality gate.
+- Final validation passed: 21 tests, 398 App modules, 0 empty modules, 17 remote sources with 0 warnings, 14 fresh governance reports, and 0 repository-health blocking issues.
 
 2026-06-21 02:58 +0800:
 

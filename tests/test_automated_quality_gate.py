@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import shutil
 import subprocess
 import tempfile
@@ -117,7 +118,7 @@ class AutomatedQualityGateTests(unittest.TestCase):
         self.assertIn("automated_quality_evidence.md", workflow_text)
         self.assertIn("scripts/quality_gate.py", workflow_text)
 
-    def test_auto_commit_workflows_use_isolated_lock_and_safe_commit_helper(self) -> None:
+    def test_auto_commit_workflows_use_cross_workflow_lock_and_safe_commit_helper(self) -> None:
         offenders: list[str] = []
         for path in sorted((ROOT / ".github" / "workflows").glob("*.yml")):
             text = path.read_text(encoding="utf-8")
@@ -128,6 +129,12 @@ class AutomatedQualityGateTests(unittest.TestCase):
                 offenders.append(f"{path.name}: missing isolated maintenance concurrency group")
             if "scripts/commit_generated_changes.sh" not in text:
                 offenders.append(f"{path.name}: missing commit helper")
+            if "tools/acquire_automation_lock.sh" not in text:
+                offenders.append(f"{path.name}: missing cross-workflow lock acquisition")
+            if "tools/release_automation_lock.sh" not in text:
+                offenders.append(f"{path.name}: missing cross-workflow lock release")
+            if "if: always()" not in text:
+                offenders.append(f"{path.name}: lock release is not unconditional")
             if "git reset --hard" in text:
                 offenders.append(f"{path.name}: destructive reset")
             if "git add -A" in text:
@@ -195,6 +202,88 @@ class AutomatedQualityGateTests(unittest.TestCase):
             )
             self.assertEqual("published\n", published)
             self.assertEqual("initial\n", remote_unstaged)
+
+    def test_automation_lock_serializes_writers_and_fast_forwards_waiter(self) -> None:
+        bash = shutil.which("bash")
+        if not bash:
+            self.skipTest("bash is required for the workflow automation lock")
+
+        with tempfile.TemporaryDirectory() as temp:
+            base = Path(temp)
+            remote = base / "remote.git"
+            holder = base / "holder"
+            waiter = base / "waiter"
+            subprocess.run(["git", "init", "--bare", str(remote)], check=True, capture_output=True)
+            subprocess.run(["git", "clone", str(remote), str(holder)], check=True, capture_output=True)
+            subprocess.run(["git", "config", "user.name", "test"], cwd=holder, check=True)
+            subprocess.run(["git", "config", "user.email", "test@example.com"], cwd=holder, check=True)
+
+            tools_dir = holder / "tools"
+            tools_dir.mkdir()
+            for name in ("acquire_automation_lock.sh", "release_automation_lock.sh"):
+                shutil.copy2(ROOT / "tools" / name, tools_dir / name)
+            (holder / "artifact.txt").write_text("initial\n", encoding="utf-8")
+            subprocess.run(["git", "add", "artifact.txt", "tools"], cwd=holder, check=True)
+            subprocess.run(["git", "commit", "-m", "initial"], cwd=holder, check=True, capture_output=True)
+            subprocess.run(["git", "push", "origin", "HEAD:main"], cwd=holder, check=True, capture_output=True)
+            subprocess.run(
+                ["git", f"--git-dir={remote}", "symbolic-ref", "HEAD", "refs/heads/main"], check=True
+            )
+            subprocess.run(["git", "clone", str(remote), str(waiter)], check=True, capture_output=True)
+
+            env = {
+                **os.environ,
+                "AUTOMATION_LOCK_ATTEMPTS": "1",
+                "AUTOMATION_LOCK_SLEEP_SECONDS": "1",
+                "AUTOMATION_LOCK_STALE_SECONDS": "60",
+            }
+            subprocess.run(
+                [bash, "tools/acquire_automation_lock.sh"],
+                cwd=holder,
+                env=env,
+                check=True,
+                capture_output=True,
+            )
+
+            (holder / "artifact.txt").write_text("holder update\n", encoding="utf-8")
+            subprocess.run(["git", "add", "artifact.txt"], cwd=holder, check=True)
+            subprocess.run(["git", "commit", "-m", "holder update"], cwd=holder, check=True, capture_output=True)
+            subprocess.run(["git", "push", "origin", "HEAD:main"], cwd=holder, check=True, capture_output=True)
+
+            blocked = subprocess.run(
+                [bash, "tools/acquire_automation_lock.sh"],
+                cwd=waiter,
+                env=env,
+                capture_output=True,
+                text=True,
+            )
+            self.assertNotEqual(0, blocked.returncode)
+            self.assertIn("Timed out waiting", blocked.stderr)
+
+            subprocess.run(
+                [bash, "tools/release_automation_lock.sh"],
+                cwd=holder,
+                check=True,
+                capture_output=True,
+            )
+            subprocess.run(
+                [bash, "tools/acquire_automation_lock.sh"],
+                cwd=waiter,
+                env=env,
+                check=True,
+                capture_output=True,
+            )
+            waiter_head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=waiter, text=True).strip()
+            remote_head = subprocess.check_output(
+                ["git", f"--git-dir={remote}", "rev-parse", "main"], text=True
+            ).strip()
+            self.assertEqual(remote_head, waiter_head)
+            subprocess.run(
+                [bash, "tools/release_automation_lock.sh"],
+                cwd=waiter,
+                check=True,
+                capture_output=True,
+            )
 
 
 if __name__ == "__main__":

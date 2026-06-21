@@ -52,6 +52,9 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Acquire cross-workflow maintenance lock
+        run: bash tools/acquire_automation_lock.sh
+
       - name: Run full automated quality gate
         run: |
           set -euo pipefail
@@ -72,3 +75,7 @@ jobs:
             Android \
             Windows \
             reports
+
+      - name: Release cross-workflow maintenance lock
+        if: always()
+        run: bash tools/release_automation_lock.sh

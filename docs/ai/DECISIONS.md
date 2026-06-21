@@ -1,6 +1,6 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-06-21 02:58 +0800
+Last updated: 2026-06-22 02:33 +0800
 
 ## Decisions
 
@@ -128,3 +128,20 @@ Reason: a report that says blocking stale while CI exits successfully is false e
 `workflow-failure-issue.yml` writes its Markdown body with Python reading environment variables. Do not use an unquoted shell heredoc for Markdown containing backticks.
 
 Reason: Bash treats backticks in an expanding heredoc as command substitution. Issue #248 proved that this erased status names and all recovery commands from the automated failure report.
+
+### 2026-06-22 - Serialize Cross-Workflow Writers With A Remote Lock
+
+Keep the per-workflow GitHub concurrency group, and additionally require every workflow that writes generated output to acquire the repository remote maintenance lock before generation.
+
+The lock must:
+
+- be acquired atomically through a dedicated remote ref
+- fast-forward the checkout to current `origin/main` after acquisition
+- record ownership locally
+- release only when the remote ref still matches the recorded owner
+- run release under `if: always()`
+- recover locks older than the configured stale threshold using an exact SHA lease
+
+Reason: GitHub may delay different schedules into the same minute. Isolated concurrency groups do not serialize different workflows, while one shared GitHub concurrency group can cancel older pending runs. Run `27913047570` proved that two valid builders can otherwise collide only at publish time.
+
+The helpers live in `tools/` because Windows case-insensitive filesystems cannot reliably create new lowercase `scripts/` files alongside the existing uppercase `Scripts/` directory.

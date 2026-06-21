@@ -543,3 +543,55 @@ docs: normalize AI maintenance records
 
 - 审查最终 diff，刷新健康与 freshness 报告。
 - 提交并推送后核对 GitHub Actions。
+## 2026-06-22 02:33 - 每日工作流跨任务写入冲突修复
+
+### 本次任务
+
+检查 2026-06-22 的每日工作失败，修复真实故障并确保不同维护 workflow 不再并行发布旧快照。
+
+### 开始前状态
+
+- 分支：`repair/upstream-app-sync`
+- 基线提交：`05ba8813`
+- 同步远端后基线：`376713d4`
+- git status 摘要：开始时工作树干净，本地落后远端 4 个自动维护提交，已用 fast-forward 同步
+- 预计修改范围：workflow、自动化锁、验证脚本、回归测试、AI 记录；不改业务规则
+
+### 实际修改
+
+- 审计今天所有 Actions：除 invalid-rule audit 定时运行外，其余每日维护与 Pages 成功。
+- 确认失败 run `27913047570` 的审计和 Fusion 构建步骤成功，仅提交步骤失败。
+- 根据运行时序与提交历史确认根因：GitHub 将不同 schedule 延迟到同一分钟，两个 writer 从同一提交生成，后提交者在安全 rebase 时遇到生成文件冲突。
+- 新增 `tools/acquire_automation_lock.sh` 和 `tools/release_automation_lock.sh`。
+- 9 个写入型 workflow 在生成前获取远端锁、快进到最新 main，并在所有结果下释放锁。
+- 更新仓库验证和健康摘要，要求每个 writer 同时具备锁获取、无条件释放、显式路径提交与安全 rebase。
+- 增加真实裸 Git 集成测试，验证第二个 writer 被阻止并在锁释放后快进继续。
+- 初版路径曾放在 `scripts/`；自检发现 Windows 会与 `Scripts/` 大小写折叠，提交到 Linux 会找不到文件，因此在提交前移至 `tools/` 并重新完成验证。
+
+### 测试结果
+
+- Shell 语法：3 个维护脚本通过 `bash -n`。
+- 10 个 workflow YAML 文件通过 PyYAML 解析。
+- 13 项自动化专项测试通过。
+- 完整质量门禁通过：21 项测试、398 个 App 源、398 个 Release 模块、0 empty、3806 个源条目。
+- Fusion：6097 行；Android：941 条主规则；17 个远程源 0 warning。
+- 仓库健康：0 blocking issue；报告新鲜度：14 fresh、0 stale/missing。
+- 三个公开 Fusion 入口内容一致。
+
+### 风险
+
+- 本次不修改 Rules、App 源、MITM、登录、支付、银行、验证码、播放或 CDN 策略。
+- 远端锁 stale threshold 为 1 小时；若未来单个任务接近或超过 1 小时，应先评估超时阈值。
+- 仍需下一次 scheduled invalid-rule audit 作为远端最终确认，Issue #249 应在成功后自动关闭。
+
+### Self-Review
+
+- What was not good enough: 先前只用按 workflow 隔离的 concurrency，能避免同名任务互相取消，却没有覆盖不同 workflow 被 GitHub 延迟到同一时刻的写入冲突；初版锁脚本路径也忽略了 Windows 对 `Scripts/` / `scripts/` 的大小写折叠。
+- What I changed to reduce that risk: 增加跨 workflow 原子远端锁、所有情况下释放、stale 回收、workflow 契约检查、真实 Git 并发测试，并把脚本移到无大小写歧义的 `tools/`。
+- What I would check first next time: 先看下一次 invalid-rule audit 的 Acquire/Release lock 步骤和 Issue #249 状态，再看其他 writer 是否有等待锁但最终成功的记录。
+
+### 下一步
+
+- 提交并推送本次自动化修复。
+- 检查由 push 触发的 Module Factory Build。
+- 等待或手动触发 invalid-rule audit，确认 Issue #249 自动关闭。

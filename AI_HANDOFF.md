@@ -1,6 +1,6 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-06-21 07:24 +0800
+Last updated: 2026-06-22 02:33 +0800
 
 ## What This Project Is
 
@@ -194,6 +194,18 @@ git branch --show-current
 10. Only then decide whether to modify files.
 
 ## Latest Automation Hardening Pass
+
+### 2026-06-22 Cross-Workflow Writer Lock
+
+- Today only `Daily invalid rule audit and safe repair` run `27913047570` failed; its audit and Fusion build passed, and only the publish step failed.
+- Evidence shows GitHub delayed it into the same minute as Daily Module Update. Both started from `c15ff4f5`; Daily Module Update published `c96c5e53`, then the audit publisher refused a generated-output rebase conflict.
+- All nine workflows that write `main` now call `tools/acquire_automation_lock.sh` before generation and `tools/release_automation_lock.sh` with `if: always()` after publishing.
+- The lock uses an atomic remote ref, ownership-checked release, stale-lock recovery, and a fast-forward to current `origin/main` after acquisition.
+- Keep the existing per-workflow GitHub concurrency groups. They prevent duplicate runs of one workflow; the remote lock handles collisions between different workflows without GitHub cancelling pending jobs.
+- Do not move these helpers under lowercase `scripts/`: Windows cannot safely distinguish that path from the existing uppercase `Scripts/` directory when creating new files.
+- Full quality gate passed with 21 tests. No traffic rules or public module content changed.
+
+First check next time: confirm the next scheduled invalid-rule audit succeeds and that automation-failure Issue #249 closes automatically.
 
 - Fixed a reproducible false-green quality gate: freshness reported blocking stale script reports while the command still exited successfully.
 - Moved script aggregation validation and sandbox execution after the last profile rebuild and enabled strict freshness enforcement.

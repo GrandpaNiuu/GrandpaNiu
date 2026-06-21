@@ -65,6 +65,8 @@ REQUIRED_FILES = (
     "scripts/factory_finalize.py",
     "scripts/build_windows_v2rayn.py",
     "scripts/commit_generated_changes.sh",
+    "tools/acquire_automation_lock.sh",
+    "tools/release_automation_lock.sh",
     "scripts/validate_profiles.py",
     "scripts/validate_module_integrity.py",
     "scripts/validate_repository.py",
@@ -420,6 +422,8 @@ def workflow_contains_cron(text: str, cron: str) -> bool:
 
 def validate_workflows() -> None:
     helper = read_text(ROOT / "scripts" / "commit_generated_changes.sh")
+    acquire_lock = read_text(ROOT / "tools" / "acquire_automation_lock.sh")
+    release_lock = read_text(ROOT / "tools" / "release_automation_lock.sh")
     for token in (
         'git add -- "$@"',
         "for attempt in 1 2 3",
@@ -433,6 +437,16 @@ def validate_workflows() -> None:
         if token in helper:
             fail(f"generated commit helper contains unsafe command: {token}")
 
+    for token in ("refs/heads/automation-maintenance-lock", "git merge --ff-only", "git commit-tree"):
+        if token not in acquire_lock:
+            fail(f"automation lock acquire helper missing safety token: {token}")
+    for token in ("--force-with-lease", "Automation lock ownership changed"):
+        if token not in release_lock:
+            fail(f"automation lock release helper missing ownership token: {token}")
+    for token in ("git reset --hard", "git clean -fd"):
+        if token in acquire_lock or token in release_lock:
+            fail(f"automation lock helper contains unsafe command: {token}")
+
     for relative in REQUIRED_WORKFLOWS:
         path = ROOT / relative
         if not path.exists():
@@ -445,6 +459,10 @@ def validate_workflows() -> None:
             fail(f"workflow must use isolated maintenance concurrency: {relative}")
         if "scripts/commit_generated_changes.sh" not in text:
             fail(f"workflow must use the generated commit helper: {relative}")
+        if "tools/acquire_automation_lock.sh" not in text:
+            fail(f"workflow must acquire the cross-workflow maintenance lock: {relative}")
+        if "tools/release_automation_lock.sh" not in text or "if: always()" not in text:
+            fail(f"workflow must always release the cross-workflow maintenance lock: {relative}")
         for token in ("git add -A", "git reset --hard", "git clean -fd", "git push --force"):
             if token in text:
                 fail(f"workflow contains unsafe git command {token}: {relative}")

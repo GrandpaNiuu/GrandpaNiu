@@ -41,6 +41,8 @@ REQUIRED_FILES = [
     "scripts/build_release_variants.py",
     "scripts/factory_finalize.py",
     "scripts/commit_generated_changes.sh",
+    "tools/acquire_automation_lock.sh",
+    "tools/release_automation_lock.sh",
     "scripts/validate_repository.py",
     "scripts/validate_profiles.py",
     "scripts/validate_app_sources.py",
@@ -194,6 +196,11 @@ def workflow_summary(path: Path) -> str:
         else "missing isolated concurrency",
         "fusion" if workflow_has_fusion_build(text) else "missing fusion build",
         "safe commit helper" if uses_helper else "missing safe commit helper",
+        "cross-workflow lock"
+        if "tools/acquire_automation_lock.sh" in text
+        and "tools/release_automation_lock.sh" in text
+        and "if: always()" in text
+        else "missing cross-workflow lock",
         "rebase retry" if uses_helper and "git rebase origin/main" in helper else "missing rebase retry",
     ]
     return "; ".join(items)

@@ -36,6 +36,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Acquire cross-workflow maintenance lock
+        run: bash tools/acquire_automation_lock.sh
+
       - name: Sync upstream app modules
         id: upstream-sync
         continue-on-error: true
@@ -84,3 +87,7 @@ jobs:
             Ronghemokuai.sgmodule \
             Release \
             Web
+
+      - name: Release cross-workflow maintenance lock
+        if: always()
+        run: bash tools/release_automation_lock.sh

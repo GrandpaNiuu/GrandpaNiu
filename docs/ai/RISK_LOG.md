@@ -1,6 +1,6 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-06-21 06:44 +0800
+Last updated: 2026-06-22 02:33 +0800
 
 ## Standing High-Risk Areas
 
@@ -142,3 +142,28 @@ Traffic risk boundary:
 
 - No Rules, App source, MITM, login, payment, banking, captcha, playback, or CDN policy was changed.
 - Real App behavior remains device-tested by the owner; static automation cannot certify every App network path.
+
+## 2026-06-22 Cross-Workflow Writer Lock Risk Note
+
+Risk level: medium operational, no traffic-policy impact.
+
+Observed signal:
+
+- Scheduled invalid-rule audit run `27913047570` passed audit and Fusion build, then failed in the publish step.
+- It and Daily Module Update started from the same `main` snapshot after GitHub delayed their schedules into the same minute.
+- Daily Module Update advanced `main`; the audit publisher then refused a generated-output rebase conflict as designed.
+
+Mitigations:
+
+- Every generated-output writer acquires one atomic remote lock before running maintenance commands.
+- The lock holder fast-forwards to current `origin/main` before changing files.
+- Release verifies the exact lock owner SHA and is executed under `if: always()`.
+- A one-hour stale threshold prevents an abandoned ref from blocking maintenance forever.
+- A real bare-Git integration test covers contention, refusal, release, reacquisition, and waiter fast-forward behavior.
+- Validation scripts now require lock acquisition and unconditional release in every writer workflow.
+
+Remaining risk:
+
+- A job running longer than the stale threshold could have its lock reclaimed. Current maintenance jobs normally finish well inside one hour; investigate before increasing job scope substantially.
+- The next scheduled invalid-rule audit is still needed as remote confirmation of the repaired collision path.
+- No Rules, App sources, MITM, login, payment, banking, captcha, video, or CDN policy changed in this repair.
