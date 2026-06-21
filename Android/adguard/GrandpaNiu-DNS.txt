@@ -141,6 +141,7 @@
 ||atrace.chelaile.net.cn^
 ||axxd.xmseeyouyima.com^
 ||business.msstatic.com^
+||c2.gdt.qq.com^
 ||cad.youku.com^
 ||cdn-ad.wtzw.com^
 ||cdn-new-ad.wtzw.com^
@@ -192,6 +193,7 @@
 ||h-adashx.ut.taobao.com^
 ||hc-ssp.sm.cn^
 ||hlx.meituan.com^
+||huatuocode.huatuo.qq.com^
 ||huodong.weibo.cn^
 ||huyafile.msstatic.com^
 ||iad.g.163.com^
@@ -209,6 +211,7 @@
 ||imgad0.pconline.com.cn^
 ||imgadpai.thepaper.cn^
 ||impression.biligame.com^
+||ios.bugly.qq.com^
 ||ios.sspai.com^
 ||ios.video.mpush.qq.com^
 ||ipv4.kkmh.com^
@@ -248,6 +251,7 @@
 ||mediation.adnxs.com^
 ||meta.pinduoduo.com^
 ||metrics-picture.d.meituan.net^
+||mi.gdt.qq.com^
 ||minfo.wps.cn^
 ||mob.bz.mgtv.com^
 ||mobad.ijinshan.com^
@@ -274,11 +278,14 @@
 ||pangolin.snssdk.com^
 ||partnerad.l.doubleclick.net^
 ||pgdt.gtimg.com^
+||pgdt.ugdtimg.com^
 ||pin.hpplay.cn^
 ||popup-api.b612kaji.com^
 ||popup.dushu365.com^
 ||pp-cdnfile2pcdn.msstatic.com^
 ||qh-material.taobao.com^
+||qzs.gdtimg.com^
+||qzs.qq.com^
 ||r.dianping.com^
 ||rc-topic-api.bz.mgtv.com^
 ||regist.fotoable.com^
@@ -288,6 +295,7 @@
 ||richmanapi.jxedt.com^
 ||richmanmain.jxedt.com^
 ||richmanrules.jxedt.com^
+||rmonitor.qq.com^
 ||rp.hpplay.cn^
 ||rprain.bz.mgtv.com^
 ||rprain.log.mgtv.com^
@@ -302,6 +310,7 @@
 ||saxn.sina.com.cn^
 ||saxs.sina.com.cn^
 ||sdk.ad.sfys365.com^
+||sdk.e.qq.com^
 ||sdkconfig.ad.xiaomi.com^
 ||sensors.umetrip.com.cn^
 ||sin3-ib.adnxs.com^
@@ -319,6 +328,7 @@
 ||sugar.zhihu.com^
 ||t-ads.xiaohongshu.com^
 ||t-dsp.pinduoduo.com^
+||t.gdt.qq.com^
 ||ta-a.pinduoduo.com^
 ||ta.pinduoduo.com^
 ||temai.snssdk.com^
@@ -332,6 +342,7 @@
 ||tmeadquic.y.qq.com^
 ||tns.simba.taobao.com^
 ||tpc.googlesyndication.com^
+||tpstelemetry.tencent.com^
 ||track.58.com^
 ||trackercollect.ddxq.mobi^
 ||tracking.intl.miui.com^
@@ -343,13 +354,17 @@
 ||umengacs.m.taobao.com^
 ||ups.ksmobile.net^
 ||ut.taobao.com^
+||v.gdt.qq.com^
+||v2.gdt.qq.com^
 ||v6-novelapp.ixigua.com^
 ||vali-g1.cp31.ott.cibntv.net^
 ||vali-ugc.cp31.ott.cibntv.net^
 ||webcast-open.douyin.com^
 ||wgo.mmstat.com^
+||win.gdt.qq.com^
 ||wmlog.meituan.com^
 ||ws.ksmobile.net^
+||wup.imtt.qq.com^
 ||www.googleadservices.com^
 ||xadsdk.shellapp.cn^
 ||xg.pinduoduo.com^
@@ -719,7 +734,6 @@
 ||medproad.com^
 ||metrics.cnn.com^
 ||mfp.deliver.ifeng.com^
-||mi.gdt.qq.com^
 ||miaozhen.com^
 ||mid.houyi.baofeng.net^
 ||midinfo.baofeng.com^
@@ -837,6 +851,7 @@
 ||tt321.eastday.com^
 ||tu.baixing.com^
 ||tuiguang.178.com^
+||ugdtimg.com^
 ||umeng.com^
 ||umengcloud.com^
 ||umtrack.com^
@@ -846,7 +861,6 @@
 ||update.mobile.kugou.com^
 ||urls.api.twitter.com^
 ||us.adserver.yahoo.com^
-||v.gdt.qq.com^
 ||v.smtcdns.com^
 ||v1d.szbdyd.com^
 ||vas.funshion.com^
@@ -867,7 +881,6 @@
 ||web.data.pplive.com^
 ||web.houyi.baofeng.net^
 ||webp2p.letv.com^
-||win.gdt.qq.com^
 ||wl.houyi.baofeng.net^
 ||wrating.com^
 ||ws.progrss.yahoo.com^

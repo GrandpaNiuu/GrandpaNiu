@@ -142,6 +142,7 @@ payload:
   - DOMAIN,atrace.chelaile.net.cn
   - DOMAIN,axxd.xmseeyouyima.com
   - DOMAIN,business.msstatic.com
+  - DOMAIN,c2.gdt.qq.com
   - DOMAIN,cad.youku.com
   - DOMAIN,cdn-ad.wtzw.com
   - DOMAIN,cdn-new-ad.wtzw.com
@@ -193,6 +194,7 @@ payload:
   - DOMAIN,h-adashx.ut.taobao.com
   - DOMAIN,hc-ssp.sm.cn
   - DOMAIN,hlx.meituan.com
+  - DOMAIN,huatuocode.huatuo.qq.com
   - DOMAIN,huodong.weibo.cn
   - DOMAIN,huyafile.msstatic.com
   - DOMAIN,iad.g.163.com
@@ -210,6 +212,7 @@ payload:
   - DOMAIN,imgad0.pconline.com.cn
   - DOMAIN,imgadpai.thepaper.cn
   - DOMAIN,impression.biligame.com
+  - DOMAIN,ios.bugly.qq.com
   - DOMAIN,ios.sspai.com
   - DOMAIN,ios.video.mpush.qq.com
   - DOMAIN,ipv4.kkmh.com
@@ -249,6 +252,7 @@ payload:
   - DOMAIN,mediation.adnxs.com
   - DOMAIN,meta.pinduoduo.com
   - DOMAIN,metrics-picture.d.meituan.net
+  - DOMAIN,mi.gdt.qq.com
   - DOMAIN,minfo.wps.cn
   - DOMAIN,mob.bz.mgtv.com
   - DOMAIN,mobad.ijinshan.com
@@ -275,11 +279,14 @@ payload:
   - DOMAIN,pangolin.snssdk.com
   - DOMAIN,partnerad.l.doubleclick.net
   - DOMAIN,pgdt.gtimg.com
+  - DOMAIN,pgdt.ugdtimg.com
   - DOMAIN,pin.hpplay.cn
   - DOMAIN,popup-api.b612kaji.com
   - DOMAIN,popup.dushu365.com
   - DOMAIN,pp-cdnfile2pcdn.msstatic.com
   - DOMAIN,qh-material.taobao.com
+  - DOMAIN,qzs.gdtimg.com
+  - DOMAIN,qzs.qq.com
   - DOMAIN,r.dianping.com
   - DOMAIN,rc-topic-api.bz.mgtv.com
   - DOMAIN,regist.fotoable.com
@@ -289,6 +296,7 @@ payload:
   - DOMAIN,richmanapi.jxedt.com
   - DOMAIN,richmanmain.jxedt.com
   - DOMAIN,richmanrules.jxedt.com
+  - DOMAIN,rmonitor.qq.com
   - DOMAIN,rp.hpplay.cn
   - DOMAIN,rprain.bz.mgtv.com
   - DOMAIN,rprain.log.mgtv.com
@@ -303,6 +311,7 @@ payload:
   - DOMAIN,saxn.sina.com.cn
   - DOMAIN,saxs.sina.com.cn
   - DOMAIN,sdk.ad.sfys365.com
+  - DOMAIN,sdk.e.qq.com
   - DOMAIN,sdkconfig.ad.xiaomi.com
   - DOMAIN,sensors.umetrip.com.cn
   - DOMAIN,sin3-ib.adnxs.com
@@ -320,6 +329,7 @@ payload:
   - DOMAIN,sugar.zhihu.com
   - DOMAIN,t-ads.xiaohongshu.com
   - DOMAIN,t-dsp.pinduoduo.com
+  - DOMAIN,t.gdt.qq.com
   - DOMAIN,ta-a.pinduoduo.com
   - DOMAIN,ta.pinduoduo.com
   - DOMAIN,temai.snssdk.com
@@ -333,6 +343,7 @@ payload:
   - DOMAIN,tmeadquic.y.qq.com
   - DOMAIN,tns.simba.taobao.com
   - DOMAIN,tpc.googlesyndication.com
+  - DOMAIN,tpstelemetry.tencent.com
   - DOMAIN,track.58.com
   - DOMAIN,trackercollect.ddxq.mobi
   - DOMAIN,tracking.intl.miui.com
@@ -344,13 +355,17 @@ payload:
   - DOMAIN,umengacs.m.taobao.com
   - DOMAIN,ups.ksmobile.net
   - DOMAIN,ut.taobao.com
+  - DOMAIN,v.gdt.qq.com
+  - DOMAIN,v2.gdt.qq.com
   - DOMAIN,v6-novelapp.ixigua.com
   - DOMAIN,vali-g1.cp31.ott.cibntv.net
   - DOMAIN,vali-ugc.cp31.ott.cibntv.net
   - DOMAIN,webcast-open.douyin.com
   - DOMAIN,wgo.mmstat.com
+  - DOMAIN,win.gdt.qq.com
   - DOMAIN,wmlog.meituan.com
   - DOMAIN,ws.ksmobile.net
+  - DOMAIN,wup.imtt.qq.com
   - DOMAIN,www.googleadservices.com
   - DOMAIN,xadsdk.shellapp.cn
   - DOMAIN,xg.pinduoduo.com
@@ -868,6 +883,7 @@ payload:
   - DOMAIN-SUFFIX,tt321.eastday.com
   - DOMAIN-SUFFIX,tu.baixing.com
   - DOMAIN-SUFFIX,tuiguang.178.com
+  - DOMAIN-SUFFIX,ugdtimg.com
   - DOMAIN-SUFFIX,umeng.com
   - DOMAIN-SUFFIX,umengcloud.com
   - DOMAIN-SUFFIX,umtrack.com
