@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-22 02:08:59 +0800
+- Generated at: 2026-06-22 02:38:41 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Fusion profile finalized: yes
@@ -46,22 +46,20 @@
 
 ## Workflow Summary
 
-- `.github/workflows/module-factory-build.yml`: contents: write; isolated concurrency; fusion; safe commit helper; rebase retry
-- `.github/workflows/daily-module-update.yml`: contents: write; isolated concurrency; fusion; safe commit helper; rebase retry
-- `.github/workflows/daily-audit-and-repair.yml`: contents: write; isolated concurrency; fusion; safe commit helper; rebase retry
-- `.github/workflows/daily-invalid-source-repair.yml`: contents: write; isolated concurrency; fusion; safe commit helper; rebase retry
-- `.github/workflows/scheduled-module-update.yml`: contents: write; isolated concurrency; fusion; safe commit helper; rebase retry
-- `.github/workflows/upstream-app-module-sync.yml`: contents: write; isolated concurrency; fusion; safe commit helper; rebase retry
-- `.github/workflows/upstream-collect.yml`: contents: write; isolated concurrency; fusion; safe commit helper; rebase retry
-- `.github/workflows/daily-schedule-watchdog.yml`: contents: write; isolated concurrency; fusion; safe commit helper; rebase retry
-- `.github/workflows/repository-health.yml`: contents: write; isolated concurrency; fusion; safe commit helper; rebase retry
+- `.github/workflows/module-factory-build.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
+- `.github/workflows/daily-module-update.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
+- `.github/workflows/daily-audit-and-repair.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
+- `.github/workflows/daily-invalid-source-repair.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
+- `.github/workflows/scheduled-module-update.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
+- `.github/workflows/upstream-app-module-sync.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
+- `.github/workflows/upstream-collect.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
+- `.github/workflows/daily-schedule-watchdog.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
+- `.github/workflows/repository-health.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
 
 ## validate_repository.py Output
 
 ```text
 Repository validation passed.
-./scripts/validate_repository.py:270: SyntaxWarning: invalid escape sequence '//'
-  normalized = lowered.replace("//", "/")
 ```
 
 ## automated quality evidence Output

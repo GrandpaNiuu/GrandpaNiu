@@ -1,27 +1,35 @@
 # 变更影响报告
 
-- 生成时间：2026-06-22 02:08:55 +0800
+- 生成时间：2026-06-22 02:38:38 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Android/branches.json`
-- `Release/Android/branches.json`
-- `Release/checksums.json`
-- `Scripts/generated/fusion-script-bundle.js`
-- `Scripts/generated/fusion-script-bundle.manifest.json`
-- `reports/android_rules_report.md`
-- `reports/build_summary.json`
-- `reports/build_summary.md`
-- `reports/daily_audit_report.md`
-- `reports/module_integrity_report.md`
-- `reports/multi_release_report.md`
-- `reports/remote_rule_syntax_report.md`
-- `reports/script_aggregation_report.md`
+- `.github/workflows/daily-audit-and-repair.yml`
+- `.github/workflows/daily-invalid-source-repair.yml`
+- `.github/workflows/daily-module-update.yml`
+- `.github/workflows/daily-schedule-watchdog.yml`
+- `.github/workflows/module-factory-build.yml`
+- `.github/workflows/repository-health.yml`
+- `.github/workflows/scheduled-module-update.yml`
+- `.github/workflows/upstream-app-module-sync.yml`
+- `.github/workflows/upstream-collect.yml`
+- `AI_HANDOFF.md`
+- `PROJECT_STATE.md`
+- `docs/ai/DECISIONS.md`
+- `docs/ai/RISK_LOG.md`
+- `docs/ai/TASKS.md`
+- `docs/ai/WORKLOG.md`
+- `scripts/repository_health_check.py`
+- `scripts/validate_repository.py`
+- `tests/test_automated_quality_gate.py`
+- `tools/acquire_automation_lock.sh`
+- `tools/release_automation_lock.sh`
 
 ## 新增文件
 
-- 无
+- `tools/acquire_automation_lock.sh`
+- `tools/release_automation_lock.sh`
 
 ## 删除文件
 
@@ -29,25 +37,31 @@
 
 ## 修改文件
 
-- `Android/branches.json`
-- `Release/Android/branches.json`
-- `Release/checksums.json`
-- `Scripts/generated/fusion-script-bundle.js`
-- `Scripts/generated/fusion-script-bundle.manifest.json`
-- `reports/android_rules_report.md`
-- `reports/build_summary.json`
-- `reports/build_summary.md`
-- `reports/daily_audit_report.md`
-- `reports/module_integrity_report.md`
-- `reports/multi_release_report.md`
-- `reports/remote_rule_syntax_report.md`
-- `reports/script_aggregation_report.md`
+- `.github/workflows/daily-audit-and-repair.yml`
+- `.github/workflows/daily-invalid-source-repair.yml`
+- `.github/workflows/daily-module-update.yml`
+- `.github/workflows/daily-schedule-watchdog.yml`
+- `.github/workflows/module-factory-build.yml`
+- `.github/workflows/repository-health.yml`
+- `.github/workflows/scheduled-module-update.yml`
+- `.github/workflows/upstream-app-module-sync.yml`
+- `.github/workflows/upstream-collect.yml`
+- `AI_HANDOFF.md`
+- `PROJECT_STATE.md`
+- `docs/ai/DECISIONS.md`
+- `docs/ai/RISK_LOG.md`
+- `docs/ai/TASKS.md`
+- `docs/ai/WORKLOG.md`
+- `scripts/repository_health_check.py`
+- `scripts/validate_repository.py`
+- `tests/test_automated_quality_gate.py`
 
 ## 影响的模块层
 
 - Other
 - README/docs
-- Scripts
+- Scripts/maintenance
+- Workflows
 
 ## 可能影响的 App
 
@@ -59,10 +73,10 @@
 - 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
-- 是否需要测试 Spotify：是
-- 是否需要测试 YouTube：是
-- 是否需要测试知乎：是
-- 是否需要测试登录/支付/验证码：是
+- 是否需要测试 Spotify：按需
+- 是否需要测试 YouTube：按需
+- 是否需要测试知乎：按需
+- 是否需要测试登录/支付/验证码：按需
 
 ## 回滚建议
 
