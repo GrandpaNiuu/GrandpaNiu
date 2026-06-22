@@ -1,6 +1,6 @@
 # Invalid Sources Audit and Repair Report
 
-- 日期：2026-06-22
+- 日期：2026-06-23
 - 维护模式：source-first
 - 扫描源文件链接总数：777
 - 正常链接数量：455
@@ -9,10 +9,10 @@
 本系统优先修复 `Rewrite/Remotes/`、`Rules/`、`Scripts/`、`Rewrite/Sources/`，随后由工作流重新构建 Release 并同步根目录主模块。不会因单日失败删除规则。
 
 ## 今日首次失败链接
-- `https://example.com/app.js`
+- 无
 
 ## 连续失败 2 天链接
-- 无
+- `https://example.com/app.js`
 
 ## 已自动替换链接
 - 无
@@ -30,7 +30,7 @@
 - 无
 
 ## 需要人工确认链接
-- 无
+- `https://example.com/app.js`
 
 ## 今日失败明细
 - `https://kelee.one/Tool/Loon/Lpx/BaiduNetDisk_remove_ads.lpx (HTTP 403 HTTP 403)`
