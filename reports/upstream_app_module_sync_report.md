@@ -1,46 +1,23 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-06-21T18:55:52Z
+- generated: 2026-06-22T20:17:45Z
 - modules: 398
 - enabled: 390
 - direct_commit: 390
-- updated: 23
-- skipped: 375
+- updated: 0
+- skipped: 398
 - blocked: 0
 - errors: 0
 
 ## Updated
-| id | upstream | backup | source |
-| --- | --- | --- | --- |
-| 123pan | 123云盘去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/123%E4%BA%91%E7%9B%98%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| baidu-wenku | 百度文库去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| baidupan | 百度网盘去广告 | backup/upstream-app-modules/baidupan/20260621-185506.conf | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| caiyun-weather | 彩云天气去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E5%BD%A9%E4%BA%91%E5%A4%A9%E6%B0%94%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| china-unicom | 中国联通 去广告 | backup/upstream-app-modules/china-unicom/20260621-185506.conf | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Official/%E4%B8%AD%E5%9B%BD%E8%81%94%E9%80%9A%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule |
-| didi | 滴滴出行去广告 | backup/upstream-app-modules/didi/20260621-185506.conf | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E6%BB%B4%E6%BB%B4%E5%87%BA%E8%A1%8C%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| goofish | 闲鱼去广告 | backup/upstream-app-modules/goofish/20260621-185506.conf | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E9%97%B2%E9%B1%BC%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| i-qi-yi-video | 爱奇艺去广告 |  | https://kelee.one/Tool/Loon/Lpx/iQiYi_Video_remove_ads.lpx |
-| jd | 京东去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E4%BA%AC%E4%B8%9C%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| keep | Keep去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/Keep%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| kuwo | 酷我音乐去广告 |  | https://kelee.one/Tool/Loon/Lpx/Kuwo_remove_ads.lpx |
-| mgtv | 芒果TV去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E8%8A%92%E6%9E%9CTV%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| moji-weather | 墨迹天气去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E5%A2%A8%E8%BF%B9%E5%A4%A9%E6%B0%94%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| netease-mail | 网易邮箱大师去广告 | backup/upstream-app-modules/netease-mail/20260621-185506.conf | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E7%BD%91%E6%98%93%E9%82%AE%E7%AE%B1%E5%A4%A7%E5%B8%88%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| pinduoduo | 拼多多去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E6%8B%BC%E5%A4%9A%E5%A4%9A%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| qqksong | 全民K歌去广告 |  | https://kelee.one/Tool/Loon/Lpx/QQKSong_remove_ads.lpx |
-| quark | 夸克去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E5%A4%B8%E5%85%8B%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| soul | Soul去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/Soul%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| tencent-video | 腾讯视频去广告 |  | https://kelee.one/Tool/Loon/Lpx/Tencent_Video_remove_ads.lpx |
-| terabox | TeraBox去广告 | backup/upstream-app-modules/terabox/20260621-185506.conf | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/TeraBox%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| wechat | 微信公众号去广告 | backup/upstream-app-modules/wechat/20260621-185506.conf | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| xiaoyuzhou | 小宇宙去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E5%B0%8F%E5%AE%87%E5%AE%99%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
-| zdm | 什么值得买去广告 |  | https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Beta/%E4%BB%80%E4%B9%88%E5%80%BC%E5%BE%97%E4%B9%B0%E5%8E%BB%E5%B9%BF%E5%91%8A.beta.sgmodule |
+_None._
 
 ## Skipped
 | id | reason |
 | --- | --- |
 | 123-net-work-disk | unchanged |
 | 12306 | unchanged |
+| 123pan | unchanged |
 | 17173-game | unchanged |
 | 178-game | unchanged |
 | 18183-game | unchanged |
@@ -83,6 +60,8 @@
 | baidu-net-disk | unchanged |
 | baidu-photo | unchanged |
 | baidu-translation | unchanged |
+| baidu-wenku | unchanged |
+| baidupan | unchanged |
 | baixing | unchanged |
 | ban-yue-tan | unchanged |
 | bao-mi-hua | unchanged |
@@ -103,6 +82,7 @@
 | cai-lian-she | unchanged |
 | cainiao | unchanged |
 | caixin-media | unchanged |
+| caiyun-weather | unchanged |
 | camera360 | unchanged |
 | cat-ear-fm | unchanged |
 | cclive | unchanged |
@@ -111,6 +91,7 @@
 | chao-xing-xue-xi-tong | unchanged |
 | che-lai-le | unchanged |
 | cheng-fen-miao | unchanged |
+| china-unicom | unchanged |
 | chuzhan | unchanged |
 | ci-wei-mao-yue-du | unchanged |
 | clicli | unchanged |
@@ -131,6 +112,7 @@
 | di-duan-ying-shi | unchanged |
 | dian-shi-jia | unchanged |
 | dida-pinche-taxi | unchanged |
+| didi | unchanged |
 | digital-heartbeat | unchanged |
 | ding-xiang-doctor | unchanged |
 | ding-xiang-yuan | unchanged |
@@ -167,6 +149,7 @@
 | gao-ding | unchanged |
 | go-com | unchanged |
 | gong-kao-lei-da | unchanged |
+| goofish | unchanged |
 | guide-rank | unchanged |
 | hanju-tv | unchanged |
 | hanting-hotels | unchanged |
@@ -186,9 +169,11 @@
 | huxiu | unchanged |
 | huya | disabled |
 | i-mai-cai | unchanged |
+| i-qi-yi-video | unchanged |
 | i-reader | unchanged |
 | i-reader-dejian | unchanged |
 | ithome | unchanged |
+| jd | unchanged |
 | jdreading | unchanged |
 | jdwaimai | unchanged |
 | ji-he-wang | unchanged |
@@ -203,6 +188,7 @@
 | kan-li-xiang | unchanged |
 | kan-tian-xia | unchanged |
 | kebida-dushu | unchanged |
+| keep | unchanged |
 | kfc | unchanged |
 | kgring | unchanged |
 | kingdee-my-money | unchanged |
@@ -223,6 +209,7 @@
 | kuai-shou | unchanged |
 | kuaishou | unchanged |
 | kuro-bbs | unchanged |
+| kuwo | unchanged |
 | kwai-videoeditor | unchanged |
 | lai-dian | unchanged |
 | lai-feng | unchanged |
@@ -261,6 +248,7 @@
 | meitu-myxj | unchanged |
 | meituan | disabled |
 | meizhixiuxing | unchanged |
+| mgtv | unchanged |
 | mi-ho-yo-bbs | unchanged |
 | miao-pai | unchanged |
 | miao-read | unchanged |
@@ -269,12 +257,14 @@
 | mkz | unchanged |
 | mobile-clouds | unchanged |
 | moe-girl-wiki | unchanged |
+| moji-weather | unchanged |
 | mop | unchanged |
 | mr-hema | unchanged |
 | nai-fei-ying-shi | unchanged |
 | narwel-robots | unchanged |
 | naver | unchanged |
 | net-ease-godlike | unchanged |
+| netease-mail | unchanged |
 | netease-music | unchanged |
 | netease-news | unchanged |
 | new-relic | unchanged |
@@ -298,6 +288,7 @@
 | pi-pi-gao-xiao | unchanged |
 | pi-pi-xia | unchanged |
 | picc-insurance | unchanged |
+| pinduoduo | unchanged |
 | pinterest | unchanged |
 | pptv | unchanged |
 | pu-pu-mall | unchanged |
@@ -306,11 +297,13 @@
 | qi-xin-bao | unchanged |
 | qilu | unchanged |
 | qqbrowser | unchanged |
+| qqksong | unchanged |
 | qqmusic | unchanged |
 | qqnews | disabled |
 | qting-fm | unchanged |
 | quan-min-ge-ge | unchanged |
 | quan-neng-browser | unchanged |
+| quark | unchanged |
 | quark-scan | unchanged |
 | railway12306 | unchanged |
 | reddit | unchanged |
@@ -341,6 +334,7 @@
 | soda-music | unchanged |
 | sogou-input | unchanged |
 | soufun | unchanged |
+| soul | unchanged |
 | spotify | unchanged |
 | su-zhou-citizen-card | unchanged |
 | taobao | unchanged |
@@ -352,6 +346,8 @@
 | tencent-games-community | unchanged |
 | tencent-mobile-manager | unchanged |
 | tencent-sports | unchanged |
+| tencent-video | unchanged |
+| terabox | unchanged |
 | the-paper-news | unchanged |
 | tian-shan-yun-tv | unchanged |
 | tieba | unchanged |
@@ -376,6 +372,7 @@
 | wall-street-cn | unchanged |
 | walmart | unchanged |
 | wasu-tv | unchanged |
+| wechat | unchanged |
 | wechat-mini-programs | unchanged |
 | wechat-official-accounts | unchanged |
 | weibo | unchanged |
@@ -392,6 +389,7 @@
 | xiaojukeji-charge | unchanged |
 | xiaomi-speaker | unchanged |
 | xiaopeng | disabled |
+| xiaoyuzhou | unchanged |
 | ximalaya | unchanged |
 | xun-lei | unchanged |
 | yahoo | unchanged |
@@ -408,6 +406,7 @@
 | yy-voice | unchanged |
 | yyvoice-tool | unchanged |
 | zaker | unchanged |
+| zdm | unchanged |
 | zhi-lian-zhao-pin | unchanged |
 | zhihu | unchanged |
 | zhuan-zhuan | unchanged |

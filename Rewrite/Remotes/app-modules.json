@@ -40,7 +40,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "17173-game",
@@ -556,7 +556,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "baidupan",
@@ -568,7 +568,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "baixing",
@@ -820,7 +820,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "camera360",
@@ -928,7 +928,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "chuzhan",
@@ -1180,7 +1180,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "digital-heartbeat",
@@ -1624,7 +1624,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "guide-rank",
@@ -1864,7 +1864,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "i-reader",
@@ -1912,7 +1912,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "jdreading",
@@ -2092,7 +2092,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "kfc",
@@ -2344,7 +2344,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "kwai-videoeditor",
@@ -2812,7 +2812,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "mi-ho-yo-bbs",
@@ -2920,7 +2920,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "mop",
@@ -3004,7 +3004,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "netease-music",
@@ -3292,7 +3292,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "pinterest",
@@ -3400,7 +3400,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "qqmusic",
@@ -3472,7 +3472,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "quark-scan",
@@ -3844,7 +3844,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "spotify",
@@ -3988,7 +3988,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "terabox",
@@ -4000,7 +4000,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "the-paper-news",
@@ -4300,7 +4300,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "wechat-mini-programs",
@@ -4504,7 +4504,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "ximalaya",
@@ -4708,7 +4708,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "QingRex/LoonKissSurge",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "unchanged"
     },
     {
       "id": "zhi-lian-zhao-pin",
