@@ -1,49 +1,30 @@
 # 变更影响报告
 
-- 生成时间：2026-06-23 03:56:40 +0800
+- 生成时间：2026-06-24 02:26:55 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `Android/adguard/GrandpaNiu-DNS.txt`
-- `Android/adguard/apps/iOS-App-Compatible-Reject.txt`
-- `Android/branches.json`
-- `Android/mihomo/GrandpaNiu-Ads.yaml`
-- `Android/mihomo/apps/iOS-App-Compatible-Reject.yaml`
-- `Android/sing-box/GrandpaNiu-Ads.json`
-- `Android/sing-box/apps/iOS-App-Compatible-Reject.json`
-- `Android/v2rayng/GrandpaNiu-v2rayng-routing.json`
-- `Android/v2rayng/apps/iOS-App-Compatible-Reject-routing.json`
 - `Release/Android/branches.json`
 - `Release/checksums.json`
+- `Rewrite/Remotes/app-modules.json`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
-- `Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
 - `reports/app_source_validation_report.md`
-- `reports/app_status_matrix.md`
-- `reports/automated_quality_evidence.md`
 - `reports/build_summary.json`
 - `reports/build_summary.md`
-- `reports/candidate_security_score_report.md`
-- `reports/change_impact_report.md`
-- `reports/domestic_app_connectivity_audit.md`
 - `reports/mitm_scope_report.md`
-- `reports/module_factory_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
-- `reports/reject_risk_report.md`
 - `reports/remote_rule_syntax_report.md`
-- `reports/report_freshness_report.md`
-- `reports/repository_health_report.md`
 - `reports/rule_overlap_report.md`
 - `reports/script_aggregation_report.md`
 - `reports/script_aggregation_validation_report.md`
 - `reports/script_bundle_sandbox_report.md`
-- `reports/script_inventory_report.md`
+- `reports/upstream_app_module_sync_report.md`
 - `reports/upstream_risk_gate_report.md`
-- `reports/workflow_health_report.md`
 
 ## 新增文件
 
@@ -55,80 +36,58 @@
 
 ## 修改文件
 
-- `Android/adguard/GrandpaNiu-DNS.txt`
-- `Android/adguard/apps/iOS-App-Compatible-Reject.txt`
-- `Android/branches.json`
-- `Android/mihomo/GrandpaNiu-Ads.yaml`
-- `Android/mihomo/apps/iOS-App-Compatible-Reject.yaml`
-- `Android/sing-box/GrandpaNiu-Ads.json`
-- `Android/sing-box/apps/iOS-App-Compatible-Reject.json`
-- `Android/v2rayng/GrandpaNiu-v2rayng-routing.json`
-- `Android/v2rayng/apps/iOS-App-Compatible-Reject-routing.json`
 - `Release/Android/branches.json`
 - `Release/checksums.json`
+- `Rewrite/Remotes/app-modules.json`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
-- `Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
 - `reports/app_source_validation_report.md`
-- `reports/app_status_matrix.md`
-- `reports/automated_quality_evidence.md`
 - `reports/build_summary.json`
 - `reports/build_summary.md`
-- `reports/candidate_security_score_report.md`
-- `reports/change_impact_report.md`
-- `reports/domestic_app_connectivity_audit.md`
 - `reports/mitm_scope_report.md`
-- `reports/module_factory_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
-- `reports/reject_risk_report.md`
 - `reports/remote_rule_syntax_report.md`
-- `reports/report_freshness_report.md`
-- `reports/repository_health_report.md`
 - `reports/rule_overlap_report.md`
 - `reports/script_aggregation_report.md`
 - `reports/script_aggregation_validation_report.md`
 - `reports/script_bundle_sandbox_report.md`
-- `reports/script_inventory_report.md`
+- `reports/upstream_app_module_sync_report.md`
 - `reports/upstream_risk_gate_report.md`
-- `reports/workflow_health_report.md`
 
 ## 影响的模块层
 
 - Other
 - README/docs
+- Remotes
 - Scripts
 
 ## 可能影响的 App
 
 - Spotify
-- YouTube
 - 知乎
-- Bilibili
 - 微博
-- 小红书
+- 百度贴吧
 - 淘宝
 - 闲鱼
 - 京东
 - 拼多多
 - 美团
-- 大众点评
-- 饿了么
 - 滴滴
 - 12306
 - 网易云音乐
+- 喜马拉雅
 - 小宇宙
-- 斗鱼
 - Reddit
 
 ## 风险判断
 
 - 是否涉及脚本：是
 - 是否涉及 MITM：是
-- 是否涉及 Body Rewrite：是
-- 是否涉及远程规则源：否
+- 是否涉及 Body Rewrite：否
+- 是否涉及远程规则源：是
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
 - 是否需要测试知乎：是
