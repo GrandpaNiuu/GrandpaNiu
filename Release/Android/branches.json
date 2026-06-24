@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-25 02:21:22 Asia/Shanghai",
+  "generated": "2026-06-25 02:22:00 Asia/Shanghai",
   "source_of_truth": "Android/mihomo/apps/*.yaml + safe iOS/Fusion/repo compatible REJECT rules",
   "sync_policy": "Mihomo, sing-box and v2rayNG are generated from the same canonical Android rule set. AdGuard is generated from the same source as the DNS-compatible projection.",
   "app_source_files": 22,
