@@ -1,13 +1,12 @@
 # 变更影响报告
 
-- 生成时间：2026-06-24 02:26:55 +0800
+- 生成时间：2026-06-25 02:21:34 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
 - `Release/Android/branches.json`
 - `Release/checksums.json`
-- `Rewrite/Remotes/app-modules.json`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
 - `reports/android_rules_report.md`
@@ -38,7 +37,6 @@
 
 - `Release/Android/branches.json`
 - `Release/checksums.json`
-- `Rewrite/Remotes/app-modules.json`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
 - `reports/android_rules_report.md`
@@ -61,33 +59,18 @@
 
 - Other
 - README/docs
-- Remotes
 - Scripts
 
 ## 可能影响的 App
 
-- Spotify
-- 知乎
-- 微博
-- 百度贴吧
-- 淘宝
-- 闲鱼
-- 京东
-- 拼多多
-- 美团
-- 滴滴
-- 12306
-- 网易云音乐
-- 喜马拉雅
-- 小宇宙
-- Reddit
+- 待人工确认
 
 ## 风险判断
 
 - 是否涉及脚本：是
 - 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：否
-- 是否涉及远程规则源：是
+- 是否涉及远程规则源：否
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
 - 是否需要测试知乎：是
