@@ -58,7 +58,7 @@ jobs:
         if: steps.upstream-sync.outcome != 'success' || steps.factory-build.outcome != 'success'
         run: |
           set -euo pipefail
-          git restore Rewrite/Sources/Apps Rewrite/Remotes/app-modules.json Scripts/generated Ronghemokuai.sgmodule Release Web reports || true
+          git restore Rewrite/Sources/Apps Rewrite/Remotes/app-modules.json Scripts/generated Ronghemokuai.sgmodule Release Android Windows Web reports || true
           mkdir -p reports
           {
             echo "# Upstream App Module Sync Report"
@@ -86,6 +86,8 @@ jobs:
             reports \
             Ronghemokuai.sgmodule \
             Release \
+            Android \
+            Windows \
             Web
 
       - name: Release cross-workflow maintenance lock

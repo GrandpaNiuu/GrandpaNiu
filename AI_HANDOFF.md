@@ -1,6 +1,6 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-06-22 02:41 +0800
+Last updated: 2026-06-26 12:17 +0800
 
 ## What This Project Is
 
@@ -21,6 +21,13 @@ Maintain it as a high-risk network rules repository. Small changes can break use
 
 ## Recent Completed Work
 
+- 2026-06-26: Repaired generated-output synchronization after a current-state self-check.
+- `scheduled-module-update.yml`, `upstream-app-module-sync.yml`, and `daily-schedule-watchdog.yml` now stage `Android/` and `Windows/` whenever they run the full Builder.
+- `upstream-app-module-sync.yml` rollback now restores `Android/` and `Windows/` in addition to iOS, Release, Web, and reports.
+- `scripts/quality_gate.py` now calls the unified Builder release pipeline instead of partially rebuilding release artifacts by hand.
+- `scripts/validate_repository.py` now blocks a stale `Release/Module.sgmodule` alias and blocks full-Builder workflows that do not commit Android/Windows outputs.
+- `scripts/repository_health_check.py` reports and blocks Release alias drift.
+- Validation confirmed: root iOS module, Release iOS module, and Release alias are identical; Android source and Release branch manifests are identical; 398 App sources generate 398 Release modules; Windows v2rayN output is generated from Android v2rayNG.
 - Fusion single public module strategy established.
 - `Rewrite/Generator/Builder.py` wraps the existing build scripts.
 - App sources were split into `Rewrite/Sources/Apps/`.

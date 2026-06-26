@@ -1,8 +1,9 @@
 # Repository Health Report
 
-- Generated at: 2026-06-26 02:36:13 +0800
+- Generated at: 2026-06-26 12:19:21 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
+- Release alias identical: yes
 - Fusion profile finalized: yes
 - validate_repository.py: passed
 - automated quality evidence: passed
@@ -17,7 +18,7 @@
 - [Header Rewrite]: 2
 - [Body Rewrite]: 1652
 - [Map Local]: 352
-- [Script]: 44
+- [Script]: 47
 - [MITM]: 1
 
 ## Blocking Issues
@@ -60,8 +61,6 @@
 
 ```text
 Repository validation passed.
-./scripts/validate_repository.py:272: SyntaxWarning: invalid escape sequence '//'
-  normalized = lowered.replace("//", "/")
 ```
 
 ## automated quality evidence Output

@@ -89,6 +89,13 @@ class AutomatedQualityGateTests(unittest.TestCase):
         self.assertIn("generate_automated_quality_evidence.py", text)
         self.assertIn("validate_repository.py", text)
 
+    def test_quality_gate_uses_unified_builder_for_release_outputs(self) -> None:
+        text = (ROOT / "scripts" / "quality_gate.py").read_text(encoding="utf-8")
+        self.assertIn('"Rewrite/Generator/Builder.py", "--profile", "fusion", "--release"', text)
+        self.assertNotIn('"scripts/build_module.py", "--build"', text)
+        self.assertNotIn('"scripts/factory_finalize.py"', text)
+        self.assertNotIn('"scripts/build_release_variants.py"', text)
+
     def test_quality_gate_strictly_checks_freshness_after_final_bundle_validation(self) -> None:
         text = (ROOT / "scripts" / "quality_gate.py").read_text(encoding="utf-8")
         freshness = text.rfind('"scripts/check_report_freshness.py", "--strict"')
@@ -139,6 +146,19 @@ class AutomatedQualityGateTests(unittest.TestCase):
                 offenders.append(f"{path.name}: destructive reset")
             if "git add -A" in text:
                 offenders.append(f"{path.name}: broad staging")
+        self.assertEqual([], offenders)
+
+    def test_full_builder_workflows_commit_android_and_windows_outputs(self) -> None:
+        offenders: list[str] = []
+        for path in sorted((ROOT / ".github" / "workflows").glob("*.yml")):
+            text = path.read_text(encoding="utf-8")
+            if "Rewrite/Generator/Builder.py --profile fusion --release" not in text:
+                continue
+            if "scripts/commit_generated_changes.sh" not in text:
+                continue
+            for generated_path in ("Android", "Windows"):
+                if f"\n            {generated_path} \\" not in text and f"\n            {generated_path}\n" not in text:
+                    offenders.append(f"{path.name}: missing {generated_path} in generated commit paths")
         self.assertEqual([], offenders)
 
     def test_push_validation_has_one_factory_entrypoint(self) -> None:

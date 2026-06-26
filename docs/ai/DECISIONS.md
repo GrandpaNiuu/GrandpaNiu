@@ -1,8 +1,20 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-06-22 02:33 +0800
+Last updated: 2026-06-26 12:17 +0800
 
 ## Decisions
+
+### 2026-06-26 - Full Builder Publishers Must Stage Android And Windows
+
+Any workflow that runs `Rewrite/Generator/Builder.py --profile fusion --release` and commits generated outputs must stage `Android/` and `Windows/` together with `Release/`, `Web/`, reports, and the root module.
+
+Reason: the Builder refreshes Android source outputs, Windows v2rayN output, and `Release/Android/`. If a workflow commits only `Release/Android/`, the published release layer can drift from the source Android layer.
+
+### 2026-06-26 - Quality Gate Must Use The Unified Builder Release Pipeline
+
+`scripts/quality_gate.py` should call `Rewrite/Generator/Builder.py --profile fusion --release` rather than manually chaining only a subset of release scripts.
+
+Reason: partial release regeneration can leave `Release/Module.sgmodule`, `Release/Rules.conf`, per-App modules, Android, Windows, Web, or checksums stale even when the quality gate exits green.
 
 ### 2026-06-20 - Use Repository Records As AI Source Of Truth
 

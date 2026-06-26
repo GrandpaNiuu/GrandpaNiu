@@ -1,5 +1,68 @@
 # AI Maintenance Worklog
 
+## 2026-06-26 12:17 - Work Record
+
+### Task
+
+Self-check current repository shortcomings, improve what is actually broken, and verify whether the iOS Fusion module output is synchronized to Android, Windows, Release, and Web outputs.
+
+### Start State
+
+- Branch: `repair/upstream-app-sync`
+- Git status summary: clean after fast-forwarding to the latest `origin/main`
+- Expected scope: workflows, quality gate, repository validation, generated outputs, reports, and AI maintenance records
+
+### Actual Changes
+
+- Added `Android` and `Windows` to generated-output commit paths in:
+  - `.github/workflows/scheduled-module-update.yml`
+  - `.github/workflows/upstream-app-module-sync.yml`
+  - `.github/workflows/daily-schedule-watchdog.yml`
+- Updated upstream app module sync rollback to restore `Android` and `Windows`.
+- Changed `scripts/quality_gate.py` to use `Rewrite/Generator/Builder.py --profile fusion --release` as the release-generation path.
+- Updated `scripts/validate_repository.py` to:
+  - block `Release/Module.sgmodule` drift
+  - block full-Builder workflows that do not commit `Android` and `Windows`
+  - remove a Python invalid escape sequence warning
+- Updated `scripts/repository_health_check.py` to report and block Release alias drift.
+- Added automated tests for Builder workflow staging and quality-gate Builder usage.
+- Regenerated Fusion, Release, Android, Windows v2rayN, Web, checksums, script bundle, and reports through the quality gate.
+
+### Test Result
+
+- `python -m py_compile ...` passed.
+- `python -m unittest tests.test_automated_quality_gate` passed with 15 tests.
+- `python scripts/quality_gate.py` passed with 23 discovered tests.
+- `python scripts/android_format_check.py` passed with 957 Android main rules.
+- `python scripts/validate_repository.py` passed.
+- `python scripts/repository_health_check.py` passed.
+- `python scripts/check_report_freshness.py --strict` passed.
+- `git diff --check` passed.
+- Manual consistency checks passed:
+  - `Ronghemokuai.sgmodule` equals `Release/Ronghemokuai.sgmodule`
+  - `Release/Module.sgmodule` equals `Release/Ronghemokuai.sgmodule`
+  - `Android/branches.json` equals `Release/Android/branches.json`
+  - 398 App sources generate 398 Release modules
+  - Windows v2rayN output contains 6 routing rules generated from Android v2rayNG
+
+### Risk
+
+- No App source rules, MITM scopes, scripts, login, payment, banking, captcha, video playback, or image/CDN policy was intentionally changed.
+- Generated outputs changed because the Builder and quality gate refreshed them after the workflow and validation fixes.
+- A remote rule syntax run reported one transient upstream SSL EOF warning during an earlier pass; the full quality gate later completed successfully.
+
+### Self-Review
+
+- What was not good enough: I initially checked Android sync after Builder, but then quality_gate itself created Release alias drift because it still used a partial release pipeline.
+- What I changed to reduce that risk: changed quality_gate to call the unified Builder, added alias validation, and added workflow staging regression tests.
+- What I would check first next time: after any generation/check script change, verify root/Release/alias equality and Android/Release branch-manifest equality after the final quality gate, not just after the Builder step.
+
+### Next Step
+
+- Commit and push this repair.
+- Confirm the remote Module Factory Build after push.
+- Watch the next scheduled update and upstream app sync runs for clean Android/Windows staging.
+
 ## 2026-06-21 02:58 - Work Record
 
 ### Task

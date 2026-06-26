@@ -64,6 +64,8 @@ jobs:
             Scripts/generated \
             Ronghemokuai.sgmodule \
             Release \
+            Android \
+            Windows \
             Web \
             reports \
             Rewrite/Remotes/Catalog.md

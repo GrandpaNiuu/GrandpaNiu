@@ -1,6 +1,6 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-06-22 02:41 +0800
+Last updated: 2026-06-26 12:17 +0800
 
 ## Active Rules For Task Handling
 
@@ -13,6 +13,8 @@ Last updated: 2026-06-22 02:41 +0800
 
 ## Current Open Tasks
 
+- Watch the next scheduled update and upstream app sync runs. They should now publish `Android/` and `Windows/` together with `Release/`.
+- If a future check reports Release alias drift, inspect whether a script bypassed `Rewrite/Generator/Builder.py --profile fusion --release`.
 - Monitor the next naturally delayed group of scheduled writers and confirm waiting jobs acquire the lock in sequence.
 
 - Monitor future user-reported app breakage and fix with targeted source changes.
@@ -172,6 +174,8 @@ Validation:
 
 ## Done
 
+- 2026-06-26: Fixed Android/Release generated-output drift by staging Android and Windows in all full-Builder scheduled publishing workflows.
+- 2026-06-26: Updated the quality gate to use the unified Builder release pipeline and added regression checks for Release alias and Android/Windows workflow staging.
 - 2026-06-20: Initial AI maintenance record system created.
 - 2026-06-20: Baseline project state and handoff captured.
 - 2026-06-20: Private local log directory initialized outside the repository.

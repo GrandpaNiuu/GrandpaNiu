@@ -1,6 +1,6 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-06-22 02:41 +0800
+Last updated: 2026-06-26 12:17 +0800
 
 ## Project Purpose
 
@@ -133,6 +133,17 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Current scale after the latest GitHub app expansion: 398 active app source files and 398 generated app module outputs. `Rewrite/Sources/Apps/_TEMPLATE.conf` is an authoring template and is not generated.
 
 ## Latest Maintenance Note
+
+2026-06-26 12:17 +0800:
+
+- Synced the local branch to the latest `origin/main` before checking the current repository state.
+- Found a real generated-output drift: `scheduled-module-update.yml` and `upstream-app-module-sync.yml` ran the full Builder but did not stage `Android/` and `Windows/`, allowing `Release/Android/branches.json` to diverge from `Android/branches.json`.
+- Added `Android` and `Windows` to the generated-output commit paths for scheduled update, upstream app module sync, and watchdog recovery. Upstream app sync rollback now also restores Android and Windows generated outputs.
+- Found a second process weakness: `scripts/quality_gate.py` manually rebuilt only part of the release pipeline and could leave `Release/Module.sgmodule` out of sync with `Release/Ronghemokuai.sgmodule`.
+- Updated `scripts/quality_gate.py` to use the unified `Rewrite/Generator/Builder.py --profile fusion --release` release pipeline instead of partial manual release steps.
+- Added validation so full-Builder workflows must commit Android and Windows outputs, and `Release/Module.sgmodule` must match `Release/Ronghemokuai.sgmodule`.
+- Current synchronization check: 398 App sources, 398 Release modules, 0 missing modules, Android canonical rules 957, Android/Release branch manifests identical, and Windows v2rayN routes generated from Android v2rayNG.
+- Full quality gate passed. No App rule, MITM, login, payment, banking, captcha, video, or CDN traffic policy was intentionally changed.
 
 2026-06-22 02:33 +0800:
 

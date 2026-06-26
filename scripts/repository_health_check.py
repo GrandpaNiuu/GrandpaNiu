@@ -15,12 +15,14 @@ ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "reports" / "repository_health_report.md"
 MODULE = ROOT / "Ronghemokuai.sgmodule"
 RELEASE = ROOT / "Release" / "Ronghemokuai.sgmodule"
+RELEASE_ALIAS = ROOT / "Release" / "Module.sgmodule"
 EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ronghemokuai.sgmodule"
 
 REQUIRED_FILES = [
     "README.md",
     "Ronghemokuai.sgmodule",
     "Release/Ronghemokuai.sgmodule",
+    "Release/Module.sgmodule",
     "Rewrite/Profiles/fusion.conf",
     "Rewrite/Remotes/sources.json",
     "Rewrite/Remotes/candidates.json",
@@ -218,6 +220,7 @@ def list_block(title: str, items: list[str]) -> list[str]:
 def main() -> None:
     root_text = read(MODULE)
     release_text = read(RELEASE)
+    alias_text = read(RELEASE_ALIAS)
     fusion_text = read(ROOT / "Rewrite" / "Profiles" / "fusion.conf")
 
     validator_ok, validator_output = run_command([sys.executable, "scripts/validate_repository.py"])
@@ -240,6 +243,8 @@ def main() -> None:
     blockers: list[str] = []
     if root_text != release_text:
         blockers.append("Root module and Release module differ")
+    if alias_text != release_text:
+        blockers.append("Release module alias and Release module differ")
     if missing_files:
         blockers.append("Required files are missing")
     if missing_workflows:
@@ -267,6 +272,7 @@ def main() -> None:
         f"- Generated at: {now}",
         f"- Blocking issues: {len(blockers)}",
         f"- Root and Release identical: {'yes' if root_text == release_text else 'no'}",
+        f"- Release alias identical: {'yes' if alias_text == release_text else 'no'}",
         f"- Fusion profile finalized: {'yes' if 'name = fusion' in fusion_text and 'single_public_entry = true' in fusion_text else 'no'}",
         f"- validate_repository.py: {'passed' if validator_ok else 'failed'}",
         f"- automated quality evidence: {'passed' if evidence_ok else 'failed'}",

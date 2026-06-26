@@ -13,6 +13,7 @@ from validate_module_integrity import validate_all as validate_module_integrity
 ROOT = Path(__file__).resolve().parents[1]
 MODULE = ROOT / "Ronghemokuai.sgmodule"
 RELEASE = ROOT / "Release" / "Ronghemokuai.sgmodule"
+RELEASE_ALIAS = ROOT / "Release" / "Module.sgmodule"
 README = ROOT / "README.md"
 SOURCES_JSON = ROOT / "Rewrite" / "Remotes" / "sources.json"
 CANDIDATES_JSON = ROOT / "Rewrite" / "Remotes" / "candidates.json"
@@ -42,6 +43,7 @@ REQUIRED_FILES = (
     "CONTRIBUTING.md",
     "Ronghemokuai.sgmodule",
     "Release/Ronghemokuai.sgmodule",
+    "Release/Module.sgmodule",
     "Rewrite/Profiles/fusion.conf",
     "Rewrite/Remotes/sources.json",
     "Rewrite/Remotes/candidates.json",
@@ -258,6 +260,8 @@ def validate_root_release() -> None:
     release_text = read_text(RELEASE)
     if root_text != release_text:
         fail("Ronghemokuai.sgmodule and Release/Ronghemokuai.sgmodule differ")
+    if read_text(RELEASE_ALIAS) != release_text:
+        fail("Release/Module.sgmodule and Release/Ronghemokuai.sgmodule differ")
     for marker in REQUIRED_MARKERS:
         if marker not in root_text:
             fail(f"required marker missing from root module: {marker}")
@@ -269,7 +273,7 @@ def validate_root_release() -> None:
     for line in active_lines(root_text):
         upper = line.upper()
         lowered = line.lower()
-        normalized = lowered.replace("\/", "/")
+        normalized = lowered.replace(r"\/", "/")
         if "bilibili" in normalized:
             if 'data="{' in normalized:
                 fail("root module contains raw JSON Bilibili map-local data; use base64 data instead")
@@ -491,6 +495,16 @@ def validate_workflows() -> None:
     upstream_app = read_text(ROOT / ".github" / "workflows" / "upstream-app-module-sync.yml")
     if "Rewrite/Sources/Meta.conf" not in upstream_app:
         fail("upstream-app-module-sync workflow must commit refreshed Meta.conf")
+
+    for relative in REQUIRED_WORKFLOWS:
+        text = read_text(ROOT / relative)
+        if "Rewrite/Generator/Builder.py --profile fusion --release" not in text:
+            continue
+        if "scripts/commit_generated_changes.sh" not in text:
+            continue
+        for generated_path in ("Android", "Windows"):
+            if f"\n            {generated_path} \\" not in text and f"\n            {generated_path}\n" not in text:
+                fail(f"{relative} runs the full Builder but does not commit {generated_path} outputs")
 
     invalid_source = read_text(ROOT / ".github" / "workflows" / "daily-invalid-source-repair.yml")
     for token in ("collect_upstreams.py", "audit_repair_invalid_sources.py", "validate_remote_rule_syntax.py"):

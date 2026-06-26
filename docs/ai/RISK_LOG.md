@@ -1,6 +1,6 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-06-22 02:41 +0800
+Last updated: 2026-06-26 12:17 +0800
 
 ## Standing High-Risk Areas
 
@@ -30,6 +30,25 @@ Last updated: 2026-06-22 02:41 +0800
 - MITM scope is broad and must be changed carefully.
 
 ## Current Task Risk
+
+Current risk for the 2026-06-26 sync self-check is low to medium and operational, not traffic-policy related.
+
+Observed signals:
+
+- `Android/branches.json` and `Release/Android/branches.json` differed only by generated timestamp after a scheduled update path.
+- Running the previous `quality_gate.py` could leave `Release/Module.sgmodule` out of sync with `Release/Ronghemokuai.sgmodule`.
+
+Mitigations:
+
+- Full-Builder workflows now stage `Android/` and `Windows/` generated outputs.
+- Upstream app sync rollback restores `Android/` and `Windows/` generated outputs.
+- The quality gate uses the unified Builder release path.
+- Repository validation blocks Release alias drift and full-Builder workflow staging omissions.
+- No App source rules, MITM hostnames, login, payment, banking, captcha, video, or image/CDN protection policies were intentionally changed.
+
+Remaining risk:
+
+- The next natural scheduled runs should be monitored to confirm the repaired staging paths publish cleanly on GitHub Actions.
 
 The latest foreign app expansion is medium operational risk because it adds 9 overseas / international app-service cleanup sources and regenerates public outputs.
 
