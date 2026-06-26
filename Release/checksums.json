@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T13:57:55.679408Z",
+  "generated_at": "2026-06-26T14:22:57.868072Z",
   "algorithm": "sha256",
   "count": 422,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 2979248,
-      "sha256": "fadff4eedfdb5d57489c6b484a9482de48b42c61cac7ca0c477eaa28ebb23613"
+      "size": 2978358,
+      "sha256": "ffed11d99e2dafab415f1a3b33e3fd847f3179e964fde5134b51dfffd9bd552a"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -2030,23 +2030,23 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 2979248,
-      "sha256": "fadff4eedfdb5d57489c6b484a9482de48b42c61cac7ca0c477eaa28ebb23613"
+      "size": 2978358,
+      "sha256": "ffed11d99e2dafab415f1a3b33e3fd847f3179e964fde5134b51dfffd9bd552a"
     },
     {
       "path": "Release/Rules.conf",
-      "size": 64948,
-      "sha256": "d958e20b71c79eed1c8aa6561cf0fe032bfd867829a2b55aef579a7d38c97a7d"
+      "size": 64058,
+      "sha256": "b5bac30c089670ae57489d0a49341f8bccfc4dd436bfae292a7f683db8aa64dd"
     },
     {
       "path": "Release/RulesGroup.conf",
-      "size": 65027,
-      "sha256": "83beab7754fdcffba0f34219b119f2712881e1ec1021422fcfd6c13264c68204"
+      "size": 64137,
+      "sha256": "ab774635bf34e2d72a44e4bfd2c3db281b426359d15e0bc2b58050db172023c3"
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 2979248,
-      "sha256": "fadff4eedfdb5d57489c6b484a9482de48b42c61cac7ca0c477eaa28ebb23613"
+      "size": 2978358,
+      "sha256": "ffed11d99e2dafab415f1a3b33e3fd847f3179e964fde5134b51dfffd9bd552a"
     },
     {
       "path": "Release/Stable/README.md",
@@ -2055,18 +2055,18 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 2979248,
-      "sha256": "fadff4eedfdb5d57489c6b484a9482de48b42c61cac7ca0c477eaa28ebb23613"
+      "size": 2978358,
+      "sha256": "ffed11d99e2dafab415f1a3b33e3fd847f3179e964fde5134b51dfffd9bd552a"
     },
     {
       "path": "Release/Stable/Rules.conf",
-      "size": 64948,
-      "sha256": "d958e20b71c79eed1c8aa6561cf0fe032bfd867829a2b55aef579a7d38c97a7d"
+      "size": 64058,
+      "sha256": "b5bac30c089670ae57489d0a49341f8bccfc4dd436bfae292a7f683db8aa64dd"
     },
     {
       "path": "Release/Stable/RulesGroup.conf",
-      "size": 65027,
-      "sha256": "83beab7754fdcffba0f34219b119f2712881e1ec1021422fcfd6c13264c68204"
+      "size": 64137,
+      "sha256": "ab774635bf34e2d72a44e4bfd2c3db281b426359d15e0bc2b58050db172023c3"
     },
     {
       "path": "Web/README.md",

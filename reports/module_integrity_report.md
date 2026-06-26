@@ -18,7 +18,7 @@
 
 | Section | Active line 数 |
 |---|---:|
-| `Rule` | 1377 |
+| `Rule` | 1360 |
 | `URL Rewrite` | 2689 |
 | `Header Rewrite` | 2 |
 | `Body Rewrite` | 1648 |
