@@ -92,6 +92,14 @@ PROTECTED_CONVERTED_RULE_TOKENS = (
     "zijiecdn.com",
     "snssdk.com",
     "video-cn.snssdk.com",
+    "douyin.com",
+    "content-open.douyin.com",
+    "douyinvod.com",
+    "douyinpic.com",
+    "douyinstatic.com",
+    "amemv.com",
+    "byteimg.com",
+    "pstatp.com",
 )
 
 
