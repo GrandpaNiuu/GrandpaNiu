@@ -57,6 +57,7 @@ REQUIRED_FILES = (
     "Rules/aggressive-ad-sources.list",
     "Scripts/app-cleaner.js",
     "Scripts/app-cleaner-active.conf",
+    "Scripts/generated/fusion-script-bundle.cache.json",
     "Scripts/spotify.conf",
     "Scripts/youtube.conf",
     "Scripts/zhihu-enhance.conf",
@@ -66,6 +67,7 @@ REQUIRED_FILES = (
     "scripts/build_release_variants.py",
     "scripts/factory_finalize.py",
     "scripts/build_windows_v2rayn.py",
+    "scripts/check_automation_status.py",
     "scripts/commit_generated_changes.sh",
     "tools/acquire_automation_lock.sh",
     "tools/release_automation_lock.sh",
@@ -526,6 +528,11 @@ def validate_workflows() -> None:
         fail("workflow-failure-issue must not open issues for cancelled runs")
     if "close-resolved-issues" not in watcher:
         fail("workflow-failure-issue must close stale automation issues after successful runs")
+
+    watchdog = read_text(ROOT / ".github" / "workflows" / "daily-schedule-watchdog.yml")
+    for token in ("actions: read", "scripts/check_automation_status.py", "--strict --no-write"):
+        if token not in watchdog:
+            fail(f"daily-schedule-watchdog workflow missing automation status token: {token}")
 
 
 def validate_windows_v2rayn() -> None:

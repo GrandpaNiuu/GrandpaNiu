@@ -71,6 +71,7 @@ def main() -> None:
         [sys.executable, "scripts/audit_domestic_app_connectivity.py"],
         [sys.executable, "scripts/generate_change_impact_report.py"],
         [sys.executable, "scripts/generate_workflow_health_report.py"],
+        [sys.executable, "scripts/check_automation_status.py"],
         [sys.executable, "scripts/repository_health_check.py"],
         [sys.executable, "scripts/check_report_freshness.py", "--strict"],
         [sys.executable, "tools/generate_automated_quality_evidence.py"],

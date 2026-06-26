@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BUNDLE = ROOT / "Scripts" / "generated" / "fusion-script-bundle.js"
 MANIFEST = ROOT / "Scripts" / "generated" / "fusion-script-bundle.manifest.json"
+CACHE = ROOT / "Scripts" / "generated" / "fusion-script-bundle.cache.json"
 MODULE = ROOT / "Release" / "Ronghemokuai.sgmodule"
 REPORT = ROOT / "reports" / "script_aggregation_validation_report.md"
 
@@ -71,6 +72,24 @@ def load_manifest(errors: list[str]) -> dict[str, object]:
     return data
 
 
+def load_cache(errors: list[str]) -> dict[str, object]:
+    if not CACHE.exists():
+        errors.append(f"missing file: {rel(CACHE)}")
+        return {}
+    text = read_text(CACHE, errors)
+    if not text:
+        return {}
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError as exc:
+        errors.append(f"invalid cache json: {exc}")
+        return {}
+    if not isinstance(data, dict):
+        errors.append("cache root must be an object")
+        return {}
+    return data
+
+
 def write_report(errors: list[str], warnings: list[str], summary: dict[str, object]) -> None:
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     lines = [
@@ -95,6 +114,7 @@ def validate() -> tuple[list[str], list[str], dict[str, object]]:
     errors: list[str] = []
     warnings: list[str] = []
     manifest = load_manifest(errors)
+    cache = load_cache(errors)
     bundle_text = read_text(BUNDLE, errors)
     module_text = read_text(MODULE, errors)
     summary: dict[str, object] = {}
@@ -121,6 +141,10 @@ def validate() -> tuple[list[str], list[str], dict[str, object]]:
     if not isinstance(manifest_summary, dict):
         errors.append("manifest summary must be an object")
         manifest_summary = {}
+    cache_sources = cache.get("sources", {}) if isinstance(cache, dict) else {}
+    if not isinstance(cache_sources, dict):
+        errors.append("cache sources must be an object")
+        cache_sources = {}
 
     chunks = int(bundle.get("chunks") or 0)
     summary.update({
@@ -162,6 +186,16 @@ def validate() -> tuple[list[str], list[str], dict[str, object]]:
             errors.append(f"source key missing from bundle JS: {key}")
         if allowed_prefixes and url and not url.startswith(allowed_prefixes):
             errors.append(f"source URL is outside aggregator allowlist: {url}")
+        cached = cache_sources.get(url)
+        if isinstance(cached, dict):
+            cached_source = str(cached.get("source", ""))
+            cached_sha = str(cached.get("sha256", ""))
+            if cached_source and cached_sha != sha256_text(cached_source):
+                errors.append(f"cache sha256 mismatch for source URL: {url}")
+            if cached_source and str(item.get("sha256", "")) != sha256_text(cached_source):
+                warnings.append(f"cache source differs from current bundled source: {url}")
+        else:
+            warnings.append(f"cache missing bundled source URL: {url}")
 
     for item in routes:
         if not isinstance(item, dict):

@@ -1,5 +1,72 @@
 # AI Maintenance Worklog
 
+## 2026-06-26 13:11 - Work Record
+
+### Task
+
+Inspect repository automation shortcomings and strengthen unattended operation so scheduled maintenance can keep working without daily manual supervision.
+
+### Start State
+
+- Branch: `repair/upstream-app-sync`
+- Git status summary: clean at task start
+- Expected scope: automation scripts, workflow watchdog, validation/reporting scripts, generated reports, generated script bundle cache, and AI maintenance records
+
+### Actual Changes
+
+- Added `scripts/check_automation_status.py`.
+- Added `reports/automation_status_report.md`.
+- Updated `.github/workflows/daily-schedule-watchdog.yml` so it:
+  - no longer exits before automation status checks when the module date is fresh
+  - writes the automation status report
+  - runs strict scheduled-workflow stale/failure validation
+- Connected the new automation status check to:
+  - `scripts/quality_gate.py`
+  - `scripts/check_report_freshness.py`
+  - `scripts/validate_repository.py`
+  - `scripts/repository_health_check.py`
+  - `tools/generate_automated_quality_evidence.py`
+  - `tests/test_automated_quality_gate.py`
+- Found and fixed a second unattended reliability issue: transient upstream JS fetch failures could shrink `Scripts/generated/fusion-script-bundle.js` and change the public module script shape.
+- Added script-source caching and committed-bundle fallback in `scripts/build_module.py`.
+- Added `Scripts/generated/fusion-script-bundle.cache.json`.
+- Updated `tools/validate_script_aggregation.py` to validate cache integrity.
+- Refreshed Builder-generated Android/Release/checksum/report outputs through the full quality gate.
+
+### Test Result
+
+- `python -m py_compile scripts/build_module.py scripts/check_automation_status.py tools/validate_script_aggregation.py tests/test_automated_quality_gate.py` passed.
+- `python tools/validate_script_aggregation.py` passed.
+- `python -m unittest tests.test_automated_quality_gate` passed with 17 tests before the final full gate.
+- `python scripts/quality_gate.py` passed with 25 discovered tests.
+- Final Builder output inside the quality gate:
+  - 398 App modules
+  - 0 empty modules
+  - 957 Android main rules
+  - 52 aggregated script routes
+  - 0 hard script fetch failures
+  - cache fallback used for transient JS fetch errors
+- `python scripts/validate_repository.py` passed as part of the quality gate.
+- Local GitHub Actions API access returned SSL EOF in `scripts/check_automation_status.py`; by design this does not block local development. Strict enforcement is intended for GitHub Actions with `GITHUB_TOKEN`.
+
+### Risk
+
+- No App source rules, MITM scopes, login, payment, banking, captcha, video playback, image/CDN, or routing policy was intentionally changed.
+- Generated outputs changed because the Builder refreshed reports, checksums, Android branch metadata, and script aggregation metadata.
+- The new cache stores low-risk aggregated JS source text under `Scripts/generated/`; it must remain generated and validated, not hand-edited.
+
+### Self-Review
+
+- What was not good enough: the first automation review focused on workflow freshness, but the full quality gate exposed a second reliability problem where network fetch failures could change the script aggregation output.
+- What I changed to reduce that risk: added cache fallback from both an explicit generated cache and the previous committed bundle/manifest, then validated the cache in the aggregation gate.
+- What I would check first next time: inspect generated bundle route counts and `fetch_failed` / cache fallback behavior after any build that touches upstream script URLs or runs during poor network conditions.
+
+### Next Step
+
+- Commit and push this automation hardening.
+- Confirm the remote `Module Factory Build` and watchdog-related validation after push.
+- Watch the next natural `Daily schedule watchdog` run for a real GitHub API-backed automation status report.
+
 ## 2026-06-26 12:17 - Work Record
 
 ### Task

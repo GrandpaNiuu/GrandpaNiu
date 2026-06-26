@@ -10,6 +10,7 @@ import difflib
 import hashlib
 import json
 import re
+import subprocess
 import sys
 import urllib.error
 import urllib.request
@@ -30,6 +31,7 @@ APP_SOURCES = SOURCES / "Apps"
 GENERATED_SCRIPTS = ROOT / "Scripts" / "generated"
 SCRIPT_BUNDLE = GENERATED_SCRIPTS / "fusion-script-bundle.js"
 SCRIPT_BUNDLE_MANIFEST = GENERATED_SCRIPTS / "fusion-script-bundle.manifest.json"
+SCRIPT_BUNDLE_CACHE = GENERATED_SCRIPTS / "fusion-script-bundle.cache.json"
 SCRIPT_BUNDLE_URL = "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js"
 SCRIPT_BUNDLE_VERSION = "grandpaniu-fusion-script-bundle-v1"
 PROFILES = ROOT / "Rewrite" / "Profiles"
@@ -684,6 +686,104 @@ def fetch_script_source(url: str) -> tuple[str, str]:
     return text + "\n", ""
 
 
+def parse_bundle_source_rows(bundle_text: str, manifest_text: str) -> dict[str, str]:
+    try:
+        manifest = json.loads(manifest_text)
+    except json.JSONDecodeError:
+        return {}
+    key_to_url = {
+        str(item.get("key", "")): str(item.get("url", ""))
+        for item in manifest.get("sources", [])
+        if isinstance(item, dict)
+    }
+    match = re.search(r"\n  const SOURCES = \{\n(?P<body>.*?)\n  \};", bundle_text, re.S)
+    if not match:
+        return {}
+    rows: dict[str, str] = {}
+    for raw in match.group("body").split(",\n"):
+        line = raw.strip()
+        if not line or ": " not in line:
+            continue
+        raw_key, raw_source = line.split(": ", 1)
+        try:
+            key = json.loads(raw_key)
+            source = json.loads(raw_source)
+        except json.JSONDecodeError:
+            continue
+        url = key_to_url.get(str(key), "")
+        if url and isinstance(source, str) and source.strip() and allowed_aggregate_script_path(url):
+            rows[url] = source if source.endswith("\n") else source + "\n"
+    return rows
+
+
+def read_git_head_text(relative: str) -> str:
+    try:
+        proc = subprocess.run(
+            ["git", "show", f"HEAD:{relative}"],
+            cwd=ROOT,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            capture_output=True,
+            check=True,
+            timeout=15,
+        )
+    except (OSError, subprocess.CalledProcessError, subprocess.TimeoutExpired):
+        return ""
+    return proc.stdout
+
+
+def load_committed_bundle_source_cache() -> dict[str, str]:
+    cache: dict[str, str] = {}
+    current_bundle = read_text(SCRIPT_BUNDLE, required=False)
+    current_manifest = read_text(SCRIPT_BUNDLE_MANIFEST, required=False)
+    if current_bundle and current_manifest:
+        cache.update(parse_bundle_source_rows(current_bundle, current_manifest))
+    head_bundle = read_git_head_text(SCRIPT_BUNDLE.relative_to(ROOT).as_posix())
+    head_manifest = read_git_head_text(SCRIPT_BUNDLE_MANIFEST.relative_to(ROOT).as_posix())
+    if head_bundle and head_manifest:
+        cache.update(parse_bundle_source_rows(head_bundle, head_manifest))
+    return cache
+
+
+def load_script_source_cache() -> dict[str, str]:
+    cache = load_committed_bundle_source_cache()
+    if not SCRIPT_BUNDLE_CACHE.exists():
+        return cache
+    try:
+        data = json.loads(read_text(SCRIPT_BUNDLE_CACHE))
+    except (json.JSONDecodeError, OSError):
+        return cache
+    sources = data.get("sources", {}) if isinstance(data, dict) else {}
+    if not isinstance(sources, dict):
+        return cache
+    for url, item in sources.items():
+        if not isinstance(url, str) or not allowed_aggregate_script_path(url):
+            continue
+        source = item.get("source", "") if isinstance(item, dict) else item
+        if isinstance(source, str) and source.strip():
+            cache[url] = source if source.endswith("\n") else source + "\n"
+    return cache
+
+
+def write_script_source_cache(cache: dict[str, str]) -> None:
+    rows = {}
+    for url, source in sorted(cache.items()):
+        rows[url] = {
+            "sha256": hashlib.sha256(source.encode("utf-8")).hexdigest(),
+            "bytes": len(source.encode("utf-8")),
+            "lines": len(source.splitlines()),
+            "source": source,
+        }
+    payload = {
+        "schema_version": 1,
+        "generated": dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "purpose": "Cache validated low-risk script sources so transient upstream fetch failures do not change the public module.",
+        "sources": rows,
+    }
+    write_text(SCRIPT_BUNDLE_CACHE, json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
+
+
 def script_source_key(url: str) -> str:
     return "src_" + hashlib.sha256(url.encode("utf-8")).hexdigest()[:16]
 
@@ -851,6 +951,7 @@ def build_script_bundle_manifest(
         "routes": route_rows,
         "sources": source_rows,
         "fetch_failed": stats.get("fetch_failed", []),
+        "fetch_cached": stats.get("fetch_cached", []),
         "preserved_reasons": stats.get("preserved_reasons", {}),
     }
 
@@ -876,6 +977,7 @@ def script_path_count(lines: list[str]) -> int:
 def write_script_aggregation_report(stats: dict[str, object]) -> None:
     bundled_names = stats.get("bundled_names", [])
     failed = stats.get("fetch_failed", [])
+    cached = stats.get("fetch_cached", [])
     preserved = stats.get("preserved_reasons", {})
     lines = [
         "# Script Aggregation Report",
@@ -901,6 +1003,12 @@ def write_script_aggregation_report(stats: dict[str, object]) -> None:
     lines.extend(["", "## Fetch Failures"])
     if failed:
         for item in failed:
+            lines.append(f"- `{item['url']}`: {item['reason']}")
+    else:
+        lines.append("- None")
+    lines.extend(["", "## Cache Fallbacks"])
+    if cached:
+        for item in cached:
             lines.append(f"- `{item['url']}`: {item['reason']}")
     else:
         lines.append("- None")
@@ -936,14 +1044,28 @@ def aggregate_script_entries(body: str) -> str:
         candidates[index] = entry
 
     source_urls = sorted({entry["script-path"] for entry in candidates.values()})
+    source_cache = load_script_source_cache()
+    cache_dirty = not SCRIPT_BUNDLE_CACHE.exists()
     fetched_sources: dict[str, str] = {}
     fetch_failed: list[dict[str, str]] = []
+    fetch_cached: list[dict[str, str]] = []
     for url in source_urls:
         source, reason = fetch_script_source(url)
         if reason:
+            cached_source = source_cache.get(url, "")
+            if cached_source:
+                fetched_sources[url] = cached_source
+                fetch_cached.append({"url": url, "reason": reason})
+                continue
             fetch_failed.append({"url": url, "reason": reason})
             continue
         fetched_sources[url] = source
+        if source_cache.get(url) != source:
+            source_cache[url] = source
+            cache_dirty = True
+
+    if cache_dirty:
+        write_script_source_cache(source_cache)
 
     routes: list[dict[str, str]] = []
     bundled_indices: set[int] = set()
@@ -973,6 +1095,7 @@ def aggregate_script_entries(body: str) -> str:
             "bundled_entries": len(routes),
             "bundled_sources": len(bundle_sources),
             "fetch_failed": fetch_failed,
+            "fetch_cached": fetch_cached,
             "preserved_reasons": preserved_reasons,
         },
         routes,
@@ -1001,6 +1124,7 @@ def aggregate_script_entries(body: str) -> str:
         "bundle_chunks": len(chunks),
         "bundled_names": [route["name"] for route in routes],
         "fetch_failed": fetch_failed,
+        "fetch_cached": fetch_cached,
         "preserved_reasons": preserved_reasons,
     })
     write_script_aggregation_report(stats)

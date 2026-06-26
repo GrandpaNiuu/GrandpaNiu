@@ -35,6 +35,7 @@ REQUIRED_FILES = [
     "Rules/wechat-ad.list",
     "Scripts/app-cleaner.js",
     "Scripts/app-cleaner-active.conf",
+    "Scripts/generated/fusion-script-bundle.cache.json",
     "Scripts/spotify.conf",
     "Scripts/youtube.conf",
     "Scripts/zhihu-enhance.conf",
@@ -42,6 +43,7 @@ REQUIRED_FILES = [
     "scripts/build_module.py",
     "scripts/build_release_variants.py",
     "scripts/factory_finalize.py",
+    "scripts/check_automation_status.py",
     "scripts/commit_generated_changes.sh",
     "tools/acquire_automation_lock.sh",
     "tools/release_automation_lock.sh",
@@ -63,6 +65,7 @@ REQUIRED_FILES = [
     "reports/rule_overlap_report.md",
     "reports/app_cleaner_active_report.md",
     "reports/app_source_validation_report.md",
+    "reports/automation_status_report.md",
 ]
 
 REQUIRED_WORKFLOWS = [

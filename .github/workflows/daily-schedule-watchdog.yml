@@ -40,7 +40,7 @@ jobs:
       - name: Acquire cross-workflow maintenance lock
         run: bash tools/acquire_automation_lock.sh
 
-      - name: Recover missed daily module refresh
+      - name: Recover missed daily module refresh and report automation status
         run: |
           set -euo pipefail
           beijing_today() {
@@ -70,10 +70,11 @@ jobs:
 
           if [ "${current}" = "${today}" ]; then
             echo "Daily module date is already fresh; no watchdog recovery needed."
-            exit 0
+          else
+            regenerate
           fi
 
-          regenerate
+          python3 scripts/check_automation_status.py
           bash scripts/commit_generated_changes.sh \
             "chore: recover missed scheduled module update" \
             Rewrite/Sources/Meta.conf \
@@ -85,6 +86,9 @@ jobs:
             Web \
             reports \
             Rewrite/Remotes/Catalog.md
+
+      - name: Validate unattended automation status
+        run: python3 scripts/check_automation_status.py --strict --no-write
 
       - name: Release cross-workflow maintenance lock
         if: always()

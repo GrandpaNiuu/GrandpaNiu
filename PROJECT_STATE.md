@@ -1,6 +1,6 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-06-26 12:17 +0800
+Last updated: 2026-06-26 13:11 +0800
 
 ## Project Purpose
 
@@ -28,6 +28,7 @@ This repository is high risk. Rule, script, MITM, or routing mistakes can break:
 - Generate Windows v2rayN custom routing output.
 - Generate Web catalog and GitHub Pages entry files.
 - Generate governance reports for script aggregation, MITM scope, rule overlap, upstream risk, repository health, and workflow health.
+- Generate an automation status report so scheduled workflow failures or stale daily runs are visible even when no one is watching Actions manually.
 
 ## Public Entries
 
@@ -118,6 +119,7 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Aggressive reject rules can break domestic and overseas app connectivity.
 - Upstream module auto-sync can import incompatible rewrites if the risk gate is weakened.
 - Script aggregation can cause blank pages or hangs if `$done` handling regresses.
+- Script aggregation depends on remote JavaScript sources; transient upstream/network failures must use the generated cache instead of changing the public module shape.
 - Future rule changes should be evidence-led: use real app abnormal behavior, logs, captures, or another reproducible signal before source-first single-rule adjustments.
 - Android formats cannot fully reproduce iOS Rewrite / MITM / Script behavior.
 - Generated files under `Release/`, `Web/`, `reports/`, and `Scripts/generated/` can be overwritten by the builder.
@@ -133,6 +135,18 @@ Real app end-to-end testing is currently performed manually by the owner and is 
 - Current scale after the latest GitHub app expansion: 398 active app source files and 398 generated app module outputs. `Rewrite/Sources/Apps/_TEMPLATE.conf` is an authoring template and is not generated.
 
 ## Latest Maintenance Note
+
+2026-06-26 13:11 +0800:
+
+- Strengthened unattended automation after a self-check of daily workflow reliability.
+- Added `scripts/check_automation_status.py` and `reports/automation_status_report.md` to track whether required daily/weekly GitHub Actions have a recent successful run.
+- Upgraded `.github/workflows/daily-schedule-watchdog.yml` so it no longer exits early when the module date is fresh; it now writes the automation status report and then runs strict stale/failure checks.
+- Connected automation status to `scripts/quality_gate.py`, report freshness, repository validation, repository health, automated evidence, and regression tests.
+- Found a second unattended risk while validating: transient JS fetch failures could reduce the script aggregation bundle and temporarily increase public script URLs.
+- Added `Scripts/generated/fusion-script-bundle.cache.json` and Builder fallback logic so low-risk aggregated script sources are reused from the committed bundle/cache when upstream fetches fail.
+- `tools/validate_script_aggregation.py` now validates the cache and warns when cached sources differ from the current bundle.
+- Full quality gate passed with 398 App modules, 0 empty modules, 52 aggregated script routes, 0 hard script fetch failures, and cached fallback for transient JS fetch errors.
+- No App source rules, MITM scopes, login, payment, banking, captcha, video, or CDN traffic policy was intentionally changed.
 
 2026-06-26 12:17 +0800:
 

@@ -1,8 +1,20 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-06-26 12:17 +0800
+Last updated: 2026-06-26 13:11 +0800
 
 ## Decisions
+
+### 2026-06-26 - Watchdog Must Check Scheduled Workflow Freshness
+
+The daily schedule watchdog must generate `reports/automation_status_report.md` and run `scripts/check_automation_status.py --strict --no-write` after any missed-date recovery check.
+
+Reason: GitHub scheduled workflows can be delayed or dropped without a failing workflow run. A fresh module date alone does not prove that invalid-source repair, upstream sync, candidate collection, or health checks have run successfully.
+
+### 2026-06-26 - Script Aggregation Must Survive Transient Upstream Fetch Failures
+
+Low-risk script aggregation should cache fetched upstream JavaScript in `Scripts/generated/fusion-script-bundle.cache.json` and recover from the previous committed bundle/manifest before dropping a route from the public bundle.
+
+Reason: temporary SSL/timeouts from upstream script hosts should not change the public module shape or increase Shadowrocket script URLs. Hard failures without cache remain visible in reports.
 
 ### 2026-06-26 - Full Builder Publishers Must Stage Android And Windows
 

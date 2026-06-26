@@ -87,6 +87,7 @@ class AutomatedQualityGateTests(unittest.TestCase):
         self.assertIn("unittest", text)
         self.assertIn("validate_app_sources.py", text)
         self.assertIn("generate_automated_quality_evidence.py", text)
+        self.assertIn("check_automation_status.py", text)
         self.assertIn("validate_repository.py", text)
 
     def test_quality_gate_uses_unified_builder_for_release_outputs(self) -> None:
@@ -95,6 +96,11 @@ class AutomatedQualityGateTests(unittest.TestCase):
         self.assertNotIn('"scripts/build_module.py", "--build"', text)
         self.assertNotIn('"scripts/factory_finalize.py"', text)
         self.assertNotIn('"scripts/build_release_variants.py"', text)
+
+    def test_script_aggregation_cache_is_validated(self) -> None:
+        text = (ROOT / "tools" / "validate_script_aggregation.py").read_text(encoding="utf-8")
+        self.assertIn("fusion-script-bundle.cache.json", text)
+        self.assertIn("cache sha256 mismatch", text)
 
     def test_quality_gate_strictly_checks_freshness_after_final_bundle_validation(self) -> None:
         text = (ROOT / "scripts" / "quality_gate.py").read_text(encoding="utf-8")
@@ -172,6 +178,13 @@ class AutomatedQualityGateTests(unittest.TestCase):
         text = (ROOT / ".github" / "workflows" / "workflow-failure-issue.yml").read_text(encoding="utf-8")
         self.assertNotIn("<<EOF", text)
         self.assertIn("python3 - <<'PY'", text)
+
+    def test_daily_watchdog_checks_scheduled_workflow_status_even_when_module_is_fresh(self) -> None:
+        text = (ROOT / ".github" / "workflows" / "daily-schedule-watchdog.yml").read_text(encoding="utf-8")
+        self.assertIn("actions: read", text)
+        self.assertIn("scripts/check_automation_status.py", text)
+        self.assertIn("scripts/check_automation_status.py --strict --no-write", text)
+        self.assertNotIn("Daily module date is already fresh; no watchdog recovery needed.\"\n            exit 0", text)
 
     def test_commit_helper_requires_explicit_paths_and_safe_rebase(self) -> None:
         text = (ROOT / "scripts" / "commit_generated_changes.sh").read_text(encoding="utf-8")

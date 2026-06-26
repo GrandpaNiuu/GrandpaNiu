@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-06-26T04:21:22Z
+- generated: 2026-06-26T05:08:26Z
 - enabled: True
 - input script entries: 230
 - output script entries: 180
@@ -68,6 +68,10 @@
 
 ## Fetch Failures
 - None
+
+## Cache Fallbacks
+- `https://kelee.one/Resource/JavaScript/iMaiCai/iMaiCai_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xmgtv.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
 
 ## Preserved Reasons
 - preserved: binary body: 2

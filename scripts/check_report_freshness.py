@@ -38,6 +38,12 @@ CHECKS = [
         "reason": "自动化证据报告必须反映当前构建、校验和质量门禁。",
     },
     {
+        "report": "reports/automation_status_report.md",
+        "inputs": ["scripts/check_automation_status.py", ".github/workflows"],
+        "blocking": True,
+        "reason": "Automation status report must reflect the current workflow set and watchdog policy.",
+    },
+    {
         "report": "reports/candidate_security_score_report.md",
         "inputs": ["Rewrite/Remotes/candidates.json", "scripts/score_candidates.py"],
         "blocking": True,
@@ -63,13 +69,13 @@ CHECKS = [
     },
     {
         "report": "reports/script_aggregation_validation_report.md",
-        "inputs": ["Scripts/generated/fusion-script-bundle.js", "Scripts/generated/fusion-script-bundle.manifest.json", "tools/validate_script_aggregation.py"],
+        "inputs": ["Scripts/generated/fusion-script-bundle.js", "Scripts/generated/fusion-script-bundle.manifest.json", "Scripts/generated/fusion-script-bundle.cache.json", "tools/validate_script_aggregation.py"],
         "blocking": True,
         "reason": "Script aggregation manifest and bundle changes must be validated.",
     },
     {
         "report": "reports/script_bundle_sandbox_report.md",
-        "inputs": ["Scripts/generated/fusion-script-bundle.js", "Scripts/generated/fusion-script-bundle.manifest.json", "tools/test_script_bundle_sandbox.py"],
+        "inputs": ["Scripts/generated/fusion-script-bundle.js", "Scripts/generated/fusion-script-bundle.manifest.json", "Scripts/generated/fusion-script-bundle.cache.json", "tools/test_script_bundle_sandbox.py"],
         "blocking": True,
         "reason": "Script bundle runtime sandbox coverage must match the generated bundle.",
     },

@@ -1,8 +1,8 @@
 # 自动化质量证据报告
 
-生成时间：2026-06-26 12:21:31 +0800
-Git 分支：`main`
-Git 提交：`3f56da17`
+生成时间：2026-06-26 13:13:44 +0800
+Git 分支：`repair/upstream-app-sync`
+Git 提交：`b5ca8e05`
 
 本仓库发布门禁以可重复执行的自动化证据为准：构建、语法检查、远程规则校验、模块完整性、报告新鲜度和仓库健康检查。
 
@@ -10,25 +10,21 @@ Git 提交：`3f56da17`
 
 - Root / Release 一致：是
 - UTF-8 BOM 命中：0
-- 证据报告数量：21
+- 证据报告数量：22
 
 ## 必跑自动化命令
 
 - `python -m py_compile scripts/*.py Rewrite/Generator/Builder.py tools/*.py`
 - `node --check Scripts/app-cleaner.js`
 - `python -m unittest discover -s tests`
-- `python scripts/validate_app_sources.py`
-- `python scripts/build_android_rules.py`
-- `python scripts/android_format_check.py`
 - `python scripts/convert_quanx_rules.py`
-- `python scripts/build_module.py --build --profile fusion`
+- `python Rewrite/Generator/Builder.py --profile fusion --release`
+- `python scripts/validate_app_sources.py`
+- `python scripts/android_format_check.py`
 - `node --check Scripts/generated/fusion-script-bundle.js`
 - `python tools/validate_script_aggregation.py`
 - `python tools/test_script_bundle_sandbox.py`
 - `python tools/validate_upstream_risk_gate.py`
-- `python scripts/factory_finalize.py --sync-root`
-- `python scripts/build_release_variants.py`
-- `python scripts/build_checksums.py`
 - `python scripts/validate_generator_config.py`
 - `python scripts/validate_manifest.py`
 - `python scripts/validate_remote_rule_syntax.py`
@@ -39,6 +35,7 @@ Git 提交：`3f56da17`
 - `python tools/generate_rule_overlap_report.py`
 - `python tools/generate_app_cleaner_active_report.py`
 - `python scripts/repository_health_check.py`
+- `python scripts/check_automation_status.py`
 - `python tools/generate_automated_quality_evidence.py`
 - `python scripts/validate_repository.py`
 
@@ -67,6 +64,7 @@ Git 提交：`3f56da17`
 | `reports/candidate_security_score_report.md` | present |
 | `reports/reject_risk_report.md` | present |
 | `reports/domestic_app_connectivity_audit.md` | present |
+| `reports/automation_status_report.md` | present |
 
 ## BOM 扫描
 

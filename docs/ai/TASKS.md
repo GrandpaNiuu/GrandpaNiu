@@ -1,6 +1,6 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-06-26 12:17 +0800
+Last updated: 2026-06-26 13:11 +0800
 
 ## Active Rules For Task Handling
 
@@ -13,6 +13,8 @@ Last updated: 2026-06-26 12:17 +0800
 
 ## Current Open Tasks
 
+- Watch the next `Daily schedule watchdog` run. It should publish `reports/automation_status_report.md` and fail only for real stale/failed required scheduled workflows.
+- Watch the next full Builder run on GitHub Actions and confirm `Scripts/generated/fusion-script-bundle.cache.json` keeps script aggregation stable when upstream JS fetches are flaky.
 - Watch the next scheduled update and upstream app sync runs. They should now publish `Android/` and `Windows/` together with `Release/`.
 - If a future check reports Release alias drift, inspect whether a script bypassed `Rewrite/Generator/Builder.py --profile fusion --release`.
 - Monitor the next naturally delayed group of scheduled writers and confirm waiting jobs acquire the lock in sequence.
@@ -174,6 +176,8 @@ Validation:
 
 ## Done
 
+- 2026-06-26: Added scheduled workflow freshness/status reporting and strict watchdog validation.
+- 2026-06-26: Added script aggregation source caching/fallback so transient upstream JS failures do not shrink the public bundle.
 - 2026-06-26: Fixed Android/Release generated-output drift by staging Android and Windows in all full-Builder scheduled publishing workflows.
 - 2026-06-26: Updated the quality gate to use the unified Builder release pipeline and added regression checks for Release alias and Android/Windows workflow staging.
 - 2026-06-20: Initial AI maintenance record system created.

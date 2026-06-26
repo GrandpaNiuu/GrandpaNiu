@@ -3,13 +3,23 @@
     "chunks": 2,
     "path": "Scripts/generated/fusion-script-bundle.js",
     "routes": 52,
-    "sha256": "ec4349b0eb81e115a38ae24a955d3525fdb12f42cd389e965905dc2092248142",
+    "sha256": "cbfb2a50c3228bb2dfd1b62c8e27c087be19e0e0e17e5927112e3e74ae384cd7",
     "sources": 52,
     "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js",
     "version": "grandpaniu-fusion-script-bundle-v1"
   },
+  "fetch_cached": [
+    {
+      "reason": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>",
+      "url": "https://kelee.one/Resource/JavaScript/iMaiCai/iMaiCai_remove_ads.js"
+    },
+    {
+      "reason": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>",
+      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xmgtv.js"
+    }
+  ],
   "fetch_failed": [],
-  "generated": "2026-06-26T04:21:22Z",
+  "generated": "2026-06-26T05:08:26Z",
   "policy": {
     "allowed_prefixes": [
       "https://kelee.one/Resource/JavaScript/",

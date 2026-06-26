@@ -1,6 +1,6 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-06-26 12:17 +0800
+Last updated: 2026-06-26 13:11 +0800
 
 ## What This Project Is
 
@@ -21,6 +21,12 @@ Maintain it as a high-risk network rules repository. Small changes can break use
 
 ## Recent Completed Work
 
+- 2026-06-26: Added unattended automation status checks and hardened script aggregation against transient upstream JS fetch failures.
+- `scripts/check_automation_status.py` writes `reports/automation_status_report.md` and checks required scheduled workflows for recent successful runs.
+- `daily-schedule-watchdog.yml` now always writes the automation status report and runs strict stale/failure validation, even when the Fusion module date is already fresh.
+- `scripts/quality_gate.py`, `scripts/check_report_freshness.py`, `scripts/validate_repository.py`, `scripts/repository_health_check.py`, automated evidence, and tests now know about the automation status check.
+- `scripts/build_module.py` now caches low-risk aggregated JS sources in `Scripts/generated/fusion-script-bundle.cache.json` and can recover sources from the previously committed bundle/manifest before reaching out to upstreams.
+- `tools/validate_script_aggregation.py` validates the script source cache so transient upstream failures do not silently shrink the public script bundle.
 - 2026-06-26: Repaired generated-output synchronization after a current-state self-check.
 - `scheduled-module-update.yml`, `upstream-app-module-sync.yml`, and `daily-schedule-watchdog.yml` now stage `Android/` and `Windows/` whenever they run the full Builder.
 - `upstream-app-module-sync.yml` rollback now restores `Android/` and `Windows/` in addition to iOS, Release, Web, and reports.
@@ -175,6 +181,7 @@ Rule maintenance rule: only make source-first single-rule changes when there is 
 - `Rewrite/Remotes/app-modules.json`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
+- `Scripts/generated/fusion-script-bundle.cache.json`
 - `.github/workflows/`
 - `Android/`
 - `Windows/v2rayN/`

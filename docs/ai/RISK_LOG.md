@@ -1,6 +1,6 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-06-26 12:17 +0800
+Last updated: 2026-06-26 13:11 +0800
 
 ## Standing High-Risk Areas
 
@@ -17,6 +17,8 @@ Last updated: 2026-06-26 12:17 +0800
 | Image / static CDN | Can cause blank feeds or broken pages | Prefer DIRECT/protection for known CDN domains |
 | Upstream auto-sync | Can import unsafe or incompatible modules | Keep risk gate and backups enabled for high-risk records |
 | Script aggregation | Bad `$done` behavior can cause white screens or hangs | Keep sandbox validation active |
+| Script aggregation upstream fetch | Temporary upstream JS fetch failures can shrink aggregation or increase public script URLs | Use generated cache fallback and validate cache integrity |
+| Scheduled GitHub Actions | GitHub may delay/drop schedules without a failing run | Use the daily schedule watchdog and automation status report |
 | Android outputs | Cannot fully mirror iOS Rewrite/MITM/Script behavior | Document limitations and avoid promising full parity |
 | Windows v2rayN routing | Routing-only, no iOS-style rewrite scripts | Keep docs clear and JSON valid |
 | AI maintenance Markdown | Collapsed records can hide safety rules or combine commands | Keep headings, lists, tables, and command blocks readable |
@@ -30,6 +32,27 @@ Last updated: 2026-06-26 12:17 +0800
 - MITM scope is broad and must be changed carefully.
 
 ## Current Task Risk
+
+Current risk for the 2026-06-26 unattended automation hardening is low to medium and operational, not traffic-policy related.
+
+Observed signals:
+
+- The previous daily schedule watchdog exited early when `# update-date` was already fresh, so it did not check whether other daily workflows had recently succeeded.
+- Local validation showed transient SSL EOF failures while fetching remote JavaScript and remote rule sources.
+- Before the cache hardening, transient script fetch failures could reduce script aggregation from 52 routes and push individual script URLs back into the public module.
+
+Mitigations:
+
+- Added `scripts/check_automation_status.py` and `reports/automation_status_report.md`.
+- The watchdog now writes the automation status report and runs strict scheduled-workflow stale/failure checks after the date-recovery logic.
+- `scripts/build_module.py` now caches low-risk script sources and recovers from the committed bundle/manifest when upstream fetches fail.
+- `tools/validate_script_aggregation.py` validates cache integrity.
+- Full quality gate passed after the change with 398 App modules, 0 empty modules, 52 aggregated script routes, and 0 hard script fetch failures.
+
+Remaining risk:
+
+- Local GitHub API calls can fail because of network/proxy/SSL issues; strict stale/failure enforcement is expected to run inside GitHub Actions with `GITHUB_TOKEN`.
+- Real app runtime behavior is unchanged by this pass and remains owner-tested.
 
 Current risk for the 2026-06-26 sync self-check is low to medium and operational, not traffic-policy related.
 
