@@ -832,7 +832,7 @@
 ## GrandpaNiu 番茄小说 Source
 - Source: `Rewrite/Sources/Apps/dragon-read.conf`
 - Discovery: auto
-- Rule: 16
+- Rule: 10
 
 ## GrandpaNiu DREAME Source
 - Source: `Rewrite/Sources/Apps/dreame.conf`

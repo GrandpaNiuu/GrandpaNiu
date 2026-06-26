@@ -141,8 +141,6 @@
 ||kgmobilestatbak.kugou.com^
 ||layer.bz.mgtv.com^
 ||layout.meituan.net^
-||lf-normal-gr-sourcecdn.bytegecko.com^
-||lf-webcast-gr-sourcecdn.bytegecko.com^
 ||live-monitor-broker.sankuai.com^
 ||livewebbs2.msstatic.com^
 ||livewebbs2pcdn.msstatic.com^
@@ -169,9 +167,6 @@
 ||monitor.music.qq.com^
 ||mqtt.zhihu.com^
 ||otheve.beacon.qq.com^
-||p11-webcast-sign.douyinpic.com^
-||p3-developer.bytemaimg.com^
-||p3-webcast-sign.douyinpic.com^
 ||pgdt.gtimg.com^
 ||pgdt.ugdtimg.com^
 ||pin.hpplay.cn^
@@ -233,7 +228,6 @@
 ||v6-novelapp.ixigua.com^
 ||vali-g1.cp31.ott.cibntv.net^
 ||vali-ugc.cp31.ott.cibntv.net^
-||webcast-open.douyin.com^
 ||win.gdt.qq.com^
 ||ws.ksmobile.net^
 ||wup.imtt.qq.com^

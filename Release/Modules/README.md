@@ -130,7 +130,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu 豆瓣阅读 Source | `douban-read.sgmodule` | `Rewrite/Sources/Apps/douban-read.conf` | URL Rewrite:5, MITM:1 |
 | GrandpaNiu 抖音 Source | `douyin.sgmodule` | `Rewrite/Sources/Apps/douyin.conf` | Rule:1 |
 | GrandpaNiu 斗鱼 Source | `douyu.sgmodule` | `Rewrite/Sources/Apps/douyu.conf` | Rule:4, URL Rewrite:2, Body Rewrite:2, Script:1, MITM:1 |
-| GrandpaNiu 番茄小说 Source | `dragon-read.sgmodule` | `Rewrite/Sources/Apps/dragon-read.conf` | Rule:16 |
+| GrandpaNiu 番茄小说 Source | `dragon-read.sgmodule` | `Rewrite/Sources/Apps/dragon-read.conf` | Rule:10 |
 | GrandpaNiu DREAME Source | `dreame.sgmodule` | `Rewrite/Sources/Apps/dreame.conf` | URL Rewrite:3, Body Rewrite:1, Map Local:1, MITM:1 |
 | GrandpaNiu 配音秀 Source | `dubbing-show.sgmodule` | `Rewrite/Sources/Apps/dubbing-show.conf` | Body Rewrite:4, Script:1, MITM:1 |
 | GrandpaNiu 堆糖 Source | `dui-tang.sgmodule` | `Rewrite/Sources/Apps/dui-tang.conf` | URL Rewrite:3, Body Rewrite:3, MITM:1 |

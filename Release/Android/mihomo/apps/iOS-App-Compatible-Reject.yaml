@@ -142,8 +142,6 @@ payload:
   - DOMAIN,kgmobilestatbak.kugou.com
   - DOMAIN,layer.bz.mgtv.com
   - DOMAIN,layout.meituan.net
-  - DOMAIN,lf-normal-gr-sourcecdn.bytegecko.com
-  - DOMAIN,lf-webcast-gr-sourcecdn.bytegecko.com
   - DOMAIN,live-monitor-broker.sankuai.com
   - DOMAIN,livewebbs2.msstatic.com
   - DOMAIN,livewebbs2pcdn.msstatic.com
@@ -170,9 +168,6 @@ payload:
   - DOMAIN,monitor.music.qq.com
   - DOMAIN,mqtt.zhihu.com
   - DOMAIN,otheve.beacon.qq.com
-  - DOMAIN,p11-webcast-sign.douyinpic.com
-  - DOMAIN,p3-developer.bytemaimg.com
-  - DOMAIN,p3-webcast-sign.douyinpic.com
   - DOMAIN,pgdt.gtimg.com
   - DOMAIN,pgdt.ugdtimg.com
   - DOMAIN,pin.hpplay.cn
@@ -234,7 +229,6 @@ payload:
   - DOMAIN,v6-novelapp.ixigua.com
   - DOMAIN,vali-g1.cp31.ott.cibntv.net
   - DOMAIN,vali-ugc.cp31.ott.cibntv.net
-  - DOMAIN,webcast-open.douyin.com
   - DOMAIN,win.gdt.qq.com
   - DOMAIN,ws.ksmobile.net
   - DOMAIN,wup.imtt.qq.com

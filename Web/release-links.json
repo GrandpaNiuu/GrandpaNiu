@@ -931,7 +931,7 @@
       "name": "GrandpaNiu 番茄小说 Source",
       "file": "Release/Modules/dragon-read.sgmodule",
       "source": "Rewrite/Sources/Apps/dragon-read.conf",
-      "sections": "Rule:16",
+      "sections": "Rule:10",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/dragon-read.sgmodule"
     },
     {

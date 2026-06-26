@@ -822,12 +822,6 @@ DOMAIN,stun1.douyucdn.cn,REJECT
 DOMAIN,stun1.qvb.qcloud.com,REJECT
 DOMAIN,zlink.ugsdk.cn,REJECT
 DOMAIN,mon.toutiaocloud.net,REJECT
-DOMAIN,lf-normal-gr-sourcecdn.bytegecko.com,REJECT
-DOMAIN,lf-webcast-gr-sourcecdn.bytegecko.com,REJECT
-DOMAIN,p3-developer.bytemaimg.com,REJECT
-DOMAIN,webcast-open.douyin.com,REJECT
-DOMAIN,p11-webcast-sign.douyinpic.com,REJECT
-DOMAIN,p3-webcast-sign.douyinpic.com,REJECT
 DOMAIN,log3-applog.fqnovel.com,REJECT
 DOMAIN,log5-applog.fqnovel.com,REJECT
 DOMAIN,mon11-misc-lq.fqnovel.com,REJECT
