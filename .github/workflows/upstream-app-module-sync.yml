@@ -46,6 +46,12 @@ jobs:
           set -euo pipefail
           python3 scripts/sync_upstream_app_modules.py
 
+      - name: Protect Douyin connectivity sources
+        if: steps.upstream-sync.outcome == 'success'
+        run: |
+          set -euo pipefail
+          python3 scripts/protect_douyin_connectivity_sources.py
+
       - name: Build and validate synced release
         id: factory-build
         if: steps.upstream-sync.outcome == 'success'
