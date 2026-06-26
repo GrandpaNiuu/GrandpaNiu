@@ -1,16 +1,20 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-06-25T19:19:16Z
+- generated: 2026-06-26T19:10:41Z
 - modules: 398
 - enabled: 390
 - direct_commit: 390
-- updated: 0
-- skipped: 398
+- updated: 3
+- skipped: 395
 - blocked: 0
 - errors: 0
 
 ## Updated
-_None._
+| id | upstream | backup | source |
+| --- | --- | --- | --- |
+| douyin | 抖音 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/TikTok.snippet |
+| dragon-read | 番茄小说去广告 |  | https://kelee.one/Tool/Loon/Lpx/DragonRead_remove_ads.lpx |
+| hkdou-yin | 香港抖音去广告 |  | https://kelee.one/Tool/Loon/Lpx/HKDouYin_remove_ads.lpx |
 
 ## Skipped
 | id | reason |
@@ -122,9 +126,7 @@ _None._
 | dong-hua-feng | unchanged |
 | dou-ban | unchanged |
 | douban-read | unchanged |
-| douyin | unchanged |
 | douyu | unchanged |
-| dragon-read | unchanged |
 | dreame | unchanged |
 | dubbing-show | unchanged |
 | dui-tang | unchanged |
@@ -159,7 +161,6 @@ _None._
 | hao123 | unchanged |
 | he-feng-weather | unchanged |
 | heartide-brain-wave | unchanged |
-| hkdou-yin | unchanged |
 | hong-ban-bao | unchanged |
 | hua-sheng-di-tie | unchanged |
 | huang-you-xiang-ji | unchanged |
