@@ -1,9 +1,9 @@
 # Rule Overlap Report
 
-- Generated at: 2026-06-26 21:10:05 +0800
+- Generated at: 2026-06-26 21:24:11 +0800
 - Rule files: 19
-- Active source rules: 3363
-- Unique source rules: 2015
+- Active source rules: 3361
+- Unique source rules: 2013
 - Cross-file overlaps: 1348
 
 ## Largest Rule Files
@@ -23,7 +23,7 @@
 - `Rules/protect-payment.list`: 12
 - `Rules/protect-video.list`: 12
 - `Rules/protect-cdn.list`: 6
-- `Rules/aggressive-ad-sources.list`: 2
+- `Rules/aggressive-ad-sources.list`: 0
 - `Rules/app2smile-qqnews-stable-plus.list`: 0
 - `Rules/legacy-stable-import.list`: 0
 - `Rules/spotify-direct.list`: 0

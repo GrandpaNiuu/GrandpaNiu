@@ -18,7 +18,7 @@
 
 | Section | Active line 数 |
 |---|---:|
-| `Rule` | 1390 |
+| `Rule` | 1388 |
 | `URL Rewrite` | 2692 |
 | `Header Rewrite` | 2 |
 | `Body Rewrite` | 1652 |
@@ -30,7 +30,7 @@
 
 | 检查项 | 结果 |
 |---|---:|
-| 本地规则 active entries | 3363 |
+| 本地规则 active entries | 3361 |
 | 跨文件交集 entries | 1348 |
 | 远程规则源总数 | 16 |
 | 已启用远程规则源 | 14 |
