@@ -1,14 +1,14 @@
 # Workflow Health Report
 
-- Generated at: 2026-06-26 13:09:08 +0800
+- Generated at: 2026-06-26 13:18:25 +0800
 - Repository: `GrandpaNiuu/GrandpaNiu`
 - Workflows checked: 10
 
 | Workflow | File | Purpose | Triggers | Latest run | Status | Conclusion | Run URL | Advice |
 |---|---|---|---|---|---|---|---|---|
-| Module Factory Build | `.github/workflows/module-factory-build.yml` | Build Release and sync Root | manual / push | 2026-06-26T04:20:33Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28216901206) | passed |
+| Module Factory Build | `.github/workflows/module-factory-build.yml` | Build Release and sync Root | manual / push | 2026-06-26T05:17:29Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28218786548) | Run is not completed; check again after it finishes |
 | Daily Module Update | `.github/workflows/daily-module-update.yml` | Daily module date, build, report and validation | manual / schedule | 2026-06-25T18:35:23Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28192190034) | passed |
-| Daily invalid rule audit and safe repair | `.github/workflows/daily-audit-and-repair.yml` | Daily invalid rule audit and safe repair | manual / schedule | unconfirmed | unconfirmed | unconfirmed | - | config exists; check audit_and_repair_module.py, Fusion build, rebase retry |
+| Daily invalid rule audit and safe repair | `.github/workflows/daily-audit-and-repair.yml` | Daily invalid rule audit and safe repair | manual / schedule | 2026-06-25T18:36:58Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28192279630) | passed |
 | Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | Daily invalid source audit and repair | manual / schedule | 2026-06-25T18:57:32Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28193460653) | passed |
 | Scheduled Module Factory Update | `.github/workflows/scheduled-module-update.yml` | Scheduled module factory build and publish | manual / schedule | 2026-06-25T19:08:25Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28194089805) | passed |
 | Upstream app module sync | `.github/workflows/upstream-app-module-sync.yml` | Sync upstream app modules and validate build | manual / schedule | 2026-06-25T19:18:33Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28194648635) | passed |
