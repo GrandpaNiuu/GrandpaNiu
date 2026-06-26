@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Restore safe app-source fragments for Douyin connectivity.
+"""Restore safe source fragments for Douyin connectivity.
 
-Some upstream ad modules contain broad ByteDance/Douyin rejects or rewrites that
-break Douyin comments, profile pages, homepage panels, and shared resource
-loading. This guard is intentionally source-first: it runs after upstream sync
-and before release generation, replacing only the known risky app fragments with
-stable local versions.
+Some upstream ad modules contain broad ByteDance/Douyin/ZijieAPI/SNSSDK rejects
+or rewrites that break Douyin comments, search, profile pages, homepage panels,
+and shared resource loading. This guard is intentionally source-first: it runs
+after upstream sync and before release generation, replacing the known risky
+fragments with stable local versions.
 """
 
 from __future__ import annotations
@@ -58,6 +58,74 @@ DOMAIN,mon3-misc.fqnovel.com,REJECT
 DOMAIN,rtlog3-applog.fqnovel.com,REJECT
 DOMAIN,rtlog5-applog.fqnovel.com,REJECT
 DOMAIN,mon.toutiaocloud.com,REJECT
+""",
+    "Rewrite/Sources/Misc/android-compatible-ads.conf": """#!name=GrandpaNiu Android Compatible Ads
+#!desc=Low-risk Android branch ad rules merged back into iOS Fusion
+
+[Rule]
+# Generated from Android main branch gap analysis.
+# Only ad/tracking-like REJECT rules are included.
+# Login, payment, banking, captcha, video playback, image/CDN and ambiguous non-ad domains are excluded.
+# ByteDance/Douyin/ZijieAPI/SNSSDK shared endpoints are excluded because broad rejects break Douyin comments, search and profile pages.
+DOMAIN,ad.e.waimai.sankuai.com,REJECT,pre-matching
+DOMAIN,ad.jiemian.com,REJECT,pre-matching
+DOMAIN,ad.partner.gifshow.com,REJECT,pre-matching
+DOMAIN,ad.qtfm.cn,REJECT,pre-matching
+DOMAIN,ad.snailsleep.net,REJECT,pre-matching
+DOMAIN,ad.v3mh.com,REJECT,pre-matching
+DOMAIN,adash.m.taobao.com,REJECT,pre-matching
+DOMAIN,adashbc.m.taobao.com,REJECT,pre-matching
+DOMAIN,adclick.tencentmusic.com,REJECT,pre-matching
+DOMAIN,adlaunch.qtfm.cn,REJECT,pre-matching
+DOMAIN,ads-partner.cdn.bcebos.com,REJECT,pre-matching
+DOMAIN,ads.youtube.com,REJECT,pre-matching
+DOMAIN,adservice.google.com,REJECT,pre-matching
+DOMAIN,adx.36kr.com,REJECT,pre-matching
+DOMAIN,api-ad.kajicam.com,REJECT,pre-matching
+DOMAIN,api.e.kuaishou.com,REJECT,pre-matching
+DOMAIN,applog.uc.cn,REJECT,pre-matching
+DOMAIN,c2.gdt.qq.com,REJECT,pre-matching
+DOMAIN,e.kuaishou.com,REJECT,pre-matching
+DOMAIN,ios.bugly.qq.com,REJECT,pre-matching
+DOMAIN,jp.ad.gameley.com,REJECT,pre-matching
+DOMAIN,mi.gdt.qq.com,REJECT,pre-matching
+DOMAIN,monitor.music.qq.com,REJECT,pre-matching
+DOMAIN,open.e.kuaishou.com,REJECT,pre-matching
+DOMAIN,pagead-googlehosted.l.google.com,REJECT,pre-matching
+DOMAIN,partnerad.l.doubleclick.net,REJECT,pre-matching
+DOMAIN,popup-api.b612kaji.com,REJECT,pre-matching
+DOMAIN,report.meituan,REJECT,pre-matching
+DOMAIN,retcode.taobao.com,REJECT,pre-matching
+DOMAIN,rmonitor.qq.com,REJECT,pre-matching
+DOMAIN,static.doubleclick.net,REJECT,pre-matching
+DOMAIN,t.gdt.qq.com,REJECT,pre-matching
+DOMAIN,tmeadquic.y.qq.com,REJECT,pre-matching
+DOMAIN,tns.simba.taobao.com,REJECT,pre-matching
+DOMAIN,tpstelemetry.tencent.com,REJECT,pre-matching
+DOMAIN,umengacs.m.taobao.com,REJECT,pre-matching
+DOMAIN,v.gdt.qq.com,REJECT,pre-matching
+DOMAIN,v2.gdt.qq.com,REJECT,pre-matching
+DOMAIN,win.gdt.qq.com,REJECT,pre-matching
+DOMAIN,wmlog.meituan.com,REJECT,pre-matching
+DOMAIN,www.googleadservices.com,REJECT,pre-matching
+DOMAIN,zjres-ad.kajicam.com,REJECT,pre-matching
+DOMAIN-KEYWORD,bili-ad,REJECT,pre-matching
+DOMAIN-KEYWORD,doubleclick,REJECT,pre-matching
+DOMAIN-KEYWORD,googleads,REJECT,pre-matching
+DOMAIN-KEYWORD,googlesyndication,REJECT,pre-matching
+DOMAIN-KEYWORD,jd-ad,REJECT,pre-matching
+DOMAIN-KEYWORD,kuaishou-ad,REJECT,pre-matching
+DOMAIN-KEYWORD,kwai-ad,REJECT,pre-matching
+DOMAIN-KEYWORD,pdd-ad,REJECT,pre-matching
+DOMAIN-KEYWORD,weibo-ad,REJECT,pre-matching
+DOMAIN-KEYWORD,xhs-ad,REJECT,pre-matching
+DOMAIN-KEYWORD,xiaohongshu-ad,REJECT,pre-matching
+DOMAIN-KEYWORD,zhihu-ad,REJECT,pre-matching
+DOMAIN-SUFFIX,adkwai.com,REJECT,pre-matching
+DOMAIN-SUFFIX,admobile.top,REJECT,pre-matching
+DOMAIN-SUFFIX,ads.union.jd.com,REJECT,pre-matching
+DOMAIN-SUFFIX,adukwai.com,REJECT,pre-matching
+DOMAIN-SUFFIX,zhihu-web-analytics.zhihu.com,REJECT,pre-matching
 """,
 }
 
