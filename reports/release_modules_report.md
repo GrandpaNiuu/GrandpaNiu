@@ -1051,10 +1051,7 @@
 ## GrandpaNiu 香港抖音 Source
 - Source: `Rewrite/Sources/Apps/hkdou-yin.conf`
 - Discovery: auto
-- Rule: 6
-- URL Rewrite: 3
-- Body Rewrite: 4
-- MITM: 1
+- Rule: 1
 
 ## GrandpaNiu 红版报 Source
 - Source: `Rewrite/Sources/Apps/hong-ban-bao.conf`

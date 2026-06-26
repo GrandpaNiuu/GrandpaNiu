@@ -191,6 +191,7 @@ payload:
   - DOMAIN,gather.colorfulclouds.net
   - DOMAIN,googleads.g.doubleclick.net
   - DOMAIN,grandpaniu-douyin-disabled.invalid
+  - DOMAIN,grandpaniu-hkdouyin-disabled.invalid
   - DOMAIN,gwp.xiaojukeji.com
   - DOMAIN,h-adashx.ut.taobao.com
   - DOMAIN,hc-ssp.sm.cn

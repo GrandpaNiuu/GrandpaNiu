@@ -165,7 +165,7 @@ Generated per-app module outputs. These are diagnostic and convenience slices of
 | GrandpaNiu Hao123 Source | `hao123.sgmodule` | `Rewrite/Sources/Apps/hao123.conf` | Rule:3 |
 | GrandpaNiu 和风天气 Source | `he-feng-weather.sgmodule` | `Rewrite/Sources/Apps/he-feng-weather.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu 小睡眠 Source | `heartide-brain-wave.sgmodule` | `Rewrite/Sources/Apps/heartide-brain-wave.conf` | URL Rewrite:12, MITM:1 |
-| GrandpaNiu 香港抖音 Source | `hkdou-yin.sgmodule` | `Rewrite/Sources/Apps/hkdou-yin.conf` | Rule:6, URL Rewrite:3, Body Rewrite:4, MITM:1 |
+| GrandpaNiu 香港抖音 Source | `hkdou-yin.sgmodule` | `Rewrite/Sources/Apps/hkdou-yin.conf` | Rule:1 |
 | GrandpaNiu 红版报 Source | `hong-ban-bao.sgmodule` | `Rewrite/Sources/Apps/hong-ban-bao.conf` | URL Rewrite:1, MITM:1 |
 | GrandpaNiu 花生地铁 Source | `hua-sheng-di-tie.sgmodule` | `Rewrite/Sources/Apps/hua-sheng-di-tie.conf` | URL Rewrite:2, MITM:1 |
 | GrandpaNiu 黄油相机 Source | `huang-you-xiang-ji.sgmodule` | `Rewrite/Sources/Apps/huang-you-xiang-ji.conf` | Rule:3, URL Rewrite:1, MITM:1 |

@@ -5,8 +5,8 @@
 - 默认公开入口：单一融合版
 - 是否从 root 反拆：否
 - 构建阶段 Root/Release 是否一致：是
-- Release 行数：6140
-- Release MITM hostname 数量：1235
+- Release 行数：6128
+- Release MITM hostname 数量：1233
 
 ## 源文件统计
 - Rule: 115 行

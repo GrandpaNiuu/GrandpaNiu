@@ -1,9 +1,9 @@
 # MITM Scope Report
 
-- Generated at: 2026-06-26 21:52:19 +0800
-- Total hostnames: 1235
+- Generated at: 2026-06-26 21:53:19 +0800
+- Total hostnames: 1233
 - Wildcard hostnames: 34
-- Unique base domains: 674
+- Unique base domains: 673
 
 ## Category Counts
 
@@ -16,7 +16,7 @@
 | `httpdns` | 0 |
 | `shopping_life` | 30 |
 | `social_content` | 28 |
-| `other_app_or_service` | 1129 |
+| `other_app_or_service` | 1127 |
 
 ## Top Base Domains
 

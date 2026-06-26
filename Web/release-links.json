@@ -1176,7 +1176,7 @@
       "name": "GrandpaNiu 香港抖音 Source",
       "file": "Release/Modules/hkdou-yin.sgmodule",
       "source": "Rewrite/Sources/Apps/hkdou-yin.conf",
-      "sections": "Rule:6, URL Rewrite:3, Body Rewrite:4, MITM:1",
+      "sections": "Rule:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/hkdou-yin.sgmodule"
     },
     {
