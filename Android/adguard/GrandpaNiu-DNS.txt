@@ -189,6 +189,7 @@
 ||g.koowo.com^
 ||gather.colorfulclouds.net^
 ||googleads.g.doubleclick.net^
+||grandpaniu-douyin-disabled.invalid^
 ||gwp.xiaojukeji.com^
 ||h-adashx.ut.taobao.com^
 ||hc-ssp.sm.cn^
@@ -407,7 +408,6 @@
 /mobads/
 /nbcollect.kugou.com/
 /nbcollectretry.kugou.com/
-/p3.pstatp.com/
 /pangolin/
 /pdd-ad/
 /pglstatp/

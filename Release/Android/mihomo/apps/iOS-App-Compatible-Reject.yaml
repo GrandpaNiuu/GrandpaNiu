@@ -114,6 +114,7 @@ payload:
   - DOMAIN,free-aos-cdn-image.amap.com
   - DOMAIN,g.koowo.com
   - DOMAIN,gather.colorfulclouds.net
+  - DOMAIN,grandpaniu-douyin-disabled.invalid
   - DOMAIN,gwp.xiaojukeji.com
   - DOMAIN,h-adashx.ut.taobao.com
   - DOMAIN,huatuocode.huatuo.qq.com
@@ -262,7 +263,6 @@ payload:
   - DOMAIN-KEYWORD,logwebs.kugou.com
   - DOMAIN-KEYWORD,nbcollect.kugou.com
   - DOMAIN-KEYWORD,nbcollectretry.kugou.com
-  - DOMAIN-KEYWORD,p3.pstatp.com
   - DOMAIN-KEYWORD,pdd-ad
   - DOMAIN-KEYWORD,report.meituan
   - DOMAIN-KEYWORD,rt-m.kugou.com

@@ -113,6 +113,7 @@
 ||free-aos-cdn-image.amap.com^
 ||g.koowo.com^
 ||gather.colorfulclouds.net^
+||grandpaniu-douyin-disabled.invalid^
 ||gwp.xiaojukeji.com^
 ||h-adashx.ut.taobao.com^
 ||huatuocode.huatuo.qq.com^
@@ -261,7 +262,6 @@
 /logwebs.kugou.com/
 /nbcollect.kugou.com/
 /nbcollectretry.kugou.com/
-/p3.pstatp.com/
 /pdd-ad/
 /report.meituan/
 /rt-m.kugou.com/

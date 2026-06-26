@@ -190,6 +190,7 @@ payload:
   - DOMAIN,g.koowo.com
   - DOMAIN,gather.colorfulclouds.net
   - DOMAIN,googleads.g.doubleclick.net
+  - DOMAIN,grandpaniu-douyin-disabled.invalid
   - DOMAIN,gwp.xiaojukeji.com
   - DOMAIN,h-adashx.ut.taobao.com
   - DOMAIN,hc-ssp.sm.cn
@@ -408,7 +409,6 @@ payload:
   - DOMAIN-KEYWORD,mobads
   - DOMAIN-KEYWORD,nbcollect.kugou.com
   - DOMAIN-KEYWORD,nbcollectretry.kugou.com
-  - DOMAIN-KEYWORD,p3.pstatp.com
   - DOMAIN-KEYWORD,pangolin
   - DOMAIN-KEYWORD,pdd-ad
   - DOMAIN-KEYWORD,pglstatp

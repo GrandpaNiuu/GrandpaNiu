@@ -3,4 +3,4 @@
 #!update-url=https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/douyin.sgmodule
 
 [Rule]
-# removed unsafe upstream app rule
+DOMAIN,grandpaniu-douyin-disabled.invalid,REJECT
