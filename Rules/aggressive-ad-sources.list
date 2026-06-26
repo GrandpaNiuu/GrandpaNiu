@@ -1,2 +1,3 @@
-RULE-SET,https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-appAdBlock-shadowrocket.list,REJECT
-RULE-SET,https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-allAdBlock-shadowrocket.list,REJECT
+# High-risk external app ad sources are intentionally not enabled in fusion.
+# Reason: converted upstream app adblock lists can misclassify app-core domains such as content-open.douyin.com and break Douyin networking.
+# Keep these sources out of the public fusion module unless every app-core false positive is filtered by the converter and verified.
