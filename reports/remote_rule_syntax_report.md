@@ -1,6 +1,6 @@
 # 远程规则语法校验报告
 
-生成时间：2026-06-26 13:18:15 +0800
+生成时间：2026-06-26 21:10:01 +0800
 
 本报告用于阻断 Shadowrocket / Surge 远程规则集红叉问题。校验目标包括：
 
@@ -26,12 +26,12 @@
 
 | 状态 | 类型 | 规则数 | 检查来源 | 引用位置 | URL | 错误 / 警告 |
 |---|---|---:|---|---|---|---|
-| pass | DOMAIN-SET | 138810 | http:200 | Release/Ronghemokuai.sgmodule:514<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:514 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
-| pass | DOMAIN-SET | 178650 | http:200 | Release/Ronghemokuai.sgmodule:510<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:510 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
+| pass | DOMAIN-SET | 138943 | http:200 | Release/Ronghemokuai.sgmodule:514<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:514 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
+| pass | DOMAIN-SET | 178735 | http:200 | Release/Ronghemokuai.sgmodule:510<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:510 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
 | pass | DOMAIN-SET | 168195 | http:200 | Release/Ronghemokuai.sgmodule:513<br>Rewrite/Remotes/sources.json:Loyalsoldier reject<br>Ronghemokuai.sgmodule:513 | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` | - |
 | pass | DOMAIN-SET | 103815 | http:200 | Release/Ronghemokuai.sgmodule:511<br>Rewrite/Remotes/sources.json:anti-AD Surge<br>Ronghemokuai.sgmodule:511 | `https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt` | - |
-| pass | RULE-SET | 1377 | local:Rules/converted/zirawell-allAdBlock-shadowrocket.list | Release/Ronghemokuai.sgmodule:625<br>Ronghemokuai.sgmodule:625<br>Rules/aggressive-ad-sources.list:2 | `https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-allAdBlock-shadowrocket.list` | - |
-| pass | RULE-SET | 1353 | local:Rules/converted/zirawell-appAdBlock-shadowrocket.list | Release/Ronghemokuai.sgmodule:624<br>Ronghemokuai.sgmodule:624<br>Rules/aggressive-ad-sources.list:1 | `https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-appAdBlock-shadowrocket.list` | - |
+| pass | RULE-SET | 1365 | local:Rules/converted/zirawell-allAdBlock-shadowrocket.list | Release/Ronghemokuai.sgmodule:625<br>Ronghemokuai.sgmodule:625<br>Rules/aggressive-ad-sources.list:2 | `https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-allAdBlock-shadowrocket.list` | - |
+| pass | RULE-SET | 1341 | local:Rules/converted/zirawell-appAdBlock-shadowrocket.list | Release/Ronghemokuai.sgmodule:624<br>Ronghemokuai.sgmodule:624<br>Rules/aggressive-ad-sources.list:1 | `https://grandpaniuu.github.io/GrandpaNiu/Rules/converted/zirawell-appAdBlock-shadowrocket.list` | - |
 | pass | RULE-SET | 588 | http:200 | Release/Ronghemokuai.sgmodule:512<br>Rewrite/Remotes/sources.json:ACL4SSR BanAD<br>Ronghemokuai.sgmodule:512 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list` | - |
 | pass | RULE-SET | 40977 | http:200 | Release/Ronghemokuai.sgmodule:1398<br>Rewrite/Remotes/sources.json:ACL4SSR BanEasyList<br>Ronghemokuai.sgmodule:1398 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list` | - |
 | pass | RULE-SET | 5050 | http:200 | Release/Ronghemokuai.sgmodule:519<br>Rewrite/Remotes/sources.json:ACL4SSR BanEasyListChina<br>Ronghemokuai.sgmodule:519 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list` | - |
