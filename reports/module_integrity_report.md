@@ -11,7 +11,7 @@
 | Root / Release 内容一致 | 通过 |
 | 重复 section | 无 |
 | 重复 active rule / rewrite / script / MITM line | 无 |
-| Script 入口数 | 47 |
+| Script 入口数 | 44 |
 | MITM hostname 数 | 1235 |
 
 ## Section 规模
@@ -23,7 +23,7 @@
 | `Header Rewrite` | 2 |
 | `Body Rewrite` | 1652 |
 | `Map Local` | 352 |
-| `Script` | 47 |
+| `Script` | 44 |
 | `MITM` | 1 |
 
 ## 规则源

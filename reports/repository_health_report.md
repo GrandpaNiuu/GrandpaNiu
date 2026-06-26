@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-06-26 12:19:21 +0800
+- Generated at: 2026-06-26 12:21:31 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Release alias identical: yes
@@ -18,7 +18,7 @@
 - [Header Rewrite]: 2
 - [Body Rewrite]: 1652
 - [Map Local]: 352
-- [Script]: 47
+- [Script]: 44
 - [MITM]: 1
 
 ## Blocking Issues
