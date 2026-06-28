@@ -1,9 +1,9 @@
 # Invalid Sources Audit and Repair Report
 
-- 日期：2026-06-28
+- 日期：2026-06-29
 - 维护模式：source-first
 - 扫描源文件链接总数：775
-- 正常链接数量：452
+- 正常链接数量：453
 - 本次是否修改源头文件：no
 
 本系统优先修复 `Rewrite/Remotes/`、`Rules/`、`Scripts/`、`Rewrite/Sources/`，随后由工作流重新构建 Release 并同步根目录主模块。不会因单日失败删除规则。
@@ -33,7 +33,6 @@
 - `https://example.com/app.js`
 
 ## 今日失败明细
-- `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/gaoding.js (HTTP 400 HTTP 400)`
 - `https://kelee.one/Tool/Loon/Lpx/BaiduNetDisk_remove_ads.lpx (HTTP 403 HTTP 403)`
 - `https://kelee.one/Tool/Loon/Lpx/Taqu_remove_ads.lpx (HTTP 403 HTTP 403)`
 - `https://kelee.one/Tool/Loon/Lpx/MeiTu_remove_ads.lpx (HTTP 403 HTTP 403)`
