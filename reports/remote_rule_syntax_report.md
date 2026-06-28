@@ -1,6 +1,6 @@
 # 远程规则语法校验报告
 
-生成时间：2026-06-28 02:38:03 +0800
+生成时间：2026-06-29 01:48:03 +0800
 
 本报告用于阻断 Shadowrocket / Surge 远程规则集红叉问题。校验目标包括：
 
@@ -26,9 +26,9 @@
 
 | 状态 | 类型 | 规则数 | 检查来源 | 引用位置 | URL | 错误 / 警告 |
 |---|---|---:|---|---|---|---|
-| pass | DOMAIN-SET | 140750 | http:200 | Release/Ronghemokuai.sgmodule:497<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:497 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
-| pass | DOMAIN-SET | 178854 | http:200 | Release/Ronghemokuai.sgmodule:493<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:493 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
-| pass | DOMAIN-SET | 168249 | http:200 | Release/Ronghemokuai.sgmodule:496<br>Rewrite/Remotes/sources.json:Loyalsoldier reject<br>Ronghemokuai.sgmodule:496 | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` | - |
+| pass | DOMAIN-SET | 71888 | http:200 | Release/Ronghemokuai.sgmodule:497<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:497 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
+| pass | DOMAIN-SET | 179157 | http:200 | Release/Ronghemokuai.sgmodule:493<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:493 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
+| pass | DOMAIN-SET | 168557 | http:200 | Release/Ronghemokuai.sgmodule:496<br>Rewrite/Remotes/sources.json:Loyalsoldier reject<br>Ronghemokuai.sgmodule:496 | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` | - |
 | pass | DOMAIN-SET | 103815 | http:200 | Release/Ronghemokuai.sgmodule:494<br>Rewrite/Remotes/sources.json:anti-AD Surge<br>Ronghemokuai.sgmodule:494 | `https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt` | - |
 | pass | RULE-SET | 588 | http:200 | Release/Ronghemokuai.sgmodule:495<br>Rewrite/Remotes/sources.json:ACL4SSR BanAD<br>Ronghemokuai.sgmodule:495 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list` | - |
 | pass | RULE-SET | 40977 | http:200 | Release/Ronghemokuai.sgmodule:1368<br>Rewrite/Remotes/sources.json:ACL4SSR BanEasyList<br>Ronghemokuai.sgmodule:1368 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list` | - |
