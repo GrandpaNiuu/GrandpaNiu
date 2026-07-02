@@ -1,6 +1,6 @@
 # App 状态矩阵
 
-生成时间：2026-07-02 21:57:07 +0800
+生成时间：2026-07-02 22:00:00 +0800
 
 本矩阵是自动化质量总览。状态只表达仓库源头是否被自动扫描覆盖，以及是否满足可回滚、可审计的发布边界。
 
@@ -34,7 +34,7 @@
 | 支付宝 | 支付 | Rewrite, Rule, Script | fusion | 自动门禁覆盖 | 高 | automated_quality_evidence.md / 静态扫描 | 保留保护优先、需可回滚源头 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
 | 银行 / 验证码 | 安全敏感 | MITM, Rewrite, Rule, Script | fusion | 自动门禁覆盖 | 高 | automated_quality_evidence.md / 静态扫描 | 保留保护优先、需可回滚源头 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
 | 图片 CDN | 资源加载 | MITM, Rewrite, Rule, Script | fusion | 自动门禁覆盖 | 高 | automated_quality_evidence.md / 静态扫描 | 保留保护优先、需可回滚源头 | 回滚 Rewrite、Rules、Scripts 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
-| 小程序资源 | 微信生态 | Rule, Script | fusion | 自动门禁覆盖 | 高 | automated_quality_evidence.md / 静态扫描 | 保留保护优先、需可回滚源头 | 回滚 Rules、Scripts 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
+| 小程序资源 | 微信生态 | Rule | fusion | 自动门禁覆盖 | 高 | automated_quality_evidence.md / 静态扫描 | 保留保护优先、需可回滚源头 | 回滚 Rules 中对应源头后重建 | 覆盖不等于效果承诺；用户反馈只进入 Issue 或后续修复输入 |
 
 ## 发布边界
 
