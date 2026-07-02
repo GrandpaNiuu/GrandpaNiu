@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-07-02T02:07:22Z
+- generated: 2026-07-02T02:53:06Z
 - enabled: True
 - input script entries: 230
 - output script entries: 180
@@ -70,9 +70,7 @@
 - None
 
 ## Cache Fallbacks
-- `https://kelee.one/Resource/JavaScript/AutoHome/AutoHome_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
-- `https://kelee.one/Resource/JavaScript/BabyTree/BabyTree_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
-- `https://kelee.one/Resource/JavaScript/DubbingShow/DubbingShow_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- None
 
 ## Preserved Reasons
 - preserved: binary body: 2
