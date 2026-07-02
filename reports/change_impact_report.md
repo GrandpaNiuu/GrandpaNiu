@@ -1,14 +1,22 @@
 # 变更影响报告
 
-- 生成时间：2026-07-02 22:00:04 +0800
+- 生成时间：2026-07-02 22:23:48 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
 - `AI_HANDOFF.md`
+- `Android/branches.json`
 - `PROJECT_STATE.md`
+- `Release/Android/branches.json`
 - `Release/Module.sgmodule`
 - `Release/Ronghemokuai.sgmodule`
+- `Release/Rules.conf`
+- `Release/RulesGroup.conf`
+- `Release/Stable/Module.sgmodule`
+- `Release/Stable/Ronghemokuai.sgmodule`
+- `Release/Stable/Rules.conf`
+- `Release/Stable/RulesGroup.conf`
 - `Release/checksums.json`
 - `Release/checksums.txt`
 - `Rewrite/Profiles/fusion.conf`
@@ -19,6 +27,9 @@
 - `docs/ai/RISK_LOG.md`
 - `docs/ai/TASKS.md`
 - `docs/ai/WORKLOG.md`
+- `reports/android_rules_report.md`
+- `reports/app_cleaner_active_report.md`
+- `reports/app_source_validation_report.md`
 - `reports/app_status_matrix.md`
 - `reports/automated_quality_evidence.md`
 - `reports/automation_gap_report.md`
@@ -30,12 +41,18 @@
 - `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
+- `reports/release_rules_report.md`
+- `reports/remote_rule_syntax_report.md`
 - `reports/report_freshness_report.md`
 - `reports/repository_health_report.md`
+- `reports/rule_overlap_report.md`
 - `reports/script_aggregation_report.md`
 - `reports/script_aggregation_validation_report.md`
 - `reports/script_bundle_sandbox_report.md`
+- `reports/upstream_risk_gate_report.md`
 - `scripts/build_module.py`
+- `scripts/validate_app_sources.py`
+- `scripts/validate_module_integrity.py`
 - `scripts/validate_repository.py`
 
 ## 新增文件
@@ -49,9 +66,17 @@
 ## 修改文件
 
 - `AI_HANDOFF.md`
+- `Android/branches.json`
 - `PROJECT_STATE.md`
+- `Release/Android/branches.json`
 - `Release/Module.sgmodule`
 - `Release/Ronghemokuai.sgmodule`
+- `Release/Rules.conf`
+- `Release/RulesGroup.conf`
+- `Release/Stable/Module.sgmodule`
+- `Release/Stable/Ronghemokuai.sgmodule`
+- `Release/Stable/Rules.conf`
+- `Release/Stable/RulesGroup.conf`
 - `Release/checksums.json`
 - `Release/checksums.txt`
 - `Rewrite/Profiles/fusion.conf`
@@ -62,6 +87,9 @@
 - `docs/ai/RISK_LOG.md`
 - `docs/ai/TASKS.md`
 - `docs/ai/WORKLOG.md`
+- `reports/android_rules_report.md`
+- `reports/app_cleaner_active_report.md`
+- `reports/app_source_validation_report.md`
 - `reports/app_status_matrix.md`
 - `reports/automated_quality_evidence.md`
 - `reports/automation_gap_report.md`
@@ -73,12 +101,18 @@
 - `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
+- `reports/release_rules_report.md`
+- `reports/remote_rule_syntax_report.md`
 - `reports/report_freshness_report.md`
 - `reports/repository_health_report.md`
+- `reports/rule_overlap_report.md`
 - `reports/script_aggregation_report.md`
 - `reports/script_aggregation_validation_report.md`
 - `reports/script_bundle_sandbox_report.md`
+- `reports/upstream_risk_gate_report.md`
 - `scripts/build_module.py`
+- `scripts/validate_app_sources.py`
+- `scripts/validate_module_integrity.py`
 - `scripts/validate_repository.py`
 
 ## 影响的模块层
@@ -91,26 +125,15 @@
 
 ## 可能影响的 App
 
-- YouTube
-- Bilibili
-- 微博
 - 百度贴吧
-- 小红书
-- 淘宝
-- 京东
-- 美团
 - 12306
-- 高德地图
-- 网易云音乐
-- 喜马拉雅
-- Reddit
 
 ## 风险判断
 
 - 是否涉及脚本：是
 - 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：是
-- 是否涉及远程规则源：否
+- 是否涉及远程规则源：是
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
 - 是否需要测试知乎：是
