@@ -1,6 +1,6 @@
 # 远程规则语法校验报告
 
-生成时间：2026-07-02 12:25:56 +0800
+生成时间：2026-07-02 21:23:45 +0800
 
 本报告用于阻断 Shadowrocket / Surge 远程规则集红叉问题。校验目标包括：
 
@@ -26,8 +26,8 @@
 
 | 状态 | 类型 | 规则数 | 检查来源 | 引用位置 | URL | 错误 / 警告 |
 |---|---|---:|---|---|---|---|
-| pass | DOMAIN-SET | 180599 | http:200 | Release/Ronghemokuai.sgmodule:497<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:497 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
-| pass | DOMAIN-SET | 173671 | http:200 | Release/Ronghemokuai.sgmodule:493<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:493 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
+| pass | DOMAIN-SET | 180658 | http:200 | Release/Ronghemokuai.sgmodule:497<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:497 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
+| pass | DOMAIN-SET | 173679 | http:200 | Release/Ronghemokuai.sgmodule:493<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:493 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
 | pass | DOMAIN-SET | 163005 | http:200 | Release/Ronghemokuai.sgmodule:496<br>Rewrite/Remotes/sources.json:Loyalsoldier reject<br>Ronghemokuai.sgmodule:496 | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` | - |
 | pass | DOMAIN-SET | 97755 | http:200 | Release/Ronghemokuai.sgmodule:494<br>Rewrite/Remotes/sources.json:anti-AD Surge<br>Ronghemokuai.sgmodule:494 | `https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt` | - |
 | pass | RULE-SET | 588 | http:200 | Release/Ronghemokuai.sgmodule:495<br>Rewrite/Remotes/sources.json:ACL4SSR BanAD<br>Ronghemokuai.sgmodule:495 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list` | - |
