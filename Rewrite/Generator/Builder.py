@@ -60,14 +60,23 @@ def existing_command(script: str, *args: str) -> list[str] | None:
 
 def print_command(cmd: list[str]) -> None:
     printable = [cmd[0], rel(Path(cmd[1])), *cmd[2:]]
-    print("$ " + " ".join(printable))
+    print("$ " + " ".join(printable), flush=True)
 
 
 def run(cmd: list[str], dry_run: bool) -> None:
     print_command(cmd)
     if dry_run:
         return
-    subprocess.run(cmd, cwd=ROOT, check=True)
+    try:
+        subprocess.run(cmd, cwd=ROOT, check=True)
+    except subprocess.CalledProcessError as exc:
+        printable = [cmd[0], rel(Path(cmd[1])), *cmd[2:]]
+        print(
+            f"ERROR: factory step failed with exit code {exc.returncode}: " + " ".join(printable),
+            file=sys.stderr,
+            flush=True,
+        )
+        raise
 
 
 def script_value_items(cfg: configparser.ConfigParser, section: str) -> list[str]:
