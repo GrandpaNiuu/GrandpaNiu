@@ -3,19 +3,14 @@
     "chunks": 2,
     "path": "Scripts/generated/fusion-script-bundle.js",
     "routes": 52,
-    "sha256": "a4a3554572a8d03885dac83919f5808fd865f07965e51dc126fdf300728b254f",
+    "sha256": "e8101ce4a70c58c600fd144d00d8bbb52b942dde46deefe23b4bdb5b742a68e6",
     "sources": 52,
     "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js",
     "version": "grandpaniu-fusion-script-bundle-v1"
   },
-  "fetch_cached": [
-    {
-      "reason": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>",
-      "url": "https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js"
-    }
-  ],
+  "fetch_cached": [],
   "fetch_failed": [],
-  "generated": "2026-07-02T20:08:33Z",
+  "generated": "2026-07-02T20:18:43Z",
   "policy": {
     "allowed_prefixes": [
       "https://kelee.one/Resource/JavaScript/",

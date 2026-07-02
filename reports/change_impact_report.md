@@ -1,15 +1,21 @@
 # 变更影响报告
 
-- 生成时间：2026-07-03 04:09:05 +0800
+- 生成时间：2026-07-03 04:18:50 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
+- `AI_HANDOFF.md`
 - `Android/branches.json`
+- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
 - `Release/checksums.json`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
+- `docs/ai/DECISIONS.md`
+- `docs/ai/RISK_LOG.md`
+- `docs/ai/TASKS.md`
+- `docs/ai/WORKLOG.md`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
 - `reports/app_source_validation_report.md`
@@ -37,10 +43,14 @@
 - `reports/script_inventory_report.md`
 - `reports/upstream_risk_gate_report.md`
 - `reports/workflow_health_report.md`
+- `scripts/check_automation_status.py`
+- `scripts/sync_upstream_app_modules.py`
+- `tests/test_app_source_conversion.py`
+- `tests/test_automation_status.py`
 
 ## 新增文件
 
-- 无
+- `tests/test_automation_status.py`
 
 ## 删除文件
 
@@ -48,11 +58,17 @@
 
 ## 修改文件
 
+- `AI_HANDOFF.md`
 - `Android/branches.json`
+- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
 - `Release/checksums.json`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
+- `docs/ai/DECISIONS.md`
+- `docs/ai/RISK_LOG.md`
+- `docs/ai/TASKS.md`
+- `docs/ai/WORKLOG.md`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
 - `reports/app_source_validation_report.md`
@@ -80,24 +96,30 @@
 - `reports/script_inventory_report.md`
 - `reports/upstream_risk_gate_report.md`
 - `reports/workflow_health_report.md`
+- `scripts/check_automation_status.py`
+- `scripts/sync_upstream_app_modules.py`
+- `tests/test_app_source_conversion.py`
 
 ## 影响的模块层
 
 - Other
 - README/docs
 - Scripts
+- Scripts/maintenance
 
 ## 可能影响的 App
 
 - Spotify
 - YouTube
+- Bilibili
+- 百度贴吧
 
 ## 风险判断
 
 - 是否涉及脚本：是
 - 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：是
-- 是否涉及远程规则源：否
+- 是否涉及远程规则源：是
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
 - 是否需要测试知乎：是
