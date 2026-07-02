@@ -1,6 +1,6 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-06-26 13:11 +0800
+Last updated: 2026-07-02 09:57 +08:00
 
 ## Standing High-Risk Areas
 
@@ -209,3 +209,23 @@ Remaining risk:
 - A job running longer than the stale threshold could have its lock reclaimed. Current maintenance jobs normally finish well inside one hour; investigate before increasing job scope substantially.
 - The repaired path was remotely confirmed by Module Factory Build `27913770402` and invalid-rule audit rerun `27913813597`; Issue #249 closed automatically.
 - No Rules, App sources, MITM, login, payment, banking, captcha, video, or CDN policy changed in this repair.
+
+## 2026-07-02 Automation Governance Repair Risk Note
+
+Risk level: low traffic-policy risk, medium operational risk.
+
+Observed signal:
+
+- Builder `--check` failed at `scripts/validate_governance_extensions.py` because the script still required old multi-profile policy wording.
+- `quality_gate.py` then failed on a stale policy phrase in `docs/PROFILE_POLICY.md`.
+
+Mitigations:
+
+- Updated governance validation to check the current Fusion-only policy contract.
+- Rewrote `docs/PROFILE_POLICY.md` to describe active Fusion publishing, generated-output boundaries, validation, and rollback rules.
+- Ran the full Builder check and full quality gate successfully.
+
+Traffic risk boundary:
+
+- No Rules, App source, MITM, script behavior, Android routing policy, Windows routing policy, login, payment, banking, captcha, video, or image/CDN policy was intentionally changed.
+- Generated reports and checksums were refreshed by the Builder and quality gate.

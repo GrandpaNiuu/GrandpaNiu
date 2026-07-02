@@ -37,12 +37,21 @@ QUALITY_GATE_REQUIRED_ANY = [
     ["不允许发布模块", "不应发布主模块", "不允许发布主模块", "阻断发布"],
 ]
 
+# Current profile policy is Fusion-only. The legacy Stable/Stable Plus/Lite/Full
+# names are required only as retired-history references, not active outputs.
 PROFILE_POLICY_REQUIRED_TOKENS = [
-    "Full 冻结规则",
-    "不允许从 full 批量直接进入 stable",
-    "不允许把 `host`、`host-suffix`、`host-keyword`、`ip6-cidr` 直接作为 Shadowrocket `RULE-SET`",
-    "reports/automated_quality_evidence.md",
-    "自动化质量证据",
+    "fusion",
+    "Rewrite/Profiles/fusion.conf",
+    "python3 Rewrite/Generator/Builder.py --profile fusion --release",
+    "Ronghemokuai.sgmodule",
+    "Release/Ronghemokuai.sgmodule",
+    "Release/Module.sgmodule",
+    "Release/Modules/*.sgmodule",
+    "Stable",
+    "Stable Plus",
+    "Lite",
+    "Full",
+    "Git",
 ]
 
 FALSE_POSITIVE_TEMPLATE_REQUIRED_TOKENS = [

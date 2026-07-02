@@ -1,6 +1,6 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-06-26 13:11 +0800
+Last updated: 2026-07-02 09:57 +08:00
 
 ## Decisions
 
@@ -169,3 +169,11 @@ The lock must:
 Reason: GitHub may delay different schedules into the same minute. Isolated concurrency groups do not serialize different workflows, while one shared GitHub concurrency group can cancel older pending runs. Run `27913047570` proved that two valid builders can otherwise collide only at publish time.
 
 The helpers live in `tools/` because Windows case-insensitive filesystems cannot reliably create new lowercase `scripts/` files alongside the existing uppercase `Scripts/` directory.
+
+### 2026-07-02 - Governance Validation Must Follow Fusion-Only Policy
+
+`validate_governance_extensions.py` must validate the active Fusion-only contract: `Rewrite/Profiles/fusion.conf`, the Builder release command, the three public Fusion entries, and independent App modules.
+
+Old Stable / Stable Plus / Lite / Full names may appear only as retired-history references. Governance checks must not require old active Full/Stable policy text after the files are intentionally removed.
+
+Reason: stale governance tokens caused the Builder and quality gate to fail even though the generated Fusion module and required scheduled automation were otherwise healthy.

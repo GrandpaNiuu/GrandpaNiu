@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-01T19:14:52.483910Z",
+  "generated_at": "2026-07-02T02:05:12.660684Z",
   "algorithm": "sha256",
-  "count": 422,
+  "count": 418,
   "files": [
     {
       "path": "Release/Beta/README.md",
@@ -2007,26 +2007,6 @@
       "path": "Release/Modules/zuoyebang.sgmodule",
       "size": 615,
       "sha256": "bbffcdb715a90d4f2fd5eb5f765cdb728092dd2ae1911f3d16b7790a588afd2e"
-    },
-    {
-      "path": "Release/Ronghemokuai-full.sgmodule",
-      "size": 554,
-      "sha256": "c29b95c24cd43894771d23386bdbc39a3f57cf1de3a143f9dee312e67622046d"
-    },
-    {
-      "path": "Release/Ronghemokuai-lite.sgmodule",
-      "size": 554,
-      "sha256": "1733a2dda698c21217e17c59e18551273f76d9d9b77dbf4b70f6d40ba132a531"
-    },
-    {
-      "path": "Release/Ronghemokuai-stable-plus.sgmodule",
-      "size": 568,
-      "sha256": "b2e8f0cf036afb026668a0657c6b459581f2979573d7a6458c185e4bb921ebd6"
-    },
-    {
-      "path": "Release/Ronghemokuai-stable.sgmodule",
-      "size": 191,
-      "sha256": "7b55630c598a068d8bc0463d4ebc773d0e1a6681b531965f2eebd4d1efc207ef"
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",

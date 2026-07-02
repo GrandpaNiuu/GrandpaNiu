@@ -339,24 +339,16 @@ Recorded the owner instruction that rule changes must require real app abnormal 
 
 - Owner approved commit and push after validation.
 
-## 2026-06-20 22:09 - 工作记录
+## 2026-06-20 22:09 - 宸ヤ綔璁板綍
 
-### 本次任务
+### 鏈浠诲姟
 
-先做文档和 workflow 小修：
-
-- 记录当前“工作树干净、本地领先 1 commit、本次只读体检已完成”。
-- 将旧四版本文档统一改为 Fusion 单模块策略，历史四版本只作为 deprecated / legacy reference。
-- 不碰规则，只把 `reject_risk_report.md` 中的高风险 REJECT 项整理成待复核清单。
-- workflow 优先把宽泛 `git add -A` 改成明确路径，并逐步统一构建入口。
-
-### 开始前状态
-
-- 分支：`repair/upstream-app-sync`
-- git status 摘要：工作树干净
-- 本地领先：比 `origin/main` 领先 1 个提交
-- 预计修改范围：
-  - `PROJECT_STATE.md`
+鍏堝仛鏂囨。鍜?workflow 灏忎慨锛?
+- 璁板綍褰撳墠鈥滃伐浣滄爲骞插噣銆佹湰鍦伴鍏?1 commit銆佹湰娆″彧璇讳綋妫€宸插畬鎴愨€濄€?- 灏嗘棫鍥涚増鏈枃妗ｇ粺涓€鏀逛负 Fusion 鍗曟ā鍧楃瓥鐣ワ紝鍘嗗彶鍥涚増鏈彧浣滀负 deprecated / legacy reference銆?- 涓嶇瑙勫垯锛屽彧鎶?`reject_risk_report.md` 涓殑楂橀闄?REJECT 椤规暣鐞嗘垚寰呭鏍告竻鍗曘€?- workflow 浼樺厛鎶婂娉?`git add -A` 鏀规垚鏄庣‘璺緞锛屽苟閫愭缁熶竴鏋勫缓鍏ュ彛銆?
+### 寮€濮嬪墠鐘舵€?
+- 鍒嗘敮锛歚repair/upstream-app-sync`
+- git status 鎽樿锛氬伐浣滄爲骞插噣
+- 鏈湴棰嗗厛锛氭瘮 `origin/main` 棰嗗厛 1 涓彁浜?- 棰勮淇敼鑼冨洿锛?  - `PROJECT_STATE.md`
   - `AI_HANDOFF.md`
   - `docs/ai/*`
   - `docs/FOUR_PROFILE_GOVERNANCE.md`
@@ -365,69 +357,46 @@ Recorded the owner instruction that rule changes must require real app abnormal 
   - `docs/MAINTENANCE_PLAYBOOK.md`
   - `.github/workflows/*.yml`
 
-### 实际修改
+### 瀹為檯淇敼
 
-- 更新 AI 维护记录，记录只读体检、当前分支状态、未 push 的本地领先提交。
-- 重写旧四版本相关文档，将 Stable / Stable Plus / Lite / Full 标记为 deprecated / legacy reference。
-- 在 `docs/ai/RISK_LOG.md` 中整理待复核清单：
-  - 2 条银行 / 支付风险
-  - 7 条图片 / CDN 风险
-  - 9 条国内核心 API 风险
-- workflow 小修：
-  - 将 6 处 `git add -A` 改成明确路径。
-  - 将 selected daily/audit/collect 构建步骤逐步切到 `Rewrite/Generator/Builder.py --profile fusion --release`。
+- 鏇存柊 AI 缁存姢璁板綍锛岃褰曞彧璇讳綋妫€銆佸綋鍓嶅垎鏀姸鎬併€佹湭 push 鐨勬湰鍦伴鍏堟彁浜ゃ€?- 閲嶅啓鏃у洓鐗堟湰鐩稿叧鏂囨。锛屽皢 Stable / Stable Plus / Lite / Full 鏍囪涓?deprecated / legacy reference銆?- 鍦?`docs/ai/RISK_LOG.md` 涓暣鐞嗗緟澶嶆牳娓呭崟锛?  - 2 鏉￠摱琛?/ 鏀粯椋庨櫓
+  - 7 鏉″浘鐗?/ CDN 椋庨櫓
+  - 9 鏉″浗鍐呮牳蹇?API 椋庨櫓
+- workflow 灏忎慨锛?  - 灏?6 澶?`git add -A` 鏀规垚鏄庣‘璺緞銆?  - 灏?selected daily/audit/collect 鏋勫缓姝ラ閫愭鍒囧埌 `Rewrite/Generator/Builder.py --profile fusion --release`銆?
+### 娴嬭瘯缁撴灉
 
-### 测试结果
+- 寰呮墽琛屾渶缁?diff 鍜岃交閲忔鏌ャ€?- 鏈涓嶈繍琛屼細鍒锋柊鐢熸垚鐗╃殑涓讳粨搴撴瀯寤哄懡浠ゃ€?
+### 椋庨櫓
 
-- 待执行最终 diff 和轻量检查。
-- 本次不运行会刷新生成物的主仓库构建命令。
+- 鏈慨鏀?`Rules/`锛屾墍浠ュ緟澶嶆牳 REJECT 椋庨櫓鍙槸璁板綍锛屼笉鏀瑰彉妯″潡琛屼负銆?- workflow 淇敼浼氬奖鍝嶈嚜鍔ㄦ彁浜よ寖鍥达紝蹇呴』妫€鏌?YAML 鏂囨湰鍜?`git add -A` 鏄惁宸叉竻闄ゃ€?- 鏃у洓鐗堟湰鏂囨。琚浛鎹负 Fusion 绛栫暐璇存槑锛屽睘浜庢枃妗ｇ瓥鐣ユ洿鏂般€?
+### 涓嬩竴姝?
+- 妫€鏌?`git diff --stat`銆乣git diff --name-only`銆?- 妫€鏌ユ槸鍚︿粛瀛樺湪 workflow `git add -A`銆?- 鍙仛涓嶄細鍒锋柊鐢熸垚鐗╃殑杞婚噺楠岃瘉銆?
+## 2026-06-20 21:40 - 宸ヤ綔璁板綍
 
-### 风险
+### 鏈浠诲姟
 
-- 未修改 `Rules/`，所以待复核 REJECT 风险只是记录，不改变模块行为。
-- workflow 修改会影响自动提交范围，必须检查 YAML 文本和 `git add -A` 是否已清除。
-- 旧四版本文档被替换为 Fusion 策略说明，属于文档策略更新。
-
-### 下一步
-
-- 检查 `git diff --stat`、`git diff --name-only`。
-- 检查是否仍存在 workflow `git add -A`。
-- 只做不会刷新生成物的轻量验证。
-
-## 2026-06-20 21:40 - 工作记录
-
-### 本次任务
-
-执行格式修复后的验证，不修改业务代码。
-
-### 开始前状态
-
-- 分支：`repair/upstream-app-sync`
-- git status 摘要：仅 `.gitignore` 和 AI 维护文档有未提交修改
-- 预计修改范围：
-  - `PROJECT_STATE.md`
+鎵ц鏍煎紡淇鍚庣殑楠岃瘉锛屼笉淇敼涓氬姟浠ｇ爜銆?
+### 寮€濮嬪墠鐘舵€?
+- 鍒嗘敮锛歚repair/upstream-app-sync`
+- git status 鎽樿锛氫粎 `.gitignore` 鍜?AI 缁存姢鏂囨。鏈夋湭鎻愪氦淇敼
+- 棰勮淇敼鑼冨洿锛?  - `PROJECT_STATE.md`
   - `AI_HANDOFF.md`
   - `docs/ai/TASKS.md`
   - `docs/ai/WORKLOG.md`
 
-### 实际修改
+### 瀹為檯淇敼
 
-- 更新 `PROJECT_STATE.md`：记录格式修复后的验证结果。
-- 更新 `AI_HANDOFF.md`：记录本次验证已在仓库外临时副本中通过。
-- 更新 `docs/ai/TASKS.md`：将当前格式修复任务标记为 validated，等待 owner 审查和可选提交。
-- 更新 `docs/ai/WORKLOG.md`：追加本条验证记录。
+- 鏇存柊 `PROJECT_STATE.md`锛氳褰曟牸寮忎慨澶嶅悗鐨勯獙璇佺粨鏋溿€?- 鏇存柊 `AI_HANDOFF.md`锛氳褰曟湰娆￠獙璇佸凡鍦ㄤ粨搴撳涓存椂鍓湰涓€氳繃銆?- 鏇存柊 `docs/ai/TASKS.md`锛氬皢褰撳墠鏍煎紡淇浠诲姟鏍囪涓?validated锛岀瓑寰?owner 瀹℃煡鍜屽彲閫夋彁浜ゃ€?- 鏇存柊 `docs/ai/WORKLOG.md`锛氳拷鍔犳湰鏉￠獙璇佽褰曘€?
+### 娴嬭瘯缁撴灉
 
-### 测试结果
-
-先执行并确认：
-
+鍏堟墽琛屽苟纭锛?
 ```bash
 git status
 git diff --stat
 git diff --name-only
 ```
 
-确认修改范围只包含：
+纭淇敼鑼冨洿鍙寘鍚細
 
 - `.gitignore`
 - `AGENTS.md`
@@ -438,49 +407,35 @@ git diff --name-only
 - `docs/ai/TASKS.md`
 - `docs/ai/WORKLOG.md`
 
-随后在仓库外临时副本运行：
-
+闅忓悗鍦ㄤ粨搴撳涓存椂鍓湰杩愯锛?
 ```bash
 python scripts/quality_gate.py
 python scripts/validate_repository.py
 python scripts/repository_health_check.py
 ```
 
-结果：全部通过。
+缁撴灉锛氬叏閮ㄩ€氳繃銆?
+璇存槑锛氱涓€娆℃墽琛岄獙璇佹椂璇湪涓诲伐浣滄爲杩愯锛屽鑷寸敓鎴愮墿鍒锋柊锛涜繖浜涚敱楠岃瘉浜х敓鐨?`Android/`銆乣Release/`銆乣Scripts/generated/`銆乣reports/` 鏀瑰姩宸叉挙鍥炪€傜浜屾楠岃瘉宸叉纭垏鎹㈠埌浠撳簱澶栦复鏃跺壇鏈紝涓诲伐浣滄爲鏈€缁堜粛鍙繚鐣欏厑璁歌寖鍥村唴鐨勬枃妗ｅ拰 `.gitignore` 鏀瑰姩銆?
+### 椋庨櫓
 
-说明：第一次执行验证时误在主工作树运行，导致生成物刷新；这些由验证产生的 `Android/`、`Release/`、`Scripts/generated/`、`reports/` 改动已撤回。第二次验证已正确切换到仓库外临时副本，主工作树最终仍只保留允许范围内的文档和 `.gitignore` 改动。
-
-### 风险
-
-- 业务风险低。
-- 本次不保留任何业务文件、生成物、Android、Windows、Web、reports 或 workflow 改动。
-- 临时验证目录位于 `../_codex_private_logs/GrandpaNiu/`，不提交到 Git。
-
-### 下一步
-
-- 由 owner 审查 diff。
-- 如果确认无误，可提交。
-
-建议提交信息：
-
+- 涓氬姟椋庨櫓浣庛€?- 鏈涓嶄繚鐣欎换浣曚笟鍔℃枃浠躲€佺敓鎴愮墿銆丄ndroid銆乄indows銆乄eb銆乺eports 鎴?workflow 鏀瑰姩銆?- 涓存椂楠岃瘉鐩綍浣嶄簬 `../_codex_private_logs/GrandpaNiu/`锛屼笉鎻愪氦鍒?Git銆?
+### 涓嬩竴姝?
+- 鐢?owner 瀹℃煡 diff銆?- 濡傛灉纭鏃犺锛屽彲鎻愪氦銆?
+寤鸿鎻愪氦淇℃伅锛?
 ```text
 docs: normalize AI maintenance records
 ```
 
-## 2026-06-20 12:22 - 工作记录
+## 2026-06-20 12:22 - 宸ヤ綔璁板綍
 
-### 本次任务
+### 鏈浠诲姟
 
-修复 AI 维护记录和 `.gitignore` 的 Markdown / ignore 规则格式问题。
-
-本次只允许修改维护文档和 `.gitignore`，不修改规则、脚本、Release、Android、Windows、Web、reports 或 workflow 业务逻辑。
-
-### 开始前状态
-
-- 分支：`repair/upstream-app-sync`
-- git status 摘要：干净
-- 预计修改范围：
-  - `.gitignore`
+淇 AI 缁存姢璁板綍鍜?`.gitignore` 鐨?Markdown / ignore 瑙勫垯鏍煎紡闂銆?
+鏈鍙厑璁镐慨鏀圭淮鎶ゆ枃妗ｅ拰 `.gitignore`锛屼笉淇敼瑙勫垯銆佽剼鏈€丷elease銆丄ndroid銆乄indows銆乄eb銆乺eports 鎴?workflow 涓氬姟閫昏緫銆?
+### 寮€濮嬪墠鐘舵€?
+- 鍒嗘敮锛歚repair/upstream-app-sync`
+- git status 鎽樿锛氬共鍑€
+- 棰勮淇敼鑼冨洿锛?  - `.gitignore`
   - `AGENTS.md`
   - `PROJECT_STATE.md`
   - `AI_HANDOFF.md`
@@ -489,248 +444,190 @@ docs: normalize AI maintenance records
   - `docs/ai/RISK_LOG.md`
   - `docs/ai/WORKLOG.md`
 
-### 实际修改
+### 瀹為檯淇敼
 
-- 修改 `.gitignore`：
-  - 恢复和确认多行格式。
-  - 增加 `.env.*`、`_codex_private_logs/`、`*.local.md` 等本地私有记录和本地文件忽略规则。
-- 修改 `AGENTS.md`：
-  - 统一标题、列表和命令代码块。
-  - 增加“不要自动 commit / push”的规则。
-  - 增加“AI maintenance Markdown files must remain readable Markdown”的规则。
-- 修改 `PROJECT_STATE.md`、`AI_HANDOFF.md`、`TASKS.md`、`DECISIONS.md`、`RISK_LOG.md`：
-  - 统一 Markdown 结构。
-  - 补充本次格式维护状态和风险说明。
-- 修改 `docs/ai/WORKLOG.md`：
-  - 恢复为可读的标准 Markdown 工作记录。
+- 淇敼 `.gitignore`锛?  - 鎭㈠鍜岀‘璁ゅ琛屾牸寮忋€?  - 澧炲姞 `.env.*`銆乣_codex_private_logs/`銆乣*.local.md` 绛夋湰鍦扮鏈夎褰曞拰鏈湴鏂囦欢蹇界暐瑙勫垯銆?- 淇敼 `AGENTS.md`锛?  - 缁熶竴鏍囬銆佸垪琛ㄥ拰鍛戒护浠ｇ爜鍧椼€?  - 澧炲姞鈥滀笉瑕佽嚜鍔?commit / push鈥濈殑瑙勫垯銆?  - 澧炲姞鈥淎I maintenance Markdown files must remain readable Markdown鈥濈殑瑙勫垯銆?- 淇敼 `PROJECT_STATE.md`銆乣AI_HANDOFF.md`銆乣TASKS.md`銆乣DECISIONS.md`銆乣RISK_LOG.md`锛?  - 缁熶竴 Markdown 缁撴瀯銆?  - 琛ュ厖鏈鏍煎紡缁存姢鐘舵€佸拰椋庨櫓璇存槑銆?- 淇敼 `docs/ai/WORKLOG.md`锛?  - 鎭㈠涓哄彲璇荤殑鏍囧噯 Markdown 宸ヤ綔璁板綍銆?
+### 娴嬭瘯缁撴灉
 
-### 测试结果
-
-- 已执行：
+- 宸叉墽琛岋細
 
 ```bash
 git status
 git branch --show-current
 ```
 
-- 本次未运行业务构建。
-- 原因：本次只修改 AI 维护文档和 `.gitignore`，不改变构建脚本、规则源、Release 输出、Android 输出、Windows 输出、Web 输出、reports 或 workflow 业务逻辑。
+- 鏈鏈繍琛屼笟鍔℃瀯寤恒€?- 鍘熷洜锛氭湰娆″彧淇敼 AI 缁存姢鏂囨。鍜?`.gitignore`锛屼笉鏀瑰彉鏋勫缓鑴氭湰銆佽鍒欐簮銆丷elease 杈撳嚭銆丄ndroid 杈撳嚭銆乄indows 杈撳嚭銆乄eb 杈撳嚭銆乺eports 鎴?workflow 涓氬姟閫昏緫銆?
+### 椋庨櫓
 
-### 风险
-
-- 业务风险低。
-- 主要风险是文档格式再次被压缩，所以已在 `AGENTS.md` 和 `RISK_LOG.md` 中增加可读 Markdown 规则。
-
-### 下一步
-
-- 由 owner 检查 diff。
-- 如果确认无误，可提交。
-
-建议提交信息：
-
+- 涓氬姟椋庨櫓浣庛€?- 涓昏椋庨櫓鏄枃妗ｆ牸寮忓啀娆¤鍘嬬缉锛屾墍浠ュ凡鍦?`AGENTS.md` 鍜?`RISK_LOG.md` 涓鍔犲彲璇?Markdown 瑙勫垯銆?
+### 涓嬩竴姝?
+- 鐢?owner 妫€鏌?diff銆?- 濡傛灉纭鏃犺锛屽彲鎻愪氦銆?
+寤鸿鎻愪氦淇℃伅锛?
 ```text
 docs: normalize AI maintenance records
 ```
 
-## 2026-06-20 11:58 - 工作记录
+## 2026-06-20 11:58 - 宸ヤ綔璁板綍
 
-### 本次任务
+### 鏈浠诲姟
 
-建立 GrandpaNiu 仓库的 AI 维护记录制度，只做初始快照，不修改业务代码。
-
-### 开始前状态
-
-- 分支：`repair/upstream-app-sync`
-- git status 摘要：干净
-- 预计修改范围：
-  - `AGENTS.md`
+寤虹珛 GrandpaNiu 浠撳簱鐨?AI 缁存姢璁板綍鍒跺害锛屽彧鍋氬垵濮嬪揩鐓э紝涓嶄慨鏀逛笟鍔′唬鐮併€?
+### 寮€濮嬪墠鐘舵€?
+- 鍒嗘敮锛歚repair/upstream-app-sync`
+- git status 鎽樿锛氬共鍑€
+- 棰勮淇敼鑼冨洿锛?  - `AGENTS.md`
   - `PROJECT_STATE.md`
   - `AI_HANDOFF.md`
   - `docs/ai/*`
-  - 仓库上一级本地私有记录目录
+  - 浠撳簱涓婁竴绾ф湰鍦扮鏈夎褰曠洰褰?
+### 瀹為檯淇敼
 
-### 实际修改
-
-- 修改文件：
-  - `AGENTS.md`
+- 淇敼鏂囦欢锛?  - `AGENTS.md`
   - `PROJECT_STATE.md`
   - `AI_HANDOFF.md`
   - `docs/ai/TASKS.md`
   - `docs/ai/DECISIONS.md`
   - `docs/ai/RISK_LOG.md`
   - `docs/ai/WORKLOG.md`
-- 修改原因：为后续 AI 或新对话接手项目提供固定记录、风险规则、任务状态和交接入口。
+- 淇敼鍘熷洜锛氫负鍚庣画 AI 鎴栨柊瀵硅瘽鎺ユ墜椤圭洰鎻愪緵鍥哄畾璁板綍銆侀闄╄鍒欍€佷换鍔＄姸鎬佸拰浜ゆ帴鍏ュ彛銆?
+### 娴嬭瘯缁撴灉
 
-### 测试结果
+- 宸叉墽琛屽垵濮嬩粨搴撶粨鏋勬壂鎻忋€?- 宸叉墽琛?`git status --short`锛屽紑濮嬪墠宸ヤ綔鏍戝共鍑€銆?- 宸叉墽琛?`git branch --show-current`锛屽綋鍓嶅垎鏀负 `repair/upstream-app-sync`銆?
+### 椋庨櫓
 
-- 已执行初始仓库结构扫描。
-- 已执行 `git status --short`，开始前工作树干净。
-- 已执行 `git branch --show-current`，当前分支为 `repair/upstream-app-sync`。
+- 鏈鍙柊澧炲拰鏇存柊缁存姢鏂囨。锛屼笉瑙︾瑙勫垯銆佽剼鏈€丷elease 浜х墿銆丄ndroid 杈撳嚭銆乄indows 杈撳嚭鎴?workflow 涓氬姟閫昏緫銆?- 鍚庣画浠讳綍 AI 淇敼涓氬姟閫昏緫鍓嶅繀椤诲厛璇诲彇鏈褰曚綋绯汇€?
+### 涓嬩竴姝?
+- 鎻愪氦缁存姢璁板綍鏂囦欢銆?- 鍚庣画淇敼蹇呴』杩藉姞 `docs/ai/WORKLOG.md`锛屽苟鎸夐渶瑕佹洿鏂?`TASKS`銆乣DECISIONS`銆乣RISK_LOG`銆乣PROJECT_STATE` 鍜?`AI_HANDOFF`銆?## 2026-06-21 06:44 - App 婧愯娉曚笌闀挎湡缁存姢鍔犲浐
 
-### 风险
+### 鏈浠诲姟
 
-- 本次只新增和更新维护文档，不触碰规则、脚本、Release 产物、Android 输出、Windows 输出或 workflow 业务逻辑。
-- 后续任何 AI 修改业务逻辑前必须先读取本记录体系。
+瀵逛粨搴撴墽琛岃瘉鎹紭鍏堢殑瀹屾暣鑷锛屼慨澶嶅彲澶嶇幇鐨?App 鐙珛妯″潡璇硶闂锛屽苟鍔犲己姣忔棩澶辨晥婧愬璁″拰璐ㄩ噺闂ㄧ銆?
+### 寮€濮嬪墠鐘舵€?
+- 鍒嗘敮锛歚repair/upstream-app-sync`
+- 鍩虹嚎鎻愪氦锛歚66b30090`
+- git status 鎽樿锛氬紑濮嬫椂骞插噣锛涘璁¤剼鏈殢鍚庡埛鏂颁簡涓や唤鎶ュ憡
+- 棰勮淇敼鑼冨洿锛欰pp 涓婃父杞崲鍣ㄣ€丄pp 婧愰獙璇佸櫒銆佺浉鍏虫祴璇?闂ㄧ銆佸彈褰卞搷婧愩€佺敓鎴愪骇鐗╁拰缁存姢璁板綍
 
-### 下一步
+### 瀹為檯淇敼
 
-- 提交维护记录文件。
-- 后续修改必须追加 `docs/ai/WORKLOG.md`，并按需要更新 `TASKS`、`DECISIONS`、`RISK_LOG`、`PROJECT_STATE` 和 `AI_HANDOFF`。
-## 2026-06-21 06:44 - App 源语法与长期维护加固
+- 鏂板 `scripts/validate_app_sources.py`锛岄€愪釜楠岃瘉 398 涓?App 婧愬拰 398 涓?Release App 妯″潡銆?- 淇 `scripts/sync_upstream_app_modules.py` 鐨勬贩鍚?Rule銆?07 閲嶅畾鍚戙€丠eader Rewrite銆佽８鍩熷悕銆丮ap Local銆佽繙绋嬫暟鎹唴鑱斿拰閲嶅鑴氭湰鍚嶈浆鎹€?- 浠庡凡鐧昏涓婃父閲嶅悓姝?17 涓彈褰卞搷 App 婧愶紱鏈柊澧炴湭鐭ヤ笂娓告垨鐚滄祴瑙勫垯銆?- 灏?App 婧愰獙璇佹帴鍏?Builder銆佽川閲忛棬绂併€佹不鐞嗘牎楠屻€佷粨搴撳仴搴峰拰鑷姩鍖栬瘉鎹€?- 灏嗗け鏁堟簮瀹¤鎵╁睍鍒?App 婧愶紝骞剁敤 12 璺笂闄愬苟鍙戞鏌ュ敮涓€ URL锛岄伩鍏嶆瘡鏃?workflow 涓茶瓒呮椂銆?- 閫氳繃 Builder 閲嶆柊鐢熸垚 Fusion銆丷elease Modules銆丄ndroid銆乄indows銆乄eb 鍜?reports銆?
+### 娴嬭瘯缁撴灉
 
-### 本次任务
+- 14 椤瑰崟鍏冩祴璇曢€氳繃銆?- `python scripts/validate_app_sources.py`锛?98 涓簮銆?98 涓?Release 妯″潡銆? 璇硶閿欒銆?- `python Rewrite/Generator/Builder.py --profile fusion --release --check`锛氶€氳繃锛?98 涓ā鍧椼€? empty銆?- `python scripts/quality_gate.py`锛氶€氳繃銆?- 浠撳簱鍋ュ悍鎶ュ憡锛? blocking issue锛汻oot / Release 涓€鑷达紱鏃犻噸澶嶈剼鏈悕锛涙棤閲嶅 MITM hostname銆?
+### 椋庨櫓
 
-对仓库执行证据优先的完整自检，修复可复现的 App 独立模块语法问题，并加强每日失效源审计和质量门禁。
+- 鏈慨鏀圭櫥褰曘€佹敮浠樸€侀摱琛屻€侀獙璇佺爜銆佽棰戞挱鏀炬垨鍥剧墖/CDN 鐨勭瓥鐣ャ€?- RedNote銆乄eibo銆乑hihu 鍦ㄩ噸鍚屾鍓嶄繚鐣欎簡鍥炴粴澶囦唤銆?- 闈欐€佹鏌ヤ笉鑳借瘉鏄庢墍鏈夊浗鍐呭 App 鐨勭湡鏈鸿涓猴紱鍚庣画鍙緷鎹疄闄呭紓甯稿拰鏃ュ織鍋?source-first 鍗曠偣淇銆?
+### Self-Review
 
-### 开始前状态
+- What was not good enough: 鏃ч棬绂佸彧楠岃瘉 Fusion 鎴愬搧锛岀嫭绔?App 妯″潡鍙甫鐫€閿欒鍙戝竷锛涢娆℃墿灞曞け鏁堟簮瀹¤鏃朵篃闇€瑕佽瘎浼拌姹傝妯°€?- What I changed to reduce that risk: 澧炲姞婧?Release 鍙屽眰闃绘柇楠岃瘉銆佽浆鎹㈠崟娴嬨€佹湁闄愬苟鍙戝拰楂橀闄╁浠姐€?- What I would check first next time: 鍏堣繍琛?App 婧愰獙璇佸拰 Builder锛屽啀妫€鏌?Actions 鐨?Module Factory Build 涓?Upstream app module sync 瀹為檯缁撴灉銆?
+### 涓嬩竴姝?
+- 鎻愪氦骞舵帹閫佹湰娆′慨鏀广€?- 瑙傚療杩滅 Module Factory Build銆乁pstream app module sync 鍜?Repository Health銆?- 鍙湁鍑虹幇鐪熷疄 App 寮傚父鎴栨棩蹇楄瘉鎹椂鎵嶈皟鏁村叿浣撴祦閲忚鍒欍€?
+## 2026-06-21 07:24 - 璐ㄩ噺闂ㄧ涓庤嚜鍔ㄥ彂甯冨姞鍥?
+### 鏈浠诲姟
 
-- 分支：`repair/upstream-app-sync`
-- 基线提交：`66b30090`
-- git status 摘要：开始时干净；审计脚本随后刷新了两份报告
-- 预计修改范围：App 上游转换器、App 源验证器、相关测试/门禁、受影响源、生成产物和维护记录
+缁х画瀵逛粨搴撳仛璇佹嵁椹卞姩鐨勮嚜妫€锛屼慨澶嶅彲澶嶇幇鐨勮嚜鍔ㄥ寲鍋囩豢鍜?workflow 骞跺彂鍐欏叆椋庨櫓锛屼笉鏀瑰姩 App 娴侀噺瑙勫垯銆?
+### 寮€濮嬪墠鐘舵€?
+- 鍒嗘敮锛歚repair/upstream-app-sync`
+- 鍩虹嚎鎻愪氦锛歚173a92eb`
+- git status 鎽樿锛氬伐浣滄爲骞插噣
+- 棰勮淇敼鑼冨洿锛氳川閲忛棬绂併€佸伐浣滄祦鎻愪氦閫昏緫銆侀獙璇佽剼鏈€佹祴璇曞拰 AI 璁板綍
 
-### 实际修改
+### 瀹為檯淇敼
 
-- 新增 `scripts/validate_app_sources.py`，逐个验证 398 个 App 源和 398 个 Release App 模块。
-- 修复 `scripts/sync_upstream_app_modules.py` 的混合 Rule、307 重定向、Header Rewrite、裸域名、Map Local、远程数据内联和重复脚本名转换。
-- 从已登记上游重同步 17 个受影响 App 源；未新增未知上游或猜测规则。
-- 将 App 源验证接入 Builder、质量门禁、治理校验、仓库健康和自动化证据。
-- 将失效源审计扩展到 App 源，并用 12 路上限并发检查唯一 URL，避免每日 workflow 串行超时。
-- 通过 Builder 重新生成 Fusion、Release Modules、Android、Windows、Web 和 reports。
+- 淇 `quality_gate.py` 椤哄簭锛氭渶鍚庝竴娆?profile 閲嶅缓鍚庡啀鏍￠獙 bundle 璇硶銆佽仛鍚堜竴鑷存€у拰杩愯鏃舵矙绠便€?- freshness 鏀逛负 `--strict`锛岄樆鏂姤鍛婅繃鏈熸椂 CI 蹇呴』澶辫触銆?- 9 涓淮鎶?workflow 浣跨敤鎸?workflow/ref 闅旂鐨?`module-maintenance-*` 骞跺彂閿併€傝繙绋?#555 璇佹槑鍗曚竴鍏ㄥ眬閿佷細鍙栨秷杈冩棭鐨?pending 杩愯锛屽洜姝や笉鍐嶅叡浜竴涓浐瀹?group銆?- 浠呬繚鐣?`Module Factory Build` 鐨?push 楠屾敹锛涙瘡鏃ュ璁″拰璁″垝鏇存柊鍙繚鐣?schedule/manual 瑙﹀彂銆?- 閲嶅啓 `commit_generated_changes.sh`锛氫粎鏆傚瓨鏄惧紡璺緞锛宲ush 澶辫触鍚?fetch + rebase + retry锛屽啿绐佹椂鍋滄鑰屼笉瑕嗙洊銆?- 绉婚櫎缁存姢鑷姩鍖栦腑鐨?`git reset --hard` 鍜?`git add -A`銆?- 澧炲姞 freshness 椤哄簭銆亀orkflow 濂戠害鍜屾湰鍦拌８ Git 杩滅鎻愪氦闆嗘垚娴嬭瘯銆?- 淇 `workflow-failure-issue.yml` 鐨?shell heredoc 鍛戒护鏇挎崲锛汭ssue #248 涓娓呯┖鐨勭姸鎬佸悕鍜屾仮澶嶅懡浠ょ幇鍦ㄧ敱 Python 瀹夊叏鍐欏叆 Markdown銆?
+### 娴嬭瘯缁撴灉
 
-### 测试结果
+- 20 椤瑰崟鍏?闆嗘垚娴嬭瘯閫氳繃銆?- 10 涓?workflow YAML 鍏ㄩ儴鍙В鏋愩€?- `bash -n scripts/commit_generated_changes.sh` 閫氳繃銆?- `python Rewrite/Generator/Builder.py --profile fusion --release --check` 閫氳繃銆?- `python scripts/quality_gate.py` 閫氳繃锛屽苟涓斾娇鐢ㄤ弗鏍?freshness銆?- 398 涓?App 妯″潡銆? empty銆?7 涓繙绋嬫簮 0 warning銆?
+### 椋庨櫓
 
-- 14 项单元测试通过。
-- `python scripts/validate_app_sources.py`：398 个源、398 个 Release 模块、0 语法错误。
-- `python Rewrite/Generator/Builder.py --profile fusion --release --check`：通过，398 个模块、0 empty。
-- `python scripts/quality_gate.py`：通过。
-- 仓库健康报告：0 blocking issue；Root / Release 一致；无重复脚本名；无重复 MITM hostname。
+- 鏈慨鏀?Rules銆丄pp 婧愩€丮ITM銆佺櫥褰曘€佹敮浠樸€侀摱琛屻€侀獙璇佺爜銆佽棰戞垨 CDN 绛栫暐銆?- 涓嶈兘鐢ㄩ潤鎬佽娉曟鏌ヤ唬鏇垮叏閮?App 鐪熸満鑱旂綉楠岃瘉銆?- 鏂版彁浜ゅ姪鎵嬮亣鍒?rebase 鍐茬獊浼氫富鍔ㄥけ璐ワ紝浜ょ粰鏁呴殰 issue 娴佺▼澶勭悊锛屼笉浼氳嚜鍔ㄨ鐩栥€?
+### Self-Review
 
-### 风险
+- What was not good enough: 涓婁竴娆″彧鐪嬪埌璐ㄩ噺闂ㄧ杩斿洖鎴愬姛锛屾病鏈夌珛鍗冲鐓?freshness 鎶ュ憡鐨勯樆鏂暟锛涚涓€鐗堝苟鍙戜慨澶嶅張璇敤浜嗗叏灞€ group锛岀洿鍒拌繙绋?#555 琚彇娑堟墠璇佹槑璇ヨ璁′笉鎴愮珛銆?- What I changed to reduce that risk: 鎶婃姤鍛婅涔夈€佽繘绋嬮€€鍑虹爜銆侀殧绂诲苟鍙戦攣銆佸崟涓€ push 楠屾敹鍜屾彁浜ゅ姪鎵嬮兘鍐欐垚鑷姩鍥炲綊娴嬭瘯銆?- What I would check first next time: 鍏堢湅杩滅 Module Factory Build 鏄惁缁胯壊锛屽啀妫€鏌ュ畾鏃跺伐浣滄祦鏄惁鍦ㄥ叡浜苟鍙戦攣涓嬮『搴忚繍琛屻€?
+### 涓嬩竴姝?
+- 瀹℃煡鏈€缁?diff锛屽埛鏂板仴搴蜂笌 freshness 鎶ュ憡銆?- 鎻愪氦骞舵帹閫佸悗鏍稿 GitHub Actions銆?## 2026-06-22 02:33 - 姣忔棩宸ヤ綔娴佽法浠诲姟鍐欏叆鍐茬獊淇
 
-- 未修改登录、支付、银行、验证码、视频播放或图片/CDN 的策略。
-- RedNote、Weibo、Zhihu 在重同步前保留了回滚备份。
-- 静态检查不能证明所有国内外 App 的真机行为；后续只依据实际异常和日志做 source-first 单点修复。
+### 鏈浠诲姟
+
+妫€鏌?2026-06-22 鐨勬瘡鏃ュ伐浣滃け璐ワ紝淇鐪熷疄鏁呴殰骞剁‘淇濅笉鍚岀淮鎶?workflow 涓嶅啀骞惰鍙戝竷鏃у揩鐓с€?
+### 寮€濮嬪墠鐘舵€?
+- 鍒嗘敮锛歚repair/upstream-app-sync`
+- 鍩虹嚎鎻愪氦锛歚05ba8813`
+- 鍚屾杩滅鍚庡熀绾匡細`376713d4`
+- git status 鎽樿锛氬紑濮嬫椂宸ヤ綔鏍戝共鍑€锛屾湰鍦拌惤鍚庤繙绔?4 涓嚜鍔ㄧ淮鎶ゆ彁浜わ紝宸茬敤 fast-forward 鍚屾
+- 棰勮淇敼鑼冨洿锛歸orkflow銆佽嚜鍔ㄥ寲閿併€侀獙璇佽剼鏈€佸洖褰掓祴璇曘€丄I 璁板綍锛涗笉鏀逛笟鍔¤鍒?
+### 瀹為檯淇敼
+
+- 瀹¤浠婂ぉ鎵€鏈?Actions锛氶櫎 invalid-rule audit 瀹氭椂杩愯澶栵紝鍏朵綑姣忔棩缁存姢涓?Pages 鎴愬姛銆?- 纭澶辫触 run `27913047570` 鐨勫璁″拰 Fusion 鏋勫缓姝ラ鎴愬姛锛屼粎鎻愪氦姝ラ澶辫触銆?- 鏍规嵁杩愯鏃跺簭涓庢彁浜ゅ巻鍙茬‘璁ゆ牴鍥狅細GitHub 灏嗕笉鍚?schedule 寤惰繜鍒板悓涓€鍒嗛挓锛屼袱涓?writer 浠庡悓涓€鎻愪氦鐢熸垚锛屽悗鎻愪氦鑰呭湪瀹夊叏 rebase 鏃堕亣鍒扮敓鎴愭枃浠跺啿绐併€?- 鏂板 `tools/acquire_automation_lock.sh` 鍜?`tools/release_automation_lock.sh`銆?- 9 涓啓鍏ュ瀷 workflow 鍦ㄧ敓鎴愬墠鑾峰彇杩滅閿併€佸揩杩涘埌鏈€鏂?main锛屽苟鍦ㄦ墍鏈夌粨鏋滀笅閲婃斁閿併€?- 鏇存柊浠撳簱楠岃瘉鍜屽仴搴锋憳瑕侊紝瑕佹眰姣忎釜 writer 鍚屾椂鍏峰閿佽幏鍙栥€佹棤鏉′欢閲婃斁銆佹樉寮忚矾寰勬彁浜や笌瀹夊叏 rebase銆?- 澧炲姞鐪熷疄瑁?Git 闆嗘垚娴嬭瘯锛岄獙璇佺浜屼釜 writer 琚樆姝㈠苟鍦ㄩ攣閲婃斁鍚庡揩杩涚户缁€?- 鍒濈増璺緞鏇炬斁鍦?`scripts/`锛涜嚜妫€鍙戠幇 Windows 浼氫笌 `Scripts/` 澶у皬鍐欐姌鍙狅紝鎻愪氦鍒?Linux 浼氭壘涓嶅埌鏂囦欢锛屽洜姝ゅ湪鎻愪氦鍓嶇Щ鑷?`tools/` 骞堕噸鏂板畬鎴愰獙璇併€?
+### 娴嬭瘯缁撴灉
+
+- Shell 璇硶锛? 涓淮鎶よ剼鏈€氳繃 `bash -n`銆?- 10 涓?workflow YAML 鏂囦欢閫氳繃 PyYAML 瑙ｆ瀽銆?- 13 椤硅嚜鍔ㄥ寲涓撻」娴嬭瘯閫氳繃銆?- 瀹屾暣璐ㄩ噺闂ㄧ閫氳繃锛?1 椤规祴璇曘€?98 涓?App 婧愩€?98 涓?Release 妯″潡銆? empty銆?806 涓簮鏉＄洰銆?- Fusion锛?097 琛岋紱Android锛?41 鏉′富瑙勫垯锛?7 涓繙绋嬫簮 0 warning銆?- 浠撳簱鍋ュ悍锛? blocking issue锛涙姤鍛婃柊椴滃害锛?4 fresh銆? stale/missing銆?- 涓変釜鍏紑 Fusion 鍏ュ彛鍐呭涓€鑷淬€?
+### 椋庨櫓
+
+- 鏈涓嶄慨鏀?Rules銆丄pp 婧愩€丮ITM銆佺櫥褰曘€佹敮浠樸€侀摱琛屻€侀獙璇佺爜銆佹挱鏀炬垨 CDN 绛栫暐銆?- 杩滅閿?stale threshold 涓?1 灏忔椂锛涜嫢鏈潵鍗曚釜浠诲姟鎺ヨ繎鎴栬秴杩?1 灏忔椂锛屽簲鍏堣瘎浼拌秴鏃堕槇鍊笺€?- 浠嶉渶涓嬩竴娆?scheduled invalid-rule audit 浣滀负杩滅鏈€缁堢‘璁わ紝Issue #249 搴斿湪鎴愬姛鍚庤嚜鍔ㄥ叧闂€?
+### Self-Review
+
+- What was not good enough: 鍏堝墠鍙敤鎸?workflow 闅旂鐨?concurrency锛岃兘閬垮厤鍚屽悕浠诲姟浜掔浉鍙栨秷锛屽嵈娌℃湁瑕嗙洊涓嶅悓 workflow 琚?GitHub 寤惰繜鍒板悓涓€鏃跺埢鐨勫啓鍏ュ啿绐侊紱鍒濈増閿佽剼鏈矾寰勪篃蹇界暐浜?Windows 瀵?`Scripts/` / `scripts/` 鐨勫ぇ灏忓啓鎶樺彔銆?- What I changed to reduce that risk: 澧炲姞璺?workflow 鍘熷瓙杩滅閿併€佹墍鏈夋儏鍐典笅閲婃斁銆乻tale 鍥炴敹銆亀orkflow 濂戠害妫€鏌ャ€佺湡瀹?Git 骞跺彂娴嬭瘯锛屽苟鎶婅剼鏈Щ鍒版棤澶у皬鍐欐涔夌殑 `tools/`銆?- What I would check first next time: 鍏堢湅涓嬩竴娆?invalid-rule audit 鐨?Acquire/Release lock 姝ラ鍜?Issue #249 鐘舵€侊紝鍐嶇湅鍏朵粬 writer 鏄惁鏈夌瓑寰呴攣浣嗘渶缁堟垚鍔熺殑璁板綍銆?
+### 涓嬩竴姝?
+- 鎻愪氦骞舵帹閫佹湰娆¤嚜鍔ㄥ寲淇銆?- 妫€鏌ョ敱 push 瑙﹀彂鐨?Module Factory Build銆?- 绛夊緟鎴栨墜鍔ㄨЕ鍙?invalid-rule audit锛岀‘璁?Issue #249 鑷姩鍏抽棴銆?
+### 杩滅纭
+
+- 淇鎻愪氦锛歚e85254fa codex: serialize daily maintenance writers`銆?- Module Factory Build `27913770402`锛氭垚鍔燂紱杩愯鏃堕攣瀛樺湪锛孯elease 姝ラ鍚庨攣娑堝け銆?- invalid-rule audit 鎵嬪姩澶嶉獙 `27913813597`锛氭垚鍔燂紱杩愯鏃堕攣瀛樺湪锛岀粨鏉熷悗鏃犳畫鐣欓攣銆?- Pages 涓?Workflow failure issue watcher锛氭垚鍔熴€?- 鑷姩鏁呴殰 Issue #249锛氬凡鍏抽棴銆?- 鏈€缁堣繙绔敓鎴愭彁浜わ細`b07f6116 Daily audit and safe fusion repair`銆?
+## 2026-07-02 09:57 +08:00 - Automation governance repair
+
+### Task Summary
+
+Check whether recent repository changes broke automation, identify why jobs failed, and repair the failure without changing traffic rules.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Status: local branch was fast-forwarded to `origin/main`; generated outputs became dirty after local Builder and quality-gate runs.
+- Expected scope: governance validation, profile policy documentation, generated reports refreshed by validation, AI records.
+
+### Actual Changes
+
+- `scripts/validate_governance_extensions.py`: aligned profile-policy tokens with the current Fusion-only strategy.
+- `docs/PROFILE_POLICY.md`: rewrote the policy in readable Chinese and removed stale legacy gate wording.
+- Generated outputs and reports: refreshed by `Builder.py --release --check` and `quality_gate.py`.
+- AI records: updated state, handoff, tasks, decisions, risk log, and this worklog.
+
+### Commands Run
+
+```bash
+git status --short --branch
+git branch --show-current
+python scripts/validate_governance_extensions.py
+python -c "import pathlib, py_compile; files=list(pathlib.Path('scripts').glob('*.py'))+list(pathlib.Path('tools').glob('*.py'))+[pathlib.Path('Rewrite/Generator/Builder.py')]; [py_compile.compile(str(p), doraise=True) for p in files]; print('compiled', len(files), 'files')"
+python Rewrite/Generator/Builder.py --profile fusion --release --check
+python scripts/validate_repository.py
+python scripts/repository_health_check.py
+python scripts/quality_gate.py
+```
+
+### Validation Result
+
+- Governance validation passed.
+- Python compile passed for 56 files.
+- Builder release check passed with 398 App modules and 0 empty modules.
+- Repository validation passed.
+- Repository health check passed.
+- Full quality gate passed.
+- Automation status report shows required scheduled workflows are `ok`.
+
+### Risks
+
+- The latest remote push-validation failure predates this repair and must be rechecked after push.
+- One remote rule fetch showed a transient SSL EOF warning during one quality-gate run; it was a warning and did not block the gate.
+- No protected traffic policy was intentionally changed.
 
 ### Self-Review
 
-- What was not good enough: 旧门禁只验证 Fusion 成品，独立 App 模块可带着错误发布；首次扩展失效源审计时也需要评估请求规模。
-- What I changed to reduce that risk: 增加源/Release 双层阻断验证、转换单测、有限并发和高风险备份。
-- What I would check first next time: 先运行 App 源验证和 Builder，再检查 Actions 的 Module Factory Build 与 Upstream app module sync 实际结果。
+- What was not good enough: the governance validator still encoded old multi-profile expectations after the repository retired those artifacts.
+- What I changed to reduce that risk: validation now checks the active Fusion contract, and the profile policy doc was rewritten to match current release behavior.
+- What I would check first next time: run `Builder.py --profile fusion --release --check` before assuming a visible Actions failure is caused by traffic rules.
 
-### 下一步
+### Next Step
 
-- 提交并推送本次修改。
-- 观察远端 Module Factory Build、Upstream app module sync 和 Repository Health。
-- 只有出现真实 App 异常或日志证据时才调整具体流量规则。
-
-## 2026-06-21 07:24 - 质量门禁与自动发布加固
-
-### 本次任务
-
-继续对仓库做证据驱动的自检，修复可复现的自动化假绿和 workflow 并发写入风险，不改动 App 流量规则。
-
-### 开始前状态
-
-- 分支：`repair/upstream-app-sync`
-- 基线提交：`173a92eb`
-- git status 摘要：工作树干净
-- 预计修改范围：质量门禁、工作流提交逻辑、验证脚本、测试和 AI 记录
-
-### 实际修改
-
-- 修复 `quality_gate.py` 顺序：最后一次 profile 重建后再校验 bundle 语法、聚合一致性和运行时沙箱。
-- freshness 改为 `--strict`，阻断报告过期时 CI 必须失败。
-- 9 个维护 workflow 使用按 workflow/ref 隔离的 `module-maintenance-*` 并发锁。远程 #555 证明单一全局锁会取消较早的 pending 运行，因此不再共享一个固定 group。
-- 仅保留 `Module Factory Build` 的 push 验收；每日审计和计划更新只保留 schedule/manual 触发。
-- 重写 `commit_generated_changes.sh`：仅暂存显式路径，push 失败后 fetch + rebase + retry，冲突时停止而不覆盖。
-- 移除维护自动化中的 `git reset --hard` 和 `git add -A`。
-- 增加 freshness 顺序、workflow 契约和本地裸 Git 远端提交集成测试。
-- 修复 `workflow-failure-issue.yml` 的 shell heredoc 命令替换；Issue #248 中被清空的状态名和恢复命令现在由 Python 安全写入 Markdown。
-
-### 测试结果
-
-- 20 项单元/集成测试通过。
-- 10 个 workflow YAML 全部可解析。
-- `bash -n scripts/commit_generated_changes.sh` 通过。
-- `python Rewrite/Generator/Builder.py --profile fusion --release --check` 通过。
-- `python scripts/quality_gate.py` 通过，并且使用严格 freshness。
-- 398 个 App 模块、0 empty、17 个远程源 0 warning。
-
-### 风险
-
-- 未修改 Rules、App 源、MITM、登录、支付、银行、验证码、视频或 CDN 策略。
-- 不能用静态语法检查代替全部 App 真机联网验证。
-- 新提交助手遇到 rebase 冲突会主动失败，交给故障 issue 流程处理，不会自动覆盖。
-
-### Self-Review
-
-- What was not good enough: 上一次只看到质量门禁返回成功，没有立即对照 freshness 报告的阻断数；第一版并发修复又误用了全局 group，直到远程 #555 被取消才证明该设计不成立。
-- What I changed to reduce that risk: 把报告语义、进程退出码、隔离并发锁、单一 push 验收和提交助手都写成自动回归测试。
-- What I would check first next time: 先看远端 Module Factory Build 是否绿色，再检查定时工作流是否在共享并发锁下顺序运行。
-
-### 下一步
-
-- 审查最终 diff，刷新健康与 freshness 报告。
-- 提交并推送后核对 GitHub Actions。
-## 2026-06-22 02:33 - 每日工作流跨任务写入冲突修复
-
-### 本次任务
-
-检查 2026-06-22 的每日工作失败，修复真实故障并确保不同维护 workflow 不再并行发布旧快照。
-
-### 开始前状态
-
-- 分支：`repair/upstream-app-sync`
-- 基线提交：`05ba8813`
-- 同步远端后基线：`376713d4`
-- git status 摘要：开始时工作树干净，本地落后远端 4 个自动维护提交，已用 fast-forward 同步
-- 预计修改范围：workflow、自动化锁、验证脚本、回归测试、AI 记录；不改业务规则
-
-### 实际修改
-
-- 审计今天所有 Actions：除 invalid-rule audit 定时运行外，其余每日维护与 Pages 成功。
-- 确认失败 run `27913047570` 的审计和 Fusion 构建步骤成功，仅提交步骤失败。
-- 根据运行时序与提交历史确认根因：GitHub 将不同 schedule 延迟到同一分钟，两个 writer 从同一提交生成，后提交者在安全 rebase 时遇到生成文件冲突。
-- 新增 `tools/acquire_automation_lock.sh` 和 `tools/release_automation_lock.sh`。
-- 9 个写入型 workflow 在生成前获取远端锁、快进到最新 main，并在所有结果下释放锁。
-- 更新仓库验证和健康摘要，要求每个 writer 同时具备锁获取、无条件释放、显式路径提交与安全 rebase。
-- 增加真实裸 Git 集成测试，验证第二个 writer 被阻止并在锁释放后快进继续。
-- 初版路径曾放在 `scripts/`；自检发现 Windows 会与 `Scripts/` 大小写折叠，提交到 Linux 会找不到文件，因此在提交前移至 `tools/` 并重新完成验证。
-
-### 测试结果
-
-- Shell 语法：3 个维护脚本通过 `bash -n`。
-- 10 个 workflow YAML 文件通过 PyYAML 解析。
-- 13 项自动化专项测试通过。
-- 完整质量门禁通过：21 项测试、398 个 App 源、398 个 Release 模块、0 empty、3806 个源条目。
-- Fusion：6097 行；Android：941 条主规则；17 个远程源 0 warning。
-- 仓库健康：0 blocking issue；报告新鲜度：14 fresh、0 stale/missing。
-- 三个公开 Fusion 入口内容一致。
-
-### 风险
-
-- 本次不修改 Rules、App 源、MITM、登录、支付、银行、验证码、播放或 CDN 策略。
-- 远端锁 stale threshold 为 1 小时；若未来单个任务接近或超过 1 小时，应先评估超时阈值。
-- 仍需下一次 scheduled invalid-rule audit 作为远端最终确认，Issue #249 应在成功后自动关闭。
-
-### Self-Review
-
-- What was not good enough: 先前只用按 workflow 隔离的 concurrency，能避免同名任务互相取消，却没有覆盖不同 workflow 被 GitHub 延迟到同一时刻的写入冲突；初版锁脚本路径也忽略了 Windows 对 `Scripts/` / `scripts/` 的大小写折叠。
-- What I changed to reduce that risk: 增加跨 workflow 原子远端锁、所有情况下释放、stale 回收、workflow 契约检查、真实 Git 并发测试，并把脚本移到无大小写歧义的 `tools/`。
-- What I would check first next time: 先看下一次 invalid-rule audit 的 Acquire/Release lock 步骤和 Issue #249 状态，再看其他 writer 是否有等待锁但最终成功的记录。
-
-### 下一步
-
-- 提交并推送本次自动化修复。
-- 检查由 push 触发的 Module Factory Build。
-- 等待或手动触发 invalid-rule audit，确认 Issue #249 自动关闭。
-
-### 远端确认
-
-- 修复提交：`e85254fa codex: serialize daily maintenance writers`。
-- Module Factory Build `27913770402`：成功；运行时锁存在，Release 步骤后锁消失。
-- invalid-rule audit 手动复验 `27913813597`：成功；运行时锁存在，结束后无残留锁。
-- Pages 与 Workflow failure issue watcher：成功。
-- 自动故障 Issue #249：已关闭。
-- 最终远端生成提交：`b07f6116 Daily audit and safe fusion repair`。
+- Commit and push this repair.
+- Confirm the next `Module Factory Build` run is green.

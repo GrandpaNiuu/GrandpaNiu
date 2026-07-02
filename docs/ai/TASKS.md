@@ -1,6 +1,27 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-06-26 13:11 +0800
+Last updated: 2026-07-02 09:57 +08:00
+
+## Current Automation Repair Task
+
+Status: fixed locally; pending commit, push, and remote push-validation confirmation.
+
+Scope:
+
+- Align governance validation with the current Fusion-only policy.
+- Remove stale policy wording that made `quality_gate.py` fail after old multi-profile artifacts were retired.
+- Keep traffic rules, App sources, Android, Windows, and public module entries unchanged except for generated outputs refreshed by the Builder.
+
+Validation:
+
+- `python Rewrite/Generator/Builder.py --profile fusion --release --check` passed.
+- `python scripts/quality_gate.py` passed.
+- `python scripts/validate_repository.py` passed.
+- `python scripts/repository_health_check.py` passed.
+
+Next check:
+
+- After push, confirm the new `Module Factory Build` run is green.
 
 ## Active Rules For Task Handling
 

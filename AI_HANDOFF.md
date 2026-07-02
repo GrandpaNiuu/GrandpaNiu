@@ -1,6 +1,15 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-06-26 13:11 +0800
+Last updated: 2026-07-02 09:57 +08:00
+
+## 2026-07-02 Automation Repair Handoff
+
+- Reproduced the current automation failure locally with `python Rewrite/Generator/Builder.py --profile fusion --release --check`.
+- Fixed stale Fusion governance validation in `scripts/validate_governance_extensions.py`.
+- Rewrote `docs/PROFILE_POLICY.md` to match the current Fusion-only release strategy and generated-output boundaries.
+- Full local quality gate now passes.
+- Required scheduled workflows are reported `ok` in `reports/automation_status_report.md`; the latest push-validation failure predates this repair and should be rechecked after push.
+- No traffic-policy source files were intentionally changed.
 
 ## What This Project Is
 
