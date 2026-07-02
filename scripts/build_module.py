@@ -66,6 +66,8 @@ RULE_PREFIXES = {
     "RULE-SET",
     "URL-REGEX",
 }
+RULE_POLICIES_TO_STRIP = {"DIRECT", "PROXY"}
+RULE_POLICY_TOKENS = {"DIRECT", "PROXY", "REJECT", "REJECT-DROP", "REJECT-TINYGIF", "REJECT-IMG"}
 REWRITE_ACTIONS = (
     "reject",
     "reject-200",
@@ -514,6 +516,30 @@ def merge_lines(blocks: Iterable[str]) -> str:
             merged.append(line.rstrip())
             last_blank = False
     return "\n".join(merged).strip() + "\n"
+
+
+def rule_policy(line: str) -> str | None:
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return None
+    prefix = stripped.split(",", 1)[0]
+    if prefix not in RULE_PREFIXES:
+        return None
+    parts = stripped.split(",")
+    for part in parts[2:]:
+        token = part.strip().upper()
+        if token in RULE_POLICY_TOKENS:
+            return token
+    return None
+
+
+def strip_rule_policies(body: str, policies: set[str]) -> str:
+    lines: list[str] = []
+    for raw in body.splitlines():
+        if rule_policy(raw) in policies:
+            continue
+        lines.append(raw)
+    return "\n".join(lines).strip() + ("\n" if lines else "")
 
 
 def split_script_fields(value: str) -> list[str]:
@@ -1196,7 +1222,10 @@ def build_rules(profile: configparser.ConfigParser) -> str:
         blocks.append(remote_rule_lines())
     if as_bool(profile, "include", "source_rule_compat", True):
         blocks.append(read_text(source_file("Rule"), required=False))
-    return merge_lines(blocks)
+    rules = merge_lines(blocks)
+    if as_bool(profile, "safety", "strip_direct_proxy_rules", False):
+        rules = strip_rule_policies(rules, RULE_POLICIES_TO_STRIP)
+    return rules
 
 
 def build_scripts(profile: configparser.ConfigParser) -> str:

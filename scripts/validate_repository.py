@@ -108,7 +108,21 @@ EXPECTED_WORKFLOW_CRONS = {
 
 ALLOWED_REMOTE_TYPES = {"RULE-SET", "DOMAIN-SET"}
 ALLOWED_POLICIES = {"REJECT", "REJECT-DROP", "DIRECT"}
+DISALLOWED_MAIN_RULE_POLICIES = {"DIRECT", "PROXY"}
+RULE_PREFIXES = {
+    "AND",
+    "DOMAIN",
+    "DOMAIN-KEYWORD",
+    "DOMAIN-SET",
+    "DOMAIN-SUFFIX",
+    "IP-CIDR",
+    "IP-CIDR6",
+    "RULE-SET",
+    "URL-REGEX",
+}
+RULE_POLICY_TOKENS = {"DIRECT", "PROXY", "REJECT", "REJECT-DROP", "REJECT-TINYGIF", "REJECT-IMG"}
 BLOCKED_URL_TOKENS = ("ghproxy", "mirror", "tinyurl", "bit.ly", "t.co/", "shorturl")
+SECTION_RE = re.compile(r"^\[([^\]]+)\]\s*$")
 SCRIPT_NAME_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=")
 HOSTNAME_RE = re.compile(r"^\s*hostname\s*=\s*(.+)$")
 MD_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
@@ -213,6 +227,34 @@ def active_lines(text: str):
             yield stripped
 
 
+def split_sections(text: str) -> dict[str, list[str]]:
+    sections: dict[str, list[str]] = {}
+    current = "META"
+    sections[current] = []
+    for line in text.splitlines():
+        match = SECTION_RE.match(line.strip())
+        if match:
+            current = match.group(1)
+            sections.setdefault(current, [])
+            continue
+        sections.setdefault(current, []).append(line.rstrip())
+    return sections
+
+
+def rule_policy(line: str) -> str | None:
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#"):
+        return None
+    parts = stripped.split(",")
+    if parts[0] not in RULE_PREFIXES:
+        return None
+    for part in parts[2:]:
+        token = part.strip().upper()
+        if token in RULE_POLICY_TOKENS:
+            return token
+    return None
+
+
 def workflow_has_fusion_build(text: str) -> bool:
     """Accept shell commands and Python subprocess list syntax."""
     normalized = re.sub(r"\s+", " ", text)
@@ -274,6 +316,11 @@ def validate_root_release() -> None:
         missing = sorted(unresolved - declared_argument_names(root_text))
         if missing:
             fail("root module contains undeclared argument placeholders: " + ", ".join(missing))
+    sections = split_sections(root_text)
+    for line in active_lines("\n".join(sections.get("Rule", []))):
+        policy = rule_policy(line)
+        if policy in DISALLOWED_MAIN_RULE_POLICIES:
+            fail(f"root Fusion [Rule] must not contain {policy} routing/protection rule: {line}")
     for line in active_lines(root_text):
         upper = line.upper()
         lowered = line.lower()

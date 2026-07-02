@@ -1,6 +1,34 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-02 12:08 +08:00
+Last updated: 2026-07-02 21:44 +08:00
+
+## 2026-07-02 Main Fusion Routing Strip Risk Note
+
+Risk level: high runtime stability risk, intentional owner-approved policy change.
+
+Owner confirmation:
+
+- Remove `DIRECT` and `PROXY` rules from the main Fusion module.
+- Keep ad-blocking rules.
+- Do not change Android or Windows for this pass.
+
+Changed behavior:
+
+- The generated main iOS Fusion `[Rule]` no longer contains `DIRECT` or `PROXY` policy lines.
+- Source protection files remain in the repository for rollback and non-iOS projections.
+
+Potential runtime impact:
+
+- Login and OAuth pages may rely on previously protected routing.
+- Banking, payment, order, and captcha endpoints may no longer be explicitly protected by module rules.
+- Image/CDN and video playback domains may no longer be explicitly direct-protected in the main iOS module.
+- Google, YouTube, Telegram, Instagram, Discord, Reddit, Netflix, and similar services no longer receive explicit `PROXY` policy from the module.
+
+Mitigation:
+
+- `scripts/validate_repository.py` now blocks accidental reintroduction of `DIRECT` or `PROXY` in the main Fusion `[Rule]`.
+- If real App breakage appears, first consider disabling `strip_direct_proxy_rules` in `Rewrite/Profiles/fusion.conf` or adding a narrow output exception instead of broad source deletion.
+- Android and Windows outputs remain available for their existing routing projections.
 
 ## 2026-07-02 Automation Gap Hardening Risk Note
 

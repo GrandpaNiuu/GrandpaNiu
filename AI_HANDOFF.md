@@ -1,6 +1,24 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-02 21:21 +08:00
+Last updated: 2026-07-02 21:44 +08:00
+
+## 2026-07-02 Main Fusion Routing Strip Handoff
+
+- Owner explicitly confirmed: remove `DIRECT` and `PROXY` rules from the main Fusion module, keep ad-blocking rules, and do not change Android/Windows.
+- Implementation is source-first:
+  - `Rewrite/Profiles/fusion.conf`: `strip_direct_proxy_rules = true`
+  - `scripts/build_module.py`: strips `DIRECT` / `PROXY` rule policies from generated Fusion `[Rule]`
+  - `scripts/validate_repository.py`: fails if generated root Fusion `[Rule]` contains `DIRECT` or `PROXY`
+- Source protection files are not deleted. Examples that remain as sources:
+  - `Rules/direct.list`
+  - `Rules/protect-login.list`
+  - `Rules/protect-payment.list`
+  - `Rules/protect-video.list`
+  - `Rules/protect-cdn.list`
+  - `Rewrite/Sources/Misc/*`
+- Android and Windows generated outputs were intentionally not touched by this policy change.
+- Current iOS public entries have no `DIRECT` or `PROXY` policy in `[Rule]`.
+- Risk boundary: this can reduce stability for login, payment, banking, video playback, image/CDN loading, HTTPDNS, and overseas services. If runtime breakage appears, restore by disabling `strip_direct_proxy_rules` or adding a narrower generated-output exception.
 
 ## 2026-07-02 Automation Gap Closeout Handoff
 

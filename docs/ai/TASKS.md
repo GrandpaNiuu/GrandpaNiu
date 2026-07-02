@@ -1,6 +1,33 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-02 21:21 +08:00
+Last updated: 2026-07-02 21:44 +08:00
+
+## Current Main Fusion Routing Strip Task
+
+Status: implemented locally and validated; remote Actions confirmation remains the next check after publishing.
+
+Scope:
+
+- Remove `DIRECT` and `PROXY` rule policies from the generated main iOS Fusion module only.
+- Keep source protection files intact for rollback and non-iOS projections.
+- Keep Android and Windows unchanged by policy.
+- Preserve `REJECT`, rewrite, script, Map Local, and MITM ad-cleaning behavior.
+
+Validation:
+
+- `python -m py_compile scripts\build_module.py scripts\validate_repository.py` passed.
+- `python scripts\build_module.py --build --profile fusion` passed.
+- `python scripts\factory_finalize.py --sync-root` passed.
+- `python scripts\build_release_aliases.py --config Rewrite\Generator\Generate.conf` passed.
+- `python scripts\validate_module_integrity.py` passed.
+- `python scripts\validate_repository.py` passed.
+- `python scripts\repository_health_check.py` passed.
+- `python scripts\check_report_freshness.py --strict` passed.
+- Main iOS public entries have 0 `DIRECT` and 0 `PROXY` policies in `[Rule]`.
+
+Next check:
+
+- Confirm the next `Module Factory Build` run is green after publishing.
 
 ## Current Automation Gap Hardening Task
 

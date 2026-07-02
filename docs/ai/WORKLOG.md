@@ -750,3 +750,85 @@ GitHub CLI timed out locally, so the final status was confirmed through the GitH
 
 - Commit and push this AI-record closeout.
 - For future repository work, start from the synchronized `origin/main` state.
+
+## 2026-07-02 21:44 +08:00 - Main Fusion routing strip
+
+### Task Summary
+
+Owner confirmed removing `DIRECT` and `PROXY` routing/protection rules from the main iOS Fusion module while keeping ad-blocking rules and leaving Android/Windows unchanged.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Status: clean and synchronized with `origin/main`.
+- Expected scope: Fusion profile, main iOS module build logic, validation guard, generated iOS module outputs, release reports, AI records.
+
+### Actual Changes
+
+- `Rewrite/Profiles/fusion.conf`: enabled `strip_direct_proxy_rules = true`.
+- `scripts/build_module.py`: added output filtering for `DIRECT` and `PROXY` rule policies when the profile flag is enabled.
+- `scripts/validate_repository.py`: added a guard that rejects `DIRECT` or `PROXY` policies in the generated main Fusion `[Rule]`.
+- Regenerated and synchronized:
+  - `Ronghemokuai.sgmodule`
+  - `Release/Ronghemokuai.sgmodule`
+  - `Release/Module.sgmodule`
+  - release reports and checksums
+- Android and Windows outputs were not changed.
+
+### Commands Run
+
+```bash
+git status --short --branch
+git branch --show-current
+python -m py_compile scripts\build_module.py scripts\validate_repository.py
+python scripts\build_module.py --build --profile fusion
+python scripts\factory_finalize.py --sync-root
+python scripts\build_release_aliases.py --config Rewrite\Generator\Generate.conf
+python scripts\validate_module_integrity.py
+python scripts\validate_repository.py
+python scripts\repository_health_check.py
+python scripts\build_release_variants.py
+python scripts\build_checksums.py
+python scripts\build_release_summary.py
+python tools\generate_automation_gap_report.py
+python tools\generate_automated_quality_evidence.py
+python scripts\validate_profiles.py
+python scripts\generate_app_status_matrix.py
+python tools\validate_script_aggregation.py
+python tools\test_script_bundle_sandbox.py
+python tools\generate_mitm_scope_report.py
+python scripts\check_report_freshness.py --strict
+```
+
+### Validation Result
+
+- Python compile passed.
+- Module integrity passed.
+- Repository validation passed.
+- Repository health passed.
+- Report freshness strict check passed.
+- Automation gap check passed with 0 blocking gaps.
+- Final main iOS public entries:
+  - `REJECT`: 1148
+  - `REJECT-IMG`: 7
+  - `REJECT-TINYGIF`: 7
+  - `REJECT-DROP`: 17
+  - `DIRECT`: 0
+  - `PROXY`: 0
+
+### Risks
+
+- This is an owner-approved high-risk runtime policy change.
+- Removing `DIRECT` and `PROXY` can affect login, payment, banking, captcha, video playback, image/CDN loading, HTTPDNS behavior, and overseas services.
+- Static validation proves syntax and output policy only; it cannot prove every App still behaves correctly.
+
+### Self-Review
+
+- What was not good enough: the previous module mixed ad blocking and routing protection in the public iOS `[Rule]`, which no longer matched the owner's desired module shape.
+- What I changed to reduce that risk: added a profile flag and validation guard instead of deleting source protection files, so rollback is one config change.
+- What I would check first next time: if a user reports no network, login failure, payment failure, missing images, or video playback failure, inspect whether this strip policy removed the required protection route.
+
+### Next Step
+
+- Publish this policy change.
+- Confirm the next `Module Factory Build` run is green.

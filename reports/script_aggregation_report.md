@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-07-02T13:23:47Z
+- generated: 2026-07-02T13:57:07Z
 - enabled: True
 - input script entries: 230
 - output script entries: 180
@@ -70,7 +70,9 @@
 - None
 
 ## Cache Fallbacks
-- None
+- `https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/blued.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/keep.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xiaohongshu.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
 
 ## Preserved Reasons
 - preserved: binary body: 2

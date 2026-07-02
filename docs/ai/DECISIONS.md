@@ -1,8 +1,18 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-02 12:08 +08:00
+Last updated: 2026-07-02 21:44 +08:00
 
 ## Decisions
+
+### 2026-07-02 - Main Fusion Output Strips DIRECT And PROXY Rules
+
+The main iOS Fusion module now strips `DIRECT` and `PROXY` policies from its generated `[Rule]` section when `Rewrite/Profiles/fusion.conf` has `strip_direct_proxy_rules = true`.
+
+Source files are preserved. Android and Windows outputs are not part of this policy change.
+
+Reason: the owner wants the public iOS Fusion module to avoid embedded routing/protection/proxy split rules and keep only ad-cleaning rule policies in the main module output.
+
+Validation must keep blocking future `DIRECT` or `PROXY` policies in the generated root Fusion `[Rule]` section.
 
 ### 2026-07-02 - Automation Gap Report Is A Blocking Contract
 

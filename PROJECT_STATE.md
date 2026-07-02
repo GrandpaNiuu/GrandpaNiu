@@ -1,6 +1,30 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-02 21:21 +08:00
+Last updated: 2026-07-02 21:44 +08:00
+
+## 2026-07-02 Main Fusion Routing Strip Snapshot
+
+- Owner confirmed removing `DIRECT` and `PROXY` routing/protection rules from the main iOS Fusion module only.
+- `Rewrite/Profiles/fusion.conf` now sets `strip_direct_proxy_rules = true`.
+- `scripts/build_module.py` keeps source files intact, but strips `DIRECT` and `PROXY` rule policies from the generated main Fusion `[Rule]` output.
+- `scripts/validate_repository.py` now blocks future `DIRECT` or `PROXY` policies inside the generated main Fusion `[Rule]` section.
+- Android and Windows outputs were intentionally not changed by policy.
+- Generated iOS public entries are synchronized:
+  - `Ronghemokuai.sgmodule`
+  - `Release/Ronghemokuai.sgmodule`
+  - `Release/Module.sgmodule`
+- Final main Fusion rule policy counts:
+  - `REJECT`: 1148
+  - `REJECT-IMG`: 7
+  - `REJECT-TINYGIF`: 7
+  - `REJECT-DROP`: 17
+  - `DIRECT`: 0
+  - `PROXY`: 0
+- Validation passed:
+  - `python scripts/validate_module_integrity.py`
+  - `python scripts/validate_repository.py`
+  - `python scripts/repository_health_check.py`
+  - `python scripts/check_report_freshness.py --strict`
 
 ## 2026-07-02 Automation Gap Release Confirmation
 

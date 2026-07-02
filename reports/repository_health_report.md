@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-07-02 21:24:06 +0800
+- Generated at: 2026-07-02 21:57:52 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Release alias identical: yes
@@ -13,7 +13,7 @@
 
 ## Section Counts
 
-- [Rule]: 1360
+- [Rule]: 1200
 - [URL Rewrite]: 2689
 - [Header Rewrite]: 2
 - [Body Rewrite]: 1648
