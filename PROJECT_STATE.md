@@ -1,129 +1,204 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-02 22:58 +08:00
+Last updated: 2026-07-03 00:49 +08:00
 
-## 2026-07-02 Fusion Rewrite Compaction Snapshot
+## Project Purpose
 
-- Main iOS Fusion module was compacted from `5953` lines to `2775` lines.
-- The compaction is source/generator driven, not hand-edited in `Release/`.
-- `Rewrite/Profiles/fusion.conf` enables `compact_rewrite_sections = true`.
-- `scripts/build_module.py` now performs conservative equivalent compaction:
-  - `[URL Rewrite]`: only combines pure `- reject*` lines with identical action suffixes.
-  - `[Body Rewrite]`: only combines lines with the same verb and exact same body operation.
-  - `[Map Local]`: only combines lines with identical embedded response payload and headers.
-- Current generated section sizes:
-  - `[Rule]`: 1202 active lines.
-  - `[URL Rewrite]`: 40 active lines.
-  - `[Body Rewrite]`: 1434 active lines.
-  - `[Map Local]`: 37 active lines.
-  - `[Script]`: 44 active lines.
-- `scripts/validate_module_integrity.py` now compiles generated rewrite regexes so malformed combined regexes fail validation.
-- `tests/test_module_compaction.py` covers URL Rewrite suffix preservation, Body Rewrite operation grouping, and Map Local response grouping.
-- A source typo in `Rewrite/Sources/Apps/kfc.conf` was fixed from `res\.kfc\.com.\cn` to `res\.kfc\.com\.cn`.
-- Validation passed:
-  - `python -m unittest tests.test_module_compaction`
-  - `python Rewrite/Generator/Builder.py --profile fusion --release --check`
-  - `python scripts/quality_gate.py`
+GrandpaNiu is a source-first rule and module factory for advertising cleanup and routing outputs.
 
-## 2026-07-02 Compact China / Overseas Network Split Snapshot
+It publishes:
 
-- Owner reported real network errors after the main Fusion module removed all `DIRECT` and `PROXY` routing policies.
-- The main iOS Fusion module now keeps ad-blocking rules first and appends one compact network-management tail:
+- iOS Shadowrocket / Surge compatible Fusion module output.
+- Android rule outputs for Mihomo / Clash Meta, sing-box, AdGuard, and v2rayNG.
+- Windows v2rayN custom routing output.
+- Per-App release modules.
+- Web catalog and GitHub Pages entry files.
+- Governance, freshness, risk, coverage, and automation reports.
+
+Treat this repository as high risk. Small rule, rewrite, MITM, script, Android, Windows, or workflow changes can affect login, payment, captcha, video playback, images/CDN, or normal app networking.
+
+## Current Public Entries
+
+Primary iOS public entries:
+
+- `Ronghemokuai.sgmodule`
+- `Release/Ronghemokuai.sgmodule`
+- `Release/Module.sgmodule`
+
+Android and Windows outputs remain generated projections:
+
+- `Android/`
+- `Release/Android/`
+- `Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json`
+
+## Version Strategy
+
+- iOS uses one public Fusion module.
+- Stable / Stable Plus / Lite / Full are deprecated legacy references only.
+- Do not reintroduce multi-version public routes without explicit owner approval.
+- Generated channel aliases under `Release/Stable`, `Release/Beta`, and `Release/Canary` are managed by the Builder and are not a return to old user-facing multi-version selection.
+
+## Editable Source Layers
+
+Prefer source-first edits under:
+
+- `Rules/`
+- `Scripts/`
+- `Rewrite/Sources/`
+- `Rewrite/Remotes/`
+- `Rewrite/Profiles/fusion.conf`
+- `Android/`
+- `Windows/v2rayN/`
+- `tools/`
+- `.github/workflows/`
+
+Do not directly hand-edit generated outputs unless the source or generator path is understood.
+
+## Generated Layers
+
+Generated or mostly generated outputs include:
+
+- `Ronghemokuai.sgmodule`
+- `Release/`
+- `Web/`
+- `reports/`
+- `Scripts/generated/`
+
+Use the Builder or quality gate to refresh these.
+
+## Build Commands
+
+Preferred full release build:
+
+```bash
+python Rewrite/Generator/Builder.py --profile fusion --release
+```
+
+Preferred full release build plus configured checks:
+
+```bash
+python Rewrite/Generator/Builder.py --profile fusion --release --check
+```
+
+Full quality gate:
+
+```bash
+python scripts/quality_gate.py
+```
+
+Important focused checks:
+
+```bash
+python scripts/validate_module_integrity.py
+python scripts/validate_app_sources.py
+python scripts/validate_repository.py
+python scripts/repository_health_check.py
+python scripts/check_report_freshness.py --strict
+```
+
+## Current Stable State
+
+As of 2026-07-03:
+
+- Branch: `repair/upstream-app-sync`, tracking `origin/main`.
+- Latest synchronized commit before this pass: `b2606a4f Build module factory outputs [skip ci]`.
+- Main iOS Fusion module: `2775` lines.
+- App source files: `398`.
+- Release App modules: `398`.
+- Empty App modules: `0`.
+- Aggregated script routes: `52`.
+- Main Fusion final routing tail:
   - `GEOIP,CN,DIRECT`
   - `FINAL,PROXY`
-- `Rewrite/Profiles/fusion.conf` keeps `strip_direct_proxy_rules = true` to strip old scattered route/protection rules, then enables `compact_network_split = true` to append the centralized split.
-- This keeps the main module manageable: no restored bulk protection lists, only one China-direct rule and one overseas-proxy fallback.
-- Generated iOS public entries are synchronized:
+- Main iOS public entries are synchronized by the Builder:
   - `Ronghemokuai.sgmodule`
   - `Release/Ronghemokuai.sgmodule`
   - `Release/Module.sgmodule`
-- Final main Fusion rule policy counts:
-  - `REJECT`: 1148
-  - `REJECT-IMG`: 7
-  - `REJECT-TINYGIF`: 7
-  - `REJECT-DROP`: 17
-  - `DIRECT`: 1
-  - `PROXY`: 1
-- Validation now requires the only managed routing rules in the main Fusion `[Rule]` section to be exactly `GEOIP,CN,DIRECT` and `FINAL,PROXY`, and requires them to be the final two active rules.
-- Validation passed:
-  - `python scripts/validate_module_integrity.py`
-  - `python scripts/validate_app_sources.py`
-  - `python scripts/validate_repository.py`
-  - `python scripts/repository_health_check.py`
-  - `python scripts/check_report_freshness.py --strict`
 
-## 2026-07-02 Main Fusion Routing Strip Snapshot
+## Recent Validation
 
-- Owner confirmed removing `DIRECT` and `PROXY` routing/protection rules from the main iOS Fusion module only.
-- `Rewrite/Profiles/fusion.conf` now sets `strip_direct_proxy_rules = true`.
-- `scripts/build_module.py` keeps source files intact, but strips `DIRECT` and `PROXY` rule policies from the generated main Fusion `[Rule]` output.
-- `scripts/validate_repository.py` now blocks future `DIRECT` or `PROXY` policies inside the generated main Fusion `[Rule]` section.
-- Android and Windows outputs were intentionally not changed by policy.
-- Generated iOS public entries are synchronized:
-  - `Ronghemokuai.sgmodule`
-  - `Release/Ronghemokuai.sgmodule`
-  - `Release/Module.sgmodule`
-- Final main Fusion rule policy counts:
-  - `REJECT`: 1148
-  - `REJECT-IMG`: 7
-  - `REJECT-TINYGIF`: 7
-  - `REJECT-DROP`: 17
-  - `DIRECT`: 0
-  - `PROXY`: 0
-- Validation passed:
-  - `python scripts/validate_module_integrity.py`
-  - `python scripts/validate_repository.py`
-  - `python scripts/repository_health_check.py`
-  - `python scripts/check_report_freshness.py --strict`
+The 2026-07-03 full local health refresh passed:
 
-## 2026-07-02 Automation Gap Release Confirmation
+```bash
+python -c "import compileall, sys; ok=True; ok &= compileall.compile_dir('scripts', quiet=1); ok &= compileall.compile_dir('tools', quiet=1); ok &= compileall.compile_file('Rewrite/Generator/Builder.py', quiet=1); sys.exit(0 if ok else 1)"
+node --check Scripts/app-cleaner.js
+node --check Scripts/generated/fusion-script-bundle.js
+python -m unittest discover -s tests
+python tools/validate_script_aggregation.py
+python tools/test_script_bundle_sandbox.py
+python scripts/validate_module_integrity.py
+python scripts/validate_app_sources.py
+python Rewrite/Generator/Builder.py --profile fusion --release --check
+python scripts/validate_repository.py
+python scripts/repository_health_check.py
+python scripts/validate_profiles.py
+python scripts/validate_remote_rule_syntax.py
+python scripts/validate_governance_extensions.py
+python scripts/quality_gate.py
+```
 
-- Local branch was fast-forwarded to `origin/main` at `5d80bf41 Build module factory outputs [skip ci]`.
-- `Module Factory Build` run `28565310634` was confirmed green through the GitHub Actions job API:
-  - job `build`: `completed / success`
-  - quality gate step: `success`
-  - generated-file commit step: `success`
-  - cross-workflow lock release step: `success`
-- `reports/automation_gap_report.md` on `origin/main` reports `Blocking gaps: 0`.
-- `reports/repository_health_report.md` on `origin/main` reports `Blocking issues: 0`.
-- This was a documentation-only closeout after local sync and remote Actions confirmation.
-- No rules, App sources, MITM scopes, scripts, Android routing policy, Windows routing policy, workflows, or generated Release outputs were edited by this closeout.
+`python scripts/check_report_freshness.py --strict` failed immediately after a standalone Builder run because `app_status_matrix` and `automation_gap` had not yet been refreshed in quality-gate order. The full `python scripts/quality_gate.py` run refreshed them and passed strict freshness.
 
-## 2026-07-02 Automation Gap Hardening Snapshot
+Local GitHub API access failed during:
 
-- Added `tools/generate_automation_gap_report.py` as a blocking automation coverage check.
-- The new report verifies:
-  - Fusion public entries are byte-identical.
-  - `Rewrite/Sources/Apps/*.conf` and `Release/Modules/*.sgmodule` counts match.
-  - Android source/release branch manifests stay aligned.
-  - Windows v2rayN routing tail rules remain present.
-  - Scheduled and writer workflows keep locks, explicit staging, and rebase retry wiring.
-  - `quality_gate.py` includes the required automation checks.
-  - script aggregation bundle, manifest, and cache exist and are parseable.
-- `reports/automation_gap_report.md` is now part of Builder `--check`, the full quality gate, freshness checks, repository validation, repository health, and automated evidence.
-- The owner explicitly excluded upstream replacement scoring and App feedback ingestion from this pass; the report records both as intentional non-CI boundaries.
-- No traffic rules, MITM scopes, App source rules, Android routing policy, Windows routing policy, or public module entry names were intentionally changed.
-- Local validation passed:
-  - `python Rewrite/Generator/Builder.py --profile fusion --release --check`
-  - `python scripts/quality_gate.py`
-  - `python scripts/validate_repository.py`
+```bash
+gh run list --limit 12
+```
 
-## 2026-07-02 Automation Repair Snapshot
+The failure was a timeout to `198.18.0.26:443`, so remote Actions status could not be confirmed from this machine during the pass.
 
-- Local branch was fast-forwarded to current `origin/main` before repair.
-- The automation failure was caused by stale governance validation after active Stable / Stable Plus / Lite / Full artifacts were retired.
-- `scripts/validate_governance_extensions.py` now validates the current Fusion-only policy contract.
-- `docs/PROFILE_POLICY.md` now describes Fusion-only publishing and generated-output boundaries without old gate wording.
-- No traffic rules, MITM scopes, App sources, Android routing policy, Windows routing policy, or public entry names were intentionally changed.
-- Local validation passed:
-  - `python Rewrite/Generator/Builder.py --profile fusion --release --check`
-  - `python scripts/quality_gate.py`
-  - `python scripts/validate_repository.py`
-  - `python scripts/repository_health_check.py`
-- `reports/automation_status_report.md` currently reports required scheduled workflows as `ok`; push validation should be checked after publishing this repair.
+## Recent Important Changes
 
-GrandpaNiu 鏄竴涓?source-first 瑙勫垯鏋勫缓浠撳簱锛岃緭鍑?iOS Fusion 妯″潡銆丄ndroid 瑙勫垯鏍煎紡銆乄indows v2rayN 璺敱銆乄eb catalog 涓庢不鐞嗘姤鍛娿€?
-褰撳墠鍞竴鍏紑 iOS 璺緞鏄?Fusion锛歚Ronghemokuai.sgmodule`銆乣Release/Ronghemokuai.sgmodule` 涓?`Release/Module.sgmodule`銆?
-Stable銆丼table Plus銆丩ite 鍜?Full 鐨?profile銆丷elease 鏂囦欢銆佹檵绾ц剼鏈強鏃ф祴璇曟姤鍛婂凡琚Щ闄ゃ€傚巻鍙茬姸鎬佷粎閫氳繃 Git 鎻愪氦杩芥函銆?
-鏃ュ父缁存姢婧愬ご鏄?`Rules/`銆乣Scripts/`銆乣Rewrite/Sources/`銆乣Rewrite/Remotes/` 涓?`Rewrite/Profiles/fusion.conf`銆俙Release/`銆乣Web/`銆乣reports/` 涓庢牴鐩綍妯″潡鍧囦负鐢熸垚鐗┿€?
-鏍囧噯缁存姢璺緞锛欶usion 鏋勫缓鍣ㄣ€佷粨搴撻獙璇併€佽川閲忛棬銆佸仴搴锋鏌ャ€備换浣曡鍒欍€佽剼鏈€丮ITM 鎴栬矾鐢卞彉鏇撮兘搴旂缉灏忚寖鍥村苟淇濈暀鍙洖婊氭簮澶淬€?
+### 2026-07-02 Fusion Rewrite Compaction
+
+- Main iOS Fusion module was compacted from `5953` lines to `2775` lines.
+- `Rewrite/Profiles/fusion.conf` enables `compact_rewrite_sections = true`.
+- `scripts/build_module.py` performs conservative equivalent compaction:
+  - URL Rewrite: only pure `- reject*` lines with identical action suffix.
+  - Body Rewrite: only identical verb and body operation.
+  - Map Local: only identical response operation.
+- `scripts/validate_module_integrity.py` compiles generated rewrite regexes.
+- `tests/test_module_compaction.py` protects URL Rewrite suffix and grouping behavior.
+
+### 2026-07-02 Compact China / Overseas Network Split
+
+- Main iOS Fusion keeps ad-blocking rules first and appends:
+  - `GEOIP,CN,DIRECT`
+  - `FINAL,PROXY`
+- `strip_direct_proxy_rules = true` strips old scattered route/protection rules from the generated main module.
+- `compact_network_split = true` appends the centralized split.
+- Validation requires those two routing rules to be the final two active `[Rule]` entries.
+
+### 2026-07-02 Automation Gap Guard
+
+- `tools/generate_automation_gap_report.py` is a blocking automation coverage check.
+- It verifies Fusion entry parity, App source/module counts, Android source/release parity, Windows v2rayN tail rules, scheduled workflow wiring, explicit staging, quality gate wiring, and script aggregation cache presence.
+- It is wired into Builder `--check`, full quality gate, freshness checks, repository validation, repository health, and automated evidence.
+
+## Known Risks
+
+- Python regex validation is not a perfect Shadowrocket runtime simulation.
+- Long combined OR regexes can behave differently on older clients, although chunking limits generated regex line length.
+- `GEOIP,CN,DIRECT` is IP-geography based, not a perfect Chinese-App classifier.
+- `FINAL,PROXY` requires the user's Shadowrocket configuration to have a usable `PROXY` policy or group.
+- Real App end-to-end behavior is owner-tested manually; CI proves syntax, generation, and governance only.
+
+## Protected Areas
+
+Do not change these without concrete evidence and a risk note:
+
+- Login and account APIs.
+- Payment, order, and banking flows.
+- Captcha and verification flows.
+- Video playback domains and scripts.
+- Image and static CDN domains.
+- Authorization, Cookie, Token, or receipt logic.
+- Broad MITM hostname scopes.
+- Public module entry names or URLs.
+
+## Next Recommendations
+
+- Keep using `python scripts/quality_gate.py` as the final local gate for generated-output refreshes.
+- If a real App breaks, fix the smallest source layer first and run the full quality gate.
+- Keep watching scheduled workflow freshness from GitHub Actions when network access to GitHub API is available.
+- Do not add more App modules or remote sources unless they are compatible with the upstream risk gate and do not include unlock, payment bypass, login bypass, or credential/token logic.

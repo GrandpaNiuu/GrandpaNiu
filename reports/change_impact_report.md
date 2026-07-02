@@ -1,30 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-07-02 23:01:56 +0800
+- 生成时间：2026-07-03 00:55:55 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `AI_HANDOFF.md`
 - `Android/branches.json`
-- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
-- `Release/Module.sgmodule`
-- `Release/Modules/kfc.sgmodule`
-- `Release/Ronghemokuai.sgmodule`
-- `Release/Stable/Module.sgmodule`
-- `Release/Stable/Ronghemokuai.sgmodule`
 - `Release/checksums.json`
-- `Release/checksums.txt`
-- `Rewrite/Profiles/fusion.conf`
-- `Rewrite/Sources/Apps/kfc.conf`
-- `Ronghemokuai.sgmodule`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
-- `docs/ai/DECISIONS.md`
-- `docs/ai/RISK_LOG.md`
-- `docs/ai/TASKS.md`
-- `docs/ai/WORKLOG.md`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
 - `reports/app_source_validation_report.md`
@@ -38,9 +23,6 @@
 - `reports/change_impact_report.md`
 - `reports/domestic_app_connectivity_audit.md`
 - `reports/mitm_scope_report.md`
-- `reports/module_factory_diff_report.md`
-- `reports/module_factory_report.md`
-- `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
 - `reports/reject_risk_report.md`
@@ -54,13 +36,10 @@
 - `reports/script_inventory_report.md`
 - `reports/upstream_risk_gate_report.md`
 - `reports/workflow_health_report.md`
-- `scripts/build_module.py`
-- `scripts/validate_module_integrity.py`
-- `tests/test_module_compaction.py`
 
 ## 新增文件
 
-- `tests/test_module_compaction.py`
+- 无
 
 ## 删除文件
 
@@ -68,26 +47,11 @@
 
 ## 修改文件
 
-- `AI_HANDOFF.md`
 - `Android/branches.json`
-- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
-- `Release/Module.sgmodule`
-- `Release/Modules/kfc.sgmodule`
-- `Release/Ronghemokuai.sgmodule`
-- `Release/Stable/Module.sgmodule`
-- `Release/Stable/Ronghemokuai.sgmodule`
 - `Release/checksums.json`
-- `Release/checksums.txt`
-- `Rewrite/Profiles/fusion.conf`
-- `Rewrite/Sources/Apps/kfc.conf`
-- `Ronghemokuai.sgmodule`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
-- `docs/ai/DECISIONS.md`
-- `docs/ai/RISK_LOG.md`
-- `docs/ai/TASKS.md`
-- `docs/ai/WORKLOG.md`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
 - `reports/app_source_validation_report.md`
@@ -101,9 +65,6 @@
 - `reports/change_impact_report.md`
 - `reports/domestic_app_connectivity_audit.md`
 - `reports/mitm_scope_report.md`
-- `reports/module_factory_diff_report.md`
-- `reports/module_factory_report.md`
-- `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
 - `reports/reject_risk_report.md`
@@ -117,49 +78,27 @@
 - `reports/script_inventory_report.md`
 - `reports/upstream_risk_gate_report.md`
 - `reports/workflow_health_report.md`
-- `scripts/build_module.py`
-- `scripts/validate_module_integrity.py`
 
 ## 影响的模块层
 
 - Other
-- Profiles
 - README/docs
-- Rewrite/Sources
 - Scripts
-- Scripts/maintenance
 
 ## 可能影响的 App
 
 - Spotify
 - YouTube
-- 知乎
 - Bilibili
-- 微博
 - 百度贴吧
-- 小红书
-- 酷安
-- 淘宝
-- 闲鱼
-- 京东
-- 拼多多
-- 美团
-- 大众点评
-- 饿了么
-- 滴滴
 - 12306
-- 高德地图
-- 网易云音乐
-- 喜马拉雅
-- 小宇宙
-- 斗鱼
 - Reddit
 
 ## 风险判断
 
 - 是否涉及脚本：是
 - 是否涉及 MITM：是
-- 是否涉及 Body Rewrite：是
+- 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：是
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是

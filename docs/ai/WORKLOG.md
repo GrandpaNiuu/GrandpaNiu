@@ -991,3 +991,76 @@ python scripts\quality_gate.py
 
 - Commit and push the compaction.
 - Confirm the next `Module Factory Build` run is green.
+
+## 2026-07-03 00:49 +08:00 - Full repository health refresh
+
+### Task Summary
+
+Owner requested a broad repository and module health check, plus any safe improvements needed to keep the repository operating long term.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Status: clean and synchronized with `origin/main` at `b2606a4f Build module factory outputs [skip ci]`.
+- Expected scope: static checks, Builder, full quality gate, generated output refresh, and AI maintenance record cleanup.
+- Out of scope unless a real failure was reproduced: new App rules, MITM expansion, script behavior changes, Android/Windows routing policy changes, workflow rewrites, or Builder logic changes.
+
+### Actual Changes
+
+- Refreshed generated outputs through `python scripts/quality_gate.py`, including the main Fusion module date, Release outputs, Android release metadata, script bundle metadata, checksums, Web/report-related outputs, and governance reports.
+- Rewrote `PROJECT_STATE.md` into clean readable Markdown because the previous file contained a corrupted mojibake footer.
+- Updated `AI_HANDOFF.md`, `docs/ai/TASKS.md`, and `docs/ai/RISK_LOG.md` to record the current health refresh, validation status, and remaining remote Actions visibility limitation.
+- Did not intentionally change rule sources, MITM scopes, script behavior, Android routing policy, Windows routing policy, workflow logic, or Builder logic.
+
+### Commands Run
+
+```bash
+git status --short --branch
+git branch --show-current
+python -c "import compileall, sys; ok=True; ok &= compileall.compile_dir('scripts', quiet=1); ok &= compileall.compile_dir('tools', quiet=1); ok &= compileall.compile_file('Rewrite/Generator/Builder.py', quiet=1); sys.exit(0 if ok else 1)"
+node --check Scripts/app-cleaner.js
+node --check Scripts/generated/fusion-script-bundle.js
+python -m unittest discover -s tests
+python tools/validate_script_aggregation.py
+python tools/test_script_bundle_sandbox.py
+python scripts/validate_module_integrity.py
+python scripts/validate_app_sources.py
+python Rewrite/Generator/Builder.py --profile fusion --release --check
+python scripts/validate_repository.py
+python scripts/repository_health_check.py
+python scripts/validate_profiles.py
+python scripts/validate_remote_rule_syntax.py
+python scripts/validate_governance_extensions.py
+python scripts/quality_gate.py
+gh run list --limit 12
+```
+
+### Validation Result
+
+- Python compile passed.
+- JavaScript syntax checks passed.
+- Unit test discovery passed with 28 tests.
+- Script aggregation validation and sandbox passed.
+- Module integrity validation passed.
+- App source validation passed for 398 source files and 398 release modules.
+- Builder release check passed.
+- Full quality gate passed.
+- Standalone `check_report_freshness.py --strict` failed immediately after only the Builder because `app_status_matrix` and `automation_gap` were not refreshed in final quality-gate order; the full quality gate refreshed them and passed.
+- `gh run list --limit 12` failed locally with a timeout to `198.18.0.26:443`, so remote Actions status could not be confirmed from this machine.
+
+### Risks
+
+- Static checks prove syntax, generation, and governance; they do not prove real App runtime ad removal, login, payment, video, or image/CDN behavior.
+- Remote Actions still need confirmation when GitHub API access is available.
+- The generated module still relies on the user's Shadowrocket `PROXY` policy group for the final overseas fallback.
+
+### Self-Review
+
+- What was not good enough: the AI records still contained stale pending statuses and `PROJECT_STATE.md` contained unreadable corrupted text.
+- What I changed to reduce that risk: cleaned the project state record and updated handoff/task/risk/worklog entries with the current validation result.
+- What I would check first next time: start with `python scripts/quality_gate.py` for generated-output freshness rather than judging strict freshness immediately after only the Builder.
+
+### Next Step
+
+- Commit and push this generated-output refresh and AI record cleanup.
+- Confirm remote Actions when GitHub API access works.

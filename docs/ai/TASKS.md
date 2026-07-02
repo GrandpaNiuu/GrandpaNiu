@@ -1,10 +1,37 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-02 22:58 +08:00
+Last updated: 2026-07-03 00:49 +08:00
+
+## Current Full Repository Health Refresh Task
+
+Status: locally validated; generated outputs and AI records refreshed; commit and push are part of this pass; remote Actions confirmation remains dependent on GitHub API reachability.
+
+Scope:
+
+- Run a broad repository and module syntax/build health check.
+- Do not add new App modules or broad new rules.
+- Do not change rule sources, MITM scopes, script behavior, Android routing policy, Windows routing policy, workflows, or Builder logic unless a real failure is reproduced.
+- Refresh generated outputs only through the normal Builder / quality gate.
+- Repair stale AI maintenance records found during the pass.
+
+Validation:
+
+- Python compile passed through `compileall` for `scripts/`, `tools/`, and `Rewrite/Generator/Builder.py`.
+- `node --check Scripts/app-cleaner.js` passed.
+- `node --check Scripts/generated/fusion-script-bundle.js` passed.
+- `python -m unittest discover -s tests` passed with 28 tests.
+- `python scripts/validate_module_integrity.py` passed.
+- `python scripts/validate_app_sources.py` passed for 398 source files and 398 release modules.
+- `python Rewrite/Generator/Builder.py --profile fusion --release --check` passed.
+- `python scripts/quality_gate.py` passed.
+
+Known limitation:
+
+- `gh run list --limit 12` failed locally with a timeout to `198.18.0.26:443`; remote Actions status still needs confirmation when GitHub API access works.
 
 ## Current Fusion Rewrite Compaction Task
 
-Status: implemented locally and fully validated; pending commit, push, and remote Actions confirmation.
+Status: complete and published. Local generated-output follow-up is currently refreshed again by the 2026-07-03 quality gate.
 
 Scope:
 
@@ -25,12 +52,12 @@ Validation:
 
 Next check:
 
-- Commit and push.
-- Confirm the next `Module Factory Build` run is green.
+- Watch for real Shadowrocket runtime issues with combined rewrite regexes.
+- If an App-specific rewrite stops matching, inspect the relevant combined line before changing source rules.
 
 ## Current Compact Network Split Task
 
-Status: implemented locally and validated; pending commit, push, and remote Actions confirmation.
+Status: complete and published. Local generated-output follow-up is currently refreshed again by the 2026-07-03 quality gate.
 
 Scope:
 
@@ -56,8 +83,8 @@ Validation:
 
 Next check:
 
-- Commit and push.
-- Confirm the next `Module Factory Build` run is green.
+- If a Chinese App still fails, check whether it uses overseas CDN/IPs that fall through to `FINAL,PROXY`.
+- If an overseas App still fails, confirm the user's Shadowrocket `PROXY` policy group exists and works.
 
 ## Current Main Fusion Routing Strip Task
 
