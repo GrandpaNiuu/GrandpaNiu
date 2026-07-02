@@ -1088,7 +1088,7 @@ Owner provided a GitHub Actions screenshot showing the Pages deploy job failing 
   - uses `.nojekyll`
   - uploads with `actions/upload-pages-artifact`
   - deploys with `actions/deploy-pages`
-  - extends deploy timeout to `1800000` ms
+  - sets deploy timeout to the supported maximum `600000` ms
   - uses `pages-deploy-main` concurrency with `cancel-in-progress: true`
 - Added Pages workflow validation to:
   - `scripts/validate_repository.py`
@@ -1127,7 +1127,7 @@ python scripts\quality_gate.py
 ### Risks
 
 - The old default Pages deployment may still run until GitHub Settings -> Pages is switched to **GitHub Actions**.
-- GitHub Pages service-side queue delays can still happen, but the new workflow uses a longer deploy timeout and cancels stale Pages deployments.
+- GitHub Pages service-side queue delays can still happen, but the new workflow uses the maximum supported action timeout and cancels stale Pages deployments.
 - No traffic policy or App runtime behavior changed.
 
 ### Self-Review

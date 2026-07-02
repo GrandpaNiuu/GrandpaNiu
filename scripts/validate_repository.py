@@ -508,7 +508,7 @@ def validate_pages_deploy_workflow() -> None:
         "actions/upload-pages-artifact@",
         "actions/deploy-pages@",
         "path: _site",
-        "timeout: 1800000",
+        "timeout: 600000",
         "reporting_interval: 10000",
         "error_count: 30",
         "workflow_run:",

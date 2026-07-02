@@ -4,11 +4,11 @@ Last updated: 2026-07-03 02:35 +08:00
 
 ## 2026-07-03 Pages Deploy Queue Repair Handoff
 
-- The screenshot failure was a Pages deployment queue timeout: `deployment_queued` repeated until `actions/deploy-pages` hit the default 10 minute timeout and cancelled the deployment.
+- The screenshot failure was a Pages deployment queue timeout: `deployment_queued` repeated until `actions/deploy-pages` hit its 10 minute timeout and cancelled the deployment.
 - The repository now has `.github/workflows/pages-deploy.yml` as an explicit self-managed GitHub Pages deployment workflow.
 - The workflow builds a constrained `_site` artifact instead of relying on the default branch-root Pages deployment.
 - It sets `actions/deploy-pages` inputs:
-  - `timeout: 1800000`
+  - `timeout: 600000`
   - `reporting_interval: 10000`
   - `error_count: 30`
 - It uses `concurrency: pages-deploy-main` with `cancel-in-progress: true`, so older Pages deploy attempts do not keep the latest deploy queued.

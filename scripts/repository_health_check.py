@@ -228,7 +228,7 @@ def pages_workflow_findings() -> tuple[list[str], str]:
             "cancel-in-progress: true",
             "actions/upload-pages-artifact@",
             "actions/deploy-pages@",
-            "timeout: 1800000",
+            "timeout: 600000",
             "path: _site",
         )
         if token not in text
@@ -237,7 +237,7 @@ def pages_workflow_findings() -> tuple[list[str], str]:
     findings = [f"Pages deploy workflow missing token: {token}" for token in missing]
     findings.extend(f"Pages deploy workflow contains unsafe git command: {token}" for token in unsafe)
     summary = "`pages-deploy.yml`: " + (
-        "self-managed Pages deploy; artifact upload; 30m deploy timeout; stale deploy cancellation"
+        "self-managed Pages deploy; artifact upload; maximum supported deploy timeout; stale deploy cancellation"
         if not findings
         else "needs repair"
     )

@@ -10,7 +10,7 @@ Scope:
 
 - Fix the GitHub Pages deploy failure shown in the screenshot where deployment remained `deployment_queued` until timeout.
 - Do not change ad rules, App sources, MITM scopes, scripts, Android routing policy, Windows routing policy, or public module URLs.
-- Add a self-managed Pages deployment workflow with a smaller static artifact, longer deploy timeout, and stale deploy cancellation.
+- Add a self-managed Pages deployment workflow with a smaller static artifact, maximum supported deploy timeout, and stale deploy cancellation.
 - Add validation so the Pages deployment guard cannot silently disappear.
 
 Validation:

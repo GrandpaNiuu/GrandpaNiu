@@ -292,14 +292,14 @@ def check_workflows(gaps: list[str], notes: list[str]) -> None:
             "actions/upload-pages-artifact@",
             "actions/deploy-pages@",
             "path: _site",
-            "timeout: 1800000",
+            "timeout: 600000",
         ):
             if token not in pages_text:
                 add_gap(gaps, f"Pages deploy workflow missing token: {token}.")
         for token in ("git add -A", "git reset --hard", "git clean -fd", "git push --force"):
             if token in pages_text:
                 add_gap(gaps, f"Pages deploy workflow contains unsafe git command: {token}.")
-    notes.append("Pages deployment workflow checked for self-managed artifact deploy and extended deployment timeout.")
+    notes.append("Pages deployment workflow checked for self-managed artifact deploy, maximum supported deployment timeout, and stale deployment cancellation.")
 
 
 def check_quality_gate(gaps: list[str], notes: list[str]) -> None:

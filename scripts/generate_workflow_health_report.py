@@ -27,7 +27,7 @@ WORKFLOWS = [
     ("Upstream candidate collect", ".github/workflows/upstream-collect.yml", "Collect trusted upstream candidates"),
     ("Daily schedule watchdog", ".github/workflows/daily-schedule-watchdog.yml", "Recover the daily module refresh if GitHub drops a scheduled run"),
     ("Repository Health Check", ".github/workflows/repository-health.yml", "Repository governance health check"),
-    ("Deploy GitHub Pages", ".github/workflows/pages-deploy.yml", "Publish the static Pages artifact with an extended deployment timeout"),
+    ("Deploy GitHub Pages", ".github/workflows/pages-deploy.yml", "Publish the static Pages artifact with stale deployment cancellation"),
     ("Workflow failure issue", ".github/workflows/workflow-failure-issue.yml", "Create or update issues for failed Actions"),
 ]
 

@@ -13,7 +13,7 @@ Required behavior:
 - Build a constrained `_site` static artifact from public repository outputs.
 - Use `.nojekyll`.
 - Deploy with `actions/deploy-pages`.
-- Set `timeout: 1800000` so queued deployments are not aborted at the default 10 minute mark.
+- Set `timeout: 600000`, GitHub's supported maximum for `actions/deploy-pages`, and rely on concurrency cancellation to prevent stale queued deployments from blocking the newest deployment.
 - Use a dedicated Pages concurrency group with `cancel-in-progress: true` so stale deploys do not block the newest public module/site update.
 - Keep validation guards in `validate_repository.py`, `repository_health_check.py`, and `generate_automation_gap_report.py`.
 
