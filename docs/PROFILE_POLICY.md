@@ -26,6 +26,8 @@ Fusion 仍按 source-first 分层维护，而不是无条件叠加所有规则�
 | qingrex | 小程序 / App 广告层 |
 | selected extensions | 已审阅的扩展覆盖；必须保留风险说明和回滚路径 |
 
+候选、扩展和高风险层不得批量进入 Fusion。任何接入都应限定到单项 App、单类规则或单组 hostname，并保留对应源头和回滚路径。
+
 ## 安全边界
 
 不得进入 Fusion 的内容：
@@ -39,6 +41,8 @@ Fusion 仍按 source-first 分层维护，而不是无条件叠加所有规则�
 ## 自动维护边界
 
 自动化可以拉取可信候选源、执行语法与风险校验、构建 Fusion、同步 Root / Release、生成报告和检查重复项。
+
+自动化质量证据以 `reports/automated_quality_evidence.md` 为准；证据存在只说明构建与静态治理通过，不等同于真实设备效果结论。
 
 自动化不能声称任意 App 已完成真机验证，也不能把外部脚本未经审核直接纳入 Fusion。
 
