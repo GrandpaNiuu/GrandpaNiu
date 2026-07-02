@@ -1,6 +1,26 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-03 00:49 +08:00
+Last updated: 2026-07-03 02:35 +08:00
+
+## 2026-07-03 GitHub Pages Deploy Queue Repair Snapshot
+
+- Observed failure: GitHub Pages deploy job stayed at `deployment_queued` until `actions/deploy-pages` reached its default 10 minute timeout and cancelled the deployment.
+- Repository code previously had no explicit `.github/workflows/pages-deploy.yml`; Pages deployment was left to GitHub's default branch-based Pages deployment flow.
+- Added a self-managed `Deploy GitHub Pages` workflow:
+  - packages only the public static site artifact under `_site`
+  - publishes Fusion, Release, Web, Android, Windows, Rules, Scripts, Rewrite/Remotes, docs, and reports
+  - uses `.nojekyll`
+  - uses `actions/deploy-pages`
+  - increases Pages deployment timeout from the default `600000` ms to `1800000` ms
+  - uses `pages-deploy-main` concurrency with `cancel-in-progress: true` so stale queued deploys do not block the latest one
+- Added validation guards so future checks require the Pages workflow, artifact upload, Pages permissions, and extended deploy timeout.
+- Important operational note: GitHub repository Pages settings should use **Source: GitHub Actions**. If Settings -> Pages still uses branch deployment, GitHub can continue launching the old default Pages deployment workflow.
+- Validation passed:
+  - workflow YAML parse
+  - `python scripts/validate_repository.py`
+  - `python scripts/repository_health_check.py`
+  - `python tools/generate_automation_gap_report.py`
+  - `python scripts/quality_gate.py`
 
 ## Project Purpose
 

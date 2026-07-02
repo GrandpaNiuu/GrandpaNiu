@@ -1,0 +1,125 @@
+name: Deploy GitHub Pages
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Module Factory Build
+      - Daily Module Update
+      - Daily invalid rule audit and safe repair
+      - Daily invalid source audit and repair
+      - Scheduled Module Factory Update
+      - Upstream app module sync
+      - Upstream candidate collect
+      - Daily schedule watchdog
+      - Repository Health Check
+    types:
+      - completed
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/pages-deploy.yml"
+      - "Ronghemokuai.sgmodule"
+      - "Release/**"
+      - "Web/**"
+      - "Android/**"
+      - "Windows/**"
+      - "Rules/**"
+      - "Scripts/**"
+      - "Rewrite/Remotes/**"
+      - "Rewrite/Registry.md"
+      - "reports/**"
+      - "import.html"
+      - "android.html"
+      - "redirect.html"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: pages-deploy-main
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare public site artifact
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+
+          copy_path() {
+            local source="$1"
+            local target="_site/$1"
+            if [ ! -e "$source" ]; then
+              return 0
+            fi
+            mkdir -p "$(dirname "$target")"
+            cp -R "$source" "$target"
+          }
+
+          public_paths=(
+            "Ronghemokuai.sgmodule"
+            "README.md"
+            "LICENSE"
+            "SECURITY.md"
+            "CONTRIBUTING.md"
+            "import.html"
+            "android.html"
+            "redirect.html"
+            "Release"
+            "Web"
+            "Android"
+            "Windows"
+            "Rules"
+            "Scripts"
+            "Rewrite/Remotes"
+            "Rewrite/Registry.md"
+            "docs"
+            "reports"
+          )
+
+          for path in "${public_paths[@]}"; do
+            copy_path "$path"
+          done
+
+          touch _site/.nojekyll
+          echo "Prepared Pages artifact:"
+          du -sh _site
+          find _site -type f | wc -l
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000
+          reporting_interval: 10000
+          error_count: 30

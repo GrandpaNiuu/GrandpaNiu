@@ -95,6 +95,7 @@ REQUIRED_WORKFLOWS = (
     ".github/workflows/daily-schedule-watchdog.yml",
     ".github/workflows/repository-health.yml",
 )
+PAGES_DEPLOY_WORKFLOW = ".github/workflows/pages-deploy.yml"
 
 EXPECTED_WORKFLOW_CRONS = {
     ".github/workflows/daily-module-update.yml": "37 16 * * *",          # Beijing 00:37
@@ -493,6 +494,49 @@ def workflow_contains_cron(text: str, cron: str) -> bool:
     return f'cron: "{cron}"' in text or f"cron: '{cron}'" in text
 
 
+def validate_pages_deploy_workflow() -> None:
+    path = ROOT / PAGES_DEPLOY_WORKFLOW
+    if not path.exists():
+        fail(f"required Pages deploy workflow missing: {PAGES_DEPLOY_WORKFLOW}")
+    text = read_text(path)
+    required_tokens = (
+        "pages: write",
+        "id-token: write",
+        "group: pages-deploy-main",
+        "cancel-in-progress: true",
+        "actions/configure-pages@",
+        "actions/upload-pages-artifact@",
+        "actions/deploy-pages@",
+        "path: _site",
+        "timeout: 1800000",
+        "reporting_interval: 10000",
+        "error_count: 30",
+        "workflow_run:",
+        "Module Factory Build",
+        "Daily Module Update",
+        "Scheduled Module Factory Update",
+    )
+    for token in required_tokens:
+        if token not in text:
+            fail(f"Pages deploy workflow missing required token: {token}")
+    for public_path in (
+        "Ronghemokuai.sgmodule",
+        "Release",
+        "Web",
+        "Android",
+        "Windows",
+        "Rules",
+        "Scripts",
+        "Rewrite/Remotes",
+        "reports",
+    ):
+        if f'"{public_path}"' not in text:
+            fail(f"Pages deploy workflow does not publish public path: {public_path}")
+    for token in ("git add -A", "git reset --hard", "git clean -fd", "git push --force"):
+        if token in text:
+            fail(f"Pages deploy workflow contains unsafe git command {token}")
+
+
 def validate_workflows() -> None:
     helper = read_text(ROOT / "scripts" / "commit_generated_changes.sh")
     acquire_lock = read_text(ROOT / "tools" / "acquire_automation_lock.sh")
@@ -600,6 +644,8 @@ def validate_workflows() -> None:
     for token in ("actions: read", "scripts/check_automation_status.py", "--strict --no-write"):
         if token not in watchdog:
             fail(f"daily-schedule-watchdog workflow missing automation status token: {token}")
+
+    validate_pages_deploy_workflow()
 
 
 def validate_windows_v2rayn() -> None:

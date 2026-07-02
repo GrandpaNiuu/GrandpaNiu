@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-07-03 02:18:18 +0800
+- Generated at: 2026-07-03 02:51:40 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Release alias identical: yes
@@ -33,6 +33,10 @@
 
 - none
 
+## Pages Deploy Workflow Findings
+
+- none
+
 ## Missing Fusion Markers
 
 - none
@@ -56,6 +60,7 @@
 - `.github/workflows/upstream-collect.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
 - `.github/workflows/daily-schedule-watchdog.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
 - `.github/workflows/repository-health.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
+- `pages-deploy.yml`: self-managed Pages deploy; artifact upload; 30m deploy timeout; stale deploy cancellation
 
 ## validate_repository.py Output
 

@@ -1,10 +1,35 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-03 00:49 +08:00
+Last updated: 2026-07-03 02:35 +08:00
+
+## Current Pages Deploy Queue Repair Task
+
+Status: locally implemented and fully validated; local commit prepared; pending remote Pages deployment confirmation.
+
+Scope:
+
+- Fix the GitHub Pages deploy failure shown in the screenshot where deployment remained `deployment_queued` until timeout.
+- Do not change ad rules, App sources, MITM scopes, scripts, Android routing policy, Windows routing policy, or public module URLs.
+- Add a self-managed Pages deployment workflow with a smaller static artifact, longer deploy timeout, and stale deploy cancellation.
+- Add validation so the Pages deployment guard cannot silently disappear.
+
+Validation:
+
+- Python compile passed for changed scripts.
+- Workflow YAML parsed successfully.
+- `python scripts/validate_repository.py` passed.
+- `python scripts/repository_health_check.py` passed.
+- `python tools/generate_automation_gap_report.py` passed.
+- `python scripts/quality_gate.py` passed.
+
+Next check:
+
+- Push the repair and confirm the new `Deploy GitHub Pages` workflow runs.
+- If the old default Pages deployment still appears, switch repository Settings -> Pages -> Source to **GitHub Actions**.
 
 ## Current Full Repository Health Refresh Task
 
-Status: locally validated; generated outputs and AI records refreshed; commit and push are part of this pass; remote Actions confirmation remains dependent on GitHub API reachability.
+Status: committed and pushed as `5f0545f1`; remote Actions visibility was limited by local GitHub API timeout during that pass.
 
 Scope:
 

@@ -1064,3 +1064,80 @@ gh run list --limit 12
 
 - Commit and push this generated-output refresh and AI record cleanup.
 - Confirm remote Actions when GitHub API access works.
+
+## 2026-07-03 02:35 +08:00 - GitHub Pages deploy queue repair
+
+### Task Summary
+
+Owner provided a GitHub Actions screenshot showing the Pages deploy job failing after `deployment_queued` repeated until `Timeout reached, aborting!`.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Status: clean and synchronized with `origin/main`.
+- Expected scope: GitHub Pages deployment workflow, workflow validation, generated governance reports, and AI maintenance records.
+- Out of scope: ad rules, App source rules, MITM scopes, scripts, Android routing policy, Windows routing policy, public module URLs, or generated module behavior.
+
+### Actual Changes
+
+- Added `.github/workflows/pages-deploy.yml`.
+- The new workflow:
+  - triggers on manual dispatch, successful maintenance workflow completion, and public-path pushes
+  - checks out latest `main`
+  - prepares a constrained `_site` artifact
+  - uses `.nojekyll`
+  - uploads with `actions/upload-pages-artifact`
+  - deploys with `actions/deploy-pages`
+  - extends deploy timeout to `1800000` ms
+  - uses `pages-deploy-main` concurrency with `cancel-in-progress: true`
+- Added Pages workflow validation to:
+  - `scripts/validate_repository.py`
+  - `scripts/repository_health_check.py`
+  - `tools/generate_automation_gap_report.py`
+  - `scripts/generate_workflow_health_report.py`
+  - `scripts/check_automation_status.py`
+- Refreshed generated reports through the quality gate.
+- Updated AI maintenance records and risk/decision notes.
+
+### Commands Run
+
+```bash
+git status --short --branch
+git branch --show-current
+python -m py_compile scripts\validate_repository.py scripts\repository_health_check.py scripts\generate_workflow_health_report.py scripts\check_automation_status.py tools\generate_automation_gap_report.py
+python scripts\validate_repository.py
+python scripts\repository_health_check.py
+python tools\generate_automation_gap_report.py
+python scripts\generate_workflow_health_report.py
+python scripts\check_automation_status.py
+python scripts\quality_gate.py
+```
+
+### Validation Result
+
+- Changed Python files compiled successfully.
+- Workflow YAML parsed successfully.
+- Repository validation passed.
+- Repository health report generated with zero blocking issues.
+- Automation gap check passed.
+- Workflow health report generated and now includes `Deploy GitHub Pages`.
+- Automation status report generated and now observes `pages-deploy.yml`.
+- Full quality gate passed.
+
+### Risks
+
+- The old default Pages deployment may still run until GitHub Settings -> Pages is switched to **GitHub Actions**.
+- GitHub Pages service-side queue delays can still happen, but the new workflow uses a longer deploy timeout and cancels stale Pages deployments.
+- No traffic policy or App runtime behavior changed.
+
+### Self-Review
+
+- What was not good enough: the repository had strong module automation but no explicit guard for the public Pages deployment queue.
+- What I changed to reduce that risk: added a self-managed Pages workflow and validation tokens to keep the extended timeout and stale-deploy cancellation in place.
+- What I would check first next time: confirm whether GitHub Pages source is set to GitHub Actions before assuming the new workflow replaced the old default Pages deployment.
+
+### Next Step
+
+- Commit and push the repair.
+- Confirm the new `Deploy GitHub Pages` workflow runs successfully.
+- If the old `pages-build-deployment` run still appears, switch repository Pages source to GitHub Actions in Settings.

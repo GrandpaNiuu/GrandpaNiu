@@ -1,25 +1,36 @@
 # Automation Status Report
 
-- Generated at: 2026-07-03 02:18:05 +0800
+- Generated at: 2026-07-03 02:51:35 +0800
 - Repository: `GrandpaNiuu/GrandpaNiu`
-- Overall status: `warn`
+- Overall status: `unknown`
 - Blocking findings: 0
-- Warnings: 1
+- Warnings: 11
+
+## API Status
+
+GitHub Actions status could not be fetched in this environment.
+
+```text
+HTTPError: HTTP Error 403: rate limit exceeded
+```
+
+Existing workflow syntax checks still run locally; this report will refresh with real run data in GitHub Actions.
 
 ## Workflow Status
 
 | Workflow | Cadence | Required | State | Latest run | Latest completed | Last success | Success age | Notes |
 |---|---|---:|---|---|---|---|---:|---|
-| `daily-module-update.yml` | daily, Beijing 00:37 | yes | warn | [28612079280](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28612079280) / in_progress | [28539092511](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28539092511) / success | [28539092511](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28539092511) / 2026-07-02 02:29:29 +0800 | 23.8h | latest run is in_progress |
-| `daily-audit-and-repair.yml` | daily, Beijing 00:43 | yes | ok | [28539136602](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28539136602) / completed | [28539136602](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28539136602) / success | [28539136602](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28539136602) / 2026-07-02 02:30:09 +0800 | 23.8h | ok |
-| `daily-invalid-source-repair.yml` | daily, Beijing 00:49 | yes | ok | [28539292954](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28539292954) / completed | [28539292954](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28539292954) / success | [28539292954](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28539292954) / 2026-07-02 02:32:35 +0800 | 23.8h | ok |
-| `upstream-collect.yml` | daily, Beijing 00:55 | yes | ok | [28540371201](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28540371201) / completed | [28540371201](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28540371201) / success | [28540371201](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28540371201) / 2026-07-02 02:52:01 +0800 | 23.4h | ok |
-| `scheduled-module-update.yml` | daily, Beijing 01:07 | yes | ok | [28541038955](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28541038955) / completed | [28541038955](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28541038955) / success | [28541038955](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28541038955) / 2026-07-02 03:04:02 +0800 | 23.2h | ok |
-| `upstream-app-module-sync.yml` | daily, Beijing 01:19 | yes | ok | [28541625184](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28541625184) / completed | [28541625184](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28541625184) / success | [28541625184](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28541625184) / 2026-07-02 03:15:05 +0800 | 23.1h | ok |
-| `daily-schedule-watchdog.yml` | daily, Beijing 04:30 | yes | ok | [28550399745](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28550399745) / completed | [28550399745](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28550399745) / success | [28550399745](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28550399745) / 2026-07-02 05:57:38 +0800 | 20.3h | ok |
-| `repository-health.yml` | weekly, Sunday Beijing 01:37 | yes | ok | [28332332245](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28332332245) / completed | [28332332245](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28332332245) / success | [28332332245](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28332332245) / 2026-06-29 02:48:00 +0800 | 95.5h | ok |
-| `module-factory-build.yml` | push/manual | observe | ok | [28607412434](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28607412434) / completed | [28607412434](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28607412434) / success | [28607412434](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28607412434) / 2026-07-03 00:59:21 +0800 | 1.3h | ok |
-| `workflow-failure-issue.yml` | workflow_run | observe | ok | [28607489402](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28607489402) / completed | [28607489402](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28607489402) / success | [28607489402](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/28607489402) / 2026-07-03 00:59:32 +0800 | 1.3h | ok |
+| `daily-module-update.yml` | daily, Beijing 00:37 | yes | unknown | n/a / n/a | n/a / n/a | n/a / n/a | n/a | GitHub API unavailable |
+| `daily-audit-and-repair.yml` | daily, Beijing 00:43 | yes | unknown | n/a / n/a | n/a / n/a | n/a / n/a | n/a | GitHub API unavailable |
+| `daily-invalid-source-repair.yml` | daily, Beijing 00:49 | yes | unknown | n/a / n/a | n/a / n/a | n/a / n/a | n/a | GitHub API unavailable |
+| `upstream-collect.yml` | daily, Beijing 00:55 | yes | unknown | n/a / n/a | n/a / n/a | n/a / n/a | n/a | GitHub API unavailable |
+| `scheduled-module-update.yml` | daily, Beijing 01:07 | yes | unknown | n/a / n/a | n/a / n/a | n/a / n/a | n/a | GitHub API unavailable |
+| `upstream-app-module-sync.yml` | daily, Beijing 01:19 | yes | unknown | n/a / n/a | n/a / n/a | n/a / n/a | n/a | GitHub API unavailable |
+| `daily-schedule-watchdog.yml` | daily, Beijing 04:30 | yes | unknown | n/a / n/a | n/a / n/a | n/a / n/a | n/a | GitHub API unavailable |
+| `repository-health.yml` | weekly, Sunday Beijing 01:37 | yes | unknown | n/a / n/a | n/a / n/a | n/a / n/a | n/a | GitHub API unavailable |
+| `module-factory-build.yml` | push/manual | observe | unknown | n/a / n/a | n/a / n/a | n/a / n/a | n/a | GitHub API unavailable |
+| `pages-deploy.yml` | workflow_run / manual / public-path push | observe | unknown | n/a / n/a | n/a / n/a | n/a / n/a | n/a | GitHub API unavailable |
+| `workflow-failure-issue.yml` | workflow_run | observe | unknown | n/a / n/a | n/a / n/a | n/a / n/a | n/a | GitHub API unavailable |
 
 ## Policy
 

@@ -42,6 +42,7 @@ WORKFLOWS: tuple[WorkflowExpectation, ...] = (
     WorkflowExpectation("daily-schedule-watchdog.yml", "Daily schedule watchdog", "daily, Beijing 04:30", 48),
     WorkflowExpectation("repository-health.yml", "Repository Health Check", "weekly, Sunday Beijing 01:37", 9 * 24),
     WorkflowExpectation("module-factory-build.yml", "Module Factory Build", "push/manual", None, required=False),
+    WorkflowExpectation("pages-deploy.yml", "Deploy GitHub Pages", "workflow_run / manual / public-path push", None, required=False),
     WorkflowExpectation("workflow-failure-issue.yml", "Workflow failure issue", "workflow_run", None, required=False),
 )
 

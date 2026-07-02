@@ -28,6 +28,7 @@ RELEASE_ANDROID_BRANCHES = ROOT / "Release" / "Android" / "branches.json"
 V2RAYN_OUTPUT = ROOT / "Windows" / "v2rayN" / "GrandpaNiu-v2rayN-custom-routing.json"
 QUALITY_GATE = ROOT / "scripts" / "quality_gate.py"
 COMMIT_HELPER = ROOT / "scripts" / "commit_generated_changes.sh"
+PAGES_DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "pages-deploy.yml"
 SCRIPT_BUNDLE = ROOT / "Scripts" / "generated" / "fusion-script-bundle.js"
 SCRIPT_MANIFEST = ROOT / "Scripts" / "generated" / "fusion-script-bundle.manifest.json"
 SCRIPT_CACHE = ROOT / "Scripts" / "generated" / "fusion-script-bundle.cache.json"
@@ -278,6 +279,27 @@ def check_workflows(gaps: list[str], notes: list[str]) -> None:
                 if f"\n            {output} \\" not in text and f"\n            {output}\n" not in text:
                     add_gap(gaps, f"Workflow {relative} runs the full Builder but does not stage {output}.")
     notes.append(f"Scheduled workflows checked: {len(REQUIRED_DAILY_WORKFLOWS)}; writer workflows checked: {len(BUILDER_WRITER_WORKFLOWS)}.")
+
+    pages_text = read(PAGES_DEPLOY_WORKFLOW)
+    if not pages_text:
+        add_gap(gaps, "Pages deploy workflow is missing.")
+    else:
+        for token in (
+            "pages: write",
+            "id-token: write",
+            "group: pages-deploy-main",
+            "cancel-in-progress: true",
+            "actions/upload-pages-artifact@",
+            "actions/deploy-pages@",
+            "path: _site",
+            "timeout: 1800000",
+        ):
+            if token not in pages_text:
+                add_gap(gaps, f"Pages deploy workflow missing token: {token}.")
+        for token in ("git add -A", "git reset --hard", "git clean -fd", "git push --force"):
+            if token in pages_text:
+                add_gap(gaps, f"Pages deploy workflow contains unsafe git command: {token}.")
+    notes.append("Pages deployment workflow checked for self-managed artifact deploy and extended deployment timeout.")
 
 
 def check_quality_gate(gaps: list[str], notes: list[str]) -> None:

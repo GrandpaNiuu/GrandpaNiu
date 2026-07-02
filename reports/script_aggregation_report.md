@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-07-02T18:40:49Z
+- generated: 2026-07-02T18:50:25Z
 - enabled: True
 - input script entries: 230
 - output script entries: 180
@@ -70,7 +70,9 @@
 - None
 
 ## Cache Fallbacks
-- None
+- `https://kelee.one/Resource/JavaScript/NeteaseNews/NeteaseNews_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/wjx.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xiaohongshu.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
 
 ## Preserved Reasons
 - preserved: binary body: 2

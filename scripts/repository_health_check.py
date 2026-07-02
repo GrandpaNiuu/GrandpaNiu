@@ -81,6 +81,7 @@ REQUIRED_WORKFLOWS = [
     ".github/workflows/daily-schedule-watchdog.yml",
     ".github/workflows/repository-health.yml",
 ]
+PAGES_DEPLOY_WORKFLOW = ".github/workflows/pages-deploy.yml"
 
 REQUIRED_MARKERS = [
     "[Rule]",
@@ -213,6 +214,36 @@ def workflow_summary(path: Path) -> str:
     return "; ".join(items)
 
 
+def pages_workflow_findings() -> tuple[list[str], str]:
+    path = ROOT / PAGES_DEPLOY_WORKFLOW
+    text = read(path)
+    if not text:
+        return ["Pages deploy workflow is missing"], "`pages-deploy.yml`: missing"
+    missing = [
+        token
+        for token in (
+            "pages: write",
+            "id-token: write",
+            "group: pages-deploy-main",
+            "cancel-in-progress: true",
+            "actions/upload-pages-artifact@",
+            "actions/deploy-pages@",
+            "timeout: 1800000",
+            "path: _site",
+        )
+        if token not in text
+    ]
+    unsafe = [token for token in ("git add -A", "git reset --hard", "git clean -fd", "git push --force") if token in text]
+    findings = [f"Pages deploy workflow missing token: {token}" for token in missing]
+    findings.extend(f"Pages deploy workflow contains unsafe git command: {token}" for token in unsafe)
+    summary = "`pages-deploy.yml`: " + (
+        "self-managed Pages deploy; artifact upload; 30m deploy timeout; stale deploy cancellation"
+        if not findings
+        else "needs repair"
+    )
+    return findings, summary
+
+
 def list_block(title: str, items: list[str]) -> list[str]:
     lines = ["", f"## {title}", ""]
     if not items:
@@ -244,6 +275,8 @@ def main() -> None:
     missing_workflows = [item for item in REQUIRED_WORKFLOWS if not (ROOT / item).exists()]
     missing_markers = [marker for marker in REQUIRED_MARKERS if marker not in root_text]
     workflow_items = [f"`{item}`: {workflow_summary(ROOT / item)}" for item in REQUIRED_WORKFLOWS if (ROOT / item).exists()]
+    pages_findings, pages_summary = pages_workflow_findings()
+    workflow_items.append(pages_summary)
 
     blockers: list[str] = []
     if root_text != release_text:
@@ -254,6 +287,8 @@ def main() -> None:
         blockers.append("Required files are missing")
     if missing_workflows:
         blockers.append("Required workflows are missing")
+    if pages_findings:
+        blockers.append("Pages deploy workflow is incomplete")
     if missing_markers:
         blockers.append("Fusion module is missing required markers")
     if duplicate_scripts:
@@ -292,6 +327,7 @@ def main() -> None:
     lines += list_block("Blocking Issues", blockers)
     lines += list_block("Missing Files", missing_files)
     lines += list_block("Missing Workflows", missing_workflows)
+    lines += list_block("Pages Deploy Workflow Findings", pages_findings)
     lines += list_block("Missing Fusion Markers", missing_markers)
     lines += list_block("Duplicate Script Names", duplicate_scripts)
     lines += list_block("Duplicate MITM Hostnames", duplicate_hosts)

@@ -1,6 +1,33 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-03 00:49 +08:00
+Last updated: 2026-07-03 02:35 +08:00
+
+## 2026-07-03 Pages Deploy Queue Repair Risk Note
+
+Risk level: low traffic-policy risk, medium operational deployment risk.
+
+Observed signal:
+
+- The GitHub Actions screenshot shows `Deploy to GitHub Pages` repeatedly reporting `Current status: deployment_queued`, then failing with `Timeout reached, aborting!` and cancelling the deployment.
+
+Likely cause:
+
+- The repository had no explicit Pages deployment workflow, so GitHub's default Pages deployment path used the default `actions/deploy-pages` 10 minute timeout.
+- Generated-output repositories can produce frequent pushes and queued deployments; old queued deploys can delay the latest static site update.
+
+Mitigations:
+
+- Added a self-managed `Deploy GitHub Pages` workflow.
+- Publishes a constrained `_site` artifact with the repository's public static outputs instead of relying on the implicit branch-root deployment path.
+- Uses `timeout: 1800000`, `reporting_interval: 10000`, and `error_count: 30` for `actions/deploy-pages`.
+- Uses `pages-deploy-main` concurrency with `cancel-in-progress: true` to avoid stale deploys blocking the newest deploy.
+- Added validation in repository, health, automation gap, workflow health, and automation status checks.
+
+Remaining risk:
+
+- The repository Pages setting may still need to be switched to **GitHub Actions** in GitHub Settings -> Pages. If it remains on branch deployment, GitHub can continue running the old default Pages deployment.
+- GitHub Pages service-side outages or long platform queues can still delay deployment, but the repository now gives deployments a longer timeout and avoids keeping stale queued runs.
+- This pass does not affect ad-rule runtime behavior.
 
 ## 2026-07-03 Full Repository Health Refresh Risk Note
 

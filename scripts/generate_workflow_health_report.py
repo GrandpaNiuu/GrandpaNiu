@@ -27,6 +27,7 @@ WORKFLOWS = [
     ("Upstream candidate collect", ".github/workflows/upstream-collect.yml", "Collect trusted upstream candidates"),
     ("Daily schedule watchdog", ".github/workflows/daily-schedule-watchdog.yml", "Recover the daily module refresh if GitHub drops a scheduled run"),
     ("Repository Health Check", ".github/workflows/repository-health.yml", "Repository governance health check"),
+    ("Deploy GitHub Pages", ".github/workflows/pages-deploy.yml", "Publish the static Pages artifact with an extended deployment timeout"),
     ("Workflow failure issue", ".github/workflows/workflow-failure-issue.yml", "Create or update issues for failed Actions"),
 ]
 
@@ -67,6 +68,8 @@ def priority(path: str) -> str:
         return "module update-date, recovery build, rebase retry"
     if "repository-health" in path:
         return "governance files, duplicate scripts, duplicate MITM, report freshness"
+    if "pages-deploy" in path:
+        return "Pages artifact scope, deploy-pages timeout, deployment queue"
     if "workflow-failure" in path:
         return "workflow_run permissions, issue creation/update"
     return "manual review"

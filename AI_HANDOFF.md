@@ -1,6 +1,25 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-03 00:49 +08:00
+Last updated: 2026-07-03 02:35 +08:00
+
+## 2026-07-03 Pages Deploy Queue Repair Handoff
+
+- The screenshot failure was a Pages deployment queue timeout: `deployment_queued` repeated until `actions/deploy-pages` hit the default 10 minute timeout and cancelled the deployment.
+- The repository now has `.github/workflows/pages-deploy.yml` as an explicit self-managed GitHub Pages deployment workflow.
+- The workflow builds a constrained `_site` artifact instead of relying on the default branch-root Pages deployment.
+- It sets `actions/deploy-pages` inputs:
+  - `timeout: 1800000`
+  - `reporting_interval: 10000`
+  - `error_count: 30`
+- It uses `concurrency: pages-deploy-main` with `cancel-in-progress: true`, so older Pages deploy attempts do not keep the latest deploy queued.
+- Validation now checks the Pages workflow through:
+  - `scripts/validate_repository.py`
+  - `scripts/repository_health_check.py`
+  - `tools/generate_automation_gap_report.py`
+  - `scripts/generate_workflow_health_report.py`
+  - `scripts/check_automation_status.py`
+- No Rules, Rewrite sources, MITM scopes, script behavior, Android routing policy, Windows routing policy, or public module URLs were intentionally changed.
+- Operational follow-up: if GitHub Settings -> Pages still says "Deploy from a branch", switch it to **GitHub Actions** so the old default Pages deployment stops running.
 
 ## 2026-07-03 Full Repository Health Refresh Handoff
 

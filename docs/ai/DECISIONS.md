@@ -1,8 +1,25 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-02 22:58 +08:00
+Last updated: 2026-07-03 02:35 +08:00
 
 ## Decisions
+
+### 2026-07-03 - Use A Self-Managed GitHub Pages Deploy Workflow
+
+GrandpaNiu should publish GitHub Pages through `.github/workflows/pages-deploy.yml` instead of relying on the default branch-root Pages deployment path.
+
+Required behavior:
+
+- Build a constrained `_site` static artifact from public repository outputs.
+- Use `.nojekyll`.
+- Deploy with `actions/deploy-pages`.
+- Set `timeout: 1800000` so queued deployments are not aborted at the default 10 minute mark.
+- Use a dedicated Pages concurrency group with `cancel-in-progress: true` so stale deploys do not block the newest public module/site update.
+- Keep validation guards in `validate_repository.py`, `repository_health_check.py`, and `generate_automation_gap_report.py`.
+
+Reason: a Pages deployment stayed in `deployment_queued` until the default `actions/deploy-pages` timeout cancelled it. Generated-output repositories push often, so Pages needs explicit queue control and a longer deploy wait.
+
+Operational note: GitHub repository Pages settings should use **Source: GitHub Actions**. If the repository remains configured for branch deployment, GitHub can still launch the old default Pages deployment workflow.
 
 ### 2026-07-02 - Use Conservative Rewrite Compaction For Fusion Size
 
