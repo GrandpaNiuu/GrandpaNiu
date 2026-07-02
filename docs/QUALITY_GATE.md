@@ -1,6 +1,6 @@
 # 质量门禁标准
 
-本文件定义 GrandpaNiu 仓库的阻断检查、提醒检查和上线标准。发布判断统一依赖自动化质量证据，不依赖人工设备记录。
+本文件定义 GrandpaNiu 仓库的阻断检查、提醒检查和 Fusion 发布标准。发布判断统一依赖自动化质量证据，不依赖旧版多 profile 的人工晋级记录。
 
 ## 质量门禁目标
 
@@ -37,7 +37,7 @@
 14. `RULE-SET` 远程内容下载失败、下载到 HTML/404、空文件或混入不兼容规则语法。
 15. `DOMAIN-SET` 远程内容不是纯域名集合，或混入带逗号规则行。
 16. 发现 Quantumult X 的 `host`、`host-suffix`、`host-keyword`、`ip6-cidr` 被直接作为 Shadowrocket `RULE-SET` 引用。
-17. 未经单项 PR 审查和自动化质量门禁，将 Full 或风险层内容批量晋级公开入口。
+17. 未经单项审查、自动化质量证据和可回滚源头，将候选或高风险扩展批量并入 Fusion。
 18. 任一跟踪文本文件包含 UTF-8 BOM。
 19. 缺少或未刷新 `reports/automated_quality_evidence.md`。
 
@@ -69,14 +69,12 @@ node --check Scripts/app-cleaner.js
 python -m unittest discover -s tests
 python scripts/validate_app_sources.py
 python scripts/convert_quanx_rules.py
-python scripts/build_module.py --build --profile fusion
-python scripts/factory_finalize.py --sync-root
-python scripts/build_release_variants.py
+python Rewrite/Generator/Builder.py --profile fusion --release
 python scripts/validate_remote_rule_syntax.py
 python scripts/validate_governance_extensions.py
 python scripts/validate_repository.py
 python scripts/repository_health_check.py
-python tools/generate_automated_quality_evidence.py
+tools/generate_automated_quality_evidence.py
 ```
 
 ## 远程规则语法门禁
@@ -99,15 +97,14 @@ python tools/generate_automated_quality_evidence.py
 - 仓库自己的 Pages / raw 链接由校验器优先映射到本地文件，避免 workflow 读到旧缓存。
 - 出现失败时，优先修源头，不要只修改 Release 成品。
 
-## Full 冻结边界
+## Fusion 变更边界
 
-Full 是排查版，不是候选发布池。
+Fusion 是唯一公开模块，不存在 Stable、Stable Plus、Lite 或 Full 的并行发布线。
 
-- Full 不允许作为默认发布。
-- Full 不允许整体合并进 Stable 或 Fusion。
-- Full 中任何规则、脚本、MITM 要进入公开入口，必须按单项 App / 单类规则 / 单组 hostname 提交晋级。
-- 晋级必须带：影响范围、自动化质量证据、回滚路径、误伤风险说明。
-- 未经质量门禁的 Full 内容只能保持排查用途。
+- 候选、扩展或高风险规则不能批量进入 Fusion。
+- 每次接入必须限定到单项 App、单类规则或单组 hostname，并保留源头、风险说明和回滚路径。
+- 自动化质量证据只证明构建与静态治理通过，不等同于效果承诺或真实设备结论。
+- App 独立模块可用于诊断或按需导入，但不构成新的公开版本线。
 
 ## 自动化对应关系
 
@@ -136,6 +133,6 @@ Full 是排查版，不是候选发布池。
 先小步提交，再观察。
 脚本比规则风险高，脚本默认 pending。
 远程规则先校验语法，再谈覆盖效果。
-Full 只用于排查，不用于批量晋级。
+候选或扩展层不批量进入 Fusion。
 播放、登录、支付、验证码优先保护。
 ```
