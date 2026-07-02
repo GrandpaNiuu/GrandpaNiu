@@ -1206,3 +1206,108 @@ The first three workflow-reproduction commands were run in a repository-external
 
 - Commit and push the repair with explicit paths.
 - Re-run or wait for `upstream-app-module-sync.yml` and confirm the remote run after this commit is green.
+
+## 2026-07-03 04:23 +08:00 - Pages source-mode guard
+
+### Task Summary
+
+After pushing the upstream sync repair, GitHub Actions showed `Module Factory Build` success but `Deploy GitHub Pages` failure on the same commit.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Status: clean after pushing `52efbde8`.
+- Expected scope: Pages workflow guard, generated workflow reports, and AI maintenance records.
+- Out of scope: module rules, App sources, MITM, scripts, Android/Windows routing, public import URLs, or Release source changes.
+
+### Actual Changes
+
+- Updated `.github/workflows/pages-deploy.yml` with a `detect-pages-source` job.
+- The workflow now reads repository Pages settings from the GitHub API.
+- It runs `actions/deploy-pages` only when Pages `build_type` is `workflow`.
+- If Pages remains in branch deployment mode, the workflow skips self-managed deploy and lets the default `pages build and deployment` path publish the site.
+
+### Commands Run
+
+```bash
+python scripts\validate_repository.py
+python scripts\repository_health_check.py
+python tools\generate_automation_gap_report.py
+python scripts\generate_workflow_health_report.py
+```
+
+### Validation Result
+
+- Workflow YAML parsed successfully.
+- Repository validation passed.
+- Repository health check passed.
+- Automation gap check passed.
+- Workflow health report regenerated.
+
+### Risks
+
+- Remote Pages workflow still needs post-push confirmation.
+- If the owner later switches Settings -> Pages to GitHub Actions, the self-managed deploy path should become active.
+- No traffic-policy source files were changed.
+
+### Self-Review
+
+- What was not good enough: adding a self-managed Pages deploy assumed repository Pages settings were already set to GitHub Actions.
+- What I changed to reduce that risk: added a source-mode detection job so branch Pages mode does not create a red self-managed deployment.
+- What I would check first next time: inspect whether `pages build and deployment` and custom Pages workflows are both running before changing deployment automation.
+
+### Next Step
+
+- Run the full quality gate after the workflow/report update.
+- Commit and push the guard.
+- Confirm the next Pages workflow run is no longer red.
+
+## 2026-07-03 04:32 +08:00 - QuanX converter fetch fallback
+
+### Task Summary
+
+While validating the Pages guard, the full quality gate failed because `scripts/convert_quanx_rules.py` treated a transient zirawell upstream SSL EOF as a hard failure.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Status: uncommitted Pages guard, generated reports, and AI records.
+- Expected scope: converter fallback, focused tests, generated reports, and AI maintenance records.
+- Out of scope: hand-editing converted rule content or changing module traffic policy.
+
+### Actual Changes
+
+- Added `FetchError` and `convert_source()` to `scripts/convert_quanx_rules.py`.
+- Fetch/read failures keep an existing non-empty converted output and print a warning.
+- Missing first-time converted outputs still fail.
+- Added `tests/test_quanx_converter.py`.
+
+### Commands Run
+
+```bash
+python -m unittest tests.test_quanx_converter tests.test_app_source_conversion tests.test_automation_status
+python -m py_compile tests\test_quanx_converter.py scripts\convert_quanx_rules.py
+python scripts\quality_gate.py
+```
+
+### Validation Result
+
+- Focused converter and automation tests passed with 13 tests.
+- Python compile passed.
+- Full quality gate passed after the converter fallback.
+
+### Risks
+
+- A converted rule file may remain one upstream cycle stale when the remote fetch fails.
+- No rule content was manually changed; existing generated converted output is preserved.
+
+### Self-Review
+
+- What was not good enough: the first automation fix covered App module upstreams but not the separate QuanX remote conversion path.
+- What I changed to reduce that risk: added the same keep-existing-output behavior to converted rule generation and locked it with tests.
+- What I would check first next time: run the full quality gate after every automation repair, because it exercises more upstream fetch paths than the failing workflow alone.
+
+### Next Step
+
+- Refresh health/freshness reports after docs and test updates.
+- Commit and push the Pages guard plus QuanX fallback.

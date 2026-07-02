@@ -1,6 +1,34 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-03 04:13 +08:00
+Last updated: 2026-07-03 04:32 +08:00
+
+## 2026-07-03 QuanX Converted Rule Fallback Snapshot
+
+- Full `python scripts\quality_gate.py` initially exposed another automation fragility: `scripts/convert_quanx_rules.py` failed the whole gate when the zirawell upstream returned a transient SSL EOF.
+- The converted outputs already existed under `Rules/converted/`, so a temporary upstream fetch failure should not break daily automation.
+- `scripts/convert_quanx_rules.py` now keeps existing converted outputs when fetch/UTF-8 read fails and a non-empty local converted file exists.
+- If there is no existing converted output, the script still fails, preventing a silently missing rule set.
+- Added `tests/test_quanx_converter.py` to protect both fallback and no-existing-output failure behavior.
+- Full `python scripts\quality_gate.py` passed after this fix.
+
+Traffic-policy boundary: this preserves existing converted rule outputs during upstream fetch failure; it does not add, remove, or rewrite app rules.
+
+## 2026-07-03 Pages Deploy Source-Mode Guard Snapshot
+
+- After the upstream sync repair was pushed, `Module Factory Build` succeeded on commit `52efbde8`.
+- The same push showed `pages build and deployment` success, but the self-managed `Deploy GitHub Pages` workflow failed.
+- This means GitHub Pages is still effectively being published by the default branch Pages deployment path, while the self-managed deploy workflow is not safe to auto-run unless repository Pages source is set to GitHub Actions.
+- `.github/workflows/pages-deploy.yml` now detects the repository Pages `build_type` first:
+  - `build_type == workflow`: run the self-managed `actions/deploy-pages` job
+  - any other value or API read failure: skip self-managed deploy and let default branch Pages deployment publish the site
+- Validation passed:
+  - workflow YAML parse
+  - `python scripts\validate_repository.py`
+  - `python scripts\repository_health_check.py`
+  - `python tools\generate_automation_gap_report.py`
+  - `python scripts\generate_workflow_health_report.py`
+
+Traffic-policy boundary: no module rules, App sources, MITM, scripts, Android, Windows, or public import URLs were changed.
 
 ## 2026-07-03 Upstream App Sync Automation Repair Snapshot
 

@@ -1,6 +1,49 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-03 04:13 +08:00
+Last updated: 2026-07-03 04:32 +08:00
+
+## Current QuanX Converted Rule Fallback Task
+
+Status: locally implemented and validated; pending commit, push, and remote workflow confirmation.
+
+Scope:
+
+- Stop transient zirawell upstream fetch failures from breaking the full quality gate when previous converted outputs already exist.
+- Keep missing first-time converted outputs as hard failures.
+- Do not change rule content by hand.
+
+Validation:
+
+- `python -m unittest tests.test_quanx_converter tests.test_app_source_conversion tests.test_automation_status` passed with 13 tests.
+- `python -m py_compile tests\test_quanx_converter.py scripts\convert_quanx_rules.py` passed.
+- `python scripts\quality_gate.py` passed after the converter fallback.
+
+Next check:
+
+- Confirm the next scheduled automation uses the fallback instead of failing on a single transient zirawell fetch error.
+
+## Current Pages Source-Mode Guard Task
+
+Status: locally implemented and validated; pending commit, push, and remote Pages workflow confirmation.
+
+Scope:
+
+- Stop the self-managed `Deploy GitHub Pages` workflow from producing red failures while the repository is still using default branch Pages deployment.
+- Keep the workflow available for future GitHub Actions Pages mode.
+- Do not change public Pages paths, import files, module outputs, or traffic rules.
+
+Validation:
+
+- Workflow YAML parsed successfully.
+- `python scripts\validate_repository.py` passed.
+- `python scripts\repository_health_check.py` passed.
+- `python tools\generate_automation_gap_report.py` passed.
+- `python scripts\generate_workflow_health_report.py` passed.
+
+Next check:
+
+- Commit and push.
+- Confirm the next `Deploy GitHub Pages` run is success or skipped-by-guard, not failure.
 
 ## Current Upstream App Sync Automation Repair Task
 

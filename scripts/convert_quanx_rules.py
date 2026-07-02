@@ -47,6 +47,10 @@ class Source:
     output: Path
 
 
+class FetchError(RuntimeError):
+    pass
+
+
 SOURCES = [
     Source(
         name="zirawell App AdBlock",
@@ -155,10 +159,10 @@ def fetch_text(url: str) -> str:
     try:
         with urllib.request.urlopen(request, timeout=45) as response:
             return response.read().decode("utf-8")
-    except urllib.error.URLError as exc:
-        stop(f"failed to fetch {url}: {exc}")
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        raise FetchError(f"failed to fetch {url}: {exc}") from exc
     except UnicodeDecodeError as exc:
-        stop(f"upstream is not valid UTF-8: {url}: {exc}")
+        raise FetchError(f"upstream is not valid UTF-8: {url}: {exc}") from exc
 
 
 def clean_value(value: str, rule_type: str) -> str:
@@ -253,16 +257,27 @@ def convert_text(source: Source, text: str) -> str:
     return "\n".join(header + rules).rstrip() + "\n"
 
 
+def convert_source(source: Source) -> str:
+    try:
+        text = fetch_text(source.url)
+    except FetchError as exc:
+        existing = read_text(source.output)
+        if existing.strip():
+            return f"WARNING: {source.name}: {exc}; keeping existing {source.output.relative_to(ROOT)}"
+        stop(f"{source.name}: {exc}; no existing converted output to keep")
+
+    converted = convert_text(source, text)
+    source.output.write_text(converted, encoding="utf-8", newline="\n")
+    return f"Converted {source.name}: {source.output.relative_to(ROOT)} ({len(converted.splitlines())} lines)"
+
+
 def main() -> None:
     normalized = normalize_pure_domain_set_remotes()
     if normalized:
         print("Normalized pure DOMAIN-SET remotes in: " + ", ".join(normalized))
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for source in SOURCES:
-        text = fetch_text(source.url)
-        converted = convert_text(source, text)
-        source.output.write_text(converted, encoding="utf-8", newline="\n")
-        print(f"Converted {source.name}: {source.output.relative_to(ROOT)} ({len(converted.splitlines())} lines)")
+        print(convert_source(source))
 
 
 if __name__ == "__main__":

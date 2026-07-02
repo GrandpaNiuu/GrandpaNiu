@@ -1,8 +1,32 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-03 04:13 +08:00
+Last updated: 2026-07-03 04:32 +08:00
 
 ## Decisions
+
+### 2026-07-03 - Converted QuanX Rule Fetch Failures May Keep Existing Outputs
+
+`scripts/convert_quanx_rules.py` should keep a previously generated converted output when the upstream fetch or UTF-8 read fails temporarily.
+
+Required behavior:
+
+- If `Rules/converted/<name>.list` exists and is non-empty, keep it and print a warning.
+- If no existing converted output exists, fail rather than silently publishing a missing rule set.
+- If upstream content is fetched but cannot be converted safely, continue to fail.
+
+Reason: daily automation should not red-cross on a transient upstream SSL EOF when the repository already has a valid converted output.
+
+### 2026-07-03 - Self-Managed Pages Deploy Must Respect Repository Pages Source
+
+The self-managed `pages-deploy.yml` workflow should run `actions/deploy-pages` only when the repository's Pages `build_type` is `workflow`.
+
+Required behavior:
+
+- Keep default branch Pages deployment as the active publisher when repository settings are not switched to GitHub Actions.
+- Keep the self-managed workflow as a guarded standby path.
+- Do not let the self-managed workflow auto-fail on push or workflow-run events when Pages settings still use branch deployment.
+
+Reason: the push after `52efbde8` showed default Pages deployment succeeding while the self-managed Pages workflow failed. Code cannot switch repository Pages settings without admin access, so the workflow must detect the source mode and avoid a conflicting deployment.
 
 ### 2026-07-03 - Upstream App Sync Treats Transient Fetch Failures As Retryable
 

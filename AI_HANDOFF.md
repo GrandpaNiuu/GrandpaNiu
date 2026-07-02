@@ -1,6 +1,26 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-03 04:13 +08:00
+Last updated: 2026-07-03 04:32 +08:00
+
+## 2026-07-03 QuanX Converter Fallback Handoff
+
+- `quality_gate.py` exposed that `scripts/convert_quanx_rules.py` could still fail daily automation on a transient zirawell SSL EOF.
+- The converter now raises `FetchError` for fetch/read failures and keeps the existing converted output when it exists and is non-empty.
+- Missing first-time converted output remains a hard failure.
+- Added `tests/test_quanx_converter.py`.
+- Full quality gate passed after the converter fallback.
+- Next AI should treat this as an operational fallback only; conversion incompatibilities after a successful fetch should still fail.
+
+## 2026-07-03 Pages Source-Mode Guard Handoff
+
+- Push of `52efbde8` confirmed `Module Factory Build` success.
+- The same push triggered two Pages paths:
+  - GitHub default `pages build and deployment`: success
+  - repository self-managed `Deploy GitHub Pages`: failure
+- The self-managed Pages workflow now starts with a `detect-pages-source` job.
+- It calls the GitHub Pages repository API and only runs `actions/deploy-pages` when `build_type` is `workflow`.
+- If the repository remains in branch Pages mode or the Pages settings API cannot be read, the workflow skips self-managed deploy and relies on the default Pages deployment path.
+- Next AI should not remove the Pages workflow. It is a guarded standby path for when repository Settings -> Pages is switched to GitHub Actions.
 
 ## 2026-07-03 Upstream App Sync Automation Repair Handoff
 

@@ -1,6 +1,48 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-03 04:13 +08:00
+Last updated: 2026-07-03 04:32 +08:00
+
+## 2026-07-03 QuanX Converted Rule Fallback Risk Note
+
+Risk level: low traffic-policy risk, medium automation freshness risk.
+
+Observed signal:
+
+- `python scripts\quality_gate.py` failed when `scripts/convert_quanx_rules.py` could not fetch zirawell `allAdBlock.list` due to SSL EOF.
+- A valid previous converted file already existed under `Rules/converted/`.
+
+Mitigation:
+
+- The converter now keeps existing converted outputs on fetch/read failure.
+- It still fails if no local converted output exists.
+- It still fails on successful fetch plus unsupported conversion content.
+
+Remaining risk:
+
+- A kept converted output may lag the upstream until the next successful fetch.
+- This is preferred to publishing no rule set or failing all daily automation because of one transient upstream error.
+
+## 2026-07-03 Pages Source-Mode Guard Risk Note
+
+Risk level: low traffic-policy risk, medium deployment-automation risk.
+
+Observed signal:
+
+- Push of `52efbde8` triggered `Module Factory Build` successfully.
+- GitHub default `pages build and deployment` succeeded.
+- The self-managed `Deploy GitHub Pages` workflow failed, indicating repository Pages settings are not yet aligned with self-managed GitHub Actions Pages deployment.
+
+Mitigation:
+
+- Added a source-mode preflight to `.github/workflows/pages-deploy.yml`.
+- Self-managed Pages deployment now runs only when the repository Pages API reports `build_type=workflow`.
+- Otherwise the workflow reports a notice and skips the deploy job, leaving the currently successful default branch Pages deployment in charge.
+
+Remaining risk:
+
+- If the owner wants the self-managed workflow to be the active Pages publisher, repository Settings -> Pages still needs to be switched to GitHub Actions.
+- Until then, the default `pages build and deployment` workflow is the real Pages publisher.
+- This does not affect module content or runtime ad-cleaning behavior.
 
 ## 2026-07-03 Upstream App Sync Automation Repair Risk Note
 

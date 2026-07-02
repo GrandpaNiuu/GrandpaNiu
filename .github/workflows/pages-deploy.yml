@@ -48,8 +48,51 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  detect-pages-source:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy_enabled: ${{ steps.detect.outputs.deploy_enabled }}
+      build_type: ${{ steps.detect.outputs.build_type }}
+    steps:
+      - name: Detect Pages source mode
+        id: detect
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          response_file="$(mktemp)"
+          if ! curl -fsSL \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/pages" \
+            > "${response_file}"; then
+            echo "build_type=unknown" >> "${GITHUB_OUTPUT}"
+            echo "deploy_enabled=false" >> "${GITHUB_OUTPUT}"
+            echo "::notice::Could not read Pages settings; skipping self-managed Pages deploy."
+            exit 0
+          fi
+
+          python3 - "${response_file}" <<'PY'
+          import json
+          import os
+          import sys
+
+          with open(sys.argv[1], "r", encoding="utf-8") as handle:
+              data = json.load(handle)
+          build_type = str(data.get("build_type") or "unknown")
+          enabled = "true" if build_type == "workflow" else "false"
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write(f"build_type={build_type}\n")
+              output.write(f"deploy_enabled={enabled}\n")
+          print(f"GitHub Pages build_type={build_type}; self-managed deploy enabled={enabled}")
+          if enabled != "true":
+              print("::notice::GitHub Pages is not set to GitHub Actions. Default branch Pages deployment will publish the site; skipping self-managed deploy.")
+          PY
+
   deploy:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    needs: detect-pages-source
+    if: needs.detect-pages-source.outputs.deploy_enabled == 'true' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 45
     environment:
