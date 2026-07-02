@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-07-02T20:37:02Z
+- generated: 2026-07-02T20:39:03Z
 - enabled: True
 - input script entries: 230
 - output script entries: 180
@@ -70,7 +70,7 @@
 - None
 
 ## Cache Fallbacks
-- `https://kelee.one/Resource/JavaScript/NeteaseNews/NeteaseNews_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- None
 
 ## Preserved Reasons
 - preserved: binary body: 2
