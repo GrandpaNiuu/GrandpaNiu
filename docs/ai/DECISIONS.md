@@ -1,12 +1,28 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-02 21:44 +08:00
+Last updated: 2026-07-02 22:17 +08:00
 
 ## Decisions
 
+### 2026-07-02 - Main Fusion Uses Compact China / Overseas Routing
+
+The main iOS Fusion module uses a compact network split instead of zero routing and instead of many scattered protection routes.
+
+Generated `[Rule]` behavior:
+
+- Strip scattered source `DIRECT` / `PROXY` rules from the public Fusion output.
+- Append `GEOIP,CN,DIRECT`.
+- Append `FINAL,PROXY`.
+
+Reason: after removing all `DIRECT` and `PROXY`, the owner reported real network errors. The compact split keeps the module easier to manage while restoring a clear China-direct and overseas-proxy path.
+
+Validation must allow only these two routing rules in the main Fusion `[Rule]` section and require them as the final two active rules.
+
 ### 2026-07-02 - Main Fusion Output Strips DIRECT And PROXY Rules
 
-The main iOS Fusion module now strips `DIRECT` and `PROXY` policies from its generated `[Rule]` section when `Rewrite/Profiles/fusion.conf` has `strip_direct_proxy_rules = true`.
+Superseded by the compact China / overseas routing decision above.
+
+The main iOS Fusion module still strips scattered `DIRECT` and `PROXY` policies from generated `[Rule]` output when `Rewrite/Profiles/fusion.conf` has `strip_direct_proxy_rules = true`, but it now appends the managed compact split when `compact_network_split = true`.
 
 Source files are preserved. Android and Windows outputs are not part of this policy change.
 

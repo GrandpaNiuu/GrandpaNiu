@@ -108,15 +108,18 @@ EXPECTED_WORKFLOW_CRONS = {
 
 ALLOWED_REMOTE_TYPES = {"RULE-SET", "DOMAIN-SET"}
 ALLOWED_POLICIES = {"REJECT", "REJECT-DROP", "DIRECT"}
-DISALLOWED_MAIN_RULE_POLICIES = {"DIRECT", "PROXY"}
+ROUTING_MAIN_RULE_POLICIES = {"DIRECT", "PROXY"}
+ALLOWED_MAIN_ROUTING_RULES = ("GEOIP,CN,DIRECT", "FINAL,PROXY")
 RULE_PREFIXES = {
     "AND",
     "DOMAIN",
     "DOMAIN-KEYWORD",
     "DOMAIN-SET",
     "DOMAIN-SUFFIX",
+    "GEOIP",
     "IP-CIDR",
     "IP-CIDR6",
+    "FINAL",
     "RULE-SET",
     "URL-REGEX",
 }
@@ -248,11 +251,16 @@ def rule_policy(line: str) -> str | None:
     parts = stripped.split(",")
     if parts[0] not in RULE_PREFIXES:
         return None
-    for part in parts[2:]:
+    policy_parts = parts[1:] if parts[0] == "FINAL" else parts[2:]
+    for part in policy_parts:
         token = part.strip().upper()
         if token in RULE_POLICY_TOKENS:
             return token
     return None
+
+
+def normalized_rule_line(line: str) -> str:
+    return ",".join(part.strip() for part in line.split(","))
 
 
 def workflow_has_fusion_build(text: str) -> bool:
@@ -317,10 +325,20 @@ def validate_root_release() -> None:
         if missing:
             fail("root module contains undeclared argument placeholders: " + ", ".join(missing))
     sections = split_sections(root_text)
-    for line in active_lines("\n".join(sections.get("Rule", []))):
+    rule_lines = list(active_lines("\n".join(sections.get("Rule", []))))
+    routing_lines = [normalized_rule_line(line) for line in rule_lines if rule_policy(line) in ROUTING_MAIN_RULE_POLICIES]
+    if tuple(routing_lines) != ALLOWED_MAIN_ROUTING_RULES:
+        fail(
+            "root Fusion [Rule] routing must use compact network split only: "
+            + " / ".join(ALLOWED_MAIN_ROUTING_RULES)
+        )
+    if tuple(normalized_rule_line(line) for line in rule_lines[-2:]) != ALLOWED_MAIN_ROUTING_RULES:
+        fail("root Fusion [Rule] compact network split must be the final two active rules")
+    for line in rule_lines:
         policy = rule_policy(line)
-        if policy in DISALLOWED_MAIN_RULE_POLICIES:
-            fail(f"root Fusion [Rule] must not contain {policy} routing/protection rule: {line}")
+        normalized = normalized_rule_line(line)
+        if policy in ROUTING_MAIN_RULE_POLICIES and normalized not in ALLOWED_MAIN_ROUTING_RULES:
+            fail(f"root Fusion [Rule] contains unmanaged routing rule: {line}")
     for line in active_lines(root_text):
         upper = line.upper()
         lowered = line.lower()

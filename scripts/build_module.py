@@ -61,13 +61,20 @@ RULE_PREFIXES = {
     "DOMAIN-KEYWORD",
     "DOMAIN-SET",
     "DOMAIN-SUFFIX",
+    "GEOIP",
     "IP-CIDR",
     "IP-CIDR6",
+    "FINAL",
     "RULE-SET",
     "URL-REGEX",
 }
 RULE_POLICIES_TO_STRIP = {"DIRECT", "PROXY"}
 RULE_POLICY_TOKENS = {"DIRECT", "PROXY", "REJECT", "REJECT-DROP", "REJECT-TINYGIF", "REJECT-IMG"}
+COMPACT_NETWORK_SPLIT_RULES = (
+    "# GrandpaNiu compact network split: China direct, overseas proxy",
+    "GEOIP,CN,DIRECT",
+    "FINAL,PROXY",
+)
 REWRITE_ACTIONS = (
     "reject",
     "reject-200",
@@ -526,7 +533,8 @@ def rule_policy(line: str) -> str | None:
     if prefix not in RULE_PREFIXES:
         return None
     parts = stripped.split(",")
-    for part in parts[2:]:
+    policy_parts = parts[1:] if parts[0] == "FINAL" else parts[2:]
+    for part in policy_parts:
         token = part.strip().upper()
         if token in RULE_POLICY_TOKENS:
             return token
@@ -540,6 +548,12 @@ def strip_rule_policies(body: str, policies: set[str]) -> str:
             continue
         lines.append(raw)
     return "\n".join(lines).strip() + ("\n" if lines else "")
+
+
+def append_compact_network_split(body: str) -> str:
+    base = body.strip()
+    suffix = "\n".join(COMPACT_NETWORK_SPLIT_RULES)
+    return f"{base}\n\n{suffix}\n" if base else f"{suffix}\n"
 
 
 def split_script_fields(value: str) -> list[str]:
@@ -1225,6 +1239,8 @@ def build_rules(profile: configparser.ConfigParser) -> str:
     rules = merge_lines(blocks)
     if as_bool(profile, "safety", "strip_direct_proxy_rules", False):
         rules = strip_rule_policies(rules, RULE_POLICIES_TO_STRIP)
+    if as_bool(profile, "safety", "compact_network_split", False):
+        rules = append_compact_network_split(rules)
     return rules
 
 

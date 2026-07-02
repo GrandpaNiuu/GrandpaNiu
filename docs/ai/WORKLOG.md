@@ -832,3 +832,91 @@ python scripts\check_report_freshness.py --strict
 
 - Publish this policy change.
 - Confirm the next `Module Factory Build` run is green.
+
+## 2026-07-02 22:17 +08:00 - Compact China / overseas network split
+
+### Task Summary
+
+Owner reported real network errors after the previous no-routing main Fusion policy and requested stronger, easier-to-manage network routing: Chinese Apps should go direct and overseas Apps should go proxy, without restoring many scattered protection routes.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Status: clean and synchronized with `origin/main`.
+- Expected scope: Fusion profile, main iOS module build logic, validation guards, generated iOS module outputs, release reports, AI records.
+
+### Actual Changes
+
+- `Rewrite/Profiles/fusion.conf`: enabled `compact_network_split = true` while keeping `strip_direct_proxy_rules = true`.
+- `scripts/build_module.py`: strips scattered `DIRECT` / `PROXY` rules and appends only:
+  - `GEOIP,CN,DIRECT`
+  - `FINAL,PROXY`
+- `scripts/validate_repository.py`: allows only those two routing rules and requires them to be the final two active `[Rule]` entries.
+- `scripts/validate_module_integrity.py` and `scripts/validate_app_sources.py`: accept `GEOIP` and `FINAL` rule syntax.
+- Regenerated and synchronized:
+  - `Ronghemokuai.sgmodule`
+  - `Release/Ronghemokuai.sgmodule`
+  - `Release/Module.sgmodule`
+  - release reports and checksums
+
+### Commands Run
+
+```bash
+git status --short --branch
+git branch --show-current
+python -m py_compile scripts\build_module.py scripts\validate_repository.py scripts\validate_module_integrity.py scripts\validate_app_sources.py
+python scripts\build_module.py --build --profile fusion
+python scripts\factory_finalize.py --sync-root
+python scripts\build_release_aliases.py --config Rewrite\Generator\Generate.conf
+python scripts\build_release_variants.py
+python scripts\build_checksums.py
+python scripts\build_release_summary.py
+python scripts\validate_module_integrity.py
+python scripts\validate_app_sources.py
+python scripts\validate_repository.py
+python scripts\validate_profiles.py
+python scripts\generate_app_status_matrix.py
+python tools\validate_script_aggregation.py
+python tools\test_script_bundle_sandbox.py
+python tools\generate_mitm_scope_report.py
+python tools\generate_automation_gap_report.py
+python tools\generate_automated_quality_evidence.py
+python scripts\repository_health_check.py
+python scripts\check_report_freshness.py --strict
+```
+
+### Validation Result
+
+- Python compile passed.
+- Module integrity passed.
+- App source validation passed for 398 source files and 398 release modules.
+- Repository validation passed.
+- Repository health passed.
+- Report freshness strict check passed.
+- Automation gap check passed.
+- Final main iOS public entries:
+  - `REJECT`: 1148
+  - `REJECT-IMG`: 7
+  - `REJECT-TINYGIF`: 7
+  - `REJECT-DROP`: 17
+  - `DIRECT`: 1
+  - `PROXY`: 1
+- The final two active `[Rule]` entries are `GEOIP,CN,DIRECT` and `FINAL,PROXY`.
+
+### Risks
+
+- This is a high-impact routing behavior change.
+- `GEOIP,CN,DIRECT` is IP-geography based, not a perfect App identity classifier.
+- `FINAL,PROXY` depends on the user's Shadowrocket policy group named `PROXY`.
+- Static checks prove syntax and generated-output policy only; real runtime behavior remains owner-tested.
+
+### Self-Review
+
+- What was not good enough: the prior zero-routing policy was too strict for real usage and caused network errors.
+- What I changed to reduce that risk: added a compact, validated network split instead of restoring many scattered protection lines.
+- What I would check first next time: if a Chinese App still fails, inspect whether it uses overseas CDN/IPs; if an overseas App still fails, confirm the Shadowrocket `PROXY` policy group exists and is usable.
+
+### Next Step
+
+- Commit and push this compact network split.
+- Confirm the next `Module Factory Build` run is green.

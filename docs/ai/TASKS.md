@@ -1,10 +1,41 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-02 21:44 +08:00
+Last updated: 2026-07-02 22:17 +08:00
+
+## Current Compact Network Split Task
+
+Status: implemented locally and validated; pending commit, push, and remote Actions confirmation.
+
+Scope:
+
+- Restore stable network routing in the main iOS Fusion module after real user-reported network errors.
+- Keep ad-blocking rules first.
+- Do not restore scattered protection / routing lists into the public module.
+- Use one compact split:
+  - `GEOIP,CN,DIRECT`
+  - `FINAL,PROXY`
+
+Validation:
+
+- `python -m py_compile scripts\build_module.py scripts\validate_repository.py scripts\validate_module_integrity.py scripts\validate_app_sources.py` passed.
+- `python scripts\build_module.py --build --profile fusion` passed.
+- `python scripts\factory_finalize.py --sync-root` passed.
+- `python scripts\build_release_aliases.py --config Rewrite\Generator\Generate.conf` passed.
+- `python scripts\validate_module_integrity.py` passed.
+- `python scripts\validate_app_sources.py` passed.
+- `python scripts\validate_repository.py` passed.
+- `python scripts\repository_health_check.py` passed.
+- `python scripts\check_report_freshness.py --strict` passed.
+- Main iOS public entries have exactly 1 `DIRECT` and 1 `PROXY` policy, as the final two active rules.
+
+Next check:
+
+- Commit and push.
+- Confirm the next `Module Factory Build` run is green.
 
 ## Current Main Fusion Routing Strip Task
 
-Status: implemented locally and validated; remote Actions confirmation remains the next check after publishing.
+Status: superseded by the compact network split after real network errors were reported.
 
 Scope:
 

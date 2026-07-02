@@ -33,8 +33,10 @@ RULE_PREFIXES = {
     "DOMAIN-KEYWORD",
     "DOMAIN-SET",
     "DOMAIN-SUFFIX",
+    "GEOIP",
     "IP-CIDR",
     "IP-CIDR6",
+    "FINAL",
     "RULE-SET",
     "URL-REGEX",
 }

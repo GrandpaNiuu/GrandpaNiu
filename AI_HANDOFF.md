@@ -1,6 +1,20 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-02 21:44 +08:00
+Last updated: 2026-07-02 22:17 +08:00
+
+## 2026-07-02 Compact Network Split Handoff
+
+- Owner reported real network errors after the previous no-routing main Fusion policy.
+- Current main iOS Fusion policy:
+  - strip scattered `DIRECT` / `PROXY` source rules from generated output
+  - append only `GEOIP,CN,DIRECT`
+  - append only `FINAL,PROXY`
+- This is implemented source-first:
+  - `Rewrite/Profiles/fusion.conf`: `strip_direct_proxy_rules = true` and `compact_network_split = true`
+  - `scripts/build_module.py`: strips old route policies, then appends compact network split
+  - `scripts/validate_repository.py`: only allows those two routing lines and requires them as the final two active `[Rule]` entries
+- Main iOS public entries now contain 1 `DIRECT` and 1 `PROXY` policy, both at the end of `[Rule]`.
+- Do not re-add the old scattered protection lines unless owner requests a more granular policy. If a Chinese App still fails, check whether `GEOIP,CN,DIRECT` is insufficient for a domain-first route; if an overseas App still fails, check the user's Shadowrocket policy group named `PROXY`.
 
 ## 2026-07-02 Main Fusion Routing Strip Handoff
 

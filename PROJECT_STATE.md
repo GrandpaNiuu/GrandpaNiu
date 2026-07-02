@@ -1,6 +1,33 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-02 21:44 +08:00
+Last updated: 2026-07-02 22:17 +08:00
+
+## 2026-07-02 Compact China / Overseas Network Split Snapshot
+
+- Owner reported real network errors after the main Fusion module removed all `DIRECT` and `PROXY` routing policies.
+- The main iOS Fusion module now keeps ad-blocking rules first and appends one compact network-management tail:
+  - `GEOIP,CN,DIRECT`
+  - `FINAL,PROXY`
+- `Rewrite/Profiles/fusion.conf` keeps `strip_direct_proxy_rules = true` to strip old scattered route/protection rules, then enables `compact_network_split = true` to append the centralized split.
+- This keeps the main module manageable: no restored bulk protection lists, only one China-direct rule and one overseas-proxy fallback.
+- Generated iOS public entries are synchronized:
+  - `Ronghemokuai.sgmodule`
+  - `Release/Ronghemokuai.sgmodule`
+  - `Release/Module.sgmodule`
+- Final main Fusion rule policy counts:
+  - `REJECT`: 1148
+  - `REJECT-IMG`: 7
+  - `REJECT-TINYGIF`: 7
+  - `REJECT-DROP`: 17
+  - `DIRECT`: 1
+  - `PROXY`: 1
+- Validation now requires the only managed routing rules in the main Fusion `[Rule]` section to be exactly `GEOIP,CN,DIRECT` and `FINAL,PROXY`, and requires them to be the final two active rules.
+- Validation passed:
+  - `python scripts/validate_module_integrity.py`
+  - `python scripts/validate_app_sources.py`
+  - `python scripts/validate_repository.py`
+  - `python scripts/repository_health_check.py`
+  - `python scripts/check_report_freshness.py --strict`
 
 ## 2026-07-02 Main Fusion Routing Strip Snapshot
 

@@ -34,8 +34,10 @@ RULE_PREFIXES = {
     "DOMAIN-KEYWORD",
     "DOMAIN-SET",
     "DOMAIN-SUFFIX",
+    "GEOIP",
     "IP-CIDR",
     "IP-CIDR6",
+    "FINAL",
     "RULE-SET",
     "URL-REGEX",
 }
@@ -107,6 +109,10 @@ def validate_rule_line(line: str) -> None:
         fail(f"domain rule missing policy: {line}")
     if prefix in {"IP-CIDR", "IP-CIDR6"} and line.count(",") < 2:
         fail(f"IP rule missing policy: {line}")
+    if prefix == "GEOIP" and line.count(",") < 2:
+        fail(f"GEOIP rule missing country and policy: {line}")
+    if prefix == "FINAL" and line.count(",") < 1:
+        fail(f"FINAL rule missing policy: {line}")
 
 
 def validate_script_line(line: str) -> str:

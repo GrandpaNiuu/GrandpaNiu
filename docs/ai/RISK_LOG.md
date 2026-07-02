@@ -1,6 +1,34 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-02 21:44 +08:00
+Last updated: 2026-07-02 22:17 +08:00
+
+## 2026-07-02 Compact China / Overseas Network Split Risk Note
+
+Risk level: high runtime routing impact, owner-requested after real network errors.
+
+Observed signal:
+
+- Owner reported network errors after the previous main Fusion module removed all `DIRECT` and `PROXY` routing policies.
+
+Changed behavior:
+
+- Main iOS Fusion `[Rule]` now keeps ad-blocking rules first.
+- It strips scattered source `DIRECT` / `PROXY` policies from the public output.
+- It appends only:
+  - `GEOIP,CN,DIRECT`
+  - `FINAL,PROXY`
+
+Potential runtime impact:
+
+- Chinese Apps should generally avoid proxy routing by IP geography, but some Chinese services using overseas Anycast/CDN IPs may still hit `FINAL,PROXY`.
+- Overseas Apps should generally use the proxy fallback, but overseas Apps using China CDN IPs may hit `GEOIP,CN,DIRECT`.
+- `FINAL,PROXY` assumes the user's Shadowrocket configuration has a usable policy or group named `PROXY`.
+
+Mitigation:
+
+- Validation requires these two rules to be the only routing rules in the main Fusion `[Rule]` section and requires them to be the final two active rules.
+- Old scattered protection source files remain available for rollback or a future granular mode.
+- If runtime issues continue, first verify the user's Shadowrocket policy group name and then consider a small, explicit domain-based China/overseas list rather than restoring many protection routes.
 
 ## 2026-07-02 Main Fusion Routing Strip Risk Note
 
