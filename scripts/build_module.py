@@ -75,6 +75,11 @@ COMPACT_NETWORK_SPLIT_RULES = (
     "GEOIP,CN,DIRECT",
     "FINAL,PROXY",
 )
+COMPACT_REGEX_LINE_LIMIT = 6000
+COMPACT_URL_REWRITE_ACTIONS = {"reject", "reject-200", "reject-array", "reject-dict", "reject-img", "reject-ttl"}
+URL_REWRITE_REJECT_RE = re.compile(
+    r"^(?P<pattern>.+?)\s+(?P<replacement>-)\s+(?P<action>reject(?:-[a-z0-9]+)?)$"
+)
 REWRITE_ACTIONS = (
     "reject",
     "reject-200",
@@ -554,6 +559,99 @@ def append_compact_network_split(body: str) -> str:
     base = body.strip()
     suffix = "\n".join(COMPACT_NETWORK_SPLIT_RULES)
     return f"{base}\n\n{suffix}\n" if base else f"{suffix}\n"
+
+
+def joined_regex(patterns: list[str]) -> str:
+    return "|".join(f"(?:{pattern})" for pattern in patterns)
+
+
+def chunk_regex_patterns(patterns: list[str], prefix: str = "", suffix: str = "") -> list[list[str]]:
+    chunks: list[list[str]] = []
+    current: list[str] = []
+    for pattern in patterns:
+        candidate = [*current, pattern]
+        if current and len(prefix + joined_regex(candidate) + suffix) > COMPACT_REGEX_LINE_LIMIT:
+            chunks.append(current)
+            current = [pattern]
+        else:
+            current = candidate
+    if current:
+        chunks.append(current)
+    return chunks
+
+
+def compact_regex_group(patterns: list[str], prefix: str = "", suffix: str = "") -> list[str]:
+    return [prefix + joined_regex(chunk) + suffix for chunk in chunk_regex_patterns(patterns, prefix, suffix)]
+
+
+def compact_url_rewrite(body: str) -> str:
+    groups: dict[str, list[str]] = {}
+    passthrough: list[str] = []
+    for raw in body.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            passthrough.append(raw.rstrip())
+            continue
+        match = URL_REWRITE_REJECT_RE.match(line)
+        if not match or match.group("action") not in COMPACT_URL_REWRITE_ACTIONS:
+            passthrough.append(raw.rstrip())
+            continue
+        suffix = f" {match.group('replacement')} {match.group('action')}"
+        groups.setdefault(suffix, []).append(match.group("pattern"))
+    lines = [line for line in passthrough if line.strip()]
+    for suffix, patterns in sorted(groups.items()):
+        lines.extend(compact_regex_group(patterns, suffix=suffix))
+    return "\n".join(lines).strip() + ("\n" if lines else "")
+
+
+def compact_body_rewrite(body: str) -> str:
+    groups: dict[tuple[str, str], list[str]] = {}
+    passthrough: list[str] = []
+    for raw in body.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            passthrough.append(raw.rstrip())
+            continue
+        parts = line.split(" ", 2)
+        if len(parts) != 3 or parts[0] not in {"http-request", "http-response", "http-response-jq"}:
+            passthrough.append(raw.rstrip())
+            continue
+        verb, pattern, operation = parts
+        groups.setdefault((verb, operation), []).append(pattern)
+    lines = [line for line in passthrough if line.strip()]
+    for (verb, operation), patterns in sorted(groups.items()):
+        lines.extend(compact_regex_group(patterns, prefix=f"{verb} ", suffix=f" {operation}"))
+    return "\n".join(lines).strip() + ("\n" if lines else "")
+
+
+def compact_map_local(body: str) -> str:
+    groups: dict[str, list[str]] = {}
+    passthrough: list[str] = []
+    for raw in body.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            passthrough.append(raw.rstrip())
+            continue
+        parts = line.split(" ", 1)
+        if len(parts) != 2:
+            passthrough.append(raw.rstrip())
+            continue
+        pattern, operation = parts
+        groups.setdefault(operation, []).append(pattern)
+    lines = [line for line in passthrough if line.strip()]
+    for operation, patterns in sorted(groups.items()):
+        lines.extend(compact_regex_group(patterns, suffix=f" {operation}"))
+    return "\n".join(lines).strip() + ("\n" if lines else "")
+
+
+def compact_rewrite_section(section: str, body: str) -> str:
+    if section == "URL Rewrite":
+        return compact_url_rewrite(body)
+    if section == "Body Rewrite":
+        return compact_body_rewrite(body)
+    if section == "Map Local":
+        return compact_map_local(body)
+    return body
 
 
 def split_script_fields(value: str) -> list[str]:
@@ -1262,7 +1360,10 @@ def build_rewrite_section(profile: configparser.ConfigParser, section: str) -> s
         blocks.extend(load_optional_files(iter_profile_paths(profile, profile_section)))
     blocks.extend(misc_section_blocks(section))
     blocks.extend(app_section_blocks(section))
-    return merge_lines(blocks)
+    body = merge_lines(blocks)
+    if as_bool(profile, "safety", "compact_rewrite_sections", False):
+        body = compact_rewrite_section(section, body)
+    return body
 
 
 def parse_mitm_hosts(block: str) -> list[str]:

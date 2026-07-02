@@ -920,3 +920,74 @@ python scripts\check_report_freshness.py --strict
 
 - Commit and push this compact network split.
 - Confirm the next `Module Factory Build` run is green.
+
+## 2026-07-02 22:58 +08:00 - Fusion rewrite compaction
+
+### Task Summary
+
+Owner requested a deeper line-count reduction from roughly 5953 lines to about 3000 lines while preserving functionality, syntax correctness, and the compact network split.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Status: clean and synchronized with `origin/main`.
+- Starting main Fusion line count: `5953`.
+- Expected scope: Fusion generator, validation, one syntax source fix, generated outputs, reports, and AI records.
+
+### Actual Changes
+
+- `Rewrite/Profiles/fusion.conf`: enabled `compact_rewrite_sections = true`.
+- `scripts/build_module.py`: added conservative rewrite compaction:
+  - URL Rewrite pure `pattern - reject*` lines are grouped by identical suffix.
+  - Body Rewrite lines are grouped only by identical verb and operation.
+  - Map Local lines are grouped only by identical response operation.
+  - Regex chunks are capped to avoid single giant lines.
+- `scripts/validate_module_integrity.py`: now compiles generated Rewrite / Body Rewrite / Map Local regex patterns.
+- `tests/test_module_compaction.py`: added unit tests for URL Rewrite suffix preservation, Body Rewrite grouping, and Map Local grouping.
+- `Rewrite/Sources/Apps/kfc.conf`: fixed the typo `res\.kfc\.com.\cn` to `res\.kfc\.com\.cn`.
+- Regenerated Fusion, Release, Android, Windows, Web, checksums, and reports through the Builder / quality gate.
+
+### Commands Run
+
+```bash
+git status --short --branch
+git branch --show-current
+python -m py_compile scripts\build_module.py scripts\validate_module_integrity.py tests\test_module_compaction.py
+python -m unittest tests.test_module_compaction
+python scripts\build_module.py --build --profile fusion
+python scripts\factory_finalize.py --sync-root
+python scripts\build_release_aliases.py --config Rewrite\Generator\Generate.conf
+python scripts\validate_module_integrity.py
+python Rewrite\Generator\Builder.py --profile fusion --release --check
+python scripts\quality_gate.py
+```
+
+### Validation Result
+
+- Unit tests passed: 3 tests.
+- Full Builder check passed.
+- Full quality gate passed.
+- Test discovery passed: 28 tests.
+- Main iOS public entries are synchronized and now have:
+  - total lines: `2775`
+  - `[URL Rewrite]`: `40`
+  - `[Body Rewrite]`: `1434`
+  - `[Map Local]`: `37`
+  - final rule tail: `GEOIP,CN,DIRECT` / `FINAL,PROXY`
+
+### Risks
+
+- This is a generated rewrite structure change, so runtime behavior must still be watched in Shadowrocket.
+- Combined OR regexes are syntax-validated, but Python regex validation is not a perfect Shadowrocket runtime simulation.
+- Some generated lines are longer than before; chunking limits them to reduce parser risk.
+
+### Self-Review
+
+- What was not good enough: a naive URL Rewrite compressor could have dropped the required ` - reject` suffix and silently broken syntax.
+- What I changed to reduce that risk: used full suffix-aware parsing and added a unit test specifically for `pattern - reject`.
+- What I would check first next time: if a rewrite appears not to fire, inspect whether its source pattern is inside a combined OR line and whether the client has a maximum regex length issue.
+
+### Next Step
+
+- Commit and push the compaction.
+- Confirm the next `Module Factory Build` run is green.

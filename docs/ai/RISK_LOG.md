@@ -1,6 +1,30 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-02 22:17 +08:00
+Last updated: 2026-07-02 22:58 +08:00
+
+## 2026-07-02 Fusion Rewrite Compaction Risk Note
+
+Risk level: medium to high rewrite behavior risk, mitigated by conservative grouping and validation.
+
+Changed behavior:
+
+- Many generated URL Rewrite, Body Rewrite, and Map Local lines are now represented as combined OR regex groups.
+- The rule action or response operation is preserved exactly.
+- The public module is smaller, but some individual lines are longer.
+
+Mitigations:
+
+- URL Rewrite compaction only merges pure `- reject*` rules with the same suffix.
+- Body Rewrite compaction only merges byte-identical operations.
+- Map Local compaction only merges byte-identical payload/status/header operations.
+- Generated rewrite regexes are compiled by `scripts/validate_module_integrity.py`.
+- Unit tests cover the most important syntax boundary: preserving `pattern - reject` grammar.
+
+Remaining risk:
+
+- Python regex validation is not a perfect Shadowrocket engine simulation.
+- Very long OR regex lines can behave differently on older clients. Current chunking limits each generated regex line to roughly 6000 characters.
+- If an App-specific rewrite stops matching, inspect the relevant combined line before changing source rules.
 
 ## 2026-07-02 Compact China / Overseas Network Split Risk Note
 

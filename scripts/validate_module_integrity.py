@@ -134,21 +134,43 @@ def validate_rewrite_line(section: str, line: str) -> None:
     if section == "Header Rewrite":
         if " header-del " not in line and " header-replace " not in line:
             fail(f"Header Rewrite line has unsupported action: {line}")
+        validate_rewrite_regex(section, line)
         return
     if section == "Body Rewrite":
         if not line.startswith(("http-request ", "http-response ", "http-response-jq ")):
             fail(f"Body Rewrite line has unsupported verb: {line}")
         if len(line.split()) < 3:
             fail(f"Body Rewrite line is incomplete: {line}")
+        validate_rewrite_regex(section, line)
         return
     if section == "Map Local":
         if " data-type=" not in line:
             fail(f"Map Local line must include data-type: {line}")
         if " data=" not in line and "data-type=tiny-gif" not in line:
             fail(f"Map Local line must include data unless it uses tiny-gif: {line}")
+        validate_rewrite_regex(section, line)
         return
     if not any(action in line for action in REWRITE_ACTIONS):
         fail(f"{section} line has unsupported action: {line}")
+    validate_rewrite_regex(section, line)
+
+
+def validate_rewrite_regex(section: str, line: str) -> None:
+    pattern = ""
+    if section in {"Header Rewrite", "Body Rewrite"}:
+        parts = line.split(" ", 2)
+        if len(parts) >= 2:
+            pattern = parts[1]
+    else:
+        parts = line.split(" ", 1)
+        if parts:
+            pattern = parts[0]
+    if not pattern:
+        return
+    try:
+        re.compile(pattern)
+    except re.error as exc:
+        fail(f"{section} regex failed to compile: {exc}: {line}")
 
 
 def parse_hosts(lines: list[str]) -> list[str]:

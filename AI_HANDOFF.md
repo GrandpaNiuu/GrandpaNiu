@@ -1,6 +1,18 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-02 22:17 +08:00
+Last updated: 2026-07-02 22:58 +08:00
+
+## 2026-07-02 Fusion Rewrite Compaction Handoff
+
+- Main Fusion line count is now `2775`.
+- Compaction lives in `scripts/build_module.py` and is controlled by `Rewrite/Profiles/fusion.conf` with `compact_rewrite_sections = true`.
+- Do not hand-edit compressed output; change source fragments or generator behavior, then rebuild.
+- The compressor intentionally does not merge `302`, `307`, `header`, script-path, or mixed-operation rewrite lines.
+- Body Rewrite compaction only merges URL patterns when the body operation is byte-identical.
+- Map Local compaction only merges URL patterns when the payload/status/header operation is byte-identical.
+- `scripts/validate_module_integrity.py` compiles generated regex patterns and should remain in the quality gate.
+- `tests/test_module_compaction.py` protects against losing the URL Rewrite ` - reject` suffix.
+- A KFC source regex typo was fixed at `Rewrite/Sources/Apps/kfc.conf`.
 
 ## 2026-07-02 Compact Network Split Handoff
 

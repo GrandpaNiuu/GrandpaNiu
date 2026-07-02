@@ -1,6 +1,29 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-02 22:17 +08:00
+Last updated: 2026-07-02 22:58 +08:00
+
+## 2026-07-02 Fusion Rewrite Compaction Snapshot
+
+- Main iOS Fusion module was compacted from `5953` lines to `2775` lines.
+- The compaction is source/generator driven, not hand-edited in `Release/`.
+- `Rewrite/Profiles/fusion.conf` enables `compact_rewrite_sections = true`.
+- `scripts/build_module.py` now performs conservative equivalent compaction:
+  - `[URL Rewrite]`: only combines pure `- reject*` lines with identical action suffixes.
+  - `[Body Rewrite]`: only combines lines with the same verb and exact same body operation.
+  - `[Map Local]`: only combines lines with identical embedded response payload and headers.
+- Current generated section sizes:
+  - `[Rule]`: 1202 active lines.
+  - `[URL Rewrite]`: 40 active lines.
+  - `[Body Rewrite]`: 1434 active lines.
+  - `[Map Local]`: 37 active lines.
+  - `[Script]`: 44 active lines.
+- `scripts/validate_module_integrity.py` now compiles generated rewrite regexes so malformed combined regexes fail validation.
+- `tests/test_module_compaction.py` covers URL Rewrite suffix preservation, Body Rewrite operation grouping, and Map Local response grouping.
+- A source typo in `Rewrite/Sources/Apps/kfc.conf` was fixed from `res\.kfc\.com.\cn` to `res\.kfc\.com\.cn`.
+- Validation passed:
+  - `python -m unittest tests.test_module_compaction`
+  - `python Rewrite/Generator/Builder.py --profile fusion --release --check`
+  - `python scripts/quality_gate.py`
 
 ## 2026-07-02 Compact China / Overseas Network Split Snapshot
 

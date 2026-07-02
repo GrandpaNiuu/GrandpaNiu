@@ -1,8 +1,26 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-02 22:17 +08:00
+Last updated: 2026-07-02 22:58 +08:00
 
 ## Decisions
+
+### 2026-07-02 - Use Conservative Rewrite Compaction For Fusion Size
+
+The main iOS Fusion module may compact generated rewrite sections when `compact_rewrite_sections = true`.
+
+Allowed compaction:
+
+- URL Rewrite lines may be merged only when they are pure `pattern - reject*` lines with the same action suffix.
+- Body Rewrite lines may be merged only when verb and body operation are identical.
+- Map Local lines may be merged only when embedded response operation is identical.
+
+Disallowed compaction:
+
+- Do not merge redirects, header rewrites, script-path rules, or mixed operations.
+- Do not remove rules merely to reduce line count.
+- Do not change the compact network split tail.
+
+Reason: the owner wants the public Fusion module closer to 3000 lines without losing ad-cleaning behavior or creating network instability.
 
 ### 2026-07-02 - Main Fusion Uses Compact China / Overseas Routing
 

@@ -1,6 +1,32 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-02 22:17 +08:00
+Last updated: 2026-07-02 22:58 +08:00
+
+## Current Fusion Rewrite Compaction Task
+
+Status: implemented locally and fully validated; pending commit, push, and remote Actions confirmation.
+
+Scope:
+
+- Reduce main Fusion line count toward roughly 3000 while preserving ad-cleaning behavior and the compact China/overseas network split.
+- Do not remove functional rules to hit the target.
+- Use conservative equivalent compaction:
+  - same URL Rewrite reject action suffix
+  - same Body Rewrite operation
+  - same Map Local response operation
+
+Validation:
+
+- `python -m py_compile scripts\build_module.py scripts\validate_module_integrity.py tests\test_module_compaction.py` passed.
+- `python -m unittest tests.test_module_compaction` passed.
+- `python Rewrite\Generator\Builder.py --profile fusion --release --check` passed.
+- `python scripts\quality_gate.py` passed.
+- Main public iOS entries are `2775` lines and keep final rules `GEOIP,CN,DIRECT` / `FINAL,PROXY`.
+
+Next check:
+
+- Commit and push.
+- Confirm the next `Module Factory Build` run is green.
 
 ## Current Compact Network Split Task
 
