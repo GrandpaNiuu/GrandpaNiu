@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate governance additions that protect automated releases."""
+"""Validate governance additions that protect automated Fusion releases."""
 
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ QUALITY_GATE_REQUIRED_TOKENS = [
     "validate_remote_rule_syntax.py",
     "convert_quanx_rules.py",
     "远程规则语法门禁",
-    "Full 冻结边界",
+    "Fusion 变更边界",
     "Quantumult X",
     "host-suffix",
     "automated_quality_evidence.md",
@@ -38,11 +38,11 @@ QUALITY_GATE_REQUIRED_ANY = [
 ]
 
 PROFILE_POLICY_REQUIRED_TOKENS = [
-    "Full 冻结规则",
-    "不允许从 full 批量直接进入 stable",
-    "不允许把 `host`、`host-suffix`、`host-keyword`、`ip6-cidr` 直接作为 Shadowrocket `RULE-SET`",
-    "reports/automated_quality_evidence.md",
+    "单一 `fusion` profile",
+    "Fusion 分层",
+    "selected extensions",
     "自动化质量证据",
+    "Fusion 出现误伤时",
 ]
 
 FALSE_POSITIVE_TEMPLATE_REQUIRED_TOKENS = [
