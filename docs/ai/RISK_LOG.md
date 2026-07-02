@@ -1,6 +1,31 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-02 09:57 +08:00
+Last updated: 2026-07-02 12:08 +08:00
+
+## 2026-07-02 Automation Gap Hardening Risk Note
+
+Risk level: low traffic-policy risk, medium operational risk.
+
+Observed weakness:
+
+- Existing checks covered many separate areas, but there was no single blocking report that said whether automation wiring itself was complete after generated-output, Android, Windows, report, and workflow changes.
+
+Mitigations:
+
+- Added `tools/generate_automation_gap_report.py`.
+- The report blocks when public Fusion entries drift, app source/module counts differ, Android source and Release manifests diverge, Windows v2rayN tail rules are missing, writer workflows lose locks or explicit staging, quality gate wiring drops required checks, required reports are missing, or script aggregation cache files are invalid.
+- The report is wired into Builder `--check`, full quality gate, freshness checking, repository health, repository validation, and automated evidence.
+- The script was placed in `tools/` to avoid Windows `Scripts/` versus `scripts/` case-collision problems.
+
+Traffic risk boundary:
+
+- No Rules, App sources, MITM hostnames, script behavior, Android routing policy, Windows routing policy, login, payment, banking, captcha, video, or image/CDN policy was intentionally changed.
+- Upstream replacement scoring and App feedback ingestion were intentionally excluded by owner instruction.
+
+Remaining risk:
+
+- GitHub Actions still needs a remote run confirmation after push.
+- Real App behavior remains owner-tested manually and is not a CI gate.
 
 ## Standing High-Risk Areas
 

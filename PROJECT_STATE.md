@@ -1,6 +1,25 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-02 09:57 +08:00
+Last updated: 2026-07-02 12:08 +08:00
+
+## 2026-07-02 Automation Gap Hardening Snapshot
+
+- Added `tools/generate_automation_gap_report.py` as a blocking automation coverage check.
+- The new report verifies:
+  - Fusion public entries are byte-identical.
+  - `Rewrite/Sources/Apps/*.conf` and `Release/Modules/*.sgmodule` counts match.
+  - Android source/release branch manifests stay aligned.
+  - Windows v2rayN routing tail rules remain present.
+  - Scheduled and writer workflows keep locks, explicit staging, and rebase retry wiring.
+  - `quality_gate.py` includes the required automation checks.
+  - script aggregation bundle, manifest, and cache exist and are parseable.
+- `reports/automation_gap_report.md` is now part of Builder `--check`, the full quality gate, freshness checks, repository validation, repository health, and automated evidence.
+- The owner explicitly excluded upstream replacement scoring and App feedback ingestion from this pass; the report records both as intentional non-CI boundaries.
+- No traffic rules, MITM scopes, App source rules, Android routing policy, Windows routing policy, or public module entry names were intentionally changed.
+- Local validation passed:
+  - `python Rewrite/Generator/Builder.py --profile fusion --release --check`
+  - `python scripts/quality_gate.py`
+  - `python scripts/validate_repository.py`
 
 ## 2026-07-02 Automation Repair Snapshot
 

@@ -1,6 +1,27 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-02 09:57 +08:00
+Last updated: 2026-07-02 12:08 +08:00
+
+## Current Automation Gap Hardening Task
+
+Status: locally implemented and fully validated; pending commit, push, and remote Actions confirmation.
+
+Scope:
+
+- Add a blocking automation gap report for generated-output synchronization, workflow writer wiring, platform parity, app module coverage, script aggregation cache presence, and report availability.
+- Wire the report into Builder `--check`, the full quality gate, report freshness, repository validation, repository health, and automated quality evidence.
+- Keep upstream replacement scoring and App feedback ingestion out of this pass per owner instruction.
+- Do not change traffic rules, App source rules, MITM scopes, Android routing policy, Windows routing policy, or public entry names.
+
+Validation:
+
+- `python Rewrite/Generator/Builder.py --profile fusion --release --check` passed.
+- `python scripts/quality_gate.py` passed.
+- `python scripts/validate_repository.py` passed.
+
+Next check:
+
+- After push, confirm the next `Module Factory Build` run is green and includes `tools/generate_automation_gap_report.py`.
 
 ## Current Automation Repair Task
 

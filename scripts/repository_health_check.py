@@ -44,6 +44,7 @@ REQUIRED_FILES = [
     "scripts/build_release_variants.py",
     "scripts/factory_finalize.py",
     "scripts/check_automation_status.py",
+    "tools/generate_automation_gap_report.py",
     "scripts/commit_generated_changes.sh",
     "tools/acquire_automation_lock.sh",
     "tools/release_automation_lock.sh",
@@ -66,6 +67,7 @@ REQUIRED_FILES = [
     "reports/app_cleaner_active_report.md",
     "reports/app_source_validation_report.md",
     "reports/automation_status_report.md",
+    "reports/automation_gap_report.md",
 ]
 
 REQUIRED_WORKFLOWS = [

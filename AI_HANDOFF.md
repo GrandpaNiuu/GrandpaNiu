@@ -1,6 +1,23 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-02 09:57 +08:00
+Last updated: 2026-07-02 12:08 +08:00
+
+## 2026-07-02 Automation Gap Hardening Handoff
+
+- Added a new blocking automation gap report at `reports/automation_gap_report.md`.
+- The script lives in `tools/generate_automation_gap_report.py`, not `scripts/`, because this Windows worktree has both `Scripts/` and `scripts/`; creating new lowercase `scripts/` files can land in the wrong directory on case-insensitive filesystems.
+- The check is wired into:
+  - `Rewrite/Generator/Generate.conf`
+  - `Rewrite/Generate.conf`
+  - `scripts/quality_gate.py`
+  - `scripts/check_report_freshness.py`
+  - `scripts/validate_repository.py`
+  - `scripts/repository_health_check.py`
+  - `tools/generate_automated_quality_evidence.py`
+- Full `python scripts/quality_gate.py` passed after the `tools/` path fix.
+- Remote rule checks produced transient SSL EOF warnings during validation, but no blocking syntax failure.
+- This pass intentionally did not implement upstream replacement scoring or App feedback ingestion.
+- No traffic-policy source files were intentionally changed.
 
 ## 2026-07-02 Automation Repair Handoff
 

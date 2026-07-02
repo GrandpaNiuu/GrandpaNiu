@@ -40,6 +40,7 @@ EVIDENCE_FILES = [
     "reports/reject_risk_report.md",
     "reports/domestic_app_connectivity_audit.md",
     "reports/automation_status_report.md",
+    "reports/automation_gap_report.md",
 ]
 
 QUALITY_COMMANDS = [
@@ -65,6 +66,7 @@ QUALITY_COMMANDS = [
     "python tools/generate_app_cleaner_active_report.py",
     "python scripts/repository_health_check.py",
     "python scripts/check_automation_status.py",
+    "python tools/generate_automation_gap_report.py",
     "python tools/generate_automated_quality_evidence.py",
     "python scripts/validate_repository.py",
 ]

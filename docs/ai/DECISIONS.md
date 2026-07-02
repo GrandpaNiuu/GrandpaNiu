@@ -1,8 +1,18 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-02 09:57 +08:00
+Last updated: 2026-07-02 12:08 +08:00
 
 ## Decisions
+
+### 2026-07-02 - Automation Gap Report Is A Blocking Contract
+
+`tools/generate_automation_gap_report.py` must stay in the quality gate and repository validation path.
+
+It checks generated-output parity, scheduled workflow wiring, writer lock/staging safety, app module source/release counts, Android/Windows projection presence, required automation reports, and script aggregation cache files.
+
+It must not pretend to replace real App testing, ad-impression verification, upstream replacement scoring, or App feedback ingestion.
+
+Reason: the repository already has many individual checks. The new report makes the remaining maintainability coverage explicit and blocks release when automation wiring drifts.
 
 ### 2026-06-26 - Watchdog Must Check Scheduled Workflow Freshness
 

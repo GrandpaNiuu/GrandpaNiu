@@ -1,8 +1,8 @@
 # 自动化质量证据报告
 
-生成时间：2026-07-02 10:53:23 +0800
-Git 分支：`main`
-Git 提交：`90040bcc`
+生成时间：2026-07-02 12:24:29 +0800
+Git 分支：`repair/upstream-app-sync`
+Git 提交：`9e665fc6`
 
 本仓库发布门禁以可重复执行的自动化证据为准：构建、语法检查、远程规则校验、模块完整性、报告新鲜度和仓库健康检查。
 
@@ -10,7 +10,7 @@ Git 提交：`90040bcc`
 
 - Root / Release 一致：是
 - UTF-8 BOM 命中：0
-- 证据报告数量：22
+- 证据报告数量：23
 
 ## 必跑自动化命令
 
@@ -36,6 +36,7 @@ Git 提交：`90040bcc`
 - `python tools/generate_app_cleaner_active_report.py`
 - `python scripts/repository_health_check.py`
 - `python scripts/check_automation_status.py`
+- `python tools/generate_automation_gap_report.py`
 - `python tools/generate_automated_quality_evidence.py`
 - `python scripts/validate_repository.py`
 
@@ -65,6 +66,7 @@ Git 提交：`90040bcc`
 | `reports/reject_risk_report.md` | present |
 | `reports/domestic_app_connectivity_audit.md` | present |
 | `reports/automation_status_report.md` | present |
+| `reports/automation_gap_report.md` | present |
 
 ## BOM 扫描
 

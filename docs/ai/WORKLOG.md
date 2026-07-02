@@ -631,3 +631,60 @@ python scripts/quality_gate.py
 
 - Commit and push this repair.
 - Confirm the next `Module Factory Build` run is green.
+
+## 2026-07-02 12:08 +08:00 - Automation gap hardening
+
+### Task Summary
+
+Strengthen remaining automation coverage without implementing upstream replacement scoring or App feedback ingestion.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Status: worktree was clean before edits.
+- Expected scope: automation scripts, generator config, validation wiring, reports, AI records.
+
+### Actual Changes
+
+- Added `tools/generate_automation_gap_report.py`.
+- Added `reports/automation_gap_report.md`.
+- Wired the new check into Builder `--check`, `quality_gate.py`, report freshness, repository validation, repository health, and automated quality evidence.
+- Updated AI records to document the new blocking contract and risk boundary.
+- Generated outputs and reports were refreshed by the Builder and quality gate.
+
+### Commands Run
+
+```bash
+git status --short --branch
+git branch --show-current
+python -m py_compile tools/generate_automation_gap_report.py scripts/quality_gate.py scripts/validate_repository.py scripts/repository_health_check.py scripts/check_report_freshness.py tools/generate_automated_quality_evidence.py Rewrite/Generator/Builder.py
+python tools/generate_automation_gap_report.py
+python Rewrite/Generator/Builder.py --profile fusion --release --check
+python scripts/quality_gate.py
+python scripts/validate_repository.py
+```
+
+### Validation Result
+
+- Automation gap check passed with 0 blocking gaps.
+- Builder release check passed with 398 App modules and 0 empty modules.
+- Full quality gate passed.
+- Repository validation passed.
+- Remote rule syntax checks showed transient SSL EOF warnings during full validation, but no blocking syntax failure.
+
+### Risks
+
+- No traffic-policy source files were intentionally changed.
+- Generated reports and derived outputs changed because the full Builder and quality gate were run.
+- Remote GitHub Actions still needs confirmation after push.
+
+### Self-Review
+
+- What was not good enough: I first created the new script under `scripts/`, which Windows resolved through the uppercase `Scripts/` directory and would have broken Linux CI.
+- What I changed to reduce that risk: moved the script to `tools/` and rewired every reference to `tools/generate_automation_gap_report.py`.
+- What I would check first next time: when adding new files in this repo on Windows, avoid new lowercase `scripts/` files and prefer existing tracked paths or `tools/`.
+
+### Next Step
+
+- Commit and push the automation hardening change.
+- Confirm the next `Module Factory Build` run is green.

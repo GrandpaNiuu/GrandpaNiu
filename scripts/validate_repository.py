@@ -68,6 +68,7 @@ REQUIRED_FILES = (
     "scripts/factory_finalize.py",
     "scripts/build_windows_v2rayn.py",
     "scripts/check_automation_status.py",
+    "tools/generate_automation_gap_report.py",
     "scripts/commit_generated_changes.sh",
     "tools/acquire_automation_lock.sh",
     "tools/release_automation_lock.sh",
@@ -78,6 +79,7 @@ REQUIRED_FILES = (
     "reports/multi_release_report.md",
     "reports/module_integrity_report.md",
     "reports/automated_quality_evidence.md",
+    "reports/automation_gap_report.md",
     "Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json",
     "Windows/v2rayN/README.md",
 )
@@ -574,6 +576,12 @@ def validate_no_tool_traces() -> None:
             fail(f"tool trace file should not exist: {relative}")
 
 
+def validate_automation_gap_report() -> None:
+    text = read_text(ROOT / "reports" / "automation_gap_report.md")
+    if "- Blocking gaps: 0" not in text:
+        fail("automation_gap_report.md must have zero blocking gaps")
+
+
 def main() -> None:
     validate_files()
     validate_no_utf8_bom()
@@ -587,6 +595,7 @@ def main() -> None:
     validate_readme_links()
     validate_workflows()
     validate_windows_v2rayn()
+    validate_automation_gap_report()
     validate_no_tool_traces()
     print("Repository validation passed.")
 
