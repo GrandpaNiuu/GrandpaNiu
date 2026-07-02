@@ -3,27 +3,14 @@
     "chunks": 2,
     "path": "Scripts/generated/fusion-script-bundle.js",
     "routes": 52,
-    "sha256": "d4b4cd13fc91c1ad4c8db54fe035aa81e8ab6118d3075175a9e19be4b18fab59",
+    "sha256": "a159aa8f091006d4b03b27cf35f7616c13c2e92c9d44fb9e058102c493e3346a",
     "sources": 52,
     "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js",
     "version": "grandpaniu-fusion-script-bundle-v1"
   },
-  "fetch_cached": [
-    {
-      "reason": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>",
-      "url": "https://kelee.one/Resource/JavaScript/NeteaseNews/NeteaseNews_remove_ads.js"
-    },
-    {
-      "reason": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>",
-      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/wjx.js"
-    },
-    {
-      "reason": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>",
-      "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xiaohongshu.js"
-    }
-  ],
+  "fetch_cached": [],
   "fetch_failed": [],
-  "generated": "2026-07-02T18:50:25Z",
+  "generated": "2026-07-02T18:53:52Z",
   "policy": {
     "allowed_prefixes": [
       "https://kelee.one/Resource/JavaScript/",
