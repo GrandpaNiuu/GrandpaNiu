@@ -1,30 +1,17 @@
 # 变更影响报告
 
-- 生成时间：2026-07-03 00:59:02 +0800
+- 生成时间：2026-07-03 02:18:02 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `AI_HANDOFF.md`
 - `Android/branches.json`
-- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
-- `Release/Module.sgmodule`
-- `Release/Ronghemokuai.sgmodule`
-- `Release/Stable/Module.sgmodule`
-- `Release/Stable/Ronghemokuai.sgmodule`
 - `Release/checksums.json`
-- `Release/checksums.txt`
-- `Rewrite/Sources/Meta.conf`
-- `Ronghemokuai.sgmodule`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
-- `docs/ai/RISK_LOG.md`
-- `docs/ai/TASKS.md`
-- `docs/ai/WORKLOG.md`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
-- `reports/app_coverage_matrix.md`
 - `reports/app_source_validation_report.md`
 - `reports/app_status_matrix.md`
 - `reports/automated_quality_evidence.md`
@@ -34,10 +21,8 @@
 - `reports/build_summary.md`
 - `reports/candidate_security_score_report.md`
 - `reports/change_impact_report.md`
-- `reports/daily_update_report.md`
 - `reports/domestic_app_connectivity_audit.md`
 - `reports/mitm_scope_report.md`
-- `reports/module_factory_report.md`
 - `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
@@ -63,26 +48,13 @@
 
 ## 修改文件
 
-- `AI_HANDOFF.md`
 - `Android/branches.json`
-- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
-- `Release/Module.sgmodule`
-- `Release/Ronghemokuai.sgmodule`
-- `Release/Stable/Module.sgmodule`
-- `Release/Stable/Ronghemokuai.sgmodule`
 - `Release/checksums.json`
-- `Release/checksums.txt`
-- `Rewrite/Sources/Meta.conf`
-- `Ronghemokuai.sgmodule`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
-- `docs/ai/RISK_LOG.md`
-- `docs/ai/TASKS.md`
-- `docs/ai/WORKLOG.md`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
-- `reports/app_coverage_matrix.md`
 - `reports/app_source_validation_report.md`
 - `reports/app_status_matrix.md`
 - `reports/automated_quality_evidence.md`
@@ -92,10 +64,8 @@
 - `reports/build_summary.md`
 - `reports/candidate_security_score_report.md`
 - `reports/change_impact_report.md`
-- `reports/daily_update_report.md`
 - `reports/domestic_app_connectivity_audit.md`
 - `reports/mitm_scope_report.md`
-- `reports/module_factory_report.md`
 - `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
@@ -115,17 +85,13 @@
 
 - Other
 - README/docs
-- Rewrite/Sources
 - Scripts
 
 ## 可能影响的 App
 
 - Spotify
 - YouTube
-- Bilibili
 - 百度贴吧
-- 12306
-- Reddit
 
 ## 风险判断
 
