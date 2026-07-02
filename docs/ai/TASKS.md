@@ -1,6 +1,32 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-03 02:35 +08:00
+Last updated: 2026-07-03 04:13 +08:00
+
+## Current Upstream App Sync Automation Repair Task
+
+Status: locally implemented and fully validated; pending commit, push, and remote Actions confirmation.
+
+Scope:
+
+- Repair failing daily automation without changing App ad rules, MITM scopes, Android routing, Windows routing, or public module entries.
+- Focus on `upstream-app-module-sync.yml`, because the latest automation status report showed that workflow as the only required daily blocker.
+- Keep risk-gated upstream modules blocking when truly unsafe; only downgrade transient fetch/convert failures to retryable skips.
+
+Validation:
+
+- `python -m unittest tests.test_app_source_conversion tests.test_automation_status` passed with 11 tests.
+- `python -m py_compile scripts\sync_upstream_app_modules.py scripts\check_automation_status.py tests\test_app_source_conversion.py tests\test_automation_status.py` passed.
+- Temporary worktree exact workflow reproduction passed:
+  - `python scripts\sync_upstream_app_modules.py`
+  - `python scripts\protect_douyin_connectivity_sources.py`
+  - `python Rewrite\Generator\Builder.py --profile fusion --release --check`
+- `python scripts\quality_gate.py` passed in the main worktree.
+
+Next check:
+
+- Commit and push the repair.
+- Confirm the next `upstream-app-module-sync.yml` run after the repair commit is green.
+- If it fails again, inspect whether it is a new risk-gate block, a new converter syntax defect, or GitHub/network availability.
 
 ## Current Pages Deploy Queue Repair Task
 

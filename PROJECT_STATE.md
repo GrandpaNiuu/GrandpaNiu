@@ -1,6 +1,26 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-03 02:35 +08:00
+Last updated: 2026-07-03 04:13 +08:00
+
+## 2026-07-03 Upstream App Sync Automation Repair Snapshot
+
+- Observed current automation failure: `upstream-app-module-sync.yml` failed while other required daily workflows were recently successful.
+- Local reproduction in a temporary worktree showed three concrete failure classes:
+  - transient upstream SSL EOF / fetch errors were treated as hard sync errors even when a local source file already existed
+  - KFC upstream reintroduced an invalid regex escape, `res\.kfc\.com.\cn`, which broke generated rewrite regex validation
+  - a newly discovered Kelee module could remain enabled after first-import fetch failure even though its target source file did not exist
+- `scripts/sync_upstream_app_modules.py` now:
+  - keeps existing local App sources when an upstream fetch or conversion fails temporarily
+  - disables first-import records when the target source does not exist yet, then retries them on a later Kelee merge
+  - repairs the known KFC `.cn` regex escape during conversion
+  - keeps upstream risk blocks as hard failures
+- `scripts/check_automation_status.py` now treats a latest failed required run on an older commit as a warning when a fresh success still exists and the current commit is newer. Failures on the current commit remain blocking.
+- Validation passed:
+  - `python -m unittest tests.test_app_source_conversion tests.test_automation_status`
+  - `python -m py_compile scripts\sync_upstream_app_modules.py scripts\check_automation_status.py tests\test_app_source_conversion.py tests\test_automation_status.py`
+  - exact workflow reproduction in a temporary worktree: `sync_upstream_app_modules.py` -> `protect_douyin_connectivity_sources.py` -> `Rewrite\Generator\Builder.py --profile fusion --release --check`
+  - `python scripts\quality_gate.py`
+- Traffic-policy boundary: no App rule source, MITM hostname, login/payment/banking/video/CDN rule, Android routing policy, Windows routing policy, or public module URL was intentionally changed.
 
 ## 2026-07-03 GitHub Pages Deploy Queue Repair Snapshot
 

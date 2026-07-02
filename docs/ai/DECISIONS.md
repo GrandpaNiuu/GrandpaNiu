@@ -1,8 +1,21 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-03 02:35 +08:00
+Last updated: 2026-07-03 04:13 +08:00
 
 ## Decisions
+
+### 2026-07-03 - Upstream App Sync Treats Transient Fetch Failures As Retryable
+
+Daily App upstream sync should not fail the entire repository when one remote source has a transient SSL EOF, timeout, or conversion fetch issue.
+
+Required behavior:
+
+- If the target source already exists, keep publishing the existing local source and retry on the next scheduled run.
+- If the target source does not exist yet, disable that first-import record and clear direct commit until a later discovery pass can fetch it successfully.
+- Keep unsafe upstream content, VIP/payment/login bypass patterns, and risk-gate blocks as hard failures.
+- Keep known upstream syntax repairs in the converter when they are deterministic and narrow, such as the KFC `.cn` regex escape.
+
+Reason: the daily sync should be resilient to temporary remote availability problems without hiding genuinely unsafe upstream content.
 
 ### 2026-07-03 - Use A Self-Managed GitHub Pages Deploy Workflow
 

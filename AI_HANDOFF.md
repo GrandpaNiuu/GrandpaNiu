@@ -1,6 +1,22 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-03 02:35 +08:00
+Last updated: 2026-07-03 04:13 +08:00
+
+## 2026-07-03 Upstream App Sync Automation Repair Handoff
+
+- Current automation failure focus: `upstream-app-module-sync.yml`.
+- Other required daily workflows were reported successful in the latest local automation status report; the remaining blocking workflow was upstream App module sync.
+- Root causes reproduced locally:
+  - transient upstream fetch failures were hard failures
+  - KFC upstream emitted an invalid `.\cn` regex escape
+  - first-import Kelee records could stay enabled without a generated source file
+- The synchronizer now skips transient fetch/convert failures without failing the whole daily run:
+  - existing local source present: publish the existing source unchanged and retry later
+  - target source missing: mark the record disabled / not direct-commit and retry later through Kelee fill modes
+  - risk-gate blocks still fail the run
+- A temporary worktree reproduced the exact daily sync command chain successfully after the fix, including the Builder `--check` path.
+- `check_automation_status.py` now avoids blocking the repository on an already-fixed older-commit failure when there is a fresh successful run and the current commit is newer. It still blocks failures on the current commit.
+- Next AI should not claim the remote `upstream-app-module-sync.yml` is green until a new GitHub Actions run after this commit is observed. The local workflow reproduction is green.
 
 ## 2026-07-03 Pages Deploy Queue Repair Handoff
 

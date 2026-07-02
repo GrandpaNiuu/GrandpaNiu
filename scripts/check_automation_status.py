@@ -7,6 +7,7 @@ import argparse
 import datetime as dt
 import json
 import os
+import subprocess
 import sys
 import urllib.error
 import urllib.parse
@@ -87,6 +88,23 @@ def repository_name() -> str:
     return DEFAULT_REPOSITORY
 
 
+def current_head_sha() -> str:
+    value = os.environ.get("GITHUB_SHA", "").strip()
+    if value:
+        return value
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return ""
+    return result.stdout.strip()
+
+
 def github_api_json(url: str) -> dict[str, Any]:
     headers = {
         "Accept": "application/vnd.github+json",
@@ -124,7 +142,12 @@ def run_label(run: dict[str, Any] | None) -> str:
     return f"[{run_id}]({url})" if url else str(run_id)
 
 
-def evaluate_workflow(expectation: WorkflowExpectation, runs: list[dict[str, Any]], reference: dt.datetime) -> dict[str, Any]:
+def evaluate_workflow(
+    expectation: WorkflowExpectation,
+    runs: list[dict[str, Any]],
+    reference: dt.datetime,
+    current_sha: str = "",
+) -> dict[str, Any]:
     latest = runs[0] if runs else None
     completed = [run for run in runs if run.get("status") == "completed"]
     latest_completed = completed[0] if completed else None
@@ -137,8 +160,6 @@ def evaluate_workflow(expectation: WorkflowExpectation, runs: list[dict[str, Any
     warnings: list[str] = []
     if expectation.required and not runs:
         blockers.append("no runs found")
-    if expectation.required and latest_completed_conclusion in BAD_CONCLUSIONS:
-        blockers.append(f"latest completed run is {latest_completed_conclusion}")
     if expectation.required and expectation.max_success_age_hours is not None:
         if last_success is None:
             blockers.append("no successful completed run found")
@@ -146,6 +167,20 @@ def evaluate_workflow(expectation: WorkflowExpectation, runs: list[dict[str, Any
             blockers.append(
                 f"last success is stale ({fmt_age(success_age)} > {expectation.max_success_age_hours}h)"
             )
+    if expectation.required and latest_completed_conclusion in BAD_CONCLUSIONS:
+        failed_sha = str(latest_completed.get("head_sha") or "") if latest_completed else ""
+        success_is_fresh = (
+            expectation.max_success_age_hours is not None
+            and last_success is not None
+            and success_age is not None
+            and success_age <= expectation.max_success_age_hours
+        )
+        if current_sha and failed_sha and failed_sha != current_sha and success_is_fresh:
+            warnings.append(
+                f"latest completed run is {latest_completed_conclusion} on older commit {failed_sha[:8]}; current commit {current_sha[:8]} will be checked by the next run"
+            )
+        else:
+            blockers.append(f"latest completed run is {latest_completed_conclusion}")
     if latest and latest.get("status") != "completed":
         warnings.append(f"latest run is {latest.get('status')}")
     if latest_completed_conclusion in {"cancelled", "skipped"}:
@@ -175,7 +210,7 @@ def evaluate_workflow(expectation: WorkflowExpectation, runs: list[dict[str, Any
     }
 
 
-def markdown_report(repo: str, rows: list[dict[str, Any]], api_error: str | None, reference: dt.datetime) -> str:
+def markdown_report(repo: str, rows: list[dict[str, Any]], api_error: str | None, reference: dt.datetime, current_sha: str) -> str:
     blockers = [item for row in rows for item in row["blockers"]]
     warnings = [item for row in rows for item in row["warnings"]]
     status = "unknown" if api_error else "fail" if blockers else "warn" if warnings else "ok"
@@ -184,6 +219,7 @@ def markdown_report(repo: str, rows: list[dict[str, Any]], api_error: str | None
         "",
         f"- Generated at: {fmt_time(reference)}",
         f"- Repository: `{repo}`",
+        f"- Current commit: `{current_sha[:8] if current_sha else 'unknown'}`",
         f"- Overall status: `{status}`",
         f"- Blocking findings: {len(blockers)}",
         f"- Warnings: {len(warnings)}",
@@ -238,6 +274,7 @@ def markdown_report(repo: str, rows: list[dict[str, Any]], api_error: str | None
         "- The watchdog itself is allowed 48 hours because it validates the previous run while the current run is still in progress.",
         "- Repository health is weekly and should have a successful completed run within 9 days.",
         "- Push-triggered and workflow-run issue workflows are observed but do not block on age.",
+        "- A latest failure on an older commit is a warning, not a blocker, when a fresh successful run still exists and the current commit is newer.",
         "- Local API/network failures do not block local development; strict mode in the watchdog blocks real stale or failed scheduled automation.",
         "",
     ]
@@ -257,12 +294,13 @@ def main() -> None:
 
     repo = repository_name()
     reference = now_utc()
+    current_sha = current_head_sha()
     rows: list[dict[str, Any]] = []
     api_error: str | None = None
 
     try:
         for expectation in WORKFLOWS:
-            rows.append(evaluate_workflow(expectation, fetch_runs(repo, expectation.file), reference))
+            rows.append(evaluate_workflow(expectation, fetch_runs(repo, expectation.file), reference, current_sha))
     except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError, OSError) as exc:
         api_error = f"{type(exc).__name__}: {exc}"
         rows = [
@@ -284,7 +322,7 @@ def main() -> None:
             for expectation in WORKFLOWS
         ]
 
-    report = markdown_report(repo, rows, api_error, reference)
+    report = markdown_report(repo, rows, api_error, reference, current_sha)
     if not args.no_write:
         write_report(report)
         print(f"Automation status report written to {REPORT}")

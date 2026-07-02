@@ -1,6 +1,35 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-03 02:35 +08:00
+Last updated: 2026-07-03 04:13 +08:00
+
+## 2026-07-03 Upstream App Sync Automation Repair Risk Note
+
+Risk level: low traffic-policy risk, medium automation-publishing risk.
+
+Observed signals:
+
+- `upstream-app-module-sync.yml` failed while other required daily workflows had recent successful runs.
+- Local reproduction showed transient SSL EOF fetch failures from multiple upstream App sources.
+- The same reproduction also found an upstream KFC regex typo, `res\.kfc\.com.\cn`, that generated an invalid combined rewrite regex.
+- A newly discovered Kelee module could stay enabled after first-import fetch failure even though `Rewrite/Sources/Apps/<id>.conf` did not exist.
+
+Mitigations:
+
+- Existing local App sources are retained when their upstream fetch or conversion temporarily fails.
+- First-import modules with no local source are disabled until a future successful fetch fills them.
+- KFC conversion repairs the deterministic `.cn` regex typo before generation.
+- `check_automation_status.py` no longer blocks the repository on an older-commit failed run once a newer repair commit exists and a fresh success is available.
+- Risk-gate blocks remain hard failures.
+
+Traffic risk boundary:
+
+- No App ad source, MITM hostname, login, payment, banking, captcha, video playback, image/CDN rule, Android routing policy, Windows routing policy, or public module URL was intentionally changed.
+- Real App behavior is not changed by this pass; the repair targets automation resilience and generated syntax validity.
+
+Remaining risk:
+
+- Remote GitHub Actions still needs a post-push confirmation run.
+- Future upstream sources can introduce new syntax defects; the converter should fix narrow deterministic defects and let risk gates block unsafe content.
 
 ## 2026-07-03 Pages Deploy Queue Repair Risk Note
 

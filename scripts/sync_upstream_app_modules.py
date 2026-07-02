@@ -488,7 +488,15 @@ def merge_kelee_catalog(records: list[dict[str, Any]], include_kelee: bool) -> l
         source_url = str(existing.get("source_url") or "")
         should_fill = (
             not source_url
-            or mode in {"missing-upstream-source", "remote-script-only", "clue-only", "discovered-disabled"}
+            or mode
+            in {
+                "missing-upstream-source",
+                "remote-script-only",
+                "clue-only",
+                "discovered-disabled",
+                "fetch-failed",
+                "convert-failed",
+            }
         )
         if should_fill:
             existing["name"] = existing.get("name") or item["name"]
@@ -1270,12 +1278,18 @@ def apply_bilibili_comic_overlay(text: str) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
+def postprocess_kfc_source(text: str) -> str:
+    return text.replace(r"res\.kfc\.com.\cn", r"res\.kfc\.com\.cn")
+
+
 def postprocess_converted_source(record: dict[str, Any], text: str) -> str:
     text = inline_remote_map_local_data(text)
     if str(record.get("id")) == "bilibili":
         return postprocess_bilibili_source(text)
     if str(record.get("id")) == "bilibili-comic":
         return apply_bilibili_comic_overlay(text)
+    if str(record.get("id")) == "kfc":
+        return postprocess_kfc_source(text)
     return text
 
 
@@ -1316,6 +1330,29 @@ def backup_target(target: Path, module_id: str, timestamp: str) -> str:
     return rel(backup)
 
 
+def skip_upstream_failure(
+    record: dict[str, Any],
+    target: Path,
+    skipped: list[dict[str, str]],
+    mode: str,
+    reason: str,
+) -> None:
+    """Keep daily sync green when one upstream is temporarily unavailable.
+
+    Risk blocks remain hard failures elsewhere. Fetch and conversion failures are
+    retried on the next scheduled run, while existing local sources continue to
+    publish unchanged.
+    """
+    record["last_sync_mode"] = mode
+    if target.exists():
+        fallback = "kept existing source"
+    else:
+        record["enabled"] = False
+        record["direct_commit"] = False
+        fallback = "will retry before first import"
+    skipped.append({"id": str(record["id"]), "reason": f"{reason}; {fallback}"})
+
+
 def sync_records(records: list[dict[str, Any]], config_only: bool) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
     updated: list[dict[str, str]] = []
     skipped: list[dict[str, str]] = []
@@ -1348,8 +1385,7 @@ def sync_records(records: list[dict[str, Any]], config_only: bool) -> tuple[list
         try:
             upstream_text = fetch_text(source_url)
         except (urllib.error.URLError, TimeoutError, OSError) as exc:
-            record["last_sync_mode"] = "fetch-failed"
-            errors.append({"id": module_id, "reason": f"fetch failed: {exc}"})
+            skip_upstream_failure(record, target, skipped, "fetch-failed", f"fetch failed: {exc}")
             continue
         reason = suspicious_reason(upstream_text + "\n" + source_url + "\n" + str(record.get("name", "")))
         if reason and not allow_known_spotify_upstream(module_id, source_url, reason):
@@ -1360,8 +1396,7 @@ def sync_records(records: list[dict[str, Any]], config_only: bool) -> tuple[list
             converted, upstream = converted_source(record, upstream_text)
             converted = postprocess_converted_source(record, converted)
         except ValueError as exc:
-            record["last_sync_mode"] = "convert-failed"
-            errors.append({"id": module_id, "reason": str(exc)})
+            skip_upstream_failure(record, target, skipped, "convert-failed", f"convert failed: {exc}")
             continue
         previous = read_text(target)
         if previous == converted:

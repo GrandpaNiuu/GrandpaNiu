@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-07-02T19:05:11Z
+- generated: 2026-07-02T20:08:33Z
 - enabled: True
 - input script entries: 230
 - output script entries: 180
@@ -70,7 +70,7 @@
 - None
 
 ## Cache Fallbacks
-- None
+- `https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
 
 ## Preserved Reasons
 - preserved: binary body: 2

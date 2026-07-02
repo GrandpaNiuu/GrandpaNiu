@@ -1141,3 +1141,68 @@ python scripts\quality_gate.py
 - Commit and push the repair.
 - Confirm the new `Deploy GitHub Pages` workflow runs successfully.
 - If the old `pages-build-deployment` run still appears, switch repository Pages source to GitHub Actions in Settings.
+
+## 2026-07-03 04:13 +08:00 - Upstream app sync automation repair
+
+### Task Summary
+
+Owner reported that repository automation still had failed daily workflow states and asked for careful repair so daily jobs can run automatically.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Status: working tree had generated-output and automation-script changes from the active repair pass.
+- Expected scope: automation scripts, focused tests, generated reports, and AI maintenance records.
+- Out of scope: broad App rule changes, MITM changes, Android/Windows routing changes, public module URL changes, or new App expansion.
+
+### Actual Changes
+
+- Updated `scripts/sync_upstream_app_modules.py` so transient upstream fetch or conversion failures do not fail the whole daily sync.
+- Existing local App sources are kept unchanged when an upstream is temporarily unavailable.
+- First-import records with no local source are disabled until a future successful fetch.
+- Added a narrow KFC postprocess repair for the upstream `res\.kfc\.com.\cn` regex typo.
+- Updated `scripts/check_automation_status.py` so a failed required workflow on an older commit becomes a warning when a fresh success exists and the current commit is newer.
+- Added focused regression tests in `tests/test_app_source_conversion.py` and `tests/test_automation_status.py`.
+- Refreshed generated reports through the quality gate.
+
+### Commands Run
+
+```bash
+git status --short --branch
+git branch --show-current
+python scripts\sync_upstream_app_modules.py
+python scripts\protect_douyin_connectivity_sources.py
+python Rewrite\Generator\Builder.py --profile fusion --release --check
+python -m unittest tests.test_app_source_conversion tests.test_automation_status
+python -m py_compile scripts\sync_upstream_app_modules.py scripts\check_automation_status.py tests\test_app_source_conversion.py tests\test_automation_status.py
+python scripts\quality_gate.py
+git diff --stat
+git diff --name-only
+```
+
+The first three workflow-reproduction commands were run in a repository-external temporary worktree after copying the fixed synchronizer there.
+
+### Validation Result
+
+- Targeted unit tests passed with 11 tests.
+- Python compile passed for changed scripts and tests.
+- Temporary exact workflow reproduction passed end-to-end after the fix with 416 App modules generated and 0 empty modules.
+- Main worktree full quality gate passed.
+- Latest local automation status still shows the old upstream sync run as failed because the report was generated before the repair commit exists; after commit, the same checker should treat that old-commit failure as a warning until the next run confirms green.
+
+### Risks
+
+- Remote GitHub Actions still needs post-push confirmation.
+- The automation status downgrade only applies to older-commit failures with a fresh success; failures on the current commit still block.
+- No traffic-policy source files were intentionally changed.
+
+### Self-Review
+
+- What was not good enough: the daily sync previously treated temporary upstream network errors as hard repository failures, which made unattended maintenance too brittle.
+- What I changed to reduce that risk: kept existing local sources during transient fetch/convert failures, disabled missing first imports until retry, and added tests for both paths.
+- What I would check first next time: reproduce the exact workflow command chain in a clean temporary worktree before changing workflow YAML or disabling checks.
+
+### Next Step
+
+- Commit and push the repair with explicit paths.
+- Re-run or wait for `upstream-app-module-sync.yml` and confirm the remote run after this commit is green.

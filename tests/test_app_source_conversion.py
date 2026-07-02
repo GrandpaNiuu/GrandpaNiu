@@ -3,7 +3,9 @@ from __future__ import annotations
 import base64
 import importlib.util
 from pathlib import Path
+import tempfile
 import unittest
+import urllib.error
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -75,6 +77,64 @@ class AppSourceConversionTests(unittest.TestCase):
         converted = sync.dedupe_script_names(lines)
         self.assertTrue(converted[0].startswith("cleanup ="))
         self.assertTrue(converted[1].startswith("cleanup-2 ="))
+
+    def test_fetch_failure_keeps_existing_source_without_error(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            target = root / "Rewrite" / "Sources" / "Apps" / "example.conf"
+            target.parent.mkdir(parents=True)
+            target.write_text("#!name=Existing\n[Rule]\nDOMAIN,ad.example.com,REJECT\n", encoding="utf-8")
+            record = {
+                "id": "example",
+                "name": "Example",
+                "source_url": "https://example.com/example.sgmodule",
+                "target": "Rewrite/Sources/Apps/example.conf",
+                "enabled": True,
+                "direct_commit": True,
+                "risk": "medium",
+                "backup": False,
+                "upstream_project": "Example",
+                "last_sync_mode": "configured",
+            }
+            with patch.object(sync, "ROOT", root), patch.object(sync, "fetch_text", side_effect=urllib.error.URLError("boom")):
+                updated, skipped, blocked, errors = sync.sync_records([record], config_only=False)
+        self.assertEqual([], updated)
+        self.assertEqual([], blocked)
+        self.assertEqual([], errors)
+        self.assertEqual("fetch-failed", record["last_sync_mode"])
+        self.assertTrue(record["enabled"])
+        self.assertTrue(record["direct_commit"])
+        self.assertIn("kept existing source", skipped[0]["reason"])
+
+    def test_fetch_failure_before_first_import_is_non_blocking(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            record = {
+                "id": "new-app",
+                "name": "New App",
+                "source_url": "https://example.com/new-app.sgmodule",
+                "target": "Rewrite/Sources/Apps/new-app.conf",
+                "enabled": True,
+                "direct_commit": True,
+                "risk": "medium",
+                "backup": False,
+                "upstream_project": "Example",
+                "last_sync_mode": "configured",
+            }
+            with patch.object(sync, "ROOT", root), patch.object(sync, "fetch_text", side_effect=urllib.error.URLError("boom")):
+                updated, skipped, blocked, errors = sync.sync_records([record], config_only=False)
+        self.assertEqual([], updated)
+        self.assertEqual([], blocked)
+        self.assertEqual([], errors)
+        self.assertEqual("fetch-failed", record["last_sync_mode"])
+        self.assertFalse(record["enabled"])
+        self.assertFalse(record["direct_commit"])
+        self.assertIn("will retry before first import", skipped[0]["reason"])
+
+    def test_kfc_postprocess_repairs_bad_cn_escape(self) -> None:
+        source = r"^https?://res\.kfc\.com.\cn/advertisement/ - reject"
+        converted = sync.postprocess_converted_source({"id": "kfc"}, source)
+        self.assertEqual(r"^https?://res\.kfc\.com\.cn/advertisement/ - reject", converted.strip())
 
 
 if __name__ == "__main__":
