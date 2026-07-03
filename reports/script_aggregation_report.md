@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-07-03T01:29:19Z
+- generated: 2026-07-03T01:35:12Z
 - enabled: True
 - input script entries: 230
 - output script entries: 180
@@ -70,7 +70,7 @@
 - None
 
 ## Cache Fallbacks
-- `https://kelee.one/Resource/JavaScript/PuPuMall/PuPuMall_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- None
 
 ## Preserved Reasons
 - preserved: binary body: 2
