@@ -3,8 +3,8 @@
     "url": "https://example.com/app.js",
     "path": "Rewrite/Sources/Apps/_TEMPLATE.conf",
     "first_failed_date": "2026-06-22",
-    "last_failed_date": "2026-07-03",
-    "fail_count": 12,
+    "last_failed_date": "2026-07-04",
+    "fail_count": 13,
     "last_error": "HTTP 404 HTTP 404",
     "line_number": 23,
     "line_preview": "# app.response = type=http-response,pattern=^https?:\\/\\/example\\.com\\/api,requires-body=1,max-size=-1,script-path=https://example.com/app.js"
