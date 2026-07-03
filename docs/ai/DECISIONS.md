@@ -1,6 +1,25 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-03 08:05 +08:00
+Last updated: 2026-07-03 09:31 +08:00
+
+### 2026-07-03 - GitHub Maintainer Lessons Become Generated Governance Evidence
+
+GrandpaNiu should convert safe lessons from comparable public rule-module repositories into generated, checked evidence instead of keeping them as one-time prose.
+
+Required behavior:
+
+- Keep upstream provenance visible through `reports/upstream_provenance_report.md`.
+- Keep platform capability boundaries visible through `reports/platform_compatibility_matrix.md`.
+- Keep protected traffic sources visible through `reports/protected_traffic_ledger.md`.
+- Keep potential false-positive review items visible through `reports/false_positive_review_report.md`.
+- Keep converter compatibility locked with fixture tests.
+- Wire all generated reports into quality gate, freshness, repository validation, repository health, automation gap, and automated evidence paths.
+
+Reason: this repository is high risk and long-lived. Maintainer lessons should become repeatable guardrails, not memory or chat context.
+
+Boundary:
+
+- These reports are governance and triage evidence. They do not authorize broad automatic rule deletion, VIP/payment/login bypass logic, or protected traffic changes without real runtime evidence.
 
 ### 2026-07-03 - Generated Reports Must Pass UTF-8 Mojibake Guard
 

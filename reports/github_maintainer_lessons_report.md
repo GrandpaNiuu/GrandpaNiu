@@ -107,3 +107,18 @@ GrandpaNiu 当前已经具备同类仓库里比较少见的完整工厂化能力
 3. 给上游同步记录补 license / trust tier / last sync summary。
 4. 给转换器补一批固定 fixtures，尤其是参数、JQ、二进制 body、Map Local。
 5. Web 首屏继续简化：用户只需要知道 iOS Fusion 一个入口，Android/Windows 是规则投影，不等于 iOS 脚本能力。
+
+## 2026-07-03 实施状态
+
+- 已新增 `reports/upstream_provenance_report.md`：记录 App 模块和远程规则来源、可信分层、license 可见性、direct_commit、backup、risk、last_sync_mode。
+- 已新增 `reports/platform_compatibility_matrix.md`：明确 Shadowrocket / Surge / Android Mihomo / sing-box / AdGuard / v2rayNG / Windows v2rayN 的能力边界。
+- 已新增 `reports/protected_traffic_ledger.md`：整理登录、支付、银行、验证码、视频、图片/CDN、HTTPDNS 等保护链路来源。
+- 已新增 `reports/false_positive_review_report.md`：从 MITM/REJECT 风险台账和保护链路台账生成误伤复核队列。
+- 已新增 `tests/test_converter_fixtures.py`：覆盖 `#!arguments`、`#!arguments-desc`、QX rewrite、Loon script、`binary-body-mode=1`、Map Local、`http-response-jq`、Header Rewrite 等转换样例。
+- 已把上述报告接入 `scripts/quality_gate.py`、报告新鲜度检查、仓库健康检查、自动化缺口报告、自动化质量证据和 Builder 配置清单。
+
+仍然不做的事：
+
+- 不自动导入 VIP / 会员解锁 / 支付绕过 / 登录绕过 / 凭证篡改模块。
+- 不把误伤报告直接变成自动删规则或自动放行规则。
+- 不把 Android / Windows 输出宣传成等同 iOS Rewrite / Script / MITM 能力。

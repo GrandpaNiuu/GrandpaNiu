@@ -1,6 +1,35 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-03 08:05 +08:00
+Last updated: 2026-07-03 09:31 +08:00
+
+## 2026-07-03 GitHub Maintainer Lessons Implementation Handoff
+
+- Owner asked to apply the recommendations from `reports/github_maintainer_lessons_report.md` into the repository.
+- Implemented the safe, automation-friendly recommendations:
+  - upstream provenance report
+  - platform compatibility matrix
+  - protected traffic ledger
+  - false-positive review queue
+  - converter fixture tests for source conversion compatibility
+- New tools:
+  - `tools/generate_upstream_provenance_report.py`
+  - `tools/generate_platform_compatibility_matrix.py`
+  - `tools/generate_protected_traffic_ledger.py`
+  - `tools/generate_false_positive_review_report.py`
+- New generated reports:
+  - `reports/upstream_provenance_report.md`
+  - `reports/platform_compatibility_matrix.md`
+  - `reports/protected_traffic_ledger.md`
+  - `reports/false_positive_review_report.md`
+- New test:
+  - `tests/test_converter_fixtures.py`
+- The new reports are blocking freshness/health evidence now, not manual side notes.
+- `quality_gate.py` passed after the new reports and tests were wired in.
+- One remote-rule source emitted a transient SSL EOF warning during validation; it did not block the gate and should be treated as upstream/network availability unless repeated.
+- Do not treat the false-positive review report or protected traffic ledger as automatic deletion instructions. They are triage maps for source-first, evidence-backed future changes.
+- No traffic rules, App source fragments, MITM scopes, Android routing policy, Windows routing policy, workflow runtime behavior, or public module URLs were intentionally changed.
+
+Next AI should first check whether the remote `Module Factory Build` run after this commit is green, then inspect the new governance reports before making any protected traffic changes.
 
 ## 2026-07-03 Report Encoding And MITM/REJECT Ledger Handoff
 

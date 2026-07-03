@@ -1,8 +1,8 @@
 # Automation Status Report
 
-- Generated at: 2026-07-03 08:17:46 +0800
+- Generated at: 2026-07-03 09:30:15 +0800
 - Repository: `GrandpaNiuu/GrandpaNiu`
-- Current commit: `cb7d31be`
+- Current commit: `3aa1001a`
 - Overall status: `unknown`
 - Blocking findings: 0
 - Warnings: 11
@@ -12,7 +12,7 @@
 GitHub Actions status could not be fetched in this environment.
 
 ```text
-HTTPError: HTTP Error 403: rate limit exceeded
+URLError: <urlopen error _ssl.c:999: The handshake operation timed out>
 ```
 
 Existing workflow syntax checks still run locally; this report will refresh with real run data in GitHub Actions.

@@ -1,23 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-07-03 08:17:45 +0800
+- 生成时间：2026-07-03 09:30:02 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `AI_HANDOFF.md`
 - `Android/branches.json`
-- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
 - `Release/checksums.json`
-- `Rewrite/Generate.conf`
-- `Rewrite/Generator/Generate.conf`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
-- `docs/ai/DECISIONS.md`
-- `docs/ai/RISK_LOG.md`
-- `docs/ai/TASKS.md`
-- `docs/ai/WORKLOG.md`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
 - `reports/app_source_validation_report.md`
@@ -30,10 +22,8 @@
 - `reports/candidate_security_score_report.md`
 - `reports/change_impact_report.md`
 - `reports/domestic_app_connectivity_audit.md`
-- `reports/github_maintainer_lessons_report.md`
 - `reports/mitm_reject_risk_ledger.md`
 - `reports/mitm_scope_report.md`
-- `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
 - `reports/reject_risk_report.md`
@@ -48,21 +38,10 @@
 - `reports/script_inventory_report.md`
 - `reports/upstream_risk_gate_report.md`
 - `reports/workflow_health_report.md`
-- `scripts/check_report_freshness.py`
-- `scripts/quality_gate.py`
-- `scripts/repository_health_check.py`
-- `tools/check_report_encoding.py`
-- `tools/generate_automated_quality_evidence.py`
-- `tools/generate_automation_gap_report.py`
-- `tools/generate_mitm_reject_risk_ledger.py`
 
 ## 新增文件
 
-- `reports/github_maintainer_lessons_report.md`
-- `reports/mitm_reject_risk_ledger.md`
-- `reports/report_encoding_report.md`
-- `tools/check_report_encoding.py`
-- `tools/generate_mitm_reject_risk_ledger.py`
+- 无
 
 ## 删除文件
 
@@ -70,19 +49,11 @@
 
 ## 修改文件
 
-- `AI_HANDOFF.md`
 - `Android/branches.json`
-- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
 - `Release/checksums.json`
-- `Rewrite/Generate.conf`
-- `Rewrite/Generator/Generate.conf`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
-- `docs/ai/DECISIONS.md`
-- `docs/ai/RISK_LOG.md`
-- `docs/ai/TASKS.md`
-- `docs/ai/WORKLOG.md`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
 - `reports/app_source_validation_report.md`
@@ -95,12 +66,13 @@
 - `reports/candidate_security_score_report.md`
 - `reports/change_impact_report.md`
 - `reports/domestic_app_connectivity_audit.md`
+- `reports/mitm_reject_risk_ledger.md`
 - `reports/mitm_scope_report.md`
-- `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/profile_validation_report.md`
 - `reports/reject_risk_report.md`
 - `reports/remote_rule_syntax_report.md`
+- `reports/report_encoding_report.md`
 - `reports/report_freshness_report.md`
 - `reports/repository_health_report.md`
 - `reports/rule_overlap_report.md`
@@ -110,44 +82,18 @@
 - `reports/script_inventory_report.md`
 - `reports/upstream_risk_gate_report.md`
 - `reports/workflow_health_report.md`
-- `scripts/check_report_freshness.py`
-- `scripts/quality_gate.py`
-- `scripts/repository_health_check.py`
-- `tools/generate_automated_quality_evidence.py`
-- `tools/generate_automation_gap_report.py`
 
 ## 影响的模块层
 
 - Other
 - README/docs
 - Scripts
-- Scripts/maintenance
 
 ## 可能影响的 App
 
 - Spotify
 - YouTube
-- 知乎
-- Bilibili
-- 微博
 - 百度贴吧
-- 小红书
-- 酷安
-- 淘宝
-- 闲鱼
-- 京东
-- 拼多多
-- 美团
-- 大众点评
-- 饿了么
-- 滴滴
-- 12306
-- 高德地图
-- 百度地图
-- 网易云音乐
-- 喜马拉雅
-- 小宇宙
-- 斗鱼
 
 ## 风险判断
 

@@ -1,8 +1,8 @@
 # 自动化质量证据报告
 
-生成时间：2026-07-03 08:17:47 +0800
-Git 分支：`main`
-Git 提交：`cb7d31be`
+生成时间：2026-07-03 09:30:54 +0800
+Git 分支：`repair/upstream-app-sync`
+Git 提交：`3aa1001a`
 
 本仓库发布门禁以可重复执行的自动化证据为准：构建、语法检查、远程规则校验、模块完整性、报告新鲜度和仓库健康检查。
 
@@ -10,7 +10,7 @@ Git 提交：`cb7d31be`
 
 - Root / Release 一致：是
 - UTF-8 BOM 命中：0
-- 证据报告数量：25
+- 证据报告数量：29
 
 ## 必跑自动化命令
 
@@ -33,8 +33,14 @@ Git 提交：`cb7d31be`
 - `python scripts/validate_module_integrity.py`
 - `python tools/generate_mitm_scope_report.py`
 - `python tools/generate_mitm_reject_risk_ledger.py`
+- `python tools/generate_upstream_provenance_report.py`
+- `python tools/generate_platform_compatibility_matrix.py`
+- `python tools/generate_protected_traffic_ledger.py`
 - `python tools/generate_rule_overlap_report.py`
 - `python tools/generate_app_cleaner_active_report.py`
+- `python scripts/audit_reject_risk.py`
+- `python tools/generate_false_positive_review_report.py`
+- `python scripts/audit_domestic_app_connectivity.py`
 - `python scripts/repository_health_check.py`
 - `python scripts/check_automation_status.py`
 - `python tools/generate_automation_gap_report.py`
@@ -63,6 +69,10 @@ Git 提交：`cb7d31be`
 | `reports/upstream_risk_gate_report.md` | present |
 | `reports/mitm_scope_report.md` | present |
 | `reports/mitm_reject_risk_ledger.md` | present |
+| `reports/upstream_provenance_report.md` | present |
+| `reports/platform_compatibility_matrix.md` | present |
+| `reports/protected_traffic_ledger.md` | present |
+| `reports/false_positive_review_report.md` | present |
 | `reports/rule_overlap_report.md` | present |
 | `reports/app_cleaner_active_report.md` | present |
 | `reports/candidate_security_score_report.md` | present |

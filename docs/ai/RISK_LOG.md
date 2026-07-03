@@ -1,6 +1,32 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-03 08:05 +08:00
+Last updated: 2026-07-03 09:31 +08:00
+
+## 2026-07-03 GitHub Maintainer Lessons Implementation Risk Note
+
+Risk level: low traffic-policy risk, medium governance/process risk.
+
+Observed signals:
+
+- The repository had a public GitHub maintainer lessons report, but several useful recommendations were still prose-only.
+- Provenance, platform compatibility boundaries, protected traffic inventory, false-positive review queues, and upstream converter fixtures are the kinds of maintenance checks that should be repeatable.
+
+Mitigations:
+
+- Added generated provenance, platform compatibility, protected traffic, and false-positive review reports.
+- Wired those reports into quality gate, freshness, repository validation, repository health, automation gap, and automated quality evidence.
+- Added converter fixture tests so future upstream-format changes are checked before reaching generated modules.
+- Reordered the false-positive report generation after `scripts/audit_reject_risk.py` so it consumes fresh risk data.
+
+Traffic risk boundary:
+
+- No ad rule source, App source, MITM hostname, JavaScript runtime behavior, Android routing policy, Windows routing policy, workflow runtime behavior, login, payment, banking, captcha, video, or image/CDN policy was intentionally changed.
+
+Remaining risk:
+
+- Provenance report currently shows many upstream records with missing license metadata. This is now visible but not yet solved.
+- False-positive and protected-traffic reports are heuristic triage maps, not device/runtime proof.
+- One remote-rule source had a transient SSL EOF warning during the final quality gate; the gate still passed and should be monitored in future scheduled runs.
 
 ## 2026-07-03 Report Encoding And Risk Ledger Risk Note
 

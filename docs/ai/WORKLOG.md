@@ -1410,3 +1410,72 @@ Latest validation result for that pass:
 - Repository validation passed.
 - Full `python scripts\quality_gate.py` passed.
 - No rule source, App source, MITM behavior, Android routing, Windows routing, workflow behavior, or public module URL was intentionally changed.
+
+## 2026-07-03 09:31 +08:00 - GitHub maintainer lessons implementation
+
+### Task Summary
+
+The owner asked to take the suggestions from `reports/github_maintainer_lessons_report.md` and add the useful, safe parts into the repository.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- `git status` summary before continuing: existing uncommitted governance/reporting changes from the same in-progress pass.
+- Expected scope: tools, generated governance reports, tests, quality-gate wiring, registry notes, and AI maintenance records.
+- Out of scope: direct rule source edits, App source edits, MITM behavior changes, Android/Windows routing policy changes, workflow runtime changes, and public module URL changes.
+
+### Actual Changes
+
+- Added upstream provenance report generation.
+- Added platform compatibility matrix generation.
+- Added protected traffic ledger generation.
+- Added false-positive review report generation.
+- Added converter fixture tests for upstream source conversion syntax.
+- Wired the new generated reports into the quality gate, freshness, repository validation, repository health, automation gap, automated quality evidence, Builder configs, and Web registry.
+- Updated `reports/github_maintainer_lessons_report.md` with implementation status.
+- Refreshed generated reports and generated release outputs through the existing Builder / quality gate path.
+
+### Commands Run
+
+```bash
+python tools\generate_platform_compatibility_matrix.py
+python -m py_compile tools\generate_platform_compatibility_matrix.py tools\generate_upstream_provenance_report.py tools\generate_protected_traffic_ledger.py tools\generate_false_positive_review_report.py scripts\quality_gate.py scripts\check_report_freshness.py scripts\repository_health_check.py scripts\validate_repository.py tools\generate_automation_gap_report.py tools\generate_automated_quality_evidence.py
+python tools\generate_automation_gap_report.py
+python tools\generate_automated_quality_evidence.py
+python scripts\check_report_freshness.py --strict
+python tools\check_report_encoding.py
+python scripts\validate_repository.py
+python scripts\repository_health_check.py
+python scripts\quality_gate.py
+```
+
+### Validation Result
+
+- Focused Python compile passed.
+- Automation gap report passed.
+- Strict report freshness passed.
+- Report encoding check passed.
+- Repository validation passed.
+- Repository health check passed.
+- Full `python scripts\quality_gate.py` passed.
+- Quality gate generated `398` per-App modules with `0` empty modules.
+- One remote rule source produced a transient SSL EOF warning during remote syntax validation; the gate still passed with fallback behavior and no normalization files.
+
+### Risks
+
+- The new reports are heuristic governance evidence, not runtime proof.
+- The provenance report exposes many records with missing license metadata; that is now visible but not fully remediated.
+- The false-positive review report must not be used for batch deletion without real App symptoms or logs.
+- No protected traffic policy was intentionally changed in this pass.
+
+### Self-Review
+
+- What was not good enough: the first platform compatibility matrix guessed Android paths and reported existing outputs as missing.
+- What I changed to reduce that risk: corrected the generator to use the actual Mihomo, sing-box, AdGuard, v2rayNG, and v2rayN paths, regenerated the report, and reran the full quality gate.
+- What I would check first next time: inspect actual generated output paths before writing compatibility summaries, especially when Android and Release mirrors have different names.
+
+### Next Step
+
+- Commit and push the governance implementation.
+- Confirm the next `Module Factory Build` run on GitHub Actions is green.
+- Gradually fill provenance license/source trust metadata in future low-risk documentation passes.

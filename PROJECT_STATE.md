@@ -1,6 +1,45 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-03 08:05 +08:00
+Last updated: 2026-07-03 09:31 +08:00
+
+## 2026-07-03 GitHub Maintainer Lessons Implementation Snapshot
+
+- The GitHub maintainer lessons report is no longer just advisory; its safe governance recommendations have been implemented as repository checks.
+- Added generated upstream provenance evidence:
+  - `tools/generate_upstream_provenance_report.py`
+  - `reports/upstream_provenance_report.md`
+- Added generated platform compatibility evidence:
+  - `tools/generate_platform_compatibility_matrix.py`
+  - `reports/platform_compatibility_matrix.md`
+- Added generated protected-traffic source ledger:
+  - `tools/generate_protected_traffic_ledger.py`
+  - `reports/protected_traffic_ledger.md`
+- Added generated false-positive review queue:
+  - `tools/generate_false_positive_review_report.py`
+  - `reports/false_positive_review_report.md`
+- Added converter fixture tests at `tests/test_converter_fixtures.py` for upstream module conversion behavior including arguments, loose QuanX rewrite syntax, Loon binary body scripts, Map Local, JQ body rewrite, and Header Rewrite.
+- Wired the new reports into:
+  - `scripts/quality_gate.py`
+  - `scripts/check_report_freshness.py`
+  - `scripts/repository_health_check.py`
+  - `scripts/validate_repository.py`
+  - `tools/generate_automation_gap_report.py`
+  - `tools/generate_automated_quality_evidence.py`
+  - `Rewrite/Generate.conf`
+  - `Rewrite/Generator/Generate.conf`
+  - `Web/registry.md`
+- `reports/github_maintainer_lessons_report.md` now records the implementation status of these lessons.
+- No `Rules/`, `Rewrite/Sources/Apps/`, MITM source behavior, Android routing policy, Windows routing policy, workflow behavior, or public module URL was intentionally changed.
+- Full `python scripts\quality_gate.py` passed after implementation.
+- Quality gate refreshed:
+  - Fusion module: `2775` lines.
+  - App sources: `398`.
+  - Release App modules: `398`.
+  - Empty App modules: `0`.
+  - Android main rules: `952`.
+  - Remote syntax report: `15` sources, `1` transient upstream warning, `0` normalization files.
+
+Traffic-policy boundary: this pass improves provenance, platform documentation, protected-traffic review, false-positive triage, and converter regression coverage. It does not directly change ad-blocking rules or protected app traffic.
 
 ## 2026-07-03 Report Encoding And Risk Ledger Snapshot
 

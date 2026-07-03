@@ -1,6 +1,35 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-03 08:05 +08:00
+Last updated: 2026-07-03 09:31 +08:00
+
+## Current GitHub Maintainer Lessons Implementation Task
+
+Status: locally implemented and fully validated; pending commit, push, and remote Actions confirmation.
+
+Scope:
+
+- Turn safe lessons from `reports/github_maintainer_lessons_report.md` into maintained repository artifacts.
+- Add provenance, platform compatibility, protected traffic, and false-positive review reports.
+- Add converter fixture regression tests.
+- Wire the new evidence into the Builder / quality gate / health / freshness path.
+- Do not change ad rules, App source fragments, MITM behavior, Android routing policy, Windows routing policy, workflow runtime behavior, or public module URLs.
+
+Validation:
+
+- `python -m py_compile ...` passed for the new and modified scripts.
+- `python -m unittest tests.test_converter_fixtures tests.test_app_source_conversion` passed.
+- `python scripts\check_report_freshness.py --strict` passed.
+- `python tools\check_report_encoding.py` passed.
+- `python scripts\validate_repository.py` passed.
+- `python scripts\repository_health_check.py` passed.
+- Full `python scripts\quality_gate.py` passed.
+
+Next check:
+
+- Commit and push this governance enhancement.
+- Confirm the next `Module Factory Build` run is green.
+- Use the new provenance report to fill missing license/source trust metadata gradually.
+- Use the false-positive review report only for evidence-backed single-rule review, not batch deletion.
 
 ## Current Report Encoding / Risk Ledger Task
 
