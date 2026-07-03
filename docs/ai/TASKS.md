@@ -1,6 +1,33 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-03 04:32 +08:00
+Last updated: 2026-07-03 08:05 +08:00
+
+## Current Report Encoding / Risk Ledger Task
+
+Status: implemented and locally validated; pending commit, push, and remote Actions confirmation.
+
+Scope:
+
+- Add a generated UTF-8 / mojibake report guard for `reports/*.md`.
+- Add an informational MITM / REJECT risk ledger that records source and risk only.
+- Add a GitHub public-repo learning report for maintainability ideas.
+- Do not change rules, App sources, MITM behavior, Android, Windows, workflows, or public module entry URLs.
+
+Validation:
+
+- Report encoding check passed with `乱码命中数：0`.
+- Remote rule syntax validation passed with 15 sources and 0 warnings.
+- App source validation passed with 398 source files and 398 Release modules.
+- Script aggregation validation and sandbox passed.
+- Repository health, automation gap, strict report freshness, and repository validation passed.
+- Full `python scripts\quality_gate.py` passed.
+- Final report encoding scan passed after the full gate.
+
+Next check:
+
+- Commit and push this reporting/ledger pass.
+- Confirm the next `Module Factory Build` and daily report refreshes stay green.
+- Schedule a future docs-only cleanup for historical mojibake entries in older `docs/ai/WORKLOG.md` sections.
 
 ## Current QuanX Converted Rule Fallback Task
 

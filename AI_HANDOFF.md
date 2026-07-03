@@ -1,6 +1,35 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-03 04:32 +08:00
+Last updated: 2026-07-03 08:05 +08:00
+
+## 2026-07-03 Report Encoding And MITM/REJECT Ledger Handoff
+
+- Owner reported the newest `upstream-app-module-sync.yml` run is green and asked to fix report Chinese mojibake plus create a MITM/REJECT risk ledger.
+- File-level UTF-8 checks showed generated reports are valid UTF-8 even when PowerShell displays Chinese as mojibake.
+- Added `tools/check_report_encoding.py` and `reports/report_encoding_report.md`; the final scan reports `乱码命中数：0`.
+- Added `tools/generate_mitm_reject_risk_ledger.py` and `reports/mitm_reject_risk_ledger.md`.
+- The ledger is informational only: it lists source paths and risk categories without deleting, commenting, replacing, or widening rules.
+- Added `reports/github_maintainer_lessons_report.md` with GitHub public-repo practices to learn from: upstream trust tiers, license/provenance, compatibility matrices, converter fixtures, and false-positive review loops.
+- Wired the new reports into `scripts/quality_gate.py`, `scripts/check_report_freshness.py`, `scripts/repository_health_check.py`, `tools/generate_automation_gap_report.py`, `tools/generate_automated_quality_evidence.py`, and both `Rewrite/Generate.conf` files.
+- Validation passed:
+  - `python -m py_compile ...`
+  - `node --check Scripts/generated/fusion-script-bundle.js`
+  - `python tools/validate_script_aggregation.py`
+  - `python tools/test_script_bundle_sandbox.py`
+  - `python tools/generate_mitm_scope_report.py`
+  - `python tools/generate_mitm_reject_risk_ledger.py`
+  - `python scripts/generate_app_status_matrix.py`
+  - `python tools/generate_automation_gap_report.py`
+  - `python scripts/repository_health_check.py`
+  - `python scripts/check_report_freshness.py --strict`
+  - `python tools/check_report_encoding.py`
+  - `python tools/generate_automated_quality_evidence.py`
+  - `python scripts/validate_repository.py`
+- Full `python scripts\quality_gate.py` passed after the focused validations.
+- An earlier quality-gate run recorded one transient remote warning for `ACL4SSR BanAD`, but the final post-rebase full quality gate completed with 0 remote-rule warnings.
+- Final report encoding scan passed after the full gate.
+- Generated script bundle changed only in generation timestamp / manifest cache metadata because one Kelee script was recovered from cache after a transient SSL EOF.
+- Next AI should not treat the new ledger as an instruction to delete rules. It is a review map.
 
 ## 2026-07-03 QuanX Converter Fallback Handoff
 

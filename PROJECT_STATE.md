@@ -1,6 +1,32 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-03 04:32 +08:00
+Last updated: 2026-07-03 08:05 +08:00
+
+## 2026-07-03 Report Encoding And Risk Ledger Snapshot
+
+- Owner confirmed the latest `upstream-app-module-sync.yml` run is green.
+- Added a generated report encoding guard at `tools/check_report_encoding.py`.
+- New report `reports/report_encoding_report.md` scans `reports/*.md` through UTF-8 reads and blocks common mojibake markers.
+- Added informational MITM / REJECT risk ledger generator at `tools/generate_mitm_reject_risk_ledger.py`.
+- New report `reports/mitm_reject_risk_ledger.md` records source path, risk class, risk level, and reason only; it does not change rules.
+- Added `reports/github_maintainer_lessons_report.md` summarizing public GitHub repositories and maintainability practices worth learning from.
+- Wired the new encoding and MITM/REJECT ledger reports into the local quality gate, freshness checks, repository health, automation-gap report, and automated evidence.
+- No `Rules/`, `Rewrite/Sources/Apps/`, MITM source behavior, Android routing, Windows routing, workflows, or public module URLs were intentionally changed.
+- Full `python scripts\quality_gate.py` passed after wiring the new reports.
+- Final `python tools\check_report_encoding.py` passed with `乱码命中数：0`.
+
+Current generated risk ledger snapshot:
+
+- Source MITM hostnames scanned: `805`.
+- MITM risk items marked: `172`.
+- REJECT / rewrite reject entries scanned: `4218`.
+- REJECT risk items marked: `2817`.
+- High-risk items: `73`.
+- Medium-risk items: `2916`.
+
+Known documentation issue:
+
+- Some older `docs/ai/WORKLOG.md` historical entries still contain mojibake text. They are not generated reports and were left untouched in this pass to avoid broad historical record rewriting.
 
 ## 2026-07-03 QuanX Converted Rule Fallback Snapshot
 

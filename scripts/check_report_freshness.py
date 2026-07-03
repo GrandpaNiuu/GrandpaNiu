@@ -111,6 +111,18 @@ CHECKS = [
         "reason": "MITM scope report must reflect the current generated module.",
     },
     {
+        "report": "reports/mitm_reject_risk_ledger.md",
+        "inputs": [
+            "Rules",
+            "Rewrite/Sources",
+            "Scripts",
+            "Rewrite/Profiles",
+            "tools/generate_mitm_reject_risk_ledger.py",
+        ],
+        "blocking": True,
+        "reason": "MITM / REJECT 风险台账必须反映当前源文件范围，并且只能标记风险、不直接改规则。",
+    },
+    {
         "report": "reports/rule_overlap_report.md",
         "inputs": ["Rules", "tools/generate_rule_overlap_report.py"],
         "blocking": False,

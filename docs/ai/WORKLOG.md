@@ -1207,6 +1207,91 @@ The first three workflow-reproduction commands were run in a repository-external
 - Commit and push the repair with explicit paths.
 - Re-run or wait for `upstream-app-module-sync.yml` and confirm the remote run after this commit is green.
 
+## 2026-07-03 07:57 +08:00 - 报告编码巡检、MITM/REJECT 风险台账和 GitHub 借鉴报告
+
+### Task Summary
+
+Owner confirmed the newest `upstream-app-module-sync.yml` run is green, then requested report Chinese mojibake repair, an informational MITM/REJECT risk ledger, and a GitHub public-repo learning report.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- git status summary: clean and tracking `origin/main`
+- Latest commit before this pass: `94421b46 Build module factory outputs [skip ci]`
+- Expected scope: report generators, generated reports, quality evidence wiring, and AI maintenance records
+- Out of scope: rule source changes, App source changes, MITM behavior changes, Android/Windows routing changes, workflow behavior changes, or public module URL changes
+
+### Actual Changes
+
+- Added `tools/check_report_encoding.py`.
+- Added generated report `reports/report_encoding_report.md`.
+- Added `tools/generate_mitm_reject_risk_ledger.py`.
+- Added generated report `reports/mitm_reject_risk_ledger.md`.
+- Added `reports/github_maintainer_lessons_report.md` summarizing public GitHub maintainability practices worth learning from.
+- Wired the new reports into `scripts/quality_gate.py`, `scripts/check_report_freshness.py`, `scripts/repository_health_check.py`, `tools/generate_automation_gap_report.py`, `tools/generate_automated_quality_evidence.py`, `Rewrite/Generate.conf`, and `Rewrite/Generator/Generate.conf`.
+- Refreshed generated reports through the relevant validation scripts.
+- Updated `PROJECT_STATE.md`, `AI_HANDOFF.md`, `docs/ai/TASKS.md`, `docs/ai/DECISIONS.md`, and `docs/ai/RISK_LOG.md`.
+
+### Commands Run
+
+```bash
+git status --short --branch
+git branch --show-current
+python -m py_compile tools\check_report_encoding.py tools\generate_mitm_reject_risk_ledger.py scripts\quality_gate.py scripts\check_report_freshness.py tools\generate_automated_quality_evidence.py tools\generate_automation_gap_report.py scripts\repository_health_check.py
+python scripts\validate_app_sources.py
+python scripts\validate_remote_rule_syntax.py
+python scripts\audit_reject_risk.py
+python tools\generate_mitm_scope_report.py
+python tools\generate_mitm_reject_risk_ledger.py
+python tools\check_report_encoding.py
+python tools\generate_automation_gap_report.py
+python scripts\repository_health_check.py
+python tools\generate_automated_quality_evidence.py
+python scripts\validate_profiles.py
+python scripts\generate_app_status_matrix.py
+node --check Scripts\generated\fusion-script-bundle.js
+python tools\validate_script_aggregation.py
+python tools\test_script_bundle_sandbox.py
+python scripts\check_report_freshness.py --strict
+python scripts\validate_repository.py
+python scripts\quality_gate.py
+git diff --stat
+git diff --name-only
+```
+
+### Validation Result
+
+- App source validation passed for 398 source files and 398 Release modules.
+- Remote rule syntax validation passed for 15 sources with 0 warnings.
+- Script aggregation validation passed.
+- Script bundle sandbox passed.
+- Automation gap check passed.
+- Repository health check passed.
+- Strict report freshness passed after refreshing dependent reports in order.
+- Report encoding check passed with `乱码命中数：0`.
+- Repository validation passed.
+- Full `python scripts\quality_gate.py` passed.
+- An earlier quality-gate run recorded one transient external remote warning for `ACL4SSR BanAD`; the final post-rebase full quality gate completed with 0 remote-rule warnings.
+
+### Risks
+
+- The new MITM/REJECT ledger uses token-based heuristics and is not runtime proof.
+- Ledger entries must not be treated as automatic delete/protect instructions.
+- Generated `Scripts/generated/fusion-script-bundle.js` changed only in generated timestamp; the manifest records one Kelee script recovered from cache after a transient SSL EOF.
+- Older historical `docs/ai/WORKLOG.md` sections still contain mojibake and should be cleaned in a separate docs-only pass.
+
+### Self-Review
+
+- What was not good enough: the first strict freshness run exposed that refreshing one status report updated script bundle metadata and made dependent reports stale.
+- What I changed to reduce that risk: reran the dependent reports in source order and added the encoding guard at the end of the local quality evidence path.
+- What I would check first next time: inspect report input timestamps before parallelizing report generators, because some report scripts refresh generated dependencies.
+
+### Next Step
+
+- Commit and push the reporting/ledger pass.
+- Confirm the next `Module Factory Build` stays green.
+- Consider a future docs-only cleanup for historical mojibake entries in `docs/ai/WORKLOG.md`.
+
 ## 2026-07-03 04:23 +08:00 - Pages source-mode guard
 
 ### Task Summary
@@ -1311,3 +1396,17 @@ python scripts\quality_gate.py
 
 - Refresh health/freshness reports after docs and test updates.
 - Commit and push the Pages guard plus QuanX fallback.
+
+## 2026-07-03 07:57 +08:00 - Latest record pointer
+
+The full entry for the report encoding guard, MITM/REJECT risk ledger, and GitHub maintainer lessons pass is recorded above under:
+
+`2026-07-03 07:57 +08:00 - 报告编码巡检、MITM/REJECT 风险台账和 GitHub 借鉴报告`
+
+Latest validation result for that pass:
+
+- Report encoding check passed with `乱码命中数：0`.
+- Strict report freshness passed after refreshing dependent reports.
+- Repository validation passed.
+- Full `python scripts\quality_gate.py` passed.
+- No rule source, App source, MITM behavior, Android routing, Windows routing, workflow behavior, or public module URL was intentionally changed.

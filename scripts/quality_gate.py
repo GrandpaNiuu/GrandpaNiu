@@ -61,6 +61,7 @@ def main() -> None:
         [sys.executable, "tools/test_script_bundle_sandbox.py"],
         [sys.executable, "scripts/validate_module_integrity.py"],
         [sys.executable, "tools/generate_mitm_scope_report.py"],
+        [sys.executable, "tools/generate_mitm_reject_risk_ledger.py"],
         [sys.executable, "tools/generate_rule_overlap_report.py"],
         [sys.executable, "tools/generate_app_cleaner_active_report.py"],
         [sys.executable, "scripts/generate_app_coverage_matrix.py"],
@@ -75,6 +76,7 @@ def main() -> None:
         [sys.executable, "tools/generate_automation_gap_report.py"],
         [sys.executable, "scripts/repository_health_check.py"],
         [sys.executable, "scripts/check_report_freshness.py", "--strict"],
+        [sys.executable, "tools/check_report_encoding.py"],
         [sys.executable, "tools/generate_automated_quality_evidence.py"],
         [sys.executable, "scripts/validate_repository.py"],
     ]

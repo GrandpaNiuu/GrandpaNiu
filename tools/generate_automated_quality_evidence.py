@@ -34,6 +34,7 @@ EVIDENCE_FILES = [
     "reports/script_bundle_sandbox_report.md",
     "reports/upstream_risk_gate_report.md",
     "reports/mitm_scope_report.md",
+    "reports/mitm_reject_risk_ledger.md",
     "reports/rule_overlap_report.md",
     "reports/app_cleaner_active_report.md",
     "reports/candidate_security_score_report.md",
@@ -41,6 +42,7 @@ EVIDENCE_FILES = [
     "reports/domestic_app_connectivity_audit.md",
     "reports/automation_status_report.md",
     "reports/automation_gap_report.md",
+    "reports/report_encoding_report.md",
 ]
 
 QUALITY_COMMANDS = [
@@ -62,11 +64,13 @@ QUALITY_COMMANDS = [
     "python scripts/validate_profiles.py",
     "python scripts/validate_module_integrity.py",
     "python tools/generate_mitm_scope_report.py",
+    "python tools/generate_mitm_reject_risk_ledger.py",
     "python tools/generate_rule_overlap_report.py",
     "python tools/generate_app_cleaner_active_report.py",
     "python scripts/repository_health_check.py",
     "python scripts/check_automation_status.py",
     "python tools/generate_automation_gap_report.py",
+    "python tools/check_report_encoding.py",
     "python tools/generate_automated_quality_evidence.py",
     "python scripts/validate_repository.py",
 ]

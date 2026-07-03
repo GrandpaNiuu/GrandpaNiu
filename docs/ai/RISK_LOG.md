@@ -1,6 +1,30 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-03 04:32 +08:00
+Last updated: 2026-07-03 08:05 +08:00
+
+## 2026-07-03 Report Encoding And Risk Ledger Risk Note
+
+Risk level: low traffic-policy risk, medium governance visibility risk.
+
+Observed signals:
+
+- The user saw report Chinese mojibake and asked for it to be fixed.
+- PowerShell output can display UTF-8 Chinese as mojibake even when files are valid.
+- MITM and REJECT scopes are broad enough that maintainers need a clear source/risk review map before any future changes.
+
+Mitigations:
+
+- Added `tools/check_report_encoding.py` and `reports/report_encoding_report.md` to verify generated reports through UTF-8 reads.
+- Added `tools/generate_mitm_reject_risk_ledger.py` and `reports/mitm_reject_risk_ledger.md`.
+- Wired both into the quality evidence / freshness / health path.
+- The ledger is read-only and does not alter any rule, MITM hostname, script, Android output, Windows output, or public module URL.
+
+Remaining risk:
+
+- The ledger marks risks by token heuristics, not real App runtime proof.
+- Some marked entries may be intentional ad-cleaning rules. Do not remove or protect them without a concrete App symptom or log evidence.
+- Historical mojibake text remains in older `docs/ai/WORKLOG.md` sections and should be cleaned in a separate docs-only pass.
+- Full quality gate passed. An earlier run saw one transient SSL EOF warning for `ACL4SSR BanAD`; the final post-rebase full quality gate completed with 0 remote-rule warnings.
 
 ## 2026-07-03 QuanX Converted Rule Fallback Risk Note
 

@@ -1,6 +1,31 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-03 04:32 +08:00
+Last updated: 2026-07-03 08:05 +08:00
+
+### 2026-07-03 - Generated Reports Must Pass UTF-8 Mojibake Guard
+
+GrandpaNiu should keep a generated report encoding guard in the quality gate.
+
+Required behavior:
+
+- `tools/check_report_encoding.py` scans `reports/*.md` as UTF-8 text.
+- Common mojibake markers cause a blocking failure.
+- PowerShell display mojibake is not treated as file corruption; the UTF-8 read result is the source of truth.
+- If the guard fails, fix the generator script first rather than hand-editing generated reports.
+
+Reason: reports are part of the public maintenance evidence. Garbled Chinese makes workflow failures and risk reports hard to understand.
+
+### 2026-07-03 - MITM / REJECT Ledger Is Informational Only
+
+The MITM / REJECT ledger should be generated and kept fresh, but it must not modify rules.
+
+Required behavior:
+
+- List source path, risk category, risk level, and marker reason.
+- Do not delete, comment, replace, or auto-protect any rule.
+- Use the ledger as a review map before making source-first single-rule changes.
+
+Reason: the owner wants visibility into high-risk MITM and REJECT scopes, but rule changes still require real App symptoms, logs, packet captures, or another concrete signal.
 
 ## Decisions
 

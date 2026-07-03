@@ -39,11 +39,13 @@ REQUIRED_REPORTS = (
     "reports/automation_status_report.md",
     "reports/automated_quality_evidence.md",
     "reports/mitm_scope_report.md",
+    "reports/mitm_reject_risk_ledger.md",
     "reports/module_integrity_report.md",
     "reports/release_android_report.md",
     "reports/release_modules_report.md",
     "reports/report_freshness_report.md",
     "reports/rule_overlap_report.md",
+    "reports/report_encoding_report.md",
     "reports/script_aggregation_validation_report.md",
     "reports/script_bundle_sandbox_report.md",
     "reports/upstream_risk_gate_report.md",
@@ -58,6 +60,7 @@ REQUIRED_QUALITY_COMMANDS = (
     "tools/validate_upstream_risk_gate.py",
     "scripts/check_automation_status.py",
     "tools/generate_automation_gap_report.py",
+    "tools/check_report_encoding.py",
     "scripts/validate_repository.py",
 )
 

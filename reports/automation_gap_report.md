@@ -1,6 +1,6 @@
 # Automation Gap Report
 
-- Generated at: 2026-07-03 07:39:18 +0800
+- Generated at: 2026-07-03 08:15:22 +0800
 - Blocking gaps: 0
 
 ## Blocking Gaps
@@ -14,8 +14,8 @@
 - Android branches checked: 4; Windows v2rayN output checked.
 - Scheduled workflows checked: 7; writer workflows checked: 9.
 - Pages deployment workflow checked for self-managed artifact deploy, maximum supported deployment timeout, and stale deployment cancellation.
-- Quality gate command tokens checked: 9.
-- Required reports checked: 13; script aggregation cache checked.
+- Quality gate command tokens checked: 10.
+- Required reports checked: 15; script aggregation cache checked.
 
 ## Intentional Non-CI Boundaries
 
