@@ -620,6 +620,7 @@ DOMAIN-KEYWORD,biliad,REJECT,pre-matching
 DOMAIN-KEYWORD,biligame-ad,REJECT,pre-matching
 AND,((DOMAIN-SUFFIX,chat.bilibili.com),(OR,((DOMAIN-KEYWORD,stun),(DOMAIN-KEYWORD,tracker)))),REJECT,pre-matching
 DOMAIN,bsbsb.top,{{{空降助手策略}}}
+AND,((DOMAIN-SUFFIX,chat.bilibili.com),(OR,((DOMAIN-KEYWORD,stun),(DOMAIN-KEYWORD,tracker),(DOMAIN-KEYWORD,p2p)))),REJECT,pre-matching
 DOMAIN-SUFFIX,bat.bing.com,REJECT
 DOMAIN-SUFFIX,c.bing.com,REJECT
 DOMAIN-SUFFIX,j.biquge520.cc,REJECT
@@ -1362,6 +1363,7 @@ http-response-jq (?:^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=trends
 http-response-jq (?:^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v1\/core\?)|(?:^https://conf\.diditaxi\.com\.cn/homepage/v1/core\?)|(?:^https:\/\/conf\.diditaxi\.com\.cn\/homepage\/v1\/core\?) '.data.disorder_cards.bottom_nav_list.data |= map(select(.id == "home_page" or .id == "user_center")) | .data.order_cards.nav_list_card.data |= map(select(.nav_id == "dache_anycar" or .nav_id == "carmate" or .nav_id == "driverservice" or .nav_id == "zhandianbashi" or .nav_id == "yuancheng" or .nav_id == "pincheche" or .nav_id == "bike" or .nav_id == "special_ride" or .nav_id == "nav_more_v3"))'
 http-response-jq (?:^https?:\/\/api\.udache\.com\/intercity\/ticket\/api\/v1\/core\/getFullPageInfoLayout\?)|(?:^https://api\.udache\.com/intercity/ticket/api/v1/core/getFullPageInfoLayout\?)|(?:^https:\/\/api\.udache\.com\/intercity\/ticket\/api\/v1\/core\/getFullPageInfoLayout\?) '.data.disorder_components |= (map(select(.name == "history_order_card" or .name == "inprogress_order_card" or .name == "station_calendar" or .name == "main_card_v2" or .name == "user_history_order")))'
 http-response-jq (?:^https://app\.qtfm\.cn/m-bff/v\d/signin/show_homepage_icon$) '.data.display_icon = false'
+http-response-jq (?:^https:\/\/api\.live\.bilibili\.com\/xlive\/open-interface\/v2\/tracker\/conf\?) '.data.domains=["wss://tracker.chat.bilibili.com"]'
 http-response-jq (?:^https?:\/\/(mobile|mobilehera|mobwsa)\.ximalaya\.com\/nexus-web\/v\d\/tabs\/customTabs\?)|(?:^https:\/\/(mobile|mobilehera|mobwsa)\.ximalaya\.com\/nexus-web\/v\d\/tabs\/customTabs\?) '.data.feedTabs |= map(select(.name != "大赛"))'
 http-response-jq (?:^https?:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.community\/)|(?:^https://acs\.m\.goofish\.com/gw/mtop\.taobao\.idlehome\.home\.community/)|(?:^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.community\/) '.data.feedsList |= map(select(.template.name == "idlefish_home_new_commodity_card" or .template.name == "idlefish_home_new_content_card"))'
 http-response-jq (?:^https?:\/\/iphone\.myzaker\.com\/zaker\/car_tab\/index\.php\?)|(?:^https://iphone\.myzaker\.com/zaker/car_tab/index\.php\?) '.data.gallery |= map(select(.type != "web"))'

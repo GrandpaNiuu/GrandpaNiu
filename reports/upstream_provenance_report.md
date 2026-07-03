@@ -1,6 +1,6 @@
 # 上游来源、许可证与可信分层报告
 
-- 生成时间：2026-07-04 02:00:36 +0800
+- 生成时间：2026-07-04 02:42:28 +0800
 - App 同步记录：398
 - 远程规则 / 参考模块记录：40
 - 未记录 license 的来源：438
@@ -90,7 +90,7 @@
 | bbc | BBC | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/bbc.conf | fmz200/wool_scripts raw |
 | beike | 贝壳找房 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/beike.conf | https://kelee.one/Tool/Loon/Lpx/Beike_remove_ads.lpx |
 | betty-kitchen | 贝太厨房 | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/betty-kitchen.conf | fmz200/wool_scripts raw |
-| bilibili | Bilibili Strong | observe | high | True | True | True | kokoryh/Sparkle | 未记录 | unchanged | Rewrite/Sources/Apps/bilibili.conf | kokoryh/Sparkle raw |
+| bilibili | Bilibili Strong | observe | high | True | True | True | kokoryh/Sparkle | 未记录 | updated | Rewrite/Sources/Apps/bilibili.conf | kokoryh/Sparkle raw |
 | bilibili-comic | 哔哩哔哩漫画 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/bilibili-comic.conf | https://kelee.one/Tool/Loon/Lpx/BiliComic_remove_ads.lpx |
 | bing | Bing | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/bing.conf | fmz200/wool_scripts raw |
 | biquge | 笔趣阁 | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/biquge.conf | fmz200/wool_scripts raw |

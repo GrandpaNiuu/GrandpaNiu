@@ -1,9 +1,9 @@
 # MITM / REJECT 风险台账
 
-- 生成时间：2026-07-04 02:00:35 +0800
+- 生成时间：2026-07-04 02:42:28 +0800
 - 扫描 MITM hostname：805
 - 标记 MITM 风险项：172
-- 扫描 REJECT / rewrite reject 条目：4218
+- 扫描 REJECT / rewrite reject 条目：4219
 - 标记 REJECT 风险项：2817
 - 高风险项：73
 - 中风险项：2916
@@ -119,7 +119,7 @@
 | MITM | medium | 图片 / 静态 CDN / 通配 MITM | `Rewrite/Sources/Apps/che-lai-le.conf:23` | `cdn.*.chelaileapp.cn` | 命中敏感链路关键词；包含通配 MITM 范围 |
 | MITM | medium | 图片 / 静态 CDN / 通配 MITM | `Rewrite/Sources/Apps/huya.conf:14` | `*.msstatic.com` | 命中敏感链路关键词；包含通配 MITM 范围 |
 | MITM | medium | 图片 / 静态 CDN / 通配 MITM | `Rewrite/Sources/Apps/qqksong.conf:52` | `amsweb-cdn-*-1258344696.file.myqcloud.com` | 命中敏感链路关键词；包含通配 MITM 范围 |
-| MITM | medium | 视频 / 音乐播放链路 | `Rewrite/Sources/Apps/bilibili.conf:84` | `grpc.biliapi.net` | 命中敏感链路关键词 |
+| MITM | medium | 视频 / 音乐播放链路 | `Rewrite/Sources/Apps/bilibili.conf:86` | `grpc.biliapi.net` | 命中敏感链路关键词 |
 | MITM | medium | 视频 / 音乐播放链路 | `Rewrite/Sources/Apps/i-qi-yi-video.conf:44` | `-i.vip.iqiyi.com` | 命中敏感链路关键词 |
 | MITM | medium | 视频 / 音乐播放链路 | `Rewrite/Sources/Apps/mgtv.conf:64` | `damang.api.mgtv.com` | 命中敏感链路关键词 |
 | MITM | medium | 视频 / 音乐播放链路 | `Rewrite/Sources/Apps/mgtv.conf:64` | `dc?.bz.mgtv.com` | 命中敏感链路关键词 |
