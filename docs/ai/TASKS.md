@@ -1,6 +1,26 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-03 09:31 +08:00
+Last updated: 2026-07-03 09:48 +08:00
+
+## Current Pages Workflow Source Stabilization Task
+
+Status: locally implemented; pending commit, push, and remote Pages confirmation on a new commit SHA.
+
+Scope:
+
+- Switch repository Pages publishing mode to GitHub Actions.
+- Keep the self-managed Pages workflow as the intended publisher.
+- Add `docs/**` to the Pages workflow public-path push trigger.
+- Upgrade the Pages deploy action to `actions/deploy-pages@v5`.
+
+Validation:
+
+- Pending local workflow validation and repository validation after this edit.
+
+Next check:
+
+- Commit and push this small Pages stabilization change.
+- Confirm the next `Deploy GitHub Pages` run is green on the new commit SHA.
 
 ## Current GitHub Maintainer Lessons Implementation Task
 

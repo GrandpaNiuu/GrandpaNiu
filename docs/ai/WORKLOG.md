@@ -1479,3 +1479,60 @@ python scripts\quality_gate.py
 - Commit and push the governance implementation.
 - Confirm the next `Module Factory Build` run on GitHub Actions is green.
 - Gradually fill provenance license/source trust metadata in future low-risk documentation passes.
+
+## 2026-07-03 09:48 +08:00 - Pages workflow source stabilization
+
+### Task Summary
+
+After the governance commit, GitHub Actions showed `Module Factory Build` green but the old internal `pages build and deployment` path failed on generated commit `9e19eec6`.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Status: clean after rebasing to generated commit `9e19eec6`.
+- Expected scope: GitHub Pages settings, Pages workflow, AI records, and workflow health reports.
+- Out of scope: rules, App sources, MITM behavior, Android routing, Windows routing, and public module URLs.
+
+### Actual Changes
+
+- Changed repository Pages publishing mode from legacy branch publishing to GitHub Actions workflow mode through GitHub API / CLI.
+- Updated `.github/workflows/pages-deploy.yml` to include `docs/**` in the public-path push trigger.
+- Updated `.github/workflows/pages-deploy.yml` from `actions/deploy-pages@v4` to `actions/deploy-pages@v5`.
+- Updated AI maintenance records with the Pages source-mode change.
+
+### Commands Run
+
+```bash
+gh api --method PUT repos/GrandpaNiuu/GrandpaNiu/pages -f build_type=workflow
+gh workflow run pages-deploy.yml --repo GrandpaNiuu/GrandpaNiu --ref main
+```
+
+### Validation Result
+
+- Pages API reports `build_type=workflow`.
+- Manual reruns against old pages build version `9e19eec6` still failed, which is expected because that Pages deployment version was already marked failed.
+- `python scripts\generate_workflow_health_report.py` passed.
+- `python tools\generate_automation_gap_report.py` passed.
+- `python scripts\validate_repository.py` passed.
+- `python scripts\repository_health_check.py` passed.
+- `python scripts\check_report_freshness.py --strict` passed after refreshing dependent reports.
+- `python tools\check_report_encoding.py` passed.
+- `git diff --check` passed.
+
+### Risks
+
+- The historical red Pages run remains visible for old commit `9e19eec6`.
+- The next Pages confirmation must be checked on the new commit SHA after this patch is pushed.
+- No module traffic behavior was changed.
+
+### Self-Review
+
+- What was not good enough: the earlier Pages guard let the repository remain in legacy Pages mode, so default Pages deployment could still produce red failures.
+- What I changed to reduce that risk: switched repository Pages to workflow mode and made the self-managed Pages workflow the intended publisher.
+- What I would check first next time: read `/repos/{owner}/{repo}/pages` before assuming which Pages publisher is active.
+
+### Next Step
+
+- Validate the workflow change locally.
+- Commit and push this small Pages stabilization patch.
+- Confirm the `Deploy GitHub Pages` run for the new commit SHA is green.

@@ -1,6 +1,32 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-03 09:31 +08:00
+Last updated: 2026-07-03 09:48 +08:00
+
+## 2026-07-03 Pages Workflow Source Stabilization Risk Note
+
+Risk level: low traffic-policy risk, medium deployment-configuration risk.
+
+Observed signals:
+
+- `Module Factory Build` succeeded after the governance commit.
+- A generated-output follow-up commit was created.
+- The old internal branch-based `pages build and deployment` failed on that generated commit while the repository was still in legacy Pages mode.
+- Manual self-managed deploy attempts against the same failed pages build version also reported `Deployment failed, try again later`.
+
+Mitigations:
+
+- Changed repository Pages publishing mode to `workflow`.
+- Updated Pages workflow to use `actions/deploy-pages@v5`.
+- Added `docs/**` to the Pages workflow trigger because `docs/` is part of the published artifact.
+
+Traffic risk boundary:
+
+- This does not change rules, App sources, MITM scopes, scripts, Android routing, Windows routing, or public module import URLs.
+
+Remaining risk:
+
+- The old `9e19eec6` Pages deployment remains failed historically.
+- Confirmation must be done on the next commit SHA after this workflow update.
 
 ## 2026-07-03 GitHub Maintainer Lessons Implementation Risk Note
 

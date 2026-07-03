@@ -1,6 +1,18 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-03 09:31 +08:00
+Last updated: 2026-07-03 09:48 +08:00
+
+## 2026-07-03 Pages Workflow Source Stabilization Snapshot
+
+- The repository Pages API was updated from legacy branch Pages publishing to GitHub Actions publishing:
+  - previous `build_type`: `legacy`
+  - current `build_type`: `workflow`
+- This removes the old branch-based `pages build and deployment` path from being the intended publisher.
+- `.github/workflows/pages-deploy.yml` now also triggers on `docs/**`, because the Pages artifact includes `docs/`.
+- `.github/workflows/pages-deploy.yml` now uses `actions/deploy-pages@v5`.
+- No public Pages URL, module URL, rule source, App source, MITM scope, Android output, or Windows output was intentionally changed.
+
+Operational note: a deployment for the old generated commit `9e19eec6` remained failed because GitHub Pages stores the deployment status by pages build version. The next commit should create a new Pages deployment version.
 
 ## 2026-07-03 GitHub Maintainer Lessons Implementation Snapshot
 

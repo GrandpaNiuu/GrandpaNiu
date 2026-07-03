@@ -1,6 +1,19 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-03 09:31 +08:00
+Last updated: 2026-07-03 09:48 +08:00
+
+### 2026-07-03 - GitHub Pages Publishing Should Use Workflow Mode
+
+GrandpaNiu should use the repository self-managed `Deploy GitHub Pages` workflow as the intended Pages publisher.
+
+Required behavior:
+
+- Repository Pages `build_type` should be `workflow`.
+- `.github/workflows/pages-deploy.yml` should stay available and deploy the constrained `_site` artifact.
+- The workflow should trigger when public artifact paths change, including `docs/**`.
+- The workflow should use current `actions/deploy-pages@v5`.
+
+Reason: running both legacy branch Pages publishing and a self-managed Pages workflow can create duplicate deployments and red failures that are unrelated to module correctness.
 
 ### 2026-07-03 - GitHub Maintainer Lessons Become Generated Governance Evidence
 

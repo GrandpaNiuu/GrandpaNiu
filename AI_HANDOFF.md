@@ -1,6 +1,17 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-03 09:31 +08:00
+Last updated: 2026-07-03 09:48 +08:00
+
+## 2026-07-03 Pages Workflow Source Stabilization Handoff
+
+- After the governance commit, `Module Factory Build` succeeded and generated follow-up commit `9e19eec6`.
+- The repository still had legacy branch Pages publishing enabled, and the internal `pages build and deployment` failed on `9e19eec6`.
+- The repository Pages setting was changed through GitHub API / CLI to `build_type=workflow`.
+- Manual reruns against the same `9e19eec6` still failed because the Pages deployment ID/status was tied to that old pages build version.
+- `.github/workflows/pages-deploy.yml` was updated to:
+  - trigger on `docs/**`
+  - use `actions/deploy-pages@v5`
+- Next AI should confirm the Pages run on the next commit SHA, not the old `9e19eec6` deployment.
 
 ## 2026-07-03 GitHub Maintainer Lessons Implementation Handoff
 
