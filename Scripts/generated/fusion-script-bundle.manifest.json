@@ -3,19 +3,14 @@
     "chunks": 2,
     "path": "Scripts/generated/fusion-script-bundle.js",
     "routes": 52,
-    "sha256": "e1e3d8dda9f7118a387db471dc79cd642fd1c71887052fc94d2808eafbefb828",
+    "sha256": "1278eadf152dc273d3177a84c6a3e472178dbd3e1cff2cbcea3114a5eb5d16ba",
     "sources": 52,
     "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js",
     "version": "grandpaniu-fusion-script-bundle-v1"
   },
-  "fetch_cached": [
-    {
-      "reason": "HTTP Error 520: <none>",
-      "url": "https://kelee.one/Resource/JavaScript/KuaiKanComic/KuaiKanComic_remove_ads.js"
-    }
-  ],
+  "fetch_cached": [],
   "fetch_failed": [],
-  "generated": "2026-07-04T02:42:41Z",
+  "generated": "2026-07-04T05:16:00Z",
   "policy": {
     "allowed_prefixes": [
       "https://kelee.one/Resource/JavaScript/",
