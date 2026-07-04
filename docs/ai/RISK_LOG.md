@@ -16,9 +16,11 @@ Observed signals:
 Mitigations:
 
 - Reduced Pages `workflow_run` triggers to only `Module Factory Build` and `Daily schedule watchdog`.
-- Kept manual and public-path push triggers.
+- Kept manual dispatch.
+- Removed direct push deploy so a push waits for Module Factory or the daily watchdog before Pages publishes.
+- Changed Pages concurrency to queue instead of cancel.
 - Added run-attempt-specific artifact names for upload and deploy.
-- Added validation guardrails so high-frequency daily workflow triggers cannot be silently reintroduced.
+- Added validation guardrails so high-frequency daily workflow triggers and direct push deploy cannot be silently reintroduced.
 
 Traffic risk boundary:
 
@@ -26,7 +28,7 @@ Traffic risk boundary:
 
 Remaining risk:
 
-- GitHub Pages can still occasionally return a backend deployment failure. The reduced trigger set lowers the likelihood by avoiding a burst of competing deployments.
+- GitHub Pages can still occasionally return a backend deployment failure. The reduced trigger set lowers the likelihood by avoiding duplicate push plus workflow-run deployments and daily workflow bursts.
 - Older red Pages runs remain in history; confirmation must use the new commit SHA.
 
 ## 2026-07-03 Pages Workflow Source Stabilization Risk Note
@@ -44,7 +46,7 @@ Mitigations:
 
 - Changed repository Pages publishing mode to `workflow`.
 - Updated Pages workflow to use `actions/deploy-pages@v5`.
-- Added `docs/**` to the Pages workflow trigger because `docs/` is part of the published artifact.
+- A later repair removed direct push deployment entirely; Pages now publishes after final workflow-run signals.
 
 Traffic risk boundary:
 

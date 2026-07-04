@@ -13,12 +13,13 @@ Last updated: 2026-07-04 10:13 +08:00
 - `pages-deploy.yml` was too broad: it listened to many high-frequency `workflow_run` completions in addition to push/manual triggers.
 - Repair made Pages deployment less noisy:
   - keep workflow dispatch
-  - keep public-path push
   - keep workflow_run only for `Module Factory Build` and final `Daily schedule watchdog`
+  - remove direct push deploy so a push and its generated-output follow-up do not create two Pages deployments
   - remove workflow_run triggers for daily module update, invalid rule audit, invalid source audit, scheduled module update, upstream app sync, upstream collect, and repository health
   - use `github-pages-${{ github.run_attempt }}` for upload/deploy artifact name
-- Validation now fails if those high-frequency Pages triggers are reintroduced.
+- Validation now fails if those high-frequency Pages triggers or direct push deploy are reintroduced.
 - Full quality gate passed after the repair.
+- Second-layer fix serializes Pages runs with `cancel-in-progress: false`.
 - Next AI should verify the next remote `Deploy GitHub Pages` run for this new commit, and should not judge the repair by older red runs on previous SHAs.
 
 ## 2026-07-03 Pages Workflow Source Stabilization Handoff

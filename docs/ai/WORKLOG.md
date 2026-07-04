@@ -1082,14 +1082,16 @@ Owner provided a GitHub Actions screenshot showing the Pages deploy job failing 
 
 - Added `.github/workflows/pages-deploy.yml`.
 - The new workflow:
-  - triggers on manual dispatch, successful maintenance workflow completion, and public-path pushes
+  - originally triggered on manual dispatch, successful maintenance workflow completion, and public-path pushes
+  - note: this was superseded on 2026-07-04; current Pages deploy no longer runs directly on push
   - checks out latest `main`
   - prepares a constrained `_site` artifact
   - uses `.nojekyll`
   - uploads with `actions/upload-pages-artifact`
   - deploys with `actions/deploy-pages`
   - sets deploy timeout to the supported maximum `600000` ms
-  - uses `pages-deploy-main` concurrency with `cancel-in-progress: true`
+  - originally used `pages-deploy-main` concurrency with `cancel-in-progress: true`
+  - note: this was superseded on 2026-07-04; current Pages deploy queues instead of cancelling
 - Added Pages workflow validation to:
   - `scripts/validate_repository.py`
   - `scripts/repository_health_check.py`
@@ -1496,7 +1498,7 @@ After the governance commit, GitHub Actions showed `Module Factory Build` green 
 ### Actual Changes
 
 - Changed repository Pages publishing mode from legacy branch publishing to GitHub Actions workflow mode through GitHub API / CLI.
-- Updated `.github/workflows/pages-deploy.yml` to include `docs/**` in the public-path push trigger.
+- A later repair removed direct public-path push deployment; Pages now publishes after final workflow-run signals.
 - Updated `.github/workflows/pages-deploy.yml` from `actions/deploy-pages@v4` to `actions/deploy-pages@v5`.
 - Updated AI maintenance records with the Pages source-mode change.
 
@@ -1559,14 +1561,16 @@ The owner reported that GitHub Actions showed red crosses again today after the 
   - `Deployment failed, try again later.`
   - `Multiple artifacts named "github-pages" were unexpectedly found for this workflow run.`
   - one Pages deployment cancellation.
-- Root cause: `pages-deploy.yml` listened to too many high-frequency `workflow_run` completions, so one daily batch could create several Pages deployments for nearby commits within minutes.
+- Root cause: `pages-deploy.yml` listened to too many high-frequency `workflow_run` completions, and it also deployed directly on push before Module Factory generated the final output commit. One daily or maintenance batch could create several Pages deployments for nearby commits within minutes.
 
 ### Actual Changes
 
 - Reduced `pages-deploy.yml` `workflow_run` triggers to only:
   - `Module Factory Build`
   - `Daily schedule watchdog`
-- Kept manual dispatch and public-path push triggers.
+- Kept manual dispatch.
+- Removed direct push deploy.
+- Changed Pages concurrency to queue instead of cancel.
 - Changed Pages artifact upload/deploy name to `github-pages-${{ github.run_attempt }}` to avoid duplicate artifact conflicts during reruns.
 - Updated validation guardrails in:
   - `scripts/validate_repository.py`
@@ -1609,8 +1613,8 @@ python scripts\quality_gate.py
 
 ### Self-Review
 
-- What was not good enough: the previous Pages repair switched Pages to workflow mode but left too many `workflow_run` triggers active.
-- What I changed to reduce that risk: reduced Pages triggers to final publishing signals and added validation that blocks reintroducing high-frequency workflow triggers.
+- What was not good enough: the previous Pages repair switched Pages to workflow mode but left too many `workflow_run` triggers active, and the first fix still allowed direct push deploy before Module Factory completed.
+- What I changed to reduce that risk: reduced Pages triggers to final publishing signals, removed direct push deploy, serialized Pages runs instead of cancelling them, and added validation that blocks reintroducing high-frequency workflow triggers or direct push deploy.
 - What I would check first next time: inspect the timeline of all workflow_run triggers around the daily schedule window before changing Pages deployment logic.
 
 ### Next Step

@@ -299,7 +299,7 @@ def check_workflows(gaps: list[str], notes: list[str]) -> None:
             "pages: write",
             "id-token: write",
             "group: pages-deploy-main",
-            "cancel-in-progress: true",
+            "cancel-in-progress: false",
             "actions/upload-pages-artifact@",
             "actions/deploy-pages@",
             "path: _site",
@@ -309,6 +309,8 @@ def check_workflows(gaps: list[str], notes: list[str]) -> None:
         ):
             if token not in pages_text:
                 add_gap(gaps, f"Pages deploy workflow missing token: {token}.")
+        if "\n  push:" in pages_text:
+            add_gap(gaps, "Pages deploy workflow still deploys directly on push; it should publish after final workflow_run only.")
         for token in (
             "Daily Module Update",
             "Daily invalid rule audit and safe repair",
@@ -323,7 +325,7 @@ def check_workflows(gaps: list[str], notes: list[str]) -> None:
         for token in ("git add -A", "git reset --hard", "git clean -fd", "git push --force"):
             if token in pages_text:
                 add_gap(gaps, f"Pages deploy workflow contains unsafe git command: {token}.")
-    notes.append("Pages deployment workflow checked for self-managed artifact deploy, maximum supported deployment timeout, and stale deployment cancellation.")
+    notes.append("Pages deployment workflow checked for self-managed artifact deploy, maximum supported deployment timeout, serialized final deployment, and reduced trigger noise.")
 
 
 def check_quality_gate(gaps: list[str], notes: list[str]) -> None:

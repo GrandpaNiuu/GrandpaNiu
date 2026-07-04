@@ -10,9 +10,10 @@ Required behavior:
 
 - `Deploy GitHub Pages` may run on:
   - `workflow_dispatch`
-  - public-path pushes
   - `workflow_run` from `Module Factory Build`
   - `workflow_run` from `Daily schedule watchdog`
+- `Deploy GitHub Pages` must not run directly on push.
+- Pages concurrency should queue runs with `cancel-in-progress: false` instead of cancelling a run into a red status.
 - `Deploy GitHub Pages` must not listen directly to high-frequency daily maintenance workflows:
   - `Daily Module Update`
   - `Daily invalid rule audit and safe repair`
@@ -23,7 +24,7 @@ Required behavior:
   - `Repository Health Check`
 - Pages artifact names should include `${{ github.run_attempt }}` to avoid duplicate artifact collisions on reruns.
 
-Reason: GitHub Pages deployments are stateful and can fail when multiple workflow-run deployments are created for nearby commits in a short window. The daily watchdog is the final daily health signal and is the safer Pages publishing trigger.
+Reason: GitHub Pages deployments are stateful and can fail when multiple deployments are created for nearby commits in a short window. Direct push deploy plus a generated-output workflow-run deploy caused duplicate deployments for the same change. Module Factory and the daily watchdog are safer final publishing signals.
 
 ### 2026-07-03 - GitHub Pages Publishing Should Use Workflow Mode
 
@@ -33,7 +34,7 @@ Required behavior:
 
 - Repository Pages `build_type` should be `workflow`.
 - `.github/workflows/pages-deploy.yml` should stay available and deploy the constrained `_site` artifact.
-- The workflow should trigger when public artifact paths change, including `docs/**`.
+- The workflow should publish after final workflow-run signals, not directly on every public artifact push.
 - The workflow should use current `actions/deploy-pages@v5`.
 
 Reason: running both legacy branch Pages publishing and a self-managed Pages workflow can create duplicate deployments and red failures that are unrelated to module correctness.

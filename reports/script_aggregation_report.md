@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-07-04T02:17:42Z
+- generated: 2026-07-04T02:38:52Z
 - enabled: True
 - input script entries: 230
 - output script entries: 180
@@ -70,7 +70,12 @@
 - None
 
 ## Cache Fallbacks
-- None
+- `https://kelee.one/Resource/JavaScript/BooHee/BooHee_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- `https://kelee.one/Resource/JavaScript/DubbingShow/DubbingShow_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- `https://kelee.one/Resource/JavaScript/JD/JD_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- `https://kelee.one/Resource/JavaScript/KuaiKanComic/KuaiKanComic_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- `https://kelee.one/Resource/JavaScript/MeituMYXJ/MeituMYXJ_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
+- `https://kelee.one/Resource/JavaScript/SodaMusic/SodaMusic_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
 
 ## Preserved Reasons
 - preserved: binary body: 2

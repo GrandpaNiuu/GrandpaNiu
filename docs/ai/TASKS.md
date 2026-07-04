@@ -10,6 +10,7 @@ Scope:
 
 - Fix repeated `Deploy GitHub Pages` red crosses from high-frequency daily workflow triggers.
 - Keep Pages publishing through GitHub Actions workflow mode.
+- Remove direct push Pages deployment so publishing waits for Module Factory or the daily watchdog.
 - Keep module rules, App sources, MITM, Android routing, Windows routing, and public URLs unchanged.
 
 Validation:
@@ -25,7 +26,7 @@ Next check:
 
 - Commit and push.
 - Confirm new `Module Factory Build` and `Deploy GitHub Pages` runs are green.
-- Confirm no new Pages run is triggered by every individual daily maintenance workflow.
+- Confirm no new Pages run is triggered by every individual daily maintenance workflow or by the initial push before Module Factory finishes.
 
 ## Current Pages Workflow Source Stabilization Task
 
@@ -35,7 +36,7 @@ Scope:
 
 - Switch repository Pages publishing mode to GitHub Actions.
 - Keep the self-managed Pages workflow as the intended publisher.
-- Add `docs/**` to the Pages workflow public-path push trigger.
+- The previous direct push trigger was later removed; Pages now publishes after final workflow-run signals.
 - Upgrade the Pages deploy action to `actions/deploy-pages@v5`.
 
 Validation:

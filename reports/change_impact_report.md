@@ -1,6 +1,6 @@
 # 变更影响报告
 
-- 生成时间：2026-07-04 10:17:50 +0800
+- 生成时间：2026-07-04 10:39:28 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
@@ -8,7 +8,6 @@
 - `.github/workflows/pages-deploy.yml`
 - `AI_HANDOFF.md`
 - `Android/branches.json`
-- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
 - `Release/checksums.json`
 - `Scripts/generated/fusion-script-bundle.js`
@@ -32,8 +31,6 @@
 - `reports/false_positive_review_report.md`
 - `reports/mitm_reject_risk_ledger.md`
 - `reports/mitm_scope_report.md`
-- `reports/module_factory_report.md`
-- `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/platform_compatibility_matrix.md`
 - `reports/profile_validation_report.md`
@@ -51,7 +48,6 @@
 - `reports/upstream_provenance_report.md`
 - `reports/upstream_risk_gate_report.md`
 - `reports/workflow_health_report.md`
-- `scripts/check_automation_status.py`
 - `scripts/repository_health_check.py`
 - `scripts/validate_repository.py`
 - `tools/generate_automation_gap_report.py`
@@ -69,7 +65,6 @@
 - `.github/workflows/pages-deploy.yml`
 - `AI_HANDOFF.md`
 - `Android/branches.json`
-- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
 - `Release/checksums.json`
 - `Scripts/generated/fusion-script-bundle.js`
@@ -93,8 +88,6 @@
 - `reports/false_positive_review_report.md`
 - `reports/mitm_reject_risk_ledger.md`
 - `reports/mitm_scope_report.md`
-- `reports/module_factory_report.md`
-- `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/platform_compatibility_matrix.md`
 - `reports/profile_validation_report.md`
@@ -112,7 +105,6 @@
 - `reports/upstream_provenance_report.md`
 - `reports/upstream_risk_gate_report.md`
 - `reports/workflow_health_report.md`
-- `scripts/check_automation_status.py`
 - `scripts/repository_health_check.py`
 - `scripts/validate_repository.py`
 - `tools/generate_automation_gap_report.py`
@@ -127,19 +119,13 @@
 
 ## 可能影响的 App
 
-- Spotify
-- YouTube
-- Bilibili
 - 百度贴吧
-- 12306
-- 网易云音乐
-- Reddit
 
 ## 风险判断
 
 - 是否涉及脚本：是
 - 是否涉及 MITM：是
-- 是否涉及 Body Rewrite：是
+- 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：是
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是

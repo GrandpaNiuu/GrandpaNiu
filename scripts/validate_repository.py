@@ -511,7 +511,7 @@ def validate_pages_deploy_workflow() -> None:
         "pages: write",
         "id-token: write",
         "group: pages-deploy-main",
-        "cancel-in-progress: true",
+        "cancel-in-progress: false",
         "actions/configure-pages@",
         "actions/upload-pages-artifact@",
         "actions/deploy-pages@",
@@ -528,6 +528,8 @@ def validate_pages_deploy_workflow() -> None:
     for token in required_tokens:
         if token not in text:
             fail(f"Pages deploy workflow missing required token: {token}")
+    if "\n  push:" in text:
+        fail("Pages deploy workflow should not deploy directly on push; use Module Factory Build or Daily schedule watchdog workflow_run.")
     noisy_workflow_run_triggers = (
         "Daily Module Update",
         "Daily invalid rule audit and safe repair",

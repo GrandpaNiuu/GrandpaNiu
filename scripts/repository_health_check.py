@@ -237,7 +237,7 @@ def pages_workflow_findings() -> tuple[list[str], str]:
             "pages: write",
             "id-token: write",
             "group: pages-deploy-main",
-            "cancel-in-progress: true",
+            "cancel-in-progress: false",
             "actions/upload-pages-artifact@",
             "actions/deploy-pages@",
             "timeout: 600000",
@@ -247,6 +247,8 @@ def pages_workflow_findings() -> tuple[list[str], str]:
         )
         if token not in text
     ]
+    if "\n  push:" in text:
+        missing.append("direct push trigger still enabled; Pages should publish after final workflow_run only")
     noisy_workflow_run_triggers = (
         "Daily Module Update",
         "Daily invalid rule audit and safe repair",
@@ -263,7 +265,7 @@ def pages_workflow_findings() -> tuple[list[str], str]:
     findings = [f"Pages deploy workflow missing token: {token}" for token in missing]
     findings.extend(f"Pages deploy workflow contains unsafe git command: {token}" for token in unsafe)
     summary = "`pages-deploy.yml`: " + (
-        "self-managed Pages deploy; artifact upload; maximum supported deploy timeout; stale deploy cancellation"
+        "self-managed Pages deploy; artifact upload; maximum supported deploy timeout; serialized final deploys"
         if not findings
         else "needs repair"
     )
