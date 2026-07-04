@@ -3,31 +3,14 @@
     "chunks": 2,
     "path": "Scripts/generated/fusion-script-bundle.js",
     "routes": 52,
-    "sha256": "9b85fce1e82723ce49e1400dcceea333c09db68eb0345d3414a449da01bb2063",
+    "sha256": "6f132b3e8157c2dfc6a8515aa1e958382e687a40e38d7c969f2e24addc731dc5",
     "sources": 52,
     "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js",
     "version": "grandpaniu-fusion-script-bundle-v1"
   },
-  "fetch_cached": [
-    {
-      "reason": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>",
-      "url": "https://kelee.one/Resource/JavaScript/NeteaseNews/NeteaseNews_remove_ads.js"
-    },
-    {
-      "reason": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>",
-      "url": "https://kelee.one/Resource/JavaScript/Soul/Soul_remove_ads.js"
-    },
-    {
-      "reason": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>",
-      "url": "https://kelee.one/Resource/JavaScript/iMaiCai/iMaiCai_remove_ads.js"
-    },
-    {
-      "reason": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>",
-      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/blued.js"
-    }
-  ],
+  "fetch_cached": [],
   "fetch_failed": [],
-  "generated": "2026-07-04T02:11:35Z",
+  "generated": "2026-07-04T02:17:42Z",
   "policy": {
     "allowed_prefixes": [
       "https://kelee.one/Resource/JavaScript/",
