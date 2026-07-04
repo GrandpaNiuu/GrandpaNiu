@@ -1,6 +1,31 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-03 09:48 +08:00
+Last updated: 2026-07-04 10:13 +08:00
+
+## Current Pages Deploy Red-Cross Repair Task
+
+Status: locally implemented and fully validated; pending commit, push, and remote Actions confirmation on a new commit.
+
+Scope:
+
+- Fix repeated `Deploy GitHub Pages` red crosses from high-frequency daily workflow triggers.
+- Keep Pages publishing through GitHub Actions workflow mode.
+- Keep module rules, App sources, MITM, Android routing, Windows routing, and public URLs unchanged.
+
+Validation:
+
+- `python -m py_compile ...` passed for touched scripts.
+- `python scripts\generate_workflow_health_report.py` passed.
+- `python tools\generate_automation_gap_report.py` passed.
+- `python scripts\validate_repository.py` passed.
+- `python scripts\repository_health_check.py` passed.
+- Full `python scripts\quality_gate.py` passed.
+
+Next check:
+
+- Commit and push.
+- Confirm new `Module Factory Build` and `Deploy GitHub Pages` runs are green.
+- Confirm no new Pages run is triggered by every individual daily maintenance workflow.
 
 ## Current Pages Workflow Source Stabilization Task
 

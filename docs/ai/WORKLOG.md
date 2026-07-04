@@ -1536,3 +1536,85 @@ gh workflow run pages-deploy.yml --repo GrandpaNiuu/GrandpaNiu --ref main
 - Validate the workflow change locally.
 - Commit and push this small Pages stabilization patch.
 - Confirm the `Deploy GitHub Pages` run for the new commit SHA is green.
+
+## 2026-07-04 10:13 +08:00 - Pages deploy red-cross repair
+
+### Task Summary
+
+The owner reported that GitHub Actions showed red crosses again today after the previous Pages repair.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Starting status: clean.
+- Remote `origin/main` had advanced to generated commit `5cb4c037`; local branch was rebased onto it before editing.
+- Expected scope: Pages workflow trigger repair, validation guardrails, generated reports, and AI records.
+- Out of scope: traffic rules, App sources, MITM behavior, Android routing, Windows routing, public module URLs, or broad refactors.
+
+### Actual Diagnosis
+
+- Failing workflows were `Deploy GitHub Pages`, not the main module build.
+- Failed runs were clustered during the Beijing daily maintenance window.
+- Logs showed:
+  - `Deployment failed, try again later.`
+  - `Multiple artifacts named "github-pages" were unexpectedly found for this workflow run.`
+  - one Pages deployment cancellation.
+- Root cause: `pages-deploy.yml` listened to too many high-frequency `workflow_run` completions, so one daily batch could create several Pages deployments for nearby commits within minutes.
+
+### Actual Changes
+
+- Reduced `pages-deploy.yml` `workflow_run` triggers to only:
+  - `Module Factory Build`
+  - `Daily schedule watchdog`
+- Kept manual dispatch and public-path push triggers.
+- Changed Pages artifact upload/deploy name to `github-pages-${{ github.run_attempt }}` to avoid duplicate artifact conflicts during reruns.
+- Updated validation guardrails in:
+  - `scripts/validate_repository.py`
+  - `scripts/repository_health_check.py`
+  - `tools/generate_automation_gap_report.py`
+- Updated the Pages cadence wording in `scripts/check_automation_status.py`.
+- Refreshed generated reports through the quality gate.
+
+### Commands Run
+
+```bash
+git fetch origin main
+git rebase origin/main
+python -m py_compile scripts\validate_repository.py scripts\repository_health_check.py scripts\check_automation_status.py tools\generate_automation_gap_report.py
+python scripts\generate_workflow_health_report.py
+python tools\generate_automation_gap_report.py
+python scripts\validate_repository.py
+python scripts\repository_health_check.py
+python scripts\check_automation_status.py
+python tools\check_report_encoding.py
+python scripts\quality_gate.py
+```
+
+### Validation Result
+
+- Python compile passed for touched validation scripts.
+- Workflow health report generation passed.
+- Automation gap check passed.
+- Repository validation passed.
+- Repository health check passed.
+- Report encoding check passed.
+- Full `python scripts\quality_gate.py` passed.
+- Remote rule syntax validation reported `15` sources, `0` warnings, `0` normalization files during the full gate.
+
+### Risks
+
+- GitHub Pages can still have backend deployment failures, but the repository should no longer create a burst of duplicate Pages deployments from every individual daily workflow.
+- Historical red runs remain visible for old commits.
+- No traffic-policy behavior was changed.
+
+### Self-Review
+
+- What was not good enough: the previous Pages repair switched Pages to workflow mode but left too many `workflow_run` triggers active.
+- What I changed to reduce that risk: reduced Pages triggers to final publishing signals and added validation that blocks reintroducing high-frequency workflow triggers.
+- What I would check first next time: inspect the timeline of all workflow_run triggers around the daily schedule window before changing Pages deployment logic.
+
+### Next Step
+
+- Commit and push.
+- Confirm the new `Module Factory Build` and `Deploy GitHub Pages` runs are green.
+- Confirm the next daily window no longer creates several Pages deployment runs for intermediate maintenance workflows.

@@ -5,14 +5,7 @@ on:
   workflow_run:
     workflows:
       - Module Factory Build
-      - Daily Module Update
-      - Daily invalid rule audit and safe repair
-      - Daily invalid source audit and repair
-      - Scheduled Module Factory Update
-      - Upstream app module sync
-      - Upstream candidate collect
       - Daily schedule watchdog
-      - Repository Health Check
     types:
       - completed
   push:
@@ -159,11 +152,13 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
+          name: github-pages-${{ github.run_attempt }}
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
         with:
+          artifact_name: github-pages-${{ github.run_attempt }}
           timeout: 600000
           reporting_interval: 10000
           error_count: 30

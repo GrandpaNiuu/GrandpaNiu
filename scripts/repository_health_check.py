@@ -242,9 +242,23 @@ def pages_workflow_findings() -> tuple[list[str], str]:
             "actions/deploy-pages@",
             "timeout: 600000",
             "path: _site",
+            "name: github-pages-${{ github.run_attempt }}",
+            "artifact_name: github-pages-${{ github.run_attempt }}",
         )
         if token not in text
     ]
+    noisy_workflow_run_triggers = (
+        "Daily Module Update",
+        "Daily invalid rule audit and safe repair",
+        "Daily invalid source audit and repair",
+        "Scheduled Module Factory Update",
+        "Upstream app module sync",
+        "Upstream candidate collect",
+        "Repository Health Check",
+    )
+    for token in noisy_workflow_run_triggers:
+        if token in text:
+            missing.append(f"high-frequency workflow_run trigger still enabled: {token}")
     unsafe = [token for token in ("git add -A", "git reset --hard", "git clean -fd", "git push --force") if token in text]
     findings = [f"Pages deploy workflow missing token: {token}" for token in missing]
     findings.extend(f"Pages deploy workflow contains unsafe git command: {token}" for token in unsafe)

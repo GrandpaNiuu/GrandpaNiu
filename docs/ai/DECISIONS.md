@@ -1,6 +1,29 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-03 09:48 +08:00
+Last updated: 2026-07-04 10:13 +08:00
+
+### 2026-07-04 - Pages Deploy Must Not Listen To Every Daily Workflow
+
+GrandpaNiu Pages deployment should be triggered only by final or deliberate publishing signals, not every maintenance workflow.
+
+Required behavior:
+
+- `Deploy GitHub Pages` may run on:
+  - `workflow_dispatch`
+  - public-path pushes
+  - `workflow_run` from `Module Factory Build`
+  - `workflow_run` from `Daily schedule watchdog`
+- `Deploy GitHub Pages` must not listen directly to high-frequency daily maintenance workflows:
+  - `Daily Module Update`
+  - `Daily invalid rule audit and safe repair`
+  - `Daily invalid source audit and repair`
+  - `Scheduled Module Factory Update`
+  - `Upstream app module sync`
+  - `Upstream candidate collect`
+  - `Repository Health Check`
+- Pages artifact names should include `${{ github.run_attempt }}` to avoid duplicate artifact collisions on reruns.
+
+Reason: GitHub Pages deployments are stateful and can fail when multiple workflow-run deployments are created for nearby commits in a short window. The daily watchdog is the final daily health signal and is the safer Pages publishing trigger.
 
 ### 2026-07-03 - GitHub Pages Publishing Should Use Workflow Mode
 

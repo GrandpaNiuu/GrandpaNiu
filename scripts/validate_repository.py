@@ -521,12 +521,25 @@ def validate_pages_deploy_workflow() -> None:
         "error_count: 30",
         "workflow_run:",
         "Module Factory Build",
-        "Daily Module Update",
-        "Scheduled Module Factory Update",
+        "Daily schedule watchdog",
+        "name: github-pages-${{ github.run_attempt }}",
+        "artifact_name: github-pages-${{ github.run_attempt }}",
     )
     for token in required_tokens:
         if token not in text:
             fail(f"Pages deploy workflow missing required token: {token}")
+    noisy_workflow_run_triggers = (
+        "Daily Module Update",
+        "Daily invalid rule audit and safe repair",
+        "Daily invalid source audit and repair",
+        "Scheduled Module Factory Update",
+        "Upstream app module sync",
+        "Upstream candidate collect",
+        "Repository Health Check",
+    )
+    for token in noisy_workflow_run_triggers:
+        if token in text:
+            fail(f"Pages deploy workflow should not be triggered by high-frequency workflow: {token}")
     for public_path in (
         "Ronghemokuai.sgmodule",
         "Release",

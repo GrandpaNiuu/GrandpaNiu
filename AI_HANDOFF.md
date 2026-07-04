@@ -1,6 +1,25 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-03 09:48 +08:00
+Last updated: 2026-07-04 10:13 +08:00
+
+## 2026-07-04 Pages Deploy Red-Cross Repair Handoff
+
+- Owner reported new red crosses after the previous repair.
+- Latest failed runs were not module build failures; they were `Deploy GitHub Pages` failures during the daily maintenance window.
+- Failing job logs showed:
+  - Pages backend deployment failure after artifact upload.
+  - duplicate `github-pages` artifacts when a workflow was rerun.
+  - one cancellation from the Pages concurrency group.
+- `pages-deploy.yml` was too broad: it listened to many high-frequency `workflow_run` completions in addition to push/manual triggers.
+- Repair made Pages deployment less noisy:
+  - keep workflow dispatch
+  - keep public-path push
+  - keep workflow_run only for `Module Factory Build` and final `Daily schedule watchdog`
+  - remove workflow_run triggers for daily module update, invalid rule audit, invalid source audit, scheduled module update, upstream app sync, upstream collect, and repository health
+  - use `github-pages-${{ github.run_attempt }}` for upload/deploy artifact name
+- Validation now fails if those high-frequency Pages triggers are reintroduced.
+- Full quality gate passed after the repair.
+- Next AI should verify the next remote `Deploy GitHub Pages` run for this new commit, and should not judge the repair by older red runs on previous SHAs.
 
 ## 2026-07-03 Pages Workflow Source Stabilization Handoff
 

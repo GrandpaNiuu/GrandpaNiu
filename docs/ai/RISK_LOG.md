@@ -1,6 +1,33 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-03 09:48 +08:00
+Last updated: 2026-07-04 10:13 +08:00
+
+## 2026-07-04 Pages Deploy Red-Cross Repair Risk Note
+
+Risk level: low traffic-policy risk, medium deployment-automation risk.
+
+Observed signals:
+
+- Multiple `Deploy GitHub Pages` runs failed during the daily maintenance window.
+- Logs showed Pages backend failures after successful artifact upload.
+- One rerun failed because `actions/deploy-pages` found multiple artifacts named `github-pages`.
+- One run was cancelled by the Pages deployment concurrency group.
+
+Mitigations:
+
+- Reduced Pages `workflow_run` triggers to only `Module Factory Build` and `Daily schedule watchdog`.
+- Kept manual and public-path push triggers.
+- Added run-attempt-specific artifact names for upload and deploy.
+- Added validation guardrails so high-frequency daily workflow triggers cannot be silently reintroduced.
+
+Traffic risk boundary:
+
+- No rule source, App source, MITM hostname, JavaScript module behavior, Android routing, Windows routing, login, payment, banking, captcha, video, or image/CDN policy was changed.
+
+Remaining risk:
+
+- GitHub Pages can still occasionally return a backend deployment failure. The reduced trigger set lowers the likelihood by avoiding a burst of competing deployments.
+- Older red Pages runs remain in history; confirmation must use the new commit SHA.
 
 ## 2026-07-03 Pages Workflow Source Stabilization Risk Note
 

@@ -1,6 +1,32 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-03 09:48 +08:00
+Last updated: 2026-07-04 10:13 +08:00
+
+## 2026-07-04 Pages Deploy Red-Cross Repair Snapshot
+
+- Observed failure pattern from GitHub Actions:
+  - `Deploy GitHub Pages` failed after several Beijing 00:00-02:30 daily workflows.
+  - Module factory and daily maintenance workflows themselves were successful.
+  - Failure logs showed:
+    - `Deployment failed, try again later.`
+    - `Multiple artifacts named "github-pages" were unexpectedly found for this workflow run.`
+    - one cancellation from Pages deployment concurrency.
+- Root cause: `pages-deploy.yml` listened to too many `workflow_run` completions, so a daily maintenance batch could trigger several Pages deployments for nearby commits within minutes.
+- Repair:
+  - Pages `workflow_run` now listens only to:
+    - `Module Factory Build`
+    - `Daily schedule watchdog`
+  - High-frequency daily workflows no longer trigger Pages deploy directly.
+  - Pages artifact names now include `${{ github.run_attempt }}` to prevent duplicate `github-pages` artifact collisions when rerunning a workflow.
+  - Validation scripts now block reintroducing the noisy Pages workflow triggers.
+- Validation:
+  - `python -m py_compile ...` passed for touched validation scripts.
+  - `python scripts\generate_workflow_health_report.py` passed.
+  - `python tools\generate_automation_gap_report.py` passed.
+  - `python scripts\validate_repository.py` passed.
+  - `python scripts\repository_health_check.py` passed.
+  - Full `python scripts\quality_gate.py` passed.
+- No `Rules/`, `Rewrite/Sources/Apps/`, MITM source behavior, Android routing policy, Windows routing policy, or public module URL was intentionally changed.
 
 ## 2026-07-03 Pages Workflow Source Stabilization Snapshot
 
