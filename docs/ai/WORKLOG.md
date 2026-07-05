@@ -1622,3 +1622,100 @@ python scripts\quality_gate.py
 - Commit and push.
 - Confirm the new `Module Factory Build` and `Deploy GitHub Pages` runs are green.
 - Confirm the next daily window no longer creates several Pages deployment runs for intermediate maintenance workflows.
+
+## 2026-07-06 06:20 +08:00 - Pages deploy retry hardening
+
+### Task Summary
+
+The owner reported another GitHub Actions red cross after the previous Pages trigger repair and asked to fix it so daily automation does not repeatedly fail.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`
+- Initial status: two generated reports were locally modified from a previous validation pass:
+  - `reports/automated_quality_evidence.md`
+  - `reports/repository_health_report.md`
+- Remote `origin/main` had advanced to `8768cb715126b4cab41543962bacdf1266d80c22`.
+- Expected scope: Pages deployment workflow, workflow validation guardrails, generated reports, and AI records.
+- Out of scope: rule sources, App source fragments, MITM behavior, Android/Windows routing policy changes, and public module entry URL changes.
+
+### Actual Diagnosis
+
+- Latest red workflow:
+  - `Deploy GitHub Pages` run `28755590928`
+  - Beijing time 2026-07-06 05:32
+  - Head SHA `8768cb715126b4cab41543962bacdf1266d80c22`
+- Related workflow:
+  - `Daily schedule watchdog` run `28755580529` succeeded.
+- Failed job details:
+  - Pages source detection passed.
+  - Checkout, configure Pages, prepare artifact, and upload artifact all passed.
+  - Only `Deploy to GitHub Pages` failed.
+- GitHub API required admin rights for full job log download, so job-step metadata was used as the tight failure signal.
+
+### Actual Changes
+
+- Added three-attempt deploy retry behavior to `.github/workflows/pages-deploy.yml`.
+- Retry attempts wait before retrying and re-upload `_site` under retry-specific artifact names.
+- The workflow now fails only if all three Pages deployment attempts fail.
+- Added validation guardrails in:
+  - `scripts/validate_repository.py`
+  - `scripts/repository_health_check.py`
+  - `tools/generate_automation_gap_report.py`
+- Updated Pages cadence wording in:
+  - `scripts/check_automation_status.py`
+  - `scripts/generate_workflow_health_report.py`
+- Refreshed generated reports and release metadata through `python scripts\quality_gate.py`.
+
+### Commands Run
+
+```bash
+git status --short
+git branch --show-current
+curl GitHub Actions API for recent workflow runs
+curl GitHub Actions API for run 28755590928 jobs
+git fetch origin main
+git rebase --autostash origin/main
+python -m py_compile scripts\validate_repository.py scripts\repository_health_check.py scripts\check_automation_status.py scripts\generate_workflow_health_report.py tools\generate_automation_gap_report.py
+python scripts\validate_repository.py
+python tools\generate_automation_gap_report.py
+python scripts\repository_health_check.py
+python scripts\generate_workflow_health_report.py
+python scripts\check_automation_status.py
+python scripts\quality_gate.py
+```
+
+### Validation Result
+
+- Python compile passed.
+- Pages retry structure check passed.
+- Repository validation passed.
+- Automation gap check passed.
+- Repository health check passed.
+- Workflow health report generation passed.
+- Automation status report generation passed.
+- Full `python scripts\quality_gate.py` passed.
+- Quality gate generated:
+  - Fusion module: `2777` lines
+  - App modules: `398`
+  - Empty App modules: `0`
+  - Android main rules: `952`
+  - Remote rule syntax: `15` sources, `0` warnings
+
+### Risks
+
+- This reduces transient GitHub Pages deploy failures, but cannot make GitHub Pages service outages impossible.
+- If all three attempts fail, the workflow intentionally remains red because publishing truly failed.
+- No traffic-policy behavior changed.
+
+### Self-Review
+
+- What was not good enough: the previous repair reduced trigger noise but still trusted a single `actions/deploy-pages` attempt.
+- What I changed to reduce that risk: added bounded retries with unique artifact names and added validation so the retry guard cannot be removed silently.
+- What I would check first next time: inspect the failing run's job steps before assuming the failure is from trigger fan-out, because the latest failure was a single deploy action failure after successful artifact upload.
+
+### Next Step
+
+- Commit and push.
+- Confirm the new `Module Factory Build` run is green.
+- Confirm the first post-push `Deploy GitHub Pages` run succeeds, ideally on the first attempt or through retry without a red workflow.

@@ -1,6 +1,32 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-04 10:13 +08:00
+Last updated: 2026-07-06 06:20 +08:00
+
+## Current Pages Deploy Retry Hardening Task
+
+Status: implemented locally and validated; pending commit, push, and remote confirmation on a new commit.
+
+Scope:
+
+- Fix the latest `Deploy GitHub Pages` red run from 2026-07-06 05:32 Beijing time.
+- Keep the reduced Pages trigger strategy from 2026-07-04.
+- Add retry protection around `actions/deploy-pages` so one transient Pages backend failure does not red-cross the whole repository.
+- Do not change rules, App sources, MITM behavior, Android routing policy, Windows routing policy, or public module entry URLs.
+
+Validation:
+
+- `python -m py_compile ...` passed for touched validation scripts.
+- `python scripts\validate_repository.py` passed.
+- `python tools\generate_automation_gap_report.py` passed.
+- `python scripts\repository_health_check.py` passed.
+- `python scripts\generate_workflow_health_report.py` passed.
+- Full `python scripts\quality_gate.py` passed.
+
+Next check:
+
+- Commit and push this repair.
+- Confirm the new `Module Factory Build` run is green.
+- Confirm the following `Deploy GitHub Pages` workflow either succeeds on the first attempt or succeeds through retry without a red workflow.
 
 ## Current Pages Deploy Red-Cross Repair Task
 

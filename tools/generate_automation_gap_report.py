@@ -306,6 +306,14 @@ def check_workflows(gaps: list[str], notes: list[str]) -> None:
             "timeout: 600000",
             "name: github-pages-${{ github.run_attempt }}",
             "artifact_name: github-pages-${{ github.run_attempt }}",
+            "name: github-pages-${{ github.run_attempt }}-retry-2",
+            "artifact_name: github-pages-${{ github.run_attempt }}-retry-2",
+            "name: github-pages-${{ github.run_attempt }}-retry-3",
+            "artifact_name: github-pages-${{ github.run_attempt }}-retry-3",
+            "continue-on-error: true",
+            "Wait before Pages retry 2",
+            "Wait before Pages retry 3",
+            "All Pages deployment attempts failed.",
         ):
             if token not in pages_text:
                 add_gap(gaps, f"Pages deploy workflow missing token: {token}.")
@@ -325,7 +333,7 @@ def check_workflows(gaps: list[str], notes: list[str]) -> None:
         for token in ("git add -A", "git reset --hard", "git clean -fd", "git push --force"):
             if token in pages_text:
                 add_gap(gaps, f"Pages deploy workflow contains unsafe git command: {token}.")
-    notes.append("Pages deployment workflow checked for self-managed artifact deploy, maximum supported deployment timeout, serialized final deployment, and reduced trigger noise.")
+    notes.append("Pages deployment workflow checked for self-managed artifact deploy, maximum supported deployment timeout, serialized final deployment, reduced trigger noise, and deployment retry guard.")
 
 
 def check_quality_gate(gaps: list[str], notes: list[str]) -> None:

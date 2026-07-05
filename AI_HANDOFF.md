@@ -1,6 +1,29 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-04 10:13 +08:00
+Last updated: 2026-07-06 06:20 +08:00
+
+## 2026-07-06 Pages Deploy Retry Hardening Handoff
+
+- Owner reported another red workflow after the 2026-07-04 Pages trigger-noise repair.
+- Latest failed run inspected:
+  - `Deploy GitHub Pages` run `28755590928`
+  - Head SHA `8768cb715126b4cab41543962bacdf1266d80c22`
+  - Beijing time 2026-07-06 05:32
+  - Triggered by successful `Daily schedule watchdog` run `28755580529`
+- Job steps showed:
+  - `detect-pages-source`: success
+  - checkout/configure/prepare/upload artifact: success
+  - `Deploy to GitHub Pages`: failure
+- Full logs were not accessible through the unauthenticated API because GitHub requires repository admin rights for job log download, but job-step metadata isolated the failure to the official Pages deployment action after a successful artifact upload.
+- Repair:
+  - `pages-deploy.yml` now retries Pages deployment up to three times.
+  - Each retry waits and uploads a unique Pages artifact before calling `actions/deploy-pages@v5` again.
+  - The job remains red only if all three attempts fail.
+  - `validate_repository.py`, `repository_health_check.py`, and `generate_automation_gap_report.py` now require the retry structure.
+  - `check_automation_status.py` and workflow health wording no longer mention direct/public-path push deploy.
+- Validation:
+  - Full `python scripts\quality_gate.py` passed after the change.
+- Next AI should confirm the first post-push `Deploy GitHub Pages` run on the new commit. Older red runs on `8768cb7` remain historical evidence, not proof the new retry guard failed.
 
 ## 2026-07-04 Pages Deploy Red-Cross Repair Handoff
 

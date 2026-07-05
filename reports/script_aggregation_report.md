@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-07-05T18:41:06Z
+- generated: 2026-07-05T21:56:00Z
 - enabled: True
 - input script entries: 230
 - output script entries: 180
@@ -70,7 +70,7 @@
 - None
 
 ## Cache Fallbacks
-- None
+- `https://kelee.one/Resource/JavaScript/BaiduSearch/BaiduSearchHomePage_remove_ads.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
 
 ## Preserved Reasons
 - preserved: binary body: 2

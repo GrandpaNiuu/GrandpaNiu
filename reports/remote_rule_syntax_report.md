@@ -1,6 +1,6 @@
 # 远程规则语法校验报告
 
-生成时间：2026-07-06 02:41:03 +0800
+生成时间：2026-07-06 05:54:24 +0800
 
 本报告用于阻断 Shadowrocket / Surge 远程规则集红叉问题。校验目标包括：
 
@@ -26,21 +26,21 @@
 
 | 状态 | 类型 | 规则数 | 检查来源 | 引用位置 | URL | 错误 / 警告 |
 |---|---|---:|---|---|---|---|
-| pass | DOMAIN-SET | 181387 | http:200 | Release/Ronghemokuai.sgmodule:355<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:355 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
-| pass | DOMAIN-SET | 174701 | http:200 | Release/Ronghemokuai.sgmodule:351<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:351 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
-| pass | DOMAIN-SET | 163949 | http:200 | Release/Ronghemokuai.sgmodule:354<br>Rewrite/Remotes/sources.json:Loyalsoldier reject<br>Ronghemokuai.sgmodule:354 | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` | - |
-| pass | DOMAIN-SET | 98342 | http:200 | Release/Ronghemokuai.sgmodule:352<br>Rewrite/Remotes/sources.json:anti-AD Surge<br>Ronghemokuai.sgmodule:352 | `https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt` | - |
-| pass | RULE-SET | 588 | http:200 | Release/Ronghemokuai.sgmodule:353<br>Rewrite/Remotes/sources.json:ACL4SSR BanAD<br>Ronghemokuai.sgmodule:353 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list` | - |
-| pass | RULE-SET | 40977 | http:200 | Release/Ronghemokuai.sgmodule:1209<br>Rewrite/Remotes/sources.json:ACL4SSR BanEasyList<br>Ronghemokuai.sgmodule:1209 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list` | - |
-| pass | RULE-SET | 5050 | http:200 | Release/Ronghemokuai.sgmodule:360<br>Rewrite/Remotes/sources.json:ACL4SSR BanEasyListChina<br>Ronghemokuai.sgmodule:360 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list` | - |
-| pass | RULE-SET | 39852 | http:200 | Release/Ronghemokuai.sgmodule:1210<br>Rewrite/Remotes/sources.json:ACL4SSR BanEasyPrivacy<br>Ronghemokuai.sgmodule:1210 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list` | - |
-| pass | RULE-SET | 1016 | http:200 | Release/Ronghemokuai.sgmodule:359<br>Rewrite/Remotes/sources.json:ACL4SSR BanProgramAD<br>Ronghemokuai.sgmodule:359 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list` | - |
-| pass | RULE-SET | 2 | http:200 | Release/Ronghemokuai.sgmodule:1089<br>Ronghemokuai.sgmodule:1089 | `https://raw.githubusercontent.com/app2smile/rules/master/rule/tieba-ad.list` | - |
-| pass | RULE-SET | 782 | http:200 | Release/Ronghemokuai.sgmodule:350<br>Rewrite/Remotes/sources.json:blackmatrix7 Advertising<br>Ronghemokuai.sgmodule:350 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list` | - |
-| pass | RULE-SET | 377 | http:200 | Release/Ronghemokuai.sgmodule:356<br>Rewrite/Remotes/sources.json:blackmatrix7 Advertising Lite<br>Ronghemokuai.sgmodule:356 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingLite/AdvertisingLite.list` | - |
-| pass | RULE-SET | 165 | http:200 | Release/Ronghemokuai.sgmodule:361<br>Rewrite/Remotes/sources.json:blackmatrix7 Advertising MiTV<br>Ronghemokuai.sgmodule:361 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingMiTV/AdvertisingMiTV.list` | - |
-| pass | RULE-SET | 228 | http:200 | Release/Ronghemokuai.sgmodule:357<br>Rewrite/Remotes/sources.json:blackmatrix7 Hijacking<br>Ronghemokuai.sgmodule:357 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Hijacking/Hijacking.list` | - |
-| pass | RULE-SET | 20 | http:200 | Release/Ronghemokuai.sgmodule:358<br>Rewrite/Remotes/sources.json:blackmatrix7 Privacy<br>Ronghemokuai.sgmodule:358 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy.list` | - |
+| pass | DOMAIN-SET | 181387 | http:200 | Release\Ronghemokuai.sgmodule:355<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:355 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
+| pass | DOMAIN-SET | 174774 | http:200 | Release\Ronghemokuai.sgmodule:351<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:351 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
+| pass | DOMAIN-SET | 163949 | http:200 | Release\Ronghemokuai.sgmodule:354<br>Rewrite/Remotes/sources.json:Loyalsoldier reject<br>Ronghemokuai.sgmodule:354 | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` | - |
+| pass | DOMAIN-SET | 98342 | http:200 | Release\Ronghemokuai.sgmodule:352<br>Rewrite/Remotes/sources.json:anti-AD Surge<br>Ronghemokuai.sgmodule:352 | `https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt` | - |
+| pass | RULE-SET | 588 | http:200 | Release\Ronghemokuai.sgmodule:353<br>Rewrite/Remotes/sources.json:ACL4SSR BanAD<br>Ronghemokuai.sgmodule:353 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list` | - |
+| pass | RULE-SET | 40977 | http:200 | Release\Ronghemokuai.sgmodule:1209<br>Rewrite/Remotes/sources.json:ACL4SSR BanEasyList<br>Ronghemokuai.sgmodule:1209 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list` | - |
+| pass | RULE-SET | 5050 | http:200 | Release\Ronghemokuai.sgmodule:360<br>Rewrite/Remotes/sources.json:ACL4SSR BanEasyListChina<br>Ronghemokuai.sgmodule:360 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list` | - |
+| pass | RULE-SET | 39852 | http:200 | Release\Ronghemokuai.sgmodule:1210<br>Rewrite/Remotes/sources.json:ACL4SSR BanEasyPrivacy<br>Ronghemokuai.sgmodule:1210 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list` | - |
+| pass | RULE-SET | 1016 | http:200 | Release\Ronghemokuai.sgmodule:359<br>Rewrite/Remotes/sources.json:ACL4SSR BanProgramAD<br>Ronghemokuai.sgmodule:359 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list` | - |
+| pass | RULE-SET | 2 | http:200 | Release\Ronghemokuai.sgmodule:1089<br>Ronghemokuai.sgmodule:1089 | `https://raw.githubusercontent.com/app2smile/rules/master/rule/tieba-ad.list` | - |
+| pass | RULE-SET | 782 | http:200 | Release\Ronghemokuai.sgmodule:350<br>Rewrite/Remotes/sources.json:blackmatrix7 Advertising<br>Ronghemokuai.sgmodule:350 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list` | - |
+| pass | RULE-SET | 377 | http:200 | Release\Ronghemokuai.sgmodule:356<br>Rewrite/Remotes/sources.json:blackmatrix7 Advertising Lite<br>Ronghemokuai.sgmodule:356 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingLite/AdvertisingLite.list` | - |
+| pass | RULE-SET | 165 | http:200 | Release\Ronghemokuai.sgmodule:361<br>Rewrite/Remotes/sources.json:blackmatrix7 Advertising MiTV<br>Ronghemokuai.sgmodule:361 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingMiTV/AdvertisingMiTV.list` | - |
+| pass | RULE-SET | 228 | http:200 | Release\Ronghemokuai.sgmodule:357<br>Rewrite/Remotes/sources.json:blackmatrix7 Hijacking<br>Ronghemokuai.sgmodule:357 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Hijacking/Hijacking.list` | - |
+| pass | RULE-SET | 20 | http:200 | Release\Ronghemokuai.sgmodule:358<br>Rewrite/Remotes/sources.json:blackmatrix7 Privacy<br>Ronghemokuai.sgmodule:358 | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy.list` | - |
 
 ## 发布规则
 

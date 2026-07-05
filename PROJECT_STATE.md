@@ -1,6 +1,36 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-04 10:13 +08:00
+Last updated: 2026-07-06 06:20 +08:00
+
+## 2026-07-06 Pages Deploy Retry Hardening Snapshot
+
+- Observed latest red workflow:
+  - `Deploy GitHub Pages` run `28755590928`
+  - Commit `8768cb715126b4cab41543962bacdf1266d80c22`
+  - Beijing time: 2026-07-06 05:32
+  - Trigger: `workflow_run` after `Daily schedule watchdog`
+- Related daily automation status:
+  - `Daily schedule watchdog` succeeded.
+  - The generated commit was created successfully.
+  - Pages artifact upload succeeded.
+  - Only official `actions/deploy-pages` failed.
+- Root cause class: GitHub Pages deployment action / backend can still fail transiently even after trigger noise was reduced. The repository was no longer creating many Pages deploys for the same batch, but a single transient Pages deploy failure still made the workflow red.
+- Repair:
+  - `.github/workflows/pages-deploy.yml` now performs up to three deployment attempts.
+  - Attempt 2 and attempt 3 wait before retrying.
+  - Retry attempts re-upload `_site` under unique artifact names:
+    - `github-pages-${{ github.run_attempt }}-retry-2`
+    - `github-pages-${{ github.run_attempt }}-retry-3`
+  - The workflow fails only if all deployment attempts fail.
+  - Validation scripts now require the retry guard so the workflow cannot silently regress to one fragile deploy attempt.
+- Validation:
+  - `python -m py_compile ...` passed for touched workflow validation scripts.
+  - `python scripts\validate_repository.py` passed.
+  - `python tools\generate_automation_gap_report.py` passed.
+  - `python scripts\repository_health_check.py` passed.
+  - `python scripts\generate_workflow_health_report.py` passed.
+  - Full `python scripts\quality_gate.py` passed.
+- No Rules, App sources, MITM behavior, routing policy, Android/Windows policy, or public module entry URL was intentionally changed.
 
 ## 2026-07-04 Pages Deploy Red-Cross Repair Snapshot
 

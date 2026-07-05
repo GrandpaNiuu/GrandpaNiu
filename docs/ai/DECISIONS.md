@@ -1,6 +1,23 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-04 10:13 +08:00
+Last updated: 2026-07-06 06:20 +08:00
+
+### 2026-07-06 - Pages Deployment Must Retry Before Failing The Workflow
+
+GrandpaNiu Pages deployment should tolerate transient GitHub Pages backend failures after a successful artifact upload.
+
+Required behavior:
+
+- `Deploy GitHub Pages` keeps the reduced trigger set:
+  - `workflow_dispatch`
+  - `workflow_run` from `Module Factory Build`
+  - `workflow_run` from `Daily schedule watchdog`
+- The workflow must not deploy directly on push.
+- Pages deployment must attempt `actions/deploy-pages` up to three times before failing the workflow.
+- Retry attempts must use unique artifact names so reruns or retries do not collide with the first `github-pages` artifact.
+- Validation must block removing the retry structure.
+
+Reason: run `28755590928` showed that even a single final Pages deployment can fail inside `actions/deploy-pages` after artifact upload. Trigger reduction fixed deployment bursts, but retry is still needed for transient platform failures.
 
 ### 2026-07-04 - Pages Deploy Must Not Listen To Every Daily Workflow
 

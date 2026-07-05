@@ -524,6 +524,14 @@ def validate_pages_deploy_workflow() -> None:
         "Daily schedule watchdog",
         "name: github-pages-${{ github.run_attempt }}",
         "artifact_name: github-pages-${{ github.run_attempt }}",
+        "name: github-pages-${{ github.run_attempt }}-retry-2",
+        "artifact_name: github-pages-${{ github.run_attempt }}-retry-2",
+        "name: github-pages-${{ github.run_attempt }}-retry-3",
+        "artifact_name: github-pages-${{ github.run_attempt }}-retry-3",
+        "continue-on-error: true",
+        "Wait before Pages retry 2",
+        "Wait before Pages retry 3",
+        "All Pages deployment attempts failed.",
     )
     for token in required_tokens:
         if token not in text:

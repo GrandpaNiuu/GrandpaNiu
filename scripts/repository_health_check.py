@@ -244,6 +244,14 @@ def pages_workflow_findings() -> tuple[list[str], str]:
             "path: _site",
             "name: github-pages-${{ github.run_attempt }}",
             "artifact_name: github-pages-${{ github.run_attempt }}",
+            "name: github-pages-${{ github.run_attempt }}-retry-2",
+            "artifact_name: github-pages-${{ github.run_attempt }}-retry-2",
+            "name: github-pages-${{ github.run_attempt }}-retry-3",
+            "artifact_name: github-pages-${{ github.run_attempt }}-retry-3",
+            "continue-on-error: true",
+            "Wait before Pages retry 2",
+            "Wait before Pages retry 3",
+            "All Pages deployment attempts failed.",
         )
         if token not in text
     ]
@@ -265,7 +273,7 @@ def pages_workflow_findings() -> tuple[list[str], str]:
     findings = [f"Pages deploy workflow missing token: {token}" for token in missing]
     findings.extend(f"Pages deploy workflow contains unsafe git command: {token}" for token in unsafe)
     summary = "`pages-deploy.yml`: " + (
-        "self-managed Pages deploy; artifact upload; maximum supported deploy timeout; serialized final deploys"
+        "self-managed Pages deploy; artifact upload; maximum supported deploy timeout; serialized final deploys; deploy retry guard"
         if not findings
         else "needs repair"
     )

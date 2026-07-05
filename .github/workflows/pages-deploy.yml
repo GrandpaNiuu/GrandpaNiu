@@ -72,7 +72,7 @@ jobs:
     timeout-minutes: 45
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://grandpaniuu.github.io/GrandpaNiu/
     steps:
       - name: Checkout latest main
         uses: actions/checkout@v5
@@ -135,11 +135,62 @@ jobs:
           path: _site
           name: github-pages-${{ github.run_attempt }}
 
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy to GitHub Pages (attempt 1)
+        id: deployment_1
+        continue-on-error: true
         uses: actions/deploy-pages@v5
         with:
           artifact_name: github-pages-${{ github.run_attempt }}
           timeout: 600000
           reporting_interval: 10000
           error_count: 30
+
+      - name: Wait before Pages retry 2
+        if: steps.deployment_1.outcome == 'failure'
+        run: sleep 60
+
+      - name: Upload Pages artifact for retry 2
+        if: steps.deployment_1.outcome == 'failure'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+          name: github-pages-${{ github.run_attempt }}-retry-2
+
+      - name: Deploy to GitHub Pages (attempt 2)
+        id: deployment_2
+        if: steps.deployment_1.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}-retry-2
+          timeout: 600000
+          reporting_interval: 10000
+          error_count: 30
+
+      - name: Wait before Pages retry 3
+        if: steps.deployment_1.outcome == 'failure' && steps.deployment_2.outcome == 'failure'
+        run: sleep 120
+
+      - name: Upload Pages artifact for retry 3
+        if: steps.deployment_1.outcome == 'failure' && steps.deployment_2.outcome == 'failure'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+          name: github-pages-${{ github.run_attempt }}-retry-3
+
+      - name: Deploy to GitHub Pages (attempt 3)
+        id: deployment_3
+        if: steps.deployment_1.outcome == 'failure' && steps.deployment_2.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}-retry-3
+          timeout: 600000
+          reporting_interval: 10000
+          error_count: 30
+
+      - name: Verify Pages deployment succeeded
+        if: steps.deployment_1.outcome == 'failure' && steps.deployment_2.outcome == 'failure' && steps.deployment_3.outcome == 'failure'
+        run: |
+          echo "All Pages deployment attempts failed."
+          exit 1

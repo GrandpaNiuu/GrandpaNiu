@@ -1,6 +1,33 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-04 10:13 +08:00
+Last updated: 2026-07-06 06:20 +08:00
+
+## 2026-07-06 Pages Deploy Retry Hardening Risk Note
+
+Risk level: low traffic-policy risk, medium deployment-automation risk.
+
+Observed signal:
+
+- `Deploy GitHub Pages` run `28755590928` failed on 2026-07-06 05:32 Beijing time.
+- The triggering `Daily schedule watchdog` run succeeded.
+- Pages source detection, checkout, Pages configuration, artifact preparation, and artifact upload all succeeded.
+- Only the official `actions/deploy-pages` step failed.
+
+Mitigation:
+
+- Added up to three deployment attempts in `.github/workflows/pages-deploy.yml`.
+- Retry attempts wait before retrying and re-upload `_site` with retry-specific artifact names.
+- Validation now requires the retry guard.
+
+Traffic risk boundary:
+
+- This repair changes only deployment automation and generated reports refreshed by the quality gate.
+- It does not change rule sources, App source fragments, MITM hostnames, JavaScript behavior, Android routing, Windows routing, login, payment, banking, captcha, video, image/CDN policy, or public module URLs.
+
+Remaining risk:
+
+- GitHub Pages can still have a longer outage. If all three attempts fail, the workflow should stay red because the public Pages update truly did not publish.
+- Remote confirmation is required on the first post-push commit.
 
 ## 2026-07-04 Pages Deploy Red-Cross Repair Risk Note
 

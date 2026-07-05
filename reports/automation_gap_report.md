@@ -1,6 +1,6 @@
 # Automation Gap Report
 
-- Generated at: 2026-07-06 02:41:24 +0800
+- Generated at: 2026-07-06 05:58:08 +0800
 - Blocking gaps: 0
 
 ## Blocking Gaps
@@ -13,7 +13,7 @@
 - App source files: 398; Release app modules: 398.
 - Android branches checked: 4; Windows v2rayN output checked.
 - Scheduled workflows checked: 7; writer workflows checked: 9.
-- Pages deployment workflow checked for self-managed artifact deploy, maximum supported deployment timeout, serialized final deployment, and reduced trigger noise.
+- Pages deployment workflow checked for self-managed artifact deploy, maximum supported deployment timeout, serialized final deployment, reduced trigger noise, and deployment retry guard.
 - Quality gate command tokens checked: 14.
 - Required reports checked: 19; script aggregation cache checked.
 
