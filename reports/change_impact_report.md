@@ -1,22 +1,15 @@
 # 变更影响报告
 
-- 生成时间：2026-07-06 06:03:08 +0800
+- 生成时间：2026-07-07 02:29:09 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
-- `.github/workflows/pages-deploy.yml`
-- `AI_HANDOFF.md`
 - `Android/branches.json`
-- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
 - `Release/checksums.json`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
-- `docs/ai/DECISIONS.md`
-- `docs/ai/RISK_LOG.md`
-- `docs/ai/TASKS.md`
-- `docs/ai/WORKLOG.md`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
 - `reports/app_source_validation_report.md`
@@ -50,11 +43,6 @@
 - `reports/upstream_provenance_report.md`
 - `reports/upstream_risk_gate_report.md`
 - `reports/workflow_health_report.md`
-- `scripts/check_automation_status.py`
-- `scripts/generate_workflow_health_report.py`
-- `scripts/repository_health_check.py`
-- `scripts/validate_repository.py`
-- `tools/generate_automation_gap_report.py`
 
 ## 新增文件
 
@@ -66,18 +54,11 @@
 
 ## 修改文件
 
-- `.github/workflows/pages-deploy.yml`
-- `AI_HANDOFF.md`
 - `Android/branches.json`
-- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
 - `Release/checksums.json`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
-- `docs/ai/DECISIONS.md`
-- `docs/ai/RISK_LOG.md`
-- `docs/ai/TASKS.md`
-- `docs/ai/WORKLOG.md`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
 - `reports/app_source_validation_report.md`
@@ -111,19 +92,12 @@
 - `reports/upstream_provenance_report.md`
 - `reports/upstream_risk_gate_report.md`
 - `reports/workflow_health_report.md`
-- `scripts/check_automation_status.py`
-- `scripts/generate_workflow_health_report.py`
-- `scripts/repository_health_check.py`
-- `scripts/validate_repository.py`
-- `tools/generate_automation_gap_report.py`
 
 ## 影响的模块层
 
 - Other
 - README/docs
 - Scripts
-- Scripts/maintenance
-- Workflows
 
 ## 可能影响的 App
 
