@@ -1,7 +1,7 @@
 # MITM Scope Report
 
-- Generated at: 2026-07-09 02:04:39 +0800
-- Total hostnames: 1233
+- Generated at: 2026-07-09 02:51:33 +0800
+- Total hostnames: 1234
 - Wildcard hostnames: 34
 - Unique base domains: 673
 
@@ -11,7 +11,7 @@
 |---|---:|
 | `payment_bank_wallet` | 2 |
 | `login_account_auth` | 1 |
-| `video_music_playback` | 29 |
+| `video_music_playback` | 30 |
 | `image_static_cdn` | 16 |
 | `httpdns` | 0 |
 | `shopping_life` | 30 |
@@ -45,6 +45,7 @@
 - `line.me`: 6
 - `ksedt.com`: 6
 - `qtfm.cn`: 6
+- `bilibili.com`: 5
 - `douyucdn.cn`: 5
 - `xiaohongshu.com`: 5
 - `fcbox.com`: 5
@@ -56,7 +57,6 @@
 - `cainiao.com`: 5
 - `moji.com`: 5
 - `91160.com`: 5
-- `bilibili.com`: 4
 - `weibo.cn`: 4
 - `elemecdn.com`: 4
 - `maoyan.com`: 4

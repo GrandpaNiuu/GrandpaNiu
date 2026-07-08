@@ -1,6 +1,6 @@
 # 误伤复核队列报告
 
-- 生成时间：2026-07-09 02:04:44 +0800
+- 生成时间：2026-07-09 02:51:33 +0800
 - 风险台账条目：2989
 - high：73
 - medium：2916
@@ -221,7 +221,7 @@
 | MITM | medium | 图片 / 静态 CDN / 通配 MITM | Rewrite/Sources/Apps/che-lai-le.conf:23 | cdn.*.chelaileapp.cn | 命中敏感链路关键词；包含通配 MITM 范围 |
 | MITM | medium | 图片 / 静态 CDN / 通配 MITM | Rewrite/Sources/Apps/huya.conf:14 | *.msstatic.com | 命中敏感链路关键词；包含通配 MITM 范围 |
 | MITM | medium | 图片 / 静态 CDN / 通配 MITM | Rewrite/Sources/Apps/qqksong.conf:52 | amsweb-cdn-*-1258344696.file.myqcloud.com | 命中敏感链路关键词；包含通配 MITM 范围 |
-| MITM | medium | 视频 / 音乐播放链路 | Rewrite/Sources/Apps/bilibili.conf:86 | grpc.biliapi.net | 命中敏感链路关键词 |
+| MITM | medium | 视频 / 音乐播放链路 | Rewrite/Sources/Apps/bilibili.conf:87 | grpc.biliapi.net | 命中敏感链路关键词 |
 | MITM | medium | 视频 / 音乐播放链路 | Rewrite/Sources/Apps/i-qi-yi-video.conf:44 | -i.vip.iqiyi.com | 命中敏感链路关键词 |
 | MITM | medium | 视频 / 音乐播放链路 | Rewrite/Sources/Apps/mgtv.conf:64 | damang.api.mgtv.com | 命中敏感链路关键词 |
 | MITM | medium | 视频 / 音乐播放链路 | Rewrite/Sources/Apps/mgtv.conf:64 | dc?.bz.mgtv.com | 命中敏感链路关键词 |

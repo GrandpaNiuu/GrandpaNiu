@@ -1,11 +1,11 @@
 # Script Aggregation Report
 
-- generated: 2026-07-08T18:23:58Z
+- generated: 2026-07-08T18:51:30Z
 - enabled: True
-- input script entries: 230
-- output script entries: 180
-- unique script-path before: 91
-- unique script-path after: 40
+- input script entries: 231
+- output script entries: 181
+- unique script-path before: 92
+- unique script-path after: 41
 - bundled entries: 52
 - bundled upstream sources: 52
 - bundle chunks: 2
@@ -77,5 +77,5 @@
 - preserved: no response body: 4
 - preserved: not http-response: 5
 - preserved: protected app or account/payment token: 16
-- preserved: unparsable or protected: 146
+- preserved: unparsable or protected: 147
 - preserved: upstream not in aggregator allowlist: 5

@@ -70,7 +70,7 @@
       "name": "GrandpaNiu Bilibili",
       "file": "Release/Modules/bilibili.sgmodule",
       "source": "Rewrite/Sources/Apps/bilibili.conf",
-      "sections": "Rule:35, Body Rewrite:18, Map Local:8, Script:6, MITM:1",
+      "sections": "Rule:35, Body Rewrite:18, Map Local:8, Script:7, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/bilibili.sgmodule"
     },
     {

@@ -3,14 +3,14 @@
     "chunks": 2,
     "path": "Scripts/generated/fusion-script-bundle.js",
     "routes": 52,
-    "sha256": "d1a42a681577091cc4f6a9a7286a40c36ee22e2f0d79446b625c6f2e60213468",
+    "sha256": "7c3b26ddce0f0cb44bcc85e8a4642c50b3d463f19b5fa40b0ad491c06599979a",
     "sources": 52,
     "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js",
     "version": "grandpaniu-fusion-script-bundle-v1"
   },
   "fetch_cached": [],
   "fetch_failed": [],
-  "generated": "2026-07-08T18:23:58Z",
+  "generated": "2026-07-08T18:51:30Z",
   "policy": {
     "allowed_prefixes": [
       "https://kelee.one/Resource/JavaScript/",
@@ -57,7 +57,7 @@
     "preserved: no response body": 4,
     "preserved: not http-response": 5,
     "preserved: protected app or account/payment token": 16,
-    "preserved: unparsable or protected": 146,
+    "preserved: unparsable or protected": 147,
     "preserved: upstream not in aggregator allowlist": 5
   },
   "routes": [
@@ -849,9 +849,9 @@
     "bundled_entries": 52,
     "bundled_sources": 52,
     "fetch_failures": 0,
-    "input_entries": 230,
+    "input_entries": 231,
     "output_entries": 0,
     "unique_paths_after": 0,
-    "unique_paths_before": 91
+    "unique_paths_before": 92
   }
 }
