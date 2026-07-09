@@ -1,18 +1,17 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-07-08T18:51:17Z
+- generated: 2026-07-09T19:02:30Z
 - modules: 398
 - enabled: 390
 - direct_commit: 390
-- updated: 4
-- skipped: 394
+- updated: 3
+- skipped: 395
 - blocked: 0
 - errors: 0
 
 ## Updated
 | id | upstream | backup | source |
 | --- | --- | --- | --- |
-| bilibili | Bilibili增强 | backup/upstream-app-modules/bilibili/20260708-185026.conf | https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule |
 | douyin | 抖音 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/TikTok.snippet |
 | dragon-read | 番茄小说去广告 |  | https://kelee.one/Tool/Loon/Lpx/DragonRead_remove_ads.lpx |
 | hkdou-yin | 香港抖音去广告 |  | https://kelee.one/Tool/Loon/Lpx/HKDouYin_remove_ads.lpx |
@@ -74,6 +73,7 @@
 | bbc | unchanged |
 | beike | unchanged |
 | betty-kitchen | unchanged |
+| bilibili | unchanged |
 | bilibili-comic | unchanged |
 | bing | unchanged |
 | biquge | unchanged |
