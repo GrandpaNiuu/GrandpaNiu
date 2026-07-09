@@ -1719,3 +1719,87 @@ python scripts\quality_gate.py
 - Commit and push.
 - Confirm the new `Module Factory Build` run is green.
 - Confirm the first post-push `Deploy GitHub Pages` run succeeds, ideally on the first attempt or through retry without a red workflow.
+
+## 2026-07-10 03:02 +08:00 - Conservative MITM compiler optimization
+
+### Task Summary
+
+The owner requested a conservative, provable, default automatic MITM optimization stage that reduces duplicated final Fusion MITM host declarations without deleting functions or guessing which domains are safe to remove.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`.
+- Starting status: worktree already contained the in-progress MITM compiler implementation and generated outputs from the previous interrupted pass.
+- Expected scope: `scripts/build_module.py`, MITM validation tools, tests, quality-gate wiring, generated reports, generated release outputs, and AI records.
+- Out of scope: `Rules/`, `Rewrite/Sources/Apps/`, `Rewrite/Sources/Misc/`, App script behavior, rewrite behavior, Android routing policy, Windows routing policy, and public module URL changes.
+
+### Actual Changes
+
+- Added a final-output MITM compiler in `scripts/build_module.py`.
+- Added `compile_mitm_hosts(...)` with strict normalize mode and fail-closed fallback behavior.
+- Added static deep-feature fingerprinting for Script, URL Rewrite, Header Rewrite, Body Rewrite, and Map Local sections.
+- Added source-traced MITM reports:
+  - `reports/mitm_optimization_report.json`
+  - `reports/mitm_optimization_report.md`
+- Added standalone tools:
+  - `tools/build_mitm_baseline.py`
+  - `tools/validate_mitm_coverage.py`
+- Added regression tests in `tests/test_mitm_optimizer.py`.
+- Wired MITM coverage validation into:
+  - `scripts/quality_gate.py`
+  - `scripts/check_report_freshness.py`
+  - `scripts/validate_repository.py`
+  - `scripts/repository_health_check.py`
+  - `tools/generate_automation_gap_report.py`
+  - `tools/generate_automated_quality_evidence.py`
+- Fixed a Windows timestamp ordering issue by marking MITM reports as validated after checking them against `Release/Ronghemokuai.sgmodule`.
+- Refreshed generated Fusion, Release, Android/Release Android, Web-derived reports, and checksums through the normal quality gate.
+
+### Validation Result
+
+Commands run:
+
+```bash
+python -m py_compile scripts/build_module.py tools/build_mitm_baseline.py tools/validate_mitm_coverage.py tests/test_mitm_optimizer.py
+python -m unittest tests.test_mitm_optimizer
+python Rewrite/Generator/Builder.py --profile fusion --release
+python tools/validate_mitm_coverage.py
+python scripts/quality_gate.py
+```
+
+Final result:
+
+- `tests.test_mitm_optimizer` passed with 10 tests.
+- `tools/validate_mitm_coverage.py` passed.
+- Full `python scripts/quality_gate.py` passed.
+- Quality gate noted one transient QuanX upstream SSL EOF and kept the existing converted output, as intended by the existing converter fallback.
+
+Current MITM report:
+
+- Baseline MITM tokens: `2059`.
+- Baseline unique MITM tokens: `1234`.
+- Normalized MITM tokens: `1234`.
+- Exact duplicate tokens removed: `825`.
+- Wildcards before / after: `34 / 34`.
+- Proved wildcard reductions: `0`.
+- Opaque features retained: `169`.
+- Baseline-uncovered deep features recorded: `45`.
+- Fallback: `False`.
+
+### Risks
+
+- MITM output is high risk, but this pass does not change the normalized hostname set in default mode.
+- Static extraction is not a complete runtime proof; opaque and unproven items are kept.
+- `baseline_uncovered_feature_count` is a visibility metric for pre-existing coverage gaps, not an instruction to delete or expand hosts.
+
+### Self-Review
+
+- What was not good enough: the first freshness wiring used normal file mtimes and failed on Windows sub-second write ordering.
+- What I changed to reduce that risk: MITM reports are now marked with a deterministic mtime after successful coverage validation, and full quality gate verifies strict freshness.
+- What I would check first next time: when adding generated reports, run the full quality gate once before assuming standalone generator freshness is representative.
+
+### Next Step
+
+- Commit and push this MITM compiler pass.
+- Confirm the next `Module Factory Build` run is green.
+- Keep wildcard range reduction disabled until a separate proof-focused task justifies enabling it.

@@ -111,6 +111,18 @@ CHECKS = [
         "reason": "MITM scope report must reflect the current generated module.",
     },
     {
+        "report": "reports/mitm_optimization_report.md",
+        "inputs": [
+            "Release/Ronghemokuai.sgmodule",
+            "reports/mitm_optimization_report.json",
+            "scripts/build_module.py",
+            "tools/build_mitm_baseline.py",
+            "tools/validate_mitm_coverage.py",
+        ],
+        "blocking": True,
+        "reason": "MITM optimization report must reflect the current generated Fusion MITM output and compiler contract.",
+    },
+    {
         "report": "reports/mitm_reject_risk_ledger.md",
         "inputs": [
             "Rules",

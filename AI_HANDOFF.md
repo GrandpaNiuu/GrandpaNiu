@@ -1,6 +1,37 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-06 06:20 +08:00
+Last updated: 2026-07-10 03:02 +08:00
+
+## 2026-07-10 Conservative MITM Compiler Handoff
+
+- Owner requested a conservative, provable, default automatic MITM optimization stage that coexists with existing automation.
+- Implemented in `scripts/build_module.py` as final `[MITM]` compile behavior.
+- The implementation does not rewrite `Script`, `URL Rewrite`, `Header Rewrite`, `Body Rewrite`, `Map Local`, or `Rule` sections.
+- The implementation does not modify `Rewrite/Sources/` source fragments.
+- Default output mode is `normalize`:
+  - exact duplicate MITM hostname tokens are removed
+  - normalized hostname set remains equal to baseline
+  - wildcard-covered exact subdomains are not removed
+  - hosts without parsed consumers are not removed
+  - opaque dynamic dependencies keep their original MITM range
+- Range reduction remains disabled unless all proof conditions are satisfied. The current report records `34` wildcards kept because matcher proof/reduction proof is insufficient for shrinking.
+- New files:
+  - `tools/build_mitm_baseline.py`
+  - `tools/validate_mitm_coverage.py`
+  - `tests/test_mitm_optimizer.py`
+  - `reports/mitm_optimization_report.json`
+  - `reports/mitm_optimization_report.md`
+- Validation wiring was added to:
+  - `scripts/quality_gate.py`
+  - `scripts/check_report_freshness.py`
+  - `scripts/validate_repository.py`
+  - `scripts/repository_health_check.py`
+  - `tools/generate_automation_gap_report.py`
+  - `tools/generate_automated_quality_evidence.py`
+- Important implementation detail: `tools/validate_mitm_coverage.py` validates the report against `Release/Ronghemokuai.sgmodule` and then marks the MITM reports as validated. This avoids Windows sub-second mtime ordering causing false stale freshness failures.
+- Full `python scripts/quality_gate.py` passed.
+
+Next AI should not interpret `baseline_uncovered_feature_count` as a new regression. It records pre-existing deep features whose extracted hosts were not covered by the baseline MITM set; the optimizer is required not to make that worse.
 
 ## 2026-07-06 Pages Deploy Retry Hardening Handoff
 

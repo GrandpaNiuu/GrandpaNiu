@@ -1,6 +1,49 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-06 06:20 +08:00
+Last updated: 2026-07-10 03:02 +08:00
+
+## 2026-07-10 Conservative MITM Compiler Risk Note
+
+Risk level: medium MITM compiler risk, low traffic-policy change risk.
+
+Owner request:
+
+- Add a conservative, provable, default automatic MITM optimization stage.
+- Keep Script, Rewrite, Map Local, Rule, and source fragments functionally unchanged.
+- Do not rely on app testing or network requests as proof.
+- Fail closed to baseline MITM output if validation fails.
+
+Mitigations:
+
+- Optimization is limited to final generated `[MITM]` output.
+- Default mode removes exact duplicate hostname tokens only after normalization.
+- The normalized hostname set must remain equal to baseline in normalize mode.
+- Wildcard-covered exact subdomains remain in output.
+- Hostnames without parsed consumers remain in output.
+- Opaque dynamic URL, complex regex, variable, or remote-script dependencies prevent range shrinking.
+- `tools/validate_mitm_coverage.py` checks the generated report against `Release/Ronghemokuai.sgmodule`.
+- `tests/test_mitm_optimizer.py` covers duplicate dedupe, set equality, matcher semantics, opaque no-shrink, optional proven shrink behavior, fallback, and deterministic output.
+
+Current evidence:
+
+- Baseline MITM tokens: `2059`.
+- Normalized unique tokens: `1234`.
+- Exact duplicates removed: `825`.
+- Wildcards before / after: `34 / 34`.
+- Proved wildcard reductions: `0`.
+- Opaque features retained: `169`.
+- Baseline-uncovered deep features: `45`.
+- Fallback: `False`.
+
+Traffic risk boundary:
+
+- No rule source, App source, script behavior, rewrite behavior, map-local response, Android routing, Windows routing, public URL, login, payment, bank, captcha, video, or image/CDN source policy was intentionally changed.
+
+Remaining risk:
+
+- Static hostname extraction is not a complete Shadowrocket runtime proof.
+- The report's `baseline_uncovered_feature_count` records pre-existing baseline coverage gaps and must not be treated as permission to delete or expand MITM scopes automatically.
+- Wildcard range reduction should remain disabled until a future task proves matcher semantics and complete finite dependencies.
 
 ## 2026-07-06 Pages Deploy Retry Hardening Risk Note
 

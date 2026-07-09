@@ -1,6 +1,41 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-06 06:20 +08:00
+Last updated: 2026-07-10 03:02 +08:00
+
+## Current Conservative MITM Compiler Task
+
+Status: locally implemented and fully validated; pending commit, push, and remote Actions confirmation.
+
+Scope:
+
+- Optimize only the final Fusion `[MITM]` hostname output.
+- Preserve all Script, URL Rewrite, Header Rewrite, Body Rewrite, Map Local, and Rule behavior.
+- Do not modify source fragments under `Rewrite/Sources/`.
+- Default to exact-token normalization and dedupe only.
+- Keep wildcard range reduction disabled unless all proof requirements are machine-satisfied.
+- Keep fail-closed fallback to baseline MITM output when validation fails.
+
+Validation:
+
+- `python -m py_compile scripts/build_module.py tools/build_mitm_baseline.py tools/validate_mitm_coverage.py tests/test_mitm_optimizer.py` passed.
+- `python -m unittest tests.test_mitm_optimizer` passed with 10 tests.
+- `python tools/validate_mitm_coverage.py` passed.
+- `python scripts/quality_gate.py` passed.
+
+Current result:
+
+- Baseline MITM tokens: `2059`.
+- Normalized unique MITM tokens: `1234`.
+- Exact duplicate tokens removed: `825`.
+- Wildcards kept: `34`.
+- Proved range reductions: `0`.
+- Fallback: `False`.
+
+Next check:
+
+- Commit and push.
+- Confirm the next `Module Factory Build` run is green.
+- Do not enable wildcard range reduction unless matcher evidence and dependency coverage tests prove it.
 
 ## Current Pages Deploy Retry Hardening Task
 

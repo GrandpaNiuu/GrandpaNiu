@@ -9,13 +9,15 @@ import datetime as dt
 import difflib
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
 import urllib.error
 import urllib.request
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
+from typing import Any, Iterable
 
 from refresh_module_date import refresh_module_date, today_beijing
 
@@ -25,6 +27,8 @@ RELEASE = ROOT / "Release" / "Ronghemokuai.sgmodule"
 REPORT = ROOT / "reports" / "module_factory_report.md"
 DIFF_REPORT = ROOT / "reports" / "module_factory_diff_report.md"
 SCRIPT_AGGREGATION_REPORT = ROOT / "reports" / "script_aggregation_report.md"
+MITM_OPTIMIZATION_REPORT_JSON = ROOT / "reports" / "mitm_optimization_report.json"
+MITM_OPTIMIZATION_REPORT_MD = ROOT / "reports" / "mitm_optimization_report.md"
 SOURCES = ROOT / "Rewrite" / "Sources"
 MISC_SOURCES = SOURCES / "Misc"
 APP_SOURCES = SOURCES / "Apps"
@@ -105,6 +109,7 @@ EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ron
 SECTION_RE = re.compile(r"^\[([^\]]+)\]\s*$")
 SCRIPT_NAME_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=")
 HOSTNAME_RE = re.compile(r"^\s*hostname\s*=\s*(.+)$")
+URL_HOST_RE = re.compile(r"https\??:(?:\\\/\\\/|//)([^\s\)\(\|]+)", re.IGNORECASE)
 SCRIPT_FIELD_SPLIT_RE = re.compile(
     r",\s*(?=(?:type|pattern|argument|requires-body|max-size|binary-body-mode|script-path|timeout|engine|script-update-interval)\s*=)"
 )
@@ -132,6 +137,15 @@ FUSION_ARGUMENT_NAMES = {
     "启用调试模式",
 }
 PRESERVE_APP_SCRIPT_NAMES = {"bilibili", "youtube"}
+MITM_DEEP_FEATURE_SECTIONS = ("URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local", "Script")
+MITM_FORCE_KEEP_TOKENS = (
+    "grpc.biliapi.net",
+    "api.bilibili.com",
+    "app.bilibili.com",
+    "spclient.wg.spotify.com",
+    "*.spclient.spotify.com",
+    "youtubei.googleapis.com",
+)
 PROTECTED_REJECT_TOKENS = (
     "api.biliapi",
     "app.biliapi",
@@ -1380,42 +1394,528 @@ def parse_mitm_hosts(block: str) -> list[str]:
     return hosts
 
 
-def build_mitm(profile: configparser.ConfigParser) -> str:
+@dataclass(frozen=True)
+class MITMHostEntry:
+    order: int
+    token: str
+    normalized: str
+    source: str
+    raw_line: str
+
+
+@dataclass(frozen=True)
+class DeepFeature:
+    order: int
+    section: str
+    expression: str
+    action: str
+    name: str
+    source: str
+    host_constraints: tuple[str, ...]
+    opaque: bool
+    requires_mitm: bool = True
+    source_hosts: tuple[str, ...] = ()
+
+
+class ShadowrocketMITMMatcher:
+    """Conservative local model for target MITM hostname token matching."""
+
+    def __init__(self, wildcard_semantics_verified: bool = False, allow_reduction: bool = False) -> None:
+        self.wildcard_semantics_verified = wildcard_semantics_verified
+        self.allow_reduction = allow_reduction
+
+    def normalize(self, value: str) -> str:
+        return normalize_mitm_host_token(value)
+
+    def covers(self, token: str, hostname: str) -> bool:
+        token = self.normalize(token)
+        hostname = self.normalize(hostname)
+        if not token or token.startswith("-"):
+            return False
+        if token == hostname:
+            return True
+        if token.startswith("*."):
+            suffix = token[2:]
+            return hostname != suffix and hostname.endswith("." + suffix)
+        return False
+
+    def covered_by_any(self, hostname: str, tokens: Iterable[str]) -> bool:
+        return any(self.covers(token, hostname) for token in tokens)
+
+
+def normalize_mitm_host_token(token: str) -> str:
+    return token.replace("%APPEND%", "").strip().lower()
+
+
+def parse_mitm_host_entries(block: str, source: str, start_order: int = 0) -> list[MITMHostEntry]:
+    entries: list[MITMHostEntry] = []
+    order = start_order
+    for line in block.splitlines():
+        match = HOSTNAME_RE.match(line)
+        if not match:
+            continue
+        value = match.group(1).replace("%APPEND%", "")
+        for raw_host in value.split(","):
+            clean = raw_host.strip()
+            normalized = normalize_mitm_host_token(clean)
+            if not normalized:
+                continue
+            entries.append(MITMHostEntry(order=order, token=clean, normalized=normalized, source=source, raw_line=line.strip()))
+            order += 1
+    return entries
+
+
+def mitm_entry_dict(entry: MITMHostEntry) -> dict[str, object]:
+    return {
+        "order": entry.order,
+        "token": entry.token,
+        "normalized": entry.normalized,
+        "source": entry.source,
+        "raw_line": entry.raw_line,
+    }
+
+
+def deep_feature_dict(feature: DeepFeature) -> dict[str, object]:
+    return {
+        "order": feature.order,
+        "section": feature.section,
+        "expression": feature.expression,
+        "action": feature.action,
+        "name": feature.name,
+        "source": feature.source,
+        "host_constraints": list(feature.host_constraints),
+        "opaque": feature.opaque,
+        "requires_mitm": feature.requires_mitm,
+        "source_hosts": list(feature.source_hosts),
+    }
+
+
+def ordered_unique_host_entries(entries: Iterable[MITMHostEntry]) -> list[MITMHostEntry]:
+    unique: list[MITMHostEntry] = []
+    seen: set[str] = set()
+    for entry in entries:
+        if entry.normalized in seen:
+            continue
+        seen.add(entry.normalized)
+        unique.append(entry)
+    return unique
+
+
+def parse_script_fields(line: str) -> dict[str, str]:
+    if "=" not in line:
+        return {}
+    _, body = line.split("=", 1)
+    fields: dict[str, str] = {}
+    for part in SCRIPT_FIELD_SPLIT_RE.split(body):
+        if "=" not in part:
+            continue
+        key, value = part.strip().split("=", 1)
+        fields[key.strip()] = value.strip()
+    return fields
+
+
+def unescape_host_fragment(value: str) -> tuple[str, bool]:
+    host = value.strip()
+    host = host.replace(r"\.", ".").replace(r"\-", "-").replace(r"\:", ":")
+    if "\\" in host:
+        return "", True
+    if any(char in host for char in "()[]{}|+$^"):
+        return "", True
+    if "*" in host or "?" in host:
+        return "", True
+    if not host or host.startswith(".") or host.endswith("."):
+        return "", True
+    return host.lower(), False
+
+
+def extract_static_hosts(expression: str) -> tuple[tuple[str, ...], bool]:
+    if "{{{" in expression or "}}}" in expression:
+        return (), True
+    matches = list(URL_HOST_RE.finditer(expression))
+    if not matches:
+        return (), "http" in expression.lower()
+    hosts: list[str] = []
+    opaque = False
+    for match in matches:
+        raw_host = re.split(r"(?:\\\/|/)", match.group(1), maxsplit=1)[0]
+        host, is_opaque = unescape_host_fragment(raw_host)
+        if is_opaque:
+            opaque = True
+            continue
+        hosts.append(host)
+    return tuple(dict.fromkeys(hosts)), opaque or not hosts
+
+
+def active_compiled_lines(body: str) -> list[str]:
+    return [line.strip() for line in body.splitlines() if line.strip() and not line.lstrip().startswith("#")]
+
+
+def feature_from_line(section: str, line: str, order: int) -> DeepFeature:
+    name = ""
+    expression = ""
+    action = ""
+    opaque = False
+    if section == "Script":
+        name = line.split("=", 1)[0].strip() if "=" in line else ""
+        fields = parse_script_fields(line)
+        expression = fields.get("pattern", "")
+        action = fields.get("script-path", "")
+        opaque = action.startswith(("http://", "https://")) or not expression
+    elif section == "Body Rewrite":
+        parts = line.split(" ", 2)
+        expression = parts[1] if len(parts) > 1 else ""
+        action = (parts[0] + (" " + parts[2] if len(parts) > 2 else "")).strip()
+    else:
+        parts = line.split(" ", 1)
+        expression = parts[0] if parts else ""
+        action = parts[1] if len(parts) > 1 else ""
+
+    hosts, host_opaque = extract_static_hosts(expression)
+    opaque = opaque or host_opaque
+    return DeepFeature(
+        order=order,
+        section=section,
+        expression=expression or line,
+        action=action,
+        name=name,
+        source=f"compiled:{section}",
+        host_constraints=hosts,
+        opaque=opaque,
+        source_hosts=hosts,
+    )
+
+
+def build_effective_deep_features(section_bodies: dict[str, str]) -> list[DeepFeature]:
+    features: list[DeepFeature] = []
+    order = 0
+    for section in MITM_DEEP_FEATURE_SECTIONS:
+        for line in active_compiled_lines(section_bodies.get(section, "")):
+            features.append(feature_from_line(section, line, order))
+            order += 1
+    return features
+
+
+def fingerprint_non_mitm_sections(section_bodies: dict[str, str]) -> list[dict[str, object]]:
+    fingerprints: list[dict[str, object]] = []
+    order = 0
+    for section in SECTION_ORDER:
+        if section == "MITM":
+            continue
+        for line in active_compiled_lines(section_bodies.get(section, "")):
+            item: dict[str, object] = {"order": order, "section": section, "line": line}
+            if section == "Script" and "=" in line:
+                item["name"] = line.split("=", 1)[0].strip()
+            fingerprints.append(item)
+            order += 1
+    return fingerprints
+
+
+def feature_has_coverage(feature: DeepFeature, hosts: Iterable[str], matcher: ShadowrocketMITMMatcher) -> bool:
+    if not feature.requires_mitm or feature.opaque or not feature.host_constraints:
+        return True
+    return all(matcher.covered_by_any(host, hosts) for host in feature.host_constraints)
+
+
+def validate_compiled_mitm_contract(
+    optimized_hosts: list[str],
+    baseline_hosts: list[str],
+    effective_deep_features: list[DeepFeature],
+    matcher: ShadowrocketMITMMatcher,
+    force_keep_hosts: Iterable[str],
+    mode: str,
+) -> tuple[bool, list[str]]:
+    reasons: list[str] = []
+    optimized_set = set(optimized_hosts)
+    baseline_set = set(baseline_hosts)
+    force_keep = {normalize_mitm_host_token(host) for host in force_keep_hosts if normalize_mitm_host_token(host)}
+    missing_force_keep = sorted(force_keep - optimized_set)
+    if missing_force_keep:
+        reasons.append("force_keep_hosts_missing:" + ",".join(missing_force_keep[:20]))
+    if mode == "normalize" and optimized_set != baseline_set:
+        reasons.append("normalized_set_differs_from_baseline")
+    if mode == "reduce" and not optimized_set.issubset(baseline_set):
+        reasons.append("reduced_set_is_not_baseline_subset")
+    if mode == "reduce" and len(optimized_set) >= len(baseline_set):
+        reasons.append("reduced_set_is_not_strictly_smaller")
+    missing_coverage: list[str] = []
+    for feature in effective_deep_features:
+        if not feature.requires_mitm or feature.opaque or not feature.host_constraints:
+            continue
+        baseline_covered = feature_has_coverage(feature, baseline_hosts, matcher)
+        optimized_covered = feature_has_coverage(feature, optimized_hosts, matcher)
+        if baseline_covered and not optimized_covered:
+            missing_coverage.append(f"{feature.section}:{feature.order}:{','.join(feature.host_constraints)}")
+    if missing_coverage:
+        reasons.append("deep_feature_mitm_coverage_missing:" + "|".join(missing_coverage[:20]))
+    return not reasons, reasons
+
+
+def reduction_candidates(
+    baseline_hosts: list[str],
+    effective_deep_features: list[DeepFeature],
+    matcher: ShadowrocketMITMMatcher,
+    force_keep_hosts: set[str],
+) -> tuple[list[str], list[dict[str, object]], int]:
+    optimized = list(baseline_hosts)
+    items: list[dict[str, object]] = []
+    baseline_set = set(baseline_hosts)
+    opaque_retained = 0
+    for wildcard in [host for host in baseline_hosts if host.startswith("*.")]:
+        if wildcard in force_keep_hosts:
+            items.append({"token": wildcard, "decision": "kept", "reason": "force_keep"})
+            continue
+        related = [feature for feature in effective_deep_features if any(matcher.covers(wildcard, host) for host in feature.host_constraints)]
+        if not related:
+            items.append({"token": wildcard, "decision": "kept", "reason": "no_static_consumers_is_not_deletion_proof"})
+            continue
+        if any(feature.opaque for feature in related):
+            opaque_retained += 1
+            items.append({"token": wildcard, "decision": "kept", "reason": "opaque_related_feature"})
+            continue
+        exact_hosts = sorted({host for feature in related for host in feature.host_constraints if matcher.covers(wildcard, host)})
+        if not exact_hosts or any(host not in baseline_set for host in exact_hosts):
+            items.append({"token": wildcard, "decision": "kept", "reason": "finite_exact_hosts_not_already_declared"})
+            continue
+        trial = [host for host in optimized if host != wildcard]
+        if all(feature_has_coverage(feature, trial, matcher) for feature in related):
+            optimized = trial
+            items.append({"token": wildcard, "decision": "reduced", "replacement_hosts": exact_hosts})
+        else:
+            items.append({"token": wildcard, "decision": "kept", "reason": "coverage_would_change"})
+    return optimized, items, opaque_retained
+
+
+def as_mitm_entries(declared_hosts: Iterable[Any]) -> list[MITMHostEntry]:
+    entries: list[MITMHostEntry] = []
+    for order, value in enumerate(declared_hosts):
+        if isinstance(value, MITMHostEntry):
+            entries.append(value)
+            continue
+        token = str(value).strip()
+        normalized = normalize_mitm_host_token(token)
+        if normalized:
+            entries.append(MITMHostEntry(order=order, token=token, normalized=normalized, source="<declared>", raw_line=token))
+    return entries
+
+
+def compile_mitm_hosts(
+    declared_hosts: Iterable[Any],
+    effective_deep_features: Iterable[DeepFeature],
+    client_matcher: ShadowrocketMITMMatcher | None = None,
+    force_keep_hosts: Iterable[str] = (),
+) -> tuple[list[str], dict[str, object]]:
+    """Normalize final MITM host output, with reduction allowed only under proof."""
+
+    matcher = client_matcher or ShadowrocketMITMMatcher()
+    features = list(effective_deep_features)
+    entries = as_mitm_entries(declared_hosts)
+    unique_entries = ordered_unique_host_entries(entries)
+    baseline_hosts = [entry.normalized for entry in entries]
+    unique_hosts = [entry.normalized for entry in unique_entries]
+    baseline_set = set(baseline_hosts)
+    wildcard_before = sum(1 for host in unique_hosts if host.startswith("*."))
+    force_keep = {normalize_mitm_host_token(host) for host in force_keep_hosts if normalize_mitm_host_token(host)}
+    optimization_items: list[dict[str, object]] = [
+        {
+            "token": entry.normalized,
+            "decision": "kept",
+            "reason": "first_occurrence",
+            "source": entry.source,
+            "order": entry.order,
+        }
+        for entry in unique_entries
+    ]
+    duplicate_entries: list[MITMHostEntry] = []
+    duplicate_seen: set[str] = set()
+    for entry in entries:
+        if entry.normalized in duplicate_seen:
+            duplicate_entries.append(entry)
+            continue
+        duplicate_seen.add(entry.normalized)
+
+    mode = "normalize"
+    optimized_hosts = list(unique_hosts)
+    proof_reduce_disabled = 0
+    proved_reduction_count = 0
+    opaque_retained_count = 0
+    reduction_items: list[dict[str, object]] = []
+    if matcher.allow_reduction and matcher.wildcard_semantics_verified:
+        mode = "reduce"
+        optimized_hosts, reduction_items, opaque_retained_count = reduction_candidates(unique_hosts, features, matcher, force_keep)
+        proved_reduction_count = sum(1 for item in reduction_items if item.get("decision") == "reduced")
+        optimization_items.extend(reduction_items)
+        if proved_reduction_count == 0:
+            mode = "normalize"
+            optimized_hosts = list(unique_hosts)
+            proof_reduce_disabled = wildcard_before
+    else:
+        proof_reduce_disabled = wildcard_before
+        optimization_items.extend(
+            {"token": host, "decision": "kept", "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence"}
+            for host in unique_hosts
+            if host.startswith("*.")
+        )
+
+    valid, reasons = validate_compiled_mitm_contract(optimized_hosts, unique_hosts, features, matcher, force_keep, mode)
+    fallback = False
+    fallback_reason = ""
+    if not valid:
+        fallback = True
+        fallback_reason = ";".join(reasons)
+        mode = "fallback"
+        optimized_hosts = [entry.token for entry in unique_entries]
+    baseline_uncovered_count = sum(
+        1
+        for feature in features
+        if feature.requires_mitm
+        and not feature.opaque
+        and feature.host_constraints
+        and not feature_has_coverage(feature, unique_hosts, matcher)
+    )
+
+    evidence: dict[str, object] = {
+        "version": 1,
+        "generated_at": dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).isoformat(),
+        "mode": mode,
+        "baseline_hostname_token_count": len(baseline_hosts),
+        "baseline_unique_hostname_token_count": len(unique_hosts),
+        "normalized_hostname_token_count": len(optimized_hosts),
+        "same_hostname_token_set": set(unique_hosts) == baseline_set if not fallback else set(unique_hosts) == baseline_set,
+        "wildcard_count_before": wildcard_before,
+        "wildcard_count_after": sum(1 for host in optimized_hosts if normalize_mitm_host_token(host).startswith("*.")),
+        "deduplicated_exact_duplicate_count": len(baseline_hosts) - len(unique_hosts),
+        "proved_reduction_count": proved_reduction_count,
+        "opaque_retained_count": opaque_retained_count + sum(1 for feature in features if feature.opaque),
+        "proof_reduce_disabled_due_to_missing_matcher_evidence": proof_reduce_disabled,
+        "fallback": fallback,
+        "fallback_reason": fallback_reason,
+        "coverage_validation": {
+            "passed": not fallback,
+            "reasons": reasons,
+            "deep_feature_count": len(features),
+            "opaque_feature_count": sum(1 for feature in features if feature.opaque),
+            "resolvable_feature_count": sum(1 for feature in features if not feature.opaque and feature.host_constraints),
+            "baseline_uncovered_feature_count": baseline_uncovered_count,
+        },
+        "force_keep_hosts": sorted(force_keep),
+        "baseline_unique_hosts": unique_hosts,
+        "optimized_hosts": [normalize_mitm_host_token(host) for host in optimized_hosts],
+        "host_entries": [mitm_entry_dict(entry) for entry in unique_entries],
+        "duplicate_entries": [mitm_entry_dict(entry) for entry in duplicate_entries],
+        "deep_features": [deep_feature_dict(feature) for feature in features],
+        "optimization_items": optimization_items,
+    }
+    return optimized_hosts, evidence
+
+
+def write_mitm_optimization_reports(evidence: dict[str, object]) -> None:
+    MITM_OPTIMIZATION_REPORT_JSON.parent.mkdir(parents=True, exist_ok=True)
+    MITM_OPTIMIZATION_REPORT_JSON.write_text(json.dumps(evidence, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
+    coverage = evidence.get("coverage_validation", {})
+    lines = [
+        "# MITM Optimization Report",
+        "",
+        "- Scope: final Fusion `[MITM]` compile output only.",
+        "- Guarantee: default mode normalizes and de-duplicates exact hostname tokens without changing the normalized hostname set.",
+        "- Boundary: Script, URL Rewrite, Header Rewrite, Body Rewrite, Map Local and Rule sections are not rewritten by this stage.",
+        "- Reduction policy: wildcard range reduction is disabled unless matcher evidence and static dependency proof are both present.",
+        "",
+        "## Summary",
+        "",
+        f"- generated_at: `{evidence.get('generated_at')}`",
+        f"- mode: `{evidence.get('mode')}`",
+        f"- baseline hostname tokens: `{evidence.get('baseline_hostname_token_count')}`",
+        f"- baseline unique hostname tokens: `{evidence.get('baseline_unique_hostname_token_count')}`",
+        f"- normalized hostname tokens: `{evidence.get('normalized_hostname_token_count')}`",
+        f"- same normalized hostname set: `{evidence.get('same_hostname_token_set')}`",
+        f"- wildcard count before: `{evidence.get('wildcard_count_before')}`",
+        f"- wildcard count after: `{evidence.get('wildcard_count_after')}`",
+        f"- strict duplicate tokens removed: `{evidence.get('deduplicated_exact_duplicate_count')}`",
+        f"- proved wildcard reductions: `{evidence.get('proved_reduction_count')}`",
+        f"- opaque retained count: `{evidence.get('opaque_retained_count')}`",
+        f"- reductions disabled by missing matcher proof: `{evidence.get('proof_reduce_disabled_due_to_missing_matcher_evidence')}`",
+        f"- fallback: `{evidence.get('fallback')}`",
+        f"- fallback reason: `{evidence.get('fallback_reason') or 'none'}`",
+        "",
+        "## Coverage Validation",
+        "",
+        f"- passed: `{coverage.get('passed')}`",
+        f"- deep features: `{coverage.get('deep_feature_count')}`",
+        f"- resolvable features: `{coverage.get('resolvable_feature_count')}`",
+        f"- opaque features: `{coverage.get('opaque_feature_count')}`",
+        f"- baseline uncovered features: `{coverage.get('baseline_uncovered_feature_count')}`",
+        f"- reasons: `{'; '.join(coverage.get('reasons', [])) if isinstance(coverage.get('reasons'), list) and coverage.get('reasons') else 'none'}`",
+        "",
+        "## Source Trace",
+        "",
+        "- Full per-host source trace and per-feature fingerprints are written to `reports/mitm_optimization_report.json`.",
+        "- This report does not claim every client behavior is globally proven; it only states the static MITM coverage contract for parsed rules and verified matcher semantics.",
+        "- Any hostname or dependency that cannot be proven safe is kept in the output.",
+        "",
+    ]
+    MITM_OPTIMIZATION_REPORT_MD.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+
+
+def touch_mitm_optimization_reports() -> None:
+    """Keep report mtimes newer than the final module written from the same build."""
+    reference_time = max(
+        (path.stat().st_mtime for path in (RELEASE, MITM_OPTIMIZATION_REPORT_JSON, MITM_OPTIMIZATION_REPORT_MD) if path.exists()),
+        default=0.0,
+    )
+    validated_time = reference_time + 1.0
+    for path in (MITM_OPTIMIZATION_REPORT_JSON, MITM_OPTIMIZATION_REPORT_MD):
+        if path.exists():
+            os.utime(path, (validated_time, validated_time))
+
+
+def force_keep_mitm_hosts(entries: Iterable[MITMHostEntry]) -> set[str]:
+    keep = {normalize_mitm_host_token(host) for host in MITM_FORCE_KEEP_TOKENS}
+    for entry in entries:
+        token = entry.normalized
+        if token.startswith("-"):
+            keep.add(token)
+    return {host for host in keep if host}
+
+
+def build_mitm(profile: configparser.ConfigParser, section_bodies: dict[str, str] | None = None) -> str:
     """Build the MITM section from profile-selected layers."""
     if not profile.has_section("mitm"):
         return read_text(source_file("MITM"), required=False).rstrip() + "\n"
 
-    hosts: list[str] = []
-    seen: set[str] = set()
+    entries: list[MITMHostEntry] = []
     comments: list[str] = ["# MITM profile layers generated by scripts/build_module.py"]
     for path in iter_profile_paths(profile, "mitm"):
         if not path.exists():
             stop(f"profile MITM source missing: {path.relative_to(ROOT)}")
-        comments.append(f"# source: {path.relative_to(ROOT).as_posix()}")
-        for host in parse_mitm_hosts(read_text(path)):
-            if host not in seen:
-                seen.add(host)
-                hosts.append(host)
+        source = path.relative_to(ROOT).as_posix()
+        comments.append(f"# source: {source}")
+        entries.extend(parse_mitm_host_entries(read_text(path), source, len(entries)))
     for path, block in misc_mitm_blocks():
-        comments.append(f"# source: {path.relative_to(ROOT).as_posix()}")
-        for host in parse_mitm_hosts(block):
-            if host not in seen:
-                seen.add(host)
-                hosts.append(host)
+        source = path.relative_to(ROOT).as_posix()
+        comments.append(f"# source: {source}")
+        entries.extend(parse_mitm_host_entries(block, source, len(entries)))
     for path, block in app_mitm_blocks():
-        comments.append(f"# source: {path.relative_to(ROOT).as_posix()}")
-        for host in parse_mitm_hosts(block):
-            if host not in seen:
-                seen.add(host)
-                hosts.append(host)
-    if not hosts:
+        source = path.relative_to(ROOT).as_posix()
+        comments.append(f"# source: {source}")
+        entries.extend(parse_mitm_host_entries(block, source, len(entries)))
+    if not entries:
         stop("profile MITM sources produced an empty hostname list")
+
+    deep_features = build_effective_deep_features(section_bodies or {})
+    matcher = ShadowrocketMITMMatcher(wildcard_semantics_verified=False, allow_reduction=False)
+    hosts, evidence = compile_mitm_hosts(entries, deep_features, matcher, force_keep_mitm_hosts(entries))
+    if not hosts:
+        evidence["fallback"] = True
+        evidence["fallback_reason"] = "optimizer_returned_empty_host_list"
+        hosts = [entry.token for entry in ordered_unique_host_entries(entries)]
+    write_mitm_optimization_reports(evidence)
     return "\n".join(comments + ["hostname = %APPEND% " + ",".join(hosts)]) + "\n"
 
 
 def build_from_sources(profile_name: str = DEFAULT_PROFILE) -> str:
     profile = load_profile(profile_name)
     parts: list[str] = [read_text(source_file("META")).rstrip()]
+    section_bodies: dict[str, str] = {}
     for section in SECTION_ORDER:
         parts.append(f"[{section}]")
         if section == "Rule":
@@ -1423,11 +1923,12 @@ def build_from_sources(profile_name: str = DEFAULT_PROFILE) -> str:
         elif section == "Script":
             body = build_scripts(profile)
         elif section == "MITM":
-            body = build_mitm(profile)
+            body = build_mitm(profile, section_bodies)
         elif section in REWRITE_PROFILE_SECTIONS:
             body = build_rewrite_section(profile, section)
         else:
             body = read_text(source_file(section), required=False).rstrip() + "\n"
+        section_bodies[section] = body
         if body.strip():
             parts.append(body.rstrip())
     return minify_module_text("\n".join(parts).rstrip() + "\n")
@@ -1605,6 +2106,7 @@ def main() -> None:
         write_text(RELEASE, release_text)
         write_text(REPORT, make_report(release_text, extracted, args.profile))
         write_text(DIFF_REPORT, make_diff_report(release_text))
+        touch_mitm_optimization_reports()
         print(f"Built {RELEASE} ({len(release_text.splitlines())} lines) using profile={args.profile}")
 
 

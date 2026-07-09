@@ -1,6 +1,29 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-06 06:20 +08:00
+Last updated: 2026-07-10 03:02 +08:00
+
+### 2026-07-10 - MITM Optimization Defaults To Strict Equivalent Normalize
+
+GrandpaNiu may optimize generated Fusion `[MITM]` output only in the final compiler stage.
+
+Required behavior:
+
+- Do not rewrite `Script`, `URL Rewrite`, `Header Rewrite`, `Body Rewrite`, `Map Local`, or `Rule` sections.
+- Do not edit `Rewrite/Sources/` as part of MITM optimization.
+- Default mode may split, normalize, and exact-dedupe hostname tokens only.
+- Default mode must preserve the normalized hostname token set.
+- Do not remove exact hosts merely because a wildcard appears to cover them.
+- Do not remove hosts without a statically parsed consumer.
+- Do not shrink wildcard ranges unless matcher semantics, dependency parsing, opaque absence, and coverage are all machine-proven.
+- If validation fails, publish the baseline unique MITM output and record fallback instead of emitting a partial optimized result.
+
+Reason: MITM scopes are high-risk for login, payment, video, images/CDN, and app APIs. Exact duplicate removal is safe as configuration normalization; range shrinking is not safe without proof.
+
+Current status:
+
+- Default normalize is enabled.
+- Range reduction has zero active reductions.
+- `tools/validate_mitm_coverage.py` is part of the quality gate.
 
 ### 2026-07-06 - Pages Deployment Must Retry Before Failing The Workflow
 

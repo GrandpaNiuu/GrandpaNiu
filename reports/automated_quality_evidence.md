@@ -1,8 +1,8 @@
 # 自动化质量证据报告
 
-生成时间：2026-07-10 02:22:37 +0800
-Git 分支：`main`
-Git 提交：`1b8308ed`
+生成时间：2026-07-10 03:13:47 +0800
+Git 分支：`repair/upstream-app-sync`
+Git 提交：`6d0a9ac5`
 
 本仓库发布门禁以可重复执行的自动化证据为准：构建、语法检查、远程规则校验、模块完整性、报告新鲜度和仓库健康检查。
 
@@ -10,7 +10,7 @@ Git 提交：`1b8308ed`
 
 - Root / Release 一致：是
 - UTF-8 BOM 命中：0
-- 证据报告数量：29
+- 证据报告数量：31
 
 ## 必跑自动化命令
 
@@ -32,6 +32,7 @@ Git 提交：`1b8308ed`
 - `python scripts/validate_profiles.py`
 - `python scripts/validate_module_integrity.py`
 - `python tools/generate_mitm_scope_report.py`
+- `python tools/validate_mitm_coverage.py`
 - `python tools/generate_mitm_reject_risk_ledger.py`
 - `python tools/generate_upstream_provenance_report.py`
 - `python tools/generate_platform_compatibility_matrix.py`
@@ -68,6 +69,8 @@ Git 提交：`1b8308ed`
 | `reports/script_bundle_sandbox_report.md` | present |
 | `reports/upstream_risk_gate_report.md` | present |
 | `reports/mitm_scope_report.md` | present |
+| `reports/mitm_optimization_report.md` | present |
+| `reports/mitm_optimization_report.json` | present |
 | `reports/mitm_reject_risk_ledger.md` | present |
 | `reports/upstream_provenance_report.md` | present |
 | `reports/platform_compatibility_matrix.md` | present |

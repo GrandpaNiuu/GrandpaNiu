@@ -47,6 +47,7 @@ def main() -> None:
         [sys.executable, "scripts/refresh_module_date.py"],
         [sys.executable, "scripts/convert_quanx_rules.py"],
         [sys.executable, "Rewrite/Generator/Builder.py", "--profile", "fusion", "--release"],
+        [sys.executable, "tools/validate_mitm_coverage.py"],
         [sys.executable, "scripts/validate_app_sources.py"],
         [sys.executable, "scripts/android_format_check.py"],
         [sys.executable, "tools/validate_upstream_risk_gate.py"],

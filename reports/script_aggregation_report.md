@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-07-09T19:02:50Z
+- generated: 2026-07-09T19:10:54Z
 - enabled: True
 - input script entries: 231
 - output script entries: 181
@@ -70,7 +70,7 @@
 - None
 
 ## Cache Fallbacks
-- None
+- `https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/keep.js`: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>
 
 ## Preserved Reasons
 - preserved: binary body: 2

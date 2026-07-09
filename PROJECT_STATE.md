@@ -1,6 +1,43 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-06 06:20 +08:00
+Last updated: 2026-07-10 03:02 +08:00
+
+## 2026-07-10 Conservative MITM Compiler Snapshot
+
+- Added a conservative final-output MITM compiler stage for the Fusion module.
+- Scope is only the generated `[MITM]` hostname output in the final module.
+- No `Rules/`, `Rewrite/Sources/Apps/`, `Rewrite/Sources/Misc/`, App scripts, rewrite rules, map-local rules, Android routing policy, Windows routing policy, or public module URL was intentionally changed.
+- Default mode is strict equivalent normalization:
+  - split `hostname =` lines into tokens
+  - normalize case, whitespace, and separators
+  - remove exact duplicate tokens only
+  - keep wildcard hosts
+  - keep exact subdomains even if covered by a wildcard
+  - keep hosts without a statically parsed consumer
+  - preserve first-seen order
+- Wildcard range reduction remains effectively disabled unless matcher semantics and all finite dependencies are machine-proven.
+- Fail-closed behavior is implemented: if MITM coverage validation fails, the build falls back to the baseline unique MITM output instead of publishing a partial optimized result.
+- New maintained evidence:
+  - `reports/mitm_optimization_report.json`
+  - `reports/mitm_optimization_report.md`
+- New tools:
+  - `tools/build_mitm_baseline.py`
+  - `tools/validate_mitm_coverage.py`
+- New tests:
+  - `tests/test_mitm_optimizer.py`
+- Current report snapshot:
+  - baseline hostname tokens: `2059`
+  - baseline unique hostname tokens: `1234`
+  - normalized hostname tokens: `1234`
+  - exact duplicates removed: `825`
+  - wildcard count before / after: `34 / 34`
+  - proved wildcard reductions: `0`
+  - opaque features retained: `169`
+  - baseline-uncovered deep features recorded: `45`
+  - fallback: `False`
+- Full `python scripts/quality_gate.py` passed after the implementation.
+
+Boundary: this pass reduces duplicated MITM host declarations from accumulated sources. It does not prove every client runtime behavior globally equivalent; it proves the repository's static MITM output contract for parsed features and preserves anything that cannot be proven safe to narrow.
 
 ## 2026-07-06 Pages Deploy Retry Hardening Snapshot
 
