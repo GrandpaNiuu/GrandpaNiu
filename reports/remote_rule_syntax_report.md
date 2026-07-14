@@ -1,6 +1,6 @@
 # 远程规则语法校验报告
 
-生成时间：2026-07-14 02:52:47 +0800
+生成时间：2026-07-15 01:44:28 +0800
 
 本报告用于阻断 Shadowrocket / Surge 远程规则集红叉问题。校验目标包括：
 
@@ -26,10 +26,10 @@
 
 | 状态 | 类型 | 规则数 | 检查来源 | 引用位置 | URL | 错误 / 警告 |
 |---|---|---:|---|---|---|---|
-| pass | DOMAIN-SET | 184530 | http:200 | Release/Ronghemokuai.sgmodule:355<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:355 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
-| pass | DOMAIN-SET | 176535 | http:200 | Release/Ronghemokuai.sgmodule:351<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:351 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
-| pass | DOMAIN-SET | 165713 | http:200 | Release/Ronghemokuai.sgmodule:354<br>Rewrite/Remotes/sources.json:Loyalsoldier reject<br>Ronghemokuai.sgmodule:354 | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` | - |
-| pass | DOMAIN-SET | 98803 | http:200 | Release/Ronghemokuai.sgmodule:352<br>Rewrite/Remotes/sources.json:anti-AD Surge<br>Ronghemokuai.sgmodule:352 | `https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt` | - |
+| pass | DOMAIN-SET | 184882 | http:200 | Release/Ronghemokuai.sgmodule:355<br>Rewrite/Remotes/sources.json:217heidai adblockfilters<br>Ronghemokuai.sgmodule:355 | `https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksurge.list` | - |
+| pass | DOMAIN-SET | 176859 | http:200 | Release/Ronghemokuai.sgmodule:351<br>Rewrite/Remotes/sources.json:Cats-Team AdRules<br>Ronghemokuai.sgmodule:351 | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt` | - |
+| pass | DOMAIN-SET | 166040 | http:200 | Release/Ronghemokuai.sgmodule:354<br>Rewrite/Remotes/sources.json:Loyalsoldier reject<br>Ronghemokuai.sgmodule:354 | `https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt` | - |
+| pass | DOMAIN-SET | 99436 | http:200 | Release/Ronghemokuai.sgmodule:352<br>Rewrite/Remotes/sources.json:anti-AD Surge<br>Ronghemokuai.sgmodule:352 | `https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt` | - |
 | pass | RULE-SET | 588 | http:200 | Release/Ronghemokuai.sgmodule:353<br>Rewrite/Remotes/sources.json:ACL4SSR BanAD<br>Ronghemokuai.sgmodule:353 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list` | - |
 | pass | RULE-SET | 40977 | http:200 | Release/Ronghemokuai.sgmodule:1209<br>Rewrite/Remotes/sources.json:ACL4SSR BanEasyList<br>Ronghemokuai.sgmodule:1209 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list` | - |
 | pass | RULE-SET | 5050 | http:200 | Release/Ronghemokuai.sgmodule:360<br>Rewrite/Remotes/sources.json:ACL4SSR BanEasyListChina<br>Ronghemokuai.sgmodule:360 | `https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list` | - |
