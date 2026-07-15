@@ -1,6 +1,26 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-10 03:02 +08:00
+Last updated: 2026-07-16 00:06 +08:00
+
+## 2026-07-15 Strict Equivalent MITM Compaction Handoff
+
+- The owner approved reducing MITM hostname tokens only through strict semantic equivalence.
+- `scripts/build_module.py` now enables `allow_equivalent_compaction` with matcher contract `shadowrocket-mitm-suffix-wildcard-v1` for the final Fusion output.
+- The active optimization removes exact tokens covered by an existing canonical wildcard; it never synthesizes or removes a wildcard.
+- Conservative exclusions remain in output:
+  - root domains
+  - force-keep tokens
+  - positive tokens overlapping a negative hostname token
+  - IPs, ports, partial wildcards, `?` patterns, and other non-exact tokens
+- Final result is `1234 -> 1189` unique hostname tokens with wildcard count unchanged at `34`.
+- Every removal records exact-token source and covering-wildcard source in `reports/mitm_optimization_report.json`.
+- If contract validation fails, the compiler restores the complete unique baseline and records fallback; fallback tests verify the final removed count becomes zero.
+- The independent validator reconstructs the baseline and force-keep set from Fusion sources and checks negative conflicts, exact-token eligibility, retained order, non-MITM fingerprints, and full fallback restoration.
+- `tools/build_mitm_baseline.py` now reads only local MITM sources plus the generated module's effective feature sections; it does not run script aggregation or network-backed build stages.
+- Full Builder `--release --check` and full quality gate passed; `398` App modules remain non-empty and Android / Windows generation remains healthy.
+- Final repository test count is `57`.
+
+Next AI must not add new broad wildcards to reduce token count. Further reduction requires another explicit contract and must retain fail-closed behavior.
 
 ## 2026-07-10 Conservative MITM Compiler Handoff
 

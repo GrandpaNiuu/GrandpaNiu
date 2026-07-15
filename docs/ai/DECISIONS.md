@@ -1,6 +1,21 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-10 03:02 +08:00
+Last updated: 2026-07-16 00:06 +08:00
+
+### 2026-07-15 - Existing Wildcards May Compact Redundant Exact MITM Tokens
+
+GrandpaNiu may remove an exact final-output MITM hostname when all of the following are true:
+
+- an already-declared canonical `*.example.com` wildcard covers it under matcher contract `shadowrocket-mitm-suffix-wildcard-v1`
+- the wildcard remains in the output
+- the exact token is not force-kept
+- no negative hostname token overlaps it
+- it is a plain hostname rather than an IP, port, partial wildcard, `?` pattern, or other complex token
+- independent validation confirms the optimized set is a strict baseline subset, all wildcard tokens are unchanged, and all removed exact hosts remain covered
+
+This decision supersedes only the earlier default prohibition on removing exact hosts under wildcard coverage. It does not authorize creating broader wildcards, removing wildcards, deleting no-consumer hosts, changing source fragments, or enabling wildcard range reduction.
+
+Reason: removing a singleton exact matcher already contained in a retained wildcard does not change the matcher coverage union under the approved repository contract, while reducing final client configuration size. Unproven cases remain untouched and validation failure falls back to baseline.
 
 ### 2026-07-10 - MITM Optimization Defaults To Strict Equivalent Normalize
 

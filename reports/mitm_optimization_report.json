@@ -1,4 +1,6 @@
 {
+  "attempted_proved_reduction_count": 0,
+  "attempted_semantic_equivalent_removed_count": 45,
   "baseline_hostname_token_count": 2059,
   "baseline_unique_hostname_token_count": 1234,
   "baseline_unique_hosts": [
@@ -34740,7 +34742,7 @@
     "spclient.wg.spotify.com",
     "youtubei.googleapis.com"
   ],
-  "generated_at": "2026-07-15T02:34:20.483748+08:00",
+  "generated_at": "2026-07-16T00:05:11.608490+08:00",
   "host_entries": [
     {
       "normalized": "api.zhihu.com",
@@ -43381,8 +43383,24 @@
       "token": "*.zhihu.com"
     }
   ],
-  "mode": "normalize",
-  "normalized_hostname_token_count": 1234,
+  "matcher_contract": {
+    "allow_equivalent_compaction": true,
+    "allow_range_reduction": false,
+    "canonical_suffix_wildcard_matches_multiple_levels": true,
+    "canonical_suffix_wildcard_matches_root": false,
+    "canonical_suffix_wildcard_matches_subdomains": true,
+    "exact_hostname_case_insensitive": true,
+    "name": "shadowrocket-mitm-suffix-wildcard-v1",
+    "negative_tokens_are_not_positive_coverage": true,
+    "verification": "tests/test_mitm_optimizer.py and owner-approved repository compatibility contract",
+    "wildcard_semantics_verified": true
+  },
+  "mode": "equivalent",
+  "non_mitm_fingerprint": {
+    "line_count": 2762,
+    "sha256": "8c216c35bbe76cb915a12f4493a4e8d08d8826086e7a0f753446d532646319ab"
+  },
+  "normalized_hostname_token_count": 1189,
   "opaque_retained_count": 169,
   "optimization_items": [
     {
@@ -52024,191 +52042,464 @@
       "token": "*.zhihu.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.spclient.spotify.com"
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 0,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "api.zhihu.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.dianping.com"
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "appcloud2.zhihu.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.iqiyi.com"
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 2,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "link.zhihu.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.17u.cn"
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 3,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "m-cloud.zhihu.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.58cdn.com.cn"
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 4,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "page-info.zhihu.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.boohee.cn"
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 5,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "www.zhihu.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.boohee.com"
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 6,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "zhuanlan.zhihu.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.gamersky.com"
+      "covering_wildcard": "*.amap.com",
+      "covering_wildcard_order": 1285,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/amap.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 13,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "ai.amap.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.i18n-pglstatp.com"
+      "covering_wildcard": "*.weibo.cn",
+      "covering_wildcard_order": 1980,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/weibo.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 24,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "api.weibo.cn"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.kakamobi.cn"
+      "covering_wildcard": "*.weibo.com",
+      "covering_wildcard_order": 1981,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/weibo.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 33,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "bootpreload.uve.weibo.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.kingsoft-office-service.com"
+      "covering_wildcard": "*.amap.com",
+      "covering_wildcard_order": 1285,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/amap.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 61,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "info.amap.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.music.126.net"
+      "covering_wildcard": "*.amap.com",
+      "covering_wildcard_order": 1285,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/amap.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 67,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "m5-zb.amap.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.pangolin-sdk-toutiao.com"
+      "covering_wildcard": "*.amap.com",
+      "covering_wildcard_order": 1285,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/amap.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 68,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "m5.amap.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.pglstatp-toutiao.com"
+      "covering_wildcard": "*.amap.com",
+      "covering_wildcard_order": 1285,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/amap.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 82,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "oss.amap.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.pstatp.com"
+      "covering_wildcard": "*.amap.com",
+      "covering_wildcard_order": 1285,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/amap.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 99,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "sns.amap.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.sh.wxgateway.com"
+      "covering_wildcard": "*.weibo.cn",
+      "covering_wildcard_order": 1980,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/weibo.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 106,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "tqt.weibo.cn"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.shuqireader.com"
+      "covering_wildcard": "*.weibo.cn",
+      "covering_wildcard_order": 1980,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/weibo.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 112,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "weibointl.api.weibo.cn"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.sohu.com"
+      "covering_wildcard": "*.pangolin-sdk-toutiao.com",
+      "covering_wildcard_order": 1009,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 210,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-qingrex-miniapp-app-ad.conf",
+      "token": "api-access.pangolin-sdk-toutiao.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.townmalls.cn"
+      "covering_wildcard": "*.pangolin-sdk-toutiao.com",
+      "covering_wildcard_order": 1009,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 227,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-qingrex-miniapp-app-ad.conf",
+      "token": "ether-pack.pangolin-sdk-toutiao.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.ubixioe.com"
+      "covering_wildcard": "*.pangolin-sdk-toutiao.com",
+      "covering_wildcard_order": 1009,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 228,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-qingrex-miniapp-app-ad.conf",
+      "token": "gromore.pangolin-sdk-toutiao.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.amap.com"
+      "covering_wildcard": "*.ubixioe.com",
+      "covering_wildcard_order": 1144,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 252,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-qingrex-miniapp-app-ad.conf",
+      "token": "tower.ubixioe.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.pangolin-sdk-toutiao.*"
+      "covering_wildcard": "*.huya.com",
+      "covering_wildcard_order": 1511,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/huya.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 278,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-stable-plus.conf",
+      "token": "live-ads.huya.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.pstatp.com.*"
+      "covering_wildcard": "*.huya.com",
+      "covering_wildcard_order": 1511,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/huya.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 279,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-stable-plus.conf",
+      "token": "cdn.wup.huya.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.pglstatp-toutiao.com.*"
+      "covering_wildcard": "*.yiche.com",
+      "covering_wildcard_order": 2014,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/yiche.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 352,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-stable-plus.conf",
+      "token": "api.ycapp.yiche.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.huya.com"
+      "covering_wildcard": "*.yiche.com",
+      "covering_wildcard_order": 2014,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/yiche.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 353,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-stable-plus.conf",
+      "token": "cheyouapi.ycapp.yiche.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.msstatic.com"
+      "covering_wildcard": "*.xiaopeng.com",
+      "covering_wildcard_order": 2000,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/xiaopeng.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 355,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-stable-plus.conf",
+      "token": "ext-svc.xiaopeng.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.pcauto.com.cn"
+      "covering_wildcard": "*.pcauto.com.cn",
+      "covering_wildcard_order": 1738,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/pcauto.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 422,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "agent-count.pcauto.com.cn"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.pconline.com.cn"
+      "covering_wildcard": "*.pconline.com.cn",
+      "covering_wildcard_order": 1739,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/pcauto.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 423,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "agent-count.pconline.com.cn"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.weibo.cn"
+      "covering_wildcard": "*.msstatic.com",
+      "covering_wildcard_order": 1512,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/huya.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 630,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "business.msstatic.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.weibo.com"
+      "covering_wildcard": "*.msstatic.com",
+      "covering_wildcard_order": 1512,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/huya.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 652,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "cdnfile1.msstatic.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.xiaopeng.com"
+      "covering_wildcard": "*.pcauto.com.cn",
+      "covering_wildcard_order": 1738,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/pcauto.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 963,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "mrobot.pcauto.com.cn"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.yiche.com"
+      "covering_wildcard": "*.pconline.com.cn",
+      "covering_wildcard_order": 1739,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/pcauto.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 964,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "mrobot.pconline.com.cn"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.googlevideo.com"
+      "covering_wildcard": "*.shuqireader.com",
+      "covering_wildcard_order": 1083,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1107,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "stars.shuqireader.com"
     },
     {
-      "decision": "kept",
-      "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence",
-      "token": "*.zhihu.com"
+      "covering_wildcard": "*.17u.cn",
+      "covering_wildcard_order": 380,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1222,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "wx.17u.cn"
+    },
+    {
+      "covering_wildcard": "*.boohee.com",
+      "covering_wildcard_order": 627,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1336,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/boo-hee.conf",
+      "token": "api.boohee.com"
+    },
+    {
+      "covering_wildcard": "*.boohee.com",
+      "covering_wildcard_order": 627,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1338,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/boo-hee.conf",
+      "token": "lego.boohee.com"
+    },
+    {
+      "covering_wildcard": "*.boohee.com",
+      "covering_wildcard_order": 627,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1339,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/boo-hee.conf",
+      "token": "status.boohee.com"
+    },
+    {
+      "covering_wildcard": "*.kakamobi.cn",
+      "covering_wildcard_order": 868,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1529,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "token": "jiaxiao-awd.kakamobi.cn"
+    },
+    {
+      "covering_wildcard": "*.kakamobi.cn",
+      "covering_wildcard_order": 868,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1531,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "token": "swallow.kakamobi.cn"
+    },
+    {
+      "covering_wildcard": "*.kakamobi.cn",
+      "covering_wildcard_order": 868,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1532,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "token": "monkey.kakamobi.cn"
+    },
+    {
+      "covering_wildcard": "*.kakamobi.cn",
+      "covering_wildcard_order": 868,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1534,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "token": "jiakao-misc.kakamobi.cn"
+    },
+    {
+      "covering_wildcard": "*.kakamobi.cn",
+      "covering_wildcard_order": 868,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1535,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "token": "squirrel.kakamobi.cn"
+    },
+    {
+      "covering_wildcard": "*.kakamobi.cn",
+      "covering_wildcard_order": 868,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1536,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "token": "scs.kakamobi.cn"
+    },
+    {
+      "covering_wildcard": "*.pglstatp-toutiao.com",
+      "covering_wildcard_order": 1015,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1799,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/seven-cat.conf",
+      "token": "sf3-fe-tos.pglstatp-toutiao.com"
+    },
+    {
+      "covering_wildcard": "*.shuqireader.com",
+      "covering_wildcard_order": 1083,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1811,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/shu-qi-center-reader.conf",
+      "token": "ocean.shuqireader.com"
     }
   ],
+  "optimized_hostname_token_count": 1189,
   "optimized_hosts": [
-    "api.zhihu.com",
-    "appcloud2.zhihu.com",
-    "link.zhihu.com",
-    "m-cloud.zhihu.com",
-    "page-info.zhihu.com",
-    "www.zhihu.com",
-    "zhuanlan.zhihu.com",
     "spclient.wg.spotify.com",
     "*.spclient.spotify.com",
     "youtubei.googleapis.com",
     "acs.m.goofish.com",
     "acs.m.taobao.com",
     "afd.baidu.com",
-    "ai.amap.com",
     "aiqicha.baidu.com",
     "alsc-buy2.ele.me",
     "an.baidu.com",
@@ -52219,7 +52510,6 @@
     "api.m.jd.com",
     "api.map.baidu.com",
     "api.pinduoduo.com",
-    "api.weibo.cn",
     "api.xiaoyuzhoufm.com",
     "apimobile.meituan.com",
     "apiv2.douyucdn.cn",
@@ -52228,7 +52518,6 @@
     "appconf.mail.163.com",
     "appwk.baidu.com",
     "awp-assets.meituan.net",
-    "bootpreload.uve.weibo.com",
     "c.m.163.com",
     "capi.douyucdn.cn",
     "cc.163.com",
@@ -52256,14 +52545,11 @@
     "gw.m.163.com",
     "idgdata.baidu.com",
     "img.meituan.net",
-    "info.amap.com",
     "interface*.music.163.com",
     "jdread-api.jd.com",
     "lop-proxy.jd.com",
     "m.ximalaya.com",
     "m.you.163.com",
-    "m5-zb.amap.com",
-    "m5.amap.com",
     "mall.meituan.com",
     "manga.bilibili.com",
     "mbd.baidu.com",
@@ -52277,7 +52563,6 @@
     "newclient.map.baidu.com",
     "nex.163.com",
     "nr-op.elemecdn.com",
-    "oss.amap.com",
     "p*.meituan.net",
     "p.du.163.com",
     "p.meituan.com",
@@ -52294,20 +52579,17 @@
     "search.ximalaya.com",
     "searchwsa.ximalaya.com",
     "shopping.ele.me",
-    "sns.amap.com",
     "so.xiaohongshu.com",
     "sqt.meituan.com",
     "staticlive.douyucdn.cn",
     "support.you.163.com",
     "tanbi.baidu.com",
     "tiebac.baidu.com",
-    "tqt.weibo.cn",
     "update.pan.baidu.com",
     "venus.douyucdn.cn",
     "w.meituan.net",
     "waimai-guide.ele.me",
     "web.meituan.com",
-    "weibointl.api.weibo.cn",
     "wmapi.meituan.com",
     "www.baidu.com",
     "www.icourse163.org",
@@ -52401,7 +52683,6 @@
     "api.szbgcx.cn",
     "api.zcool.com.cn",
     "api-access.pangolin-sdk-toutiao*.com",
-    "api-access.pangolin-sdk-toutiao.com",
     "api-mifit*.huami.com",
     "api-mifit-cn2.huami.com",
     "api-mifit.huami.com",
@@ -52417,8 +52698,6 @@
     "conf-darwin.xycdn.com",
     "dict.youdao.com",
     "ecard.shenzhentong.com",
-    "ether-pack.pangolin-sdk-toutiao.com",
-    "gromore.pangolin-sdk-toutiao.com",
     "gw.alicdn.com",
     "gw.chuangkit.com",
     "hfapp-service.qweather.net",
@@ -52442,7 +52721,6 @@
     "shealthyapi.senssun.com",
     "t-dsp.pinduoduo.com",
     "toblog.ctobsnssdk.com",
-    "tower.ubixioe.com",
     "umerp.umetrip.com",
     "us.l.qq.com",
     "lanfanapp.com",
@@ -52468,8 +52746,6 @@
     "ggc.miguvideo.com",
     "ggic*.miguvideo.com",
     "ggx*.miguvideo.com",
-    "live-ads.huya.com",
-    "cdn.wup.huya.com",
     "api-m2u.kuaishou.com",
     "m2u-api.getkwai.com",
     "apissl.gifshow.com",
@@ -52536,10 +52812,7 @@
     "club.app.autohome.com.cn",
     "adproxy.autohome.com.cn",
     "dealer.m.autohome.com.cn",
-    "api.ycapp.yiche.com",
-    "cheyouapi.ycapp.yiche.com",
     "cache.bydauto.com.cn",
-    "ext-svc.xiaopeng.com",
     "app-api.niu.com",
     "api-mifit*.zepp.com",
     "api.ys7.com",
@@ -52594,8 +52867,6 @@
     "ads.zhinengxiyifang.cn",
     "adsoss.zhinengxiyifang.cn",
     "adx-cn.anythinktech.com",
-    "agent-count.pcauto.com.cn",
-    "agent-count.pconline.com.cn",
     "air-matters.com",
     "alt-r.my.com",
     "am.didistatic.com",
@@ -52751,7 +53022,6 @@
     "*.boohee.com",
     "booking.bestwehotel.com",
     "bp-api.bestv.cn",
-    "business.msstatic.com",
     "buy.line.me",
     "c.zhangle.com",
     "cap.caocaokeji.cn",
@@ -52768,7 +53038,6 @@
     "cdn.api.fotoable.com",
     "cdn.sdb.com.cn",
     "cdn.wtzw.com",
-    "cdnfile1.msstatic.com",
     "cds.wifi188.com",
     "cheyouquan.kakamobi.com",
     "chl.tf.cn",
@@ -53004,8 +53273,6 @@
     "mp.weixin.qq.com",
     "mpcs.suning.com",
     "mps.95508.com",
-    "mrobot.pcauto.com.cn",
-    "mrobot.pconline.com.cn",
     "mrp.mcloud.139.com",
     "msglb.91160.com",
     "muses.ksedt.com",
@@ -53132,7 +53399,6 @@
     "ssp.soulapp.cn",
     "st7niu.aicarmap.com",
     "starplucker.cyapi.cn",
-    "stars.shuqireader.com",
     "startup.umetrip.com",
     "stat.10jqka.com.cn",
     "stat.peopleapp.com",
@@ -53237,7 +53503,6 @@
     "www.ymm56.com",
     "www.zybang.com",
     "www1.elecfans.com",
-    "wx.17u.cn",
     "wx.api.ke.com",
     "wx.mygolbs.com",
     "wxapp.api.ke.com",
@@ -53288,9 +53553,6 @@
     "grpc.biliapi.net",
     "www.bilibili.com",
     "pan-api.bitqiu.com",
-    "api.boohee.com",
-    "lego.boohee.com",
-    "status.boohee.com",
     "e*.caixin.com",
     "g*.caixin.com",
     "m*.caixin.com",
@@ -53346,12 +53608,6 @@
     "*.huya.com",
     "*.msstatic.com",
     "businessapi.ksedt.com",
-    "jiaxiao-awd.kakamobi.cn",
-    "swallow.kakamobi.cn",
-    "monkey.kakamobi.cn",
-    "jiakao-misc.kakamobi.cn",
-    "squirrel.kakamobi.cn",
-    "scs.kakamobi.cn",
     "richmanapi.jxedt.com",
     "bp-api.bestv.com.cn",
     "pay.kkmh.com",
@@ -53394,8 +53650,6 @@
     "m.riskbird.com",
     "cniot.roborock.com",
     "api.roborock.com",
-    "sf3-fe-tos.pglstatp-toutiao.com",
-    "ocean.shuqireader.com",
     "huichuan.sm.cn",
     "api.xueqiu.com",
     "open.xueqiu.com",
@@ -53430,10 +53684,465 @@
     "cgate.zhaopin.com",
     "*.zhihu.com"
   ],
-  "proof_reduce_disabled_due_to_missing_matcher_evidence": 34,
+  "proof_reduce_disabled_due_to_missing_matcher_evidence": 0,
   "proved_reduction_count": 0,
-  "same_hostname_token_set": true,
-  "version": 1,
+  "range_reduction_disabled_count": 34,
+  "same_hostname_token_set": false,
+  "same_mitm_coverage_under_matcher_contract": true,
+  "semantic_equivalent_removals": [
+    {
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 0,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "api.zhihu.com"
+    },
+    {
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "appcloud2.zhihu.com"
+    },
+    {
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 2,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "link.zhihu.com"
+    },
+    {
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 3,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "m-cloud.zhihu.com"
+    },
+    {
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 4,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "page-info.zhihu.com"
+    },
+    {
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 5,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "www.zhihu.com"
+    },
+    {
+      "covering_wildcard": "*.zhihu.com",
+      "covering_wildcard_order": 2051,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/zhihu.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 6,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-core.conf",
+      "token": "zhuanlan.zhihu.com"
+    },
+    {
+      "covering_wildcard": "*.amap.com",
+      "covering_wildcard_order": 1285,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/amap.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 13,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "ai.amap.com"
+    },
+    {
+      "covering_wildcard": "*.weibo.cn",
+      "covering_wildcard_order": 1980,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/weibo.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 24,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "api.weibo.cn"
+    },
+    {
+      "covering_wildcard": "*.weibo.com",
+      "covering_wildcard_order": 1981,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/weibo.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 33,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "bootpreload.uve.weibo.com"
+    },
+    {
+      "covering_wildcard": "*.amap.com",
+      "covering_wildcard_order": 1285,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/amap.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 61,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "info.amap.com"
+    },
+    {
+      "covering_wildcard": "*.amap.com",
+      "covering_wildcard_order": 1285,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/amap.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 67,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "m5-zb.amap.com"
+    },
+    {
+      "covering_wildcard": "*.amap.com",
+      "covering_wildcard_order": 1285,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/amap.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 68,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "m5.amap.com"
+    },
+    {
+      "covering_wildcard": "*.amap.com",
+      "covering_wildcard_order": 1285,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/amap.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 82,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "oss.amap.com"
+    },
+    {
+      "covering_wildcard": "*.amap.com",
+      "covering_wildcard_order": 1285,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/amap.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 99,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "sns.amap.com"
+    },
+    {
+      "covering_wildcard": "*.weibo.cn",
+      "covering_wildcard_order": 1980,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/weibo.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 106,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "tqt.weibo.cn"
+    },
+    {
+      "covering_wildcard": "*.weibo.cn",
+      "covering_wildcard_order": 1980,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/weibo.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 112,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-app-clean.conf",
+      "token": "weibointl.api.weibo.cn"
+    },
+    {
+      "covering_wildcard": "*.pangolin-sdk-toutiao.com",
+      "covering_wildcard_order": 1009,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 210,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-qingrex-miniapp-app-ad.conf",
+      "token": "api-access.pangolin-sdk-toutiao.com"
+    },
+    {
+      "covering_wildcard": "*.pangolin-sdk-toutiao.com",
+      "covering_wildcard_order": 1009,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 227,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-qingrex-miniapp-app-ad.conf",
+      "token": "ether-pack.pangolin-sdk-toutiao.com"
+    },
+    {
+      "covering_wildcard": "*.pangolin-sdk-toutiao.com",
+      "covering_wildcard_order": 1009,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 228,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-qingrex-miniapp-app-ad.conf",
+      "token": "gromore.pangolin-sdk-toutiao.com"
+    },
+    {
+      "covering_wildcard": "*.ubixioe.com",
+      "covering_wildcard_order": 1144,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 252,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-qingrex-miniapp-app-ad.conf",
+      "token": "tower.ubixioe.com"
+    },
+    {
+      "covering_wildcard": "*.huya.com",
+      "covering_wildcard_order": 1511,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/huya.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 278,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-stable-plus.conf",
+      "token": "live-ads.huya.com"
+    },
+    {
+      "covering_wildcard": "*.huya.com",
+      "covering_wildcard_order": 1511,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/huya.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 279,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-stable-plus.conf",
+      "token": "cdn.wup.huya.com"
+    },
+    {
+      "covering_wildcard": "*.yiche.com",
+      "covering_wildcard_order": 2014,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/yiche.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 352,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-stable-plus.conf",
+      "token": "api.ycapp.yiche.com"
+    },
+    {
+      "covering_wildcard": "*.yiche.com",
+      "covering_wildcard_order": 2014,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/yiche.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 353,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-stable-plus.conf",
+      "token": "cheyouapi.ycapp.yiche.com"
+    },
+    {
+      "covering_wildcard": "*.xiaopeng.com",
+      "covering_wildcard_order": 2000,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/xiaopeng.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 355,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-stable-plus.conf",
+      "token": "ext-svc.xiaopeng.com"
+    },
+    {
+      "covering_wildcard": "*.pcauto.com.cn",
+      "covering_wildcard_order": 1738,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/pcauto.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 422,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "agent-count.pcauto.com.cn"
+    },
+    {
+      "covering_wildcard": "*.pconline.com.cn",
+      "covering_wildcard_order": 1739,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/pcauto.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 423,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "agent-count.pconline.com.cn"
+    },
+    {
+      "covering_wildcard": "*.msstatic.com",
+      "covering_wildcard_order": 1512,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/huya.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 630,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "business.msstatic.com"
+    },
+    {
+      "covering_wildcard": "*.msstatic.com",
+      "covering_wildcard_order": 1512,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/huya.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 652,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "cdnfile1.msstatic.com"
+    },
+    {
+      "covering_wildcard": "*.pcauto.com.cn",
+      "covering_wildcard_order": 1738,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/pcauto.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 963,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "mrobot.pcauto.com.cn"
+    },
+    {
+      "covering_wildcard": "*.pconline.com.cn",
+      "covering_wildcard_order": 1739,
+      "covering_wildcard_source": "Rewrite/Sources/Apps/pcauto.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 964,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "mrobot.pconline.com.cn"
+    },
+    {
+      "covering_wildcard": "*.shuqireader.com",
+      "covering_wildcard_order": 1083,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1107,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "stars.shuqireader.com"
+    },
+    {
+      "covering_wildcard": "*.17u.cn",
+      "covering_wildcard_order": 380,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1222,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/MITM-extended.conf",
+      "token": "wx.17u.cn"
+    },
+    {
+      "covering_wildcard": "*.boohee.com",
+      "covering_wildcard_order": 627,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1336,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/boo-hee.conf",
+      "token": "api.boohee.com"
+    },
+    {
+      "covering_wildcard": "*.boohee.com",
+      "covering_wildcard_order": 627,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1338,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/boo-hee.conf",
+      "token": "lego.boohee.com"
+    },
+    {
+      "covering_wildcard": "*.boohee.com",
+      "covering_wildcard_order": 627,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1339,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/boo-hee.conf",
+      "token": "status.boohee.com"
+    },
+    {
+      "covering_wildcard": "*.kakamobi.cn",
+      "covering_wildcard_order": 868,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1529,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "token": "jiaxiao-awd.kakamobi.cn"
+    },
+    {
+      "covering_wildcard": "*.kakamobi.cn",
+      "covering_wildcard_order": 868,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1531,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "token": "swallow.kakamobi.cn"
+    },
+    {
+      "covering_wildcard": "*.kakamobi.cn",
+      "covering_wildcard_order": 868,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1532,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "token": "monkey.kakamobi.cn"
+    },
+    {
+      "covering_wildcard": "*.kakamobi.cn",
+      "covering_wildcard_order": 868,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1534,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "token": "jiakao-misc.kakamobi.cn"
+    },
+    {
+      "covering_wildcard": "*.kakamobi.cn",
+      "covering_wildcard_order": 868,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1535,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "token": "squirrel.kakamobi.cn"
+    },
+    {
+      "covering_wildcard": "*.kakamobi.cn",
+      "covering_wildcard_order": 868,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1536,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/jia-kao-bao-dian.conf",
+      "token": "scs.kakamobi.cn"
+    },
+    {
+      "covering_wildcard": "*.pglstatp-toutiao.com",
+      "covering_wildcard_order": 1015,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1799,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/seven-cat.conf",
+      "token": "sf3-fe-tos.pglstatp-toutiao.com"
+    },
+    {
+      "covering_wildcard": "*.shuqireader.com",
+      "covering_wildcard_order": 1083,
+      "covering_wildcard_source": "Rewrite/Sources/MITM-extended.conf",
+      "decision": "removed_as_semantically_redundant",
+      "order": 1811,
+      "reason": "existing_wildcard_preserves_exact_host_coverage",
+      "source": "Rewrite/Sources/Apps/shu-qi-center-reader.conf",
+      "token": "ocean.shuqireader.com"
+    }
+  ],
+  "semantic_equivalent_removed_count": 45,
+  "version": 2,
   "wildcard_count_after": 34,
   "wildcard_count_before": 34
 }

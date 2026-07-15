@@ -1,6 +1,30 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-10 03:02 +08:00
+Last updated: 2026-07-16 00:06 +08:00
+
+## 2026-07-15 Strict Equivalent MITM Compaction Risk Note
+
+Risk level: medium MITM compiler risk, low source-policy risk.
+
+Authorized change:
+
+- Reduce final Fusion MITM hostname count without changing Script, Rewrite, Map Local, Rule, App source, Android policy, or Windows routing behavior.
+- Use only existing canonical wildcard coverage; do not create or remove wildcards.
+
+Mitigations:
+
+- Root domains, force-keep hosts, negative conflicts, IPs, ports, and complex patterns are retained.
+- All `34` wildcard tokens remain unchanged.
+- Each of the `45` removed exact tokens has exact-source and wildcard-source evidence.
+- The independent validator reconstructs source baseline and force-keep data, rejects negative conflicts and complex-token removals, verifies deep features and non-MITM fingerprints, and checks the final Release host list.
+- A deliberately inconsistent matcher test proves validation failure restores the `1234`-host unique baseline and reports zero final removals.
+- Full Builder and full quality gate passed with `57` tests.
+
+Remaining risk:
+
+- The matcher contract is a repository compatibility contract approved by the owner; it is not a universal proof for every undocumented client version.
+- Static deep-feature parsing still records `169` opaque features and `45` pre-existing baseline-uncovered features. This task does not delete, expand, or reinterpret them.
+- Any real client regression should disable only `allow_equivalent_compaction` first; source MITM declarations remain available for immediate rebuild and rollback.
 
 ## 2026-07-10 Conservative MITM Compiler Risk Note
 

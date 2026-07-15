@@ -109,6 +109,11 @@ EXPECTED_UPDATE_URL = "#!update-url=https://grandpaniuu.github.io/GrandpaNiu/Ron
 SECTION_RE = re.compile(r"^\[([^\]]+)\]\s*$")
 SCRIPT_NAME_RE = re.compile(r"^\s*([^#\s][^=]+?)\s*=")
 HOSTNAME_RE = re.compile(r"^\s*hostname\s*=\s*(.+)$")
+MITM_EXACT_HOST_RE = re.compile(
+    r"(?=.{1,253}\Z)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+"
+    r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\Z",
+    re.IGNORECASE,
+)
 URL_HOST_RE = re.compile(r"https\??:(?:\\\/\\\/|//)([^\s\)\(\|]+)", re.IGNORECASE)
 SCRIPT_FIELD_SPLIT_RE = re.compile(
     r",\s*(?=(?:type|pattern|argument|requires-body|max-size|binary-body-mode|script-path|timeout|engine|script-update-interval)\s*=)"
@@ -1420,9 +1425,17 @@ class DeepFeature:
 class ShadowrocketMITMMatcher:
     """Conservative local model for target MITM hostname token matching."""
 
-    def __init__(self, wildcard_semantics_verified: bool = False, allow_reduction: bool = False) -> None:
+    CONTRACT_NAME = "shadowrocket-mitm-suffix-wildcard-v1"
+
+    def __init__(
+        self,
+        wildcard_semantics_verified: bool = False,
+        allow_reduction: bool = False,
+        allow_equivalent_compaction: bool = False,
+    ) -> None:
         self.wildcard_semantics_verified = wildcard_semantics_verified
         self.allow_reduction = allow_reduction
+        self.allow_equivalent_compaction = allow_equivalent_compaction
 
     def normalize(self, value: str) -> str:
         return normalize_mitm_host_token(value)
@@ -1441,6 +1454,20 @@ class ShadowrocketMITMMatcher:
 
     def covered_by_any(self, hostname: str, tokens: Iterable[str]) -> bool:
         return any(self.covers(token, hostname) for token in tokens)
+
+    def contract_evidence(self) -> dict[str, object]:
+        return {
+            "name": self.CONTRACT_NAME,
+            "wildcard_semantics_verified": self.wildcard_semantics_verified,
+            "allow_equivalent_compaction": self.allow_equivalent_compaction,
+            "allow_range_reduction": self.allow_reduction,
+            "exact_hostname_case_insensitive": True,
+            "canonical_suffix_wildcard_matches_subdomains": True,
+            "canonical_suffix_wildcard_matches_root": False,
+            "canonical_suffix_wildcard_matches_multiple_levels": True,
+            "negative_tokens_are_not_positive_coverage": True,
+            "verification": "tests/test_mitm_optimizer.py and owner-approved repository compatibility contract",
+        }
 
 
 def normalize_mitm_host_token(token: str) -> str:
@@ -1610,6 +1637,15 @@ def fingerprint_non_mitm_sections(section_bodies: dict[str, str]) -> list[dict[s
     return fingerprints
 
 
+def non_mitm_fingerprint_summary(section_bodies: dict[str, str]) -> dict[str, object]:
+    fingerprints = fingerprint_non_mitm_sections(section_bodies)
+    payload = json.dumps(fingerprints, ensure_ascii=False, separators=(",", ":"))
+    return {
+        "sha256": hashlib.sha256(payload.encode("utf-8")).hexdigest(),
+        "line_count": len(fingerprints),
+    }
+
+
 def feature_has_coverage(feature: DeepFeature, hosts: Iterable[str], matcher: ShadowrocketMITMMatcher) -> bool:
     if not feature.requires_mitm or feature.opaque or not feature.host_constraints:
         return True
@@ -1637,6 +1673,26 @@ def validate_compiled_mitm_contract(
         reasons.append("reduced_set_is_not_baseline_subset")
     if mode == "reduce" and len(optimized_set) >= len(baseline_set):
         reasons.append("reduced_set_is_not_strictly_smaller")
+    if mode == "equivalent":
+        if not matcher.wildcard_semantics_verified:
+            reasons.append("equivalent_matcher_contract_not_verified")
+        if not optimized_set.issubset(baseline_set):
+            reasons.append("equivalent_set_is_not_baseline_subset")
+        baseline_patterns = {host for host in baseline_set if "*" in host or "?" in host}
+        optimized_patterns = {host for host in optimized_set if "*" in host or "?" in host}
+        if optimized_patterns != baseline_patterns:
+            reasons.append("equivalent_pattern_token_set_changed")
+        removed_hosts = baseline_set - optimized_set
+        uncovered_removed = sorted(
+            host
+            for host in removed_hosts
+            if host.startswith("-")
+            or "*" in host
+            or "?" in host
+            or not matcher.covered_by_any(host, optimized_hosts)
+        )
+        if uncovered_removed:
+            reasons.append("equivalent_removed_host_not_covered:" + ",".join(uncovered_removed[:20]))
     missing_coverage: list[str] = []
     for feature in effective_deep_features:
         if not feature.requires_mitm or feature.opaque or not feature.host_constraints:
@@ -1683,6 +1739,49 @@ def reduction_candidates(
         else:
             items.append({"token": wildcard, "decision": "kept", "reason": "coverage_would_change"})
     return optimized, items, opaque_retained
+
+
+def equivalent_compaction_candidates(
+    baseline_hosts: list[str],
+    matcher: ShadowrocketMITMMatcher,
+    force_keep_hosts: set[str],
+) -> tuple[list[str], list[dict[str, object]]]:
+    """Remove exact tokens already covered by an existing canonical wildcard."""
+
+    wildcards = [
+        host
+        for host in baseline_hosts
+        if host.startswith("*.") and MITM_EXACT_HOST_RE.fullmatch(host[2:])
+    ]
+    negative_patterns = [host[1:] for host in baseline_hosts if host.startswith("-") and len(host) > 1]
+    optimized: list[str] = []
+    items: list[dict[str, object]] = []
+    for host in baseline_hosts:
+        if host in force_keep_hosts:
+            optimized.append(host)
+            continue
+        if not MITM_EXACT_HOST_RE.fullmatch(host):
+            optimized.append(host)
+            continue
+        if any(matcher.covers(pattern, host) for pattern in negative_patterns):
+            optimized.append(host)
+            continue
+        covering_wildcard = next(
+            (wildcard for wildcard in wildcards if matcher.covers(wildcard, host)),
+            "",
+        )
+        if not covering_wildcard:
+            optimized.append(host)
+            continue
+        items.append(
+            {
+                "token": host,
+                "decision": "removed_as_semantically_redundant",
+                "covering_wildcard": covering_wildcard,
+                "reason": "existing_wildcard_preserves_exact_host_coverage",
+            }
+        )
+    return optimized, items
 
 
 def as_mitm_entries(declared_hosts: Iterable[Any]) -> list[MITMHostEntry]:
@@ -1736,7 +1835,9 @@ def compile_mitm_hosts(
     mode = "normalize"
     optimized_hosts = list(unique_hosts)
     proof_reduce_disabled = 0
+    range_reduction_disabled_count = 0
     proved_reduction_count = 0
+    semantic_equivalent_removed_count = 0
     opaque_retained_count = 0
     reduction_items: list[dict[str, object]] = []
     if matcher.allow_reduction and matcher.wildcard_semantics_verified:
@@ -1748,14 +1849,34 @@ def compile_mitm_hosts(
             mode = "normalize"
             optimized_hosts = list(unique_hosts)
             proof_reduce_disabled = wildcard_before
+    elif matcher.allow_equivalent_compaction and matcher.wildcard_semantics_verified:
+        optimized_hosts, reduction_items = equivalent_compaction_candidates(unique_hosts, matcher, force_keep)
+        first_entries = {entry.normalized: entry for entry in unique_entries}
+        for item in reduction_items:
+            exact_entry = first_entries.get(str(item.get("token", "")))
+            wildcard_entry = first_entries.get(str(item.get("covering_wildcard", "")))
+            if exact_entry is not None:
+                item["source"] = exact_entry.source
+                item["order"] = exact_entry.order
+            if wildcard_entry is not None:
+                item["covering_wildcard_source"] = wildcard_entry.source
+                item["covering_wildcard_order"] = wildcard_entry.order
+        semantic_equivalent_removed_count = len(reduction_items)
+        optimization_items.extend(reduction_items)
+        if semantic_equivalent_removed_count:
+            mode = "equivalent"
+        range_reduction_disabled_count = wildcard_before
     else:
         proof_reduce_disabled = wildcard_before
+        range_reduction_disabled_count = wildcard_before
         optimization_items.extend(
             {"token": host, "decision": "kept", "reason": "proof_reduce_disabled_due_to_missing_matcher_evidence"}
             for host in unique_hosts
             if host.startswith("*.")
         )
 
+    attempted_proved_reduction_count = proved_reduction_count
+    attempted_semantic_equivalent_removed_count = semantic_equivalent_removed_count
     valid, reasons = validate_compiled_mitm_contract(optimized_hosts, unique_hosts, features, matcher, force_keep, mode)
     fallback = False
     fallback_reason = ""
@@ -1764,6 +1885,8 @@ def compile_mitm_hosts(
         fallback_reason = ";".join(reasons)
         mode = "fallback"
         optimized_hosts = [entry.token for entry in unique_entries]
+        proved_reduction_count = 0
+        semantic_equivalent_removed_count = 0
     baseline_uncovered_count = sum(
         1
         for feature in features
@@ -1774,19 +1897,29 @@ def compile_mitm_hosts(
     )
 
     evidence: dict[str, object] = {
-        "version": 1,
+        "version": 2,
         "generated_at": dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).isoformat(),
         "mode": mode,
         "baseline_hostname_token_count": len(baseline_hosts),
         "baseline_unique_hostname_token_count": len(unique_hosts),
         "normalized_hostname_token_count": len(optimized_hosts),
-        "same_hostname_token_set": set(unique_hosts) == baseline_set if not fallback else set(unique_hosts) == baseline_set,
+        "optimized_hostname_token_count": len(optimized_hosts),
+        "same_hostname_token_set": {
+            normalize_mitm_host_token(host) for host in optimized_hosts
+        } == set(unique_hosts),
         "wildcard_count_before": wildcard_before,
         "wildcard_count_after": sum(1 for host in optimized_hosts if normalize_mitm_host_token(host).startswith("*.")),
         "deduplicated_exact_duplicate_count": len(baseline_hosts) - len(unique_hosts),
         "proved_reduction_count": proved_reduction_count,
+        "attempted_proved_reduction_count": attempted_proved_reduction_count,
+        "semantic_equivalent_removed_count": semantic_equivalent_removed_count,
+        "attempted_semantic_equivalent_removed_count": attempted_semantic_equivalent_removed_count,
+        "semantic_equivalent_removals": reduction_items if mode == "equivalent" else [],
         "opaque_retained_count": opaque_retained_count + sum(1 for feature in features if feature.opaque),
         "proof_reduce_disabled_due_to_missing_matcher_evidence": proof_reduce_disabled,
+        "range_reduction_disabled_count": range_reduction_disabled_count,
+        "same_mitm_coverage_under_matcher_contract": not fallback and mode in {"normalize", "equivalent"},
+        "matcher_contract": matcher.contract_evidence(),
         "fallback": fallback,
         "fallback_reason": fallback_reason,
         "coverage_validation": {
@@ -1812,13 +1945,14 @@ def write_mitm_optimization_reports(evidence: dict[str, object]) -> None:
     MITM_OPTIMIZATION_REPORT_JSON.parent.mkdir(parents=True, exist_ok=True)
     MITM_OPTIMIZATION_REPORT_JSON.write_text(json.dumps(evidence, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
     coverage = evidence.get("coverage_validation", {})
+    non_mitm = evidence.get("non_mitm_fingerprint", {})
     lines = [
         "# MITM Optimization Report",
         "",
         "- Scope: final Fusion `[MITM]` compile output only.",
-        "- Guarantee: default mode normalizes and de-duplicates exact hostname tokens without changing the normalized hostname set.",
+        "- Guarantee: exact duplicates are removed, and exact tokens may be compacted only when an existing canonical wildcard preserves the same matcher coverage.",
         "- Boundary: Script, URL Rewrite, Header Rewrite, Body Rewrite, Map Local and Rule sections are not rewritten by this stage.",
-        "- Reduction policy: wildcard range reduction is disabled unless matcher evidence and static dependency proof are both present.",
+        "- Reduction policy: no wildcard is created or removed; wildcard range reduction remains disabled.",
         "",
         "## Summary",
         "",
@@ -1828,12 +1962,20 @@ def write_mitm_optimization_reports(evidence: dict[str, object]) -> None:
         f"- baseline unique hostname tokens: `{evidence.get('baseline_unique_hostname_token_count')}`",
         f"- normalized hostname tokens: `{evidence.get('normalized_hostname_token_count')}`",
         f"- same normalized hostname set: `{evidence.get('same_hostname_token_set')}`",
+        f"- same MITM coverage under matcher contract: `{evidence.get('same_mitm_coverage_under_matcher_contract')}`",
+        f"- matcher contract: `{(evidence.get('matcher_contract') or {}).get('name')}`",
+        f"- non-MITM semantic fingerprint: `{non_mitm.get('sha256') if isinstance(non_mitm, dict) else None}`",
+        f"- non-MITM fingerprint lines: `{non_mitm.get('line_count') if isinstance(non_mitm, dict) else None}`",
         f"- wildcard count before: `{evidence.get('wildcard_count_before')}`",
         f"- wildcard count after: `{evidence.get('wildcard_count_after')}`",
         f"- strict duplicate tokens removed: `{evidence.get('deduplicated_exact_duplicate_count')}`",
         f"- proved wildcard reductions: `{evidence.get('proved_reduction_count')}`",
+        f"- attempted wildcard reductions: `{evidence.get('attempted_proved_reduction_count')}`",
+        f"- semantically redundant exact tokens removed: `{evidence.get('semantic_equivalent_removed_count')}`",
+        f"- attempted semantically redundant removals: `{evidence.get('attempted_semantic_equivalent_removed_count')}`",
         f"- opaque retained count: `{evidence.get('opaque_retained_count')}`",
         f"- reductions disabled by missing matcher proof: `{evidence.get('proof_reduce_disabled_due_to_missing_matcher_evidence')}`",
+        f"- wildcard range reductions kept disabled: `{evidence.get('range_reduction_disabled_count')}`",
         f"- fallback: `{evidence.get('fallback')}`",
         f"- fallback reason: `{evidence.get('fallback_reason') or 'none'}`",
         "",
@@ -1848,8 +1990,9 @@ def write_mitm_optimization_reports(evidence: dict[str, object]) -> None:
         "",
         "## Source Trace",
         "",
-        "- Full per-host source trace and per-feature fingerprints are written to `reports/mitm_optimization_report.json`.",
-        "- This report does not claim every client behavior is globally proven; it only states the static MITM coverage contract for parsed rules and verified matcher semantics.",
+        "- Full per-host source trace and compiled-section feature fingerprints are written to `reports/mitm_optimization_report.json`.",
+        "- Equivalent compaction evidence records both the exact-token source and the covering-wildcard source in the JSON report.",
+        "- This report does not claim every client behavior is globally proven; it states equivalence under the named repository matcher contract.",
         "- Any hostname or dependency that cannot be proven safe is kept in the output.",
         "",
     ]
@@ -1877,33 +2020,47 @@ def force_keep_mitm_hosts(entries: Iterable[MITMHostEntry]) -> set[str]:
     return {host for host in keep if host}
 
 
+def collect_mitm_entries(profile: configparser.ConfigParser) -> tuple[list[MITMHostEntry], list[str]]:
+    """Collect final Fusion MITM declarations without running other build stages."""
+
+    entries: list[MITMHostEntry] = []
+    sources: list[str] = []
+    for path in iter_profile_paths(profile, "mitm"):
+        if not path.exists():
+            stop(f"profile MITM source missing: {path.relative_to(ROOT)}")
+        source = path.relative_to(ROOT).as_posix()
+        sources.append(source)
+        entries.extend(parse_mitm_host_entries(read_text(path), source, len(entries)))
+    for path, block in misc_mitm_blocks():
+        source = path.relative_to(ROOT).as_posix()
+        sources.append(source)
+        entries.extend(parse_mitm_host_entries(block, source, len(entries)))
+    for path, block in app_mitm_blocks():
+        source = path.relative_to(ROOT).as_posix()
+        sources.append(source)
+        entries.extend(parse_mitm_host_entries(block, source, len(entries)))
+    return entries, sources
+
+
 def build_mitm(profile: configparser.ConfigParser, section_bodies: dict[str, str] | None = None) -> str:
     """Build the MITM section from profile-selected layers."""
     if not profile.has_section("mitm"):
         return read_text(source_file("MITM"), required=False).rstrip() + "\n"
 
-    entries: list[MITMHostEntry] = []
+    entries, sources = collect_mitm_entries(profile)
     comments: list[str] = ["# MITM profile layers generated by scripts/build_module.py"]
-    for path in iter_profile_paths(profile, "mitm"):
-        if not path.exists():
-            stop(f"profile MITM source missing: {path.relative_to(ROOT)}")
-        source = path.relative_to(ROOT).as_posix()
-        comments.append(f"# source: {source}")
-        entries.extend(parse_mitm_host_entries(read_text(path), source, len(entries)))
-    for path, block in misc_mitm_blocks():
-        source = path.relative_to(ROOT).as_posix()
-        comments.append(f"# source: {source}")
-        entries.extend(parse_mitm_host_entries(block, source, len(entries)))
-    for path, block in app_mitm_blocks():
-        source = path.relative_to(ROOT).as_posix()
-        comments.append(f"# source: {source}")
-        entries.extend(parse_mitm_host_entries(block, source, len(entries)))
+    comments.extend(f"# source: {source}" for source in sources)
     if not entries:
         stop("profile MITM sources produced an empty hostname list")
 
     deep_features = build_effective_deep_features(section_bodies or {})
-    matcher = ShadowrocketMITMMatcher(wildcard_semantics_verified=False, allow_reduction=False)
+    matcher = ShadowrocketMITMMatcher(
+        wildcard_semantics_verified=True,
+        allow_reduction=False,
+        allow_equivalent_compaction=True,
+    )
     hosts, evidence = compile_mitm_hosts(entries, deep_features, matcher, force_keep_mitm_hosts(entries))
+    evidence["non_mitm_fingerprint"] = non_mitm_fingerprint_summary(section_bodies or {})
     if not hosts:
         evidence["fallback"] = True
         evidence["fallback_reason"] = "optimizer_returned_empty_host_list"

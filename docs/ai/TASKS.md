@@ -1,10 +1,48 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-10 03:02 +08:00
+Last updated: 2026-07-16 00:06 +08:00
+
+## Current Strict Equivalent MITM Compaction Task
+
+Status: implementation and local validation complete; pending commit, push, and remote Actions confirmation.
+
+Completed scope:
+
+- Added an owner-approved matcher-contract mode that removes only exact hostname tokens covered by an existing canonical wildcard.
+- Kept all wildcard and complex pattern tokens unchanged.
+- Preserved root domains, force-keep entries, negative conflicts, IPs, ports, and opaque patterns.
+- Added independent evidence validation and fail-closed fallback tests.
+- Corrected the standalone baseline tool to reconstruct MITM evidence from local Fusion sources and generated effective feature sections.
+- Closed review findings by independently reconstructing source baseline / force-keep data, validating negative conflicts and exact-token eligibility, hashing non-MITM semantics, and proving fallback restores the full ordered baseline.
+- Isolated the baseline tool from script aggregation, network access, and unrelated generated writes.
+
+Validated result:
+
+- Baseline declarations: `2059`.
+- Unique baseline: `1234`.
+- Final optimized hosts: `1189`.
+- Exact duplicates removed: `825`.
+- Semantically redundant exact hosts removed: `45`.
+- Wildcards: `34 -> 34`.
+- Fallback: `False`.
+- MITM tests: `18` passed.
+- Full repository tests: `57` passed.
+- Builder `--release --check`: passed.
+- Full quality gate: passed.
+
+Next check:
+
+- Commit and push.
+- Confirm `Module Factory Build` is green.
+- Keep wildcard range reduction and wildcard synthesis disabled.
+
+## Historical Status Note
+
+Sections below preserve earlier task snapshots. Any older wording such as `pending commit`, `pending push`, or `pending remote confirmation` describes the state when that snapshot was written and is not the current task status unless repeated above.
 
 ## Current Conservative MITM Compiler Task
 
-Status: locally implemented and fully validated; pending commit, push, and remote Actions confirmation.
+Status: complete, published, and remotely confirmed by Module Factory Build `29043671576`.
 
 Scope:
 
@@ -31,11 +69,11 @@ Current result:
 - Proved range reductions: `0`.
 - Fallback: `False`.
 
-Next check:
+Closed with:
 
-- Commit and push.
-- Confirm the next `Module Factory Build` run is green.
-- Do not enable wildcard range reduction unless matcher evidence and dependency coverage tests prove it.
+- Commit `87b62e3b` published the conservative baseline compiler.
+- Module Factory Build `29043671576` passed.
+- Wildcard range reduction remains disabled; the later strict-equivalent mode removes only exact tokens already covered by retained wildcards.
 
 ## Current Pages Deploy Retry Hardening Task
 

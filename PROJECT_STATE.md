@@ -1,6 +1,28 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-10 03:02 +08:00
+Last updated: 2026-07-16 00:06 +08:00
+
+## 2026-07-15 Strict Equivalent MITM Compaction Snapshot
+
+- The final Fusion MITM compiler now supports owner-approved semantic-equivalent compaction under the repository matcher contract `shadowrocket-mitm-suffix-wildcard-v1`.
+- The compiler removes an exact hostname only when an already-declared canonical `*.example.com` wildcard covers it under the verified contract.
+- It does not create, remove, broaden, or narrow wildcard tokens.
+- It preserves root domains, force-keep entries, negative hostname conflicts, IP literals, ports, and complex wildcard or pattern tokens.
+- No `Rules/`, `Rewrite/Sources/`, App script, Rewrite, Map Local, Android rule policy, Windows routing policy, or public module URL was changed by hand.
+- Current generated result:
+  - raw hostname declarations: `2059`
+  - normalized unique baseline: `1234`
+  - final optimized hostname tokens: `1189`
+  - exact duplicates removed: `825`
+  - semantically redundant exact tokens removed: `45`
+  - wildcard count before / after: `34 / 34`
+  - fallback: `False`
+  - coverage contract: passed
+- `tools/validate_mitm_coverage.py` independently rebuilds the baseline and force-keep set from Fusion source files, then verifies every removal, conservative exclusion, source trace, retained order, wildcard set, deep-feature coverage, non-MITM fingerprint, fallback completeness, and generated Release output.
+- `tools/build_mitm_baseline.py` is local-only and no longer invokes script aggregation, network access, or unrelated generated writes.
+- Full `python scripts/quality_gate.py` passed with `57` tests.
+
+Boundary: equivalence is asserted under the named repository matcher contract, not as a universal proof of every undocumented client implementation. Any item outside that contract is retained.
 
 ## 2026-07-10 Conservative MITM Compiler Snapshot
 

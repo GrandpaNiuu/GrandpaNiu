@@ -1803,3 +1803,98 @@ Current MITM report:
 - Commit and push this MITM compiler pass.
 - Confirm the next `Module Factory Build` run is green.
 - Keep wildcard range reduction disabled until a separate proof-focused task justifies enabling it.
+
+## 2026-07-15 23:38 +08:00 - Strict equivalent MITM hostname compaction
+
+### Task Summary
+
+The owner approved reducing final Fusion MITM hostname tokens only when an existing retained wildcard provides machine-checked equivalent coverage under the repository matcher contract.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`.
+- Initial worktree: clean and `37` generated commits behind `origin/main`.
+- Synced baseline commit: `a8eeaf7dfdd13d12ab66e1e7efeb73db4f96a76c`.
+- Expected scope: final MITM compiler, MITM tests and validators, generated outputs, reports, and AI records.
+- Out of scope: `Rules/`, `Rewrite/Sources/`, App scripts, Rewrite semantics, Map Local, Android routing policy, Windows routing policy, workflows, and public URLs.
+
+### Actual Changes
+
+- Added matcher-contract evidence `shadowrocket-mitm-suffix-wildcard-v1`.
+- Added `allow_equivalent_compaction` independently from the existing disabled wildcard range-reduction mode.
+- Removed only plain exact hostnames covered by already-retained canonical `*.` wildcards.
+- Preserved roots, force-keep tokens, negative conflicts, IPs, ports, partial wildcards, `?` patterns, and complex tokens.
+- Added exact-source and covering-wildcard-source trace for every removal.
+- Strengthened fail-closed reporting so fallback records zero final removals and separate attempted counts.
+- Updated the independent validator to reconstruct source baseline / force-keep data, deep features, conservative exclusions, retained order, fallback completeness, and non-MITM fingerprints before accepting Release output.
+- Changed `tools/build_mitm_baseline.py` to use local MITM sources plus generated effective feature sections without invoking script aggregation or network-backed build stages.
+- Refreshed generated Fusion, Release aliases, Android release metadata, checksums, script bundle metadata, and maintained reports through Builder and quality gate.
+
+### Test-First Cycles
+
+- Exact host covered by retained wildcard compacts successfully.
+- Root, force-keep, negative-conflict, and complex-pattern tokens remain.
+- Every removal carries both source paths.
+- Unverified matcher contract disables compaction.
+- Deliberately inconsistent matcher coverage triggers baseline fallback.
+- Fallback reports zero final removals and one attempted removal.
+
+### Validation Result
+
+Commands run:
+
+```bash
+python -m py_compile scripts/build_module.py tools/build_mitm_baseline.py tools/validate_mitm_coverage.py tests/test_mitm_optimizer.py
+python -m unittest tests.test_mitm_optimizer
+python scripts/build_module.py --build --profile fusion
+python tools/build_mitm_baseline.py
+python tools/validate_mitm_coverage.py
+python Rewrite/Generator/Builder.py --profile fusion --release --check
+python scripts/quality_gate.py
+git diff --check
+```
+
+Results:
+
+- MITM optimizer tests: `18` passed.
+- Full repository tests: `57` passed.
+- Builder release check: passed.
+- Full quality gate: passed.
+- App source / Release modules: `398 / 398`, `0` empty.
+- Android main rules: `952`.
+- Remote rule syntax: `15` sources, `0` warnings.
+- MITM baseline declarations: `2059`.
+- Unique baseline hosts: `1234`.
+- Final optimized hosts: `1189`.
+- Equivalent exact removals: `45`.
+- Wildcards before / after: `34 / 34`.
+- Opaque features retained: `169`.
+- Fallback: `False`.
+
+### Risks
+
+- MITM output is high risk, but source declarations and all wildcard scopes remain unchanged.
+- Equivalence is under the named repository matcher contract, not a universal claim about undocumented client behavior.
+- The immediate rollback is to set `allow_equivalent_compaction=False`; the complete source baseline remains intact.
+
+### Self-Review
+
+- What was not good enough: the initial count estimate included a complex `?` token, and the old report field compared the baseline set to itself. The standalone baseline tool also read the already optimized Release.
+- What I changed to reduce that risk: restricted candidates to plain DNS hostnames, corrected set comparison, added independent source-trace validation, fixed baseline generation, and tested fail-closed counts.
+- What I would check first next time: inspect the matcher-contract evidence and final wildcard-set equality before considering any additional MITM count reduction.
+
+### Independent Review Closure
+
+- Standards review found that fallback completeness and conservative exclusions were not independently rechecked, and that the baseline helper invoked unrelated build stages.
+- Specification review also requested a real non-MITM fingerprint contract and less trust in generator-produced report fields.
+- Fixed all blocking findings before commit:
+  - source baseline and force-keep values are reconstructed locally from Fusion MITM sources
+  - negative conflicts, exact-host syntax, canonical wildcard syntax, retained order, and full fallback restoration are independently validated
+  - deep-feature fingerprints and a SHA-256 non-MITM semantic fingerprint are compared with the generated Release
+  - the baseline tool no longer invokes the complete build, script aggregation, or network-backed work
+- Re-ran Builder and the complete quality gate after these fixes; all `57` tests passed.
+
+### Next Step
+
+- Commit and push with explicit staging.
+- Confirm the resulting Module Factory Build is green before marking remote confirmation complete.

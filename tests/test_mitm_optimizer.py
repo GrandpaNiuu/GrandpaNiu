@@ -1,12 +1,16 @@
 import sys
 import unittest
+from contextlib import redirect_stderr
+from io import StringIO
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "tools"))
 
 import build_module  # noqa: E402
+import validate_mitm_coverage  # noqa: E402
 
 
 def feature(host: str, opaque: bool = False) -> build_module.DeepFeature:
@@ -82,6 +86,200 @@ class MITMOptimizerTests(unittest.TestCase):
 
         self.assertEqual(["*.example.com", "api.example.com"], hosts)
         self.assertEqual(1, evidence["proof_reduce_disabled_due_to_missing_matcher_evidence"])
+
+    def test_verified_wildcard_compacts_redundant_exact_subdomain(self) -> None:
+        hosts, evidence = build_module.compile_mitm_hosts(
+            ["*.example.com", "api.example.com"],
+            [feature("api.example.com")],
+            build_module.ShadowrocketMITMMatcher(
+                wildcard_semantics_verified=True,
+                allow_equivalent_compaction=True,
+            ),
+        )
+
+        self.assertEqual(["*.example.com"], hosts)
+        self.assertEqual("equivalent", evidence["mode"])
+        self.assertEqual(1, evidence["semantic_equivalent_removed_count"])
+        self.assertFalse(evidence["same_hostname_token_set"])
+        self.assertTrue(evidence["same_mitm_coverage_under_matcher_contract"])
+
+    def test_equivalent_compaction_preserves_conservative_exclusions(self) -> None:
+        hosts, evidence = build_module.compile_mitm_hosts(
+            [
+                "*.example.com",
+                "example.com",
+                "api.example.com",
+                "keep.example.com",
+                "-blocked.example.com",
+                "blocked.example.com",
+                "api*.example.com",
+            ],
+            [],
+            build_module.ShadowrocketMITMMatcher(
+                wildcard_semantics_verified=True,
+                allow_equivalent_compaction=True,
+            ),
+            force_keep_hosts=("keep.example.com",),
+        )
+
+        self.assertEqual(
+            [
+                "*.example.com",
+                "example.com",
+                "keep.example.com",
+                "-blocked.example.com",
+                "blocked.example.com",
+                "api*.example.com",
+            ],
+            hosts,
+        )
+        self.assertEqual(1, evidence["semantic_equivalent_removed_count"])
+
+    def test_equivalent_compaction_records_both_sources(self) -> None:
+        entries = [
+            build_module.MITMHostEntry(
+                0,
+                "*.example.com",
+                "*.example.com",
+                "wildcard.conf",
+                "hostname = *.example.com",
+            ),
+            build_module.MITMHostEntry(
+                1,
+                "api.example.com",
+                "api.example.com",
+                "exact.conf",
+                "hostname = api.example.com",
+            ),
+        ]
+
+        _, evidence = build_module.compile_mitm_hosts(
+            entries,
+            [],
+            build_module.ShadowrocketMITMMatcher(
+                wildcard_semantics_verified=True,
+                allow_equivalent_compaction=True,
+            ),
+        )
+
+        removal = next(
+            item
+            for item in evidence["optimization_items"]
+            if item.get("decision") == "removed_as_semantically_redundant"
+        )
+        self.assertEqual("exact.conf", removal["source"])
+        self.assertEqual("wildcard.conf", removal["covering_wildcard_source"])
+
+    def test_equivalent_compaction_requires_verified_matcher_contract(self) -> None:
+        hosts, evidence = build_module.compile_mitm_hosts(
+            ["*.example.com", "api.example.com"],
+            [],
+            build_module.ShadowrocketMITMMatcher(
+                wildcard_semantics_verified=False,
+                allow_equivalent_compaction=True,
+            ),
+        )
+
+        self.assertEqual(["*.example.com", "api.example.com"], hosts)
+        self.assertEqual("normalize", evidence["mode"])
+        self.assertEqual(0, evidence["semantic_equivalent_removed_count"])
+
+    def test_equivalent_compaction_validation_failure_falls_back(self) -> None:
+        class ValidationFailureMatcher(build_module.ShadowrocketMITMMatcher):
+            def __init__(self) -> None:
+                super().__init__(
+                    wildcard_semantics_verified=True,
+                    allow_equivalent_compaction=True,
+                )
+                self.cover_calls = 0
+
+            def covers(self, token: str, hostname: str) -> bool:
+                if token == "*.example.com" and hostname == "api.example.com":
+                    self.cover_calls += 1
+                    return self.cover_calls == 1
+                return super().covers(token, hostname)
+
+        hosts, evidence = build_module.compile_mitm_hosts(
+            ["*.example.com", "api.example.com"],
+            [],
+            ValidationFailureMatcher(),
+        )
+
+        self.assertEqual(["*.example.com", "api.example.com"], hosts)
+        self.assertEqual("fallback", evidence["mode"])
+        self.assertTrue(evidence["fallback"])
+        self.assertIn("equivalent_removed_host_not_covered", evidence["fallback_reason"])
+        self.assertEqual(0, evidence["semantic_equivalent_removed_count"])
+        self.assertEqual(1, evidence["attempted_semantic_equivalent_removed_count"])
+
+    def test_independent_validator_rejects_incomplete_fallback(self) -> None:
+        data = {
+            "mode": "fallback",
+            "fallback": True,
+            "fallback_reason": "test failure",
+            "baseline_unique_hosts": ["*.example.com", "api.example.com"],
+            "optimized_hosts": ["*.example.com"],
+            "semantic_equivalent_removed_count": 0,
+            "proved_reduction_count": 0,
+        }
+
+        with redirect_stderr(StringIO()), self.assertRaises(SystemExit):
+            validate_mitm_coverage.validate_fallback_mode(data, ["*.example.com"])
+
+    def test_independent_validator_rejects_negative_conflict_removal(self) -> None:
+        data = {
+            "baseline_unique_hosts": ["*.example.com", "-api.example.com", "api.example.com"],
+            "matcher_contract": {
+                "name": build_module.ShadowrocketMITMMatcher.CONTRACT_NAME,
+                "wildcard_semantics_verified": True,
+                "allow_equivalent_compaction": True,
+                "allow_range_reduction": False,
+            },
+            "semantic_equivalent_removals": [
+                {
+                    "token": "api.example.com",
+                    "covering_wildcard": "*.example.com",
+                    "source": "exact.conf",
+                    "covering_wildcard_source": "wildcard.conf",
+                }
+            ],
+            "semantic_equivalent_removed_count": 1,
+            "force_keep_hosts": [],
+            "deep_features": [],
+            "same_mitm_coverage_under_matcher_contract": True,
+        }
+
+        with redirect_stderr(StringIO()), self.assertRaises(SystemExit):
+            validate_mitm_coverage.validate_equivalent_mode(
+                data,
+                ["*.example.com", "-api.example.com"],
+            )
+
+    def test_independent_validator_rejects_complex_removed_token(self) -> None:
+        data = {
+            "baseline_unique_hosts": ["*.example.com", "api*.example.com"],
+            "matcher_contract": {
+                "name": build_module.ShadowrocketMITMMatcher.CONTRACT_NAME,
+                "wildcard_semantics_verified": True,
+                "allow_equivalent_compaction": True,
+                "allow_range_reduction": False,
+            },
+            "semantic_equivalent_removals": [
+                {
+                    "token": "api*.example.com",
+                    "covering_wildcard": "*.example.com",
+                    "source": "exact.conf",
+                    "covering_wildcard_source": "wildcard.conf",
+                }
+            ],
+            "semantic_equivalent_removed_count": 1,
+            "force_keep_hosts": [],
+            "deep_features": [],
+            "same_mitm_coverage_under_matcher_contract": True,
+        }
+
+        with redirect_stderr(StringIO()), self.assertRaises(SystemExit):
+            validate_mitm_coverage.validate_equivalent_mode(data, ["*.example.com"])
 
     def test_wildcard_with_opaque_feature_does_not_reduce(self) -> None:
         hosts, evidence = build_module.compile_mitm_hosts(

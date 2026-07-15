@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a static MITM optimization baseline report from the generated module."""
+"""Build a static MITM optimization baseline report from Fusion sources."""
 
 from __future__ import annotations
 
@@ -16,22 +16,30 @@ def main() -> None:
     module = ROOT / "Release" / "Ronghemokuai.sgmodule"
     if not module.exists():
         module = ROOT / "Ronghemokuai.sgmodule"
-    text = module.read_text(encoding="utf-8", errors="replace")
-    sections = build_module.split_source_fragment(text)
-    mitm = sections.get("MITM", "")
-    entries = build_module.parse_mitm_host_entries(mitm, module.relative_to(ROOT).as_posix())
-    features = build_module.build_effective_deep_features(sections)
+    if not module.exists():
+        raise SystemExit("ERROR: generated Fusion module is missing")
+    sections = build_module.split_source_fragment(module.read_text(encoding="utf-8", errors="replace"))
+    profile = build_module.load_profile(build_module.DEFAULT_PROFILE)
+    entries, _ = build_module.collect_mitm_entries(profile)
+    if not entries:
+        raise SystemExit("ERROR: Fusion sources produced no MITM hostnames")
+    matcher = build_module.ShadowrocketMITMMatcher(
+        wildcard_semantics_verified=True,
+        allow_reduction=False,
+        allow_equivalent_compaction=True,
+    )
     hosts, evidence = build_module.compile_mitm_hosts(
         entries,
-        features,
-        build_module.ShadowrocketMITMMatcher(wildcard_semantics_verified=False, allow_reduction=False),
+        build_module.build_effective_deep_features(sections),
+        matcher,
         build_module.force_keep_mitm_hosts(entries),
     )
     if not hosts:
-        raise SystemExit("ERROR: MITM baseline produced no hostnames")
+        raise SystemExit("ERROR: MITM optimizer produced no hostnames")
+    evidence["non_mitm_fingerprint"] = build_module.non_mitm_fingerprint_summary(sections)
     build_module.write_mitm_optimization_reports(evidence)
     print(
-        "MITM optimization baseline written: "
+        "MITM source baseline and optimization evidence written: "
         f"{build_module.MITM_OPTIMIZATION_REPORT_MD.relative_to(ROOT)}, "
         f"{build_module.MITM_OPTIMIZATION_REPORT_JSON.relative_to(ROOT)}"
     )
