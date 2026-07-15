@@ -421,3 +421,22 @@ The helpers live in `tools/` because Windows case-insensitive filesystems cannot
 Old Stable / Stable Plus / Lite / Full names may appear only as retired-history references. Governance checks must not require old active Full/Stable policy text after the files are intentionally removed.
 
 Reason: stale governance tokens caused the Builder and quality gate to fail even though the generated Fusion module and required scheduled automation were otherwise healthy.
+
+## 2026-07-16 - Exact Protection Contracts Survive Compact Routing Compilation
+
+The public Fusion output continues to strip scattered `DIRECT` / `PROXY` lines and keeps the compact China/overseas split. Before those routing lines are stripped, the compiler now uses explicit protection sources as a narrow no-REJECT contract.
+
+Decision boundaries:
+
+- Exact protected `DOMAIN` entries block an exact REJECT and any reject suffix that provably covers that exact host.
+- A broad protected `DOMAIN-SUFFIX` does not automatically suppress narrower exact App ad endpoints.
+- Compound `AND`, User-Agent, regex, and other contextual rules are retained unless an existing dedicated safety rule handles them.
+- The compiler changes generated output only; source REJECT entries remain traceable for upstream comparison and rollback.
+
+Reason: compact routing previously removed the precedence that protection lines had over later REJECT rules. Restoring that safety contract must not become a broad ad-block bypass.
+
+## 2026-07-16 - Generated Module URL Audit Is Report-Only
+
+`audit_and_repair_module.py` no longer edits `Ronghemokuai.sgmodule`. Editable-source repair runs first through `audit_repair_invalid_sources.py`; Builder then regenerates all outputs; the final module audit only validates and reports links.
+
+Reason: editing a generated module before Builder regeneration produced non-persistent repairs and could make reports claim a repair that was immediately overwritten.

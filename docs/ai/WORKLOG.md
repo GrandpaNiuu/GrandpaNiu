@@ -1904,3 +1904,69 @@ Results:
 - Module Factory Build `29431450140`: passed.
 - Workflow-generated follow-up commit: `c8d043a8`, synchronized locally.
 - Deploy GitHub Pages `29431556288`: passed.
+
+## 2026-07-16 01:03 +08:00 - Protected-route compiler and automation persistence repair
+
+### Task Summary
+
+Inspect remaining automation gaps and statically provable module rules that can cause normal App network failures, then repair them without broad rule churn.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`.
+- Initial worktree: clean; fast-forwarded one generated commit to `454588a9` before editing.
+- Expected scope: Fusion rule compiler, exact protection source entries, invalid-rule workflow ordering, Pages failure monitoring, tests, generated outputs, reports, and AI records.
+
+### Actual Changes
+
+- Added a protected-route parser and conflict detector to the final Rule compiler.
+- Registered exact protection contracts for Amap image/config, Meituan layout, and Baidu map location endpoints.
+- Removed 9 generated REJECT conflicts while preserving all non-Rule sections and the final compact network split.
+- Changed the daily invalid-rule workflow to repair source files before Builder generation and audit the final module without editing it.
+- Removed dormant generated-output repair code from `audit_and_repair_module.py`.
+- Added `Deploy GitHub Pages` to workflow failure Issue monitoring.
+- Extended repository validation and regression tests for all three contracts.
+
+### Test-First Evidence
+
+- New tests initially failed because protected-route compiler functions, Pages monitoring, and source-first workflow ordering did not exist.
+- The first broad suffix implementation would have removed 95 REJECT rules, including explicit Youku, MGTV, Soul, and Google ad endpoints.
+- That implementation was rejected before publication. The final exact-only contract removes 9 rules.
+
+### Validation Result
+
+```bash
+python -m py_compile <all scripts, tools, and Builder files>
+node --check Scripts/app-cleaner.js
+python -m unittest discover -s tests -p "test_*.py"
+python Rewrite/Generator/Builder.py --profile fusion --release --check
+python scripts/quality_gate.py
+git diff --check
+```
+
+- Python compilation: passed.
+- JavaScript syntax: passed.
+- Unit/integration tests: 64 passed.
+- Builder check: passed, 2769-line Fusion module.
+- App modules: 398/398, 0 empty.
+- Android main rules: 952; format check passed.
+- Full quality gate and repository validation: passed.
+- Root and Release Fusion outputs: identical.
+- Final Rule tail: `GEOIP,CN,DIRECT`, `FINAL,PROXY`.
+
+### Risks
+
+- The four exact protection contracts prioritize normal image/layout/map loading over blocking those same exact endpoints.
+- Source REJECT entries remain for traceability; the final compiler filters only proven conflicts.
+- Real client behavior cannot be proven by static CI, so any future App-specific issue still requires the smallest source-first correction.
+- Remote Actions are not yet confirmed for this unpublished change.
+
+### Self-Review
+
+- What was not good enough: my first source-derived design treated broad protection suffixes as authority to suppress every narrower REJECT and would have weakened 95 ad rules.
+- What I changed to reduce that risk: measured the exact compiled delta before publishing, added a regression test that broad suffixes must not guess about exact ad endpoints, and reduced the implementation to exact protection contracts.
+- What I would check first next time: always compute and inspect the complete generated Rule delta before accepting any protection-list compiler change, even when source ordering appears to justify it.
+
+### Next Step
+
+- Commit and push with explicit paths, then confirm Module Factory Build, Pages deployment, and the next scheduled source-first audit are green.

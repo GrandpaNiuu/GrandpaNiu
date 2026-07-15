@@ -1,9 +1,9 @@
 # Rule Overlap Report
 
-- Generated at: 2026-07-16 00:17:25 +0800
+- Generated at: 2026-07-16 01:10:01 +0800
 - Rule files: 19
-- Active source rules: 3363
-- Unique source rules: 2014
+- Active source rules: 3367
+- Unique source rules: 2018
 - Cross-file overlaps: 1349
 
 ## Largest Rule Files
@@ -14,7 +14,7 @@
 - `Rules/reject.list`: 103
 - `Rules/web-ads.list`: 102
 - `Rules/qingrex-miniapp-app-ad.list`: 83
-- `Rules/direct.list`: 70
+- `Rules/direct.list`: 74
 - `Rules/app-clean.list`: 65
 - `Rules/protect-login.list`: 26
 - `Rules/wechat-ad.list`: 26

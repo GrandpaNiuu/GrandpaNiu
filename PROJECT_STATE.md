@@ -463,3 +463,15 @@ Do not change these without concrete evidence and a risk note:
 - If a real App breaks, fix the smallest source layer first and run the full quality gate.
 - Keep watching scheduled workflow freshness from GitHub Actions when network access to GitHub API is available.
 - Do not add more App modules or remote sources unless they are compatible with the upstream risk gate and do not include unlock, payment bypass, login bypass, or credential/token logic.
+
+## 2026-07-16 Protected-Route Compiler And Audit Automation
+
+- The Fusion rule compiler now treats explicit exact `DOMAIN` protection declarations as a no-REJECT contract.
+- Broad protection suffixes do not automatically suppress narrower App ad endpoints; only an exact protected host, or a reject suffix that provably covers an exact protected host, is filtered.
+- Four exact map/UI endpoints are registered in `Rules/direct.list` as compiler protection contracts.
+- The generated Fusion module removed 9 conflicting REJECT lines and otherwise kept every non-Rule section unchanged.
+- Final routing remains `GEOIP,CN,DIRECT` followed by `FINAL,PROXY`.
+- `daily-audit-and-repair.yml` now repairs editable sources before Builder generation and audits the final module in report-only mode afterward.
+- `Deploy GitHub Pages` failures are now observed by the workflow failure Issue automation.
+- Local Builder `--check` and the complete quality gate passed with 398 App modules, 0 empty modules, and 952 Android rules.
+- Remote Actions confirmation is still required after publishing this change.

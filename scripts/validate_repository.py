@@ -663,6 +663,17 @@ def validate_workflows() -> None:
         fail("daily-audit-and-repair must not duplicate the Module Factory push validation trigger")
     if "validate_remote_rule_syntax.py" not in audit:
         fail("daily-audit-and-repair workflow missing validate_remote_rule_syntax.py")
+    audit_commands = (
+        "scripts/audit_repair_invalid_sources.py",
+        "Rewrite/Generator/Builder.py --profile fusion --release",
+        "scripts/audit_and_repair_module.py --report-only",
+    )
+    if any(token not in audit for token in audit_commands):
+        fail("daily-audit-and-repair workflow missing source-first repair or report-only audit command")
+    if tuple(audit.index(token) for token in audit_commands) != tuple(
+        sorted(audit.index(token) for token in audit_commands)
+    ):
+        fail("daily-audit-and-repair must repair sources, build, then audit generated output")
 
     health = read_text(ROOT / ".github" / "workflows" / "repository-health.yml")
     for token in ("generate_stable_plus_promotion_report.py", "create_promotion_pr.py"):
@@ -674,6 +685,8 @@ def validate_workflows() -> None:
         fail("workflow-failure-issue must not open issues for cancelled runs")
     if "close-resolved-issues" not in watcher:
         fail("workflow-failure-issue must close stale automation issues after successful runs")
+    if "      - Deploy GitHub Pages\n" not in watcher:
+        fail("workflow-failure-issue must observe Deploy GitHub Pages failures")
 
     watchdog = read_text(ROOT / ".github" / "workflows" / "daily-schedule-watchdog.yml")
     for token in ("actions: read", "scripts/check_automation_status.py", "--strict --no-write"):

@@ -552,3 +552,15 @@ First check next time: inspect the next naturally scheduled writer set for succe
 - No traffic rules or protected App paths were changed.
 
 First check next time: inspect the GitHub Actions runs triggered by the automation-hardening commit, especially `Module Factory Build`.
+
+## Latest 2026-07-16 Maintenance Pass
+
+- Added test-backed protected-route compilation in `scripts/build_module.py`.
+- The first draft would have suppressed 95 REJECT rules because broad protection suffixes were treated as universal; it was rejected before publication.
+- Final logic is deliberately narrow and suppresses 9 provable conflicts only: exact Amap image/config, Meituan layout, Baidu map location, and `wxs.qq.com` coverage duplicates.
+- `Rules/direct.list` is the editable source for the four newly explicit protection contracts; generated Release files were refreshed only through Builder.
+- Final module sections other than `[Rule]` are unchanged against the previous generated module.
+- Daily invalid-rule automation now runs source-first repair, rebuilds Fusion, then performs a report-only final-output URL audit.
+- Pages deployment failures now open/update the same automation-failure Issue flow as other core workflows.
+- Local validation passed: 64 tests, Builder `--check`, full quality gate, 398/398 App modules, 0 empty, Android 952.
+- First next step: publish, then verify `Module Factory Build`, `Deploy GitHub Pages`, and the next scheduled invalid-rule audit on GitHub Actions.

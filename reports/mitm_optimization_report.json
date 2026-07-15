@@ -34742,7 +34742,7 @@
     "spclient.wg.spotify.com",
     "youtubei.googleapis.com"
   ],
-  "generated_at": "2026-07-16T00:17:22.318304+08:00",
+  "generated_at": "2026-07-16T01:09:52.618355+08:00",
   "host_entries": [
     {
       "normalized": "api.zhihu.com",
@@ -43397,8 +43397,8 @@
   },
   "mode": "equivalent",
   "non_mitm_fingerprint": {
-    "line_count": 2762,
-    "sha256": "8c216c35bbe76cb915a12f4493a4e8d08d8826086e7a0f753446d532646319ab"
+    "line_count": 2753,
+    "sha256": "2fcb294f7fcc22db2dc5cf22863a61b9b08562873564692d769009ae9ec22432"
   },
   "normalized_hostname_token_count": 1189,
   "opaque_retained_count": 169,

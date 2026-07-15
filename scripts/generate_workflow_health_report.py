@@ -55,7 +55,7 @@ def priority(path: str) -> str:
     if "daily-module" in path:
         return "date refresh, Builder, validation, rebase retry"
     if "daily-audit" in path:
-        return "audit_and_repair_module.py, Fusion build, rebase retry"
+        return "source-first invalid-source repair, Fusion build, report-only module audit, rebase retry"
     if "invalid-source" in path:
         return "network fetch, invalid history, conservative source repair"
     if "scheduled-module" in path:

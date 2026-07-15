@@ -30,15 +30,18 @@ jobs:
       - name: Acquire cross-workflow maintenance lock
         run: bash tools/acquire_automation_lock.sh
 
-      - name: Run daily audit and safe repair
-        run: python3 scripts/audit_and_repair_module.py
+      - name: Repair invalid sources conservatively
+        run: python3 scripts/audit_repair_invalid_sources.py
 
-      - name: Build fusion module after audit
+      - name: Build fusion module after source repair
         run: |
           # fusion-build-marker: scripts/build_module.py --build --profile fusion
           python3 Rewrite/Generator/Builder.py --profile fusion --release
           python3 scripts/validate_remote_rule_syntax.py
           python3 scripts/validate_repository.py
+
+      - name: Audit generated module links without editing outputs
+        run: python3 scripts/audit_and_repair_module.py --report-only
 
       - name: Commit audit report and safe repairs
         run: |

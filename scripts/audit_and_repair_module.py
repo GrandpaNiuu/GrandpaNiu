@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Audit external module links and apply conservative safe repairs.
+"""Audit external links in the generated Fusion module without editing it.
 
-The script is intentionally conservative:
+Source repairs are delegated to ``audit_repair_invalid_sources.py`` before the
+Builder runs. This final-output audit is intentionally report-only:
 - it reports all detected external links;
-- it only comments active lines after repeated failures;
 - it never deletes rules automatically;
 - protected Spotify, YouTube, and core upstream sources are report-only.
 """
 
 from __future__ import annotations
 
+import argparse
 import datetime as dt
 import json
 import re
@@ -298,36 +299,6 @@ def is_protected(item: LinkItem) -> bool:
     return any(pattern in haystack for pattern in PROTECTED_PATTERNS)
 
 
-def has_js_features(text: str) -> bool:
-    lowered = text.lower()
-    return any(token in text for token in ("$done", "function", "=>", "const ", "let ", "var ")) and "<html" not in lowered
-
-
-def has_rule_features(text: str) -> bool:
-    lowered = text.lower()
-    features = ("DOMAIN", "DOMAIN-SUFFIX", "URL-REGEX", "RULE-SET", "DOMAIN-SET", "IP-CIDR")
-    return any(token in text for token in features) and "<html" not in lowered
-
-
-def candidate_replacement(item: LinkItem) -> str | None:
-    parsed = urllib.parse.urlparse(item.url)
-    if parsed.netloc != "raw.githubusercontent.com" or "/master/" not in parsed.path:
-        return None
-    return item.url.replace("/master/", "/main/", 1)
-
-
-def verify_replacement(item: LinkItem, new_url: str) -> bool:
-    replacement_item = LinkItem(url=new_url, line_no=item.line_no, section=item.section, kind=item.kind, line=item.line)
-    result = check_link(replacement_item)
-    if not result.ok or result.status not in {200, 206}:
-        return False
-    if item.kind == "script":
-        return has_js_features(result.sample)
-    if item.kind in {"rule-set", "domain-set", "raw"}:
-        return has_rule_features(result.sample) or has_js_features(result.sample)
-    return "<html" not in result.sample.lower()
-
-
 def load_history() -> dict[str, dict[str, object]]:
     if not HISTORY_PATH.exists():
         return {}
@@ -367,67 +338,7 @@ def update_history(
     return updated
 
 
-def comment_line(lines: list[str], line_no: int, today: str, last_error: str) -> None:
-    original = lines[line_no - 1]
-    lines[line_no - 1] = (
-        f"# AUTO-DISABLED {today}: confirmed invalid for 3 consecutive checks, last_error={last_error}\n"
-        f"# {original}"
-    )
-
-
-def replace_line(lines: list[str], line_no: int, old_url: str, new_url: str, today: str) -> None:
-    original = lines[line_no - 1]
-    replaced = original.replace(old_url, new_url)
-    lines[line_no - 1] = f"# AUTO-UPDATED {today}: replaced invalid URL with verified upstream URL\n{replaced}"
-
-
-def apply_safe_repairs(
-    lines: list[str],
-    links: list[LinkItem],
-    results: dict[str, CheckResult],
-    history: dict[str, dict[str, object]],
-    today: str,
-) -> tuple[list[str], list[str], list[tuple[str, str]], list[str], list[str]]:
-    edited = list(lines)
-    auto_disabled: list[str] = []
-    auto_replaced: list[tuple[str, str]] = []
-    protected_failed: list[str] = []
-    manual: list[str] = []
-    modified_lines: set[int] = set()
-
-    for item in links:
-        result = results[item.url]
-        record = history.get(item.url, {})
-        fail_count = int(record.get("fail_count", 0))
-        if result.ok or fail_count < 3:
-            continue
-        if is_protected(item):
-            protected_failed.append(item.url)
-            manual.append(item.url)
-            continue
-        if item.line.lstrip().startswith("#"):
-            manual.append(item.url)
-            continue
-        if item.line_no in modified_lines:
-            continue
-
-        new_url = candidate_replacement(item)
-        if new_url and verify_replacement(item, new_url):
-            replace_line(edited, item.line_no, item.url, new_url, today)
-            auto_replaced.append((item.url, new_url))
-            modified_lines.add(item.line_no)
-            continue
-
-        comment_line(edited, item.line_no, today, result.last_error)
-        auto_disabled.append(item.url)
-        modified_lines.add(item.line_no)
-
-    if len(auto_disabled) > 20:
-        fail(f"automatic comments exceed safety limit: {len(auto_disabled)}")
-    return edited, auto_disabled, auto_replaced, protected_failed, manual
-
-
-def validate_module(lines: list[str], original_line_count: int, auto_disabled_count: int) -> None:
+def validate_module(lines: list[str]) -> None:
     text = "\n".join(lines)
     sections = section_map(lines)
     for token in CORE_TOKENS:
@@ -445,18 +356,6 @@ def validate_module(lines: list[str], original_line_count: int, auto_disabled_co
         fail("[Script] section would become empty")
     if not any(line.strip().startswith("hostname = ") for line in lines[sections["MITM"] :]):
         fail("[MITM] section would become empty")
-    if auto_disabled_count > 20:
-        fail("automatic comments exceed safety limit")
-    if len(lines) < original_line_count * 0.95:
-        fail("module line count reduced by more than 5%")
-
-
-def write_module(lines: list[str]) -> None:
-    try:
-        write_text_lf(MODULE_PATH, "\n".join(lines) + "\n")
-        MODULE_PATH.read_text(encoding="utf-8")
-    except (OSError, UnicodeError) as exc:
-        fail(f"generated module cannot be read: {exc}")
 
 
 def write_text_lf(path: Path, text: str) -> None:
@@ -511,7 +410,7 @@ def generate_report(
             f"- Spotify 核心检查结果：{'pass' if spotify_ok else 'fail'}",
             f"- YouTube 核心检查结果：{'pass' if youtube_ok else 'fail'}",
             "",
-            "本工作流默认只做安全注释和报告，不进行高风险自动删除。",
+            "本阶段只审计生成产物，不直接修改模块；源文件修复由 audit_repair_invalid_sources.py 在构建前完成。",
             "",
             "## 连续失败 2 天的链接",
             markdown_list(two_days).rstrip(),
@@ -519,10 +418,10 @@ def generate_report(
             "## 连续失败 3 天及以上的链接",
             markdown_list(three_days).rstrip(),
             "",
-            "## 已自动注释的链接",
+            "## 本阶段直接注释的链接（应始终为空）",
             markdown_list(auto_disabled).rstrip(),
             "",
-            "## 已自动替换的链接",
+            "## 本阶段直接替换的链接（应始终为空）",
             markdown_list(replacement_lines).rstrip(),
             "",
             "## 受保护但失败的链接",
@@ -535,7 +434,8 @@ def generate_report(
             markdown_list([f"{url} ({results[url].last_error})" for url in failed_today]).rstrip(),
             "",
             "## 不执行删除的说明",
-            "- 自动处理优先注释原始行，保留上下文以便回滚。",
+            "- 最终模块是生成产物，本脚本不会直接注释、替换或删除其中的行。",
+            "- 自动修复必须先修改 Rules、Rewrite、Scripts 或远程源登记，再由 Builder 重新生成产物。",
             "- 自动删除被禁用；低风险、确认无替代且连续多日失效的内容也需要人工确认后再处理。",
             "- Spotify、YouTube、核心远程规则源和主模块地址即使失败也只报告，不自动注释或删除。",
             "",
@@ -550,14 +450,24 @@ def guard_github_outage(links: list[LinkItem], results: dict[str, CheckResult]) 
         fail("large number of GitHub links failed with transient errors; likely network or GitHub outage")
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--report-only",
+        action="store_true",
+        help="explicitly document that generated module output will not be edited",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
+    parse_args()
     today = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8))).date().isoformat()
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
     lines = read_module()
-    original_line_count = len(lines)
     sections = section_map(lines)
-    validate_module(lines, original_line_count, 0)
+    validate_module(lines)
 
     links = scan_links(lines)
     unique_links: dict[str, LinkItem] = {}
@@ -569,22 +479,25 @@ def main() -> None:
 
     old_history = load_history()
     history = update_history(old_history, unique_links.values(), results, today)
-    edited_lines, auto_disabled, auto_replaced, protected_failed, manual = apply_safe_repairs(
-        lines, list(unique_links.values()), results, history, today
-    )
-    validate_module(edited_lines, original_line_count, len(auto_disabled))
-    write_module(edited_lines)
+    protected_failed = [
+        item.url for item in unique_links.values() if not results[item.url].ok and is_protected(item)
+    ]
+    manual = [
+        url
+        for url, record in history.items()
+        if int(record.get("fail_count", 0)) >= 3
+    ]
     save_history(history)
 
     report = generate_report(
         today,
-        edited_lines,
+        lines,
         list(unique_links.values()),
         results,
         history,
         sections,
-        auto_disabled,
-        auto_replaced,
+        [],
+        [],
         protected_failed,
         manual,
     )

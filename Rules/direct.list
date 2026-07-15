@@ -52,6 +52,14 @@ DOMAIN-SUFFIX,msstatic.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,zdmimg.com,DIRECT,pre-matching
 DOMAIN-SUFFIX,amap.com,DIRECT,pre-matching
 
+# Exact core UI/map endpoints retained as compiler protection contracts.
+# The Fusion compiler strips routing policies but must not activate a later
+# exact REJECT for these image, layout, configuration, or location endpoints.
+DOMAIN,free-aos-cdn-image.amap.com,DIRECT,pre-matching
+DOMAIN,amap-aos-info-nogw.amap.com,DIRECT,pre-matching
+DOMAIN,layout.meituan.net,DIRECT,pre-matching
+DOMAIN,lc.map.baidu.com,DIRECT,pre-matching
+
 # Core API and DNS safety bypass
 # Reason: these domains are used by app login, startup routing, playback, or image loading. They must stay ahead of broad ad RULE-SET entries.
 DOMAIN,api.iqiyi.com,DIRECT,pre-matching

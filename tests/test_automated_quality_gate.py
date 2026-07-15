@@ -179,6 +179,19 @@ class AutomatedQualityGateTests(unittest.TestCase):
         self.assertNotIn("<<EOF", text)
         self.assertIn("python3 - <<'PY'", text)
 
+    def test_failure_issue_watcher_observes_pages_deploy(self) -> None:
+        text = (ROOT / ".github" / "workflows" / "workflow-failure-issue.yml").read_text(encoding="utf-8")
+        self.assertIn("      - Deploy GitHub Pages\n", text)
+
+    def test_invalid_rule_workflow_repairs_sources_before_build_and_audits_after_build(self) -> None:
+        text = (ROOT / ".github" / "workflows" / "daily-audit-and-repair.yml").read_text(encoding="utf-8")
+        source_repair = text.index("scripts/audit_repair_invalid_sources.py")
+        builder = text.index("Rewrite/Generator/Builder.py --profile fusion --release")
+        final_audit = text.index("scripts/audit_and_repair_module.py --report-only")
+
+        self.assertLess(source_repair, builder)
+        self.assertLess(builder, final_audit)
+
     def test_daily_watchdog_checks_scheduled_workflow_status_even_when_module_is_fresh(self) -> None:
         text = (ROOT / ".github" / "workflows" / "daily-schedule-watchdog.yml").read_text(encoding="utf-8")
         self.assertIn("actions: read", text)

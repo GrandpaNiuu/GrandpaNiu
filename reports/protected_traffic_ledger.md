@@ -1,9 +1,9 @@
 # 保护链路台账
 
-- 生成时间：2026-07-16 00:17:25 +0800
+- 生成时间：2026-07-16 01:10:01 +0800
 - 扫描源文件：9
-- 保护/候选条目：175
-- DIRECT 条目：146
+- 保护/候选条目：179
+- DIRECT 条目：150
 - 非 DIRECT 条目：29
 
 ## 使用边界
@@ -16,8 +16,8 @@
 
 | category | entries |
 | --- | --- |
-| 其他保护 / 需人工归类 | 45 |
-| 图片 / 静态 CDN | 38 |
+| 其他保护 / 需人工归类 | 48 |
+| 图片 / 静态 CDN | 39 |
 | 验证码 / HTTPDNS / 核心 API | 34 |
 | 支付 / 银行 / 订单 | 28 |
 | 登录 / 账号 | 20 |
@@ -27,7 +27,7 @@
 
 | source_file | entries | exists |
 | --- | --- | --- |
-| Rules/direct.list | 70 | True |
+| Rules/direct.list | 74 | True |
 | Rules/protect-login.list | 26 | True |
 | Rewrite/Sources/Misc/finance-protect.conf | 15 | True |
 | Rewrite/Sources/Misc/cdn-direct.conf | 15 | True |
@@ -94,11 +94,11 @@
 | Rules/direct.list:47 | DIRECT | DOMAIN-SUFFIX,biliimg.com,DIRECT,pre-matching |
 | Rules/direct.list:51 | DIRECT | DOMAIN-SUFFIX,msstatic.com,DIRECT,pre-matching |
 | Rules/direct.list:52 | DIRECT | DOMAIN-SUFFIX,zdmimg.com,DIRECT,pre-matching |
-| Rules/direct.list:76 | DIRECT | DOMAIN-SUFFIX,zijiecdn.com,DIRECT,pre-matching |
+| Rules/direct.list:58 | DIRECT | DOMAIN,free-aos-cdn-image.amap.com,DIRECT,pre-matching |
+| Rules/direct.list:84 | DIRECT | DOMAIN-SUFFIX,zijiecdn.com,DIRECT,pre-matching |
 | Rules/protect-login.list:20 | OTHER | DOMAIN-SUFFIX,fbcdn.net,PROXY |
 | Rules/protect-login.list:22 | OTHER | DOMAIN-SUFFIX,cdninstagram.com,PROXY |
 | Rules/protect-video.list:12 | OTHER | DOMAIN-SUFFIX,ytimg.com,PROXY,pre-matching |
-| Rules/protect-video.list:16 | OTHER | DOMAIN-SUFFIX,nflximg.net,PROXY,pre-matching |
 
 ### 视频 / 音乐播放
 
@@ -108,7 +108,7 @@
 | Rules/direct.list:4 | DIRECT | DOMAIN,un-acs.youku.com,DIRECT |
 | Rules/direct.list:46 | DIRECT | DOMAIN-SUFFIX,hdslb.com,DIRECT,pre-matching |
 | Rules/direct.list:48 | DIRECT | DOMAIN-SUFFIX,bilivideo.com,DIRECT,pre-matching |
-| Rules/direct.list:66 | DIRECT | DOMAIN,httpdns.music.163.com,DIRECT,pre-matching |
+| Rules/direct.list:74 | DIRECT | DOMAIN,httpdns.music.163.com,DIRECT,pre-matching |
 | Rules/protect-video.list:5 | DIRECT | DOMAIN-SUFFIX,bilivideo.com,DIRECT |
 | Rules/protect-video.list:6 | DIRECT | DOMAIN-SUFFIX,hdslb.com,DIRECT |
 | Rules/protect-video.list:10 | OTHER | DOMAIN-SUFFIX,googlevideo.com,PROXY,pre-matching |
@@ -135,16 +135,16 @@
 | Rules/direct.list:49 | DIRECT | DOMAIN-SUFFIX,meituan.net,DIRECT,pre-matching |
 | Rules/direct.list:50 | DIRECT | DOMAIN-SUFFIX,dpfile.com,DIRECT,pre-matching |
 | Rules/direct.list:53 | DIRECT | DOMAIN-SUFFIX,amap.com,DIRECT,pre-matching |
-| Rules/direct.list:57 | DIRECT | DOMAIN,api.iqiyi.com,DIRECT,pre-matching |
-| Rules/direct.list:58 | DIRECT | DOMAIN,api.bilibili.com,DIRECT,pre-matching |
-| Rules/direct.list:59 | DIRECT | DOMAIN,app.bilibili.com,DIRECT,pre-matching |
-| Rules/direct.list:78 | DIRECT | DOMAIN-SUFFIX,amemv.com,DIRECT,pre-matching |
-| Rules/direct.list:79 | DIRECT | DOMAIN-SUFFIX,douyin.com,DIRECT,pre-matching |
-| Rules/direct.list:80 | DIRECT | DOMAIN-SUFFIX,ixigua.com,DIRECT,pre-matching |
-| Rules/direct.list:81 | DIRECT | DOMAIN-SUFFIX,toutiao.com,DIRECT,pre-matching |
-| Rules/direct.list:82 | DIRECT | DOMAIN-SUFFIX,baidustatic.com,DIRECT,pre-matching |
-| Rules/protect-login.list:11 | DIRECT | DOMAIN-SUFFIX,graph.qq.com,DIRECT |
-| Rules/protect-login.list:13 | DIRECT | DOMAIN-SUFFIX,appleid.apple.com,DIRECT |
+| Rules/direct.list:59 | DIRECT | DOMAIN,amap-aos-info-nogw.amap.com,DIRECT,pre-matching |
+| Rules/direct.list:60 | DIRECT | DOMAIN,layout.meituan.net,DIRECT,pre-matching |
+| Rules/direct.list:61 | DIRECT | DOMAIN,lc.map.baidu.com,DIRECT,pre-matching |
+| Rules/direct.list:65 | DIRECT | DOMAIN,api.iqiyi.com,DIRECT,pre-matching |
+| Rules/direct.list:66 | DIRECT | DOMAIN,api.bilibili.com,DIRECT,pre-matching |
+| Rules/direct.list:67 | DIRECT | DOMAIN,app.bilibili.com,DIRECT,pre-matching |
+| Rules/direct.list:86 | DIRECT | DOMAIN-SUFFIX,amemv.com,DIRECT,pre-matching |
+| Rules/direct.list:87 | DIRECT | DOMAIN-SUFFIX,douyin.com,DIRECT,pre-matching |
+| Rules/direct.list:88 | DIRECT | DOMAIN-SUFFIX,ixigua.com,DIRECT,pre-matching |
+| Rules/direct.list:89 | DIRECT | DOMAIN-SUFFIX,toutiao.com,DIRECT,pre-matching |
 
 ### 支付 / 银行 / 订单
 
@@ -201,22 +201,22 @@
 | source | policy | line |
 | --- | --- | --- |
 | Rules/direct.list:26 | DIRECT | DOMAIN,dns.weixin.qq.com.cn,DIRECT,pre-matching |
-| Rules/direct.list:60 | DIRECT | DOMAIN,grpc.biliapi.net,DIRECT,pre-matching |
-| Rules/direct.list:61 | DIRECT | DOMAIN-SUFFIX,biliapi.com,DIRECT,pre-matching |
-| Rules/direct.list:62 | DIRECT | DOMAIN-SUFFIX,biliapi.net,DIRECT,pre-matching |
-| Rules/direct.list:63 | DIRECT | DOMAIN,httpdns-sdk.n.netease.com,DIRECT,pre-matching |
-| Rules/direct.list:64 | DIRECT | DOMAIN,httpdns.baidubce.com,DIRECT,pre-matching |
-| Rules/direct.list:65 | DIRECT | DOMAIN,httpdns.calorietech.com,DIRECT,pre-matching |
-| Rules/direct.list:66 | DIRECT | DOMAIN,httpdns.music.163.com,DIRECT,pre-matching |
-| Rules/direct.list:67 | DIRECT | DOMAIN,httpdns.n.netease.com,DIRECT,pre-matching |
-| Rules/direct.list:68 | DIRECT | DOMAIN,httpdns.yunxindns.com,DIRECT,pre-matching |
-| Rules/direct.list:69 | DIRECT | DOMAIN,httpdnsmultiapi.meituan.com,DIRECT,pre-matching |
-| Rules/direct.list:70 | DIRECT | DOMAIN,httpdnsmultiapivip.meituan.com,DIRECT,pre-matching |
-| Rules/direct.list:71 | DIRECT | DOMAIN,hdns.ksyun.com,DIRECT,pre-matching |
-| Rules/direct.list:72 | DIRECT | DOMAIN,lofter.httpdns.c.163.com,DIRECT,pre-matching |
-| Rules/direct.list:73 | DIRECT | DOMAIN,music.httpdns.c.163.com,DIRECT,pre-matching |
-| Rules/direct.list:74 | DIRECT | DOMAIN-SUFFIX,zijieapi.com,DIRECT,pre-matching |
-| Rules/direct.list:75 | DIRECT | DOMAIN-SUFFIX,zijieapi.net,DIRECT,pre-matching |
-| Rules/direct.list:77 | DIRECT | DOMAIN-SUFFIX,snssdk.com,DIRECT,pre-matching |
+| Rules/direct.list:68 | DIRECT | DOMAIN,grpc.biliapi.net,DIRECT,pre-matching |
+| Rules/direct.list:69 | DIRECT | DOMAIN-SUFFIX,biliapi.com,DIRECT,pre-matching |
+| Rules/direct.list:70 | DIRECT | DOMAIN-SUFFIX,biliapi.net,DIRECT,pre-matching |
+| Rules/direct.list:71 | DIRECT | DOMAIN,httpdns-sdk.n.netease.com,DIRECT,pre-matching |
+| Rules/direct.list:72 | DIRECT | DOMAIN,httpdns.baidubce.com,DIRECT,pre-matching |
+| Rules/direct.list:73 | DIRECT | DOMAIN,httpdns.calorietech.com,DIRECT,pre-matching |
+| Rules/direct.list:74 | DIRECT | DOMAIN,httpdns.music.163.com,DIRECT,pre-matching |
+| Rules/direct.list:75 | DIRECT | DOMAIN,httpdns.n.netease.com,DIRECT,pre-matching |
+| Rules/direct.list:76 | DIRECT | DOMAIN,httpdns.yunxindns.com,DIRECT,pre-matching |
+| Rules/direct.list:77 | DIRECT | DOMAIN,httpdnsmultiapi.meituan.com,DIRECT,pre-matching |
+| Rules/direct.list:78 | DIRECT | DOMAIN,httpdnsmultiapivip.meituan.com,DIRECT,pre-matching |
+| Rules/direct.list:79 | DIRECT | DOMAIN,hdns.ksyun.com,DIRECT,pre-matching |
+| Rules/direct.list:80 | DIRECT | DOMAIN,lofter.httpdns.c.163.com,DIRECT,pre-matching |
+| Rules/direct.list:81 | DIRECT | DOMAIN,music.httpdns.c.163.com,DIRECT,pre-matching |
+| Rules/direct.list:82 | DIRECT | DOMAIN-SUFFIX,zijieapi.com,DIRECT,pre-matching |
+| Rules/direct.list:83 | DIRECT | DOMAIN-SUFFIX,zijieapi.net,DIRECT,pre-matching |
+| Rules/direct.list:85 | DIRECT | DOMAIN-SUFFIX,snssdk.com,DIRECT,pre-matching |
 | Rules/protect-video.list:9 | DIRECT | DOMAIN-SUFFIX,akadns.net,DIRECT |
 | Rewrite/Sources/Misc/httpdns.conf:5 | DIRECT | DOMAIN-KEYWORD,httpdns,DIRECT,pre-matching |

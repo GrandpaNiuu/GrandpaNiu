@@ -652,3 +652,29 @@ Traffic risk boundary:
 
 - No Rules, App source, MITM, script behavior, Android routing policy, Windows routing policy, login, payment, banking, captcha, video, or image/CDN policy was intentionally changed.
 - Generated reports and checksums were refreshed by the Builder and quality gate.
+
+## 2026-07-16 Protected-Route Compilation And Automation Repair Risk Note
+
+Risk level: medium traffic-policy risk, medium operational risk.
+
+Observed signals:
+
+- Fusion strips source `DIRECT` / `PROXY` lines before appending the compact `GEOIP,CN,DIRECT` / `FINAL,PROXY` split.
+- Protection sources are merged before ad rules, but stripping their routing lines can expose later `REJECT` rules that the protection sources previously shadowed.
+- The builder has a manually maintained protected-token list, so protection sources and generated filtering can drift apart.
+- `daily-audit-and-repair.yml` audits and edits the generated root module before Builder regeneration, which can discard a generated-only repair.
+- `workflow-failure-issue.yml` does not currently observe `Deploy GitHub Pages` failures.
+
+Planned safeguards before changing protected traffic behavior:
+
+- Add unit tests before implementation.
+- Derive reject-conflict filtering only from explicit source `DIRECT` / `PROXY` protection declarations; do not infer protection from domain names.
+- Keep unrelated ad `REJECT` rules unchanged.
+- Keep the final compact network split unchanged.
+- Make invalid-source repair source-first and keep final-module URL inspection report-only.
+- Add Pages to the existing failure watcher without changing deployment behavior.
+
+Rollback boundary:
+
+- If source-derived protection removes an unrelated ad rule or causes a quality-gate regression, revert the compiler filter while retaining the tests and report evidence.
+- No Script, Rewrite, MITM, payment bypass, login bypass, membership, or account behavior is authorized by this change.

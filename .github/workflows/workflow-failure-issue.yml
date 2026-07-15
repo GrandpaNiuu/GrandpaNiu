@@ -18,6 +18,7 @@ on:
       - Upstream candidate collect
       - Daily schedule watchdog
       - Repository Health Check
+      - Deploy GitHub Pages
     types:
       - completed
 

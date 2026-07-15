@@ -125,6 +125,7 @@ KNOWN_DOMAIN_SET_URLS = {
     "https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_surge_domainset.txt",
 }
 MISC_PROTECT_RULE_FILES = ("cdn-direct.conf", "finance-protect.conf", "video-protect.conf")
+PROTECTED_PROFILE_RULE_KEYS = ("protect_login", "protect_payment", "protect_video", "protect_cdn", "direct")
 UNRESOLVED_ARGUMENT_RE = re.compile(r"\{\{\{[^}]+\}\}\}")
 FUSION_ARGUMENT_NAMES = {
     "动态最常访问",
@@ -578,6 +579,137 @@ def append_compact_network_split(body: str) -> str:
     base = body.strip()
     suffix = "\n".join(COMPACT_NETWORK_SPLIT_RULES)
     return f"{base}\n\n{suffix}\n" if base else f"{suffix}\n"
+
+
+@dataclass(frozen=True)
+class ProtectedRoutePattern:
+    kind: str
+    host: str
+    source: str = ""
+
+
+def normalize_rule_host(value: str) -> str:
+    host = value.strip().lower().rstrip(".")
+    if host.startswith("*."):
+        host = host[2:]
+    return host
+
+
+def parse_protected_route_patterns(body: str, source: str = "") -> tuple[ProtectedRoutePattern, ...]:
+    patterns: list[ProtectedRoutePattern] = []
+    seen: set[tuple[str, str]] = set()
+    for raw in body.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or rule_policy(line) not in {"DIRECT", "PROXY"}:
+            continue
+        parts = [part.strip() for part in line.split(",")]
+        if len(parts) < 3 or parts[0] not in {"DOMAIN", "DOMAIN-SUFFIX"}:
+            continue
+        host = normalize_rule_host(parts[1])
+        if not MITM_EXACT_HOST_RE.fullmatch(host):
+            continue
+        key = (parts[0], host)
+        if key in seen:
+            continue
+        seen.add(key)
+        patterns.append(ProtectedRoutePattern(kind=parts[0], host=host, source=source))
+    return tuple(patterns)
+
+
+def build_protected_route_patterns(profile: configparser.ConfigParser) -> tuple[ProtectedRoutePattern, ...]:
+    paths: list[Path] = [MISC_SOURCES / name for name in MISC_PROTECT_RULE_FILES]
+    if profile.has_section("rules"):
+        for key in PROTECTED_PROFILE_RULE_KEYS:
+            value = profile.get("rules", key, fallback="").strip()
+            if value:
+                paths.append(ROOT / value)
+
+    patterns: list[ProtectedRoutePattern] = []
+    seen: set[tuple[str, str]] = set()
+    for path in paths:
+        if not path.exists():
+            continue
+        body = split_source_fragment(read_text(path, required=False)).get("Rule", "")
+        if not body.strip():
+            body = read_text(path, required=False)
+        try:
+            source = path.relative_to(ROOT).as_posix()
+        except ValueError:
+            source = path.as_posix()
+        for pattern in parse_protected_route_patterns(body, source):
+            key = (pattern.kind, pattern.host)
+            if key in seen:
+                continue
+            seen.add(key)
+            patterns.append(pattern)
+    return tuple(patterns)
+
+
+def host_is_within_suffix(host: str, suffix: str) -> bool:
+    return host == suffix or host.endswith(f".{suffix}")
+
+
+def protected_pattern_overlaps_reject(
+    reject_kind: str,
+    reject_host: str,
+    protected: ProtectedRoutePattern,
+) -> bool:
+    if reject_kind == "DOMAIN":
+        if protected.kind == "DOMAIN":
+            return reject_host == protected.host
+        # A broad protection suffix does not prove that every exact ad endpoint
+        # below it is core traffic. Only an exact suffix target is equivalent.
+        return reject_host == protected.host
+    if protected.kind == "DOMAIN":
+        return host_is_within_suffix(protected.host, reject_host)
+    # Rejecting the same or a broader suffix would cover the protected suffix.
+    # A narrower reject may still be an app-scoped ad endpoint, so retain it.
+    return host_is_within_suffix(protected.host, reject_host)
+
+
+def reject_rule_target(line: str) -> tuple[str, str] | None:
+    stripped = line.strip()
+    if not stripped or stripped.startswith("#") or rule_policy(stripped) not in {
+        "REJECT",
+        "REJECT-DROP",
+        "REJECT-TINYGIF",
+        "REJECT-IMG",
+    }:
+        return None
+    parts = [part.strip() for part in stripped.split(",")]
+    if len(parts) < 3 or parts[0] not in {"DOMAIN", "DOMAIN-SUFFIX"}:
+        return None
+    host = normalize_rule_host(parts[1])
+    if not MITM_EXACT_HOST_RE.fullmatch(host):
+        return None
+    return parts[0], host
+
+
+def find_protected_reject_conflicts(
+    body: str,
+    protected_patterns: Iterable[ProtectedRoutePattern],
+) -> list[str]:
+    patterns = tuple(protected_patterns)
+    conflicts: list[str] = []
+    for raw in body.splitlines():
+        target = reject_rule_target(raw)
+        if target is None:
+            continue
+        kind, host = target
+        if any(protected_pattern_overlaps_reject(kind, host, protected) for protected in patterns):
+            conflicts.append(raw.strip())
+    return conflicts
+
+
+def strip_protected_reject_conflicts(
+    body: str,
+    protected_patterns: Iterable[ProtectedRoutePattern],
+) -> str:
+    conflicts = set(find_protected_reject_conflicts(body, protected_patterns))
+    if not conflicts:
+        return body
+    lines = [raw for raw in body.splitlines() if raw.strip() not in conflicts]
+    return "\n".join(lines).strip() + ("\n" if lines else "")
 
 
 def joined_regex(patterns: list[str]) -> str:
@@ -1354,6 +1486,7 @@ def build_rules(profile: configparser.ConfigParser) -> str:
     if as_bool(profile, "include", "source_rule_compat", True):
         blocks.append(read_text(source_file("Rule"), required=False))
     rules = merge_lines(blocks)
+    rules = strip_protected_reject_conflicts(rules, build_protected_route_patterns(profile))
     if as_bool(profile, "safety", "strip_direct_proxy_rules", False):
         rules = strip_rule_policies(rules, RULE_POLICIES_TO_STRIP)
     if as_bool(profile, "safety", "compact_network_split", False):
