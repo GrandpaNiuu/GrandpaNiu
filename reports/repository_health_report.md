@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-07-16 01:51:26 +0800
+- Generated at: 2026-07-16 02:53:57 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Release alias identical: yes
@@ -53,7 +53,7 @@
 
 - `.github/workflows/module-factory-build.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
 - `.github/workflows/daily-module-update.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
-- `.github/workflows/daily-audit-and-repair.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
+- `.github/workflows/daily-audit-and-repair.yml`: contents: write; isolated concurrency; missing fusion build; safe commit helper; cross-workflow lock; rebase retry
 - `.github/workflows/daily-invalid-source-repair.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
 - `.github/workflows/scheduled-module-update.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry
 - `.github/workflows/upstream-app-module-sync.yml`: contents: write; isolated concurrency; fusion; safe commit helper; cross-workflow lock; rebase retry

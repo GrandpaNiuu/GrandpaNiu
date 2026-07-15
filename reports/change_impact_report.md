@@ -1,14 +1,22 @@
 # 变更影响报告
 
-- 生成时间：2026-07-16 01:51:09 +0800
-- 变更识别模式：git diff 精准模式
+- 生成时间：2026-07-16 02:53:43 +0800
+- 变更识别模式：git diff HEAD~1..HEAD (committed-change mode)
 
 ## 本次修改文件
 
+- `.github/workflows/daily-module-update.yml`
+- `.github/workflows/daily-schedule-watchdog.yml`
+- `.github/workflows/module-factory-build.yml`
 - `AI_HANDOFF.md`
 - `PROJECT_STATE.md`
+- `docs/ai/DECISIONS.md`
+- `docs/ai/RISK_LOG.md`
 - `docs/ai/TASKS.md`
 - `docs/ai/WORKLOG.md`
+- `scripts/validate_repository.py`
+- `tests/test_automation_status.py`
+- `tools/generate_automation_gap_report.py`
 
 ## 新增文件
 
@@ -20,15 +28,25 @@
 
 ## 修改文件
 
+- `.github/workflows/daily-module-update.yml`
+- `.github/workflows/daily-schedule-watchdog.yml`
+- `.github/workflows/module-factory-build.yml`
 - `AI_HANDOFF.md`
 - `PROJECT_STATE.md`
+- `docs/ai/DECISIONS.md`
+- `docs/ai/RISK_LOG.md`
 - `docs/ai/TASKS.md`
 - `docs/ai/WORKLOG.md`
+- `scripts/validate_repository.py`
+- `tests/test_automation_status.py`
+- `tools/generate_automation_gap_report.py`
 
 ## 影响的模块层
 
 - Other
 - README/docs
+- Scripts/maintenance
+- Workflows
 
 ## 可能影响的 App
 
@@ -36,8 +54,8 @@
 
 ## 风险判断
 
-- 是否涉及脚本：否
-- 是否涉及 MITM：否
+- 是否涉及脚本：是
+- 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：否
 - 是否涉及远程规则源：否
 - 是否需要测试 Spotify：按需

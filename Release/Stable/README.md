@@ -1,6 +1,6 @@
 # Stable Channel
 
-Production channel copied from the current Fusion release.
+Deprecated compatibility mirror of the current Fusion release; not a public version choice.
 
-- Status: `enabled`
+- Status: `legacy-compatible`
 - Artifacts: `Ronghemokuai.sgmodule`, `Module.sgmodule`, `Rules.conf`, `RulesGroup.conf`
