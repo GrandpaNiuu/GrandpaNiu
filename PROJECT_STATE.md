@@ -1,6 +1,6 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-16 00:06 +08:00
+Last updated: 2026-07-16 00:15 +08:00
 
 ## 2026-07-15 Strict Equivalent MITM Compaction Snapshot
 
@@ -21,6 +21,7 @@ Last updated: 2026-07-16 00:06 +08:00
 - `tools/validate_mitm_coverage.py` independently rebuilds the baseline and force-keep set from Fusion source files, then verifies every removal, conservative exclusion, source trace, retained order, wildcard set, deep-feature coverage, non-MITM fingerprint, fallback completeness, and generated Release output.
 - `tools/build_mitm_baseline.py` is local-only and no longer invokes script aggregation, network access, or unrelated generated writes.
 - Full `python scripts/quality_gate.py` passed with `57` tests.
+- Published as commit `e5eec5a5`; Module Factory Build `29431450140` and Pages deploy `29431556288` both passed. Generated follow-up `c8d043a8` is synchronized locally.
 
 Boundary: equivalence is asserted under the named repository matcher contract, not as a universal proof of every undocumented client implementation. Any item outside that contract is retained.
 

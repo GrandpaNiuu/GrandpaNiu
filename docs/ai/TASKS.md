@@ -1,10 +1,10 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-16 00:06 +08:00
+Last updated: 2026-07-16 00:15 +08:00
 
 ## Current Strict Equivalent MITM Compaction Task
 
-Status: implementation and local validation complete; pending commit, push, and remote Actions confirmation.
+Status: complete, published, and remotely confirmed.
 
 Completed scope:
 
@@ -30,10 +30,12 @@ Validated result:
 - Builder `--release --check`: passed.
 - Full quality gate: passed.
 
-Next check:
+Published evidence:
 
-- Commit and push.
-- Confirm `Module Factory Build` is green.
+- Implementation commit: `e5eec5a5`.
+- Generated follow-up: `c8d043a8`.
+- Module Factory Build: `29431450140` passed.
+- Pages deploy: `29431556288` passed.
 - Keep wildcard range reduction and wildcard synthesis disabled.
 
 ## Historical Status Note
