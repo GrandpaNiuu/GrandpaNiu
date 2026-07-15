@@ -34,6 +34,12 @@ V2RAYN_OUTPUT = ROOT / "Windows" / "v2rayN" / "GrandpaNiu-v2rayN-custom-routing.
 QUALITY_GATE = ROOT / "scripts" / "quality_gate.py"
 COMMIT_HELPER = ROOT / "scripts" / "commit_generated_changes.sh"
 PAGES_DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "pages-deploy.yml"
+QUALITY_GATE_WORKFLOWS = (
+    ".github/workflows/module-factory-build.yml",
+    ".github/workflows/daily-module-update.yml",
+    ".github/workflows/daily-schedule-watchdog.yml",
+    ".github/workflows/repository-health.yml",
+)
 SCRIPT_BUNDLE = ROOT / "Scripts" / "generated" / "fusion-script-bundle.js"
 SCRIPT_MANIFEST = ROOT / "Scripts" / "generated" / "fusion-script-bundle.manifest.json"
 SCRIPT_CACHE = ROOT / "Scripts" / "generated" / "fusion-script-bundle.cache.json"
@@ -298,6 +304,15 @@ def check_workflows(gaps: list[str], notes: list[str]) -> None:
                 if f"\n            {output} \\" not in text and f"\n            {output}\n" not in text:
                     add_gap(gaps, f"Workflow {relative} runs the full Builder but does not stage {output}.")
     notes.append(f"Scheduled workflows checked: {len(REQUIRED_DAILY_WORKFLOWS)}; writer workflows checked: {len(BUILDER_WRITER_WORKFLOWS)}.")
+
+    token_pattern = re.compile(r"GITHUB_TOKEN:\s*\$\{\{\s*(?:github\.token|secrets\.GITHUB_TOKEN)\s*\}\}")
+    for relative in QUALITY_GATE_WORKFLOWS:
+        text = read(ROOT / relative)
+        if "actions: read" not in text:
+            add_gap(gaps, f"Quality-gate workflow lacks actions: read permission: {relative}.")
+        if not token_pattern.search(text):
+            add_gap(gaps, f"Quality-gate workflow lacks authenticated Actions status access: {relative}.")
+    notes.append("Quality-gate workflows provide authenticated Actions status access instead of relying on anonymous API limits.")
 
     generated_audit = read(ROOT / ".github/workflows/daily-audit-and-repair.yml")
     if "scripts/audit_and_repair_module.py --report-only" not in generated_audit:

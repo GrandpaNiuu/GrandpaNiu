@@ -1,6 +1,6 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-16 02:03 +08:00
+Last updated: 2026-07-16 02:47 +08:00
 
 ## 2026-07-16 Maintenance Stabilization Snapshot
 
@@ -9,6 +9,8 @@ Last updated: 2026-07-16 02:03 +08:00
   - `daily-invalid-source-repair.yml` owns editable invalid-source repair.
   - `upstream-collect.yml` owns candidate collection.
   - source-maintenance workflows run the full Builder only when their source step reports a real source change.
+- Candidate collection commits every target allowed by `collect_upstreams.py`; validation imports the allowed target sets so workflow staging cannot drift from collector capability.
+- Workflows that run the quality gate or strict automation status now provide authenticated Actions API access through `GITHUB_TOKEN` and `actions: read`.
 - Repository validation and the automation-gap report enforce those ownership boundaries so duplicate repair/build stages cannot silently return.
 - Release App-module documentation now reports static capability tiers instead of treating every non-empty module as equally functional:
   - deep: `171`
@@ -23,7 +25,7 @@ Last updated: 2026-07-16 02:03 +08:00
 - Stable is documented as a deprecated compatibility mirror of Fusion. Beta and Canary remain reserved placeholders, not public version choices.
 - No `Rules/`, `Rewrite/Sources/`, App scripts, MITM declarations, Android routing policy, Windows routing policy, or public Fusion URL was manually changed in this pass.
 - Local validation passed:
-  - `74` unit/integration tests
+  - `78` unit/integration tests
   - Builder `--profile fusion --release --check`
   - full `python scripts/quality_gate.py`
   - Fusion output: `2769` lines
@@ -31,7 +33,7 @@ Last updated: 2026-07-16 02:03 +08:00
   - Android main rules: `952`
   - automation status: `ok`, `0` blockers, `0` warnings
 
-Remote confirmation is pending until this snapshot and its implementation are committed and pushed.
+Local unauthenticated Actions status refresh hit the GitHub API rate limit and correctly degraded to `unknown` without blocking static validation. Remote confirmation is pending until this snapshot and its implementation are committed and pushed with authenticated workflow access.
 
 ## 2026-07-15 Strict Equivalent MITM Compaction Snapshot
 

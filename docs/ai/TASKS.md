@@ -1,6 +1,6 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-16 02:03 +08:00
+Last updated: 2026-07-16 02:47 +08:00
 
 ## Current Maintenance Stabilization Task
 
@@ -10,6 +10,8 @@ Completed scope:
 
 - Separated invalid-rule reporting, invalid-source repair, and upstream candidate collection into distinct workflow ownership.
 - Made candidate/source workflows run the full Builder only after a real source change.
+- Bound every collector-allowed Rule / Script target to explicit workflow commit paths.
+- Added authenticated Actions status access to every quality-gate workflow.
 - Added repository validation and automation-gap contracts for those boundaries.
 - Added static App-module capability tiers to Release and Web indexes.
 - Added final-output trace status to the MITM / REJECT risk ledger and false-positive queue.
@@ -18,7 +20,7 @@ Completed scope:
 
 Validation:
 
-- `python -m unittest discover -s tests -p "test_*.py"`: `74` passed.
+- `python -m unittest discover -s tests -p "test_*.py"`: `78` passed.
 - `python Rewrite/Generator/Builder.py --profile fusion --release --check`: passed.
 - `python scripts/quality_gate.py`: passed.
 - App modules: `398/398`, `0` empty.
@@ -28,6 +30,7 @@ Pending:
 
 - Commit and push with explicit paths.
 - Confirm the resulting Module Factory Build and Pages deployment are green.
+- Confirm the remote automation status report uses authenticated data rather than the local rate-limit fallback.
 - Keep `crunchyroll` and `flightradar24` visibly classified as MITM-only compatibility fragments unless a safe, ad-removal-focused source is proven later.
 - No historical WORKLOG encoding cleanup remains pending; the affected block was restored from clean commit `8f8b3029`.
 

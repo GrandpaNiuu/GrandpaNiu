@@ -18,6 +18,7 @@ env:
   PYTHONUTF8: "1"
   LANG: C.UTF-8
   LC_ALL: C.UTF-8
+  GITHUB_TOKEN: ${{ github.token }}
 
 concurrency:
   group: module-maintenance-${{ github.workflow }}-${{ github.ref }}

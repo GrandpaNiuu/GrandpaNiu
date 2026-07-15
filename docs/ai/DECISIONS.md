@@ -462,3 +462,19 @@ Reason: a non-empty `.sgmodule` can still contain only a hostname declaration. U
 MITM and REJECT risk reports record exact final presence, equivalent MITM wildcard coverage, or source-only / compiler-filtered status. The tooling must not infer that a source rule is unnecessary merely because it is absent from the generated Fusion output.
 
 Reason: source-first compilers legitimately deduplicate, normalize, or filter entries. A useful risk ledger must distinguish those states while preserving the evidence boundary.
+
+## 2026-07-16 - Collector Allowlist And Commit Paths Are One Contract
+
+Every target in `ALLOWED_LOCAL_TARGETS` and `ALLOWED_SCRIPT_TARGETS` must be explicitly staged by `upstream-collect.yml`. Repository validation imports those sets and fails if workflow staging drifts.
+
+Reason: committing generated output without the collector's source edit creates a non-reproducible release that disappears on the next build.
+
+## 2026-07-16 - Quality-Gate Workflows Use Authenticated Actions Status
+
+Every workflow that runs the complete quality gate or strict automation status must grant `actions: read` and expose the repository-scoped `GITHUB_TOKEN` to the status checker.
+
+Reason: anonymous GitHub API limits can turn useful status evidence into `unknown` or make a strict watchdog fragile even when the repository token is already available.
+
+## 2026-07-16 - Change Impact Report Describes A Committed Range
+
+The change-impact report intentionally analyzes `HEAD~1..HEAD` because CI runs after a commit exists. Its mode label must state that committed range explicitly; a local pre-commit report is not represented as the current working-tree diff.

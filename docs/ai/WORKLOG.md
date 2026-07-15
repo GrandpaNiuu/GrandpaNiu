@@ -2166,7 +2166,11 @@ Improve the repository's long-term automation and generated documentation withou
 - Added validation contracts so those responsibilities cannot silently overlap again.
 - Added deep / rewrite / rule / MITM-only static capability tiers to Release and Web App catalogs.
 - Added final-output status to the MITM / REJECT risk ledger and propagated it into the false-positive queue.
+- Made risk-table parsing preserve escaped regex alternation instead of shifting Markdown columns.
 - Clarified that Stable is a deprecated Fusion compatibility mirror and Beta / Canary are reserved placeholders.
+- Ensured candidate collection commits all nine allowlisted Rule / Script targets and validates that contract dynamically.
+- Added authenticated Actions status access to every workflow that runs the complete quality gate or strict watchdog status.
+- Added the capability evidence boundary to Web Markdown, HTML, and JSON outputs; empty modules now classify as `empty`, not MITM-only.
 - Restored the corrupted 2026-06-20 through 2026-06-22 WORKLOG block verbatim from clean commit `8f8b3029` while preserving every later record.
 - Regenerated Release, Web, Android metadata, checksums, and reports through the normal Builder and quality gate.
 
@@ -2176,6 +2180,7 @@ Improve the repository's long-term automation and generated documentation withou
 - Added failing tests for workflow ownership and conditional candidate builds.
 - Added failing tests for App-module capability tiers and legacy channel wording.
 - Added failing tests for source-to-final MITM / REJECT risk status.
+- Added failing tests for escaped regex table cells, complete collector staging, conditional source builds, authenticated status access, Web evidence wording, committed change-impact labeling, and empty capability classification.
 - Implemented only after those tests established the missing behavior.
 
 ### Validation Result
@@ -2189,7 +2194,7 @@ git diff --check
 ```
 
 - Python compilation: passed.
-- Unit/integration tests: `74` passed.
+- Unit/integration tests: `78` passed.
 - Builder check: passed.
 - Full quality gate: passed in approximately `228.5` seconds.
 - Fusion module: `2769` lines.
@@ -2197,7 +2202,8 @@ git diff --check
 - App modules: `398/398`; empty: `0`.
 - Capability totals: deep `171`, rewrite `153`, rule `72`, MITM-only `2`.
 - Android main rules: `952`.
-- Automation status: `ok`; blockers `0`; warnings `0`.
+- Earlier pre-rebase automation status refresh: `ok`; blockers `0`; warnings `0`.
+- Final local status refresh after rebase: `unknown`, blockers `0`, because the unauthenticated local GitHub API quota returned HTTP 403. Remote workflows now provide authenticated status access.
 
 ### Risks
 
@@ -2211,6 +2217,10 @@ git diff --check
 - What was not good enough: several workflows repeated the same expensive build or source-maintenance work, while every generated App module was presented as if it had equivalent functional depth.
 - What changed: daily ownership is now explicit and machine-checked; catalogs and risk reports expose their evidence boundaries.
 - Final-review correction: the first conditional-build implementation used `git diff --quiet`, which misses untracked files. It was replaced with explicit-path `git status --porcelain` detection and covered by a workflow regression test before the final quality-gate run.
+- Independent-review correction: the first staging fix covered only two collector targets. The final implementation stages all allowlisted targets and imports the collector sets in governance checks.
+- Independent-review correction: an escaped `\|` in a regex split the risk ledger into the wrong columns. A small escape-aware parser now preserves the original entry.
+- Independent-review correction: Web capability labels now carry the same static-evidence disclaimer as Release, and the change-impact report names its committed Git range.
+- Automation-status correction: quality-gate workflows no longer rely on anonymous GitHub API quota.
 - What remains intentionally unsolved: runtime effectiveness cannot be established from static syntax, and the two MITM-only fragments need a safe ad-removal source before they can be promoted.
 - Documentation correction: the historical mojibake block was recovered from a clean Git commit, so no speculative re-encoding was needed.
 - What to check first next time: inspect the post-push Module Factory and Pages runs, then compare any future automation failure against the new ownership contracts before changing business rules.
@@ -2219,3 +2229,4 @@ git diff --check
 
 - Commit and push with explicit paths.
 - Confirm Module Factory Build and Pages deployment on the new commit.
+- Confirm authenticated remote automation status and close the handoff with exact run IDs.

@@ -113,6 +113,12 @@ FUSION_BUILD_WORKFLOWS = tuple(
     for relative in REQUIRED_WORKFLOWS
     if relative != ".github/workflows/daily-audit-and-repair.yml"
 )
+QUALITY_GATE_WORKFLOWS = (
+    ".github/workflows/module-factory-build.yml",
+    ".github/workflows/daily-module-update.yml",
+    ".github/workflows/daily-schedule-watchdog.yml",
+    ".github/workflows/repository-health.yml",
+)
 PAGES_DEPLOY_WORKFLOW = ".github/workflows/pages-deploy.yml"
 
 EXPECTED_WORKFLOW_CRONS = {
@@ -629,6 +635,14 @@ def validate_workflows() -> None:
         text = read_text(ROOT / relative)
         if not workflow_has_fusion_build(text):
             fail(f"{relative} must build with fusion profile")
+
+    token_pattern = re.compile(r"GITHUB_TOKEN:\s*\$\{\{\s*(?:github\.token|secrets\.GITHUB_TOKEN)\s*\}\}")
+    for relative in QUALITY_GATE_WORKFLOWS:
+        text = read_text(ROOT / relative)
+        if "actions: read" not in text:
+            fail(f"{relative} must grant actions: read for automation status checks")
+        if not token_pattern.search(text):
+            fail(f"{relative} must provide GITHUB_TOKEN to automation status checks")
 
     daily = read_text(ROOT / ".github" / "workflows" / "daily-module-update.yml")
     for token in ("build_module.py", "factory_finalize.py", "build_release_variants.py", "validate_repository.py"):

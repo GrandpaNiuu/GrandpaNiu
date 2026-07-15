@@ -709,3 +709,6 @@ Mitigation:
 - Full Builder and quality gate passed before publication.
 - Remote Actions must still be confirmed after push.
 - The older historical WORKLOG block was restored from clean commit `8f8b3029`; no guessed re-encoding was used.
+- Independent review found that collector output could be generated without committing every allowed source target. All nine allowed targets are now staged explicitly and checked against the collector allowlists.
+- Independent review found that escaped regex alternation could shift Markdown risk-table columns. Parsing is now escape-aware and regression-tested.
+- Local final status generation hit anonymous GitHub API rate limiting. This does not prove a workflow failure; remote quality-gate workflows now use authenticated Actions access and must be confirmed after push.

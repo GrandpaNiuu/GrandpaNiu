@@ -1,11 +1,13 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-16 02:03 +08:00
+Last updated: 2026-07-16 02:47 +08:00
 
 ## 2026-07-16 Maintenance Stabilization Handoff
 
 - Daily workflows now have non-overlapping owners: generated-module audit is report-only, invalid-source repair edits sources, and upstream collection manages candidates.
 - Source-maintenance workflows invoke the full Builder only when their source step reports `source_changed=true`.
+- Candidate collection stages all Rule and Script targets declared by its own allowlists; validation enforces the relationship dynamically.
+- Module Factory, Daily Module Update, Daily watchdog, and Repository Health provide authenticated Actions status access when running the quality gate.
 - `validate_repository.py` and `generate_automation_gap_report.py` enforce these workflow contracts.
 - App release indexes now expose a static capability tier. Current totals are `171` deep, `153` rewrite, `72` rule, and `2` MITM-only across `398` non-empty modules.
 - The two MITM-only outputs are `crunchyroll` and `flightradar24`. Treat them as compatibility fragments, not verified standalone ad-removal modules. Do not import Flightradar paid-feature/unlock code merely to remove that label.
@@ -13,7 +15,7 @@ Last updated: 2026-07-16 02:03 +08:00
 - The old corrupted WORKLOG block was restored from clean commit `8f8b3029`; no guessed encoding conversion was used.
 - Stable is a deprecated Fusion compatibility mirror; Beta and Canary are reserved placeholders.
 - No traffic-policy source, Script, Rewrite, MITM declaration, Android/Windows policy, or public entry URL was intentionally changed.
-- Local Builder and the full quality gate passed with `74` tests. Remote Actions confirmation is pending publication.
+- Local Builder and the full quality gate passed with `78` tests. The final local status report is `unknown` only because the unauthenticated local GitHub API quota was exhausted; remote Actions confirmation is pending publication.
 
 Next AI should first inspect the post-push Module Factory Build and Pages runs. Do not broaden this maintenance pass into new App imports or traffic-rule changes without real runtime evidence.
 

@@ -18,6 +18,17 @@ SPEC.loader.exec_module(status)
 
 
 class AutomationStatusTests(unittest.TestCase):
+    def test_quality_gate_workflows_provide_authenticated_actions_status(self) -> None:
+        for relative in (
+            "module-factory-build.yml",
+            "daily-module-update.yml",
+            "daily-schedule-watchdog.yml",
+            "repository-health.yml",
+        ):
+            text = (ROOT / ".github" / "workflows" / relative).read_text(encoding="utf-8")
+            self.assertIn("GITHUB_TOKEN:", text, relative)
+            self.assertRegex(text, r"GITHUB_TOKEN:\s*\$\{\{\s*(?:github\.token|secrets\.GITHUB_TOKEN)\s*\}\}")
+
     def test_in_progress_run_with_fresh_success_is_not_a_warning(self) -> None:
         reference = dt.datetime(2026, 7, 16, 4, 0, tzinfo=dt.timezone.utc)
         expectation = status.WorkflowExpectation("sync.yml", "Sync", "daily", 40)
