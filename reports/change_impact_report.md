@@ -1,17 +1,37 @@
 # 变更影响报告
 
-- 生成时间：2026-07-16 01:10:30 +0800
+- 生成时间：2026-07-16 01:13:45 +0800
 - 变更识别模式：git diff 精准模式
 
 ## 本次修改文件
 
+- `.github/workflows/daily-audit-and-repair.yml`
+- `.github/workflows/workflow-failure-issue.yml`
+- `AI_HANDOFF.md`
 - `Android/branches.json`
+- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
+- `Release/Module.sgmodule`
+- `Release/Ronghemokuai.sgmodule`
+- `Release/Rules.conf`
+- `Release/RulesGroup.conf`
+- `Release/Stable/Module.sgmodule`
+- `Release/Stable/Ronghemokuai.sgmodule`
+- `Release/Stable/Rules.conf`
+- `Release/Stable/RulesGroup.conf`
 - `Release/checksums.json`
+- `Release/checksums.txt`
+- `Ronghemokuai.sgmodule`
+- `Rules/direct.list`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
+- `docs/ai/DECISIONS.md`
+- `docs/ai/RISK_LOG.md`
+- `docs/ai/TASKS.md`
+- `docs/ai/WORKLOG.md`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
+- `reports/app_coverage_matrix.md`
 - `reports/app_source_validation_report.md`
 - `reports/app_status_matrix.md`
 - `reports/automated_quality_evidence.md`
@@ -27,11 +47,15 @@
 - `reports/mitm_optimization_report.md`
 - `reports/mitm_reject_risk_ledger.md`
 - `reports/mitm_scope_report.md`
+- `reports/module_factory_diff_report.md`
+- `reports/module_factory_report.md`
+- `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/platform_compatibility_matrix.md`
 - `reports/profile_validation_report.md`
 - `reports/protected_traffic_ledger.md`
 - `reports/reject_risk_report.md`
+- `reports/release_rules_report.md`
 - `reports/remote_rule_syntax_report.md`
 - `reports/report_encoding_report.md`
 - `reports/report_freshness_report.md`
@@ -44,10 +68,16 @@
 - `reports/upstream_provenance_report.md`
 - `reports/upstream_risk_gate_report.md`
 - `reports/workflow_health_report.md`
+- `scripts/audit_and_repair_module.py`
+- `scripts/build_module.py`
+- `scripts/generate_workflow_health_report.py`
+- `scripts/validate_repository.py`
+- `tests/test_automated_quality_gate.py`
+- `tests/test_protected_rule_compiler.py`
 
 ## 新增文件
 
-- 无
+- `tests/test_protected_rule_compiler.py`
 
 ## 删除文件
 
@@ -55,13 +85,33 @@
 
 ## 修改文件
 
+- `.github/workflows/daily-audit-and-repair.yml`
+- `.github/workflows/workflow-failure-issue.yml`
+- `AI_HANDOFF.md`
 - `Android/branches.json`
+- `PROJECT_STATE.md`
 - `Release/Android/branches.json`
+- `Release/Module.sgmodule`
+- `Release/Ronghemokuai.sgmodule`
+- `Release/Rules.conf`
+- `Release/RulesGroup.conf`
+- `Release/Stable/Module.sgmodule`
+- `Release/Stable/Ronghemokuai.sgmodule`
+- `Release/Stable/Rules.conf`
+- `Release/Stable/RulesGroup.conf`
 - `Release/checksums.json`
+- `Release/checksums.txt`
+- `Ronghemokuai.sgmodule`
+- `Rules/direct.list`
 - `Scripts/generated/fusion-script-bundle.js`
 - `Scripts/generated/fusion-script-bundle.manifest.json`
+- `docs/ai/DECISIONS.md`
+- `docs/ai/RISK_LOG.md`
+- `docs/ai/TASKS.md`
+- `docs/ai/WORKLOG.md`
 - `reports/android_rules_report.md`
 - `reports/app_cleaner_active_report.md`
+- `reports/app_coverage_matrix.md`
 - `reports/app_source_validation_report.md`
 - `reports/app_status_matrix.md`
 - `reports/automated_quality_evidence.md`
@@ -77,11 +127,15 @@
 - `reports/mitm_optimization_report.md`
 - `reports/mitm_reject_risk_ledger.md`
 - `reports/mitm_scope_report.md`
+- `reports/module_factory_diff_report.md`
+- `reports/module_factory_report.md`
+- `reports/module_integrity_report.md`
 - `reports/multi_release_report.md`
 - `reports/platform_compatibility_matrix.md`
 - `reports/profile_validation_report.md`
 - `reports/protected_traffic_ledger.md`
 - `reports/reject_risk_report.md`
+- `reports/release_rules_report.md`
 - `reports/remote_rule_syntax_report.md`
 - `reports/report_encoding_report.md`
 - `reports/report_freshness_report.md`
@@ -94,12 +148,20 @@
 - `reports/upstream_provenance_report.md`
 - `reports/upstream_risk_gate_report.md`
 - `reports/workflow_health_report.md`
+- `scripts/audit_and_repair_module.py`
+- `scripts/build_module.py`
+- `scripts/generate_workflow_health_report.py`
+- `scripts/validate_repository.py`
+- `tests/test_automated_quality_gate.py`
 
 ## 影响的模块层
 
 - Other
 - README/docs
+- Rules
 - Scripts
+- Scripts/maintenance
+- Workflows
 
 ## 可能影响的 App
 
@@ -107,7 +169,16 @@
 - YouTube
 - 知乎
 - Bilibili
+- 微博
+- 百度贴吧
+- 小红书
+- 美团
+- 滴滴
 - 12306
+- 高德地图
+- 百度地图
+- 网易云音乐
+- 喜马拉雅
 - Reddit
 
 ## 风险判断
@@ -115,7 +186,7 @@
 - 是否涉及脚本：是
 - 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：是
-- 是否涉及远程规则源：否
+- 是否涉及远程规则源：是
 - 是否需要测试 Spotify：是
 - 是否需要测试 YouTube：是
 - 是否需要测试知乎：是
