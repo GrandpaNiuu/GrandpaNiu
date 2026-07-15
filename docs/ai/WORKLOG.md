@@ -1,5 +1,77 @@
 # AI Maintenance Worklog
 
+## 2026-07-16 03:16 - Conservative Module Complexity Work Record
+
+### Task
+
+Improve the Fusion module conservatively without changing traffic behavior: add module growth budgets, oversized-line controls, and semantic build fingerprints.
+
+### Starting State
+
+- Branch: `repair/upstream-app-sync`.
+- Git status summary: clean.
+- Current Fusion: 2,908,098 bytes and 2769 lines.
+- Largest line: Xiaojukeji Charge Map Local payload, 2,269,910 characters, about 78.05 percent of module bytes.
+- Expected modification scope: reporting/validation code, generator configuration, tests, generated reports, and AI records.
+
+### Planned Safety Boundary
+
+- Preserve every generated Rule, Rewrite, Map Local, Script, and MITM behavior.
+- Register the current large payload as an explicit bounded exception instead of rewriting it.
+- Use test-first implementation and run the complete quality gate before publication.
+
+### Risk
+
+- The primary risk is an overly strict budget interrupting unattended builds after an ordinary upstream update.
+- Budgets will therefore include measured headroom and will target material regressions, not small routine changes.
+
+### Next Step
+
+- Commit and push the validated implementation, then confirm Module Factory Build and Pages status.
+
+### Actual Changes
+
+- Added `Rewrite/Generator/module-budgets.json` with conservative growth headroom.
+- Added `tools/validate_module_budget.py` and generated JSON/Markdown evidence reports.
+- Registered the existing Xiaojukeji Charge payload as one bounded exception instead of modifying it.
+- Added module semantic and per-section fingerprints plus change classification to the build summary.
+- Integrated budget validation into both Generator configs, the unified Builder, final quality-gate ordering, report freshness, repository validation, and automated evidence.
+- Added regression tests for budget pass/fail behavior, oversized-line exceptions, exception multiplicity, schema validation, Builder wiring, quality-gate order, and semantic classification.
+
+### Validation Result
+
+```bash
+python -m unittest tests.test_module_complexity_budget
+python Rewrite/Generator/Builder.py --profile fusion --release --check
+python scripts/quality_gate.py
+git diff --check
+```
+
+- Focused tests: `16` passed.
+- Final full suite: `94` passed.
+- Builder check: passed.
+- Full quality gate: passed.
+- Freshness checks: `23/23` fresh.
+- Fusion output: `2,908,098` bytes, `2769` lines, `1189` MITM tokens.
+- Root and Release module blobs are identical to the pre-task committed blob.
+
+### Risk Outcome
+
+- No traffic-policy source or generated Fusion content changed.
+- The only observed integration defect was report ordering: profile validation refreshed the module after the first budget report. The final quality gate now reruns the budget validator after module integrity validation.
+- The large payload remains a known size cost, not an automatically removable item.
+
+### Self-Review
+
+- Initial weakness: the first integration generated the budget report too early for strict freshness.
+- Correction: added a failing order test, moved the final budget refresh after profile/module validation, and reran the complete gate.
+- Review correction: large-line exceptions now have schema validation, unique IDs, explicit match-count caps, and size caps.
+- Epistemic correction: renamed `behavior-changed` to `module-semantic-changed` and documented that remote runtime behavior is outside the fingerprint boundary.
+- Independent standards correction: only lines that actually exceed the default limit consume the explicit exception, so a future short rule sharing the marker cannot create a false failure.
+- Independent integration correction: Builder passes budget config and both report paths explicitly, and the mandatory budget script is no longer handled by the optional-script skip path.
+- Independent evidence correction: every primary budget branch has a failure test, the exception must match exactly once, and build summaries identify the comparison `HEAD` commit and module blob.
+- Remaining limitation: the module is still about 2.91 MB because preserving the 2.27 MB payload is safer than unproven externalization.
+
 ## 2026-06-26 13:11 - Work Record
 
 ### Task

@@ -61,6 +61,7 @@ def main() -> None:
         [sys.executable, "tools/validate_script_aggregation.py"],
         [sys.executable, "tools/test_script_bundle_sandbox.py"],
         [sys.executable, "scripts/validate_module_integrity.py"],
+        [sys.executable, "tools/validate_module_budget.py"],
         [sys.executable, "tools/generate_mitm_scope_report.py"],
         [sys.executable, "tools/generate_mitm_reject_risk_ledger.py"],
         [sys.executable, "tools/generate_upstream_provenance_report.py"],

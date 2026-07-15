@@ -1,6 +1,19 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-16 02:47 +08:00
+Last updated: 2026-07-16 03:58 +08:00
+
+## 2026-07-16 Conservative Module Complexity Handoff
+
+- `tools/validate_module_budget.py` is now a mandatory unified Builder and late quality-gate step.
+- Its policy lives in `Rewrite/Generator/module-budgets.json`; update the policy intentionally rather than weakening checks in code.
+- The current Xiaojukeji Charge Map Local payload is preserved through a single-match, size-bounded exception. Do not externalize, delete, or replace it without proven Shadowrocket-equivalent resource semantics.
+- Any new active line above `50,000` characters fails unless separately registered with section, marker, size, and match-count limits.
+- `scripts/build_release_summary.py` records module semantic fingerprints and compares generated output with the committed `HEAD` module. `#!desc` date changes are metadata-only.
+- The fingerprint does not prove App runtime behavior and does not include remote content that changes behind an unchanged URL.
+- The first complete gate exposed a stale-report ordering issue after `validate_profiles.py`; the budget validator now reruns after final module integrity validation, and a regression test locks that order.
+- Independent review corrections are included: only genuinely oversized lines consume an exception; the exception must match exactly once; report paths are passed from Generator config; the budget script cannot be silently skipped; each primary budget dimension has a failure test; and build summaries include the comparison commit/blob.
+- Final evidence: `94` tests passed, Builder `--profile fusion --release --check` passed, full quality gate passed, and all `23` freshness checks are fresh.
+- Fusion traffic content is unchanged from task start. The implementation is ready for commit/push; remote Actions confirmation remains the next operational step.
 
 ## 2026-07-16 Maintenance Stabilization Handoff
 

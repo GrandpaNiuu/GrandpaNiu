@@ -1,8 +1,8 @@
 # 自动化质量证据报告
 
-生成时间：2026-07-16 02:56:47 +0800
-Git 分支：`main`
-Git 提交：`f57c522d`
+生成时间：2026-07-16 03:59:22 +0800
+Git 分支：`repair/upstream-app-sync`
+Git 提交：`e20095f5`
 
 本仓库发布门禁以可重复执行的自动化证据为准：构建、语法检查、远程规则校验、模块完整性、报告新鲜度和仓库健康检查。
 
@@ -10,7 +10,7 @@ Git 提交：`f57c522d`
 
 - Root / Release 一致：是
 - UTF-8 BOM 命中：0
-- 证据报告数量：31
+- 证据报告数量：33
 
 ## 必跑自动化命令
 
@@ -19,6 +19,7 @@ Git 提交：`f57c522d`
 - `python -m unittest discover -s tests`
 - `python scripts/convert_quanx_rules.py`
 - `python Rewrite/Generator/Builder.py --profile fusion --release`
+- `python tools/validate_module_budget.py`
 - `python scripts/validate_app_sources.py`
 - `python scripts/android_format_check.py`
 - `node --check Scripts/generated/fusion-script-bundle.js`
@@ -55,6 +56,8 @@ Git 提交：`f57c522d`
 |---|---|
 | `reports/android_rules_report.md` | present |
 | `reports/module_integrity_report.md` | present |
+| `reports/module_budget_report.md` | present |
+| `reports/module_budget_report.json` | present |
 | `reports/app_source_validation_report.md` | present |
 | `reports/multi_release_report.md` | present |
 | `reports/profile_validation_report.md` | present |

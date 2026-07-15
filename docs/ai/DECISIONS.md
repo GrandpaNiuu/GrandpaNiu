@@ -1,6 +1,16 @@
 # AI Maintenance Decisions
 
-Last updated: 2026-07-16 00:06 +08:00
+Last updated: 2026-07-16 03:42 +08:00
+
+### 2026-07-16 - Module Complexity Is Budgeted Without Automatic Feature Reduction
+
+The generated Fusion module must pass explicit byte, line, section, Script, MITM token, wildcard, and oversized-line budgets. Budget enforcement is read-only and must never delete or rewrite traffic behavior to make a build pass.
+
+The existing Xiaojukeji Charge Map Local payload remains embedded because no repository evidence proves that an external resource form is Shadowrocket-equivalent. It is allowed only by an explicit section/marker exception with independent size and match-count limits.
+
+Build summaries distinguish `unchanged`, `metadata-only`, and `module-semantic-changed`. This classification covers module configuration text only and must not be presented as proof of client runtime behavior or unchanged remote content.
+
+Reason: the module's principal maintainability risk is byte and single-line growth rather than duplicate final entries. A conservative regression budget detects accidental expansion without trading away App functionality.
 
 ### 2026-07-15 - Existing Wildcards May Compact Redundant Exact MITM Tokens
 

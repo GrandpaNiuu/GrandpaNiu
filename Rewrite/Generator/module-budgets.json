@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "module": {
+    "max_bytes": 3500000,
+    "max_lines": 3300,
+    "max_default_line_chars": 50000
+  },
+  "sections": {
+    "Rule": {
+      "max_active_lines": 1500
+    },
+    "URL Rewrite": {
+      "max_active_lines": 80
+    },
+    "Header Rewrite": {
+      "max_active_lines": 20
+    },
+    "Body Rewrite": {
+      "max_active_lines": 1800
+    },
+    "Map Local": {
+      "max_active_lines": 80
+    },
+    "Script": {
+      "max_active_lines": 70
+    },
+    "MITM": {
+      "max_active_lines": 2
+    }
+  },
+  "mitm": {
+    "max_tokens": 1500,
+    "max_wildcards": 60
+  },
+  "large_line_exceptions": [
+    {
+      "id": "xiaojukeji-charge-map-local",
+      "section": "Map Local",
+      "contains": "epower-thanos-app/",
+      "max_chars": 2500000,
+      "expected_matches": 1,
+      "reason": "Existing auto-synced Xiaojukeji Charge JavaScript payload; preserve until an equivalent Shadowrocket resource form is proven."
+    }
+  ]
+}

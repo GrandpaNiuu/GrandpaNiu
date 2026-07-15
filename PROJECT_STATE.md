@@ -1,6 +1,24 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-16 02:47 +08:00
+Last updated: 2026-07-16 03:58 +08:00
+
+## 2026-07-16 Conservative Module Complexity Snapshot
+
+- The unified Builder now enforces a generated Fusion complexity budget without rewriting module content.
+- Current measured baseline:
+  - module bytes: `2,908,098` / budget `3,500,000`
+  - module lines: `2769` / budget `3300`
+  - Rule: `1194` / budget `1500`
+  - Body Rewrite: `1435` / budget `1800`
+  - Script: `45` / budget `70`
+  - MITM tokens: `1189` / budget `1500`
+  - MITM wildcards: `34` / budget `60`
+- An active line above `50,000` characters is rejected unless it matches an explicit bounded exception.
+- The existing Xiaojukeji Charge Map Local payload is the only exception: one matching line, at most `2,500,000` characters. The current line is `2,269,910` characters.
+- The build summary now records section hashes, a module semantic hash, and `unchanged` / `metadata-only` / `module-semantic-changed` classification.
+- The semantic fingerprint covers module configuration text only. It does not claim runtime equivalence or detect remote content changing behind an unchanged URL.
+- Root and Release Fusion blobs are byte-identical to the pre-task `HEAD` blob; no Rule, Rewrite source, Script behavior, MITM declaration, Android policy, Windows policy, or public URL changed.
+- Final local validation passed with `94` tests, unified Builder `--release --check`, and the complete quality gate. All `23` freshness checks are fresh.
 
 ## 2026-07-16 Maintenance Stabilization Snapshot
 

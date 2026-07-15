@@ -96,6 +96,12 @@ def build_plan(cfg: configparser.ConfigParser, profile: str, release: bool, chec
     web_catalog_script = get_cfg(cfg, "builder", "web_catalog_script", "scripts/build_web_catalog.py")
     release_checksums_script = get_cfg(cfg, "builder", "release_checksums_script", "scripts/build_checksums.py")
     release_summary_script = get_cfg(cfg, "builder", "release_summary_script", "scripts/build_release_summary.py")
+    module_budget_script = get_cfg(cfg, "builder", "module_budget_script", "tools/validate_module_budget.py")
+    module_budget_config = get_cfg(
+        cfg, "builder", "module_budget_config", "Rewrite/Generator/module-budgets.json"
+    )
+    module_budget_json = get_cfg(cfg, "output", "module_budget_json", "reports/module_budget_report.json")
+    module_budget_md = get_cfg(cfg, "output", "module_budget_md", "reports/module_budget_report.md")
 
     steps: list[list[str]] = [
         command(build_script, "--build", "--profile", profile),
@@ -116,6 +122,15 @@ def build_plan(cfg: configparser.ConfigParser, profile: str, release: bool, chec
             existing_command(web_catalog_script),
             existing_command(release_checksums_script),
             existing_command(release_summary_script),
+            command(
+                module_budget_script,
+                "--config",
+                module_budget_config,
+                "--json-report",
+                module_budget_json,
+                "--markdown-report",
+                module_budget_md,
+            ),
         ]
         steps.extend(step for step in release_steps if step is not None)
 

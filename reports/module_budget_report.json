@@ -1,0 +1,149 @@
+{
+  "status": "passed",
+  "errors": [],
+  "module": {
+    "bytes": 2908098,
+    "max_bytes": 3500000,
+    "lines": 2769,
+    "max_lines": 3300,
+    "active_lines": 2761,
+    "max_default_line_chars": 50000
+  },
+  "section_counts": {
+    "Body Rewrite": 1435,
+    "Header Rewrite": 2,
+    "MITM": 1,
+    "Map Local": 37,
+    "Meta": 7,
+    "Rule": 1194,
+    "Script": 45,
+    "URL Rewrite": 40
+  },
+  "section_budgets": {
+    "Rule": {
+      "max_active_lines": 1500
+    },
+    "URL Rewrite": {
+      "max_active_lines": 80
+    },
+    "Header Rewrite": {
+      "max_active_lines": 20
+    },
+    "Body Rewrite": {
+      "max_active_lines": 1800
+    },
+    "Map Local": {
+      "max_active_lines": 80
+    },
+    "Script": {
+      "max_active_lines": 70
+    },
+    "MITM": {
+      "max_active_lines": 2
+    }
+  },
+  "mitm": {
+    "tokens": 1189,
+    "max_tokens": 1500,
+    "wildcards": 34,
+    "max_wildcards": 60
+  },
+  "longest_lines": [
+    {
+      "line": 2688,
+      "section": "Map Local",
+      "chars": 2269910,
+      "sha256": "1130e43c8c291b6659d890229dd5093472283e60ed6141b86d14334cf9194a93",
+      "prefix": "(?:^https://am\\.didistatic\\.com/static/am/cf-terminal/epower/epower-thanos-app/\\d+\\.\\d+\\.\\d+/pages/people/index\\.js$) da",
+      "exception_id": "xiaojukeji-charge-map-local"
+    },
+    {
+      "line": 2162,
+      "section": "Body Rewrite",
+      "chars": 29975,
+      "sha256": "150840c15f2af145d81a67326a61bebdbae62e7c405debbdef7a0147f009e4a3",
+      "prefix": "http-response-jq (?:^https?:\\/\\/open-cms-api\\.quark\\.cn\\/open-cms\\?) 'delpaths([[\"result\",\"cms_homepage_push_banner_conf",
+      "exception_id": null
+    },
+    {
+      "line": 2705,
+      "section": "Map Local",
+      "chars": 26300,
+      "sha256": "47c6f638ca9aaf1b080fd68929cbd0c4eaf7df0da8681959beb3a00cea2f3015",
+      "prefix": "(?:^https://ucmp(-static)?\\.sf-express\\.com/proxy/ccspBase/module-config/(login/)?query\\?) data-type=json data=\"{\\\"versi",
+      "exception_id": null
+    },
+    {
+      "line": 2769,
+      "section": "MITM",
+      "chars": 22433,
+      "sha256": "d37fca19d96fd892b4045718fd386514270bcfb9bf785b55a42c9c41a85127ef",
+      "prefix": "hostname = %APPEND% spclient.wg.spotify.com,*.spclient.spotify.com,youtubei.googleapis.com,acs.m.goofish.com,acs.m.taoba",
+      "exception_id": null
+    },
+    {
+      "line": 1233,
+      "section": "URL Rewrite",
+      "chars": 5998,
+      "sha256": "3c62a94e160cef4103a6dc48690543f670bf87fe3c40f844897a9bfc3f7a29b1",
+      "prefix": "(?:^https?:\\/\\/userapi\\.qiekj\\.com\\/integralRecord\\/integralDailStatistics$)|(?:^https?:\\/\\/userapi\\.qiekj\\.com\\/local-l",
+      "exception_id": null
+    },
+    {
+      "line": 1218,
+      "section": "URL Rewrite",
+      "chars": 5992,
+      "sha256": "5bf53f7b6cb61a691f678a34f3b454d18b89bdfbd690bac6b34c22de77fb6a62",
+      "prefix": "(?:^https?://gurd\\.snssdk\\.com/src/server/v3/package)|(?:^https?://.+\\.byteimg.com/tos-cn-i-1yzifmftcy/(.+)-jpeg\\.jpeg)|",
+      "exception_id": null
+    },
+    {
+      "line": 1242,
+      "section": "URL Rewrite",
+      "chars": 5988,
+      "sha256": "170b8542b79a7e419e90d6731e6ff7f8907590913034f123353e6efa4df4380b",
+      "prefix": "(?:^https://htwkop\\.xiaojukeji\\.com/gateway\\?api=hm\\.fa\\.mallRecommend)|(?:^https://lawsonapi\\.yorentown\\.com/area/sh-la",
+      "exception_id": null
+    },
+    {
+      "line": 1234,
+      "section": "URL Rewrite",
+      "chars": 5987,
+      "sha256": "e1f42522e8b56a394ebcb8d509c514a3f27647d74542b6a293882aa8a2939c5f",
+      "prefix": "(?:^https?:\\/\\/wx\\.maoyan\\.com\\/maoyansh\\/myshow\\/ajax\\/recommend\\/performances)|(?:^https?:\\/\\/wxs-weixin\\.sd\\.zhumangg",
+      "exception_id": null
+    },
+    {
+      "line": 1224,
+      "section": "URL Rewrite",
+      "chars": 5984,
+      "sha256": "cb7db3b7e049b9eb4bf1c7c4c5aee4989de09c4ab0af240e1b3edc57754b6533",
+      "prefix": "(?:^https?:\\/\\/(webboot\\.zhangyue\\.com|ih2\\.ireader\\.com)\\/zybk\\/api\\/pop\\/index\\?)|(?:^https?:\\/\\/(webboot\\.zhangyue\\.c",
+      "exception_id": null
+    },
+    {
+      "line": 1236,
+      "section": "URL Rewrite",
+      "chars": 5984,
+      "sha256": "bf1c226aadf1b0b5b75c037263e6b1964d28cb2edc32d4f8a4a92182fea94044",
+      "prefix": "(?:^https://app\\.huashi6\\.com/app/index/ad/)|(?:^https://app\\.huashi6\\.com/app/works/relative$)|(?:^https://app\\.huashi6",
+      "exception_id": null
+    }
+  ],
+  "exception_matches": {
+    "xiaojukeji-charge-map-local": 1
+  },
+  "large_line_exceptions": [
+    {
+      "id": "xiaojukeji-charge-map-local",
+      "section": "Map Local",
+      "contains": "epower-thanos-app/",
+      "max_chars": 2500000,
+      "expected_matches": 1,
+      "reason": "Existing auto-synced Xiaojukeji Charge JavaScript payload; preserve until an equivalent Shadowrocket resource form is proven."
+    }
+  ],
+  "generated_at": "2026-07-15T19:57:30.344752Z",
+  "module_path": "Release/Ronghemokuai.sgmodule",
+  "config_path": "Rewrite/Generator/module-budgets.json"
+}

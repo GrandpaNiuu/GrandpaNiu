@@ -1,6 +1,33 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-16 02:47 +08:00
+Last updated: 2026-07-16 03:58 +08:00
+
+## Current Conservative Module Complexity Task
+
+Status: locally complete and fully validated; pending commit, push, and remote Actions confirmation.
+
+Scope:
+
+- Add a generated Fusion complexity budget for bytes, total lines, section lines, Script entries, and MITM tokens.
+- Allow the existing Xiaojukeji Charge Map Local payload only through an explicit, size-bounded exception.
+- Add stable semantic fingerprints and change classification to the build summary.
+- Wire the checks into the unified Builder, report freshness, and automated quality evidence.
+- Do not change Rules, Rewrite source behavior, Script behavior, MITM declarations, Android/Windows policy, or public URLs.
+
+Validation target:
+
+- Focused unit tests for budget enforcement and semantic change classification.
+- Unified Builder `--profile fusion --release --check`.
+- Full `python scripts/quality_gate.py`.
+
+Validation result:
+
+- Focused budget and semantic tests: `16` passed.
+- Full unit/integration suite inside the final quality gate: `94` passed.
+- Unified Builder `--profile fusion --release --check`: passed.
+- Full `python scripts/quality_gate.py`: passed.
+- Report freshness: `23/23` fresh; blocking stale/missing: `0`.
+- Fusion blob: byte-identical to the committed pre-task module.
 
 ## Current Maintenance Stabilization Task
 

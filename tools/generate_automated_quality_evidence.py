@@ -20,6 +20,8 @@ RELEASE = ROOT / "Release" / "Ronghemokuai.sgmodule"
 EVIDENCE_FILES = [
     "reports/android_rules_report.md",
     "reports/module_integrity_report.md",
+    "reports/module_budget_report.md",
+    "reports/module_budget_report.json",
     "reports/app_source_validation_report.md",
     "reports/multi_release_report.md",
     "reports/profile_validation_report.md",
@@ -57,6 +59,7 @@ QUALITY_COMMANDS = [
     "python -m unittest discover -s tests",
     "python scripts/convert_quanx_rules.py",
     "python Rewrite/Generator/Builder.py --profile fusion --release",
+    "python tools/validate_module_budget.py",
     "python scripts/validate_app_sources.py",
     "python scripts/android_format_check.py",
     "node --check Scripts/generated/fusion-script-bundle.js",

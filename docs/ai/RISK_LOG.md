@@ -1,6 +1,34 @@
 # AI Maintenance Risk Log
 
-Last updated: 2026-07-16 00:06 +08:00
+Last updated: 2026-07-16 03:16 +08:00
+
+## 2026-07-16 Conservative Module Complexity Budget Risk Note
+
+Risk level: low traffic-policy risk, medium build-availability risk.
+
+Observed signals:
+
+- The generated Fusion module is about 2.91 MB even though it has only 2769 lines.
+- One Xiaojukeji Charge Map Local line is about 2.27 MB and contributes roughly 78 percent of the module bytes.
+- The final module has no exact active-line duplicates, Script aggregation and MITM compaction already pass their contracts, so further content merging would add behavior risk for little proven benefit.
+
+Authorized changes:
+
+- Add read-only module analysis, semantic fingerprints, generated reports, and conservative growth budgets.
+- Add an explicit bounded exception for the existing Xiaojukeji Charge embedded payload so its current behavior is preserved.
+- Fail a build only for substantial unexpected growth or a new unregistered oversized line.
+
+Prohibited changes:
+
+- Do not remove, externalize, decode/rewrite, or replace the Xiaojukeji payload without separate matcher/client evidence.
+- Do not alter Rule, URL Rewrite, Header Rewrite, Body Rewrite, Map Local, Script, MITM, Android, Windows, or public routing behavior.
+- Do not reduce functionality merely to lower line count or file size.
+
+Mitigation and rollback:
+
+- Tests must cover normal output, registered large-line exceptions, unexpected large lines, and semantic change classification before integration.
+- Budget headroom must be conservative enough for routine upstream changes while still catching material regressions.
+- If the new validator causes false build failures, remove it from Builder publication while retaining its report for diagnosis; traffic output remains unchanged.
 
 ## 2026-07-15 Strict Equivalent MITM Compaction Risk Note
 

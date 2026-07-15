@@ -24,6 +24,16 @@ CHECKS = [
         "reason": "Profile、规则、脚本或构建逻辑变更后必须重新验证 Fusion 构建。",
     },
     {
+        "report": "reports/module_budget_report.md",
+        "inputs": [
+            "Release/Ronghemokuai.sgmodule",
+            "Rewrite/Generator/module-budgets.json",
+            "tools/validate_module_budget.py",
+        ],
+        "blocking": True,
+        "reason": "Fusion 体积、超长行、Section、Script 和 MITM 预算必须反映当前生成模块。",
+    },
+    {
         "report": "reports/repository_health_report.md",
         "inputs": ["README.md", "SECURITY.md", "docs", "scripts", "tools", "tests", "Rewrite", "Rules", "Scripts", ".github/workflows"],
         "blocking": True,
