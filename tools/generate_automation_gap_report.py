@@ -12,10 +12,15 @@ from __future__ import annotations
 import datetime as dt
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from collect_upstreams import ALLOWED_LOCAL_TARGETS, ALLOWED_SCRIPT_TARGETS
+
 REPORT = ROOT / "reports" / "automation_gap_report.md"
 
 ROOT_MODULE = ROOT / "Ronghemokuai.sgmodule"
@@ -293,6 +298,32 @@ def check_workflows(gaps: list[str], notes: list[str]) -> None:
                 if f"\n            {output} \\" not in text and f"\n            {output}\n" not in text:
                     add_gap(gaps, f"Workflow {relative} runs the full Builder but does not stage {output}.")
     notes.append(f"Scheduled workflows checked: {len(REQUIRED_DAILY_WORKFLOWS)}; writer workflows checked: {len(BUILDER_WRITER_WORKFLOWS)}.")
+
+    generated_audit = read(ROOT / ".github/workflows/daily-audit-and-repair.yml")
+    if "scripts/audit_and_repair_module.py --report-only" not in generated_audit:
+        add_gap(gaps, "Daily generated-module audit is missing report-only inspection.")
+    for duplicate in ("scripts/audit_repair_invalid_sources.py", "Rewrite/Generator/Builder.py --profile fusion --release"):
+        if duplicate in generated_audit:
+            add_gap(gaps, f"Daily generated-module audit duplicates maintenance command: {duplicate}.")
+
+    source_repair = read(ROOT / ".github/workflows/daily-invalid-source-repair.yml")
+    if "scripts/collect_upstreams.py" in source_repair:
+        add_gap(gaps, "Invalid-source repair duplicates the dedicated upstream candidate collector.")
+    for token in ("source_changed", "if: steps.repair.outputs.source_changed == 'true'"):
+        if token not in source_repair:
+            add_gap(gaps, f"Invalid-source repair is missing conditional-build token: {token}.")
+
+    candidate_collect = read(ROOT / ".github/workflows/upstream-collect.yml")
+    for token in (
+        "source_changed",
+        "if: steps.collect.outputs.source_changed == 'true'",
+    ):
+        if token not in candidate_collect:
+            add_gap(gaps, f"Upstream candidate collector is missing conditional-build token: {token}.")
+    for target in sorted(ALLOWED_LOCAL_TARGETS | ALLOWED_SCRIPT_TARGETS):
+        if target not in candidate_collect:
+            add_gap(gaps, f"Upstream candidate collector does not commit allowed target: {target}.")
+    notes.append("Daily generated-output audit, source repair, and candidate collection have distinct ownership; candidate builds run only after source changes.")
 
     pages_text = read(PAGES_DEPLOY_WORKFLOW)
     if not pages_text:

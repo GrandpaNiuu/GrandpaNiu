@@ -1,6 +1,21 @@
 # GrandpaNiu AI Handoff
 
-Last updated: 2026-07-16 00:15 +08:00
+Last updated: 2026-07-16 02:03 +08:00
+
+## 2026-07-16 Maintenance Stabilization Handoff
+
+- Daily workflows now have non-overlapping owners: generated-module audit is report-only, invalid-source repair edits sources, and upstream collection manages candidates.
+- Source-maintenance workflows invoke the full Builder only when their source step reports `source_changed=true`.
+- `validate_repository.py` and `generate_automation_gap_report.py` enforce these workflow contracts.
+- App release indexes now expose a static capability tier. Current totals are `171` deep, `153` rewrite, `72` rule, and `2` MITM-only across `398` non-empty modules.
+- The two MITM-only outputs are `crunchyroll` and `flightradar24`. Treat them as compatibility fragments, not verified standalone ad-removal modules. Do not import Flightradar paid-feature/unlock code merely to remove that label.
+- The risk ledger now traces source MITM and REJECT findings into final-output status. It never treats absence from the final module as proof that a source rule is safe to delete.
+- The old corrupted WORKLOG block was restored from clean commit `8f8b3029`; no guessed encoding conversion was used.
+- Stable is a deprecated Fusion compatibility mirror; Beta and Canary are reserved placeholders.
+- No traffic-policy source, Script, Rewrite, MITM declaration, Android/Windows policy, or public entry URL was intentionally changed.
+- Local Builder and the full quality gate passed with `74` tests. Remote Actions confirmation is pending publication.
+
+Next AI should first inspect the post-push Module Factory Build and Pages runs. Do not broaden this maintenance pass into new App imports or traffic-rule changes without real runtime evidence.
 
 ## 2026-07-15 Strict Equivalent MITM Compaction Handoff
 

@@ -18,7 +18,9 @@ Release/Modules/
 Release/Android/
 ```
 
-只维护 Fusion 主模块。旧版多 profile 的 Release 文件已经移除；不再提供兼容占位或独立测试版本。
+只维护 Fusion 主模块。用户不需要选择 Stable、Stable Plus、Lite 或 Full。
+
+`Release/Stable/` 仅由构建器生成，用于旧链接兼容；它与当前 Fusion 内容同步，不是第二个公开版本。`Release/Beta/` 和 `Release/Canary/` 只是保留目录，不发布模块产物。
 
 ## Source of truth
 

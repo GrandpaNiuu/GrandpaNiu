@@ -182,7 +182,15 @@ def evaluate_workflow(
         else:
             blockers.append(f"latest completed run is {latest_completed_conclusion}")
     if latest and latest.get("status") != "completed":
-        warnings.append(f"latest run is {latest.get('status')}")
+        success_is_fresh = (
+            last_success is not None
+            and (
+                expectation.max_success_age_hours is None
+                or (success_age is not None and success_age <= expectation.max_success_age_hours)
+            )
+        )
+        if not success_is_fresh:
+            warnings.append(f"latest run is {latest.get('status')}")
     if latest_completed_conclusion in {"cancelled", "skipped"}:
         warnings.append(f"latest completed run is {latest_completed_conclusion}")
 

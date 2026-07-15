@@ -11,7 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "Release" / "Modules" / "README.md"
 OUTPUT = ROOT / "Web" / "modules.html"
 BASE_URL = "https://grandpaniuu.github.io/GrandpaNiu/Release/Modules/"
-ROW_RE = re.compile(r"^\| (?P<name>.+?) \| `(?P<file>[^`]+)` \| `(?P<source>[^`]+)` \| (?P<sections>.+?) \|$")
+ROW_RE = re.compile(
+    r"^\| (?P<name>.+?) \| `(?P<file>[^`]+)` \| `(?P<source>[^`]+)` \| "
+    r"(?P<capability>[^|]+?) \| (?P<sections>.+?) \|$"
+)
 
 
 def read_modules() -> list[dict[str, str]]:
@@ -31,6 +34,7 @@ def module_card(item: dict[str, str]) -> str:
     file = html.escape(item["file"])
     source = html.escape(item["source"])
     sections = html.escape(item["sections"])
+    capability = html.escape(item["capability"])
     url = BASE_URL + item["file"]
     slug = item["file"].removesuffix(".sgmodule")
     install = "shadowrocket://install?module=" + url
@@ -38,7 +42,7 @@ def module_card(item: dict[str, str]) -> str:
         <article class=\"card\" data-url=\"{html.escape(url)}\">
           <h3>{name}</h3>
           <p>来源：<code>{source}</code></p>
-          <div class=\"tags\"><span class=\"tag\">{html.escape(slug)}</span><span class=\"tag\">{sections}</span></div>
+          <div class=\"tags\"><span class=\"tag\">{html.escape(slug)}</span><span class=\"tag\">{capability}</span><span class=\"tag\">{sections}</span></div>
           <div class=\"actions\">
             <a class=\"badge-btn install\" href=\"{html.escape(install)}\"><span class=\"label\">↪ 安装模块</span><span class=\"name\">Module</span></a>
             <a class=\"badge-btn file\" href=\"../Release/Modules/{file}\"><span class=\"label\">▰ 模块文件</span><span class=\"name\">File</span></a>
@@ -69,6 +73,7 @@ def build_html(modules: list[dict[str, str]]) -> str:
       <h1>独立模块目录</h1>
       <p class=\"lead\">当前共 {count} 个独立模块。主入口仍然推荐 Fusion；这里适合高级用户按 App 单独导入和测试。</p>
       <div class=\"notice\">不要同时导入太多独立模块。普通用户优先使用主融合模块。</div>
+      <p class="notice">能力标签仅表示静态段落深度，不代表运行时去广告效果或实机兼容性。</p>
     </header>
     <section class=\"grid\">{cards}
     </section>

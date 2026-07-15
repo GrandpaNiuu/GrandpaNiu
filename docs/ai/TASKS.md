@@ -1,6 +1,35 @@
 # AI Maintenance Tasks
 
-Last updated: 2026-07-16 00:15 +08:00
+Last updated: 2026-07-16 02:03 +08:00
+
+## Current Maintenance Stabilization Task
+
+Status: locally complete and fully validated; pending commit, push, and remote Actions confirmation.
+
+Completed scope:
+
+- Separated invalid-rule reporting, invalid-source repair, and upstream candidate collection into distinct workflow ownership.
+- Made candidate/source workflows run the full Builder only after a real source change.
+- Added repository validation and automation-gap contracts for those boundaries.
+- Added static App-module capability tiers to Release and Web indexes.
+- Added final-output trace status to the MITM / REJECT risk ledger and false-positive queue.
+- Marked Stable as a deprecated Fusion compatibility mirror; kept Beta and Canary as reserved placeholders.
+- Preserved all traffic-policy source files and public Fusion URLs.
+
+Validation:
+
+- `python -m unittest discover -s tests -p "test_*.py"`: `74` passed.
+- `python Rewrite/Generator/Builder.py --profile fusion --release --check`: passed.
+- `python scripts/quality_gate.py`: passed.
+- App modules: `398/398`, `0` empty.
+- Automation status: `ok`, `0` blockers, `0` warnings.
+
+Pending:
+
+- Commit and push with explicit paths.
+- Confirm the resulting Module Factory Build and Pages deployment are green.
+- Keep `crunchyroll` and `flightradar24` visibly classified as MITM-only compatibility fragments unless a safe, ad-removal-focused source is proven later.
+- No historical WORKLOG encoding cleanup remains pending; the affected block was restored from clean commit `8f8b3029`.
 
 ## Current Strict Equivalent MITM Compaction Task
 
@@ -203,7 +232,7 @@ Next check:
 
 - Commit and push this reporting/ledger pass.
 - Confirm the next `Module Factory Build` and daily report refreshes stay green.
-- Schedule a future docs-only cleanup for historical mojibake entries in older `docs/ai/WORKLOG.md` sections.
+- Completed 2026-07-16: restored the historical mojibake block from clean commit `8f8b3029`.
 
 ## Current QuanX Converted Rule Fallback Task
 

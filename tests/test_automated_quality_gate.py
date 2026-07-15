@@ -183,14 +183,40 @@ class AutomatedQualityGateTests(unittest.TestCase):
         text = (ROOT / ".github" / "workflows" / "workflow-failure-issue.yml").read_text(encoding="utf-8")
         self.assertIn("      - Deploy GitHub Pages\n", text)
 
-    def test_invalid_rule_workflow_repairs_sources_before_build_and_audits_after_build(self) -> None:
+    def test_invalid_rule_workflow_is_report_only_and_does_not_duplicate_source_repair(self) -> None:
         text = (ROOT / ".github" / "workflows" / "daily-audit-and-repair.yml").read_text(encoding="utf-8")
-        source_repair = text.index("scripts/audit_repair_invalid_sources.py")
-        builder = text.index("Rewrite/Generator/Builder.py --profile fusion --release")
-        final_audit = text.index("scripts/audit_and_repair_module.py --report-only")
+        self.assertIn("scripts/audit_and_repair_module.py --report-only", text)
+        self.assertNotIn("scripts/audit_repair_invalid_sources.py", text)
+        self.assertNotIn("Rewrite/Generator/Builder.py --profile fusion --release", text)
 
-        self.assertLess(source_repair, builder)
-        self.assertLess(builder, final_audit)
+    def test_source_repair_and_candidate_collection_have_distinct_ownership(self) -> None:
+        source_repair = (ROOT / ".github" / "workflows" / "daily-invalid-source-repair.yml").read_text(encoding="utf-8")
+        candidate_collect = (ROOT / ".github" / "workflows" / "upstream-collect.yml").read_text(encoding="utf-8")
+
+        self.assertIn("scripts/audit_repair_invalid_sources.py", source_repair)
+        self.assertNotIn("scripts/collect_upstreams.py", source_repair)
+        self.assertIn("git status --porcelain", source_repair)
+        self.assertIn("if: steps.repair.outputs.source_changed == 'true'", source_repair)
+        self.assertIn("scripts/collect_upstreams.py", candidate_collect)
+        self.assertIn("source_changed", candidate_collect)
+        self.assertIn("git status --porcelain", candidate_collect)
+        self.assertIn("if: steps.collect.outputs.source_changed == 'true'", candidate_collect)
+        for target in (
+            "Rules/direct.list",
+            "Rules/spotify-direct.list",
+            "Rules/youtube-direct.list",
+            "Rules/reject.list",
+            "Rules/app-clean.list",
+            "Rules/web-ads.list",
+            "Scripts/spotify.conf",
+            "Scripts/youtube.conf",
+            "Scripts/app-clean.conf",
+        ):
+            self.assertIn(target, candidate_collect)
+
+    def test_change_impact_report_names_its_committed_diff_range(self) -> None:
+        text = (ROOT / "scripts" / "generate_change_impact_report.py").read_text(encoding="utf-8")
+        self.assertIn("HEAD~1..HEAD (committed-change mode)", text)
 
     def test_daily_watchdog_checks_scheduled_workflow_status_even_when_module_is_fresh(self) -> None:
         text = (ROOT / ".github" / "workflows" / "daily-schedule-watchdog.yml").read_text(encoding="utf-8")

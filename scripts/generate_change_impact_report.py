@@ -91,7 +91,7 @@ def git_changed_files() -> tuple[str, list[str], list[str], list[str], str]:
         else:
             modified.append(path)
     _, diff_text = run_git(["diff", "HEAD~1..HEAD"])
-    return "git diff 精准模式", added, modified, deleted, diff_text
+    return "git diff HEAD~1..HEAD (committed-change mode)", added, modified, deleted, diff_text
 
 
 def fallback_changed_files() -> tuple[str, list[str], list[str], list[str], str]:

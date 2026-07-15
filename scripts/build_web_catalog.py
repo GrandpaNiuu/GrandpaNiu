@@ -40,6 +40,7 @@ WINDOWS_LINKS = [
     ("v2rayN custom routing", "Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json"),
     ("v2rayN README", "Windows/v2rayN/README.md"),
 ]
+CAPABILITY_CONTRACT = "Static section depth only; does not certify runtime effectiveness or device compatibility."
 
 
 def read(path: Path) -> str:
@@ -51,25 +52,34 @@ def write(path: Path, text: str) -> None:
     path.write_text(text.rstrip() + "\n", encoding="utf-8", newline="\n")
 
 
+def parse_module_row(line: str) -> dict[str, str] | None:
+    if not line.startswith("| GrandpaNiu"):
+        return None
+    parts = [part.strip() for part in line.strip("|").split("|")]
+    if len(parts) == 4:
+        name, raw_file, raw_source, sections = parts
+        capability = "unclassified"
+    elif len(parts) >= 5:
+        name, raw_file, raw_source, capability, sections = parts[:5]
+    else:
+        return None
+    file_name = raw_file.strip("`")
+    return {
+        "name": name,
+        "file": f"Release/Modules/{file_name}",
+        "source": raw_source.strip("`"),
+        "capability": capability,
+        "sections": sections,
+        "raw_url": f"{RAW}/Release/Modules/{file_name}",
+    }
+
+
 def parse_modules() -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for line in read(MODULES_README).splitlines():
-        if not line.startswith("| GrandpaNiu"):
-            continue
-        parts = [part.strip() for part in line.strip("|").split("|")]
-        if len(parts) < 4:
-            continue
-        name = parts[0]
-        file_name = parts[1].strip("`")
-        source = parts[2].strip("`")
-        sections = parts[3]
-        rows.append({
-            "name": name,
-            "file": f"Release/Modules/{file_name}",
-            "source": source,
-            "sections": sections,
-            "raw_url": f"{RAW}/Release/Modules/{file_name}",
-        })
+        item = parse_module_row(line)
+        if item is not None:
+            rows.append(item)
     return rows
 
 
@@ -102,6 +112,7 @@ def build_json(modules: list[dict[str, str]], remotes: dict[str, list[dict[str, 
         "name": "GrandpaNiu release catalog",
         "base_url": BASE,
         "raw_base_url": RAW,
+        "capability_contract": CAPABILITY_CONTRACT,
         "core": [{"name": name, "path": path, "url": url} for name, path, url in CORE_LINKS],
         "modules": modules,
         "android": [{"name": name, "path": path, "url": f"{RAW}/{path}"} for name, path in ANDROID_LINKS],
@@ -130,9 +141,20 @@ def build_md(modules: list[dict[str, str]]) -> str:
     ]
     for name, path, url in CORE_LINKS:
         lines.append(f"| {name} | `{path}` | {url} |")
-    lines.extend(["", "## App modules", "", "| Module | File | Source | Sections | URL |", "|---|---|---|---|---|"])
+    lines.extend([
+        "",
+        "## App modules",
+        "",
+        CAPABILITY_CONTRACT,
+        "",
+        "| Module | File | Source | Capability | Sections | URL |",
+        "|---|---|---|---|---|---|",
+    ])
     for item in modules:
-        lines.append(f"| {item['name']} | `{item['file']}` | `{item['source']}` | {item['sections']} | {item['raw_url']} |")
+        lines.append(
+            f"| {item['name']} | `{item['file']}` | `{item['source']}` | "
+            f"{item['capability']} | {item['sections']} | {item['raw_url']} |"
+        )
     lines.extend(["", "## Android release directories", "", "| Format | Path | URL |", "|---|---|---|"])
     for name, path in ANDROID_LINKS:
         lines.append(f"| {name} | `{path}` | {RAW}/{path} |")

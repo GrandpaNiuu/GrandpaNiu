@@ -198,7 +198,7 @@ Remaining risk:
 
 - The ledger marks risks by token heuristics, not real App runtime proof.
 - Some marked entries may be intentional ad-cleaning rules. Do not remove or protect them without a concrete App symptom or log evidence.
-- Historical mojibake text remains in older `docs/ai/WORKLOG.md` sections and should be cleaned in a separate docs-only pass.
+- Historical note: the older WORKLOG mojibake was restored from clean Git history on 2026-07-16.
 - Full quality gate passed. An earlier run saw one transient SSL EOF warning for `ACL4SSR BanAD`; the final post-rebase full quality gate completed with 0 remote-rule warnings.
 
 ## 2026-07-03 QuanX Converted Rule Fallback Risk Note
@@ -678,3 +678,34 @@ Rollback boundary:
 
 - If source-derived protection removes an unrelated ad rule or causes a quality-gate regression, revert the compiler filter while retaining the tests and report evidence.
 - No Script, Rewrite, MITM, payment bypass, login bypass, membership, or account behavior is authorized by this change.
+
+## 2026-07-16 Maintenance Stabilization Risk Note
+
+Risk level: low traffic-policy risk, medium operational/documentation risk.
+
+Changes:
+
+- Removed duplicate daily maintenance responsibilities and conditioned expensive Builder runs on real source changes.
+- Source-change detection includes modified and newly created files through `git status --porcelain` on explicit source paths.
+- Added static capability tiers to generated App-module catalogs.
+- Added source-to-final status to MITM / REJECT risk evidence.
+- Clarified Stable as a deprecated compatibility mirror.
+
+Traffic boundary:
+
+- No `Rules/`, `Rewrite/Sources/`, App Script, Rewrite, MITM declaration, Android policy, Windows policy, or public Fusion URL was manually changed.
+- Generated artifacts and report timestamps changed because the complete Builder and quality gate were run.
+
+Known limitations:
+
+- Static capability tiers do not prove current client runtime behavior.
+- `crunchyroll` and `flightradar24` currently generate MITM-only compatibility fragments.
+- The available Flightradar upstream behavior is paid-feature/unlock oriented and was intentionally not imported under the repository safety policy.
+- A REJECT entry marked source-only or compiler-filtered is still retained as source evidence; that status is not permission to delete it.
+
+Mitigation:
+
+- Repository tests enforce catalog parsing, workflow ownership, conditional builds, risk-ledger status, and backward compatibility.
+- Full Builder and quality gate passed before publication.
+- Remote Actions must still be confirmed after push.
+- The older historical WORKLOG block was restored from clean commit `8f8b3029`; no guessed re-encoding was used.

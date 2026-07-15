@@ -8,6 +8,7 @@ import re
 import sys
 from pathlib import Path
 
+from collect_upstreams import ALLOWED_LOCAL_TARGETS, ALLOWED_SCRIPT_TARGETS
 from validate_module_integrity import validate_all as validate_module_integrity
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -106,6 +107,11 @@ REQUIRED_WORKFLOWS = (
     ".github/workflows/upstream-app-module-sync.yml",
     ".github/workflows/daily-schedule-watchdog.yml",
     ".github/workflows/repository-health.yml",
+)
+FUSION_BUILD_WORKFLOWS = tuple(
+    relative
+    for relative in REQUIRED_WORKFLOWS
+    if relative != ".github/workflows/daily-audit-and-repair.yml"
 )
 PAGES_DEPLOY_WORKFLOW = ".github/workflows/pages-deploy.yml"
 
@@ -619,7 +625,7 @@ def validate_workflows() -> None:
             if token in text:
                 fail(f"workflow contains unsafe git command {token}: {relative}")
 
-    for relative in REQUIRED_WORKFLOWS:
+    for relative in FUSION_BUILD_WORKFLOWS:
         text = read_text(ROOT / relative)
         if not workflow_has_fusion_build(text):
             fail(f"{relative} must build with fusion profile")
@@ -655,25 +661,41 @@ def validate_workflows() -> None:
                 fail(f"{relative} runs the full Builder but does not commit {generated_path} outputs")
 
     invalid_source = read_text(ROOT / ".github" / "workflows" / "daily-invalid-source-repair.yml")
-    for token in ("collect_upstreams.py", "audit_repair_invalid_sources.py", "validate_remote_rule_syntax.py"):
+    for token in (
+        "audit_repair_invalid_sources.py",
+        "validate_remote_rule_syntax.py",
+        "source_changed",
+        "if: steps.repair.outputs.source_changed == 'true'",
+    ):
         if token not in invalid_source:
             fail(f"daily-invalid-source-repair workflow missing command token: {token}")
+    if "scripts/collect_upstreams.py" in invalid_source:
+        fail("daily-invalid-source-repair must not duplicate upstream candidate collection")
     audit = read_text(ROOT / ".github" / "workflows" / "daily-audit-and-repair.yml")
     if "\n  push:\n" in audit:
         fail("daily-audit-and-repair must not duplicate the Module Factory push validation trigger")
     if "validate_remote_rule_syntax.py" not in audit:
         fail("daily-audit-and-repair workflow missing validate_remote_rule_syntax.py")
-    audit_commands = (
+    if "scripts/audit_and_repair_module.py --report-only" not in audit:
+        fail("daily-audit-and-repair workflow missing report-only generated-module audit")
+    for duplicate in (
         "scripts/audit_repair_invalid_sources.py",
         "Rewrite/Generator/Builder.py --profile fusion --release",
-        "scripts/audit_and_repair_module.py --report-only",
-    )
-    if any(token not in audit for token in audit_commands):
-        fail("daily-audit-and-repair workflow missing source-first repair or report-only audit command")
-    if tuple(audit.index(token) for token in audit_commands) != tuple(
-        sorted(audit.index(token) for token in audit_commands)
     ):
-        fail("daily-audit-and-repair must repair sources, build, then audit generated output")
+        if duplicate in audit:
+            fail(f"daily-audit-and-repair must not duplicate maintenance command: {duplicate}")
+
+    upstream_collect = read_text(ROOT / ".github" / "workflows" / "upstream-collect.yml")
+    for token in (
+        "scripts/collect_upstreams.py",
+        "source_changed",
+        "if: steps.collect.outputs.source_changed == 'true'",
+    ):
+        if token not in upstream_collect:
+            fail(f"upstream-collect workflow missing conditional build token: {token}")
+    for target in sorted(ALLOWED_LOCAL_TARGETS | ALLOWED_SCRIPT_TARGETS):
+        if target not in upstream_collect:
+            fail(f"upstream-collect workflow does not commit allowed collector target: {target}")
 
     health = read_text(ROOT / ".github" / "workflows" / "repository-health.yml")
     for token in ("generate_stable_plus_promotion_report.py", "create_promotion_pr.py"):

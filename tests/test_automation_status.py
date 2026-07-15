@@ -18,6 +18,33 @@ SPEC.loader.exec_module(status)
 
 
 class AutomationStatusTests(unittest.TestCase):
+    def test_in_progress_run_with_fresh_success_is_not_a_warning(self) -> None:
+        reference = dt.datetime(2026, 7, 16, 4, 0, tzinfo=dt.timezone.utc)
+        expectation = status.WorkflowExpectation("sync.yml", "Sync", "daily", 40)
+        row = status.evaluate_workflow(
+            expectation,
+            [
+                {
+                    "status": "in_progress",
+                    "conclusion": None,
+                    "head_sha": "currentsha0000000000000000000000000000000",
+                    "updated_at": "2026-07-16T03:55:00Z",
+                },
+                {
+                    "status": "completed",
+                    "conclusion": "success",
+                    "head_sha": "previoussha000000000000000000000000000000",
+                    "updated_at": "2026-07-16T01:00:00Z",
+                },
+            ],
+            reference,
+            current_sha="currentsha0000000000000000000000000000000",
+        )
+
+        self.assertEqual([], row["blockers"])
+        self.assertEqual([], row["warnings"])
+        self.assertEqual("ok", row["state"])
+
     def test_old_commit_failure_with_fresh_success_is_warning(self) -> None:
         reference = dt.datetime(2026, 7, 3, 4, 0, tzinfo=dt.timezone.utc)
         expectation = status.WorkflowExpectation("sync.yml", "Sync", "daily", 40)

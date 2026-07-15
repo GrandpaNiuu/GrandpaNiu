@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Build Release channel directories.
+"""Build legacy compatibility channel directories.
 
-Stable receives the current production artifacts. Beta and Canary are created as
-channel placeholders unless explicitly enabled in the generation config.
+Fusion remains the only public release strategy. Stable mirrors the current
+Fusion artifacts for old links only; Beta and Canary remain empty placeholders.
 """
 
 from __future__ import annotations
@@ -52,7 +52,7 @@ def parse_bool(value: str, default: bool = False) -> bool:
 
 def default_channels() -> list[Channel]:
     return [
-        Channel("Stable", ROOT / "Release" / "Stable", True, "Production channel copied from the current Fusion release."),
+        Channel("Stable", ROOT / "Release" / "Stable", True, "Deprecated compatibility mirror of the current Fusion release; not a public version choice."),
         Channel("Beta", ROOT / "Release" / "Beta", False, "Reserved channel for less conservative builds."),
         Channel("Canary", ROOT / "Release" / "Canary", False, "Reserved channel for high-risk experimental builds."),
     ]
@@ -81,9 +81,15 @@ def copy_if_exists(src: Path, dst: Path) -> bool:
     return True
 
 
+def channel_status(channel: Channel) -> str:
+    if channel.enabled and channel.name.lower() == "stable":
+        return "legacy-compatible"
+    return "enabled" if channel.enabled else "reserved"
+
+
 def write_channel_readme(channel: Channel, copied: list[str]) -> None:
     channel.directory.mkdir(parents=True, exist_ok=True)
-    status = "enabled" if channel.enabled else "reserved"
+    status = channel_status(channel)
     lines = [
         f"# {channel.name} Channel",
         "",
@@ -122,7 +128,7 @@ def main() -> None:
                 if copy_if_exists(src, channel.directory / filename):
                     copied.append(filename)
         write_channel_readme(channel, copied)
-        print(f"wrote {channel.directory.relative_to(ROOT)} ({'enabled' if channel.enabled else 'reserved'})")
+        print(f"wrote {channel.directory.relative_to(ROOT)} ({channel_status(channel)})")
 
 
 if __name__ == "__main__":

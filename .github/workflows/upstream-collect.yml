@@ -29,9 +29,18 @@ jobs:
         run: python3 -m py_compile scripts/collect_upstreams.py Rewrite/Generator/Builder.py scripts/validate_remote_rule_syntax.py scripts/validate_repository.py
 
       - name: Collect trusted upstream candidates
-        run: python3 scripts/collect_upstreams.py
+        id: collect
+        run: |
+          set -euo pipefail
+          python3 scripts/collect_upstreams.py
+          if git status --porcelain -- Rules Rewrite/Sources Rewrite/Remotes/sources.json Scripts | grep -q .; then
+            echo "source_changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "source_changed=false" >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: Build fusion factory output
+      - name: Build fusion factory output after candidate activation
+        if: steps.collect.outputs.source_changed == 'true'
         run: |
           # fusion-build-marker: scripts/build_module.py --build --profile fusion
           python3 Rewrite/Generator/Builder.py --profile fusion --release
@@ -48,7 +57,16 @@ jobs:
             "Collect trusted upstream candidates and fusion output" \
             Rewrite/Remotes \
             Rewrite/Sources/Meta.conf \
+            Rules/direct.list \
+            Rules/spotify-direct.list \
+            Rules/youtube-direct.list \
+            Rules/reject.list \
+            Rules/app-clean.list \
+            Rules/web-ads.list \
             Rules/converted \
+            Scripts/spotify.conf \
+            Scripts/youtube.conf \
+            Scripts/app-clean.conf \
             Scripts/generated \
             Ronghemokuai.sgmodule \
             Release \

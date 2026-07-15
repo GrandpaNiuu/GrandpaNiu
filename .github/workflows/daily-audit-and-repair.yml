@@ -30,34 +30,20 @@ jobs:
       - name: Acquire cross-workflow maintenance lock
         run: bash tools/acquire_automation_lock.sh
 
-      - name: Repair invalid sources conservatively
-        run: python3 scripts/audit_repair_invalid_sources.py
-
-      - name: Build fusion module after source repair
+      - name: Validate audit scripts and current fusion output
         run: |
-          # fusion-build-marker: scripts/build_module.py --build --profile fusion
-          python3 Rewrite/Generator/Builder.py --profile fusion --release
+          python3 -m py_compile scripts/audit_and_repair_module.py scripts/validate_remote_rule_syntax.py scripts/validate_repository.py
           python3 scripts/validate_remote_rule_syntax.py
           python3 scripts/validate_repository.py
 
       - name: Audit generated module links without editing outputs
         run: python3 scripts/audit_and_repair_module.py --report-only
 
-      - name: Commit audit report and safe repairs
+      - name: Commit generated-module audit report
         run: |
           set -euo pipefail
           bash scripts/commit_generated_changes.sh \
-            "Daily audit and safe fusion repair" \
-            Rules \
-            Rewrite/Sources \
-            Rewrite/Remotes \
-            Scripts/*.conf \
-            Scripts/generated \
-            Ronghemokuai.sgmodule \
-            Release \
-            Web \
-            Android \
-            Windows \
+            "Daily generated module integrity audit" \
             reports
 
       - name: Release cross-workflow maintenance lock

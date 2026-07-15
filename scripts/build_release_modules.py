@@ -36,6 +36,7 @@ DEFAULT_APP_SOURCES_DIR = ROOT / "Rewrite" / "Sources" / "Apps"
 REPORT = ROOT / "reports" / "release_modules_report.md"
 BASE_URL = "https://grandpaniuu.github.io/GrandpaNiu/Release/Modules"
 SECTION_ORDER = ["Rule", "URL Rewrite", "Header Rewrite", "Body Rewrite", "Map Local", "Script", "MITM"]
+DEEP_SECTIONS = {"Header Rewrite", "Body Rewrite", "Map Local", "Script"}
 AUTO_KEYWORDS = {
     "pinduoduo": ("pinduoduo", "yangkeduo", "pddpic", "pddcdn"),
     "jd": ("jd.com", "jdimg", "360buyimg"),
@@ -286,24 +287,46 @@ def source_sections(spec: ModuleSpec, app_dir: Path, fusion_sections: dict[str, 
     return extract_sections(fusion_sections, spec), rel(RELEASE_MODULE)
 
 
+def capability_tier(counts: dict[str, int]) -> str:
+    """Describe static module depth without claiming client-side effectiveness."""
+    active_sections = {section for section, count in counts.items() if count > 0}
+    if not active_sections:
+        return "empty"
+    if active_sections & DEEP_SECTIONS:
+        return "deep"
+    if "URL Rewrite" in active_sections:
+        return "rewrite"
+    if "Rule" in active_sections:
+        return "rule"
+    return "mitm-only"
+
+
 def make_index(summary: list[ModuleBuild]) -> str:
     lines = [
         "# Release Modules",
         "",
         "Generated per-app module outputs. These are diagnostic and convenience slices of the single public fusion module, not separate product versions.",
+        "Capability is derived from static sections and does not certify runtime effectiveness or App compatibility.",
         "",
-        "| Module | File | Source | Sections |",
-        "|---|---|---|---|",
+        "| Module | File | Source | Capability | Sections |",
+        "|---|---|---|---|---|",
     ]
     for item in summary:
         section_text = ", ".join(f"{name}:{count}" for name, count in item.counts.items()) or "empty"
-        lines.append(f"| {item.spec.name} | `{item.spec.slug}.sgmodule` | `{item.source}` | {section_text} |")
+        lines.append(
+            f"| {item.spec.name} | `{item.spec.slug}.sgmodule` | `{item.source}` | "
+            f"{capability_tier(item.counts)} | {section_text} |"
+        )
     lines.append("")
     return "\n".join(lines)
 
 
 def make_report(summary: list[ModuleBuild], manual_count: int, auto_count: int, skipped: list[tuple[ModuleSpec, str]], modules_dir: Path) -> str:
     auto_generated = sum(1 for item in summary if item.spec.auto_discovered)
+    capability_counts: dict[str, int] = {}
+    for item in summary:
+        tier = capability_tier(item.counts)
+        capability_counts[tier] = capability_counts.get(tier, 0) + 1
     lines = [
         "# Release modules report",
         "",
@@ -316,12 +339,18 @@ def make_report(summary: list[ModuleBuild], manual_count: int, auto_count: int, 
         f"- Total module specs: {manual_count + auto_count}",
         f"- Generated modules: {len(summary)}",
         f"- Skipped empty modules: {len(skipped)}",
+        "- Capability meaning: static section depth only; not a runtime success claim",
+        "",
+        "## Capability summary",
+        "",
+        *[f"- {tier}: {capability_counts.get(tier, 0)}" for tier in ("deep", "rewrite", "rule", "mitm-only", "empty")],
         "",
     ]
     for item in summary:
         lines.append(f"## {item.spec.name}")
         lines.append(f"- Source: `{item.source}`")
         lines.append(f"- Discovery: {'auto' if item.spec.auto_discovered else 'manual'}")
+        lines.append(f"- Capability: {capability_tier(item.counts)}")
         for section, count in item.counts.items():
             lines.append(f"- {section}: {count}")
         lines.append("")

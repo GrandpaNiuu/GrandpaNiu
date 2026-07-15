@@ -19,22 +19,54 @@ def read(path: Path) -> str:
     return path.read_text(encoding="utf-8", errors="replace") if path.exists() else ""
 
 
+def split_markdown_row(line: str) -> list[str]:
+    """Split a Markdown row while restoring escaped pipe characters."""
+    value = line.strip()
+    if value.startswith("|"):
+        value = value[1:]
+    if value.endswith("|"):
+        value = value[:-1]
+
+    cells: list[str] = []
+    current: list[str] = []
+    index = 0
+    while index < len(value):
+        char = value[index]
+        if char == "\\" and index + 1 < len(value) and value[index + 1] == "|":
+            current.append("|")
+            index += 2
+            continue
+        if char == "|":
+            cells.append("".join(current))
+            current = []
+        else:
+            current.append(char)
+        index += 1
+    cells.append("".join(current))
+    return cells
+
+
 def parse_risk_rows(text: str) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for line in text.splitlines():
         if not line.startswith("| MITM") and not line.startswith("| REJECT"):
             continue
-        parts = [part.strip().strip("`") for part in line.strip().strip("|").split("|")]
+        parts = [part.strip().strip("`") for part in split_markdown_row(line)]
         if len(parts) < 6:
             continue
+        if len(parts) >= 7:
+            output_status, entry, reason = parts[4:7]
+        else:
+            output_status, entry, reason = "unclassified", parts[4], parts[5]
         rows.append(
             {
                 "type": parts[0],
                 "risk": parts[1],
                 "category": parts[2],
                 "source": parts[3],
-                "entry": parts[4],
-                "reason": parts[5],
+                "output_status": output_status,
+                "entry": entry,
+                "reason": reason,
             }
         )
     return rows
@@ -97,11 +129,11 @@ def main() -> int:
         "",
         "## high 优先复核队列",
         "",
-        *table(high_rows[:120], ["type", "risk", "category", "source", "entry", "reason"]),
+        *table(high_rows[:120], ["type", "risk", "category", "source", "output_status", "entry", "reason"]),
         "",
         "## medium 抽样复核队列",
         "",
-        *table(medium_rows[:120], ["type", "risk", "category", "source", "entry", "reason"]),
+        *table(medium_rows[:120], ["type", "risk", "category", "source", "output_status", "entry", "reason"]),
         "",
         "## 建议处理流程",
         "",

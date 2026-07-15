@@ -111,8 +111,8 @@ Current active app source files: **398**. The latest foreign expansion added AOL
 |---|---|---|---|---|
 | `module-factory-build.yml` | Build and validate Fusion, Release, Web, Android outputs | push / manual | yes | generated Release/Web/reports when changed |
 | `daily-module-update.yml` | Staggered Beijing daily Fusion refresh | `37 16 * * *` UTC / 00:37 Beijing | yes | daily date/report refresh |
-| `daily-audit-and-repair.yml` | Daily invalid rule audit and safe repair | `43 16 * * *` UTC / 00:43 Beijing | yes | safe repair reports and generated output |
-| `daily-invalid-source-repair.yml` | Source-first invalid source audit and safe repair | `49 16 * * *` UTC / 00:49 Beijing | yes | low-risk source reports and repairs |
+| `daily-audit-and-repair.yml` | Daily invalid rule audit and safe repair | `43 16 * * *` UTC / 00:43 Beijing | yes | report-only generated-module integrity audit; source repair is delegated |
+| `daily-invalid-source-repair.yml` | Source-first invalid source audit and safe repair | `49 16 * * *` UTC / 00:49 Beijing | yes | low-risk source reports and repairs; rebuild only after source changes |
 | `upstream-collect.yml` | Trusted candidate collection only | `55 16 * * *` UTC / 00:55 Beijing | yes | candidate reports only |
 | `scheduled-module-update.yml` | Stable scheduled factory rebuild | `7 17 * * *` UTC / 01:07 Beijing | yes | generated Release/Web/reports when changed |
 | `upstream-app-module-sync.yml` | Upstream app module sync and guarded release validation | `19 17 * * *` UTC / 01:19 Beijing | yes | app sources, backups, generated Release/Web/reports |

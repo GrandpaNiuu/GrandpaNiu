@@ -1,6 +1,37 @@
 # GrandpaNiu Project State
 
-Last updated: 2026-07-16 00:15 +08:00
+Last updated: 2026-07-16 02:03 +08:00
+
+## 2026-07-16 Maintenance Stabilization Snapshot
+
+- Daily automation ownership is now explicit:
+  - `daily-audit-and-repair.yml` validates the generated Fusion module and writes audit reports only.
+  - `daily-invalid-source-repair.yml` owns editable invalid-source repair.
+  - `upstream-collect.yml` owns candidate collection.
+  - source-maintenance workflows run the full Builder only when their source step reports a real source change.
+- Repository validation and the automation-gap report enforce those ownership boundaries so duplicate repair/build stages cannot silently return.
+- Release App-module documentation now reports static capability tiers instead of treating every non-empty module as equally functional:
+  - deep: `171`
+  - rewrite: `153`
+  - rule: `72`
+  - MITM-only compatibility fragments: `2`
+  - total modules: `398`; empty modules: `0`
+- Capability tiers describe generated section depth only. They do not claim that an upstream script still works at runtime or that an App has been device-tested.
+- `crunchyroll` and `flightradar24` are the two MITM-only compatibility fragments. No paid-feature or unlock script was imported to make them appear active.
+- The MITM / REJECT risk ledger now records whether each source risk is present exactly in the final module, covered by an equivalent final MITM wildcard, or remains source-only / compiler-filtered. Source-only status is not interpreted as proof that a rule is unnecessary.
+- The previously corrupted 2026-06-20 through 2026-06-22 WORKLOG block was restored verbatim from clean Git commit `8f8b3029`; later records were preserved.
+- Stable is documented as a deprecated compatibility mirror of Fusion. Beta and Canary remain reserved placeholders, not public version choices.
+- No `Rules/`, `Rewrite/Sources/`, App scripts, MITM declarations, Android routing policy, Windows routing policy, or public Fusion URL was manually changed in this pass.
+- Local validation passed:
+  - `74` unit/integration tests
+  - Builder `--profile fusion --release --check`
+  - full `python scripts/quality_gate.py`
+  - Fusion output: `2769` lines
+  - App modules: `398/398`, `0` empty
+  - Android main rules: `952`
+  - automation status: `ok`, `0` blockers, `0` warnings
+
+Remote confirmation is pending until this snapshot and its implementation are committed and pushed.
 
 ## 2026-07-15 Strict Equivalent MITM Compaction Snapshot
 
@@ -193,7 +224,7 @@ Current generated risk ledger snapshot:
 
 Known documentation issue:
 
-- Some older `docs/ai/WORKLOG.md` historical entries still contain mojibake text. They are not generated reports and were left untouched in this pass to avoid broad historical record rewriting.
+- Historical note: older `docs/ai/WORKLOG.md` entries were once mojibake; the affected block was restored from clean Git history on 2026-07-16.
 
 ## 2026-07-03 QuanX Converted Rule Fallback Snapshot
 

@@ -440,3 +440,25 @@ Reason: compact routing previously removed the precedence that protection lines 
 `audit_and_repair_module.py` no longer edits `Ronghemokuai.sgmodule`. Editable-source repair runs first through `audit_repair_invalid_sources.py`; Builder then regenerates all outputs; the final module audit only validates and reports links.
 
 Reason: editing a generated module before Builder regeneration produced non-persistent repairs and could make reports claim a repair that was immediately overwritten.
+
+## 2026-07-16 - Daily Maintenance Workflows Have Distinct Owners
+
+The invalid-rule audit validates generated output and writes reports only. Invalid-source repair owns source edits. Upstream collection owns candidate discovery. A source-maintenance workflow may invoke the full Builder only when its source step reports a real change.
+
+Source-change detection must use `git status --porcelain` over explicit source paths so newly created untracked files are included. `git diff --quiet` is insufficient for this decision.
+
+Reason: running the same repair, collection, and full-build stages in several daily workflows increases write contention, runtime, and contradictory reports without adding coverage.
+
+## 2026-07-16 - App Module Capability Is A Static Classification
+
+Release and Web catalogs classify App modules by their generated sections: deep, rewrite, rule, or MITM-only. The classification is documentation and automation evidence, not a runtime-effectiveness or device-test claim.
+
+MITM-only compatibility fragments remain visible rather than receiving unrelated or paid-feature scripts merely to appear functional.
+
+Reason: a non-empty `.sgmodule` can still contain only a hostname declaration. Users and maintainers need that distinction without unsafe source expansion.
+
+## 2026-07-16 - Risk Ledgers Trace Source Findings To Final Output
+
+MITM and REJECT risk reports record exact final presence, equivalent MITM wildcard coverage, or source-only / compiler-filtered status. The tooling must not infer that a source rule is unnecessary merely because it is absent from the generated Fusion output.
+
+Reason: source-first compilers legitimately deduplicate, normalize, or filter entries. A useful risk ledger must distinguish those states while preserving the evidence boundary.

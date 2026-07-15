@@ -5,11 +5,14 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import datetime as dt
+import json
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "reports" / "mitm_reject_risk_ledger.md"
+MITM_OPTIMIZATION_REPORT = ROOT / "reports" / "mitm_optimization_report.json"
+RELEASE_MODULE = ROOT / "Release" / "Ronghemokuai.sgmodule"
 
 SECTION_RE = re.compile(r"^\s*\[([^\]]+)\]\s*$")
 HOSTNAME_RE = re.compile(r"^\s*hostname\s*=\s*(.+)$", re.I)
@@ -29,6 +32,7 @@ class LedgerItem:
     level: str
     category: str
     source: str
+    output_status: str
     value: str
     reason: str
 
@@ -236,7 +240,44 @@ def escape_table(value: str) -> str:
     return value.replace("|", "\\|").replace("\n", " ")
 
 
-def mitm_items() -> tuple[list[LedgerItem], int]:
+def load_mitm_output_evidence() -> tuple[set[str], dict[str, str]]:
+    if not MITM_OPTIMIZATION_REPORT.exists():
+        return set(), {}
+    try:
+        data = json.loads(read(MITM_OPTIMIZATION_REPORT))
+    except json.JSONDecodeError:
+        return set(), {}
+    optimized = {
+        str(item).strip().lower()
+        for item in data.get("optimized_hosts", [])
+        if str(item).strip()
+    }
+    removals = {
+        str(item.get("token", "")).strip().lower(): str(item.get("covering_wildcard", "")).strip().lower()
+        for item in data.get("semantic_equivalent_removals", [])
+        if isinstance(item, dict) and str(item.get("token", "")).strip()
+    }
+    return optimized, removals
+
+
+def mitm_output_status(host: str, optimized: set[str], removals: dict[str, str]) -> str:
+    normalized = host.strip().lower()
+    if normalized in optimized:
+        return "final-exact"
+    if normalized in removals:
+        return f"final-covered-by:{removals[normalized]}"
+    return "source-only"
+
+
+def reject_output_status(line: str, final_lines: set[str]) -> str:
+    return "final-exact" if line.strip() in final_lines else "source-only-or-compiled"
+
+
+def final_active_lines() -> set[str]:
+    return {line for _, _, line in active_lines(RELEASE_MODULE)}
+
+
+def mitm_items(optimized: set[str], removals: dict[str, str]) -> tuple[list[LedgerItem], int]:
     items: list[LedgerItem] = []
     total_hosts = 0
     for path in source_files(SCAN_CONF_ROOTS, (".conf",)):
@@ -264,6 +305,7 @@ def mitm_items() -> tuple[list[LedgerItem], int]:
                         level=level_for(categories, wildcard),
                         category=category_title(categories, wildcard),
                         source=f"{rel(path)}:{lineno}",
+                        output_status=mitm_output_status(host, optimized, removals),
                         value=host,
                         reason="；".join(reason_parts),
                     )
@@ -271,7 +313,7 @@ def mitm_items() -> tuple[list[LedgerItem], int]:
     return items, total_hosts
 
 
-def reject_items() -> tuple[list[LedgerItem], int]:
+def reject_items(compiled_lines: set[str]) -> tuple[list[LedgerItem], int]:
     items: list[LedgerItem] = []
     total_rejects = 0
     for path in source_files(SCAN_RULE_ROOTS, (".conf", ".list")):
@@ -298,6 +340,7 @@ def reject_items() -> tuple[list[LedgerItem], int]:
                     level=level_for(categories),
                     category=category_title(categories),
                     source=f"{rel(path)}:{lineno}" if section else f"{rel(path)}:{lineno}",
+                    output_status=reject_output_status(line, compiled_lines),
                     value=line,
                     reason="命中敏感链路关键词" if categories[0].key != "manual_review" else "非明确广告关键词，需人工复核",
                 )
@@ -307,11 +350,11 @@ def reject_items() -> tuple[list[LedgerItem], int]:
 
 def render_table(items: list[LedgerItem]) -> list[str]:
     lines = [
-        "| 类型 | 风险 | 分类 | 来源 | 条目 | 标记原因 |",
-        "|---|---|---|---|---|---|",
+        "| 类型 | 风险 | 分类 | 来源 | 最终输出状态 | 条目 | 标记原因 |",
+        "|---|---|---|---|---|---|---|",
     ]
     if not items:
-        lines.append("| - | - | - | - | - | - |")
+        lines.append("| - | - | - | - | - | - | - |")
         return lines
     for item in sorted(items, key=lambda row: (row.kind, row.level != "high", row.category, row.source, row.value)):
         lines.append(
@@ -322,6 +365,7 @@ def render_table(items: list[LedgerItem]) -> list[str]:
                     item.level,
                     escape_table(item.category),
                     f"`{escape_table(item.source)}`",
+                    f"`{escape_table(item.output_status)}`",
                     f"`{escape_table(item.value)}`",
                     escape_table(item.reason),
                 ]
@@ -333,10 +377,14 @@ def render_table(items: list[LedgerItem]) -> list[str]:
 
 def main() -> int:
     now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=8)))
-    mitm, total_mitm = mitm_items()
-    rejects, total_rejects = reject_items()
+    optimized_hosts, equivalent_removals = load_mitm_output_evidence()
+    compiled_lines = final_active_lines()
+    mitm, total_mitm = mitm_items(optimized_hosts, equivalent_removals)
+    rejects, total_rejects = reject_items(compiled_lines)
     high_count = sum(1 for item in mitm + rejects if item.level == "high")
     medium_count = sum(1 for item in mitm + rejects if item.level == "medium")
+    final_mitm_count = sum(1 for item in mitm if item.output_status.startswith("final-"))
+    final_reject_count = sum(1 for item in rejects if item.output_status == "final-exact")
 
     lines = [
         "# MITM / REJECT 风险台账",
@@ -348,10 +396,14 @@ def main() -> int:
         f"- 标记 REJECT 风险项：{len(rejects)}",
         f"- 高风险项：{high_count}",
         f"- 中风险项：{medium_count}",
+        f"- 已映射到最终 MITM 合同的风险项：{final_mitm_count}",
+        f"- 最终成品中精确存在的 REJECT 风险项：{final_reject_count}",
         "",
         "## 使用边界",
         "",
         "- 本台账只标来源和风险，不删除、不注释、不替换任何规则。",
+        "- `source-only` 表示该源声明不是最终精确 token；它可能被编译器去重、等价覆盖或过滤，不能据此推断客户端行为。",
+        "- `source-only-or-compiled` 表示最终成品没有完全相同的文本行；Rewrite 合并等编译转换可能仍保留等价行为。",
         "- 登录、支付、银行、验证码、视频播放、图片/CDN、核心 API 只能在有真实异常或日志证据时单点复核。",
         "- `high` 代表不应随意扩大 MITM / REJECT 范围；`medium` 代表需要人工复核来源和 App 行为。",
         "",

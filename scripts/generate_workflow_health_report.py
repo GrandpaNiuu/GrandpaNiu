@@ -20,7 +20,7 @@ API_ROOT = "https://api.github.com"
 WORKFLOWS = [
     ("Module Factory Build", ".github/workflows/module-factory-build.yml", "Build Release and sync Root"),
     ("Daily Module Update", ".github/workflows/daily-module-update.yml", "Daily module date, build, report and validation"),
-    ("Daily invalid rule audit and safe repair", ".github/workflows/daily-audit-and-repair.yml", "Daily invalid rule audit and safe repair"),
+    ("Daily invalid rule audit and safe repair", ".github/workflows/daily-audit-and-repair.yml", "Report-only generated module integrity audit"),
     ("Daily invalid source audit and repair", ".github/workflows/daily-invalid-source-repair.yml", "Daily invalid source audit and repair"),
     ("Scheduled Module Factory Update", ".github/workflows/scheduled-module-update.yml", "Scheduled module factory build and publish"),
     ("Upstream app module sync", ".github/workflows/upstream-app-module-sync.yml", "Sync upstream app modules and validate build"),
@@ -55,7 +55,7 @@ def priority(path: str) -> str:
     if "daily-module" in path:
         return "date refresh, Builder, validation, rebase retry"
     if "daily-audit" in path:
-        return "source-first invalid-source repair, Fusion build, report-only module audit, rebase retry"
+        return "current Release validation, report-only generated-module audit, rebase retry"
     if "invalid-source" in path:
         return "network fetch, invalid history, conservative source repair"
     if "scheduled-module" in path:
