@@ -1,13 +1,13 @@
 # Build Summary
 
-- Generated at: `2026-07-19T17:37:46.272697Z`
+- Generated at: `2026-07-19T18:01:49.538091Z`
 - Main module: `Release/Ronghemokuai.sgmodule`
 - Main module size: `2908098` bytes
 - Release modules: `398`
 - Checksum entries: `418`
 - Semantic SHA-256: `f77fb0b50fe146e63cd7a491a84475082bc8a92615124cf0c3c750b8cd450bac`
-- Change classification: `metadata-only`
-- Comparison baseline: `HEAD` commit `1a8258493ea0981f7b30b0cf244b9c0a451b03ef` / module blob `c1f9ad81d56221b4025d2222c090b8883c47a2c7`
+- Change classification: `unchanged`
+- Comparison baseline: `HEAD` commit `f3e080b5c025c64530baaf939da1b74b665b8c0e` / module blob `1263c055e95a713e8cfcf9c40f7f7ee34fd07b3b`
 
 ## Section counts
 
@@ -23,7 +23,7 @@
 
 ## Semantic change
 
-- Classification: `metadata-only`
+- Classification: `unchanged`
 - Changed sections: `none`
 - Stable metadata changed: `False`
 - Volatile date text in `#!desc` is excluded from the semantic fingerprint.
