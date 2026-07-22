@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-21T18:44:36.165467Z",
+  "generated_at": "2026-07-22T17:50:56.136767Z",
   "module": "Release/Ronghemokuai.sgmodule",
   "module_exists": true,
   "module_size": 2908098,
@@ -24,13 +24,13 @@
     "MITM": "d37fca19d96fd892b4045718fd386514270bcfb9bf785b55a42c9c41a85127ef"
   },
   "change": {
-    "classification": "unchanged",
+    "classification": "metadata-only",
     "changed_sections": [],
     "stable_metadata_changed": false
   },
   "comparison_baseline": {
     "ref": "HEAD",
-    "commit": "eb1358c8e7818335fbf74d0b8df5bc6c93ccb27d",
+    "commit": "609f59b31c2303ad50590723799bd1698dff185c",
     "module_blob": "71cf26a192dd973f3380529403440d6a8f87c82e"
   },
   "release_modules": 398,
