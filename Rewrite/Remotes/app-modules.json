@@ -3304,7 +3304,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "pptv",
