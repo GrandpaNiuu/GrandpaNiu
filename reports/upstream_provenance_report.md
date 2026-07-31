@@ -1,6 +1,6 @@
 # 上游来源、许可证与可信分层报告
 
-- 生成时间：2026-08-01 02:07:47 +0800
+- 生成时间：2026-08-01 02:48:50 +0800
 - App 同步记录：398
 - 远程规则 / 参考模块记录：40
 - 未记录 license 的来源：438
@@ -310,7 +310,7 @@
 | pi-pi-xia | 皮皮虾 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/pi-pi-xia.conf | https://kelee.one/Tool/Loon/Lpx/PiPiXia_remove_ads.lpx |
 | picc-insurance | 中国人保 | observe | medium | True | True | True | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/picc-insurance.conf | https://kelee.one/Tool/Loon/Lpx/PICC_Insurance_remove_ads.lpx |
 | pinduoduo | Pinduoduo | observe | medium | True | True | False | QingRex/LoonKissSurge | 未记录 | unchanged | Rewrite/Sources/Apps/pinduoduo.conf | QingRex/LoonKissSurge raw |
-| pinterest | Pinterest | observe | medium | True | True | False | Kelee PluginHub | 未记录 | fetch-failed | Rewrite/Sources/Apps/pinterest.conf | https://kelee.one/Tool/Loon/Lpx/Pinterest_remove_ads.lpx |
+| pinterest | Pinterest | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/pinterest.conf | https://kelee.one/Tool/Loon/Lpx/Pinterest_remove_ads.lpx |
 | pptv | PPTV | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/pptv.conf | fmz200/wool_scripts raw |
 | pu-pu-mall | 朴朴超市 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/pu-pu-mall.conf | https://kelee.one/Tool/Loon/Lpx/PuPuMall_remove_ads.lpx |
 | qi-dian | 起点读书 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/qi-dian.conf | https://kelee.one/Tool/Loon/Lpx/QiDian_remove_ads.lpx |

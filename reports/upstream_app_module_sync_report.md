@@ -1,6 +1,6 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-07-30T18:52:05Z
+- generated: 2026-07-31T18:48:30Z
 - modules: 398
 - enabled: 390
 - direct_commit: 390
@@ -290,7 +290,7 @@
 | pi-pi-xia | unchanged |
 | picc-insurance | unchanged |
 | pinduoduo | unchanged |
-| pinterest | fetch failed: The read operation timed out; kept existing source |
+| pinterest | unchanged |
 | pptv | unchanged |
 | pu-pu-mall | unchanged |
 | qi-dian | unchanged |
