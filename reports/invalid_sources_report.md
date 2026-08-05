@@ -1,6 +1,6 @@
 # Invalid Sources Audit and Repair Report
 
-- 日期：2026-08-05
+- 日期：2026-08-06
 - 维护模式：source-first
 - 扫描源文件链接总数：776
 - 正常链接数量：454
