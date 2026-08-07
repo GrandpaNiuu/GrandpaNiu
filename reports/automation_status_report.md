@@ -1,11 +1,11 @@
 # Automation Status Report
 
-- Generated at: 2026-08-08 03:06:29 +0800
+- Generated at: 2026-08-08 03:07:49 +0800
 - Repository: `GrandpaNiuu/GrandpaNiu`
-- Current commit: `9edafe28`
-- Overall status: `warn`
+- Current commit: `a59b93eb`
+- Overall status: `ok`
 - Blocking findings: 0
-- Warnings: 1
+- Warnings: 0
 
 ## Workflow Status
 
@@ -16,12 +16,12 @@
 | `daily-invalid-source-repair.yml` | daily, Beijing 00:49 | yes | ok | [31203012279](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31203012279) / completed | [31203012279](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31203012279) / success | [31203012279](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31203012279) / 2026-08-08 01:36:42 +0800 | 1.5h | ok |
 | `upstream-collect.yml` | daily, Beijing 00:55 | yes | ok | [31203018047](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31203018047) / completed | [31203018047](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31203018047) / success | [31203018047](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31203018047) / 2026-08-08 01:36:49 +0800 | 1.5h | ok |
 | `scheduled-module-update.yml` | daily, Beijing 01:07 | yes | ok | [31204375344](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31204375344) / completed | [31204375344](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31204375344) / success | [31204375344](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31204375344) / 2026-08-08 01:54:04 +0800 | 1.2h | ok |
-| `upstream-app-module-sync.yml` | daily, Beijing 01:19 | yes | ok | [31205363518](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31205363518) / completed | [31205363518](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31205363518) / success | [31205363518](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31205363518) / 2026-08-08 02:07:01 +0800 | 59m | ok |
-| `daily-schedule-watchdog.yml` | daily, Beijing 04:30 | yes | warn | [31209978268](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31209978268) / in_progress | [31136346831](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31136346831) / failure | [31049763932](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31049763932) / 2026-08-06 05:42:46 +0800 | 45.4h | latest completed run is failure on older commit c002c3ff; current commit 9edafe28 will be checked by the next run |
-| `repository-health.yml` | weekly, Sunday Beijing 01:37 | yes | ok | [30761407385](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/30761407385) / completed | [30761407385](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/30761407385) / success | [30761407385](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/30761407385) / 2026-08-03 02:35:38 +0800 | 120.5h | ok |
-| `module-factory-build.yml` | push/manual | observe | ok | [29446746558](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/29446746558) / completed | [29446746558](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/29446746558) / success | [29446746558](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/29446746558) / 2026-07-16 04:03:26 +0800 | 551.1h | ok |
-| `pages-deploy.yml` | Module Factory / watchdog / manual | observe | ok | [31136461751](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31136461751) / completed | [31136461751](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31136461751) / success | [31136461751](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31136461751) / 2026-08-07 08:58:22 +0800 | 18.1h | ok |
-| `workflow-failure-issue.yml` | workflow_run | observe | ok | [31205468882](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31205468882) / completed | [31205468882](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31205468882) / success | [31205468882](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31205468882) / 2026-08-08 02:07:14 +0800 | 59m | ok |
+| `upstream-app-module-sync.yml` | daily, Beijing 01:19 | yes | ok | [31205363518](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31205363518) / completed | [31205363518](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31205363518) / success | [31205363518](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31205363518) / 2026-08-08 02:07:01 +0800 | 1.0h | ok |
+| `daily-schedule-watchdog.yml` | daily, Beijing 04:30 | yes | ok | [31209978268](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31209978268) / completed | [31209978268](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31209978268) / success | [31209978268](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31209978268) / 2026-08-08 03:06:58 +0800 | 1m | ok |
+| `repository-health.yml` | weekly, Sunday Beijing 01:37 | yes | ok | [31210016455](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31210016455) / in_progress | [30761407385](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/30761407385) / success | [30761407385](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/30761407385) / 2026-08-03 02:35:38 +0800 | 120.5h | ok |
+| `module-factory-build.yml` | push/manual | observe | ok | [31210062620](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31210062620) / in_progress | [29446746558](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/29446746558) / success | [29446746558](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/29446746558) / 2026-07-16 04:03:26 +0800 | 551.1h | ok |
+| `pages-deploy.yml` | Module Factory / watchdog / manual | observe | ok | [31210038683](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31210038683) / completed | [31210038683](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31210038683) / success | [31210038683](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31210038683) / 2026-08-08 03:07:33 +0800 | 0m | ok |
+| `workflow-failure-issue.yml` | workflow_run | observe | ok | [31210084310](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31210084310) / completed | [31210084310](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31210084310) / success | [31210084310](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31210084310) / 2026-08-08 03:07:55 +0800 | 0m | ok |
 
 ## Policy
 
