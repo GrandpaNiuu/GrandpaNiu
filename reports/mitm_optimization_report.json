@@ -28475,7 +28475,7 @@
     },
     {
       "action": "https://raw.githubusercontent.com/NobyDa/Script/master/Bahamut/BahamutAnimeAds.js",
-      "expression": "^https:\\/\\/api\\.gamer\\.com\\.tw\\/mobile_app\\/anime\\/v\\d/(token|m3u8).php\\?",
+      "expression": "^https:\\/\\/api\\.gamer\\.com\\.tw(\\/mobile_app|)\\/anime\\/v\\d/(token|m3u8|video_src).php\\?",
       "host_constraints": [
         "api.gamer.com.tw"
       ],
@@ -34742,7 +34742,7 @@
     "spclient.wg.spotify.com",
     "youtubei.googleapis.com"
   ],
-  "generated_at": "2026-08-13T02:00:47.324066+08:00",
+  "generated_at": "2026-08-13T02:11:12.261550+08:00",
   "host_entries": [
     {
       "normalized": "api.zhihu.com",
@@ -43398,7 +43398,7 @@
   "mode": "equivalent",
   "non_mitm_fingerprint": {
     "line_count": 2753,
-    "sha256": "2fcb294f7fcc22db2dc5cf22863a61b9b08562873564692d769009ae9ec22432"
+    "sha256": "bd517ed5ed1ef2d47c466e4be309b7269aa5e73678ea455401bdd8b65ba1527e"
   },
   "normalized_hostname_token_count": 1189,
   "opaque_retained_count": 169,
