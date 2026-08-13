@@ -1,18 +1,17 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-08-12T18:10:51Z
+- generated: 2026-08-13T18:11:08Z
 - modules: 398
 - enabled: 390
 - direct_commit: 390
-- updated: 4
-- skipped: 394
+- updated: 3
+- skipped: 395
 - blocked: 0
 - errors: 0
 
 ## Updated
 | id | upstream | backup | source |
 | --- | --- | --- | --- |
-| bahamut-anime | 动画疯 |  | https://raw.githubusercontent.com/NobyDa/Script/master/Surge/Module/BahamutAnimeAds.sgmodule |
 | douyin | 抖音 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/TikTok.snippet |
 | dragon-read | 番茄小说去广告 |  | https://kelee.one/Tool/Loon/Lpx/DragonRead_remove_ads.lpx |
 | hkdou-yin | 香港抖音去广告 |  | https://kelee.one/Tool/Loon/Lpx/HKDouYin_remove_ads.lpx |
@@ -57,6 +56,7 @@
 | auto-home | unchanged |
 | baby-tree | unchanged |
 | baby-tree-parenting | unchanged |
+| bahamut-anime | unchanged |
 | baicizhan | unchanged |
 | baidu | unchanged |
 | baidu-input-method | unchanged |

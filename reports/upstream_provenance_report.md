@@ -1,6 +1,6 @@
 # 上游来源、许可证与可信分层报告
 
-- 生成时间：2026-08-14 01:35:44 +0800
+- 生成时间：2026-08-14 02:11:27 +0800
 - App 同步记录：398
 - 远程规则 / 参考模块记录：40
 - 未记录 license 的来源：438
@@ -73,7 +73,7 @@
 | auto-home | 汽车之家 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/auto-home.conf | https://kelee.one/Tool/Loon/Lpx/AutoHome_remove_ads.lpx |
 | baby-tree | 宝宝树孕育 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/baby-tree.conf | https://kelee.one/Tool/Loon/Lpx/BabyTree_remove_ads.lpx |
 | baby-tree-parenting | 宝宝树孕育 | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/baby-tree-parenting.conf | fmz200/wool_scripts raw |
-| bahamut-anime | Bahamut Anime | observe | medium | True | True | False | NobyDa/Script | 未记录 | updated | Rewrite/Sources/Apps/bahamut-anime.conf | NobyDa/Script raw |
+| bahamut-anime | Bahamut Anime | observe | medium | True | True | False | NobyDa/Script | 未记录 | unchanged | Rewrite/Sources/Apps/bahamut-anime.conf | NobyDa/Script raw |
 | baicizhan | 百词斩 | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/baicizhan.conf | fmz200/wool_scripts raw |
 | baidu | Baidu | observe | medium | True | True | True | QingRex/LoonKissSurge | 未记录 | unchanged | Rewrite/Sources/Apps/baidu.conf | QingRex/LoonKissSurge raw |
 | baidu-input-method | 百度输入法 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/baidu-input-method.conf | https://kelee.one/Tool/Loon/Lpx/Baidu_input_method_remove_ads.lpx |
