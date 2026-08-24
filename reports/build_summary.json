@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-24T17:37:28.012863Z",
+  "generated_at": "2026-08-24T17:51:58.556842Z",
   "module": "Release/Ronghemokuai.sgmodule",
   "module_exists": true,
-  "module_size": 2908111,
+  "module_size": 2908344,
   "section_counts": {
     "Body Rewrite": 1435,
     "Header Rewrite": 2,
@@ -12,11 +12,11 @@
     "Script": 45,
     "URL Rewrite": 40
   },
-  "semantic_sha256": "9f695bda2a52c4f3678c65921b70f6f2ff22fb3a09db1be8dd72c563fd078cec",
+  "semantic_sha256": "210c9001988282e8206e5f72165eaa0d71621a1a888ae4f1b96fc081aca228a0",
   "stable_metadata_sha256": "c3d08b2235d828dfa85be4aa0567566ea6607f75803b241f4e4c5737ee746ada",
   "section_sha256": {
     "Rule": "394a1ee41e1ef600ec1a44006cf15c3c89612663dd5f3661d621ce0da9cd00dd",
-    "URL Rewrite": "9236ca7dfa0c75aa1843a18b30ffb6bd2172521f03e65e622947d20193e58d61",
+    "URL Rewrite": "93c4516fa05bf30e2c0d6b7caa755b6270d1363b18b142e5c784930ed3b8db53",
     "Header Rewrite": "86b549348433276677483714dc3f03b71c9eed95690b06f1fb040f25549e7907",
     "Body Rewrite": "cafd7f798e1333beabfe5664c4688cfa0935de4721cdc4c06608631f2bc9e072",
     "Map Local": "a586b9f7d012740c310b2231b1076d1f9e23a00cd18538ec493d65f03e0272b5",
@@ -24,13 +24,15 @@
     "MITM": "d37fca19d96fd892b4045718fd386514270bcfb9bf785b55a42c9c41a85127ef"
   },
   "change": {
-    "classification": "unchanged",
-    "changed_sections": [],
+    "classification": "module-semantic-changed",
+    "changed_sections": [
+      "URL Rewrite"
+    ],
     "stable_metadata_changed": false
   },
   "comparison_baseline": {
     "ref": "HEAD",
-    "commit": "512540c749348e1bf2d5281e805d4816385026b4",
+    "commit": "0a0e62c023a13913ef9be7f882ecc5b86aedbacc",
     "module_blob": "a5a60a57ad187208962047495d7af8ec8772fb88"
   },
   "release_modules": 398,

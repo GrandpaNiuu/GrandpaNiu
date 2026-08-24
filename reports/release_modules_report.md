@@ -2414,7 +2414,7 @@
 - Source: `Rewrite/Sources/Apps/snowball.conf`
 - Discovery: auto
 - Capability: deep
-- URL Rewrite: 13
+- URL Rewrite: 16
 - Body Rewrite: 1
 - MITM: 1
 

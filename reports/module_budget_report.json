@@ -2,7 +2,7 @@
   "status": "passed",
   "errors": [],
   "module": {
-    "bytes": 2908111,
+    "bytes": 2908344,
     "max_bytes": 3500000,
     "lines": 2769,
     "max_lines": 3300,
@@ -82,6 +82,14 @@
       "exception_id": null
     },
     {
+      "line": 1242,
+      "section": "URL Rewrite",
+      "chars": 5999,
+      "sha256": "743d9196816670da1166202e193f333d1b9b6f7f2bbbf010df42a3b311ccace9",
+      "prefix": "(?:^https://htwkop\\.xiaojukeji\\.com/gateway\\?api=cms\\.htw\\.delivery)|(?:^https://htwkop\\.xiaojukeji\\.com/gateway\\?api=hm",
+      "exception_id": null
+    },
+    {
       "line": 1233,
       "section": "URL Rewrite",
       "chars": 5998,
@@ -90,19 +98,19 @@
       "exception_id": null
     },
     {
+      "line": 1240,
+      "section": "URL Rewrite",
+      "chars": 5996,
+      "sha256": "5c3ab547912cf874de4ad277146e5ca7bac699e33264b74f7f65d6bc19110b5b",
+      "prefix": "(?:^https://appc-v6\\.qixin\\.com/v4/general/getAppFloatAd$)|(?:^https://appc-v6\\.qixin\\.com/v4/general/getAppBanners$)|(?",
+      "exception_id": null
+    },
+    {
       "line": 1218,
       "section": "URL Rewrite",
       "chars": 5992,
       "sha256": "5bf53f7b6cb61a691f678a34f3b454d18b89bdfbd690bac6b34c22de77fb6a62",
       "prefix": "(?:^https?://gurd\\.snssdk\\.com/src/server/v3/package)|(?:^https?://.+\\.byteimg.com/tos-cn-i-1yzifmftcy/(.+)-jpeg\\.jpeg)|",
-      "exception_id": null
-    },
-    {
-      "line": 1242,
-      "section": "URL Rewrite",
-      "chars": 5988,
-      "sha256": "170b8542b79a7e419e90d6731e6ff7f8907590913034f123353e6efa4df4380b",
-      "prefix": "(?:^https://htwkop\\.xiaojukeji\\.com/gateway\\?api=hm\\.fa\\.mallRecommend)|(?:^https://lawsonapi\\.yorentown\\.com/area/sh-la",
       "exception_id": null
     },
     {
@@ -120,14 +128,6 @@
       "sha256": "cb7db3b7e049b9eb4bf1c7c4c5aee4989de09c4ab0af240e1b3edc57754b6533",
       "prefix": "(?:^https?:\\/\\/(webboot\\.zhangyue\\.com|ih2\\.ireader\\.com)\\/zybk\\/api\\/pop\\/index\\?)|(?:^https?:\\/\\/(webboot\\.zhangyue\\.c",
       "exception_id": null
-    },
-    {
-      "line": 1236,
-      "section": "URL Rewrite",
-      "chars": 5984,
-      "sha256": "bf1c226aadf1b0b5b75c037263e6b1964d28cb2edc32d4f8a4a92182fea94044",
-      "prefix": "(?:^https://app\\.huashi6\\.com/app/index/ad/)|(?:^https://app\\.huashi6\\.com/app/works/relative$)|(?:^https://app\\.huashi6",
-      "exception_id": null
     }
   ],
   "exception_matches": {
@@ -143,7 +143,7 @@
       "reason": "Existing auto-synced Xiaojukeji Charge JavaScript payload; preserve until an equivalent Shadowrocket resource form is proven."
     }
   ],
-  "generated_at": "2026-08-24T17:37:28.090650Z",
+  "generated_at": "2026-08-24T17:51:58.624276Z",
   "module_path": "Release/Ronghemokuai.sgmodule",
   "config_path": "Rewrite/Generator/module-budgets.json"
 }

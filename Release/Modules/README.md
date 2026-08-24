@@ -329,7 +329,7 @@ Capability is derived from static sections and does not certify runtime effectiv
 | GrandpaNiu 蜗牛睡眠 Source | `snail-sleep.sgmodule` | `Rewrite/Sources/Apps/snail-sleep.conf` | rule | Rule:1 |
 | GrandpaNiu Snapchat Source | `snapchat.sgmodule` | `Rewrite/Sources/Apps/snapchat.conf` | rule | Rule:2 |
 | GrandpaNiu B612咔叽 Source | `snow-camera.sgmodule` | `Rewrite/Sources/Apps/snow-camera.conf` | rule | Rule:3 |
-| GrandpaNiu 雪球 Source | `snowball.sgmodule` | `Rewrite/Sources/Apps/snowball.conf` | deep | URL Rewrite:13, Body Rewrite:1, MITM:1 |
+| GrandpaNiu 雪球 Source | `snowball.sgmodule` | `Rewrite/Sources/Apps/snowball.conf` | deep | URL Rewrite:16, Body Rewrite:1, MITM:1 |
 | GrandpaNiu 汽水音乐 Source | `soda-music.sgmodule` | `Rewrite/Sources/Apps/soda-music.conf` | deep | URL Rewrite:10, Body Rewrite:7, Script:1, MITM:1 |
 | GrandpaNiu 搜狗输入法 Source | `sogou-input.sgmodule` | `Rewrite/Sources/Apps/sogou-input.conf` | rewrite | Rule:1, URL Rewrite:2, MITM:1 |
 | GrandpaNiu 房天下 (Soufun) Source | `soufun.sgmodule` | `Rewrite/Sources/Apps/soufun.conf` | rule | Rule:2 |

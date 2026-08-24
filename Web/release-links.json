@@ -2643,7 +2643,7 @@
       "file": "Release/Modules/snowball.sgmodule",
       "source": "Rewrite/Sources/Apps/snowball.conf",
       "capability": "deep",
-      "sections": "URL Rewrite:13, Body Rewrite:1, MITM:1",
+      "sections": "URL Rewrite:16, Body Rewrite:1, MITM:1",
       "raw_url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Release/Modules/snowball.sgmodule"
     },
     {

@@ -1,12 +1,12 @@
 # MITM / REJECT 风险台账
 
-- 生成时间：2026-08-25 01:09:01 +0800
+- 生成时间：2026-08-25 01:52:15 +0800
 - 扫描 MITM hostname：806
 - 标记 MITM 风险项：172
-- 扫描 REJECT / rewrite reject 条目：4219
-- 标记 REJECT 风险项：2817
+- 扫描 REJECT / rewrite reject 条目：4222
+- 标记 REJECT 风险项：2818
 - 高风险项：73
-- 中风险项：2916
+- 中风险项：2917
 - 已映射到最终 MITM 合同的风险项：172
 - 最终成品中精确存在的 REJECT 风险项：814
 
@@ -1705,12 +1705,13 @@
 | REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:12` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/lightsnow/launch/plan/bee/query\.json\? - reject-dict` | 非明确广告关键词，需人工复核 |
 | REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:13` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/lightsnow/optional/banner/query\.json - reject-dict` | 非明确广告关键词，需人工复核 |
 | REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:14` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/snowflake-theme/query/v1/hot_event/rich_tag_new\.json\? - reject-dict` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:15` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/query/v1/hot_event/tag\.json\? - reject-dict` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:17` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/recommend-proxy/card/zj_card\.json\?feed_id=207 - reject-dict` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:18` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/recommend-proxy/card/portfolio_tab_symbol\.json - reject-dict` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:19` | `source-only-or-compiled` | `^https://stock\.xueqiu\.com/v5/stock/group/recommend/default/list\.json - reject-dict` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:20` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/livestream/structure/live/hotCard\.json - reject-dict` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:21` | `source-only-or-compiled` | `^https://fund\.xueqiu\.com/fundx/activity/x/web/c/index/dataByCode\? - reject-dict` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:15` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/query/search/ai/v2/recommend_search\.json\? - reject-dict` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:16` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/query/v1/hot_event/tag\.json\? - reject-dict` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:18` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/recommend-proxy/card/zj_card\.json\?feed_id=207 - reject-dict` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:19` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/recommend-proxy/card/portfolio_tab_symbol\.json - reject-dict` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:20` | `source-only-or-compiled` | `^https://stock\.xueqiu\.com/v5/stock/group/recommend/default/list\.json - reject-dict` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:21` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/livestream/structure/live/hotCard\.json - reject-dict` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:22` | `source-only-or-compiled` | `^https://fund\.xueqiu\.com/fundx/activity/x/web/c/index/dataByCode\? - reject-dict` | 非明确广告关键词，需人工复核 |
 | REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/snowball.conf:9` | `source-only-or-compiled` | `^https://api\.xueqiu\.com/snowpard/launch_strategy/query\.json\? - reject-dict` | 非明确广告关键词，需人工复核 |
 | REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/soda-music.conf:12` | `source-only-or-compiled` | `^https://webcast-open\.douyin\.com/webcast/openapi/feed/\? - reject-dict` | 非明确广告关键词，需人工复核 |
 | REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/soda-music.conf:13` | `source-only-or-compiled` | `^https://(beta-luna\.douyin\|api5-lq\.qishui)\.com/luna/treasure/entrance/config\? - reject-dict` | 非明确广告关键词，需人工复核 |
