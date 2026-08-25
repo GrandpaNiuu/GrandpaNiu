@@ -1,6 +1,6 @@
 # Profile Validation Report
 
-Generated: 2026-08-25 01:52:13 +0800
+Generated: 2026-08-26 01:08:44 +0800
 
 This script validates the single public Fusion profile only.
 
