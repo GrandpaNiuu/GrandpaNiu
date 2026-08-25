@@ -1,11 +1,11 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-08-24T17:51:45Z
+- generated: 2026-08-25T17:50:06Z
 - modules: 398
 - enabled: 390
 - direct_commit: 390
-- updated: 4
-- skipped: 394
+- updated: 3
+- skipped: 395
 - blocked: 0
 - errors: 0
 
@@ -15,7 +15,6 @@
 | douyin | 抖音 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/TikTok.snippet |
 | dragon-read | 番茄小说去广告 |  | https://kelee.one/Tool/Loon/Lpx/DragonRead_remove_ads.lpx |
 | hkdou-yin | 香港抖音去广告 |  | https://kelee.one/Tool/Loon/Lpx/HKDouYin_remove_ads.lpx |
-| snowball | 雪球去广告 |  | https://kelee.one/Tool/Loon/Lpx/Snowball_remove_ads.lpx |
 
 ## Skipped
 | id | reason |
@@ -332,6 +331,7 @@
 | snail-sleep | unchanged |
 | snapchat | unchanged |
 | snow-camera | unchanged |
+| snowball | unchanged |
 | soda-music | unchanged |
 | sogou-input | unchanged |
 | soufun | unchanged |

@@ -1,6 +1,6 @@
 # 上游来源、许可证与可信分层报告
 
-- 生成时间：2026-08-26 01:08:46 +0800
+- 生成时间：2026-08-26 01:50:36 +0800
 - App 同步记录：398
 - 远程规则 / 参考模块记录：40
 - 未记录 license 的来源：438
@@ -351,7 +351,7 @@
 | snail-sleep | 蜗牛睡眠 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/snail-sleep.conf | https://kelee.one/Tool/Loon/Lpx/SnailSleep_remove_ads.lpx |
 | snapchat | Snapchat | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/snapchat.conf | fmz200/wool_scripts raw |
 | snow-camera | B612咔叽 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/snow-camera.conf | https://kelee.one/Tool/Loon/Lpx/SnowCamera_remove_ads.lpx |
-| snowball | 雪球 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | updated | Rewrite/Sources/Apps/snowball.conf | https://kelee.one/Tool/Loon/Lpx/Snowball_remove_ads.lpx |
+| snowball | 雪球 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/snowball.conf | https://kelee.one/Tool/Loon/Lpx/Snowball_remove_ads.lpx |
 | soda-music | 汽水音乐 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/soda-music.conf | https://kelee.one/Tool/Loon/Lpx/SodaMusic_remove_ads.lpx |
 | sogou-input | 搜狗输入法 | observe | high | True | True | True | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/sogou-input.conf | fmz200/wool_scripts raw |
 | soufun | 房天下 (Soufun) | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/soufun.conf | fmz200/wool_scripts raw |
