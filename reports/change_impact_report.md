@@ -1,11 +1,13 @@
 # 变更影响报告
 
-- 生成时间：2026-08-26 01:08:51 +0800
+- 生成时间：2026-08-27 02:22:06 +0800
 - 变更识别模式：git diff HEAD~1..HEAD (committed-change mode)
 
 ## 本次修改文件
 
-- `reports/automation_status_report.md`
+- `reports/daily_audit_report.md`
+- `reports/module_integrity_report.md`
+- `reports/remote_rule_syntax_report.md`
 
 ## 新增文件
 
@@ -17,7 +19,9 @@
 
 ## 修改文件
 
-- `reports/automation_status_report.md`
+- `reports/daily_audit_report.md`
+- `reports/module_integrity_report.md`
+- `reports/remote_rule_syntax_report.md`
 
 ## 影响的模块层
 
@@ -30,9 +34,9 @@
 ## 风险判断
 
 - 是否涉及脚本：否
-- 是否涉及 MITM：否
+- 是否涉及 MITM：是
 - 是否涉及 Body Rewrite：否
-- 是否涉及远程规则源：否
+- 是否涉及远程规则源：是
 - 是否需要测试 Spotify：按需
 - 是否需要测试 YouTube：按需
 - 是否需要测试知乎：按需
