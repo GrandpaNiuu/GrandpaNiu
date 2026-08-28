@@ -1,6 +1,6 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-08-26T19:23:27Z
+- generated: 2026-08-28T01:32:09Z
 - modules: 398
 - enabled: 390
 - direct_commit: 390
