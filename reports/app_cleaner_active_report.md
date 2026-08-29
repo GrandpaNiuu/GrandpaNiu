@@ -1,6 +1,6 @@
 # App Cleaner Active Report
 
-- Generated at: 2026-08-29 09:01:10 +0800
+- Generated at: 2026-08-30 03:30:04 +0800
 - Active entry file: `Scripts/app-cleaner-active.conf`
 - Cleaner script: `Scripts/app-cleaner.js`
 - Cleaner version: `2026-05-31-dispatcher-v3-safe-generic`

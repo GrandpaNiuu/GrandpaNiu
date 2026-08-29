@@ -1,6 +1,6 @@
 # Upstream Risk Gate Report
 
-- Generated at: 2026-08-29 09:01:10 +0800
+- Generated at: 2026-08-30 03:29:55 +0800
 - Status: passed
 - Records: 398
 - Enabled: 390

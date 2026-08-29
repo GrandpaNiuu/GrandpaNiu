@@ -1,6 +1,6 @@
 # Rule Overlap Report
 
-- Generated at: 2026-08-29 09:01:10 +0800
+- Generated at: 2026-08-30 03:30:04 +0800
 - Rule files: 19
 - Active source rules: 3351
 - Unique source rules: 2010
