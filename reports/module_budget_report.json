@@ -143,7 +143,7 @@
       "reason": "Existing auto-synced Xiaojukeji Charge JavaScript payload; preserve until an equivalent Shadowrocket resource form is proven."
     }
   ],
-  "generated_at": "2026-08-30T19:53:01.155311Z",
+  "generated_at": "2026-08-30T20:00:33.028967Z",
   "module_path": "Release/Ronghemokuai.sgmodule",
   "config_path": "Rewrite/Generator/module-budgets.json"
 }
