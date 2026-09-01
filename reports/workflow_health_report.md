@@ -1,22 +1,22 @@
 # Workflow Health Report
 
-- Generated at: 2026-09-01 05:36:45 +0800
+- Generated at: 2026-09-02 03:33:30 +0800
 - Repository: `GrandpaNiuu/GrandpaNiu`
 - Workflows checked: 11
 
 | Workflow | File | Purpose | Triggers | Latest run | Status | Conclusion | Run URL | Advice |
 |---|---|---|---|---|---|---|---|---|
-| Module Factory Build | `.github/workflows/module-factory-build.yml` | Build Release and sync Root | manual / push | unconfirmed | unconfirmed | unconfirmed | - | config exists; check Builder, profile, source merge, Root/Release sync |
-| Daily Module Update | `.github/workflows/daily-module-update.yml` | Daily module date, build, report and validation | manual / schedule | unconfirmed | unconfirmed | unconfirmed | - | config exists; check date refresh, Builder, validation, rebase retry |
-| Daily invalid rule audit and safe repair | `.github/workflows/daily-audit-and-repair.yml` | Report-only generated module integrity audit | manual / schedule | unconfirmed | unconfirmed | unconfirmed | - | config exists; check current Release validation, report-only generated-module audit, rebase retry |
-| Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | Daily invalid source audit and repair | manual / schedule | unconfirmed | unconfirmed | unconfirmed | - | config exists; check network fetch, invalid history, conservative source repair |
-| Scheduled Module Factory Update | `.github/workflows/scheduled-module-update.yml` | Scheduled module factory build and publish | manual / schedule | unconfirmed | unconfirmed | unconfirmed | - | config exists; check Builder.py --profile fusion --release, commit, rebase retry |
-| Upstream app module sync | `.github/workflows/upstream-app-module-sync.yml` | Sync upstream app modules and validate build | manual / schedule | unconfirmed | unconfirmed | unconfirmed | - | config exists; check app-modules.json, upstream fetch, rollback on failed build |
-| Upstream candidate collect | `.github/workflows/upstream-collect.yml` | Collect trusted upstream candidates | manual / schedule | unconfirmed | unconfirmed | unconfirmed | - | config exists; check candidates.json, risk filters, trusted repositories |
-| Daily schedule watchdog | `.github/workflows/daily-schedule-watchdog.yml` | Recover the daily module refresh if GitHub drops a scheduled run | manual / schedule | unconfirmed | unconfirmed | unconfirmed | - | config exists; check module update-date, recovery build, rebase retry |
-| Repository Health Check | `.github/workflows/repository-health.yml` | Repository governance health check | manual / schedule | unconfirmed | unconfirmed | unconfirmed | - | config exists; check governance files, duplicate scripts, duplicate MITM, report freshness |
-| Deploy GitHub Pages | `.github/workflows/pages-deploy.yml` | Publish the static Pages artifact with serialized deploy retries | manual / workflow_run | unconfirmed | unconfirmed | unconfirmed | - | config exists; check Pages artifact scope, deploy-pages timeout, deployment retry guard |
-| Workflow failure issue | `.github/workflows/workflow-failure-issue.yml` | Create or update issues for failed Actions | workflow_run | unconfirmed | unconfirmed | unconfirmed | - | config exists; check workflow_run permissions, issue creation/update |
+| Module Factory Build | `.github/workflows/module-factory-build.yml` | Build Release and sync Root | manual / push | 2026-08-07T19:07:21Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/31210062620) | passed |
+| Daily Module Update | `.github/workflows/daily-module-update.yml` | Daily module date, build, report and validation | manual / schedule | 2026-09-01T19:32:02Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/33550052861) | Run is not completed; check again after it finishes |
+| Daily invalid rule audit and safe repair | `.github/workflows/daily-audit-and-repair.yml` | Report-only generated module integrity audit | manual / schedule | 2026-08-31T21:36:41Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/33442227882) | passed |
+| Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | Daily invalid source audit and repair | manual / schedule | 2026-08-31T21:38:50Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/33442411721) | passed |
+| Scheduled Module Factory Update | `.github/workflows/scheduled-module-update.yml` | Scheduled module factory build and publish | manual / schedule | 2026-08-31T21:51:21Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/33443421662) | passed |
+| Upstream app module sync | `.github/workflows/upstream-app-module-sync.yml` | Sync upstream app modules and validate build | manual / schedule | 2026-08-31T21:55:16Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/33443737617) | passed |
+| Upstream candidate collect | `.github/workflows/upstream-collect.yml` | Collect trusted upstream candidates | manual / schedule | 2026-08-31T21:39:19Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/33442450133) | passed |
+| Daily schedule watchdog | `.github/workflows/daily-schedule-watchdog.yml` | Recover the daily module refresh if GitHub drops a scheduled run | manual / schedule | 2026-08-31T23:57:30Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/33452817649) | passed |
+| Repository Health Check | `.github/workflows/repository-health.yml` | Repository governance health check | manual / schedule | 2026-08-30T19:59:41Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/33332376762) | passed |
+| Deploy GitHub Pages | `.github/workflows/pages-deploy.yml` | Publish the static Pages artifact with serialized deploy retries | manual / workflow_run | 2026-08-31T23:58:09Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/33452858529) | passed |
+| Workflow failure issue | `.github/workflows/workflow-failure-issue.yml` | Create or update issues for failed Actions | workflow_run | 2026-08-31T23:58:48Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/33452898709) | passed |
 
 ## Notes
 
