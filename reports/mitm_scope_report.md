@@ -1,7 +1,7 @@
 # MITM Scope Report
 
-- Generated at: 2026-09-04 03:25:20 +0800
-- Total hostnames: 1189
+- Generated at: 2026-09-04 03:57:35 +0800
+- Total hostnames: 1192
 - Wildcard hostnames: 34
 - Unique base domains: 673
 
@@ -16,7 +16,7 @@
 | `httpdns` | 0 |
 | `shopping_life` | 30 |
 | `social_content` | 17 |
-| `other_app_or_service` | 1095 |
+| `other_app_or_service` | 1098 |
 
 ## Top Base Domains
 
@@ -27,6 +27,7 @@
 - `meituan.com`: 10
 - `smzdm.com`: 10
 - `kkmh.com`: 10
+- `xiaojukeji.com`: 9
 - `ksapisrv.com`: 9
 - `ximalaya.com`: 8
 - `mgtv.com`: 8
@@ -36,7 +37,6 @@
 - `huxiu.com`: 7
 - `yy.com`: 7
 - `aliyuncs.com`: 6
-- `xiaojukeji.com`: 6
 - `mi.com`: 6
 - `net.cn`: 6
 - `line.me`: 6

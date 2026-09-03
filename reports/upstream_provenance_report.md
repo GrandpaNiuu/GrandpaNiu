@@ -1,6 +1,6 @@
 # 上游来源、许可证与可信分层报告
 
-- 生成时间：2026-09-04 03:25:21 +0800
+- 生成时间：2026-09-04 03:57:35 +0800
 - App 同步记录：398
 - 远程规则 / 参考模块记录：40
 - 未记录 license 的来源：438
@@ -129,7 +129,7 @@
 | dang-dang-reading | 当当阅读 | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/dang-dang-reading.conf | fmz200/wool_scripts raw |
 | dao-meng-kong-jian | 到梦空间 | observe | high | True | True | True | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/dao-meng-kong-jian.conf | fmz200/wool_scripts raw |
 | dewu | 得物 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/dewu.conf | https://kelee.one/Tool/Loon/Lpx/Dewu_remove_ads.lpx |
-| di-di | 滴滴出行 | observe | high | True | True | True | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/di-di.conf | https://kelee.one/Tool/Loon/Lpx/DiDi_remove_ads.lpx |
+| di-di | 滴滴出行 | observe | high | True | True | True | Kelee PluginHub | 未记录 | updated | Rewrite/Sources/Apps/di-di.conf | https://kelee.one/Tool/Loon/Lpx/DiDi_remove_ads.lpx |
 | di-duan-ying-shi | 低端影视 | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/di-duan-ying-shi.conf | fmz200/wool_scripts raw |
 | dian-shi-jia | 电视家 | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/dian-shi-jia.conf | fmz200/wool_scripts raw |
 | dida-pinche-taxi | 滴答出行 | observe | high | True | True | True | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/dida-pinche-taxi.conf | https://kelee.one/Tool/Loon/Lpx/DidaPincheTaxi_remove_ads.lpx |

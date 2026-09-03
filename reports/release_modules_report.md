@@ -846,9 +846,9 @@
 - Source: `Rewrite/Sources/Apps/di-di.conf`
 - Discovery: auto
 - Capability: deep
-- Rule: 4
-- URL Rewrite: 6
-- Body Rewrite: 11
+- Rule: 3
+- URL Rewrite: 9
+- Body Rewrite: 18
 - MITM: 1
 
 ## GrandpaNiu 低端影视 Source

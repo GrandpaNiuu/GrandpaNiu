@@ -60,6 +60,7 @@
 ||adsmind.gdtimg.com^
 ||adsmind.ugdtimg.com^
 ||adstats.tencentmusic.com^
+||adtrack.xiaojukeji.com^
 ||adui.tg.meitu.com^
 ||advert.mafengwo.cn^
 ||advertise.baicizhan.com^
@@ -116,6 +117,7 @@
 ||grandpaniu-douyin-disabled.invalid^
 ||grandpaniu-hkdouyin-disabled.invalid^
 ||gwp.xiaojukeji.com^
+||gwpgz.diditaxi.com.cn^
 ||h-adashx.ut.taobao.com^
 ||huatuocode.huatuo.qq.com^
 ||huodong.weibo.cn^

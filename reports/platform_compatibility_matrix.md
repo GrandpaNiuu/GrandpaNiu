@@ -1,6 +1,6 @@
 # 平台兼容矩阵
 
-- 生成时间：2026-09-04 03:25:21 +0800
+- 生成时间：2026-09-04 03:57:35 +0800
 
 ## 核心结论
 
@@ -21,10 +21,10 @@
 
 ## Android 分支
 
-- `mihomo`：`Android/mihomo/GrandpaNiu-Ads.yaml` / `Release/Android/mihomo/GrandpaNiu-Ads.yaml`，规则数 `952`
-- `sing-box`：`Android/sing-box/GrandpaNiu-Ads.json` / `Release/Android/sing-box/GrandpaNiu-Ads.json`，规则数 `952`
-- `adguard`：`Android/adguard/GrandpaNiu-DNS.txt` / `Release/Android/adguard/GrandpaNiu-DNS.txt`，规则数 `891`
-- `v2rayng`：`Android/v2rayng/GrandpaNiu-v2rayng-routing.json` / `Release/Android/v2rayng/GrandpaNiu-v2rayng-routing.json`，规则数 `952`
+- `mihomo`：`Android/mihomo/GrandpaNiu-Ads.yaml` / `Release/Android/mihomo/GrandpaNiu-Ads.yaml`，规则数 `954`
+- `sing-box`：`Android/sing-box/GrandpaNiu-Ads.json` / `Release/Android/sing-box/GrandpaNiu-Ads.json`，规则数 `954`
+- `adguard`：`Android/adguard/GrandpaNiu-DNS.txt` / `Release/Android/adguard/GrandpaNiu-DNS.txt`，规则数 `893`
+- `v2rayng`：`Android/v2rayng/GrandpaNiu-v2rayng-routing.json` / `Release/Android/v2rayng/GrandpaNiu-v2rayng-routing.json`，规则数 `954`
 
 ## 使用边界
 

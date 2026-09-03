@@ -1,17 +1,18 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-09-02T19:52:09Z
+- generated: 2026-09-03T19:57:01Z
 - modules: 398
 - enabled: 390
 - direct_commit: 390
-- updated: 3
-- skipped: 395
+- updated: 4
+- skipped: 394
 - blocked: 0
 - errors: 0
 
 ## Updated
 | id | upstream | backup | source |
 | --- | --- | --- | --- |
+| di-di | 滴滴去广告 | backup/upstream-app-modules/di-di/20260903-195541.conf | https://kelee.one/Tool/Loon/Lpx/DiDi_remove_ads.lpx |
 | douyin | 抖音 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/TikTok.snippet |
 | dragon-read | 番茄小说去广告 |  | https://kelee.one/Tool/Loon/Lpx/DragonRead_remove_ads.lpx |
 | hkdou-yin | 香港抖音去广告 |  | https://kelee.one/Tool/Loon/Lpx/HKDouYin_remove_ads.lpx |
@@ -112,7 +113,6 @@
 | dang-dang-reading | unchanged |
 | dao-meng-kong-jian | unchanged |
 | dewu | unchanged |
-| di-di | unchanged |
 | di-duan-ying-shi | unchanged |
 | dian-shi-jia | unchanged |
 | dida-pinche-taxi | unchanged |

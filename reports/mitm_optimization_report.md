@@ -7,19 +7,19 @@
 
 ## Summary
 
-- generated_at: `2026-09-04T03:43:26.558377+08:00`
+- generated_at: `2026-09-04T03:57:32.759486+08:00`
 - mode: `equivalent`
-- baseline hostname tokens: `2059`
-- baseline unique hostname tokens: `1234`
-- normalized hostname tokens: `1189`
+- baseline hostname tokens: `2054`
+- baseline unique hostname tokens: `1237`
+- normalized hostname tokens: `1192`
 - same normalized hostname set: `False`
 - same MITM coverage under matcher contract: `True`
 - matcher contract: `shadowrocket-mitm-suffix-wildcard-v1`
-- non-MITM semantic fingerprint: `5f83027b43c5cfbe928837bd6323d0475bc8ff0ba0eb483fad7a160d5eeb38c8`
-- non-MITM fingerprint lines: `2753`
+- non-MITM semantic fingerprint: `e8162d5ae9af7ca72e45cd7fbda3ded8c85e713e301c2290bd68f10025a64053`
+- non-MITM fingerprint lines: `2764`
 - wildcard count before: `34`
 - wildcard count after: `34`
-- strict duplicate tokens removed: `825`
+- strict duplicate tokens removed: `817`
 - proved wildcard reductions: `0`
 - attempted wildcard reductions: `0`
 - semantically redundant exact tokens removed: `45`
@@ -33,10 +33,10 @@
 ## Coverage Validation
 
 - passed: `True`
-- deep features: `1559`
-- resolvable features: `1390`
+- deep features: `1568`
+- resolvable features: `1399`
 - opaque features: `169`
-- baseline uncovered features: `45`
+- baseline uncovered features: `43`
 - reasons: `none`
 
 ## Source Trace

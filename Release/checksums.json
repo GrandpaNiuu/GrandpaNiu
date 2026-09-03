@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T19:43:05.846238Z",
+  "generated_at": "2026-09-03T19:57:15.609365Z",
   "algorithm": "sha256",
   "count": 418,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 2908344,
-      "sha256": "f4aa02d4fed4bbec5c605bf0f28e5996683bf5a3b509efb68ce3c3c2413b0ad6"
+      "size": 2911141,
+      "sha256": "770bc9e2b2f2e3a2942c57a2596cd0e344f4fde00da06727b8137077b270b9b7"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -485,8 +485,8 @@
     },
     {
       "path": "Release/Modules/di-di.sgmodule",
-      "size": 3859,
-      "sha256": "832ffc9fdeb344b62785b4b4388e531662cbdc34615024d6f8bcb86bfd9b041f"
+      "size": 5217,
+      "sha256": "d2293bb019a6175dbb7811bc261c903b374ea0406aa9136221d0bca4c187a2d9"
     },
     {
       "path": "Release/Modules/di-duan-ying-shi.sgmodule",
@@ -2010,23 +2010,23 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 2908344,
-      "sha256": "f4aa02d4fed4bbec5c605bf0f28e5996683bf5a3b509efb68ce3c3c2413b0ad6"
+      "size": 2911141,
+      "sha256": "770bc9e2b2f2e3a2942c57a2596cd0e344f4fde00da06727b8137077b270b9b7"
     },
     {
       "path": "Release/Rules.conf",
-      "size": 57074,
-      "sha256": "9f2a5fa07cb5c1be7ba1e59e8eb89441f615b191542b54270a9f12e7465a091d"
+      "size": 57147,
+      "sha256": "d3799f362a2250cbdfe00a933d7236c40205e5830445e6db46ca2e968f84a98d"
     },
     {
       "path": "Release/RulesGroup.conf",
-      "size": 57153,
-      "sha256": "e48ce1f0d795399f1d3152cf07426f87d738d2dc1909d24fe9b3d070125ff400"
+      "size": 57226,
+      "sha256": "5e3fa9ab667f7282f0890e08598a26d7417bd1161f3cf6da31217de0fc376291"
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 2908344,
-      "sha256": "f4aa02d4fed4bbec5c605bf0f28e5996683bf5a3b509efb68ce3c3c2413b0ad6"
+      "size": 2911141,
+      "sha256": "770bc9e2b2f2e3a2942c57a2596cd0e344f4fde00da06727b8137077b270b9b7"
     },
     {
       "path": "Release/Stable/README.md",
@@ -2035,18 +2035,18 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 2908344,
-      "sha256": "f4aa02d4fed4bbec5c605bf0f28e5996683bf5a3b509efb68ce3c3c2413b0ad6"
+      "size": 2911141,
+      "sha256": "770bc9e2b2f2e3a2942c57a2596cd0e344f4fde00da06727b8137077b270b9b7"
     },
     {
       "path": "Release/Stable/Rules.conf",
-      "size": 57074,
-      "sha256": "9f2a5fa07cb5c1be7ba1e59e8eb89441f615b191542b54270a9f12e7465a091d"
+      "size": 57147,
+      "sha256": "d3799f362a2250cbdfe00a933d7236c40205e5830445e6db46ca2e968f84a98d"
     },
     {
       "path": "Release/Stable/RulesGroup.conf",
-      "size": 57153,
-      "sha256": "e48ce1f0d795399f1d3152cf07426f87d738d2dc1909d24fe9b3d070125ff400"
+      "size": 57226,
+      "sha256": "5e3fa9ab667f7282f0890e08598a26d7417bd1161f3cf6da31217de0fc376291"
     },
     {
       "path": "Web/README.md",
@@ -2056,7 +2056,7 @@
     {
       "path": "Web/catalog.md",
       "size": 102975,
-      "sha256": "7944059ad11b22c9159a1008b605bf52b4377fadec41eeb5a7b69ccfcd23724a"
+      "sha256": "1b83b18cf0aec7dd51afeeb3a919d6c1460246e29a9dbcf850b26af2d3d61b41"
     },
     {
       "path": "Web/index.html",
@@ -2066,7 +2066,7 @@
     {
       "path": "Web/modules.html",
       "size": 401464,
-      "sha256": "efb7730c55455634004f07559b64325f0898b1f3d92dc2ce3d085c86ac1862f9"
+      "sha256": "5cb376491a3f78c70b8e6c67237c04192a6bc4f08adb46610dcf24d88c3331bd"
     },
     {
       "path": "Web/registry.md",
@@ -2076,7 +2076,7 @@
     {
       "path": "Web/release-links.json",
       "size": 147244,
-      "sha256": "20dde0c310ed5f391cefc1241c10800c630e55a62122a5adcdf834702e43d646"
+      "sha256": "1653bf613895069227ff5edcb5557bf23a2ba39395dbe8ddff5c659872dd8b95"
     },
     {
       "path": "Web/remotes.md",
@@ -2085,8 +2085,8 @@
     },
     {
       "path": "Windows/v2rayN/GrandpaNiu-v2rayN-custom-routing.json",
-      "size": 32690,
-      "sha256": "f74f31a05b72267117fb651570beca823b6c671821b93602038a19f24cbcef76"
+      "size": 32763,
+      "sha256": "78437ffa60152f5ba4f1eb4bbb74fa63963a5953096cd77e1ce1a6ee719fd6f5"
     },
     {
       "path": "Windows/v2rayN/README.md",

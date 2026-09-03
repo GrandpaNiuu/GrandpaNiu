@@ -115,7 +115,7 @@ Capability is derived from static sections and does not certify runtime effectiv
 | GrandpaNiu 当当网 Source | `dang-dang.sgmodule` | `Rewrite/Sources/Apps/dang-dang.conf` | rule | Rule:3 |
 | GrandpaNiu 到梦空间 Source | `dao-meng-kong-jian.sgmodule` | `Rewrite/Sources/Apps/dao-meng-kong-jian.conf` | rewrite | URL Rewrite:3, MITM:1 |
 | GrandpaNiu 得物 Source | `dewu.sgmodule` | `Rewrite/Sources/Apps/dewu.conf` | deep | URL Rewrite:7, Body Rewrite:3, MITM:1 |
-| GrandpaNiu 滴滴出行 Source | `di-di.sgmodule` | `Rewrite/Sources/Apps/di-di.conf` | deep | Rule:4, URL Rewrite:6, Body Rewrite:11, MITM:1 |
+| GrandpaNiu 滴滴出行 Source | `di-di.sgmodule` | `Rewrite/Sources/Apps/di-di.conf` | deep | Rule:3, URL Rewrite:9, Body Rewrite:18, MITM:1 |
 | GrandpaNiu 低端影视 Source | `di-duan-ying-shi.sgmodule` | `Rewrite/Sources/Apps/di-duan-ying-shi.conf` | rewrite | URL Rewrite:4, MITM:1 |
 | GrandpaNiu 电视家 Source | `dian-shi-jia.sgmodule` | `Rewrite/Sources/Apps/dian-shi-jia.conf` | rewrite | URL Rewrite:2, MITM:1 |
 | GrandpaNiu 滴答出行 Source | `dida-pinche-taxi.sgmodule` | `Rewrite/Sources/Apps/dida-pinche-taxi.conf` | rewrite | URL Rewrite:1, MITM:1 |

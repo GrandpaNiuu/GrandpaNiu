@@ -2,20 +2,20 @@
   "status": "passed",
   "errors": [],
   "module": {
-    "bytes": 2908344,
+    "bytes": 2911141,
     "max_bytes": 3500000,
-    "lines": 2769,
+    "lines": 2780,
     "max_lines": 3300,
-    "active_lines": 2761,
+    "active_lines": 2772,
     "max_default_line_chars": 50000
   },
   "section_counts": {
-    "Body Rewrite": 1435,
+    "Body Rewrite": 1444,
     "Header Rewrite": 2,
     "MITM": 1,
     "Map Local": 37,
     "Meta": 7,
-    "Rule": 1194,
+    "Rule": 1196,
     "Script": 45,
     "URL Rewrite": 40
   },
@@ -43,14 +43,14 @@
     }
   },
   "mitm": {
-    "tokens": 1189,
+    "tokens": 1192,
     "max_tokens": 1500,
     "wildcards": 34,
     "max_wildcards": 60
   },
   "longest_lines": [
     {
-      "line": 2688,
+      "line": 2699,
       "section": "Map Local",
       "chars": 2269910,
       "sha256": "1130e43c8c291b6659d890229dd5093472283e60ed6141b86d14334cf9194a93",
@@ -58,7 +58,7 @@
       "exception_id": "xiaojukeji-charge-map-local"
     },
     {
-      "line": 2162,
+      "line": 2173,
       "section": "Body Rewrite",
       "chars": 29975,
       "sha256": "150840c15f2af145d81a67326a61bebdbae62e7c405debbdef7a0147f009e4a3",
@@ -66,7 +66,7 @@
       "exception_id": null
     },
     {
-      "line": 2705,
+      "line": 2716,
       "section": "Map Local",
       "chars": 26300,
       "sha256": "47c6f638ca9aaf1b080fd68929cbd0c4eaf7df0da8681959beb3a00cea2f3015",
@@ -74,23 +74,15 @@
       "exception_id": null
     },
     {
-      "line": 2769,
+      "line": 2780,
       "section": "MITM",
-      "chars": 22433,
-      "sha256": "d37fca19d96fd892b4045718fd386514270bcfb9bf785b55a42c9c41a85127ef",
+      "chars": 22504,
+      "sha256": "0fcd7bc5ee77983f9104004166c820a2e0f41c8f45796ec0d9ad9a72713427c5",
       "prefix": "hostname = %APPEND% spclient.wg.spotify.com,*.spclient.spotify.com,youtubei.googleapis.com,acs.m.goofish.com,acs.m.taoba",
       "exception_id": null
     },
     {
-      "line": 1242,
-      "section": "URL Rewrite",
-      "chars": 5999,
-      "sha256": "743d9196816670da1166202e193f333d1b9b6f7f2bbbf010df42a3b311ccace9",
-      "prefix": "(?:^https://htwkop\\.xiaojukeji\\.com/gateway\\?api=cms\\.htw\\.delivery)|(?:^https://htwkop\\.xiaojukeji\\.com/gateway\\?api=hm",
-      "exception_id": null
-    },
-    {
-      "line": 1233,
+      "line": 1235,
       "section": "URL Rewrite",
       "chars": 5998,
       "sha256": "3c62a94e160cef4103a6dc48690543f670bf87fe3c40f844897a9bfc3f7a29b1",
@@ -100,13 +92,21 @@
     {
       "line": 1240,
       "section": "URL Rewrite",
-      "chars": 5996,
-      "sha256": "5c3ab547912cf874de4ad277146e5ca7bac699e33264b74f7f65d6bc19110b5b",
-      "prefix": "(?:^https://appc-v6\\.qixin\\.com/v4/general/getAppFloatAd$)|(?:^https://appc-v6\\.qixin\\.com/v4/general/getAppBanners$)|(?",
+      "chars": 5998,
+      "sha256": "805168f99c273bb1f40e8cfe2694c9ed62918ed2fcea4a65dbc8138b2dd4bc04",
+      "prefix": "(?:^https://(webboot\\.zhangyue\\.com|ih2\\.ireader\\.com)/zyboot/activity/mytab\\?)|(?:https://(webboot\\.zhangyue\\.com|ih2\\.",
       "exception_id": null
     },
     {
-      "line": 1218,
+      "line": 1243,
+      "section": "URL Rewrite",
+      "chars": 5993,
+      "sha256": "61366dc2a55c6025a50ba30157f757af1c3f908970fb8205026595a933b3e0f6",
+      "prefix": "(?:^https://acs\\.m\\.taobao\\.com/gw/mtop\\.fliggy\\.crm\\.screen\\.predict/)|(?:^https://acs\\.m\\.taobao\\.com/gw/mtop\\.fliggy\\",
+      "exception_id": null
+    },
+    {
+      "line": 1220,
       "section": "URL Rewrite",
       "chars": 5992,
       "sha256": "5bf53f7b6cb61a691f678a34f3b454d18b89bdfbd690bac6b34c22de77fb6a62",
@@ -114,7 +114,7 @@
       "exception_id": null
     },
     {
-      "line": 1234,
+      "line": 1236,
       "section": "URL Rewrite",
       "chars": 5987,
       "sha256": "e1f42522e8b56a394ebcb8d509c514a3f27647d74542b6a293882aa8a2939c5f",
@@ -122,11 +122,11 @@
       "exception_id": null
     },
     {
-      "line": 1224,
+      "line": 1242,
       "section": "URL Rewrite",
-      "chars": 5984,
-      "sha256": "cb7db3b7e049b9eb4bf1c7c4c5aee4989de09c4ab0af240e1b3edc57754b6533",
-      "prefix": "(?:^https?:\\/\\/(webboot\\.zhangyue\\.com|ih2\\.ireader\\.com)\\/zybk\\/api\\/pop\\/index\\?)|(?:^https?:\\/\\/(webboot\\.zhangyue\\.c",
+      "chars": 5987,
+      "sha256": "c0df5f9c00a21c57a4975786c79904ea96fc61fad4c1a57f25c28aab78c9bac3",
+      "prefix": "(?:^https://magev6\\.if\\.qidian\\.com/argus/api/v1/booksearch/hotWords\\?)|(?:^https://magev6\\.if\\.qidian\\.com/argus/api/v1",
       "exception_id": null
     }
   ],
@@ -143,7 +143,7 @@
       "reason": "Existing auto-synced Xiaojukeji Charge JavaScript payload; preserve until an equivalent Shadowrocket resource form is proven."
     }
   ],
-  "generated_at": "2026-09-03T19:43:06.023343Z",
+  "generated_at": "2026-09-03T19:57:15.881954Z",
   "module_path": "Release/Ronghemokuai.sgmodule",
   "config_path": "Rewrite/Generator/module-budgets.json"
 }

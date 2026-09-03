@@ -12,16 +12,16 @@
 | 重复 section | 无 |
 | 重复 active rule / rewrite / script / MITM line | 无 |
 | Script 入口数 | 45 |
-| MITM hostname 数 | 1189 |
+| MITM hostname 数 | 1192 |
 
 ## Section 规模
 
 | Section | Active line 数 |
 |---|---:|
-| `Rule` | 1194 |
+| `Rule` | 1196 |
 | `URL Rewrite` | 40 |
 | `Header Rewrite` | 2 |
-| `Body Rewrite` | 1435 |
+| `Body Rewrite` | 1444 |
 | `Map Local` | 37 |
 | `Script` | 45 |
 | `MITM` | 1 |

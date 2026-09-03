@@ -1,14 +1,14 @@
 # MITM / REJECT 风险台账
 
-- 生成时间：2026-09-04 03:25:20 +0800
-- 扫描 MITM hostname：806
-- 标记 MITM 风险项：172
-- 扫描 REJECT / rewrite reject 条目：4222
-- 标记 REJECT 风险项：2818
+- 生成时间：2026-09-04 03:57:35 +0800
+- 扫描 MITM hostname：801
+- 标记 MITM 风险项：166
+- 扫描 REJECT / rewrite reject 条目：4224
+- 标记 REJECT 风险项：2815
 - 高风险项：73
-- 中风险项：2917
-- 已映射到最终 MITM 合同的风险项：172
-- 最终成品中精确存在的 REJECT 风险项：814
+- 中风险项：2908
+- 已映射到最终 MITM 合同的风险项：166
+- 最终成品中精确存在的 REJECT 风险项：812
 
 ## 使用边界
 
@@ -149,12 +149,6 @@
 | MITM | medium | 通配 MITM | `Rewrite/Sources/Apps/caixin-media.conf:28` | `final-exact` | `e*.caixin.com` | 包含通配 MITM 范围 |
 | MITM | medium | 通配 MITM | `Rewrite/Sources/Apps/caixin-media.conf:28` | `final-exact` | `g*.caixin.com` | 包含通配 MITM 范围 |
 | MITM | medium | 通配 MITM | `Rewrite/Sources/Apps/caixin-media.conf:28` | `final-exact` | `m*.caixin.com` | 包含通配 MITM 范围 |
-| MITM | medium | 通配 MITM | `Rewrite/Sources/Apps/di-di.conf:36` | `final-exact` | `113.46.225.*` | 包含通配 MITM 范围 |
-| MITM | medium | 通配 MITM | `Rewrite/Sources/Apps/di-di.conf:36` | `final-exact` | `116.85.*` | 包含通配 MITM 范围 |
-| MITM | medium | 通配 MITM | `Rewrite/Sources/Apps/di-di.conf:36` | `final-exact` | `120.241.142.*` | 包含通配 MITM 范围 |
-| MITM | medium | 通配 MITM | `Rewrite/Sources/Apps/di-di.conf:36` | `final-exact` | `120.241.143.*` | 包含通配 MITM 范围 |
-| MITM | medium | 通配 MITM | `Rewrite/Sources/Apps/di-di.conf:36` | `final-exact` | `123.207.209.*` | 包含通配 MITM 范围 |
-| MITM | medium | 通配 MITM | `Rewrite/Sources/Apps/di-di.conf:36` | `final-exact` | `162.14.157.*` | 包含通配 MITM 范围 |
 | MITM | medium | 通配 MITM | `Rewrite/Sources/Apps/didi.conf:48` | `final-exact` | `113.46.225.*` | 包含通配 MITM 范围 |
 | MITM | medium | 通配 MITM | `Rewrite/Sources/Apps/didi.conf:48` | `final-exact` | `116.85.*` | 包含通配 MITM 范围 |
 | MITM | medium | 通配 MITM | `Rewrite/Sources/Apps/didi.conf:48` | `final-exact` | `120.241.142.*` | 包含通配 MITM 范围 |
@@ -1185,15 +1179,12 @@
 | REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/dewu.conf:13` | `source-only-or-compiled` | `^https://app\.dewu\.com/sns-rec/v1/attention/feed\? - reject-dict` | 非明确广告关键词，需人工复核 |
 | REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/dewu.conf:14` | `source-only-or-compiled` | `^https://app\.dewu\.com/sns-rec/v1/search/word-skip/new-list\? - reject-dict` | 非明确广告关键词，需人工复核 |
 | REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/dewu.conf:15` | `source-only-or-compiled` | `^https://app\.dewu\.com/sns-rec/v1/search/hotword-list\? - reject-dict` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:10` | `final-exact` | `AND,((IP-ASN,45090,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP)),REJECT` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:11` | `final-exact` | `AND,((IP-ASN,55990,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP)),REJECT` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:12` | `final-exact` | `AND,((IP-ASN,63646,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP)),REJECT` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:15` | `source-only-or-compiled` | `^https://res\.xiaojukeji\.com/resapi/activity/mget - reject-dict` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:16` | `source-only-or-compiled` | `^https://lion\.didialift\.com/broker/\? - reject-dict` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:17` | `source-only-or-compiled` | `^https://conf\.diditaxi\.com\.cn/homepage/v1/other/slow\? - reject-dict` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:18` | `source-only-or-compiled` | `^https://ct\.xiaojukeji\.com/agent/v3/feeds\? - reject-dict` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:19` | `source-only-or-compiled` | `^https://conf\.diditaxi\.com\.cn/dynamic/conf - reject-dict` | 非明确广告关键词，需人工复核 |
-| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:20` | `source-only-or-compiled` | `^https://poi\.map\.xiaojukeji\.com/mapapi/recommend\? - reject-dict` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:10` | `final-exact` | `DOMAIN,gwpgz.diditaxi.com.cn,REJECT` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:15` | `source-only-or-compiled` | `^https://res\.xiaojukeji\.com/resapi/activity/mget\? - reject-dict` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:16` | `source-only-or-compiled` | `^https://res\.xiaojukeji\.com/resapi/activity/mget$ - reject-dict` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:21` | `source-only-or-compiled` | `^https://api\.udache\.com/gulfstream/porsche/v\d/pSFCHomePage\? - reject-dict` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:22` | `source-only-or-compiled` | `^https://htwkop-st\.xiaojukeji\.com/gateway\?api=cms\.htw\.delivery\.batch - reject-dict` | 非明确广告关键词，需人工复核 |
+| REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:23` | `source-only-or-compiled` | `^https://freight\.xiaojukeji\.com/gateway\?api=freight\.d\.core\.multiDisplayV\d - reject-dict` | 非明确广告关键词，需人工复核 |
 | REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/di-di.conf:9` | `final-exact` | `DOMAIN,gwp.xiaojukeji.com,REJECT` | 非明确广告关键词，需人工复核 |
 | REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/didi.conf:10` | `final-exact` | `AND,((IP-ASN,45090,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP)),REJECT` | 非明确广告关键词，需人工复核 |
 | REJECT | medium | 未分类 REJECT | `Rewrite/Sources/Apps/didi.conf:11` | `final-exact` | `AND,((IP-ASN,55990,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP)),REJECT` | 非明确广告关键词，需人工复核 |

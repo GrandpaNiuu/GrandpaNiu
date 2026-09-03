@@ -61,6 +61,7 @@ payload:
   - DOMAIN,adsmind.gdtimg.com
   - DOMAIN,adsmind.ugdtimg.com
   - DOMAIN,adstats.tencentmusic.com
+  - DOMAIN,adtrack.xiaojukeji.com
   - DOMAIN,adui.tg.meitu.com
   - DOMAIN,advert.mafengwo.cn
   - DOMAIN,advertise.baicizhan.com
@@ -117,6 +118,7 @@ payload:
   - DOMAIN,grandpaniu-douyin-disabled.invalid
   - DOMAIN,grandpaniu-hkdouyin-disabled.invalid
   - DOMAIN,gwp.xiaojukeji.com
+  - DOMAIN,gwpgz.diditaxi.com.cn
   - DOMAIN,h-adashx.ut.taobao.com
   - DOMAIN,huatuocode.huatuo.qq.com
   - DOMAIN,huodong.weibo.cn
