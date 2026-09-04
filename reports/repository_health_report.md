@@ -1,6 +1,6 @@
 # Repository Health Report
 
-- Generated at: 2026-09-04 03:25:40 +0800
+- Generated at: 2026-09-05 03:07:16 +0800
 - Blocking issues: 0
 - Root and Release identical: yes
 - Release alias identical: yes
@@ -9,14 +9,14 @@
 - automated quality evidence: passed
 - node --check Scripts/app-cleaner.js: passed
 - Script entries: 26
-- MITM hostnames: 1189
+- MITM hostnames: 1192
 
 ## Section Counts
 
-- [Rule]: 1194
+- [Rule]: 1196
 - [URL Rewrite]: 40
 - [Header Rewrite]: 2
-- [Body Rewrite]: 1435
+- [Body Rewrite]: 1444
 - [Map Local]: 37
 - [Script]: 45
 - [MITM]: 1
