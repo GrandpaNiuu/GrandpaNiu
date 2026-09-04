@@ -7151,7 +7151,7 @@
       "source_hosts": []
     },
     {
-      "action": "http-response-jq '.data.order_cards.nav_list_card.data |= map(select(.nav_id == \"dache_anycar\" or .nav_id == \"carmate\" or .nav_id == \"driverservice\" or .nav_id == \"zhandianbashi\" or .nav_id == \"yuancheng\" or .nav_id == \"pincheche\" or .nav_id == \"bike\" or .nav_id == \"special_ride\" or .nav_id == \"nav_more_v3\")) | .data.disorder_cards.top_nav_list.data.top_nav_info |= map(select(.nav_id == \"chu_xing\" or .nav_id == \"freight_cargo\"))'",
+      "action": "http-response-jq '.data.order_cards.nav_list_card.data |= map(select(.nav_id == \"dache_anycar\" or .nav_id == \"carmate\" or .nav_id == \"driverservice\" or .nav_id == \"zhandianbashi\" or .nav_id == \"pincheche\" or .nav_id == \"bike\" or .nav_id == \"nav_more_v3\")) | .data.disorder_cards.top_nav_list.data.top_nav_info |= map(select(.nav_id == \"chu_xing\" or .nav_id == \"freight_cargo\"))'",
       "expression": "(?:^https://conf\\.diditaxi\\.com\\.cn/homepage/v\\d/core\\?)",
       "host_constraints": [
         "conf.diditaxi.com.cn"
@@ -34837,7 +34837,7 @@
     "spclient.wg.spotify.com",
     "youtubei.googleapis.com"
   ],
-  "generated_at": "2026-09-05T03:23:46.055940+08:00",
+  "generated_at": "2026-09-05T03:42:09.162724+08:00",
   "host_entries": [
     {
       "normalized": "api.zhihu.com",
@@ -43514,7 +43514,7 @@
   "mode": "equivalent",
   "non_mitm_fingerprint": {
     "line_count": 2764,
-    "sha256": "e8162d5ae9af7ca72e45cd7fbda3ded8c85e713e301c2290bd68f10025a64053"
+    "sha256": "fcd43f040192de60d2cfa000221c5c0dd6908e1a3e240a8e29656b96acaaa86d"
   },
   "normalized_hostname_token_count": 1192,
   "opaque_retained_count": 169,

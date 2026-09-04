@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T19:23:37.000106Z",
+  "generated_at": "2026-09-04T19:41:58.238902Z",
   "algorithm": "sha256",
   "count": 418,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 2911141,
-      "sha256": "3f918c1ee1778138de3040a61f83a0960b4c8898c7e3ad61d408a86e5d1f12e1"
+      "size": 2911086,
+      "sha256": "0ee6d9c89a8f9df70f145586ac376e4d9ff3b41b1597cb96b895416a2c2942ad"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -485,8 +485,8 @@
     },
     {
       "path": "Release/Modules/di-di.sgmodule",
-      "size": 5217,
-      "sha256": "d2293bb019a6175dbb7811bc261c903b374ea0406aa9136221d0bca4c187a2d9"
+      "size": 5162,
+      "sha256": "850b10b2dcbb4313f21ee56448ace843fc5720f53d6c671d8c2dd1964802bb13"
     },
     {
       "path": "Release/Modules/di-duan-ying-shi.sgmodule",
@@ -2010,8 +2010,8 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 2911141,
-      "sha256": "3f918c1ee1778138de3040a61f83a0960b4c8898c7e3ad61d408a86e5d1f12e1"
+      "size": 2911086,
+      "sha256": "0ee6d9c89a8f9df70f145586ac376e4d9ff3b41b1597cb96b895416a2c2942ad"
     },
     {
       "path": "Release/Rules.conf",
@@ -2025,8 +2025,8 @@
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 2911141,
-      "sha256": "3f918c1ee1778138de3040a61f83a0960b4c8898c7e3ad61d408a86e5d1f12e1"
+      "size": 2911086,
+      "sha256": "0ee6d9c89a8f9df70f145586ac376e4d9ff3b41b1597cb96b895416a2c2942ad"
     },
     {
       "path": "Release/Stable/README.md",
@@ -2035,8 +2035,8 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 2911141,
-      "sha256": "3f918c1ee1778138de3040a61f83a0960b4c8898c7e3ad61d408a86e5d1f12e1"
+      "size": 2911086,
+      "sha256": "0ee6d9c89a8f9df70f145586ac376e4d9ff3b41b1597cb96b895416a2c2942ad"
     },
     {
       "path": "Release/Stable/Rules.conf",

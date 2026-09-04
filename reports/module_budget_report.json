@@ -2,7 +2,7 @@
   "status": "passed",
   "errors": [],
   "module": {
-    "bytes": 2911141,
+    "bytes": 2911086,
     "max_bytes": 3500000,
     "lines": 2780,
     "max_lines": 3300,
@@ -143,7 +143,7 @@
       "reason": "Existing auto-synced Xiaojukeji Charge JavaScript payload; preserve until an equivalent Shadowrocket resource form is proven."
     }
   ],
-  "generated_at": "2026-09-04T19:23:37.247334Z",
+  "generated_at": "2026-09-04T19:41:58.484017Z",
   "module_path": "Release/Ronghemokuai.sgmodule",
   "config_path": "Rewrite/Generator/module-budgets.json"
 }
