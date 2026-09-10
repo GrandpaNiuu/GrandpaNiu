@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T19:31:35.800242Z",
+  "generated_at": "2026-09-10T19:48:43.558170Z",
   "algorithm": "sha256",
   "count": 418,
   "files": [
@@ -15,8 +15,8 @@
     },
     {
       "path": "Release/Module.sgmodule",
-      "size": 2911086,
-      "sha256": "e744a50ab430c65ba7a61d9ab8ea18711a3ae528d8f58d9c36cdb1d693477f03"
+      "size": 2911144,
+      "sha256": "c19e9be9153d486654f1d77cdb6423e744e6db2458794c9434a83d990115c580"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -485,8 +485,8 @@
     },
     {
       "path": "Release/Modules/di-di.sgmodule",
-      "size": 5162,
-      "sha256": "850b10b2dcbb4313f21ee56448ace843fc5720f53d6c671d8c2dd1964802bb13"
+      "size": 5220,
+      "sha256": "6e0b28ae0366f224b17dd9976385848335177c430c886b39dff7e160912e219b"
     },
     {
       "path": "Release/Modules/di-duan-ying-shi.sgmodule",
@@ -2010,8 +2010,8 @@
     },
     {
       "path": "Release/Ronghemokuai.sgmodule",
-      "size": 2911086,
-      "sha256": "e744a50ab430c65ba7a61d9ab8ea18711a3ae528d8f58d9c36cdb1d693477f03"
+      "size": 2911144,
+      "sha256": "c19e9be9153d486654f1d77cdb6423e744e6db2458794c9434a83d990115c580"
     },
     {
       "path": "Release/Rules.conf",
@@ -2025,8 +2025,8 @@
     },
     {
       "path": "Release/Stable/Module.sgmodule",
-      "size": 2911086,
-      "sha256": "e744a50ab430c65ba7a61d9ab8ea18711a3ae528d8f58d9c36cdb1d693477f03"
+      "size": 2911144,
+      "sha256": "c19e9be9153d486654f1d77cdb6423e744e6db2458794c9434a83d990115c580"
     },
     {
       "path": "Release/Stable/README.md",
@@ -2035,8 +2035,8 @@
     },
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
-      "size": 2911086,
-      "sha256": "e744a50ab430c65ba7a61d9ab8ea18711a3ae528d8f58d9c36cdb1d693477f03"
+      "size": 2911144,
+      "sha256": "c19e9be9153d486654f1d77cdb6423e744e6db2458794c9434a83d990115c580"
     },
     {
       "path": "Release/Stable/Rules.conf",

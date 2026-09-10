@@ -5604,7 +5604,7 @@
     },
     {
       "action": "http-response-jq '.data |= (.instances |= (to_entries | map(select(.key as $k | [\"center_base_info_card\", \"center_tool_card\", \"center_wallet_finance_card\", \"center_order_related_card\"] | index($k))) | from_entries)) | .data.instances.center_wallet_finance_card.data.view_info |= map(select(.title == \"优惠卡券\"))'",
-      "expression": "(?:^https://common\\.diditaxi\\.com\\.cn/common/v\\d/usercenter/layout$)",
+      "expression": "(?:^https://common\\.diditaxi\\.com\\.cn/common/v\\d/usercenter/layout)",
       "host_constraints": [
         "common.diditaxi.com.cn"
       ],
@@ -5915,7 +5915,7 @@
       ]
     },
     {
-      "action": "http-response-jq '.data |= map(select(.name != \"isUseNetConnectivity\"))'",
+      "action": "http-response-jq '.data |= map(select(.name != \"isUseNetConnectivity\") | .assign.args.rootca_pin = 0 | .assign.args.sni_list = {})'",
       "expression": "(?:^https://as\\.xiaojukeji\\.com/ep/as/toggles\\?)",
       "host_constraints": [
         "as.xiaojukeji.com"
@@ -34837,7 +34837,7 @@
     "spclient.wg.spotify.com",
     "youtubei.googleapis.com"
   ],
-  "generated_at": "2026-09-11T03:31:45.343446+08:00",
+  "generated_at": "2026-09-11T03:48:55.349111+08:00",
   "host_entries": [
     {
       "normalized": "api.zhihu.com",
@@ -43514,7 +43514,7 @@
   "mode": "equivalent",
   "non_mitm_fingerprint": {
     "line_count": 2764,
-    "sha256": "fcd43f040192de60d2cfa000221c5c0dd6908e1a3e240a8e29656b96acaaa86d"
+    "sha256": "f273eb13f222562153904530fcea5a057b8c65958b02a0f67f5e99d1736547a2"
   },
   "normalized_hostname_token_count": 1192,
   "opaque_retained_count": 169,
