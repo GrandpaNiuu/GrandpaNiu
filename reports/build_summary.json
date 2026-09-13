@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T19:32:56.778364Z",
+  "generated_at": "2026-09-13T19:43:17.732085Z",
   "module": "Release/Ronghemokuai.sgmodule",
   "module_exists": true,
   "module_size": 2911144,
@@ -30,7 +30,7 @@
   },
   "comparison_baseline": {
     "ref": "HEAD",
-    "commit": "34ea47b22615e1dfe54f6bba54f30a8475a8b6f3",
+    "commit": "8ba3a78294bddf667930e209ab85054f12a90566",
     "module_blob": "e53d3a11e5257fa43f7e32a882213ec5c87ba219"
   },
   "release_modules": 398,
