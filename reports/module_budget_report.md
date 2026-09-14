@@ -1,9 +1,9 @@
 # Fusion Module Complexity Budget
 
-- Generated at: `2026-09-14T20:52:07.175398Z`
+- Generated at: `2026-09-14T20:59:01.958746Z`
 - Status: `passed`
 - Scope: generated Fusion complexity only; this validator does not rewrite module content.
-- Module bytes: `2911144` / `3500000`
+- Module bytes: `2911142` / `3500000`
 - Module lines: `2780` / `3300`
 - Active lines: `2772`
 - MITM tokens: `1192` / `1500`
