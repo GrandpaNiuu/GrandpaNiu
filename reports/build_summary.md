@@ -1,13 +1,13 @@
 # Build Summary
 
-- Generated at: `2026-09-14T20:59:01.886316Z`
+- Generated at: `2026-09-15T19:48:40.794912Z`
 - Main module: `Release/Ronghemokuai.sgmodule`
 - Main module size: `2911142` bytes
 - Release modules: `398`
 - Checksum entries: `418`
 - Semantic SHA-256: `6114f229188454236601cb4346d281014cebc031b48957780560fc567d33dbb1`
-- Change classification: `module-semantic-changed`
-- Comparison baseline: `HEAD` commit `534a74aa987f54a2dc08722ac0e56a85d859482d` / module blob `e746476308257b27f1096cd62fd608ff5d8ef352`
+- Change classification: `metadata-only`
+- Comparison baseline: `HEAD` commit `015051839601e8db653d09b86a55d7f2d4f2b8b8` / module blob `a1f01727f5d6b92278e77dae158e79b842786507`
 
 ## Section counts
 
@@ -23,8 +23,8 @@
 
 ## Semantic change
 
-- Classification: `module-semantic-changed`
-- Changed sections: `Body Rewrite`
+- Classification: `metadata-only`
+- Changed sections: `none`
 - Stable metadata changed: `False`
 - Volatile date text in `#!desc` is excluded from the semantic fingerprint.
 - Boundary: this fingerprint covers module configuration text, not runtime behavior or remote content changing behind an unchanged URL.
