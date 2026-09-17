@@ -3,14 +3,14 @@
     "chunks": 2,
     "path": "Scripts/generated/fusion-script-bundle.js",
     "routes": 52,
-    "sha256": "e0b43b43c76705a441f93b21715cc2c0c7f69b806c6574a6945bc4a886718c24",
+    "sha256": "76f5a07a2b12fb060053e1e386875cd346fc1b8ae7c5c58c2963a7c6b60f07ae",
     "sources": 52,
     "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js",
     "version": "grandpaniu-fusion-script-bundle-v1"
   },
   "fetch_cached": [],
   "fetch_failed": [],
-  "generated": "2026-09-16T20:15:22Z",
+  "generated": "2026-09-17T19:50:06Z",
   "policy": {
     "allowed_prefixes": [
       "https://kelee.one/Resource/JavaScript/",
@@ -600,10 +600,10 @@
       "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js"
     },
     {
-      "bytes": 25261,
+      "bytes": 24734,
       "key": "src_55f495c845d81ee7",
-      "lines": 392,
-      "sha256": "006a70e8b99ea17ca853c8d7d940f8bc869264058dda738e86b55c3af530b428",
+      "lines": 378,
+      "sha256": "3848b97e365f23a08a99806fe9b9ee509a52a0eaf072667d6a43eeb9dc60ec87",
       "url": "https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/xiaohongshu.js"
     },
     {
