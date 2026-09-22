@@ -1,15 +1,15 @@
 # Rule Overlap Report
 
-- Generated at: 2026-09-22 05:09:04 +0800
+- Generated at: 2026-09-23 03:52:49 +0800
 - Rule files: 19
-- Active source rules: 3363
-- Unique source rules: 2016
-- Cross-file overlaps: 1347
+- Active source rules: 3365
+- Unique source rules: 2017
+- Cross-file overlaps: 1348
 
 ## Largest Rule Files
 
-- `Rules/converted/zirawell-allAdBlock-shadowrocket.list`: 1364
-- `Rules/converted/zirawell-appAdBlock-shadowrocket.list`: 1340
+- `Rules/converted/zirawell-allAdBlock-shadowrocket.list`: 1365
+- `Rules/converted/zirawell-appAdBlock-shadowrocket.list`: 1341
 - `Rules/aggressive-ads.list`: 125
 - `Rules/reject.list`: 103
 - `Rules/web-ads.list`: 102
@@ -150,7 +150,7 @@
 - `DOMAIN,apm-native.xiaohongshu.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
 - `DOMAIN,apm.gotokeep.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
 - `DOMAIN,apm.pinduoduo.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
-- ... 1227 more
+- ... 1228 more
 
 ## Maintenance Notes
 
