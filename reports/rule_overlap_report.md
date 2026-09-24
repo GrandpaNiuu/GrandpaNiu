@@ -1,15 +1,15 @@
 # Rule Overlap Report
 
-- Generated at: 2026-09-24 04:29:58 +0800
+- Generated at: 2026-09-25 04:06:37 +0800
 - Rule files: 19
-- Active source rules: 3373
-- Unique source rules: 2021
-- Cross-file overlaps: 1352
+- Active source rules: 3375
+- Unique source rules: 2022
+- Cross-file overlaps: 1353
 
 ## Largest Rule Files
 
-- `Rules/converted/zirawell-allAdBlock-shadowrocket.list`: 1369
-- `Rules/converted/zirawell-appAdBlock-shadowrocket.list`: 1345
+- `Rules/converted/zirawell-allAdBlock-shadowrocket.list`: 1370
+- `Rules/converted/zirawell-appAdBlock-shadowrocket.list`: 1346
 - `Rules/aggressive-ads.list`: 125
 - `Rules/reject.list`: 103
 - `Rules/web-ads.list`: 102
@@ -83,6 +83,7 @@
 - `DOMAIN,ads-img-qc.xhscdn.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
 - `DOMAIN,ads-video-al.xhscdn.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
 - `DOMAIN,ads-video-qc.xhscdn.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
+- `DOMAIN,ads-vp5.xhscdn.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
 - `DOMAIN,ads.auctions.yahoo.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
 - `DOMAIN,ads.babytree.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
 - `DOMAIN,ads.cup.com.cn` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
@@ -149,8 +150,7 @@
 - `DOMAIN,apm-api.huazhu.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
 - `DOMAIN,apm-native.xiaohongshu.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
 - `DOMAIN,apm.gotokeep.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
-- `DOMAIN,apm.pinduoduo.com` -> `Rules/converted/zirawell-allAdBlock-shadowrocket.list`, `Rules/converted/zirawell-appAdBlock-shadowrocket.list`
-- ... 1232 more
+- ... 1233 more
 
 ## Maintenance Notes
 
