@@ -1,6 +1,6 @@
 # Fusion Module Complexity Budget
 
-- Generated at: `2026-09-26T19:40:45.029760Z`
+- Generated at: `2026-09-26T19:56:37.953087Z`
 - Status: `passed`
 - Scope: generated Fusion complexity only; this validator does not rewrite module content.
 - Module bytes: `2911142` / `3500000`
