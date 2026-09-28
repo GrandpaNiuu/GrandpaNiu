@@ -6267,8 +6267,8 @@
       ]
     },
     {
-      "action": "http-response-jq '.data.container.sections |= map(select(.template.name == \"fish_home_miniapp\"))'",
-      "expression": "(?:^https?:\\/\\/acs\\.m\\.goofish\\.com\\/gw\\/mtop\\.taobao\\.idle\\.home\\.whale\\.modulet\\/)|(?:^https://acs\\.m\\.goofish\\.com/gw/mtop\\.taobao\\.idle\\.home\\.whale\\.modulet/)|(?:^https:\\/\\/acs\\.m\\.goofish\\.com\\/gw\\/mtop\\.taobao\\.idle\\.home\\.whale\\.modulet\\/)",
+      "action": "http-response-jq '.data.container.sections |= map(select((.template.name? // \"\") | test(\"^my_fy[0-9]+_(header|user_info|trade|appraise|tools)$\"))) | .data.container.sections |= map(.item |= (if .level and .level.exContent and (.level.exContent | has(\"tips\")) then del(.level) else . end)) | .data.container.sections |= map(if .sectionBizCode==\"entry2025\" then .item.tool.exContent.tools |= [[.[][] | select(.exContent.id as $id | $id==5 or $id==39 or $id==6 or $id==30 or $id==29 or $id==2 or $id==32 or $id==3 or $id==1)] | sort_by(. as $item | ([5,39,6,30,29,2,32,3,1] | index($item.exContent.id))) | [range(0;length;5) as $i | .[$i:$i+5]]][] else . end) | del(.data.ability)'",
+      "expression": "(?:^https://acs\\.m\\.goofish\\.com/gw/mtop\\.idle\\.user\\.page\\.my\\.adapter/)",
       "host_constraints": [
         "acs.m.goofish.com"
       ],
@@ -6283,8 +6283,8 @@
       ]
     },
     {
-      "action": "http-response-jq '.data.container.sections |= map(select(.template.name | test(\"^my_fy[0-9]+_(header|user_info|trade|appraise|tools)$\"))) | .data.container.sections |= map(.item |= (if .level and .level.exContent and (.level.exContent | has(\"tips\")) then del(.level) else . end)) | .data.container.sections|=map(if .sectionBizCode==\"entry2025\" then .item.tool.exContent.tools|=[[.[][]|select(.exContent.id as $id|$id==1 or $id==2 or $id==3 or $id==5 or $id==29 or $id==32 or $id==38)]|sort_by(. as $item|([5,2,3,32,38,1,29]|index($item.exContent.id)))|[range(0;length;5) as $i|.[$i:$i+5]]][] else . end)'",
-      "expression": "(?:^https://acs\\.m\\.goofish\\.com/gw/mtop\\.idle\\.user\\.page\\.my\\.adapter/)",
+      "action": "http-response-jq '.data.container.sections |= map(select(.template.name == \"fish_home_miniapp\"))'",
+      "expression": "(?:^https?:\\/\\/acs\\.m\\.goofish\\.com\\/gw\\/mtop\\.taobao\\.idle\\.home\\.whale\\.modulet\\/)|(?:^https://acs\\.m\\.goofish\\.com/gw/mtop\\.taobao\\.idle\\.home\\.whale\\.modulet/)|(?:^https:\\/\\/acs\\.m\\.goofish\\.com\\/gw\\/mtop\\.taobao\\.idle\\.home\\.whale\\.modulet\\/)",
       "host_constraints": [
         "acs.m.goofish.com"
       ],
@@ -34837,7 +34837,7 @@
     "spclient.wg.spotify.com",
     "youtubei.googleapis.com"
   ],
-  "generated_at": "2026-09-29T06:29:33.947912+08:00",
+  "generated_at": "2026-09-29T06:35:28.187162+08:00",
   "host_entries": [
     {
       "normalized": "api.zhihu.com",
@@ -43514,7 +43514,7 @@
   "mode": "equivalent",
   "non_mitm_fingerprint": {
     "line_count": 2764,
-    "sha256": "452038eb98efe40f3beb41d6cd1c4f0b0956531a72a3d47ff8d49f30a0eb882b"
+    "sha256": "eb9b8633d16b201385e6d290f78663f01466cd8165019221cc245f3ada921221"
   },
   "normalized_hostname_token_count": 1192,
   "opaque_retained_count": 169,

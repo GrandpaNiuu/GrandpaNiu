@@ -1,11 +1,11 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-09-27T20:13:37Z
+- generated: 2026-09-28T22:35:09Z
 - modules: 398
 - enabled: 390
 - direct_commit: 390
-- updated: 3
-- skipped: 395
+- updated: 4
+- skipped: 394
 - blocked: 0
 - errors: 0
 
@@ -14,6 +14,7 @@
 | --- | --- | --- | --- |
 | douyin | 抖音 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/TikTok.snippet |
 | dragon-read | 番茄小说去广告 |  | https://kelee.one/Tool/Loon/Lpx/DragonRead_remove_ads.lpx |
+| flea-market | 闲鱼去广告 |  | https://kelee.one/Tool/Loon/Lpx/FleaMarket_remove_ads.lpx |
 | hkdou-yin | 香港抖音去广告 |  | https://kelee.one/Tool/Loon/Lpx/HKDouYin_remove_ads.lpx |
 
 ## Skipped
@@ -142,7 +143,6 @@
 | feng-huang-xiu | unchanged |
 | ferris-wheel | unchanged |
 | finance-news | unchanged |
-| flea-market | unchanged |
 | flightradar24 | unchanged |
 | flyer-tea | unchanged |
 | foodie | unchanged |

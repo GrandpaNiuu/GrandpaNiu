@@ -7,7 +7,7 @@
 
 ## Summary
 
-- generated_at: `2026-09-29T06:29:33.947912+08:00`
+- generated_at: `2026-09-29T06:35:28.187162+08:00`
 - mode: `equivalent`
 - baseline hostname tokens: `2054`
 - baseline unique hostname tokens: `1237`
@@ -15,7 +15,7 @@
 - same normalized hostname set: `False`
 - same MITM coverage under matcher contract: `True`
 - matcher contract: `shadowrocket-mitm-suffix-wildcard-v1`
-- non-MITM semantic fingerprint: `452038eb98efe40f3beb41d6cd1c4f0b0956531a72a3d47ff8d49f30a0eb882b`
+- non-MITM semantic fingerprint: `eb9b8633d16b201385e6d290f78663f01466cd8165019221cc245f3ada921221`
 - non-MITM fingerprint lines: `2764`
 - wildcard count before: `34`
 - wildcard count after: `34`
