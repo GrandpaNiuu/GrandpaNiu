@@ -1,6 +1,6 @@
 # 上游来源、许可证与可信分层报告
 
-- 生成时间：2026-09-30 05:00:54 +0800
+- 生成时间：2026-09-30 05:28:09 +0800
 - App 同步记录：398
 - 远程规则 / 参考模块记录：40
 - 未记录 license 的来源：438
@@ -161,7 +161,7 @@
 | feng-huang-xiu | 凤凰秀 | observe | medium | True | True | False | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/feng-huang-xiu.conf | fmz200/wool_scripts raw |
 | ferris-wheel | 摩天轮 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/ferris-wheel.conf | https://kelee.one/Tool/Loon/Lpx/FerrisWheel_remove_ads.lpx |
 | finance-news | 华尔街见闻 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/finance-news.conf | https://kelee.one/Tool/Loon/Lpx/FinanceNews_remove_ads.lpx |
-| flea-market | 闲鱼 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | updated | Rewrite/Sources/Apps/flea-market.conf | https://kelee.one/Tool/Loon/Lpx/FleaMarket_remove_ads.lpx |
+| flea-market | 闲鱼 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/flea-market.conf | https://kelee.one/Tool/Loon/Lpx/FleaMarket_remove_ads.lpx |
 | flightradar24 | Flightradar24 | observe | medium | True | True | True | fmz200/wool_scripts | 未记录 | unchanged | Rewrite/Sources/Apps/flightradar24.conf | fmz200/wool_scripts raw |
 | flyer-tea | 飞客 | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/flyer-tea.conf | https://kelee.one/Tool/Loon/Lpx/FlyerTea_remove_ads.lpx |
 | foodie | Foodie | observe | medium | True | True | False | Kelee PluginHub | 未记录 | unchanged | Rewrite/Sources/Apps/foodie.conf | https://kelee.one/Tool/Loon/Lpx/Foodie_remove_ads.lpx |
