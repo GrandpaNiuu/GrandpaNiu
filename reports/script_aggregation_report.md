@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-10-21T20:20:40Z
+- generated: 2026-10-21T20:31:14Z
 - enabled: True
 - input script entries: 231
 - output script entries: 181
@@ -70,7 +70,7 @@
 - None
 
 ## Cache Fallbacks
-- `https://kelee.one/Resource/JavaScript/Amap/Amap_remove_ads.js`: HTTP Error 404: Not Found
+- None
 
 ## Preserved Reasons
 - preserved: binary body: 2
