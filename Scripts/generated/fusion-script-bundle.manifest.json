@@ -3,7 +3,7 @@
     "chunks": 2,
     "path": "Scripts/generated/fusion-script-bundle.js",
     "routes": 52,
-    "sha256": "1396a68882f7606ba240a7b7a53ba9ed2d35057985b12928838c1f964b3b6103",
+    "sha256": "53d98fbfae3ce408b91d067a0e208b8ac1a60569ff36fab6ba03bab845a4555c",
     "sources": 52,
     "url": "https://raw.githubusercontent.com/GrandpaNiuu/GrandpaNiu/main/Scripts/generated/fusion-script-bundle.js",
     "version": "grandpaniu-fusion-script-bundle-v1"
@@ -15,7 +15,7 @@
     }
   ],
   "fetch_failed": [],
-  "generated": "2026-10-20T20:26:01Z",
+  "generated": "2026-10-21T20:20:40Z",
   "policy": {
     "allowed_prefixes": [
       "https://kelee.one/Resource/JavaScript/",
