@@ -1,22 +1,22 @@
 # Workflow Health Report
 
-- Generated at: 2026-10-24 04:05:59 +0800
+- Generated at: 2026-10-25 02:58:40 +0800
 - Repository: `GrandpaNiuu/GrandpaNiu`
 - Workflows checked: 11
 
 | Workflow | File | Purpose | Triggers | Latest run | Status | Conclusion | Run URL | Advice |
 |---|---|---|---|---|---|---|---|---|
 | Module Factory Build | `.github/workflows/module-factory-build.yml` | Build Release and sync Root | manual / push | 2026-10-18T21:30:34Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/39168147515) | passed |
-| Daily Module Update | `.github/workflows/daily-module-update.yml` | Daily module date, build, report and validation | manual / schedule | 2026-10-23T20:03:26Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/40016237372) | Run is not completed; check again after it finishes |
-| Daily invalid rule audit and safe repair | `.github/workflows/daily-audit-and-repair.yml` | Report-only generated module integrity audit | manual / schedule | 2026-10-23T20:04:00Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/40016310139) | Run is not completed; check again after it finishes |
-| Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | Daily invalid source audit and repair | manual / schedule | 2026-10-22T20:19:15Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/39847809240) | passed |
-| Scheduled Module Factory Update | `.github/workflows/scheduled-module-update.yml` | Scheduled module factory build and publish | manual / schedule | 2026-10-22T20:27:46Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/39849053985) | passed |
-| Upstream app module sync | `.github/workflows/upstream-app-module-sync.yml` | Sync upstream app modules and validate build | manual / schedule | 2026-10-22T20:35:38Z | completed | failure | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/39850205490) | open the run log and fix the failed step |
-| Upstream candidate collect | `.github/workflows/upstream-collect.yml` | Collect trusted upstream candidates | manual / schedule | 2026-10-22T20:19:30Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/39847844684) | passed |
-| Daily schedule watchdog | `.github/workflows/daily-schedule-watchdog.yml` | Recover the daily module refresh if GitHub drops a scheduled run | manual / schedule | 2026-10-22T23:28:41Z | completed | failure | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/39872035264) | open the run log and fix the failed step |
+| Daily Module Update | `.github/workflows/daily-module-update.yml` | Daily module date, build, report and validation | manual / schedule | 2026-10-24T18:57:45Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/40123097421) | Run is not completed; check again after it finishes |
+| Daily invalid rule audit and safe repair | `.github/workflows/daily-audit-and-repair.yml` | Report-only generated module integrity audit | manual / schedule | 2026-10-23T20:04:00Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/40016310139) | passed |
+| Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | Daily invalid source audit and repair | manual / schedule | 2026-10-23T20:06:33Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/40016645567) | passed |
+| Scheduled Module Factory Update | `.github/workflows/scheduled-module-update.yml` | Scheduled module factory build and publish | manual / schedule | 2026-10-23T20:17:05Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/40018016386) | passed |
+| Upstream app module sync | `.github/workflows/upstream-app-module-sync.yml` | Sync upstream app modules and validate build | manual / schedule | 2026-10-23T20:29:57Z | completed | failure | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/40019674415) | open the run log and fix the failed step |
+| Upstream candidate collect | `.github/workflows/upstream-collect.yml` | Collect trusted upstream candidates | manual / schedule | 2026-10-23T20:06:55Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/40016692007) | passed |
+| Daily schedule watchdog | `.github/workflows/daily-schedule-watchdog.yml` | Recover the daily module refresh if GitHub drops a scheduled run | manual / schedule | 2026-10-23T23:16:36Z | completed | failure | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/40038738329) | open the run log and fix the failed step |
 | Repository Health Check | `.github/workflows/repository-health.yml` | Repository governance health check | manual / schedule | 2026-10-18T19:35:33Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/39159468517) | passed |
-| Deploy GitHub Pages | `.github/workflows/pages-deploy.yml` | Publish the static Pages artifact with serialized deploy retries | manual / workflow_run | 2026-10-22T23:29:23Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/39872112686) | passed |
-| Workflow failure issue | `.github/workflows/workflow-failure-issue.yml` | Create or update issues for failed Actions | workflow_run | 2026-10-22T23:29:33Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/39872128105) | passed |
+| Deploy GitHub Pages | `.github/workflows/pages-deploy.yml` | Publish the static Pages artifact with serialized deploy retries | manual / workflow_run | 2026-10-23T23:17:24Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/40038817714) | passed |
+| Workflow failure issue | `.github/workflows/workflow-failure-issue.yml` | Create or update issues for failed Actions | workflow_run | 2026-10-23T23:17:35Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/40038834621) | passed |
 
 ## Notes
 
