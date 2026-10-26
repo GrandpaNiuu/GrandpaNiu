@@ -1,6 +1,6 @@
 # Android rules build report
 
-- generated: 2026-10-26 03:55:25 Asia/Shanghai
+- generated: 2026-10-27 05:10:30 Asia/Shanghai
 - app rule files: 22
 - main Android rules: 954
 - source: Android/mihomo/apps/*.yaml
