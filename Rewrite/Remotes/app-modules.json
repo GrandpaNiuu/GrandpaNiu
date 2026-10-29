@@ -16,7 +16,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "12306",
@@ -28,7 +28,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "123pan",
@@ -136,7 +136,7 @@
       "risk": "medium",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "36-kr",
@@ -148,7 +148,7 @@
       "risk": "medium",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "360-child-guard",
@@ -172,7 +172,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "365-calendar",
@@ -220,7 +220,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "555-dy",
@@ -232,7 +232,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "58-auto",
@@ -280,7 +280,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "acfun",
@@ -352,7 +352,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "ali-yun-drive",
@@ -364,7 +364,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "all-football",
@@ -424,7 +424,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "baby-tree",
@@ -436,7 +436,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "baby-tree-parenting",
@@ -496,7 +496,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "baidu-map",
@@ -508,7 +508,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "baidu-net-disk",
@@ -520,7 +520,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "baidu-photo",
@@ -532,7 +532,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "baidu-translation",
@@ -640,7 +640,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "betty-kitchen",
@@ -664,7 +664,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "kokoryh/Sparkle",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "updated"
     },
     {
       "id": "bilibili-comic",
@@ -676,7 +676,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "bing",
@@ -712,7 +712,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "blued",
@@ -748,7 +748,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "boo-hee",
@@ -760,7 +760,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "cai-jing-za-zhi",
@@ -808,7 +808,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "caiyun-weather",
@@ -844,7 +844,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "cclive",
@@ -856,7 +856,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "cece",
@@ -868,7 +868,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "chao-ji-ke-cheng-biao",
@@ -916,7 +916,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "china-unicom",
@@ -940,7 +940,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "ci-wei-mao-yue-du",
@@ -988,7 +988,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "coolapk",
@@ -1036,7 +1036,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "da-shi-xiong",
@@ -1060,7 +1060,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "damai",
@@ -1072,7 +1072,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "dang-dang",
@@ -1120,7 +1120,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "di-di",
@@ -1132,7 +1132,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "di-duan-ying-shi",
@@ -1168,7 +1168,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "didi",
@@ -1192,7 +1192,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "ding-xiang-doctor",
@@ -1228,7 +1228,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "dlabel",
@@ -1240,7 +1240,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "dlabel-cloud-tag",
@@ -1276,7 +1276,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "douban-read",
@@ -1288,7 +1288,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "douyin",
@@ -1312,7 +1312,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "dragon-read",
@@ -1324,7 +1324,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "dreame",
@@ -1336,7 +1336,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "dubbing-show",
@@ -1348,7 +1348,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "dui-tang",
@@ -1360,7 +1360,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "eastday",
@@ -1384,7 +1384,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "etouch-ecalendar",
@@ -1396,7 +1396,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "facebook",
@@ -1444,7 +1444,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "fei-ke-cha-guan",
@@ -1468,7 +1468,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "feng-huang-xiu",
@@ -1492,7 +1492,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "finance-news",
@@ -1504,7 +1504,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "flea-market",
@@ -1516,7 +1516,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "flightradar24",
@@ -1540,7 +1540,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "foodie",
@@ -1552,7 +1552,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "funshion",
@@ -1588,7 +1588,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "go-com",
@@ -1636,7 +1636,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "hanju-tv",
@@ -1660,7 +1660,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "hao-hao-zhu",
@@ -1732,7 +1732,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "hkdou-yin",
@@ -1744,7 +1744,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "updated"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "hong-ban-bao",
@@ -1816,7 +1816,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "huxiu",
@@ -1828,7 +1828,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "huya",
@@ -1852,7 +1852,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "i-qi-yi-video",
@@ -1864,7 +1864,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "i-reader",
@@ -1876,7 +1876,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "i-reader-dejian",
@@ -1888,7 +1888,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "ithome",
@@ -1936,7 +1936,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "ji-he-wang",
@@ -1960,7 +1960,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "jia-xiao-drive",
@@ -1972,7 +1972,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "jia-xiao-yi-dian-tong",
@@ -2032,7 +2032,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "kan-dong-fang",
@@ -2080,7 +2080,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "keep",
@@ -2116,7 +2116,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "kingdee-my-money",
@@ -2128,7 +2128,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "kingsoft-power-word",
@@ -2152,7 +2152,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "kou-dai-xiao-yuan",
@@ -2176,7 +2176,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "ku-gou-music",
@@ -2200,7 +2200,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "ku6",
@@ -2236,7 +2236,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "kuai-dong-baike",
@@ -2260,7 +2260,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "kuai-kan",
@@ -2284,7 +2284,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "kuai-le-guang-bo",
@@ -2308,7 +2308,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "kuaishou",
@@ -2332,7 +2332,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "kuwo",
@@ -2344,7 +2344,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "kwai-videoeditor",
@@ -2356,7 +2356,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "lai-dian",
@@ -2488,7 +2488,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "linkedin",
@@ -2512,7 +2512,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "lofter",
@@ -2536,7 +2536,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "lu-ban-dao-jia",
@@ -2560,7 +2560,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "lv-fa-shi-ying-di",
@@ -2608,7 +2608,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "ma-ka-long-wan-tu",
@@ -2668,7 +2668,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "mail-master",
@@ -2680,7 +2680,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "mama",
@@ -2716,7 +2716,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "mei-ri-jing-xuan",
@@ -2740,7 +2740,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "mei-tu",
@@ -2752,7 +2752,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "mei-yan-xiang-ji",
@@ -2776,7 +2776,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "meituan",
@@ -2800,7 +2800,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "mgtv",
@@ -2824,7 +2824,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "miao-pai",
@@ -2848,7 +2848,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "mijia",
@@ -2884,7 +2884,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "mobile-clouds",
@@ -2896,7 +2896,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "moe-girl-wiki",
@@ -2908,7 +2908,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "moji-weather",
@@ -2944,7 +2944,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "nai-fei-ying-shi",
@@ -2968,7 +2968,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "naver",
@@ -2992,7 +2992,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "netease-mail",
@@ -3028,7 +3028,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "new-relic",
@@ -3088,7 +3088,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "one",
@@ -3124,7 +3124,7 @@
       "risk": "medium",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "oschina",
@@ -3196,7 +3196,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "pcauto",
@@ -3220,7 +3220,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "phoenix-new-media",
@@ -3268,7 +3268,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "picc-insurance",
@@ -3280,7 +3280,7 @@
       "risk": "medium",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "pinduoduo",
@@ -3304,7 +3304,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "pptv",
@@ -3328,7 +3328,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "qi-dian",
@@ -3340,7 +3340,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "qi-shui-music",
@@ -3364,7 +3364,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "qilu",
@@ -3400,7 +3400,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "qqmusic",
@@ -3436,7 +3436,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "quan-min-ge-ge",
@@ -3484,7 +3484,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "railway12306",
@@ -3532,7 +3532,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "ri-ri-zhu",
@@ -3556,7 +3556,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "robo-taxi",
@@ -3568,7 +3568,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "roborock",
@@ -3580,7 +3580,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "rqrun",
@@ -3592,7 +3592,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "safety-home",
@@ -3604,7 +3604,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "san-lian-zhong-du",
@@ -3640,7 +3640,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "seven-cat",
@@ -3652,7 +3652,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "sf-express",
@@ -3664,7 +3664,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "shao-shu-pai",
@@ -3700,7 +3700,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "shou-yin-tong-merchant",
@@ -3712,7 +3712,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "shu-qi-center-reader",
@@ -3724,7 +3724,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "si-ji-xian-shang-ying-shi",
@@ -3760,7 +3760,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "snapchat",
@@ -3784,7 +3784,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "snowball",
@@ -3796,7 +3796,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "soda-music",
@@ -3808,7 +3808,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "sogou-input",
@@ -3868,7 +3868,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "taobao",
@@ -3892,7 +3892,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "taopiaopiao",
@@ -3904,7 +3904,7 @@
       "risk": "high",
       "backup": true,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "tap-tap",
@@ -3928,7 +3928,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "tencent-games",
@@ -3988,7 +3988,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "terabox",
@@ -4096,7 +4096,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "tube-max",
@@ -4108,7 +4108,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "tui-lan",
@@ -4132,7 +4132,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "tv-assistant",
@@ -4144,7 +4144,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "twitch",
@@ -4180,7 +4180,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "uki",
@@ -4192,7 +4192,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "umetrip",
@@ -4216,7 +4216,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "vgtime",
@@ -4240,7 +4240,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "wa-cai-ji-zhang",
@@ -4252,7 +4252,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "wall-street-cn",
@@ -4276,7 +4276,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "wasu-tv",
@@ -4312,7 +4312,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "wechat-official-accounts",
@@ -4324,7 +4324,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "weibo",
@@ -4348,7 +4348,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "weimai",
@@ -4360,7 +4360,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "weread",
@@ -4384,7 +4384,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "wps",
@@ -4396,7 +4396,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "wuta-camera",
@@ -4408,7 +4408,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "xfuse",
@@ -4420,7 +4420,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "xia-chu-fang",
@@ -4432,7 +4432,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "xiao-can",
@@ -4444,7 +4444,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "xiao-hei-he",
@@ -4456,7 +4456,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "xiaojukeji-charge",
@@ -4468,7 +4468,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "xiaomi-speaker",
@@ -4480,7 +4480,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "xiaopeng",
@@ -4528,7 +4528,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "yahoo",
@@ -4552,7 +4552,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "yiche",
@@ -4576,7 +4576,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "youdao-dict",
@@ -4588,7 +4588,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "youdao-note",
@@ -4600,7 +4600,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "youdao-trans",
@@ -4612,7 +4612,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "youku",
@@ -4648,7 +4648,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "yueyou",
@@ -4660,7 +4660,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "yy-voice",
@@ -4672,7 +4672,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "yyvoice-tool",
@@ -4684,7 +4684,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "zaker",
@@ -4696,7 +4696,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "zdm",
@@ -4720,7 +4720,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "zhihu",
@@ -4744,7 +4744,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "zong-heng",
@@ -4756,7 +4756,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "zui-you",
@@ -4768,7 +4768,7 @@
       "risk": "medium",
       "backup": false,
       "upstream_project": "Kelee PluginHub",
-      "last_sync_mode": "unchanged"
+      "last_sync_mode": "fetch-failed"
     },
     {
       "id": "zuoyebang",

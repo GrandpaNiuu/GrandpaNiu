@@ -28658,9 +28658,9 @@
     },
     {
       "action": "https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.request.js",
-      "expression": "^https:\\/\\/(?:grpc\\.biliapi\\.net|app\\.bilibili\\.com)\\/bilibili\\.community\\.service\\.dm\\.v1\\.DM\\/DmSegMobile$",
+      "expression": "^https:\\/\\/(?:grpc\\.biliapi\\.net|app\\.bilibili\\.com)\\/bilibili\\.(?:app\\.viewunite\\.v1\\.View\\/View|main\\.community\\.reply\\.v1\\.Reply\\/MainList)$",
       "host_constraints": [],
-      "name": "{{{空降助手}}}",
+      "name": "{{{优化评论区加载}}}",
       "opaque": true,
       "order": 1539,
       "requires_mitm": true,
@@ -28670,9 +28670,9 @@
     },
     {
       "action": "https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.request.js",
-      "expression": "^https:\\/\\/(?:grpc\\.biliapi\\.net|app\\.bilibili\\.com)\\/bilibili\\.(?:app\\.viewunite\\.v1\\.View\\/View|main\\.community\\.reply\\.v1\\.Reply\\/MainList)$",
+      "expression": "^https:\\/\\/(?:grpc\\.biliapi\\.net|app\\.bilibili\\.com)\\/bilibili\\.community\\.service\\.dm\\.v1\\.DM\\/DmSegMobile$",
       "host_constraints": [],
-      "name": "{{{优化评论区加载}}}",
+      "name": "{{{空降助手}}}",
       "opaque": true,
       "order": 1540,
       "requires_mitm": true,
@@ -28698,34 +28698,34 @@
     },
     {
       "action": "https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.json.js",
-      "expression": "^https:\\/\\/api\\.live\\.bilibili\\.com\\/xlive\\/(?:app-interface\\/v2\\/index\\/feed|app-room\\/v1\\/index\\/getInfoBy(?:Room|User))\\?",
-      "host_constraints": [
-        "api.live.bilibili.com"
-      ],
-      "name": "bilibili.live",
-      "opaque": true,
-      "order": 1542,
-      "requires_mitm": true,
-      "section": "Script",
-      "source": "compiled:Script",
-      "source_hosts": [
-        "api.live.bilibili.com"
-      ]
-    },
-    {
-      "action": "https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.json.js",
       "expression": "^https:\\/\\/app\\.bilibili\\.com\\/x\\/(?:resource\\/show\\/tab\\/v2|v2\\/(?:splash\\/(?:list|show|event\\/list2)|feed\\/index(?:\\/story)?|account\\/(?:mine(?:\\/ipad)?|myinfo)))\\?",
       "host_constraints": [
         "app.bilibili.com"
       ],
       "name": "bilibili.json",
       "opaque": true,
-      "order": 1543,
+      "order": 1542,
       "requires_mitm": true,
       "section": "Script",
       "source": "compiled:Script",
       "source_hosts": [
         "app.bilibili.com"
+      ]
+    },
+    {
+      "action": "https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.json.js",
+      "expression": "^https:\\/\\/api\\.live\\.bilibili\\.com\\/xlive\\/(?:app-interface\\/v2\\/index\\/feed|app-room\\/v1\\/index\\/getInfoBy(?:Room|User))\\?",
+      "host_constraints": [
+        "api.live.bilibili.com"
+      ],
+      "name": "bilibili.live",
+      "opaque": true,
+      "order": 1543,
+      "requires_mitm": true,
+      "section": "Script",
+      "source": "compiled:Script",
+      "source_hosts": [
+        "api.live.bilibili.com"
       ]
     },
     {
@@ -28746,9 +28746,9 @@
     },
     {
       "action": "https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.response.js",
-      "expression": "^https:\\/\\/(?:grpc\\.biliapi\\.net|app\\.bilibili\\.com)\\/bilibili\\.(?:app\\.(?:show\\.v1\\.Popular\\/Index|dynamic\\.v2\\.Dynamic\\/DynAll|view(?:unite)?\\.v1\\.View\\/(?:View|ViewProgress|RelatesFeed)|playurl\\.v1\\.PlayURL\\/PlayView|playerunite\\.v1\\.Player\\/PlayViewUnite)|polymer\\.app\\.search\\.v1\\.Search\\/SearchAll|community\\.service\\.dm\\.v1\\.DM\\/DmView|main\\.community\\.reply\\.v1\\.Reply\\/MainList|pgc\\.gateway\\.player\\.v2\\.PlayURL\\/PlayView)$",
+      "expression": "^https:\\/\\/(?:grpc\\.biliapi\\.net|app\\.bilibili\\.com)\\/bilibili\\.(?:app\\.(?:show\\.v1\\.Popular\\/Index|dynamic\\.v2\\.Dynamic\\/DynAll|view(?:unite)?\\.v1\\.View\\/(?:View|ViewProgress|RelatesFeed|AIRelateAsync)|playurl\\.v1\\.PlayURL\\/PlayView|playerunite\\.v1\\.Player\\/PlayViewUnite)|polymer\\.app\\.search\\.v1\\.Search\\/SearchAll|community\\.service\\.dm\\.v1\\.DM\\/DmView|main\\.community\\.reply\\.v1\\.Reply\\/MainList|pgc\\.gateway\\.player\\.v2\\.PlayURL\\/PlayView)$",
       "host_constraints": [],
-      "name": "bilibili.protobuf",
+      "name": "bilibili.protobuf.response",
       "opaque": true,
       "order": 1545,
       "requires_mitm": true,
@@ -34837,7 +34837,7 @@
     "spclient.wg.spotify.com",
     "youtubei.googleapis.com"
   ],
-  "generated_at": "2026-10-30T05:43:35.116849+08:00",
+  "generated_at": "2026-10-30T05:52:45.862005+08:00",
   "host_entries": [
     {
       "normalized": "api.zhihu.com",
@@ -43514,7 +43514,7 @@
   "mode": "equivalent",
   "non_mitm_fingerprint": {
     "line_count": 2764,
-    "sha256": "eb9b8633d16b201385e6d290f78663f01466cd8165019221cc245f3ada921221"
+    "sha256": "5642e270ab1245d1c53a2e9422ca9e41e35a3e78d07b3420b73b9faa9f19b679"
   },
   "normalized_hostname_token_count": 1192,
   "opaque_retained_count": 169,

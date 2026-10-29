@@ -1,26 +1,25 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-10-01T21:52:33Z
+- generated: 2026-10-29T21:52:25Z
 - modules: 398
 - enabled: 390
 - direct_commit: 390
-- updated: 3
-- skipped: 395
+- updated: 2
+- skipped: 396
 - blocked: 0
 - errors: 0
 
 ## Updated
 | id | upstream | backup | source |
 | --- | --- | --- | --- |
+| bilibili | 哔哩哔哩增强 | backup/upstream-app-modules/bilibili/20261029-215133.conf | https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule |
 | douyin | 抖音 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/TikTok.snippet |
-| dragon-read | 番茄小说去广告 |  | https://kelee.one/Tool/Loon/Lpx/DragonRead_remove_ads.lpx |
-| hkdou-yin | 香港抖音去广告 |  | https://kelee.one/Tool/Loon/Lpx/HKDouYin_remove_ads.lpx |
 
 ## Skipped
 | id | reason |
 | --- | --- |
-| 123-net-work-disk | unchanged |
-| 12306 | unchanged |
+| 123-net-work-disk | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| 12306 | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | 123pan | unchanged |
 | 17173-game | unchanged |
 | 178-game | unchanged |
@@ -29,40 +28,40 @@
 | 21-economic-net | unchanged |
 | 2345-weather-king | unchanged |
 | 2345-web-navigation | unchanged |
-| 2bulu | unchanged |
-| 36-kr | unchanged |
+| 2bulu | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| 36-kr | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | 360-child-guard | unchanged |
-| 360-smart-camera | unchanged |
+| 360-smart-camera | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | 365-calendar | unchanged |
 | 39-health | unchanged |
 | 51-cto | unchanged |
-| 51-job | unchanged |
-| 555-dy | unchanged |
+| 51-job | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| 555-dy | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | 58-auto | unchanged |
 | 58-tong-cheng | unchanged |
 | 9-game | unchanged |
-| 91160 | unchanged |
+| 91160 | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | acfun | unchanged |
 | ai-mei-ju | unchanged |
 | ai-pai | unchanged |
 | ai-si-assistant | unchanged |
 | ai-yue-shu-xiang | unchanged |
-| aiinquiry | unchanged |
-| ali-yun-drive | unchanged |
+| aiinquiry | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| ali-yun-drive | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | all-football | unchanged |
 | amap | unchanged |
 | aol | unchanged |
 | appso | unchanged |
-| auto-home | unchanged |
-| baby-tree | unchanged |
+| auto-home | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| baby-tree | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | baby-tree-parenting | unchanged |
 | bahamut-anime | unchanged |
 | baicizhan | unchanged |
 | baidu | unchanged |
-| baidu-input-method | unchanged |
-| baidu-map | unchanged |
-| baidu-net-disk | unchanged |
-| baidu-photo | unchanged |
+| baidu-input-method | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| baidu-map | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| baidu-net-disk | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| baidu-photo | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | baidu-translation | unchanged |
 | baidu-wenku | unchanged |
 | baidupan | unchanged |
@@ -71,147 +70,148 @@
 | bao-mi-hua | unchanged |
 | baofeng-player | unchanged |
 | bbc | unchanged |
-| beike | unchanged |
+| beike | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | betty-kitchen | unchanged |
-| bilibili | unchanged |
-| bilibili-comic | unchanged |
+| bilibili-comic | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | bing | unchanged |
 | biquge | unchanged |
-| bitqiu-pan | unchanged |
+| bitqiu-pan | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | blued | unchanged |
 | bo-luo-bao-light-novel | unchanged |
-| bodian-music | unchanged |
-| boo-hee | unchanged |
+| bodian-music | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| boo-hee | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | cai-jing-za-zhi | unchanged |
 | cai-lian-she | unchanged |
 | cainiao | unchanged |
-| caixin-media | unchanged |
+| caixin-media | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | caiyun-weather | unchanged |
 | camera360 | unchanged |
-| cat-ear-fm | unchanged |
-| cclive | unchanged |
-| cece | unchanged |
+| cat-ear-fm | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| cclive | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| cece | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | chao-ji-ke-cheng-biao | unchanged |
 | chao-xing-xue-xi-tong | unchanged |
 | che-lai-le | unchanged |
-| cheng-fen-miao | unchanged |
+| cheng-fen-miao | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | china-unicom | unchanged |
-| chuzhan | unchanged |
+| chuzhan | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | ci-wei-mao-yue-du | unchanged |
 | clicli | unchanged |
 | cnn | unchanged |
-| cool-apk | unchanged |
+| cool-apk | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | coolapk | unchanged |
 | crunchyroll | unchanged |
 | csdn | unchanged |
-| csg | unchanged |
+| csg | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | da-shi-xiong | unchanged |
-| daily | unchanged |
-| damai | unchanged |
+| daily | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| damai | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | dang-dang | unchanged |
 | dang-dang-reading | unchanged |
 | dao-meng-kong-jian | unchanged |
-| dewu | unchanged |
-| di-di | unchanged |
+| dewu | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| di-di | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | di-duan-ying-shi | unchanged |
 | dian-shi-jia | unchanged |
-| dida-pinche-taxi | unchanged |
+| dida-pinche-taxi | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | didi | unchanged |
-| digital-heartbeat | unchanged |
+| digital-heartbeat | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | ding-xiang-doctor | unchanged |
 | ding-xiang-yuan | unchanged |
-| dingdong-maicai | unchanged |
-| dlabel | unchanged |
+| dingdong-maicai | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| dlabel | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | dlabel-cloud-tag | unchanged |
 | dong-hua-feng | unchanged |
-| dou-ban | unchanged |
-| douban-read | unchanged |
-| douyu | unchanged |
-| dreame | unchanged |
-| dubbing-show | unchanged |
-| dui-tang | unchanged |
+| dou-ban | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| douban-read | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| douyu | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| dragon-read | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| dreame | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| dubbing-show | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| dui-tang | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | eastday | unchanged |
-| ecovacs-home | unchanged |
-| etouch-ecalendar | unchanged |
+| ecovacs-home | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| etouch-ecalendar | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | facebook | unchanged |
 | fan-deng-reading | unchanged |
 | fan-qie-novel | unchanged |
-| fc-box | unchanged |
+| fc-box | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | fei-ke-cha-guan | unchanged |
-| fen-bi | unchanged |
+| fen-bi | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | feng-huang-xiu | unchanged |
-| ferris-wheel | unchanged |
-| finance-news | unchanged |
-| flea-market | unchanged |
+| ferris-wheel | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| finance-news | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| flea-market | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | flightradar24 | unchanged |
-| flyer-tea | unchanged |
-| foodie | unchanged |
+| flyer-tea | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| foodie | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | funshion | unchanged |
 | ganji | unchanged |
-| gao-ding | unchanged |
+| gao-ding | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | go-com | unchanged |
 | gong-kao-lei-da | unchanged |
 | goofish | unchanged |
-| guide-rank | unchanged |
+| guide-rank | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | hanju-tv | unchanged |
-| hanting-hotels | unchanged |
+| hanting-hotels | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | hao-hao-zhu | unchanged |
 | hao-qi-xin-daily | unchanged |
 | hao-you-kuai-bao | unchanged |
 | hao123 | unchanged |
 | he-feng-weather | unchanged |
-| heartide-brain-wave | unchanged |
+| heartide-brain-wave | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| hkdou-yin | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | hong-ban-bao | unchanged |
 | hua-sheng-di-tie | unchanged |
 | huang-you-xiang-ji | unchanged |
 | hujiang-online-school | unchanged |
 | huo-mao | unchanged |
-| hupu | unchanged |
-| huxiu | unchanged |
+| hupu | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| huxiu | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | huya | disabled |
-| i-mai-cai | unchanged |
-| i-qi-yi-video | unchanged |
-| i-reader | unchanged |
-| i-reader-dejian | unchanged |
+| i-mai-cai | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| i-qi-yi-video | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| i-reader | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| i-reader-dejian | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | ithome | unchanged |
 | jd | unchanged |
 | jdreading | unchanged |
-| jdwaimai | unchanged |
+| jdwaimai | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | ji-he-wang | unchanged |
-| jia-kao-bao-dian | unchanged |
-| jia-xiao-drive | unchanged |
+| jia-kao-bao-dian | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| jia-xiao-drive | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | jia-xiao-yi-dian-tong | unchanged |
 | jian-xun | unchanged |
 | jie-mian-news | unchanged |
 | jin-ri-shui-yin-camera | unchanged |
-| jump | unchanged |
+| jump | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | kan-dong-fang | unchanged |
 | kan-li-xiang | unchanged |
 | kan-tian-xia | unchanged |
-| kebida-dushu | unchanged |
+| kebida-dushu | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | keep | unchanged |
 | kfc | unchanged |
-| kgring | unchanged |
-| kingdee-my-money | unchanged |
+| kgring | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| kingdee-my-money | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | kingsoft-power-word | unchanged |
-| kook | unchanged |
+| kook | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | kou-dai-xiao-yuan | unchanged |
-| ku-gou | unchanged |
+| ku-gou | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | ku-gou-music | unchanged |
-| ku-gou-youth | unchanged |
+| ku-gou-youth | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | ku6 | unchanged |
 | kua-ya-zip | unchanged |
-| kuai-di100 | unchanged |
+| kuai-di100 | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | kuai-dong-baike | unchanged |
-| kuai-dui-zuo-ye | unchanged |
+| kuai-dui-zuo-ye | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | kuai-kan | unchanged |
-| kuai-kan-comic | unchanged |
+| kuai-kan-comic | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | kuai-le-guang-bo | unchanged |
-| kuai-shou | unchanged |
+| kuai-shou | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | kuaishou | unchanged |
-| kuro-bbs | unchanged |
-| kuwo | unchanged |
-| kwai-videoeditor | unchanged |
+| kuro-bbs | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| kuwo | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| kwai-videoeditor | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | lai-dian | unchanged |
 | lai-feng | unchanged |
 | lan-jie100 | unchanged |
@@ -222,132 +222,132 @@
 | leju | unchanged |
 | lenovo-print | unchanged |
 | lie-pin | unchanged |
-| line | unchanged |
+| line | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | linkedin | unchanged |
-| live-lab | unchanged |
+| live-lab | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | lofter | unchanged |
-| lol-bible | unchanged |
+| lol-bible | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | lu-ban-dao-jia | unchanged |
-| luckin-coffee | unchanged |
+| luckin-coffee | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | lv-fa-shi-ying-di | unchanged |
 | lv-tu-sui-shen-ting | unchanged |
 | lycos | unchanged |
-| ma-feng-wo | unchanged |
+| ma-feng-wo | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | ma-ka-long-wan-tu | unchanged |
 | ma-ma-wang-yun-yu | unchanged |
 | mac-keeper | unchanged |
 | mai-dui-dui | unchanged |
-| mai-mai | unchanged |
-| mail-master | unchanged |
+| mai-mai | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| mail-master | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | mama | unchanged |
 | man-hua-ren | unchanged |
-| meet-you | unchanged |
+| meet-you | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | mei-ri-jing-xuan | unchanged |
-| mei-shi-jie | unchanged |
-| mei-tu | unchanged |
+| mei-shi-jie | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| mei-tu | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | mei-yan-xiang-ji | unchanged |
-| meitu-myxj | unchanged |
+| meitu-myxj | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | meituan | disabled |
-| meizhixiuxing | unchanged |
+| meizhixiuxing | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | mgtv | unchanged |
-| mi-ho-yo-bbs | unchanged |
+| mi-ho-yo-bbs | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | miao-pai | unchanged |
-| miao-read | unchanged |
+| miao-read | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | mijia | unchanged |
 | mix | unchanged |
-| mkz | unchanged |
-| mobile-clouds | unchanged |
-| moe-girl-wiki | unchanged |
+| mkz | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| mobile-clouds | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| moe-girl-wiki | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | moji-weather | unchanged |
 | mop | unchanged |
-| mr-hema | unchanged |
+| mr-hema | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | nai-fei-ying-shi | unchanged |
-| narwel-robots | unchanged |
+| narwel-robots | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | naver | unchanged |
-| net-ease-godlike | unchanged |
+| net-ease-godlike | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | netease-mail | unchanged |
 | netease-music | unchanged |
-| netease-news | unchanged |
+| netease-news | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | new-relic | unchanged |
 | niu-ting-ting | unchanged |
 | ntplay | unchanged |
 | omofun | unchanged |
-| on-the-way | unchanged |
+| on-the-way | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | one | unchanged |
 | openmultimedia | unchanged |
-| oray-sunlogin | unchanged |
+| oray-sunlogin | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | oschina | unchanged |
 | oupeng | unchanged |
 | outfit7 | unchanged |
 | outlook | unchanged |
 | oxford-ald10th | unchanged |
-| pangguai-life | unchanged |
+| pangguai-life | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | pcauto | disabled |
-| perfect-world-esport | unchanged |
+| perfect-world-esport | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | phoenix-new-media | unchanged |
 | photoable | unchanged |
 | pi-pi-gao-xiao | unchanged |
-| pi-pi-xia | unchanged |
-| picc-insurance | unchanged |
+| pi-pi-xia | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| picc-insurance | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | pinduoduo | unchanged |
-| pinterest | unchanged |
+| pinterest | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | pptv | unchanged |
-| pu-pu-mall | unchanged |
-| qi-dian | unchanged |
+| pu-pu-mall | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| qi-dian | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | qi-shui-music | unchanged |
-| qi-xin-bao | unchanged |
+| qi-xin-bao | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | qilu | unchanged |
 | qqbrowser | unchanged |
-| qqksong | unchanged |
+| qqksong | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | qqmusic | unchanged |
 | qqnews | disabled |
-| qting-fm | unchanged |
+| qting-fm | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | quan-min-ge-ge | unchanged |
 | quan-neng-browser | unchanged |
 | quark | unchanged |
-| quark-scan | unchanged |
+| quark-scan | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | railway12306 | unchanged |
 | reddit | unchanged |
 | rednote | unchanged |
-| reel-short | unchanged |
+| reel-short | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | ri-ri-zhu | unchanged |
-| risk-bird | unchanged |
-| robo-taxi | unchanged |
-| roborock | unchanged |
-| rqrun | unchanged |
-| safety-home | unchanged |
+| risk-bird | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| robo-taxi | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| roborock | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| rqrun | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| safety-home | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | san-lian-zhong-du | unchanged |
 | sape | unchanged |
-| seasun-jx3 | unchanged |
-| seven-cat | unchanged |
-| sf-express | unchanged |
+| seasun-jx3 | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| seven-cat | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| sf-express | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | shao-shu-pai | unchanged |
 | sheng-qu-games | unchanged |
-| shop-keeper-admin | unchanged |
-| shou-yin-tong-merchant | unchanged |
-| shu-qi-center-reader | unchanged |
+| shop-keeper-admin | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| shou-yin-tong-merchant | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| shu-qi-center-reader | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | si-ji-xian-shang-ying-shi | unchanged |
 | skyworth | unchanged |
-| snail-sleep | unchanged |
+| snail-sleep | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | snapchat | unchanged |
-| snow-camera | unchanged |
-| snowball | unchanged |
-| soda-music | unchanged |
+| snow-camera | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| snowball | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| soda-music | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | sogou-input | unchanged |
 | soufun | unchanged |
 | soul | unchanged |
 | spotify | unchanged |
-| su-zhou-citizen-card | unchanged |
+| su-zhou-citizen-card | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | taobao | unchanged |
-| taobao-travel | unchanged |
-| taopiaopiao | unchanged |
+| taobao-travel | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| taopiaopiao | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | tap-tap | unchanged |
-| taqu | unchanged |
+| taqu | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | tencent-games | unchanged |
 | tencent-games-community | unchanged |
 | tencent-mobile-manager | unchanged |
 | tencent-sports | unchanged |
-| tencent-video | unchanged |
+| tencent-video | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | terabox | unchanged |
 | the-paper-news | unchanged |
 | tian-shan-yun-tv | unchanged |
@@ -356,63 +356,63 @@
 | top-widget | unchanged |
 | truth-social | unchanged |
 | ttvoice | unchanged |
-| tu-guai-shou | unchanged |
-| tube-max | unchanged |
+| tu-guai-shou | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| tube-max | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | tui-lan | unchanged |
-| tumblr | unchanged |
-| tv-assistant | unchanged |
+| tumblr | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| tv-assistant | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | twitch | unchanged |
 | twitter | unchanged |
-| txdocs | unchanged |
-| uki | unchanged |
+| txdocs | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| uki | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | umetrip | unchanged |
-| valorant-bible | unchanged |
+| valorant-bible | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | vgtime | unchanged |
-| video-go | unchanged |
-| wa-cai-ji-zhang | unchanged |
+| video-go | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| wa-cai-ji-zhang | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | wall-street-cn | unchanged |
-| walmart | unchanged |
+| walmart | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | wasu-tv | unchanged |
 | wechat | unchanged |
-| wechat-mini-programs | unchanged |
-| wechat-official-accounts | unchanged |
+| wechat-mini-programs | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| wechat-official-accounts | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | weibo | unchanged |
-| weibo-intl | unchanged |
-| weimai | unchanged |
+| weibo-intl | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| weimai | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | weread | unchanged |
-| wpforum | unchanged |
-| wps | unchanged |
-| wuta-camera | unchanged |
-| xfuse | unchanged |
-| xia-chu-fang | unchanged |
-| xiao-can | unchanged |
-| xiao-hei-he | unchanged |
-| xiaojukeji-charge | unchanged |
-| xiaomi-speaker | unchanged |
+| wpforum | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| wps | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| wuta-camera | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| xfuse | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| xia-chu-fang | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| xiao-can | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| xiao-hei-he | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| xiaojukeji-charge | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| xiaomi-speaker | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | xiaopeng | disabled |
 | xiaoyuzhou | unchanged |
 | ximalaya | unchanged |
-| xun-lei | unchanged |
+| xun-lei | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | yahoo | unchanged |
-| yi-kao-bang | unchanged |
+| yi-kao-bang | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | yiche | disabled |
-| yitian | unchanged |
-| youdao-dict | unchanged |
-| youdao-note | unchanged |
-| youdao-trans | unchanged |
+| yitian | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| youdao-dict | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| youdao-note | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| youdao-trans | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | youku | unchanged |
 | youtube | disabled |
-| yue-dan-ba | unchanged |
-| yueyou | unchanged |
-| yy-voice | unchanged |
-| yyvoice-tool | unchanged |
-| zaker | unchanged |
+| yue-dan-ba | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| yueyou | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| yy-voice | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| yyvoice-tool | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| zaker | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | zdm | unchanged |
-| zhi-lian-zhao-pin | unchanged |
+| zhi-lian-zhao-pin | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | zhihu | unchanged |
-| zhuan-zhuan | unchanged |
-| zong-heng | unchanged |
-| zui-you | unchanged |
+| zhuan-zhuan | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| zong-heng | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
+| zui-you | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | zuoyebang | disabled |
 
 ## Blocked
