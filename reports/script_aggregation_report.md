@@ -1,6 +1,6 @@
 # Script Aggregation Report
 
-- generated: 2026-10-28T21:36:22Z
+- generated: 2026-10-29T21:23:49Z
 - enabled: True
 - input script entries: 231
 - output script entries: 181
@@ -70,7 +70,38 @@
 - None
 
 ## Cache Fallbacks
-- `https://kelee.one/Resource/JavaScript/Amap/Amap_remove_ads.js`: HTTP Error 404: Not Found
+- `https://kelee.one/Resource/JavaScript/AliYunDrive/AliYunDrive_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/Amap/Amap_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/AutoHome/AutoHome_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/BabyTree/BabyTree_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/BaiduSearch/BaiduSearchHomePage_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/Baidu_input_method/Baidu_input_method_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/BooHee/BooHee_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/ColorfulClouds/ColorfulClouds_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/Douyu/Douyu_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/DubbingShow/DubbingShow_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/FlyerTea/FlyerTea_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/HUPU/HUPU_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/JD/JD_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/KebidaDushu/KebidaDushu_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/KuaiKanComic/KuaiKanComic_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/MKZ/MKZ_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/MaiMai/MaiMai_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/MeituMYXJ/MeituMYXJ_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/NetEaseGodlike/NetEaseGodlike_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/NeteaseNews/NeteaseNews_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/PuPuMall/PuPuMall_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/RiskBird/RiskBird_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/ShuQiCenterReader/ShuQiCenterReader_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/SodaMusic/SodaMusic_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/Soul/Soul_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/TV_Assistant/TV_Assistant_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/Taobao/Taobao_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/Uki/Uki_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/Weibo/Weibo_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
+- `https://kelee.one/Resource/JavaScript/iMaiCai/iMaiCai_remove_ads.js`: <urlopen error [Errno -5] No address associated with hostname>
 
 ## Preserved Reasons
 - preserved: binary body: 2
