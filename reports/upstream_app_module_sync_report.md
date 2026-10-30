@@ -1,18 +1,17 @@
 # Upstream App Module Sync Report
 
-- generated: 2026-10-29T21:52:25Z
+- generated: 2026-10-30T21:35:08Z
 - modules: 398
 - enabled: 390
 - direct_commit: 390
-- updated: 2
-- skipped: 396
+- updated: 1
+- skipped: 397
 - blocked: 0
 - errors: 0
 
 ## Updated
 | id | upstream | backup | source |
 | --- | --- | --- | --- |
-| bilibili | 哔哩哔哩增强 | backup/upstream-app-modules/bilibili/20261029-215133.conf | https://raw.githubusercontent.com/kokoryh/Sparkle/master/release/surge/module/bilibili.sgmodule |
 | douyin | 抖音 |  | https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/split/partD/TikTok.snippet |
 
 ## Skipped
@@ -72,6 +71,7 @@
 | bbc | unchanged |
 | beike | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | betty-kitchen | unchanged |
+| bilibili | unchanged |
 | bilibili-comic | fetch failed: <urlopen error [Errno -5] No address associated with hostname>; kept existing source |
 | bing | unchanged |
 | biquge | unchanged |
