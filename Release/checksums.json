@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-14T21:17:23.989207Z",
+  "generated_at": "2026-11-15T21:13:11.317959Z",
   "algorithm": "sha256",
   "count": 418,
   "files": [
@@ -16,7 +16,7 @@
     {
       "path": "Release/Module.sgmodule",
       "size": 2911239,
-      "sha256": "bedab569e857a4dad9fc172b60572b2913f92547b095101bbfde456bf7ad0b3c"
+      "sha256": "db148bbbcf405653b640b213286c55983d7c4a56a9282fafe581022844c9f09e"
     },
     {
       "path": "Release/Modules/123-net-work-disk.sgmodule",
@@ -2011,7 +2011,7 @@
     {
       "path": "Release/Ronghemokuai.sgmodule",
       "size": 2911239,
-      "sha256": "bedab569e857a4dad9fc172b60572b2913f92547b095101bbfde456bf7ad0b3c"
+      "sha256": "db148bbbcf405653b640b213286c55983d7c4a56a9282fafe581022844c9f09e"
     },
     {
       "path": "Release/Rules.conf",
@@ -2026,7 +2026,7 @@
     {
       "path": "Release/Stable/Module.sgmodule",
       "size": 2911239,
-      "sha256": "bedab569e857a4dad9fc172b60572b2913f92547b095101bbfde456bf7ad0b3c"
+      "sha256": "db148bbbcf405653b640b213286c55983d7c4a56a9282fafe581022844c9f09e"
     },
     {
       "path": "Release/Stable/README.md",
@@ -2036,7 +2036,7 @@
     {
       "path": "Release/Stable/Ronghemokuai.sgmodule",
       "size": 2911239,
-      "sha256": "bedab569e857a4dad9fc172b60572b2913f92547b095101bbfde456bf7ad0b3c"
+      "sha256": "db148bbbcf405653b640b213286c55983d7c4a56a9282fafe581022844c9f09e"
     },
     {
       "path": "Release/Stable/Rules.conf",
