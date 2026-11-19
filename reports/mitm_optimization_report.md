@@ -7,7 +7,7 @@
 
 ## Summary
 
-- generated_at: `2026-11-19T07:20:47.754380+08:00`
+- generated_at: `2026-11-20T07:12:04.357681+08:00`
 - mode: `equivalent`
 - baseline hostname tokens: `2054`
 - baseline unique hostname tokens: `1237`
