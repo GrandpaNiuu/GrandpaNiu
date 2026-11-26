@@ -1,22 +1,22 @@
 # Workflow Health Report
 
-- Generated at: 2026-11-25 09:02:18 +0800
+- Generated at: 2026-11-26 08:38:34 +0800
 - Repository: `GrandpaNiuu/GrandpaNiu`
 - Workflows checked: 11
 
 | Workflow | File | Purpose | Triggers | Latest run | Status | Conclusion | Run URL | Advice |
 |---|---|---|---|---|---|---|---|---|
 | Module Factory Build | `.github/workflows/module-factory-build.yml` | Build Release and sync Root | manual / push | 2026-10-18T21:30:34Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/39168147515) | passed |
-| Daily Module Update | `.github/workflows/daily-module-update.yml` | Daily module date, build, report and validation | manual / schedule | 2026-11-25T01:01:24Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45522591777) | Run is not completed; check again after it finishes |
-| Daily invalid rule audit and safe repair | `.github/workflows/daily-audit-and-repair.yml` | Report-only generated module integrity audit | manual / schedule | 2026-11-24T03:01:41Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45316580226) | passed |
-| Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | Daily invalid source audit and repair | manual / schedule | 2026-11-24T03:03:23Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45316775732) | passed |
-| Scheduled Module Factory Update | `.github/workflows/scheduled-module-update.yml` | Scheduled module factory build and publish | manual / schedule | 2026-11-24T03:13:47Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45318013838) | passed |
-| Upstream app module sync | `.github/workflows/upstream-app-module-sync.yml` | Sync upstream app modules and validate build | manual / schedule | 2026-11-24T03:21:17Z | completed | failure | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45318916047) | open the run log and fix the failed step |
-| Upstream candidate collect | `.github/workflows/upstream-collect.yml` | Collect trusted upstream candidates | manual / schedule | 2026-11-24T03:03:33Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45316796767) | passed |
-| Daily schedule watchdog | `.github/workflows/daily-schedule-watchdog.yml` | Recover the daily module refresh if GitHub drops a scheduled run | manual / schedule | 2026-11-24T04:53:02Z | completed | failure | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45329435557) | open the run log and fix the failed step |
+| Daily Module Update | `.github/workflows/daily-module-update.yml` | Daily module date, build, report and validation | manual / schedule | 2026-11-26T00:37:52Z | in_progress | pending | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45730099328) | Run is not completed; check again after it finishes |
+| Daily invalid rule audit and safe repair | `.github/workflows/daily-audit-and-repair.yml` | Report-only generated module integrity audit | manual / schedule | 2026-11-25T01:03:10Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45522812040) | passed |
+| Daily invalid source audit and repair | `.github/workflows/daily-invalid-source-repair.yml` | Daily invalid source audit and repair | manual / schedule | 2026-11-25T01:07:09Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45523321946) | passed |
+| Scheduled Module Factory Update | `.github/workflows/scheduled-module-update.yml` | Scheduled module factory build and publish | manual / schedule | 2026-11-25T01:18:46Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45524800506) | passed |
+| Upstream app module sync | `.github/workflows/upstream-app-module-sync.yml` | Sync upstream app modules and validate build | manual / schedule | 2026-11-25T01:27:38Z | completed | failure | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45525906729) | open the run log and fix the failed step |
+| Upstream candidate collect | `.github/workflows/upstream-collect.yml` | Collect trusted upstream candidates | manual / schedule | 2026-11-25T01:07:20Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45523349299) | passed |
+| Daily schedule watchdog | `.github/workflows/daily-schedule-watchdog.yml` | Recover the daily module refresh if GitHub drops a scheduled run | manual / schedule | 2026-11-25T03:37:09Z | completed | failure | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45541219724) | open the run log and fix the failed step |
 | Repository Health Check | `.github/workflows/repository-health.yml` | Repository governance health check | manual / schedule | 2026-11-22T22:43:56Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45079342334) | passed |
-| Deploy GitHub Pages | `.github/workflows/pages-deploy.yml` | Publish the static Pages artifact with serialized deploy retries | manual / workflow_run | 2026-11-24T04:53:56Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45329538229) | passed |
-| Workflow failure issue | `.github/workflows/workflow-failure-issue.yml` | Create or update issues for failed Actions | workflow_run | 2026-11-24T04:54:09Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45329563371) | passed |
+| Deploy GitHub Pages | `.github/workflows/pages-deploy.yml` | Publish the static Pages artifact with serialized deploy retries | manual / workflow_run | 2026-11-25T03:38:00Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45541317053) | passed |
+| Workflow failure issue | `.github/workflows/workflow-failure-issue.yml` | Create or update issues for failed Actions | workflow_run | 2026-11-25T03:38:12Z | completed | success | [open](https://github.com/GrandpaNiuu/GrandpaNiu/actions/runs/45541339497) | passed |
 
 ## Notes
 
