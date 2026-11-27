@@ -1,6 +1,6 @@
 # MITM Scope Report
 
-- Generated at: 2026-11-26 08:38:31 +0800
+- Generated at: 2026-11-27 08:46:51 +0800
 - Total hostnames: 1192
 - Wildcard hostnames: 34
 - Unique base domains: 673
